@@ -4,9 +4,9 @@ Gonzales — быстрый парсер CSS.
 
 Этот документ является инструкцией по установке.
 
-Использование: [CSSP.USAGE.ru] (https://github.com/afelix/gonzales/blob/master/doc/CSSP.USAGE.ru.md).
+Использование: [CSSP.USAGE.ru] (https://github.com/css/gonzales/blob/master/doc/CSSP.USAGE.ru.md).
 
-Описание CSSP AST: [AST.CSSP.ru] (https://github.com/afelix/gonzales/blob/master/doc/AST.CSSP.ru.md).
+Описание CSSP AST: [AST.CSSP.ru] (https://github.com/css/gonzales/blob/master/doc/AST.CSSP.ru.md).
 
 Замеченные ошибки лучше добавлять в [Issues](https://github.com/css/gonzales/issues) проекта.
 

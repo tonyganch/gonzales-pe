@@ -4,9 +4,9 @@ Gonzales — fast CSS parser.
 
 This document is an installation guide.
 
-Usage: [CSSP.USAGE.en] (https://github.com/afelix/gonzales/blob/master/doc/CSSP.USAGE.en.md).
+Usage: [CSSP.USAGE.en] (https://github.com/css/gonzales/blob/master/doc/CSSP.USAGE.en.md).
 
-CSSP AST description: [AST.CSSP.en] (https://github.com/afelix/gonzales/blob/master/doc/AST.CSSP.en.md).
+CSSP AST description: [AST.CSSP.en] (https://github.com/css/gonzales/blob/master/doc/AST.CSSP.en.md).
 
 Please report issues on [Issues](https://github.com/css/gonzales/issues).
 
