@@ -14,7 +14,7 @@ Gonzales — быстрый парсер CSS.
 
 Предварительные требования:
 
-* nodejs версии 0.4.x&nbsp;— [http://nodejs.org](http://nodejs.org)
+* nodejs версии 0.6.x&nbsp;— [http://nodejs.org](http://nodejs.org)
 * npm&nbsp;— [http://github.com/isaacs/npm/](http://github.com/isaacs/npm/)
 
 Установка (глобально):
