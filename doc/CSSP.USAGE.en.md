@@ -2,9 +2,9 @@
 
 #### 1. Sample
 
-By this sample you can check your Gonzales installation validness and the work of its functions.
+With the help of this sample, you can check if Gonzales is installed correctly and if its (three) functions are working properly.
 
-Is it assumed that in the production code you will change AST in more intelligent way.
+It is assumed that in the production code you will change AST in a more intelligent way.
 
 Sample code:
 
@@ -69,29 +69,29 @@ Result:
 
 #### 2. API
 
-In Node.js you can use Gonzales module in this way: `gonzales = require('gonzales')`.
+In Node.js you can use Gonzales module this way: `gonzales = require('gonzales')`.
 
 You can use CSSP AST through the next functions.
 
 ##### SRC -> AST
 
-Parses source style to AST: `gonzales.srcToCSSP(src, rule, needInfo)`, where:
+It parses source style to AST: `gonzales.srcToCSSP(src, rule, needInfo)`, where:
 
-* `src` — string with the CSS style;
-* `rule` — string with the token type in case the style is not whole; for example you want to parse only *declaration*, so it is needed to call `srcToCSSP('color: red', 'declaration')`; in case the style is whole and you don't need info-object, the call is shortned to `srcToCSSP(src)`;
-* `needInfo` — include an info-object into AST; in most cases you don't need it, but if you included that, you must pass this `true` value in all functions with `needInfo` argument in signature.
+* `src` — a string with the CSS style;
+* `rule` —  a string with the token type (in case the style is not complete);  for example, you want to parse only *declaration*, then you have to call `srcToCSSP('color: red', 'declaration')`; in case the style is complete and you don't need an info-object, the call is shortned to `srcToCSSP(src)`;
+* `needInfo` — whether to include info-object into AST; in most cases you don't need it, but if it is included, you have to pass this `true` value in all functions with `needInfo` argument in signature.
 
 ##### AST -> SRC
 
 Translates AST to style: `gonzales.csspToSrc(ast, hasInfo)`, where:
 
-* `ast` — AST to translate;
-* `needInfo` — include an info-object into AST; in case it was while parsing of the style into AST, you need to make it `true` here too.
+* `ast` — AST to be translated;
+* `needInfo` — whether an info-object is included into AST; in case it was when the style was parsed, you have to make it `true` here as well.
 
 ##### AST -> TREE
 
 Translates AST to the string representation of the tree: `gonzales.csspToTree(ast)`, where:
 
-* `ast` — AST to translate.
+* `ast` — AST to be translated.
 
-This function is useful for debug or learning purposes.
+This function is useful for debugging or learning purposes.
