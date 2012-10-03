@@ -652,11 +652,11 @@ URI.
           ['value',
             ['ident', 'v']]]]]
 
-#### atruler, atruleq, atrules
+#### atruler, atrulerq, atrulers
 
 At-правило с *ruleset*.
 
-Состоит из *atkeyword* (идентификатор правила), *atruleq* (правила) и *atrules* (стиля).
+Состоит из *atkeyword* (идентификатор правила), *atrulerq* (правила) и *atrulers* (стиля).
 
     @media x y {s{p:v}}
 
