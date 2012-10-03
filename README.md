@@ -14,7 +14,7 @@ Please report issues on [Issues](https://github.com/css/gonzales/issues).
 
 Prerequisites:
 
-* nodejs версии 0.6.x&nbsp;— [http://nodejs.org](http://nodejs.org)
+* nodejs 0.6.x&nbsp;— [http://nodejs.org](http://nodejs.org)
 * npm&nbsp;— [http://github.com/isaacs/npm/](http://github.com/isaacs/npm/)
 
 To install (global):
