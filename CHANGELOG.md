@@ -1,3 +1,5 @@
+* v1.0.4, 11.10.2012
+    - CSSO issue (@page inside @media error): https://github.com/css/csso/issues/90
 * v1.0.3, 10.10.2012
     - Both .t-1 and .t-01 should be idents: https://github.com/css/gonzales/issues/1
 * v1.0.2, 08.10.2012
