@@ -392,7 +392,7 @@ function getCSSPAST(_tokens, rule, _needInfo) {
     }
 
     function throwError() {
-        console.error('Please, check the validness of the CSS block starting from the line #' + currentBlockLN);
+        console.error('Please check the validity of the CSS block starting from the line #' + currentBlockLN);
         if (process) process.exit(1);
         throw new Error();
     }
