@@ -1,3 +1,5 @@
+* v1.0.5, 28.10.2012
+    - Better error line numbering: https://github.com/css/gonzales/issues/2
 * v1.0.4, 11.10.2012
     - CSSO issue (@page inside @media error): https://github.com/css/csso/issues/90
 * v1.0.3, 10.10.2012
