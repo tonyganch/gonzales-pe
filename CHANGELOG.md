@@ -1,4 +1,4 @@
-Gomzales changelog
+Gonzales changelog
 ==================
 
 25.11.2012, Version 1.0.6 
