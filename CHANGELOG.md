@@ -1,6 +1,11 @@
 Gomzales changelog
 ==================
 
+25.11.2012, Version 1.0.6 
+-------------------------
+
+- Typo fix (global variable leak): https://github.com/css/csso/pull/110
+
 28.10.2012, Version 1.0.5 
 -------------------------
 

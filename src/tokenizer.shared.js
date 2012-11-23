@@ -106,7 +106,7 @@ function getTokens(s) {
 
         tokens = [];
 
-        var c, nc;
+        var c, cn;
 
         for (pos = 0; pos < s.length; pos++) {
             c = s.charAt(pos);
