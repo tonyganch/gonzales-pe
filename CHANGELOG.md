@@ -5,6 +5,8 @@ Gomzales changelog
 -------------------------
 
 - Typo fix (global variable leak): https://github.com/css/csso/pull/110
+- Attribute selectors extended by `|`.
+- `not(..)` pseudo-class special support: https://github.com/css/csso/issues/111
 
 28.10.2012, Version 1.0.5 
 -------------------------
