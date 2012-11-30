@@ -1,6 +1,10 @@
 Gonzales changelog
 ==================
 
+??.11.2012, Version 1.0.7
+
+- Identifiers like `_0` are identifiers now.
+
 25.11.2012, Version 1.0.6 
 -------------------------
 
