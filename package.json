@@ -1,7 +1,7 @@
 {
     "name": "gonzales",
     "description": "Gonzales — fast CSS parser",
-    "version": "1.0.6",
+    "version": "1.0.7",
     "homepage": "http://github.com/css/gonzales",
     "author": "Sergey Kryzhanovsky <skryzhanovsky@ya.ru> (http://github.com/afelix)",
     "repository": {
