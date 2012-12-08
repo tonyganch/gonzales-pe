@@ -44,7 +44,8 @@ var TokenType = {
     DecimalNumber: 'DecimalNumber'
 };
 
-function getTokens(s) {
+var getTokens = (function() {
+
     var Punctuation,
         urlMode = false,
         blockMode = 0;
@@ -267,5 +268,8 @@ function getTokens(s) {
         }
     }
 
-    return _getTokens(s);
-}
+    return function(s) {
+        return _getTokens(s);
+    };
+
+}());

@@ -1,6 +1,6 @@
 // version: 1.0.0
 
-function getCSSPAST(_tokens, rule, _needInfo) {
+var getCSSPAST = (function() {
 
     var tokens,
         pos,
@@ -2009,5 +2009,8 @@ function getCSSPAST(_tokens, rule, _needInfo) {
         if (sc !== -1) tokens[sc].sc_last = i - 1;
     }
 
-    return _getAST(_tokens, rule, _needInfo);
-}
+    return function(_tokens, rule, _needInfo) {
+        return _getAST(_tokens, rule, _needInfo);
+    }
+
+}());
