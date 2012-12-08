@@ -1,14 +1,24 @@
 {
-    "name": "gonzales",
-    "description": "Gonzales — fast CSS parser",
-    "version": "1.0.7",
-    "homepage": "http://github.com/css/gonzales",
-    "author": "Sergey Kryzhanovsky <skryzhanovsky@ya.ru> (http://github.com/afelix)",
-    "repository": {
-        "type": "git",
-        "url": "http://github.com/css/gonzales.git"
-    },
-    "main": "./lib/gonzales",
-    "engines": { "node": ">=0.6.0" },
-    "licenses": [ { "type": "MIT" } ]
+  "name": "gonzales",
+  "description": "Gonzales — fast CSS parser",
+  "version": "1.0.7",
+  "homepage": "http://github.com/css/gonzales",
+  "author": "Sergey Kryzhanovsky <skryzhanovsky@ya.ru> (http://github.com/afelix)",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/css/gonzales.git"
+  },
+  "main": "./lib/gonzales",
+  "engines": {
+    "node": ">=0.6.0"
+  },
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ],
+  "devDependencies": {
+    "benchmark": "~1.0.0",
+    "microtime": "~0.3.3"
+  }
 }
