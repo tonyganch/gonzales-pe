@@ -1,1 +1,1 @@
-function srcToCSSP(s, rule, _needInfo) {
+var srcToCSSP = (function() {
