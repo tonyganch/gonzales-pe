@@ -1,9 +1,10 @@
 Gonzales changelog
 ==================
 
-??.11.2012, Version 1.0.7
+11.02.2013, Version 1.0.7
 
 - Identifiers like `_0` are identifiers now.
+- Throw error instead of console.error: https://github.com/css/csso/issues/109
 
 25.11.2012, Version 1.0.6 
 -------------------------
