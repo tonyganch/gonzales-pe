@@ -20,5 +20,8 @@
   "devDependencies": {
     "benchmark": "~1.0.0",
     "microtime": "~0.3.3"
+  },
+  "scripts": {
+      "test": "node ./test/cssp/test.js"
   }
 }

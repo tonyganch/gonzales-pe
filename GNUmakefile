@@ -1,6 +1,6 @@
-.PHONY: cssp
+.PHONY: build
 
-cssp:
+build:
 	@echo 'Creating temp files...'
 	@mkdir -p tmp
 	@cat src/gonzales.cssp.header.js > tmp/.gonzales.cssp.js
@@ -30,6 +30,3 @@ cssp:
 	@rm -rf tmp
 
 	@echo 'Done!'
-
-cssptest:
-	@node test/cssp/test.js
