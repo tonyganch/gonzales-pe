@@ -1,4 +1,7 @@
 *.iml
-.idea/
-node_modules/
 .DS_Store
+.idea/
+lib/cssp.translator.node.js
+lib/gonzales.cssp.node.js
+node_modules/
+web/

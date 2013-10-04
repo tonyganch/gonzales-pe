@@ -22,6 +22,7 @@ cssp:
 	@cat src/cssp.translator.node.js >> lib/cssp.translator.node.js
 
 	@echo 'Building web files...'
+	@mkdir -p web
 	@cp tmp/.gonzales.cssp.js web/gonzales.cssp.web.js
 	@cp tmp/.cssp.translator.js web/cssp.translator.js
 
