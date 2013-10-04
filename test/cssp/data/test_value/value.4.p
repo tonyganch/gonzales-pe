@@ -1,4 +1,4 @@
-['value', 
-  ['unary', '-'], 
-  ['percentage', 
+['value',
+  ['unary', '-'],
+  ['percentage',
     ['number', '100']]]

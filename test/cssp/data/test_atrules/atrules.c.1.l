@@ -1,1 +1,1 @@
-@test/*test*/x/*test*/y;
+@test/*test*/x/*test*/y

@@ -1,3 +1,3 @@
-['funktion', 
-  ['ident', 'test'], 
+['funktion',
+  ['ident', 'test'],
   ['functionBody']]

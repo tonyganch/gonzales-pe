@@ -1,2 +1,2 @@
-['uri', 
+['uri',
   ['string', ''http://test.com'']]

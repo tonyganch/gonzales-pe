@@ -1,9 +1,11 @@
-['stylesheet', 
-  ['atrules', 
-    ['atkeyword', 
-      ['ident', 'test0']]], 
+['stylesheet',
+  ['atrules',
+    ['atkeyword',
+      ['ident', 'test0']]],
+  ['decldelim'],
   ['s', '
-'], 
-  ['atrules', 
-    ['atkeyword', 
-      ['ident', 'test1']]]]
+'],
+  ['atrules',
+    ['atkeyword',
+      ['ident', 'test1']]],
+  ['decldelim']]

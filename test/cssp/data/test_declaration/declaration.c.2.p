@@ -1,7 +1,7 @@
-['declaration', 
-  ['property', 
-    ['ident', 'property'], 
-    ['comment', 'test']], 
-  ['value', 
-    ['comment', 'test'], 
+['declaration',
+  ['property',
+    ['ident', 'property'],
+    ['comment', 'test']],
+  ['value',
+    ['comment', 'test'],
     ['ident', 'value']]]

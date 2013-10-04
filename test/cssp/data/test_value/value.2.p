@@ -1,5 +1,5 @@
-['value', 
-  ['funktion', 
-    ['ident', 'test'], 
-    ['functionBody', 
+['value',
+  ['funktion',
+    ['ident', 'test'],
+    ['functionBody',
       ['ident', 'x']]]]

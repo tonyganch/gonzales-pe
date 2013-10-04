@@ -1,3 +1,3 @@
-['atrules', 
-  ['atkeyword', 
+['atrules',
+  ['atkeyword',
     ['ident', 'test']]]

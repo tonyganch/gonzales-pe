@@ -1,4 +1,4 @@
-['attrib', 
-  ['ident', 'a'], 
-  ['attrselector', '='], 
+['attrib',
+  ['ident', 'a'],
+  ['attrselector', '='],
   ['ident', 'b']]

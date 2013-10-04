@@ -1,4 +1,5 @@
-['stylesheet', 
-  ['atrules', 
-    ['atkeyword', 
-      ['ident', 'test']]]]
+['stylesheet',
+  ['atrules',
+    ['atkeyword',
+      ['ident', 'test']]],
+  ['decldelim']]

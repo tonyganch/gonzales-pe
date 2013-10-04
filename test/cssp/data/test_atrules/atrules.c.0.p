@@ -1,4 +1,4 @@
-['atrules', 
-  ['atkeyword', 
-    ['ident', 'test']], 
+['atrules',
+  ['atkeyword',
+    ['ident', 'test']],
   ['comment', 'test']]

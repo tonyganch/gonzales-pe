@@ -1,4 +1,4 @@
-['uri', 
-  ['s', '  '], 
-  ['raw', 'http://test.com'], 
+['uri',
+  ['s', '  '],
+  ['raw', 'http://test.com'],
   ['s', '  ']]

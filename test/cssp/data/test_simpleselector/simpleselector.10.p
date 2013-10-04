@@ -1,4 +1,4 @@
-['simpleselector', 
-  ['ident', 'a'], 
-  ['namespace'], 
+['simpleselector',
+  ['ident', 'a'],
+  ['namespace'],
   ['ident', 'b']]

@@ -1,2 +1,2 @@
-['clazz', 
+['clazz',
   ['ident', 'abc']]

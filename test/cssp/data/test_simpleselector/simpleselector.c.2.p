@@ -1,6 +1,6 @@
-['simpleselector', 
-  ['ident', 'a'], 
-  ['comment', 'test'], 
-  ['combinator', '>'], 
-  ['comment', 'test'], 
+['simpleselector',
+  ['ident', 'a'],
+  ['comment', 'test'],
+  ['combinator', '>'],
+  ['comment', 'test'],
   ['ident', 'b']]

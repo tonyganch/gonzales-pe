@@ -1,4 +1,4 @@
-['block', 
-  ['comment', 'test'], 
-  ['decldelim'], 
+['block',
+  ['comment', 'test'],
+  ['decldelim'],
   ['comment', 'test']]

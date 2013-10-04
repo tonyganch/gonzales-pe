@@ -1,2 +1,2 @@
-['block', 
+['block',
   ['decldelim']]

@@ -1,4 +1,4 @@
-['braces', '(', ')', 
-  ['comment', 'test'], 
-  ['ident', 'x'], 
+['braces', '(', ')',
+  ['comment', 'test'],
+  ['ident', 'x'],
   ['comment', 'test']]

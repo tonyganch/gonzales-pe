@@ -1,1 +1,1 @@
-@test  ;
+@test  x  y

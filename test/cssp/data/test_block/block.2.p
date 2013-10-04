@@ -1,6 +1,6 @@
-['block', 
-  ['declaration', 
-    ['property', 
-      ['ident', 'p']], 
-    ['value', 
+['block',
+  ['declaration',
+    ['property',
+      ['ident', 'p']],
+    ['value',
       ['ident', 'v']]]]

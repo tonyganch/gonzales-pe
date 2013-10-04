@@ -41,7 +41,7 @@ d_list.forEach(function(rule_dir) {
                 for (a in funcs) {
                     if (a in files[k]) {
                         total++;
-                        r = (((b = funcs[a](src, rule)) == (c = readFile(path + k + '.' + a).trim())));
+                        r = (((b = funcs[a](src, rule)).replace(/,\s\n/g, ',\n') == (c = readFile(path + k + '.' + a).trim())));
                         r && okn++;
                         if (!r) {
                             console.log('FAIL: ' + t + a);

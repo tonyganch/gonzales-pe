@@ -1,4 +1,4 @@
-['braces', '(', ')', 
-  ['ident', 'x'], 
-  ['unary', '+'], 
+['braces', '(', ')',
+  ['ident', 'x'],
+  ['unary', '+'],
   ['number', '1']]

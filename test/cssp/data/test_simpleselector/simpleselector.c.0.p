@@ -1,4 +1,4 @@
-['simpleselector', 
-  ['ident', 'a'], 
-  ['comment', 'test'], 
+['simpleselector',
+  ['ident', 'a'],
+  ['comment', 'test'],
   ['ident', 'b']]

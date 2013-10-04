@@ -1,2 +1,2 @@
-['property', 
+['property',
   ['ident', '-my-color']]

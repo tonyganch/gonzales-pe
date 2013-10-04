@@ -1,4 +1,4 @@
-['value', 
-  ['number', '10'], 
-  ['s', ' '], 
+['value',
+  ['number', '10'],
+  ['s', ' '],
   ['important']]

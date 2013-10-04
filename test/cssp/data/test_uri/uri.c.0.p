@@ -1,4 +1,4 @@
-['uri', 
-  ['comment', 'test'], 
-  ['string', ''http://test.com''], 
+['uri',
+  ['comment', 'test'],
+  ['string', ''http://test.com''],
   ['comment', 'test']]

@@ -1,1 +1,1 @@
-@test x y;
+@test x y

@@ -1,5 +1,5 @@
-['simpleselector', 
-  ['attrib', 
-    ['ident', 'a'], 
-    ['attrselector', '='], 
+['simpleselector',
+  ['attrib',
+    ['ident', 'a'],
+    ['attrselector', '='],
     ['ident', 'b']]]

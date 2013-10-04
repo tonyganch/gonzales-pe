@@ -1,6 +1,6 @@
-['simpleselector', 
-  ['ident', 'a'], 
-  ['s', '  '], 
-  ['combinator', '~'], 
-  ['s', '  '], 
+['simpleselector',
+  ['ident', 'a'],
+  ['s', '  '],
+  ['combinator', '~'],
+  ['s', '  '],
   ['ident', 'b']]

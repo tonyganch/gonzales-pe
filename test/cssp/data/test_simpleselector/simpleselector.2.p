@@ -1,2 +1,2 @@
-['simpleselector', 
+['simpleselector',
   ['shash', 'test']]

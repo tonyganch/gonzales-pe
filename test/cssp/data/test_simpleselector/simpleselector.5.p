@@ -1,4 +1,4 @@
-['simpleselector', 
-  ['ident', 'a'], 
-  ['s', ' '], 
+['simpleselector',
+  ['ident', 'a'],
+  ['s', ' '],
   ['ident', 'b']]
