@@ -2,14 +2,14 @@
 
 var getCSSPAST = (function() {
 
-    var tokens,
-        pos,
-        failLN = 0,
-        currentBlockLN = 0,
+    var tokens, // list of tokens
+        pos, // position of current token in tokens' list
+        failLN = 0, // the largest line number of token that failed validation
+        currentBlockLN = 0, // line number of current token
         needInfo = false;
 
     var CSSPNodeType,
-        CSSLevel,
+        CSSLevel,// TODO: remove
         CSSPRules;
 
     CSSPNodeType = {
@@ -73,8 +73,6 @@ var getCSSPAST = (function() {
         'number': function() { if (checkNumber(pos)) return getNumber() },
         'percentage': function() { if (checkPercentage(pos)) return getPercentage() },
         'dimension': function() { if (checkDimension(pos)) return getDimension() },
-//        'cdo': function() { if (checkCDO()) return getCDO() },
-//        'cdc': function() { if (checkCDC()) return getCDC() },
         'decldelim': function() { if (checkDecldelim(pos)) return getDecldelim() },
         's': function() { if (checkS(pos)) return getS() },
         'attrselector': function() { if (checkAttrselector(pos)) return getAttrselector() },
@@ -115,38 +113,62 @@ var getCSSPAST = (function() {
         'unknown': function() { if (checkUnknown(pos)) return getUnknown() }
     };
 
+    /**
+     * Save token's line number as the last line with a failed token or
+     *      do nothing
+     * @param {object} token
+     */
     function fail(token) {
         if (token && token.ln > failLN) failLN = token.ln;
     }
 
+    /**
+     * Stop parsing and display error
+     */
     function throwError() {
         throw new Error('Please check the validity of the CSS block starting from the line #' + currentBlockLN);
     }
 
+    /**
+     * Convert tokens to AST
+     * @param {Array} _tokens List of tokens
+     * @param rule
+     * @param _needInfo
+     * @returns {*}
+     * @private
+     */
     function _getAST(_tokens, rule, _needInfo) {
         tokens = _tokens;
         needInfo = _needInfo;
         pos = 0;
 
+        // Mark whitespaces and comments:
         markSC();
 
+        // Validate and convert:
         return rule ? CSSPRules[rule]() : CSSPRules['stylesheet']();
     }
 
-//any = braces | string | percentage | dimension | number | uri | functionExpression | funktion | ident | unary
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAny(_i) {
         return checkBraces(_i) ||
-               checkString(_i) ||
-               checkPercentage(_i) ||
-               checkDimension(_i) ||
-               checkNumber(_i) ||
-               checkUri(_i) ||
-               checkFunctionExpression(_i) ||
-               checkFunktion(_i) ||
-               checkIdent(_i) ||
-               checkUnary(_i);
+            checkString(_i) ||
+            checkPercentage(_i) ||
+            checkDimension(_i) ||
+            checkNumber(_i) ||
+            checkUri(_i) ||
+            checkFunctionExpression(_i) ||
+            checkFunktion(_i) ||
+            checkIdent(_i) ||
+            checkUnary(_i);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getAny() {
         if (checkBraces(pos)) return getBraces();
         else if (checkString(pos)) return getString();
@@ -160,10 +182,15 @@ var getCSSPAST = (function() {
         else if (checkUnary(pos)) return getUnary();
     }
 
-//atkeyword = '@' ident:x -> [#atkeyword, x]
+    /**
+     * Check if token is part of an @-word (e.g. `@import`, `@include`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAtkeyword(_i) {
         var l;
 
+        // Check that token is `@`:
         if (tokens[_i++].type !== TokenType.CommercialAt) return fail(tokens[_i - 1]);
 
         if (l = checkIdent(_i)) return l + 1;
@@ -171,6 +198,11 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with @-word
+     * @returns {Array} `['atkeyword', ['ident', x]]` where `x` is an identifier without
+     *      `@` (e.g. `import`, `include`)
+     */
     function getAtkeyword() {
         var startPos = pos;
 
@@ -181,8 +213,12 @@ var getCSSPAST = (function() {
             [CSSPNodeType.AtkeywordType, getIdent()];
     }
 
-//attrib = '[' sc*:s0 ident:x sc*:s1 attrselector:a sc*:s2 (ident | string):y sc*:s3 ']' -> this.concat([#attrib], s0, [x], s1, [a], s2, [y], s3)
-//       | '[' sc*:s0 ident:x sc*:s1 ']' -> this.concat([#attrib], s0, [x], s1),
+    /**
+     * Check if token is part of an attribute selector (e.g. `[attr]`,
+     *      `[attr='panda']`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAttrib(_i) {
         if (tokens[_i].type !== TokenType.LeftSquareBracket) return fail(tokens[_i]);
 
@@ -191,6 +227,11 @@ var getCSSPAST = (function() {
         return tokens[_i].right - _i + 1;
     }
 
+    /**
+     * Check if token is part of an attribute selector of the form `[attr='value']`
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAttrib1(_i) {
         var start = _i;
 
@@ -220,25 +261,36 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with an attribute selector of the form `[attr='value']`
+     * @returns {Array} `['attrib', ['ident', x], ['attrselector', y], [z]]`
+     *      where `x` is attribute's name, `y` is operator and `z` is attribute's
+     *      value
+     */
     function getAttrib1() {
         var startPos = pos;
 
         pos++;
 
         var a = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
-                .concat(getSC())
-                .concat([getIdent()])
-                .concat(getSC())
-                .concat([getAttrselector()])
-                .concat(getSC())
-                .concat([checkString(pos)? getString() : getIdent()])
-                .concat(getSC());
+            .concat(getSC())
+            .concat([getIdent()])
+            .concat(getSC())
+            .concat([getAttrselector()])
+            .concat(getSC())
+            .concat([checkString(pos)? getString() : getIdent()])
+            .concat(getSC());
 
         pos++;
 
         return a;
     }
 
+    /**
+     * Check if token is part of an attribute selector of the form `[attr]`
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAttrib2(_i) {
         var start = _i;
 
@@ -257,27 +309,44 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with an attribute selector of the form `[attr]`
+     * @returns {Array} `['attrib', ['ident', x]]` where `x` is attribute's name
+     */
     function getAttrib2() {
         var startPos = pos;
 
         pos++;
 
         var a = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
-                .concat(getSC())
-                .concat([getIdent()])
-                .concat(getSC());
+            .concat(getSC())
+            .concat([getIdent()])
+            .concat(getSC());
 
         pos++;
 
         return a;
     }
 
+    /**
+     * Get node with an attribute selector
+     * @returns {Array} `['attrib', ['ident', x], ['attrselector', y]*, [z]*]`
+     *      where `x` is attribute's name, `y` is operator (if there is any)
+     *      and `z` is attribute's value (if there is any)
+     */
     function getAttrib() {
-        if (checkAttrib1(pos)) return getAttrib1(); 
-        if (checkAttrib2(pos)) return getAttrib2(); 
+        if (checkAttrib1(pos)) return getAttrib1();
+        if (checkAttrib2(pos)) return getAttrib2();
     }
 
-//attrselector = (seq('=') | seq('~=') | seq('^=') | seq('$=') | seq('*=') | seq('|=')):x -> [#attrselector, x]
+    /**
+     * Check if token is part of an attribute selector operator (`=`, `~=`,
+     *      `^=`, `$=`, `*=` or `|=`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is part of an attribute
+     *      selector operator, returns length of operator (`1` or `2`),
+     *      else tries to fail the token and returns `undefined`.
+     */
     function checkAttrselector(_i) {
         if (tokens[_i].type === TokenType.EqualsSign) return 1;
         if (tokens[_i].type === TokenType.VerticalLine && (!tokens[_i + 1] || tokens[_i + 1].type !== TokenType.EqualsSign)) return 1;
@@ -296,6 +365,11 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with an attribute selector operator (`=`, `~=`, `^=`, `$=`,
+     *      `*=` or `|=`)
+     * @returns {Array} `['attrselector', x]` where `x` is an operator.
+     */
     function getAttrselector() {
         var startPos = pos,
             s = tokens[pos++].value;
@@ -303,36 +377,56 @@ var getCSSPAST = (function() {
         if (tokens[pos] && tokens[pos].type === TokenType.EqualsSign) s += tokens[pos++].value;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.AttrselectorType, s] :
-                [CSSPNodeType.AttrselectorType, s];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.AttrselectorType, s] :
+            [CSSPNodeType.AttrselectorType, s];
     }
 
-//atrule = atruler | atruleb | atrules
+    /**
+     * Check if token is a part of an @-rule
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a part of an @-rule,
+     *      returns length of @-rule. Else tries to fail the token and
+     *      returns `undefined`.
+     */
     function checkAtrule(_i) {
         var start = _i,
             l;
 
+        // If token already has a record of being part of an @-rule,
+        // return the @-rule's length:
         if (tokens[start].atrule_l !== undefined) return tokens[start].atrule_l;
 
+        // If token is part of an @-rule, save the rule's type to token:
         if (l = checkAtruler(_i)) tokens[_i].atrule_type = 1;
         else if (l = checkAtruleb(_i)) tokens[_i].atrule_type = 2;
         else if (l = checkAtrules(_i)) tokens[_i].atrule_type = 3;
         else return fail(tokens[start]);
 
+        // If token is part of an @-rule, save the rule's length to token:
         tokens[start].atrule_l = l;
 
         return l;
     }
 
+    /**
+     * Get node with @-rule
+     * @returns {Array}
+     */
     function getAtrule() {
         switch (tokens[pos].atrule_type) {
-            case 1: return getAtruler();
-            case 2: return getAtruleb();
-            case 3: return getAtrules();
+            case 1: return getAtruler(); // @-rule with ruleset
+            case 2: return getAtruleb(); // block @-rule
+            case 3: return getAtrules(); // single-line @-rule
         }
     }
 
-//atruleb = atkeyword:ak tset*:ap block:b -> this.concat([#atruleb, ak], ap, [b])
+    /**
+     * Check if token is part of a block @-rule
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a part of a block @-rule,
+     *      returns length of the @-rule. Else tries to fail the token and
+     *      returns `undefined`.
+     */
     function checkAtruleb(_i) {
         var start = _i,
             l;
@@ -348,15 +442,26 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * Get node with a block @-rule
+     * @returns {Array}
+     * atkeyword:ak tset*:ap block:b -> this.concat([#atruleb, ak], ap, [b])
+     */
     function getAtruleb() {
         return (needInfo?
-                    [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulebType, getAtkeyword()] :
-                    [CSSPNodeType.AtrulebType, getAtkeyword()])
-                        .concat(getTsets())
-                        .concat([getBlock()]);
+            [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulebType, getAtkeyword()] :
+            [CSSPNodeType.AtrulebType, getAtkeyword()])
+            .concat(getTsets())
+            .concat([getBlock()]);
     }
 
-//atruler = atkeyword:ak atrulerq:x '{' atrulers:y '}' -> [#atruler, ak, x, y]
+    /**
+     * Check if token is part of an @-rule with ruleset
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a part of an @-rule with ruleset,
+     *      returns length of the @-rule. Else tries to fail the token and
+     *      returns `undefined`.
+     */
     function checkAtruler(_i) {
         var start = _i,
             l;
@@ -377,10 +482,15 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * atkeyword:ak atrulerq:x '{' atrulers:y '}' -> [#atruler, ak, x, y]
+     * Get node with an @-rule with ruleset
+     * @returns {Array}
+     */
     function getAtruler() {
         var atruler = needInfo?
-                        [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()] :
-                        [CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()];
+            [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()] :
+            [CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()];
 
         pos++;
 
@@ -391,16 +501,26 @@ var getCSSPAST = (function() {
         return atruler;
     }
 
-//atrulerq = tset*:ap -> [#atrulerq].concat(ap)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAtrulerq(_i) {
         return checkTsets(_i);
     }
 
+    /**
+     * tset*:ap -> [#atrulerq].concat(ap)
+     * @returns {Array}
+     */
     function getAtrulerq() {
         return (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulerqType] : [CSSPNodeType.AtrulerqType]).concat(getTsets());
     }
 
-//atrulers = sc*:s0 ruleset*:r sc*:s1 -> this.concat([#atrulers], s0, r, s1)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAtrulers(_i) {
         var start = _i,
             l;
@@ -418,6 +538,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * sc*:s0 ruleset*:r sc*:s1 -> this.concat([#atrulers], s0, r, s1)
+     * @returns {Array}
+     */
     function getAtrulers() {
         var atrulers = (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulersType] : [CSSPNodeType.AtrulersType]).concat(getSC()),
             x;
@@ -435,7 +559,10 @@ var getCSSPAST = (function() {
         return atrulers.concat(getSC());
     }
 
-//atrules = atkeyword:ak tset*:ap ';' -> this.concat([#atrules, ak], ap)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkAtrules(_i) {
         var start = _i,
             l;
@@ -453,6 +580,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * atkeyword:ak tset*:ap ';' -> this.concat([#atrules, ak], ap)
+     * @returns {Array}
+     */
     function getAtrules() {
         var atrules = (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulesType, getAtkeyword()] : [CSSPNodeType.AtrulesType, getAtkeyword()]).concat(getTsets());
 
@@ -461,13 +592,20 @@ var getCSSPAST = (function() {
         return atrules;
     }
 
-//block = '{' blockdecl*:x '}' -> this.concatContent([#block], x)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkBlock(_i) {
         if (_i < tokens.length && tokens[_i].type === TokenType.LeftCurlyBracket) return tokens[_i].right - _i + 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * '{' blockdecl*:x '}' -> this.concatContent([#block], x)
+     * @returns {Array}
+     */
     function getBlock() {
         var block = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.BlockType] : [CSSPNodeType.BlockType],
             end = tokens[pos].right;
@@ -484,11 +622,10 @@ var getCSSPAST = (function() {
         return block;
     }
 
-//blockdecl = sc*:s0 (filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
-//          | sc*:s0 (filter | declaration):x sc*:s1 -> this.concat(s0, [x], s1)
-//          | sc*:s0 decldelim:x sc*:s1 -> this.concat(s0, [x], s1)
-//          | sc+:s0 -> s0
-
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkBlockdecl(_i) {
         var l;
 
@@ -501,6 +638,13 @@ var getCSSPAST = (function() {
         return l;
     }
 
+    /**
+     * blockdecl = sc*:s0 (filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
+     *           | sc*:s0 (filter | declaration):x sc*:s1 -> this.concat(s0, [x], s1)
+     *           | sc*:s0 decldelim:x sc*:s1 -> this.concat(s0, [x], s1)
+     *           | sc+:s0 -> s0
+     * @returns {Array}
+     */
     function getBlockdecl() {
         switch (tokens[pos].bd_type) {
             case 1: return _getBlockdecl0();
@@ -510,7 +654,11 @@ var getCSSPAST = (function() {
         }
     }
 
-    //sc*:s0 (filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkBlockdecl0(_i) {
         var start = _i,
             l;
@@ -533,14 +681,23 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * sc*:s0 (filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
+     * @returns {Array}
+     * @private
+     */
     function _getBlockdecl0() {
         return getSC()
-                .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
-                .concat([getDecldelim()])
-                .concat(getSC());
+            .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
+            .concat([getDecldelim()])
+            .concat(getSC());
     }
 
-    //sc*:s0 (filter | declaration):x sc*:s1 -> this.concat(s0, [x], s1)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkBlockdecl1(_i) {
         var start = _i,
             l;
@@ -560,13 +717,22 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * sc*:s0 (filter | declaration):x sc*:s1 -> this.concat(s0, [x], s1)
+     * @returns {Array}
+     * @private
+     */
     function _getBlockdecl1() {
         return getSC()
-                .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
-                .concat(getSC());
+            .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
+            .concat(getSC());
     }
 
-    //sc*:s0 decldelim:x sc*:s1 -> this.concat(s0, [x], s1)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkBlockdecl2(_i) {
         var start = _i,
             l;
@@ -581,32 +747,56 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * sc*:s0 decldelim:x sc*:s1 -> this.concat(s0, [x], s1)
+     * @returns {Array}
+     * @private
+     */
     function _getBlockdecl2() {
         return getSC()
-                 .concat([getDecldelim()])
-                 .concat(getSC());
+            .concat([getDecldelim()])
+            .concat(getSC());
     }
 
-    //sc+:s0 -> s0
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkBlockdecl3(_i) {
         return checkSC(_i);
     }
 
+    /**
+     * @returns {Array}
+     * @private
+     */
     function _getBlockdecl3() {
         return getSC();
     }
 
-//braces = '(' tset*:x ')' -> this.concat([#braces, '(', ')'], x)
-//       | '[' tset*:x ']' -> this.concat([#braces, '[', ']'], x)
+    /**
+     * Check if token is part of text inside parentheses or square brackets
+     *      (e.g. `(1)`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkBraces(_i) {
         if (_i >= tokens.length ||
             (tokens[_i].type !== TokenType.LeftParenthesis &&
-             tokens[_i].type !== TokenType.LeftSquareBracket)
+                tokens[_i].type !== TokenType.LeftSquareBracket)
             ) return fail(tokens[_i]);
 
         return tokens[_i].right - _i + 1;
     }
 
+    /**
+     * Get node with text inside parentheses or square brackets (e.g. `(1)`)
+     * @returns {Array} `['braces', l, r, x*]` where `l` is a left bracket
+     *      (e.g. `'('`), `r` is a right bracket (e.g. `')'`) and `x` is
+     *      parsed text inside those brackets (if there is any)
+     *      (e.g. `['number', '1']`)
+     */
     function getBraces() {
         var startPos = pos,
             left = pos,
@@ -619,15 +809,15 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets) :
-                [CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets);
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets) :
+            [CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets);
     }
 
-    function checkCDC(_i) {}
-
-    function checkCDO(_i) {}
-
-    // node: Clazz
+    /**
+     * Check if token is part of a class selector (e.g. `.abc`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkClazz(_i) {
         var l;
 
@@ -643,6 +833,11 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a class selector
+     * @returns {Array} `['clazz', ['ident', x]]` where x is a class's
+     *      identifier (without `.`, e.g. `abc`).
+     */
     function getClazz() {
         var startPos = pos;
 
@@ -653,7 +848,12 @@ var getCSSPAST = (function() {
                 [CSSPNodeType.ClazzType, getIdent()];
     }
 
-    // node: Combinator
+    /**
+     * Check if token is a combinator (`+`, `>` or `~`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a combinator, returns `1`,
+     *      else tries to fail the token and returns `undefined`.
+     */
     function checkCombinator(_i) {
         if (tokens[_i].type === TokenType.PlusSign ||
             tokens[_i].type === TokenType.GreaterThanSign ||
@@ -662,19 +862,34 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a combinator (`+`, `>` or `~`)
+     * @returns {Array} `['combinator', x]` where `x` is a combinator
+     *      converted to string.
+     */
     function getCombinator() {
         return needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.CombinatorType, tokens[pos++].value] :
-                [CSSPNodeType.CombinatorType, tokens[pos++].value];
+            [{ ln: tokens[pos].ln }, CSSPNodeType.CombinatorType, tokens[pos++].value] :
+            [CSSPNodeType.CombinatorType, tokens[pos++].value];
     }
 
-    // node: Comment
+    /**
+     * Check if token is a multiline comment.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a multiline comment,
+     *      returns `1`, else tries to fail token and returns `undefined`.
+     */
     function checkComment(_i) {
         if (tokens[_i].type === TokenType.CommentML) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a multiline comment
+     * @returns {Array} `['comment', x]` where `x`
+     *      is the comment's text (without `/*` and `* /`).
+     */
     function getComment() {
         var startPos = pos,
             s = tokens[pos].value.substring(2),
@@ -685,11 +900,14 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.CommentType, s] :
-                [CSSPNodeType.CommentType, s];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.CommentType, s] :
+            [CSSPNodeType.CommentType, s];
     }
 
-    // declaration = property:x ':' value:y -> [#declaration, x, y]
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkDeclaration(_i) {
         var start = _i,
             l;
@@ -706,10 +924,13 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * @returns {Array}
+     */
     function getDeclaration() {
         var declaration = needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.DeclarationType, getProperty()] :
-                [CSSPNodeType.DeclarationType, getProperty()];
+            [{ ln: tokens[pos].ln }, CSSPNodeType.DeclarationType, getProperty()] :
+            [CSSPNodeType.DeclarationType, getProperty()];
 
         pos++;
 
@@ -718,13 +939,19 @@ var getCSSPAST = (function() {
         return declaration;
     }
 
-    // node: Decldelim
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkDecldelim(_i) {
         if (_i < tokens.length && tokens[_i].type === TokenType.Semicolon) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getDecldelim() {
         var startPos = pos;
 
@@ -735,7 +962,10 @@ var getCSSPAST = (function() {
                 [CSSPNodeType.DecldelimType];
     }
 
-    // node: Delim
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkDelim(_i) {
         if (_i < tokens.length && tokens[_i].type === TokenType.Comma) return 1;
 
@@ -744,17 +974,24 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getDelim() {
         var startPos = pos;
 
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.DelimType] :
-                [CSSPNodeType.DelimType];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.DelimType] :
+            [CSSPNodeType.DelimType];
     }
 
-    // node: Dimension
+    /**
+     * Check if token is part of a number with dimension unit (e.g. `10px`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkDimension(_i) {
         var ln = checkNumber(_i),
             li;
@@ -766,6 +1003,12 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node of a number with dimension unit
+     * @returns {Array} `['dimension', ['number', x], ['ident', y]]` where
+     *      `x` is a number converted to string (e.g. `'10'`) and `y` is
+     *      a dimension unit (e.g. `'px'`).
+     */
     function getDimension() {
         var startPos = pos,
             n = getNumber(),
@@ -774,11 +1017,14 @@ var getCSSPAST = (function() {
                 [CSSPNodeType.IdentType, getNmName2()];
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.DimensionType, n, dimension] :
-                [CSSPNodeType.DimensionType, n, dimension];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.DimensionType, n, dimension] :
+            [CSSPNodeType.DimensionType, n, dimension];
     }
 
-//filter = filterp:x ':' filterv:y -> [#filter, x, y]
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkFilter(_i) {
         var start = _i,
             l;
@@ -795,10 +1041,14 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * filterp:x ':' filterv:y -> [#filter, x, y]
+     * @returns {Array}
+     */
     function getFilter() {
         var filter = needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.FilterType, getFilterp()] :
-                [CSSPNodeType.FilterType, getFilterp()];
+            [{ ln: tokens[pos].ln }, CSSPNodeType.FilterType, getFilterp()] :
+            [CSSPNodeType.FilterType, getFilterp()];
 
         pos++;
 
@@ -807,7 +1057,10 @@ var getCSSPAST = (function() {
         return filter;
     }
 
-//filterp = (seq('-filter') | seq('_filter') | seq('*filter') | seq('-ms-filter') | seq('filter')):t sc*:s0 -> this.concat([#property, [#ident, t]], s0)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkFilterp(_i) {
         var start = _i,
             l,
@@ -839,6 +1092,10 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * (seq('-filter') | seq('_filter') | seq('*filter') | seq('-ms-filter') | seq('filter')):t sc*:s0 -> this.concat([#property, [#ident, t]], s0)
+     * @returns {Array}
+     */
     function getFilterp() {
         var startPos = pos,
             x = joinValues2(pos, tokens[pos].filterp_l),
@@ -847,11 +1104,14 @@ var getCSSPAST = (function() {
         pos += tokens[pos].filterp_l;
 
         return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.PropertyType, ident] : [CSSPNodeType.PropertyType, ident])
-                    .concat(getSC());
+            .concat(getSC());
 
     }
 
-//filterv = progid+:x -> [#filterv].concat(x)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkFilterv(_i) {
         var start = _i,
             l;
@@ -872,6 +1132,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * progid+:x -> [#filterv].concat(x)
+     * @returns {Array}
+     */
     function getFilterv() {
         var filterv = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.FiltervType] : [CSSPNodeType.FiltervType],
             last_progid = tokens[pos].last_progid;
@@ -887,7 +1151,10 @@ var getCSSPAST = (function() {
         return filterv;
     }
 
-//functionExpression = ``expression('' functionExpressionBody*:x ')' -> [#functionExpression, x.join('')],
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkFunctionExpression(_i) {
         var start = _i;
 
@@ -898,6 +1165,10 @@ var getCSSPAST = (function() {
         return tokens[_i].right - start + 1;
     }
 
+    /**
+     * ``expression('' functionExpressionBody*:x ')' -> [#functionExpression, x.join('')]
+     * @returns {Array}
+     */
     function getFunctionExpression() {
         var startPos = pos;
 
@@ -908,11 +1179,14 @@ var getCSSPAST = (function() {
         pos = tokens[pos].right + 1;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionExpressionType, e] :
-                [CSSPNodeType.FunctionExpressionType, e];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionExpressionType, e] :
+            [CSSPNodeType.FunctionExpressionType, e];
     }
 
-//funktion = ident:x '(' functionBody:y ')' -> [#funktion, x, y]
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkFunktion(_i) {
         var start = _i,
             l = checkIdent(_i);
@@ -926,6 +1200,10 @@ var getCSSPAST = (function() {
         return tokens[_i].right - start + 1;
     }
 
+    /**
+     * ident:x '(' functionBody:y ')' -> [#funktion, x, y]
+     * @returns {Array}
+     */
     function getFunktion() {
         var startPos = pos,
             ident = getIdent();
@@ -937,10 +1215,13 @@ var getCSSPAST = (function() {
             getNotFunctionBody(); // ok, here we have CSS3 initial draft: http://dev.w3.org/csswg/selectors3/#negation
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.FunktionType, ident, body] :
-                [CSSPNodeType.FunktionType, ident, body];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunktionType, ident, body] :
+            [CSSPNodeType.FunktionType, ident, body];
     }
 
+    /**
+     * @returns {Array}
+     */
     function getFunctionBody() {
         var startPos = pos,
             body = [],
@@ -961,11 +1242,14 @@ var getCSSPAST = (function() {
         pos++;
 
         return (needInfo?
-                    [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
-                    [CSSPNodeType.FunctionBodyType]
-                ).concat(body);
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
+            [CSSPNodeType.FunctionBodyType]
+            ).concat(body);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getNotFunctionBody() {
         var startPos = pos,
             body = [],
@@ -982,37 +1266,45 @@ var getCSSPAST = (function() {
         pos++;
 
         return (needInfo?
-                    [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
-                    [CSSPNodeType.FunctionBodyType]
-                ).concat(body);
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
+            [CSSPNodeType.FunctionBodyType]
+            ).concat(body);
     }
 
-    // node: Ident
+    /**
+     * Check if token is part of an identifier
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is part of an identifier,
+     *      returns length of identifier. Else tries to fail the token and
+     *      returns `undefined`.
+     */
     function checkIdent(_i) {
         if (_i >= tokens.length) return fail(tokens[_i]);
 
         var start = _i,
-            wasIdent = false;
+            wasIdent = false; // TODO: Remove var's init
 
+        // Check if token is part of an identifier starting with `_`:
         if (tokens[_i].type === TokenType.LowLine) return checkIdentLowLine(_i);
 
-        // start char / word
+        // If token is a character, `-`, `$` or `*`, skip it & continue:
         if (tokens[_i].type === TokenType.HyphenMinus ||
             tokens[_i].type === TokenType.Identifier ||
             tokens[_i].type === TokenType.DollarSign ||
             tokens[_i].type === TokenType.Asterisk) _i++;
         else return fail(tokens[_i]);
 
+        // Remember if previous token's type was identifier:
         wasIdent = tokens[_i - 1].type === TokenType.Identifier;
 
         for (; _i < tokens.length; _i++) {
             if (tokens[_i].type !== TokenType.HyphenMinus &&
                 tokens[_i].type !== TokenType.LowLine) {
-                    if (tokens[_i].type !== TokenType.Identifier &&
-                        (tokens[_i].type !== TokenType.DecimalNumber || !wasIdent)
-                        ) break;
-                    else wasIdent = true;
-            }   
+                if (tokens[_i].type !== TokenType.Identifier &&
+                    (tokens[_i].type !== TokenType.DecimalNumber || !wasIdent)
+                    ) break;
+                else wasIdent = true;
+            }
         }
 
         if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return fail(tokens[_i]);
@@ -1022,6 +1314,11 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * Check if token is part of an identifier starting with `_`
+     * @param {number} _i Token's index number
+     * @returns {number} Length of the identifier (always >= 1)
+     */
     function checkIdentLowLine(_i) {
         var start = _i;
 
@@ -1034,11 +1331,16 @@ var getCSSPAST = (function() {
                 tokens[_i].type !== TokenType.Identifier) break;
         }
 
+        // Save index number of the last token of the identifier:
         tokens[start].ident_last = _i - 1;
 
         return _i - start;
     }
 
+    /**
+     * Get identifier's node
+     * @returns {Array} `['ident', x]` where `x` is an identifier's name
+     */
     function getIdent() {
         var startPos = pos,
             s = joinValues(pos, tokens[pos].ident_last);
@@ -1046,11 +1348,14 @@ var getCSSPAST = (function() {
         pos = tokens[pos].ident_last + 1;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.IdentType, s] :
-                [CSSPNodeType.IdentType, s];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.IdentType, s] :
+            [CSSPNodeType.IdentType, s];
     }
 
-//important = '!' sc*:s0 seq('important') -> [#important].concat(s0)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkImportant(_i) {
         var start = _i,
             l;
@@ -1064,6 +1369,9 @@ var getCSSPAST = (function() {
         return _i - start + 1;
     }
 
+    /**
+     * @returns {Array}
+     */
     function getImportant() {
         var startPos = pos;
 
@@ -1076,29 +1384,45 @@ var getCSSPAST = (function() {
         return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.ImportantType] : [CSSPNodeType.ImportantType]).concat(sc);
     }
 
-    // node: Namespace
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNamespace(_i) {
         if (tokens[_i].type === TokenType.VerticalLine) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a namespace sign
+     * @returns {Array} `['namespace']`
+     */
     function getNamespace() {
         var startPos = pos;
 
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.NamespaceType] :
-                [CSSPNodeType.NamespaceType];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.NamespaceType] :
+            [CSSPNodeType.NamespaceType];
     }
 
-//nth = (digit | 'n')+:x -> [#nth, x.join('')]
-//    | (seq('even') | seq('odd')):x -> [#nth, x]
+    /**
+     * Check if token is part of an nth-selector's identifier (e.g. `2n+1`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNth(_i) {
         return checkNth1(_i) || checkNth2(_i);
     }
 
+    /**
+     * Check if token id part of an nth-selector's identifier in the form of
+     *      sequence of decimals and n-s (e.g. `3`, `n`, `2n+1`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNth1(_i) {
         var start = _i;
 
@@ -1114,13 +1438,17 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node for nth-selector's identifier (e.g. `2n+1`)
+     * @returns {Array} `['nth', x]` where `x` is identifier's text
+     */
     function getNth() {
         var startPos = pos;
 
         if (tokens[pos].nth_last) {
             var n = needInfo?
-                        [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)] :
-                        [CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)];
+                [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)] :
+                [CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)];
 
             pos = tokens[pos].nth_last + 1;
 
@@ -1128,17 +1456,25 @@ var getCSSPAST = (function() {
         }
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, tokens[pos++].value] :
-                [CSSPNodeType.NthType, tokens[pos++].value];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, tokens[pos++].value] :
+            [CSSPNodeType.NthType, tokens[pos++].value];
     }
 
+    /**
+     * Check if token is part of `even` or `odd` nth-selector's identifier
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNth2(_i) {
         if (tokens[_i].value === 'even' || tokens[_i].value === 'odd') return 1;
 
         return fail(tokens[_i]);
     }
 
-//nthf = ':' seq('nth-'):x (seq('child') | seq('last-child') | seq('of-type') | seq('last-of-type')):y -> (x + y)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNthf(_i) {
         var start = _i,
             l = 0;
@@ -1150,18 +1486,18 @@ var getCSSPAST = (function() {
         if ('child' === tokens[_i].value) {
             l += 1;
         } else if ('last-child' === tokens[_i].value +
-                                    tokens[_i + 1].value +
-                                    tokens[_i + 2].value) {
+            tokens[_i + 1].value +
+            tokens[_i + 2].value) {
             l += 3;
         } else if ('of-type' === tokens[_i].value +
-                                 tokens[_i + 1].value +
-                                 tokens[_i + 2].value) {
+            tokens[_i + 1].value +
+            tokens[_i + 2].value) {
             l += 3;
         } else if ('last-of-type' === tokens[_i].value +
-                                      tokens[_i + 1].value +
-                                      tokens[_i + 2].value +
-                                      tokens[_i + 3].value +
-                                      tokens[_i + 4].value) {
+            tokens[_i + 1].value +
+            tokens[_i + 2].value +
+            tokens[_i + 3].value +
+            tokens[_i + 4].value) {
             l += 5;
         } else return fail(tokens[_i]);
 
@@ -1170,6 +1506,10 @@ var getCSSPAST = (function() {
         return l;
     }
 
+    /**
+     * ':' seq('nth-'):x (seq('child') | seq('last-child') | seq('of-type') | seq('last-of-type')):y -> (x + y)
+     * @returns {string}
+     */
     function getNthf() {
         pos++;
 
@@ -1180,7 +1520,10 @@ var getCSSPAST = (function() {
         return s;
     }
 
-//nthselector = nthf:x '(' (sc | unary | nth)*:y ')' -> [#nthselector, [#ident, x]].concat(y)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNthselector(_i) {
         var start = _i,
             l;
@@ -1204,14 +1547,18 @@ var getCSSPAST = (function() {
         return rp - start + 1;
     }
 
+    /**
+     * nthf:x '(' (sc | unary | nth)*:y ')' -> [#nthselector, [#ident, x]].concat(y)
+     * @returns {Array}
+     */
     function getNthselector() {
         var startPos = pos,
             nthf = needInfo?
-                    [{ ln: tokens[pos].ln }, CSSPNodeType.IdentType, getNthf()] :
-                    [CSSPNodeType.IdentType, getNthf()],
+                [{ ln: tokens[pos].ln }, CSSPNodeType.IdentType, getNthf()] :
+                [CSSPNodeType.IdentType, getNthf()],
             ns = needInfo?
-                    [{ ln: tokens[pos].ln }, CSSPNodeType.NthselectorType, nthf] :
-                    [CSSPNodeType.NthselectorType, nthf];
+                [{ ln: tokens[pos].ln }, CSSPNodeType.NthselectorType, nthf] :
+                [CSSPNodeType.NthselectorType, nthf];
 
         pos++;
 
@@ -1226,35 +1573,44 @@ var getCSSPAST = (function() {
         return ns;
     }
 
-    // node: Number
+    /**
+     * Check if token is part of a number
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNumber(_i) {
         if (_i < tokens.length && tokens[_i].number_l) return tokens[_i].number_l;
 
         if (_i < tokens.length && tokens[_i].type === TokenType.DecimalNumber &&
             (!tokens[_i + 1] ||
-             (tokens[_i + 1] && tokens[_i + 1].type !== TokenType.FullStop))
-        ) return (tokens[_i].number_l = 1, tokens[_i].number_l); // 10
+                (tokens[_i + 1] && tokens[_i + 1].type !== TokenType.FullStop))
+            ) return (tokens[_i].number_l = 1, tokens[_i].number_l); // 10
 
         if (_i < tokens.length &&
-             tokens[_i].type === TokenType.DecimalNumber &&
-             tokens[_i + 1] && tokens[_i + 1].type === TokenType.FullStop &&
-             (!tokens[_i + 2] || (tokens[_i + 2].type !== TokenType.DecimalNumber))
-        ) return (tokens[_i].number_l = 2, tokens[_i].number_l); // 10.
+            tokens[_i].type === TokenType.DecimalNumber &&
+            tokens[_i + 1] && tokens[_i + 1].type === TokenType.FullStop &&
+            (!tokens[_i + 2] || (tokens[_i + 2].type !== TokenType.DecimalNumber))
+            ) return (tokens[_i].number_l = 2, tokens[_i].number_l); // 10.
 
         if (_i < tokens.length &&
             tokens[_i].type === TokenType.FullStop &&
             tokens[_i + 1].type === TokenType.DecimalNumber
-        ) return (tokens[_i].number_l = 2, tokens[_i].number_l); // .10
+            ) return (tokens[_i].number_l = 2, tokens[_i].number_l); // .10
 
         if (_i < tokens.length &&
             tokens[_i].type === TokenType.DecimalNumber &&
             tokens[_i + 1] && tokens[_i + 1].type === TokenType.FullStop &&
             tokens[_i + 2] && tokens[_i + 2].type === TokenType.DecimalNumber
-        ) return (tokens[_i].number_l = 3, tokens[_i].number_l); // 10.10
+            ) return (tokens[_i].number_l = 3, tokens[_i].number_l); // 10.10
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with number
+     * @returns {Array} `['number', x]` where `x` is a number converted
+     *      to string.
+     */
     function getNumber() {
         var s = '',
             startPos = pos,
@@ -1267,28 +1623,42 @@ var getCSSPAST = (function() {
         pos += l;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.NumberType, s] :
-                [CSSPNodeType.NumberType, s];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.NumberType, s] :
+            [CSSPNodeType.NumberType, s];
     }
 
-    // node: Operator
+    /**
+     * Check if token is an operator (`/`, `,`, `:` or `=`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is an operator, returns `1`,
+     *      else tries to fail the token and returns `undefined`.
+     */
     function checkOperator(_i) {
         if (_i < tokens.length &&
             (tokens[_i].type === TokenType.Solidus ||
-            tokens[_i].type === TokenType.Comma ||
-            tokens[_i].type === TokenType.Colon ||
-            tokens[_i].type === TokenType.EqualsSign)) return 1;
+                tokens[_i].type === TokenType.Comma ||
+                tokens[_i].type === TokenType.Colon ||
+                tokens[_i].type === TokenType.EqualsSign)) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with an operator
+     * @returns {Array} `['operator', x]` where `x` is an operator converted
+     *      to string.
+     */
     function getOperator() {
         return needInfo?
                 [{ ln: tokens[pos].ln }, CSSPNodeType.OperatorType, tokens[pos++].value] :
                 [CSSPNodeType.OperatorType, tokens[pos++].value];
     }
 
-    // node: Percentage
+    /**
+     * Check if token is part of a number with percent sign (e.g. `10%`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkPercentage(_i) {
         var x = checkNumber(_i);
 
@@ -1299,6 +1669,11 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node of number with percent sign
+     * @returns {Array} `['percentage', ['number', x]]` where `x` is a number
+     *      (without percent sign) converted to string.
+     */
     function getPercentage() {
         var startPos = pos,
             n = getNumber();
@@ -1306,12 +1681,14 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.PercentageType, n] :
-                [CSSPNodeType.PercentageType, n];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PercentageType, n] :
+            [CSSPNodeType.PercentageType, n];
     }
 
-//progid = sc*:s0 seq('progid:DXImageTransform.Microsoft.'):x letter+:y '(' (m_string | m_comment | ~')' char)+:z ')' sc*:s1
-//                -> this.concat([#progid], s0, [[#raw, x + y.join('') + '(' + z.join('') + ')']], s1),
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkProgid(_i) {
         var start = _i,
             l,
@@ -1339,16 +1716,26 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * sc*:s0 seq('progid:DXImageTransform.Microsoft.'):x letter+:y '(' (m_string | m_comment | ~')' char)+:z ')' sc*:s1
+     *        -> this.concat([#progid], s0, [[#raw, x + y.join('') + '(' + z.join('') + ')']], s1),
+     * @returns {Array}
+     */
     function getProgid() {
         var startPos = pos,
             progid_end = tokens[pos].progid_end;
 
         return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.ProgidType] : [CSSPNodeType.ProgidType])
-                .concat(getSC())
-                .concat([_getProgid(progid_end)])
-                .concat(getSC());
+            .concat(getSC())
+            .concat([_getProgid(progid_end)])
+            .concat(getSC());
     }
 
+    /**
+     * @param progid_end
+     * @returns {Array}
+     * @private
+     */
     function _getProgid(progid_end) {
         var startPos = pos,
             x = joinValues(pos, progid_end);
@@ -1356,11 +1743,14 @@ var getCSSPAST = (function() {
         pos = progid_end + 1;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.RawType, x] :
-                [CSSPNodeType.RawType, x];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.RawType, x] :
+            [CSSPNodeType.RawType, x];
     }
 
-//property = ident:x sc*:s0 -> this.concat([#property, x], s0)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkProperty(_i) {
         var start = _i,
             l;
@@ -1372,6 +1762,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * ident:x sc*:s0 -> this.concat([#property, x], s0)
+     * @returns {Array}
+     */
     function getProperty() {
         var startPos = pos;
 
@@ -1381,16 +1775,27 @@ var getCSSPAST = (function() {
             .concat(getSC());
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkPseudo(_i) {
         return checkPseudoe(_i) ||
-               checkPseudoc(_i);
+            checkPseudoc(_i);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getPseudo() {
         if (checkPseudoe(pos)) return getPseudoe();
         if (checkPseudoc(pos)) return getPseudoc();
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkPseudoe(_i) {
         var l;
 
@@ -1403,17 +1808,23 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getPseudoe() {
         var startPos = pos;
 
         pos += 2;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudoeType, getIdent()] :
-                [CSSPNodeType.PseudoeType, getIdent()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudoeType, getIdent()] :
+            [CSSPNodeType.PseudoeType, getIdent()];
     }
 
-//pseudoc = ':' (funktion | ident):x -> [#pseudoc, x]
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkPseudoc(_i) {
         var l;
 
@@ -1424,17 +1835,24 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * ':' (funktion | ident):x -> [#pseudoc, x]
+     * @returns {Array}
+     */
     function getPseudoc() {
         var startPos = pos;
 
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()] :
-                [CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()] :
+            [CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()];
     }
 
-    //ruleset = selector*:x block:y -> this.concat([#ruleset], x, [y])
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkRuleset(_i) {
         var start = _i,
             l;
@@ -1453,6 +1871,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * selector*:x block:y -> this.concat([#ruleset], x, [y])
+     * @returns {Array}
+     */
     function getRuleset() {
         var ruleset = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.RulesetType] : [CSSPNodeType.RulesetType];
 
@@ -1465,13 +1887,25 @@ var getCSSPAST = (function() {
         return ruleset;
     }
 
-    // node: S
+    /**
+     * Check if token is marked as a space (if it's a space or a tab
+     *      or a line break).
+     * @param _i
+     * @returns {number|undefined} If token is marked as a space, returns
+     *      a number of spaces in a row starting with the given token.
+     *      Else tries to mark the token's line number as the last line
+     *      with a failed token and returns `undefined`.
+     */
     function checkS(_i) {
         if (tokens[_i].ws) return tokens[_i].ws_last - _i + 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with spaces
+     * @returns {Array} `['s', x]` where `x` is a string containing spaces
+     */
     function getS() {
         var startPos = pos,
             s = joinValues(pos, tokens[pos].ws_last);
@@ -1481,6 +1915,15 @@ var getCSSPAST = (function() {
         return needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.SType, s] : [CSSPNodeType.SType, s];
     }
 
+    /**
+     * Check if token is a space or a multiline comment.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a space or a multiline
+     *      comment, returns a number of similar (space or comment) tokens
+     *      in a row starting with the given token.
+     *      Else tries to mark the token's line number as the last line
+     *      with a failed token and returns `undefined`.
+     */
     function checkSC(_i) {
         var l,
             lsc = 0;
@@ -1498,6 +1941,13 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with spaces and comments
+     * @returns {Array} Array containing nodes with spaces (if there are any)
+     *      and nodes with comments (if there are any):
+     *      `[['s', x]*, ['comment', y]*]` where `x` is a string of spaces
+     *      and `y` is a comment's text (without `/*` and `* /`).
+     */
     function getSC() {
         var sc = [];
 
@@ -1510,7 +1960,10 @@ var getCSSPAST = (function() {
         return sc;
     }
 
-    //selector = (simpleselector | delim)+:x -> this.concat([#selector], x)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkSelector(_i) {
         var start = _i,
             l;
@@ -1526,6 +1979,10 @@ var getCSSPAST = (function() {
         }
     }
 
+    /**
+     * (simpleselector | delim)+:x -> this.concat([#selector], x)
+     * @returns {Array}
+     */
     function getSelector() {
         var selector = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.SelectorType] : [CSSPNodeType.SelectorType],
             selector_end = tokens[pos].selector_end;
@@ -1537,7 +1994,12 @@ var getCSSPAST = (function() {
         return selector;
     }
 
-    // node: Shash
+    /**
+     * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
+     *      a simple selector
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkShash(_i) {
         if (tokens[_i].type !== TokenType.NumberSign) return fail(tokens[_i]);
 
@@ -1548,17 +2010,26 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a hexadecimal number (e.g. `#fff`) inside a simple
+     *      selector
+     * @returns {Array} `['shash', x]` where `x` is a hexadecimal number
+     *      converted to string (without `#`, e.g. `fff`)
+     */
     function getShash() {
         var startPos = pos;
 
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.ShashType, getNmName()] :
-                [CSSPNodeType.ShashType, getNmName()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.ShashType, getNmName()] :
+            [CSSPNodeType.ShashType, getNmName()];
     }
 
-//simpleselector = (nthselector | combinator | attrib | pseudo | clazz | shash | any | sc | namespace)+:x -> this.concatContent([#simpleselector], [x])
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkSimpleselector(_i) {
         var start = _i,
             l;
@@ -1575,18 +2046,27 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkSimpleSelector(_i) {
         return checkNthselector(_i) ||
-               checkCombinator(_i) ||
-               checkAttrib(_i) ||
-               checkPseudo(_i) ||
-               checkClazz(_i) ||
-               checkShash(_i) ||
-               checkAny(_i) ||
-               checkSC(_i) ||
-               checkNamespace(_i);
+            checkCombinator(_i) ||
+            checkAttrib(_i) ||
+            checkPseudo(_i) ||
+            checkClazz(_i) ||
+            checkShash(_i) ||
+            checkAny(_i) ||
+            checkSC(_i) ||
+            checkNamespace(_i);
     }
 
+    /**
+     * this.concatContent([#simpleselector], [x])
+     * @returns {Array}
+     */
     function getSimpleSelector() {
         var ss = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.SimpleselectorType] : [CSSPNodeType.SimpleselectorType],
             t;
@@ -1601,6 +2081,10 @@ var getCSSPAST = (function() {
         return ss;
     }
 
+    /**
+     * @returns {Array}
+     * @private
+     */
     function _getSimpleSelector() {
         if (checkNthselector(pos)) return getNthselector();
         else if (checkCombinator(pos)) return getCombinator();
@@ -1613,35 +2097,65 @@ var getCSSPAST = (function() {
         else if (checkNamespace(pos)) return getNamespace();
     }
 
-    // node: String
+    /**
+     * Check if token is part of a string (text wrapped in quotes)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is part of a string,
+     *      returns `1`, else tries to fail token and returns `undefined`.
+     */
     function checkString(_i) {
         if (_i < tokens.length &&
             (tokens[_i].type === TokenType.StringSQ || tokens[_i].type === TokenType.StringDQ)
-        ) return 1;
+            ) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get string's node
+     * @returns {Array} `['string', x]` where `x` is a string (including
+     *      quotes).
+     */
     function getString() {
         var startPos = pos;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.StringType, tokens[pos++].value] :
-                [CSSPNodeType.StringType, tokens[pos++].value];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.StringType, tokens[pos++].value] :
+            [CSSPNodeType.StringType, tokens[pos++].value];
     }
 
-    //stylesheet = (cdo | cdc | sc | statement)*:x -> this.concat([#stylesheet], x)
+    /**
+     * Validate stylesheet: it should consist of any number (0 or more) of
+     * rulesets (sets of rules with selectors), @-rules, whitespaces or
+     * comments.
+     * @param {number} _i Token's index number
+     * @returns {number} Number of checked tokens
+     */
     function checkStylesheet(_i) {
         var start = _i,
             l;
 
+        // Check every token:
         while (_i < tokens.length) {
+            // If token is a part of a group of spaces and multiline
+            // comments, it's ok, continue:
             if (l = checkSC(_i)) _i += l;
             else {
+                // TODO: Move into throwError and remove the var:
                 currentBlockLN = tokens[_i].ln;
-                if (l = checkAtrule(_i)) _i += l;
+                // If token is part of declaration (property-value pair),
+                // it's ok, continue:
+                if (l = checkDeclaration(_i)) {
+                    _i += l;
+                    if (l = checkDecldelim(_i)) _i += l;
+                }
+                // If token is a part of an @-rule, it's ok, continue:
+                else if (l = checkAtrule(_i)) _i += l;
+                // If token is a part of a ruleset, it's ok, continue:
                 else if (l = checkRuleset(_i)) _i += l;
+                // If token is something, it's ok, continue:
                 else if (l = checkUnknown(_i)) _i += l;
+                // If token is anything else, throw error and stop:
                 else throwError();
             }
         }
@@ -1649,13 +2163,19 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
-    function getStylesheet(_i) {
-        var t,
+    /**
+     * @param {number} _i Token's index number
+     * @returns {Array} `['stylesheet', x]` where `x` is all stylesheet's
+     *      nodes.
+     */
+    function getStylesheet(_i) { // TODO: Remove unused `_i` parameter
+        var t, // TODO: Remove unused local var
             stylesheet = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.StylesheetType] : [CSSPNodeType.StylesheetType];
 
         while (pos < tokens.length) {
             if (checkSC(pos)) stylesheet = stylesheet.concat(getSC());
             else {
+                // TODO: Move into throwError and remove the var:
                 currentBlockLN = tokens[pos].ln;
                 if (checkRuleset(pos)) stylesheet.push(getRuleset());
                 else if (checkAtrule(pos)) stylesheet.push(getAtrule());
@@ -1667,14 +2187,20 @@ var getCSSPAST = (function() {
         return stylesheet;
     }
 
-//tset = vhash | any | sc | operator
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkTset(_i) {
         return checkVhash(_i) ||
-               checkAny(_i) ||
-               checkSC(_i) ||
-               checkOperator(_i);
+            checkAny(_i) ||
+            checkSC(_i) ||
+            checkOperator(_i);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getTset() {
         if (checkVhash(pos)) return getVhash();
         else if (checkAny(pos)) return getAny();
@@ -1682,6 +2208,10 @@ var getCSSPAST = (function() {
         else if (checkOperator(pos)) return getOperator();
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkTsets(_i) {
         var start = _i,
             l;
@@ -1693,6 +2223,9 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * @returns {Array}
+     */
     function getTsets() {
         var tsets = [],
             x;
@@ -1705,41 +2238,60 @@ var getCSSPAST = (function() {
         return tsets;
     }
 
-    // node: Unary
+    /**
+     * Check if token is an unary (arithmetical) sign (`+` or `-`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is an unary sign, returns `1`,
+     *      else tries to fail the token and returns `undefined`.
+     */
     function checkUnary(_i) {
         if (_i < tokens.length &&
             (tokens[_i].type === TokenType.HyphenMinus ||
-            tokens[_i].type === TokenType.PlusSign)
-        ) return 1;
+                tokens[_i].type === TokenType.PlusSign)
+            ) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with an unary (arithmetical) sign (`+` or `-`)
+     * @returns {Array} `['unary', x]` where `x` is an unary sign
+     *      converted to string.
+     */
     function getUnary() {
         var startPos = pos;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.UnaryType, tokens[pos++].value] :
-                [CSSPNodeType.UnaryType, tokens[pos++].value];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.UnaryType, tokens[pos++].value] :
+            [CSSPNodeType.UnaryType, tokens[pos++].value];
     }
 
-    // node: Unknown
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkUnknown(_i) {
         if (_i < tokens.length && tokens[_i].type === TokenType.CommentSL) return 1;
 
         return fail(tokens[_i]);
     }
 
+    /**
+     * @returns {Array}
+     */
     function getUnknown() {
         var startPos = pos;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.UnknownType, tokens[pos++].value] :
-                [CSSPNodeType.UnknownType, tokens[pos++].value];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.UnknownType, tokens[pos++].value] :
+            [CSSPNodeType.UnknownType, tokens[pos++].value];
     }
 
-//    uri = seq('url(') sc*:s0 string:x sc*:s1 ')' -> this.concat([#uri], s0, [x], s1)
-//        | seq('url(') sc*:s0 (~')' ~m_w char)*:x sc*:s1 ')' -> this.concat([#uri], s0, [[#raw, x.join('')]], s1),
+    /**
+     * Check if token is part of URI (e.g. `url('/css/styles.css')`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkUri(_i) {
         var start = _i,
             l;
@@ -1751,6 +2303,11 @@ var getCSSPAST = (function() {
         return tokens[_i].right - start + 1;
     }
 
+    /**
+     * Get node with URI
+     * @returns {Array} `['uri', x]` where `x` is URI's nodes (without `url`
+     *      and braces, e.g. `['string', ''/css/styles.css'']`).
+     */
     function getUri() {
         var startPos = pos,
             uriExcluding = {};
@@ -1765,20 +2322,20 @@ var getCSSPAST = (function() {
 
         if (checkUri1(pos)) {
             var uri = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
-                        .concat(getSC())
-                        .concat([getString()])
-                        .concat(getSC());
+                .concat(getSC())
+                .concat([getString()])
+                .concat(getSC());
 
             pos++;
 
             return uri;
         } else {
             var uri = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
-                        .concat(getSC()),
+                    .concat(getSC()),
                 l = checkExcluding(uriExcluding, pos),
                 raw = needInfo?
-                        [{ ln: tokens[pos].ln }, CSSPNodeType.RawType, joinValues(pos, pos + l)] :
-                        [CSSPNodeType.RawType, joinValues(pos, pos + l)];
+                    [{ ln: tokens[pos].ln }, CSSPNodeType.RawType, joinValues(pos, pos + l)] :
+                    [CSSPNodeType.RawType, joinValues(pos, pos + l)];
 
             uri.push(raw);
 
@@ -1792,6 +2349,10 @@ var getCSSPAST = (function() {
         }
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkUri1(_i) {
         var start = _i,
             l = checkSC(_i);
@@ -1807,7 +2368,10 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
-    // value = (sc | vhash | any | block | atkeyword | operator | important)+:x -> this.concat([#value], x)
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkValue(_i) {
         var start = _i,
             l;
@@ -1822,6 +2386,11 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     * @private
+     */
     function _checkValue(_i) {
         return checkSC(_i) ||
                checkVhash(_i) ||
@@ -1832,6 +2401,10 @@ var getCSSPAST = (function() {
                checkImportant(_i);
     }
 
+    /**
+     * (sc | vhash | any | block | atkeyword | operator | important)+:x -> this.concat([#value], x)
+     * @returns {Array}
+     */
     function getValue() {
         var ss = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.ValueType] : [CSSPNodeType.ValueType],
             t;
@@ -1846,6 +2419,10 @@ var getCSSPAST = (function() {
         return ss;
     }
 
+    /**
+     * @returns {Array}
+     * @private
+     */
     function _getValue() {
         if (checkSC(pos)) return getSC();
         else if (checkVhash(pos)) return getVhash();
@@ -1856,7 +2433,12 @@ var getCSSPAST = (function() {
         else if (checkImportant(pos)) return getImportant();
     }
 
-    // node: Vhash
+    /**
+     * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
+     *      some value
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkVhash(_i) {
         if (_i >= tokens.length || tokens[_i].type !== TokenType.NumberSign) return fail(tokens[_i]);
 
@@ -1867,16 +2449,25 @@ var getCSSPAST = (function() {
         return fail(tokens[_i]);
     }
 
+    /**
+     * Get node with a hexadecimal number (e.g. `#fff`) inside some value
+     * @returns {Array} `['vhash', x]` where `x` is a hexadecimal number
+     *      converted to string (without `#`, e.g. `'fff'`).
+     */
     function getVhash() {
         var startPos = pos;
 
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.VhashType, getNmName2()] :
-                [CSSPNodeType.VhashType, getNmName2()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.VhashType, getNmName2()] :
+            [CSSPNodeType.VhashType, getNmName2()];
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNmName(_i) {
         var start = _i;
 
@@ -1899,6 +2490,9 @@ var getCSSPAST = (function() {
         return _i - start;
     }
 
+    /**
+     * @returns {string}
+     */
     function getNmName() {
         var s = joinValues(pos, tokens[pos].nm_name_last);
 
@@ -1907,6 +2501,10 @@ var getCSSPAST = (function() {
         return s;
     }
 
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
     function checkNmName2(_i) {
         var start = _i;
 
@@ -1920,17 +2518,25 @@ var getCSSPAST = (function() {
         return 2;
     }
 
+    /**
+     * @returns {string}
+     */
     function getNmName2() {
         var s = tokens[pos].value;
 
         if (tokens[pos++].type === TokenType.DecimalNumber &&
-                pos < tokens.length &&
-                tokens[pos].type === TokenType.Identifier
-        ) s += tokens[pos++].value;
+            pos < tokens.length &&
+            tokens[pos].type === TokenType.Identifier
+            ) s += tokens[pos++].value;
 
         return s;
     }
 
+    /**
+     * @param exclude
+     * @param {number} _i Token's index number
+     * @returns {number}
+     */
     function checkExcluding(exclude, _i) {
         var start = _i;
 
@@ -1941,6 +2547,11 @@ var getCSSPAST = (function() {
         return _i - start - 2;
     }
 
+    /**
+     * @param start
+     * @param finish
+     * @returns {string}
+     */
     function joinValues(start, finish) {
         var s = '';
 
@@ -1951,6 +2562,11 @@ var getCSSPAST = (function() {
         return s;
     }
 
+    /**
+     * @param start
+     * @param num
+     * @returns {string}
+     */
     function joinValues2(start, num) {
         if (start + num - 1 >= tokens.length) return;
 
@@ -1963,11 +2579,22 @@ var getCSSPAST = (function() {
         return s;
     }
 
+    /**
+     * Mark whitespaces and comments
+     */
     function markSC() {
-        var ws = -1, // whitespaces
-            sc = -1, // ws and comments
-            t;
+        var ws = -1, // flag for whitespaces
+            sc = -1, // flag for whitespaces and comments
+            t; // current token
 
+        // For every token in the token list, mark spaces and line breaks
+        // as spaces (set both `ws` and `sc` flags). Mark multiline comments
+        // with `sc` flag.
+        // If there are several spaces or tabs or line breaks or multiline
+        // comments in a row, group them: take the last one's index number
+        // and save it to the first token in the group as a reference
+        // (e.g., `ws_last = 7` for a group of whitespaces or `sc_last = 9`
+        // for a group of whitespaces and comments):
         for (var i = 0; i < tokens.length; i++) {
             t = tokens[i];
             switch (t.type) {
