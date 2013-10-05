@@ -12,7 +12,8 @@ function csspToSrc(tree, hasInfo) {
             'stylesheet': 1
         },
         _m_primitive = {
-            'cdo': 'cdo', 'cdc': 'cdc', 'decldelim': ';', 'namespace': '|', 'delim': ','
+            'cdo': 'cdo', 'cdc': 'cdc', 'decldelim': ';', 'namespace': '|', 'delim': ',',
+            'parentselector': '&'
         };
 
     function _t(tree) {
@@ -35,65 +36,80 @@ function csspToSrc(tree, hasInfo) {
     }
 
     var _unique = {
-        percentage: function(t) {
+        'percentage': function(t) {
             return _t(t[hasInfo? 2 : 1]) + '%';
         },
-        comment: function (t) {
+        'comment': function (t) {
             return '/*' + t[hasInfo? 2 : 1] + '*/';
         },
-        clazz: function(t) {
+        'clazz': function(t) {
             return '.' + _t(t[hasInfo? 2 : 1]);
         },
-        atkeyword: function(t) {
+        'atkeyword': function(t) {
             return '@' + _t(t[hasInfo? 2 : 1]);
         },
-        shash: function (t) {
+        'shash': function (t) {
             return '#' + t[hasInfo? 2 : 1];
         },
-        vhash: function(t) {
+        'vhash': function(t) {
             return '#' + t[hasInfo? 2 : 1];
         },
-        attrib: function(t) {
+        'attrib': function(t) {
             return '[' + _composite(t) + ']';
         },
-        important: function(t) {
+        'important': function(t) {
             return '!' + _composite(t) + 'important';
         },
-        nthselector: function(t) {
+        'nthselector': function(t) {
             return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
         },
-        funktion: function(t) {
+        'funktion': function(t) {
             return _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t[hasInfo? 3: 2]) + ')';
         },
-        declaration: function(t) {
+        'declaration': function(t) {
             return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
         },
-        filter: function(t) {
+        'filter': function(t) {
             return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
         },
-        block: function(t) {
+        'block': function(t) {
             return '{' + _composite(t) + '}';
         },
-        braces: function(t) {
+        'braces': function(t) {
             return t[hasInfo? 2 : 1] + _composite(t, hasInfo? 4 : 3) + t[hasInfo? 3 : 2];
         },
-        atrules: function(t) {
-            return _composite(t) + ';';
+        'atrules': function(t) {
+            return _composite(t);
         },
-        atruler: function(t) {
+        'atruler': function(t) {
             return _t(t[hasInfo? 2 : 1]) + _t(t[hasInfo? 3 : 2]) + '{' + _t(t[hasInfo? 4 : 3]) + '}';
         },
-        pseudoe: function(t) {
+        'pseudoe': function(t) {
             return '::' + _t(t[hasInfo? 2 : 1]);
         },
-        pseudoc: function(t) {
+        'pseudoc': function(t) {
             return ':' + _t(t[hasInfo? 2 : 1]);
         },
-        uri: function(t) {
+        'uri': function(t) {
             return 'url(' + _composite(t) + ')';
         },
-        functionExpression: function(t) {
+        'functionExpression': function(t) {
             return 'expression(' + t[hasInfo? 2 : 1] + ')';
+        },
+        'variable': function(t) {
+            return '$' + _t(t[hasInfo? 2 : 1]);
+        },
+        'variableslist': function(t) {
+            return _t(t[hasInfo? 2 : 1]) + '...';
+        },
+        'placeholder': function(t) {
+            return '%' + _t(t[hasInfo? 2 : 1]);
+        },
+        'interpolation': function(t) {
+            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
+        },
+        'default': function(t) {
+            return '!' + _composite(t) + 'default';
         }
     };
 

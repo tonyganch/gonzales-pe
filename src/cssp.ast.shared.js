@@ -61,7 +61,13 @@ var getCSSPAST = (function() {
         FunctionBodyType: 'functionBody',
         FunktionType: 'funktion',
         FunctionExpressionType: 'functionExpression',
-        UnknownType: 'unknown'
+        UnknownType: 'unknown', // TODO: Rename to single-line comment
+        PlaceholderType: 'placeholder',
+        ParentSelectorType: 'parentselector',
+        VariableType: 'variable',
+        VariablesListType: 'variableslist',
+        InterpolationType: 'interpolation',
+        DefaultType: 'default'
     };
 
     CSSPRules = {
@@ -110,7 +116,13 @@ var getCSSPAST = (function() {
         'raw': function() { if (checkRaw(pos)) return getRaw() },
         'funktion': function() { if (checkFunktion(pos)) return getFunktion() },
         'functionExpression': function() { if (checkFunctionExpression(pos)) return getFunctionExpression() },
-        'unknown': function() { if (checkUnknown(pos)) return getUnknown() }
+        'unknown': function() { if (checkUnknown(pos)) return getUnknown() },
+        'placeholder': function() { if (checkPlaceholder(pos)) return getPlaceholder() },
+        'parentselector': function () { if (checkParentSelector(pos)) return getParentSelector() },
+        'variable': function () { if (checkVariable(pos)) return getVariable() },
+        'variableslist': function () { if (checkVariablesList(pos)) return getVariablesList() },
+        'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
+        'default': function () { if (checkDefault(pos)) return getDefault() }
     };
 
     /**
@@ -156,6 +168,9 @@ var getCSSPAST = (function() {
     function checkAny(_i) {
         return checkBraces(_i) ||
             checkString(_i) ||
+            checkVariablesList(_i) ||
+            checkVariable(_i) ||
+            checkPlaceholder(_i) ||
             checkPercentage(_i) ||
             checkDimension(_i) ||
             checkNumber(_i) ||
@@ -163,6 +178,7 @@ var getCSSPAST = (function() {
             checkFunctionExpression(_i) ||
             checkFunktion(_i) ||
             checkIdent(_i) ||
+            checkClazz(_i) ||
             checkUnary(_i);
     }
 
@@ -172,6 +188,9 @@ var getCSSPAST = (function() {
     function getAny() {
         if (checkBraces(pos)) return getBraces();
         else if (checkString(pos)) return getString();
+        else if (checkVariablesList(pos)) return getVariablesList();
+        else if (checkVariable(pos)) return getVariable();
+        else if (checkPlaceholder(pos)) return getPlaceholder();
         else if (checkPercentage(pos)) return getPercentage();
         else if (checkDimension(pos)) return getDimension();
         else if (checkNumber(pos)) return getNumber();
@@ -179,6 +198,7 @@ var getCSSPAST = (function() {
         else if (checkFunctionExpression(pos)) return getFunctionExpression();
         else if (checkFunktion(pos)) return getFunktion();
         else if (checkIdent(pos)) return getIdent();
+        else if (checkClazz(pos)) return getClazz();
         else if (checkUnary(pos)) return getUnary();
     }
 
@@ -397,9 +417,9 @@ var getCSSPAST = (function() {
         if (tokens[start].atrule_l !== undefined) return tokens[start].atrule_l;
 
         // If token is part of an @-rule, save the rule's type to token:
-        if (l = checkAtruler(_i)) tokens[_i].atrule_type = 1;
-        else if (l = checkAtruleb(_i)) tokens[_i].atrule_type = 2;
-        else if (l = checkAtrules(_i)) tokens[_i].atrule_type = 3;
+        if (l = checkAtruler(_i)) tokens[_i].atrule_type = 1; // @-rule with ruleset
+        else if (l = checkAtruleb(_i)) tokens[_i].atrule_type = 2; // block @-rule
+        else if (l = checkAtrules(_i)) tokens[_i].atrule_type = 3; // single-line @-rule
         else return fail(tokens[start]);
 
         // If token is part of an @-rule, save the rule's length to token:
@@ -574,9 +594,6 @@ var getCSSPAST = (function() {
 
         if (_i >= tokens.length) return _i - start;
 
-        if (tokens[_i].type === TokenType.Semicolon) _i++;
-        else return fail(tokens[_i]);
-
         return _i - start;
     }
 
@@ -586,8 +603,6 @@ var getCSSPAST = (function() {
      */
     function getAtrules() {
         var atrules = (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulesType, getAtkeyword()] : [CSSPNodeType.AtrulesType, getAtkeyword()]).concat(getTsets());
-
-        pos++;
 
         return atrules;
     }
@@ -665,30 +680,52 @@ var getCSSPAST = (function() {
 
         if (l = checkSC(_i)) _i += l;
 
-        if (l = checkFilter(_i)) {
-            tokens[_i].bd_filter = 1;
-            _i += l;
+        if (l = checkAtrule(_i)) {
+            tokens[_i].bd_kind = 1;
+        } else if (l = checkRuleset(_i)) {
+            tokens[_i].bd_kind = 2;
+        } else if (l = checkFilter(_i)) {
+            tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
-            tokens[_i].bd_decl = 1;
-            _i += l;
+            tokens[_i].bd_kind = 4;
         } else return fail(tokens[_i]);
 
-        if (_i < tokens.length && (l = checkDecldelim(_i))) _i += l;
+        _i += l;
+        if (_i < tokens.length && (l = checkDecldelim(_i))) _i += l
         else return fail(tokens[_i]);
 
         if (l = checkSC(_i)) _i += l;
+        else return fail(tokens[_i]);
 
         return _i - start;
     }
 
     /**
-     * sc*:s0 (filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
+     * sc*:s0 (atrule | ruleset | filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
      * @returns {Array}
      * @private
      */
     function _getBlockdecl0() {
-        return getSC()
-            .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
+        var sc = getSC(),
+            x;
+
+        switch (tokens[pos].bd_kind) {
+            case 1:
+                x = getAtrule();
+                break;
+            case 2:
+                x = getRuleset();
+                break;
+            case 3:
+                x = getFilter();
+                break;
+            case 4:
+                x = getDeclaration();
+                break;
+        }
+
+        return sc
+            .concat([x])
             .concat([getDecldelim()])
             .concat(getSC());
     }
@@ -704,13 +741,17 @@ var getCSSPAST = (function() {
 
         if (l = checkSC(_i)) _i += l;
 
-        if (l = checkFilter(_i)) {
-            tokens[_i].bd_filter = 1;
-            _i += l;
+        if (l = checkAtrule(_i)) {
+            tokens[_i].bd_kind = 1;
+        } else if (l = checkRuleset(_i)) {
+            tokens[_i].bd_kind = 2;
+        } else if (l = checkFilter(_i)) {
+            tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
-            tokens[_i].bd_decl = 1;
-            _i += l;
+            tokens[_i].bd_kind = 4;
         } else return fail(tokens[_i]);
+
+        _i += l;
 
         if (l = checkSC(_i)) _i += l;
 
@@ -723,8 +764,26 @@ var getCSSPAST = (function() {
      * @private
      */
     function _getBlockdecl1() {
-        return getSC()
-            .concat([tokens[pos].bd_filter? getFilter() : getDeclaration()])
+        var sc = getSC(),
+            x;
+
+        switch (tokens[pos].bd_kind) {
+            case 1:
+                x = getAtrule();
+                break;
+            case 2:
+                x = getRuleset();
+                break;
+            case 3:
+                x = getFilter();
+                break;
+            case 4:
+                x = getDeclaration();
+                break;
+        }
+
+        return sc
+            .concat([x])
             .concat(getSC());
     }
 
@@ -821,10 +880,12 @@ var getCSSPAST = (function() {
     function checkClazz(_i) {
         var l;
 
+        if (_i >= tokens.length) return fail(tokens[_i]);
+
         if (tokens[_i].clazz_l) return tokens[_i].clazz_l;
 
         if (tokens[_i].type === TokenType.FullStop) {
-            if (l = checkIdent(_i + 1)) {
+            if (l = checkInterpolation(_i + 1) || checkIdent(_i + 1)) {
                 tokens[_i].clazz_l = l + 1;
                 return l + 1;
             }
@@ -843,9 +904,11 @@ var getCSSPAST = (function() {
 
         pos++;
 
+        x = checkInterpolation(pos) ? getInterpolation() : getIdent();
+
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.ClazzType, getIdent()] :
-                [CSSPNodeType.ClazzType, getIdent()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.ClazzType, x] :
+            [CSSPNodeType.ClazzType, x];
     }
 
     /**
@@ -958,8 +1021,42 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.DecldelimType] :
-                [CSSPNodeType.DecldelimType];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.DecldelimType] :
+            [CSSPNodeType.DecldelimType];
+    }
+
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkDefault(_i) {
+        var start = _i,
+            l;
+
+        if (tokens[_i++].type !== TokenType.ExclamationMark) return fail(tokens[_i - 1]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (tokens[_i].value !== 'default') return fail(tokens[_i]);
+
+        return _i - start + 1;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getDefault() {
+        var startPos = pos;
+
+        // Skip `!`:
+        pos++;
+
+        var sc = getSC();
+
+        // Skip `default`:
+        pos++;
+
+        return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.DefaultType] : [CSSPNodeType.DefaultType]).concat(sc);
     }
 
     /**
@@ -1127,7 +1224,7 @@ var getCSSPAST = (function() {
 
         if (_i < tokens.length && (l = checkSC(_i))) _i += l;
 
-        if (_i < tokens.length && (l = checkImportant(_i))) _i += l;
+        if (_i < tokens.length && (l = checkImportant(_i) || checkDefault(_i))) _i += l;
 
         return _i - start;
     }
@@ -1147,6 +1244,7 @@ var getCSSPAST = (function() {
         filterv = filterv.concat(checkSC(pos) ? getSC() : []);
 
         if (pos < tokens.length && checkImportant(pos)) filterv.push(getImportant());
+        if (pos < tokens.length && checkDefault(pos)) filterv.push(getDefault());
 
         return filterv;
     }
@@ -1387,6 +1485,46 @@ var getCSSPAST = (function() {
     /**
      * @param {number} _i Token's index number
      * @returns {number | undefined}
+     */
+    function checkInterpolation(_i) {
+        var start = _i,
+            l;
+
+        if (tokens[_i].type !== TokenType.NumberSign ||
+            tokens[_i + 1].type !== TokenType.LeftCurlyBracket) return fail(tokens[_i - 1]);
+
+        _i += 2;
+
+        if (l = checkVariable(_i)) _i += l;
+
+        if (tokens[_i].type !== TokenType.RightCurlyBracket) return fail(tokens[_i - 1]);
+
+        return _i - start + 1;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getInterpolation() {
+        var startPos = pos,
+            x, sc;
+
+        // Skip `#{`:
+        pos += 2;
+
+        x = getVariable();
+
+        // Skip `}`:
+        pos++;
+
+        return needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.InterpolationType, x] : [CSSPNodeType.InterpolationType, x];
+    }
+
+    /**
+     * Check if token is a namespace sign (`|`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined} If token is a namespace sign ('|'),
+     *      returns 1, else tries to fail the token and returns `undefined`.
      */
     function checkNamespace(_i) {
         if (tokens[_i].type === TokenType.VerticalLine) return 1;
@@ -1650,8 +1788,31 @@ var getCSSPAST = (function() {
      */
     function getOperator() {
         return needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.OperatorType, tokens[pos++].value] :
-                [CSSPNodeType.OperatorType, tokens[pos++].value];
+            [{ ln: tokens[pos].ln }, CSSPNodeType.OperatorType, tokens[pos++].value] :
+            [CSSPNodeType.OperatorType, tokens[pos++].value];
+    }
+
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkParentSelector(_i) {
+        if (tokens[_i].type !== TokenType.Ampersand) return fail(tokens[_i]);
+
+        return 1;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getParentSelector() {
+        var startPos = pos;
+
+        pos++;
+
+        return needInfo?
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.ParentSelectorType, '&'] :
+            [CSSPNodeType.ParentSelectorType, '&'];
     }
 
     /**
@@ -1683,6 +1844,43 @@ var getCSSPAST = (function() {
         return needInfo?
             [{ ln: tokens[startPos].ln }, CSSPNodeType.PercentageType, n] :
             [CSSPNodeType.PercentageType, n];
+    }
+
+    /**
+     * Check if token is part of a placeholder selector (e.g. `%abc`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkPlaceholder(_i) {
+        var l;
+
+        if (_i >= tokens.length) return fail(tokens[_i]);
+
+        if (tokens[_i].placeholder_l) return tokens[_i].placeholder_l;
+
+        if (tokens[_i].type === TokenType.PercentSign) {
+            if (l = checkIdent(_i + 1)) {
+                tokens[_i].placeholder_l = l + 1;
+                return l + 1;
+            }
+        }
+
+        return fail(tokens[_i]);
+    }
+
+    /**
+     * Get node with a placeholder selector
+     * @returns {Array} `['placeholder', ['ident', x]]` where x is a placeholder's
+     *      identifier (without `%`, e.g. `abc`).
+     */
+    function getPlaceholder() {
+        var startPos = pos;
+
+        pos++;
+
+        return needInfo?
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PlaceholderType, getIdent()] :
+            [CSSPNodeType.PlaceholderType, getIdent()];
     }
 
     /**
@@ -1755,7 +1953,8 @@ var getCSSPAST = (function() {
         var start = _i,
             l;
 
-        if (l = checkIdent(_i)) _i += l;
+        if (l = checkVariable(_i)) _i += l;
+        else if (l = checkIdent(_i)) _i += l;
         else return fail(tokens[_i]);
 
         if (l = checkSC(_i)) _i += l;
@@ -1770,8 +1969,8 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         return (needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.PropertyType, getIdent()] :
-                [CSSPNodeType.PropertyType, getIdent()])
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()] :
+            [CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()])
             .concat(getSC());
     }
 
@@ -2052,11 +2251,11 @@ var getCSSPAST = (function() {
      * @private
      */
     function _checkSimpleSelector(_i) {
-        return checkNthselector(_i) ||
+        return checkParentSelector(_i) ||
+            checkNthselector(_i) ||
             checkCombinator(_i) ||
             checkAttrib(_i) ||
             checkPseudo(_i) ||
-            checkClazz(_i) ||
             checkShash(_i) ||
             checkAny(_i) ||
             checkSC(_i) ||
@@ -2086,11 +2285,11 @@ var getCSSPAST = (function() {
      * @private
      */
     function _getSimpleSelector() {
-        if (checkNthselector(pos)) return getNthselector();
+        if (checkParentSelector(pos)) return getParentSelector();
+        else if (checkNthselector(pos)) return getNthselector();
         else if (checkCombinator(pos)) return getCombinator();
         else if (checkAttrib(pos)) return getAttrib();
         else if (checkPseudo(pos)) return getPseudo();
-        else if (checkClazz(pos)) return getClazz();
         else if (checkShash(pos)) return getShash();
         else if (checkAny(pos)) return getAny();
         else if (checkSC(pos)) return getSC();
@@ -2145,10 +2344,8 @@ var getCSSPAST = (function() {
                 currentBlockLN = tokens[_i].ln;
                 // If token is part of declaration (property-value pair),
                 // it's ok, continue:
-                if (l = checkDeclaration(_i)) {
-                    _i += l;
-                    if (l = checkDecldelim(_i)) _i += l;
-                }
+                if (l = checkDeclaration(_i)) _i += l;
+                else if (l = checkDecldelim(_i)) _i += l;
                 // If token is a part of an @-rule, it's ok, continue:
                 else if (l = checkAtrule(_i)) _i += l;
                 // If token is a part of a ruleset, it's ok, continue:
@@ -2179,6 +2376,8 @@ var getCSSPAST = (function() {
                 currentBlockLN = tokens[pos].ln;
                 if (checkRuleset(pos)) stylesheet.push(getRuleset());
                 else if (checkAtrule(pos)) stylesheet.push(getAtrule());
+                else if (checkDeclaration(pos)) stylesheet.push(getDeclaration());
+                else if (checkDecldelim(pos)) stylesheet.push(getDecldelim());
                 else if (checkUnknown(pos)) stylesheet.push(getUnknown());
                 else throwError();
             }
@@ -2393,12 +2592,14 @@ var getCSSPAST = (function() {
      */
     function _checkValue(_i) {
         return checkSC(_i) ||
-               checkVhash(_i) ||
-               checkAny(_i) ||
-               checkBlock(_i) ||
-               checkAtkeyword(_i) ||
-               checkOperator(_i) ||
-               checkImportant(_i);
+            checkVariable(_i) ||
+            checkVhash(_i) ||
+            checkAny(_i) ||
+            checkBlock(_i) ||
+            checkAtkeyword(_i) ||
+            checkOperator(_i) ||
+            checkImportant(_i) ||
+            checkDefault(_i);
     }
 
     /**
@@ -2425,12 +2626,79 @@ var getCSSPAST = (function() {
      */
     function _getValue() {
         if (checkSC(pos)) return getSC();
+        else if (checkVariable(pos)) return getVariable();
         else if (checkVhash(pos)) return getVhash();
         else if (checkAny(pos)) return getAny();
         else if (checkBlock(pos)) return getBlock();
         else if (checkAtkeyword(pos)) return getAtkeyword();
         else if (checkOperator(pos)) return getOperator();
         else if (checkImportant(pos)) return getImportant();
+        else if (checkDefault(pos)) return getDefault();
+    }
+
+    /**
+     * Check if token is part of a variable
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkVariable(_i) {
+        var l;
+
+        if (_i >= tokens.length || tokens[_i].type !== TokenType.DollarSign) return fail(tokens[_i]);
+
+        if (l = checkIdent(_i + 1)) return l + 1;
+
+        return fail(tokens[_i]);
+    }
+
+    /**
+     * Get node of variable
+     * @returns {Array} `['variable', ['ident', x]]` where `x` is
+     *      a variable name.
+     */
+    function getVariable() {
+        var startPos = pos;
+
+        pos++;
+
+        return needInfo?
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.VariableType, getIdent()] :
+            [CSSPNodeType.VariableType, getIdent()];
+    }
+
+    /**
+     * Check if token is part of a variables list (e.g. `$values...`)
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkVariablesList(_i) {
+        var d = 0,
+            l;
+
+        if (l = checkVariable(_i)) _i+= l;
+        else return fail(tokens[_i]);
+
+        while (tokens[_i].type === TokenType.FullStop) {
+            d++;
+            _i++;
+        }
+        if (d === 3) return l + d;
+        else return fail(tokens[_i]);
+    }
+
+    /**
+     * Get node with a variables list
+     * @returns {Array} `['variableslist', ['variable', ['ident', x]]]` where
+     *      `x` is a variable name.
+     */
+    function getVariablesList() {
+        var startPos = pos;
+
+        var x = needInfo?
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.VariablesListType, getVariable()] :
+            [CSSPNodeType.VariablesListType, getVariable()];
+        pos += 3;
+        return x;
     }
 
     /**
