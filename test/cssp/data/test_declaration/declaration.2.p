@@ -1,0 +1,12 @@
+['declaration',
+  ['property',
+    ['ident', 'property']],
+  ['value',
+    ['ident', 'value'],
+    ['s', ' '],
+    ['block',
+      ['declaration',
+        ['property',
+          ['ident', 'a']],
+        ['value',
+          ['ident', 'b']]]]]]

@@ -682,12 +682,12 @@ var getCSSPAST = (function() {
 
         if (l = checkAtrule(_i)) {
             tokens[_i].bd_kind = 1;
-        } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 2;
         } else if (l = checkFilter(_i)) {
             tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
             tokens[_i].bd_kind = 4;
+        } else if (l = checkRuleset(_i)) {
+            tokens[_i].bd_kind = 2;
         } else return fail(tokens[_i]);
 
         _i += l;
@@ -743,12 +743,12 @@ var getCSSPAST = (function() {
 
         if (l = checkAtrule(_i)) {
             tokens[_i].bd_kind = 1;
-        } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 2;
         } else if (l = checkFilter(_i)) {
             tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
             tokens[_i].bd_kind = 4;
+        } else if (l = checkRuleset(_i)) {
+            tokens[_i].bd_kind = 2;
         } else return fail(tokens[_i]);
 
         _i += l;
@@ -2577,7 +2577,7 @@ var getCSSPAST = (function() {
 
         while (_i < tokens.length) {
             if (l = _checkValue(_i)) _i += l;
-            else break;
+            if (!l || checkBlock(_i - l)) break;
         }
 
         if (_i - start) return _i - start;
@@ -2594,8 +2594,8 @@ var getCSSPAST = (function() {
         return checkSC(_i) ||
             checkVariable(_i) ||
             checkVhash(_i) ||
-            checkAny(_i) ||
             checkBlock(_i) ||
+            checkAny(_i) ||
             checkAtkeyword(_i) ||
             checkOperator(_i) ||
             checkImportant(_i) ||
@@ -2610,11 +2610,15 @@ var getCSSPAST = (function() {
         var ss = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.ValueType] : [CSSPNodeType.ValueType],
             t;
 
-        while (pos < tokens.length && _checkValue(pos)) {
+        while (pos < tokens.length) {
+            var _pos = pos;
+            if (!_checkValue(pos)) break;
             t = _getValue();
 
             if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') ss.push(t);
             else ss = ss.concat(t);
+
+            if (checkBlock(_pos)) break;
         }
 
         return ss;
@@ -2628,8 +2632,8 @@ var getCSSPAST = (function() {
         if (checkSC(pos)) return getSC();
         else if (checkVariable(pos)) return getVariable();
         else if (checkVhash(pos)) return getVhash();
-        else if (checkAny(pos)) return getAny();
         else if (checkBlock(pos)) return getBlock();
+        else if (checkAny(pos)) return getAny();
         else if (checkAtkeyword(pos)) return getAtkeyword();
         else if (checkOperator(pos)) return getOperator();
         else if (checkImportant(pos)) return getImportant();
