@@ -12,7 +12,7 @@
     "url": "http://github.com/tonyganch/gonzales-pe.git"
   },
   "scripts": {
-    "test": "node ./test/cssp/test.js"
+    "test": "make && node ./test/cssp/test.js"
   },
   "devDependencies": {
     "benchmark": "~1.0.0",
