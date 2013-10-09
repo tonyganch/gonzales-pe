@@ -1491,6 +1491,7 @@ var getCSSPAST = (function() {
             l;
 
         if (tokens[_i].type !== TokenType.NumberSign ||
+            !tokens[_i + 1] ||
             tokens[_i + 1].type !== TokenType.LeftCurlyBracket) return fail(tokens[_i - 1]);
 
         _i += 2;
@@ -2002,7 +2003,7 @@ var getCSSPAST = (function() {
 
         if (tokens[_i++].type !== TokenType.Colon) return fail(tokens[_i - 1]);
 
-        if (l = checkIdent(_i)) return l + 2;
+        if (l = checkInterpolation(_i) || checkIdent(_i)) return l + 2;
 
         return fail(tokens[_i]);
     }
@@ -2015,9 +2016,11 @@ var getCSSPAST = (function() {
 
         pos += 2;
 
+        var x = checkInterpolation(pos) ? getInterpolation() : getIdent();
+
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudoeType, getIdent()] :
-            [CSSPNodeType.PseudoeType, getIdent()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudoeType, x] :
+            [CSSPNodeType.PseudoeType, x];
     }
 
     /**
@@ -2029,7 +2032,7 @@ var getCSSPAST = (function() {
 
         if (tokens[_i++].type !== TokenType.Colon) return fail(tokens[_i - 1]);
 
-        if ((l = checkFunktion(_i)) || (l = checkIdent(_i))) return l + 1;
+        if (l = checkInterpolation(_i) || checkFunktion(_i) || checkIdent(_i)) return l + 1;
 
         return fail(tokens[_i]);
     }
@@ -2043,9 +2046,11 @@ var getCSSPAST = (function() {
 
         pos++;
 
+        var x = checkInterpolation(pos) ? getInterpolation() : (checkFunktion(pos) ? getFunktion() : getIdent());
+
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()] :
-            [CSSPNodeType.PseudocType, checkFunktion(pos)? getFunktion() : getIdent()];
+            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudocType, x] :
+            [CSSPNodeType.PseudocType, x];
     }
 
     /**
@@ -2592,6 +2597,7 @@ var getCSSPAST = (function() {
      */
     function _checkValue(_i) {
         return checkSC(_i) ||
+            checkInterpolation(_i) ||
             checkVariable(_i) ||
             checkVhash(_i) ||
             checkBlock(_i) ||
@@ -2630,6 +2636,7 @@ var getCSSPAST = (function() {
      */
     function _getValue() {
         if (checkSC(pos)) return getSC();
+        else if (checkInterpolation(pos)) return getInterpolation();
         else if (checkVariable(pos)) return getVariable();
         else if (checkVhash(pos)) return getVhash();
         else if (checkBlock(pos)) return getBlock();
