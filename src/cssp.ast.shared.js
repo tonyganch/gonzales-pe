@@ -1396,6 +1396,10 @@ var getCSSPAST = (function() {
         wasIdent = tokens[_i - 1].type === TokenType.Identifier;
 
         for (; _i < tokens.length; _i++) {
+            if (l = checkInterpolation(_i)) _i += l;
+
+            if (!tokens[_i]) break;
+
             if (tokens[_i].type !== TokenType.HyphenMinus &&
                 tokens[_i].type !== TokenType.LowLine) {
                 if (tokens[_i].type !== TokenType.Identifier &&
