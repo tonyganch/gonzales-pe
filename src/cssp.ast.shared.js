@@ -229,7 +229,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.AtkeywordType, getIdent()]:
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.AtkeywordType, getIdent()]:
             [CSSPNodeType.AtkeywordType, getIdent()];
     }
 
@@ -292,7 +292,7 @@ var getCSSPAST = (function() {
 
         pos++;
 
-        var a = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
+        var a = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
             .concat(getSC())
             .concat([getIdent()])
             .concat(getSC())
@@ -338,7 +338,7 @@ var getCSSPAST = (function() {
 
         pos++;
 
-        var a = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
+        var a = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.AttribType] : [CSSPNodeType.AttribType])
             .concat(getSC())
             .concat([getIdent()])
             .concat(getSC());
@@ -397,7 +397,7 @@ var getCSSPAST = (function() {
         if (tokens[pos] && tokens[pos].type === TokenType.EqualsSign) s += tokens[pos++].value;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.AttrselectorType, s] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.AttrselectorType, s] :
             [CSSPNodeType.AttrselectorType, s];
     }
 
@@ -469,7 +469,7 @@ var getCSSPAST = (function() {
      */
     function getAtruleb() {
         return (needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulebType, getAtkeyword()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulebType, getAtkeyword()] :
             [CSSPNodeType.AtrulebType, getAtkeyword()])
             .concat(getTsets())
             .concat([getBlock()]);
@@ -509,7 +509,7 @@ var getCSSPAST = (function() {
      */
     function getAtruler() {
         var atruler = needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()] :
             [CSSPNodeType.AtrulerType, getAtkeyword(), getAtrulerq()];
 
         pos++;
@@ -534,7 +534,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getAtrulerq() {
-        return (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulerqType] : [CSSPNodeType.AtrulerqType]).concat(getTsets());
+        return (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulerqType] : [CSSPNodeType.AtrulerqType]).concat(getTsets());
     }
 
     /**
@@ -563,7 +563,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getAtrulers() {
-        var atrulers = (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulersType] : [CSSPNodeType.AtrulersType]).concat(getSC()),
+        var atrulers = (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulersType] : [CSSPNodeType.AtrulersType]).concat(getSC()),
             x;
 
         while (!tokens[pos].atrulers_end) {
@@ -602,7 +602,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getAtrules() {
-        var atrules = (needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.AtrulesType, getAtkeyword()] : [CSSPNodeType.AtrulesType, getAtkeyword()]).concat(getTsets());
+        var atrules = (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulesType, getAtkeyword()] : [CSSPNodeType.AtrulesType, getAtkeyword()]).concat(getTsets());
 
         return atrules;
     }
@@ -622,7 +622,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getBlock() {
-        var block = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.BlockType] : [CSSPNodeType.BlockType],
+        var block = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.BlockType] : [CSSPNodeType.BlockType],
             end = tokens[pos].right;
 
         pos++;
@@ -868,7 +868,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets) :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets) :
             [CSSPNodeType.BracesType, tokens[left].value, tokens[right].value].concat(tsets);
     }
 
@@ -907,7 +907,7 @@ var getCSSPAST = (function() {
         x = checkInterpolation(pos) ? getInterpolation() : getIdent();
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.ClazzType, x] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ClazzType, x] :
             [CSSPNodeType.ClazzType, x];
     }
 
@@ -932,7 +932,7 @@ var getCSSPAST = (function() {
      */
     function getCombinator() {
         return needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.CombinatorType, tokens[pos++].value] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.CombinatorType, tokens[pos++].value] :
             [CSSPNodeType.CombinatorType, tokens[pos++].value];
     }
 
@@ -963,7 +963,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.CommentType, s] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.CommentType, s] :
             [CSSPNodeType.CommentType, s];
     }
 
@@ -992,7 +992,7 @@ var getCSSPAST = (function() {
      */
     function getDeclaration() {
         var declaration = needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.DeclarationType, getProperty()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.DeclarationType, getProperty()] :
             [CSSPNodeType.DeclarationType, getProperty()];
 
         pos++;
@@ -1021,7 +1021,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.DecldelimType] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.DecldelimType] :
             [CSSPNodeType.DecldelimType];
     }
 
@@ -1056,7 +1056,7 @@ var getCSSPAST = (function() {
         // Skip `default`:
         pos++;
 
-        return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.DefaultType] : [CSSPNodeType.DefaultType]).concat(sc);
+        return (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.DefaultType] : [CSSPNodeType.DefaultType]).concat(sc);
     }
 
     /**
@@ -1080,7 +1080,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.DelimType] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.DelimType] :
             [CSSPNodeType.DelimType];
     }
 
@@ -1110,11 +1110,11 @@ var getCSSPAST = (function() {
         var startPos = pos,
             n = getNumber(),
             dimension = needInfo ?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.IdentType, getNmName2()] :
+                [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.IdentType, getNmName2()] :
                 [CSSPNodeType.IdentType, getNmName2()];
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.DimensionType, n, dimension] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.DimensionType, n, dimension] :
             [CSSPNodeType.DimensionType, n, dimension];
     }
 
@@ -1144,7 +1144,7 @@ var getCSSPAST = (function() {
      */
     function getFilter() {
         var filter = needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.FilterType, getFilterp()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.FilterType, getFilterp()] :
             [CSSPNodeType.FilterType, getFilterp()];
 
         pos++;
@@ -1196,11 +1196,11 @@ var getCSSPAST = (function() {
     function getFilterp() {
         var startPos = pos,
             x = joinValues2(pos, tokens[pos].filterp_l),
-            ident = needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.IdentType, x] : [CSSPNodeType.IdentType, x];
+            ident = needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IdentType, x] : [CSSPNodeType.IdentType, x];
 
         pos += tokens[pos].filterp_l;
 
-        return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.PropertyType, ident] : [CSSPNodeType.PropertyType, ident])
+        return (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PropertyType, ident] : [CSSPNodeType.PropertyType, ident])
             .concat(getSC());
 
     }
@@ -1234,7 +1234,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getFilterv() {
-        var filterv = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.FiltervType] : [CSSPNodeType.FiltervType],
+        var filterv = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.FiltervType] : [CSSPNodeType.FiltervType],
             last_progid = tokens[pos].last_progid;
 
         while (pos < last_progid) {
@@ -1277,7 +1277,7 @@ var getCSSPAST = (function() {
         pos = tokens[pos].right + 1;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionExpressionType, e] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.FunctionExpressionType, e] :
             [CSSPNodeType.FunctionExpressionType, e];
     }
 
@@ -1313,7 +1313,7 @@ var getCSSPAST = (function() {
             getNotFunctionBody(); // ok, here we have CSS3 initial draft: http://dev.w3.org/csswg/selectors3/#negation
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunktionType, ident, body] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.FunktionType, ident, body] :
             [CSSPNodeType.FunktionType, ident, body];
     }
 
@@ -1340,7 +1340,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return (needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.FunctionBodyType] :
             [CSSPNodeType.FunctionBodyType]
             ).concat(body);
     }
@@ -1364,7 +1364,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return (needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.FunctionBodyType] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.FunctionBodyType] :
             [CSSPNodeType.FunctionBodyType]
             ).concat(body);
     }
@@ -1450,7 +1450,7 @@ var getCSSPAST = (function() {
         pos = tokens[pos].ident_last + 1;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.IdentType, s] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IdentType, s] :
             [CSSPNodeType.IdentType, s];
     }
 
@@ -1483,7 +1483,7 @@ var getCSSPAST = (function() {
 
         pos++;
 
-        return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.ImportantType] : [CSSPNodeType.ImportantType]).concat(sc);
+        return (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ImportantType] : [CSSPNodeType.ImportantType]).concat(sc);
     }
 
     /**
@@ -1522,7 +1522,7 @@ var getCSSPAST = (function() {
         // Skip `}`:
         pos++;
 
-        return needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.InterpolationType, x] : [CSSPNodeType.InterpolationType, x];
+        return needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.InterpolationType, x] : [CSSPNodeType.InterpolationType, x];
     }
 
     /**
@@ -1547,7 +1547,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.NamespaceType] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.NamespaceType] :
             [CSSPNodeType.NamespaceType];
     }
 
@@ -1590,7 +1590,7 @@ var getCSSPAST = (function() {
 
         if (tokens[pos].nth_last) {
             var n = needInfo?
-                [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)] :
+                [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)] :
                 [CSSPNodeType.NthType, joinValues(pos, tokens[pos].nth_last)];
 
             pos = tokens[pos].nth_last + 1;
@@ -1599,7 +1599,7 @@ var getCSSPAST = (function() {
         }
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.NthType, tokens[pos++].value] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.NthType, tokens[pos++].value] :
             [CSSPNodeType.NthType, tokens[pos++].value];
     }
 
@@ -1697,10 +1697,10 @@ var getCSSPAST = (function() {
     function getNthselector() {
         var startPos = pos,
             nthf = needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.IdentType, getNthf()] :
+                [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.IdentType, getNthf()] :
                 [CSSPNodeType.IdentType, getNthf()],
             ns = needInfo?
-                [{ ln: tokens[pos].ln }, CSSPNodeType.NthselectorType, nthf] :
+                [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.NthselectorType, nthf] :
                 [CSSPNodeType.NthselectorType, nthf];
 
         pos++;
@@ -1766,7 +1766,7 @@ var getCSSPAST = (function() {
         pos += l;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.NumberType, s] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.NumberType, s] :
             [CSSPNodeType.NumberType, s];
     }
 
@@ -1793,7 +1793,7 @@ var getCSSPAST = (function() {
      */
     function getOperator() {
         return needInfo?
-            [{ ln: tokens[pos].ln }, CSSPNodeType.OperatorType, tokens[pos++].value] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.OperatorType, tokens[pos++].value] :
             [CSSPNodeType.OperatorType, tokens[pos++].value];
     }
 
@@ -1816,7 +1816,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.ParentSelectorType, '&'] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ParentSelectorType, '&'] :
             [CSSPNodeType.ParentSelectorType, '&'];
     }
 
@@ -1847,7 +1847,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PercentageType, n] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PercentageType, n] :
             [CSSPNodeType.PercentageType, n];
     }
 
@@ -1884,7 +1884,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PlaceholderType, getIdent()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PlaceholderType, getIdent()] :
             [CSSPNodeType.PlaceholderType, getIdent()];
     }
 
@@ -1928,7 +1928,7 @@ var getCSSPAST = (function() {
         var startPos = pos,
             progid_end = tokens[pos].progid_end;
 
-        return (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.ProgidType] : [CSSPNodeType.ProgidType])
+        return (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ProgidType] : [CSSPNodeType.ProgidType])
             .concat(getSC())
             .concat([_getProgid(progid_end)])
             .concat(getSC());
@@ -1946,7 +1946,7 @@ var getCSSPAST = (function() {
         pos = progid_end + 1;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.RawType, x] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.RawType, x] :
             [CSSPNodeType.RawType, x];
     }
 
@@ -1974,7 +1974,7 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         return (needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()] :
             [CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()])
             .concat(getSC());
     }
@@ -2023,7 +2023,7 @@ var getCSSPAST = (function() {
         var x = checkInterpolation(pos) ? getInterpolation() : getIdent();
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudoeType, x] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PseudoeType, x] :
             [CSSPNodeType.PseudoeType, x];
     }
 
@@ -2053,7 +2053,7 @@ var getCSSPAST = (function() {
         var x = checkInterpolation(pos) ? getInterpolation() : (checkFunktion(pos) ? getFunktion() : getIdent());
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.PseudocType, x] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PseudocType, x] :
             [CSSPNodeType.PseudocType, x];
     }
 
@@ -2084,7 +2084,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getRuleset() {
-        var ruleset = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.RulesetType] : [CSSPNodeType.RulesetType];
+        var ruleset = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.RulesetType] : [CSSPNodeType.RulesetType];
 
         while (!checkBlock(pos)) {
             ruleset.push(getSelector());
@@ -2120,7 +2120,7 @@ var getCSSPAST = (function() {
 
         pos = tokens[pos].ws_last + 1;
 
-        return needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.SType, s] : [CSSPNodeType.SType, s];
+        return needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.SType, s] : [CSSPNodeType.SType, s];
     }
 
     /**
@@ -2192,7 +2192,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getSelector() {
-        var selector = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.SelectorType] : [CSSPNodeType.SelectorType],
+        var selector = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.SelectorType] : [CSSPNodeType.SelectorType],
             selector_end = tokens[pos].selector_end;
 
         while (pos <= selector_end) {
@@ -2230,7 +2230,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.ShashType, getNmName()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ShashType, getNmName()] :
             [CSSPNodeType.ShashType, getNmName()];
     }
 
@@ -2276,7 +2276,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getSimpleSelector() {
-        var ss = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.SimpleselectorType] : [CSSPNodeType.SimpleselectorType],
+        var ss = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.SimpleselectorType] : [CSSPNodeType.SimpleselectorType],
             t;
 
         while (pos < tokens.length && _checkSimpleSelector(pos)) {
@@ -2328,7 +2328,7 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.StringType, tokens[pos++].value] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.StringType, tokens[pos++].value] :
             [CSSPNodeType.StringType, tokens[pos++].value];
     }
 
@@ -2376,7 +2376,7 @@ var getCSSPAST = (function() {
      */
     function getStylesheet(_i) { // TODO: Remove unused `_i` parameter
         var t, // TODO: Remove unused local var
-            stylesheet = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.StylesheetType] : [CSSPNodeType.StylesheetType];
+            stylesheet = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.StylesheetType] : [CSSPNodeType.StylesheetType];
 
         while (pos < tokens.length) {
             if (checkSC(pos)) stylesheet = stylesheet.concat(getSC());
@@ -2470,7 +2470,7 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.UnaryType, tokens[pos++].value] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UnaryType, tokens[pos++].value] :
             [CSSPNodeType.UnaryType, tokens[pos++].value];
     }
 
@@ -2491,7 +2491,7 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.UnknownType, tokens[pos++].value] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UnknownType, tokens[pos++].value] :
             [CSSPNodeType.UnknownType, tokens[pos++].value];
     }
 
@@ -2529,7 +2529,7 @@ var getCSSPAST = (function() {
         uriExcluding[TokenType.RightParenthesis] = 1;
 
         if (checkUri1(pos)) {
-            var uri = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
+            var uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
                 .concat(getSC())
                 .concat([getString()])
                 .concat(getSC());
@@ -2538,11 +2538,11 @@ var getCSSPAST = (function() {
 
             return uri;
         } else {
-            var uri = (needInfo? [{ ln: tokens[startPos].ln }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
+            var uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
                     .concat(getSC()),
                 l = checkExcluding(uriExcluding, pos),
                 raw = needInfo?
-                    [{ ln: tokens[pos].ln }, CSSPNodeType.RawType, joinValues(pos, pos + l)] :
+                    [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.RawType, joinValues(pos, pos + l)] :
                     [CSSPNodeType.RawType, joinValues(pos, pos + l)];
 
             uri.push(raw);
@@ -2617,7 +2617,7 @@ var getCSSPAST = (function() {
      * @returns {Array}
      */
     function getValue() {
-        var ss = needInfo? [{ ln: tokens[pos].ln }, CSSPNodeType.ValueType] : [CSSPNodeType.ValueType],
+        var ss = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.ValueType] : [CSSPNodeType.ValueType],
             t;
 
         while (pos < tokens.length) {
@@ -2677,7 +2677,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.VariableType, getIdent()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.VariableType, getIdent()] :
             [CSSPNodeType.VariableType, getIdent()];
     }
 
@@ -2710,7 +2710,7 @@ var getCSSPAST = (function() {
         var startPos = pos;
 
         var x = needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.VariablesListType, getVariable()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.VariablesListType, getVariable()] :
             [CSSPNodeType.VariablesListType, getVariable()];
         pos += 3;
         return x;
@@ -2743,7 +2743,7 @@ var getCSSPAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln }, CSSPNodeType.VhashType, getNmName2()] :
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.VhashType, getNmName2()] :
             [CSSPNodeType.VhashType, getNmName2()];
     }
 
