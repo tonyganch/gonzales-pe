@@ -14,6 +14,8 @@ var funcs = {
          }
 };
 
+console.log('Running tests...');
+
 d_list.forEach(function(rule_dir) {
     if (/^test/.test(rule_dir)) {
         var rule = rule_dir.substring(5),
@@ -44,11 +46,11 @@ d_list.forEach(function(rule_dir) {
                         r = (((b = funcs[a](src, rule)).replace(/,\s\n/g, ',\n') == (c = readFile(path + k + '.' + a).trim())));
                         r && okn++;
                         if (!r) {
+                            console.log('\n---------------------');
                             console.log('FAIL: ' + t + a);
-                            console.log('======= expected');
-                            console.log(c);
-                            console.log('======= result');
-                            console.log(b);
+                            console.log('\nExpected:\n', c);
+                            console.log('\nResult:\n', b);
+                            console.log();
                         }
                     }
                 }

@@ -5,3 +5,4 @@ lib/cssp.translator.node.js
 lib/gonzales.cssp.node.js
 node_modules/
 web/
+log/
