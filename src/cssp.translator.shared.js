@@ -1,6 +1,15 @@
 // version: 1.0.0
 
-function csspToSrc(tree, hasInfo) {
+function csspToSrc(options) {
+    var tree, hasInfo;
+    // TODO: Better error message
+    if (!options) throw new Error('We need tree to translate');
+
+    if (typeof options === 'string') tree = options;
+    else {
+        tree = options.tree;
+        hasInfo = options.info;
+    }
 
     var _m_simple = {
             'unary': 1, 'nth': 1, 'combinator': 1, 'ident': 1, 'number': 1, 's': 1,

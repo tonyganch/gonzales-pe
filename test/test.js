@@ -5,11 +5,11 @@ var fs = require('fs'),
     okn = total = 0;
 
 var funcs = {
-    'p': function parse(src, match) {
-            return treeToString(cleanInfo(srcToCSSP(src, match, true)));
+    'p': function parse(options) {
+            return treeToString(cleanInfo(srcToCSSP(options)));
          },
-    'l': function translate(src, match) {
-            return csspToSrc(srcToCSSP(src, match, true), true);
+    'l': function translate(options) {
+            return csspToSrc({syntax: options.syntax, tree: srcToCSSP(options), info: true});
          }
 };
 
@@ -44,7 +44,8 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
                     if (!(a in files[k])) continue;
 
                     total++;
-                    var b = funcs[a](src, rule).replace(/,\s\n/g, ',\n');
+                    var params = {src: src, rule: rule, info: true, syntax: syntax};
+                    var b = funcs[a](params).replace(/,\s\n/g, ',\n');
                     var c = fs.readFileSync(ruleDir + '/' + k + '.' + a).toString().trim();
                     r = b === c;
                     r && okn++;

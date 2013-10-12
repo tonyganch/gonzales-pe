@@ -1,15 +1,14 @@
-// version: 1.0.0
-
 var getCSSPAST = (function() {
 
-    var tokens, // list of tokens
+    var syntax, // syntax name (e.g. `scss`)
+        tokens, // list of tokens
         pos, // position of current token in tokens' list
         failLN = 0, // the largest line number of token that failed validation
         currentBlockLN = 0, // line number of current token
         needInfo = false;
 
     var CSSPNodeType,
-        CSSLevel,// TODO: remove
+        CSSLevel, // TODO: remove
         CSSPRules;
 
     CSSPNodeType = {
@@ -143,14 +142,17 @@ var getCSSPAST = (function() {
 
     /**
      * Convert tokens to AST
+     * @param {String} _syntax Syntax name (e.g. `scss`)
      * @param {Array} _tokens List of tokens
      * @param rule
      * @param _needInfo
      * @returns {*}
      * @private
      */
-    function _getAST(_tokens, rule, _needInfo) {
+    function _getAST(_syntax, _tokens, rule, _needInfo) {
+        syntax = _syntax;
         tokens = _tokens;
+        rule = rule || 'stylesheet';
         needInfo = _needInfo;
         pos = 0;
 
@@ -158,7 +160,7 @@ var getCSSPAST = (function() {
         markSC();
 
         // Validate and convert:
-        return rule ? CSSPRules[rule]() : CSSPRules['stylesheet']();
+        return CSSPRules[rule]();
     }
 
     /**
@@ -1026,12 +1028,16 @@ var getCSSPAST = (function() {
     }
 
     /**
+     * Check if token if part of `!default` word.
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkDefault(_i) {
         var start = _i,
             l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
 
         if (tokens[_i++].type !== TokenType.ExclamationMark) return fail(tokens[_i - 1]);
 
@@ -1487,12 +1493,16 @@ var getCSSPAST = (function() {
     }
 
     /**
+     * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkInterpolation(_i) {
         var start = _i,
             l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
 
         if (tokens[_i].type !== TokenType.NumberSign ||
             !tokens[_i + 1] ||
@@ -1798,10 +1808,14 @@ var getCSSPAST = (function() {
     }
 
     /**
+     * Check if token is a parent selector (`&`).
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkParentSelector(_i) {
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
         if (tokens[_i].type !== TokenType.Ampersand) return fail(tokens[_i]);
 
         return 1;
@@ -1852,12 +1866,15 @@ var getCSSPAST = (function() {
     }
 
     /**
-     * Check if token is part of a placeholder selector (e.g. `%abc`)
+     * Check if token is part of a placeholder selector (e.g. `%abc`).
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkPlaceholder(_i) {
         var l;
+
+        if (syntax !== 'scss') fail(tokens[_i])
 
         if (_i >= tokens.length) return fail(tokens[_i]);
 
@@ -2652,12 +2669,15 @@ var getCSSPAST = (function() {
     }
 
     /**
-     * Check if token is part of a variable
+     * Check if token is part of a variable.
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkVariable(_i) {
         var l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
 
         if (_i >= tokens.length || tokens[_i].type !== TokenType.DollarSign) return fail(tokens[_i]);
 
@@ -2682,13 +2702,16 @@ var getCSSPAST = (function() {
     }
 
     /**
-     * Check if token is part of a variables list (e.g. `$values...`)
+     * Check if token is part of a variables list (e.g. `$values...`).
+     * Valid only for scss syntax.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkVariablesList(_i) {
         var d = 0,
             l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
 
         if (l = checkVariable(_i)) _i+= l;
         else return fail(tokens[_i]);
@@ -2917,8 +2940,8 @@ var getCSSPAST = (function() {
         if (sc !== -1) tokens[sc].sc_last = i - 1;
     }
 
-    return function(_tokens, rule, _needInfo) {
-        return _getAST(_tokens, rule, _needInfo);
+    return function(_syntax, _tokens, rule, _needInfo) {
+        return _getAST(_syntax, _tokens, rule, _needInfo);
     }
 
 }());
