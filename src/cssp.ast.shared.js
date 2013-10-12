@@ -8,7 +8,6 @@ var getCSSPAST = (function() {
         needInfo = false;
 
     var CSSPNodeType,
-        CSSLevel, // TODO: remove
         CSSPRules;
 
     CSSPNodeType = {
@@ -1386,7 +1385,7 @@ var getCSSPAST = (function() {
         if (_i >= tokens.length) return fail(tokens[_i]);
 
         var start = _i,
-            wasIdent = false; // TODO: Remove var's init
+            wasIdent;
 
         // Check if token is part of an identifier starting with `_`:
         if (tokens[_i].type === TokenType.LowLine) return checkIdentLowLine(_i);
@@ -2387,13 +2386,11 @@ var getCSSPAST = (function() {
     }
 
     /**
-     * @param {number} _i Token's index number
      * @returns {Array} `['stylesheet', x]` where `x` is all stylesheet's
      *      nodes.
      */
-    function getStylesheet(_i) { // TODO: Remove unused `_i` parameter
-        var t, // TODO: Remove unused local var
-            stylesheet = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.StylesheetType] : [CSSPNodeType.StylesheetType];
+    function getStylesheet() {
+        var stylesheet = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.StylesheetType] : [CSSPNodeType.StylesheetType];
 
         while (pos < tokens.length) {
             if (checkSC(pos)) stylesheet = stylesheet.concat(getSC());
@@ -2716,7 +2713,7 @@ var getCSSPAST = (function() {
         if (l = checkVariable(_i)) _i+= l;
         else return fail(tokens[_i]);
 
-        while (tokens[_i].type === TokenType.FullStop) {
+        while (tokens[_i] && tokens[_i].type === TokenType.FullStop) {
             d++;
             _i++;
         }

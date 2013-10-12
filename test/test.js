@@ -80,11 +80,6 @@ function dummySpaces(num) {
     return '                                                  '.substr(0, num * 2);
 }
 
-// TODO: Unused. Remove?
-function printTree(tree) {
-    require('sys').print(treeToString(tree));
-}
-
 function cleanInfo(tree) {
     var r = [];
     tree = tree.slice(1);

@@ -96,13 +96,7 @@ var getTokens = (function() {
         return '0123456789'.indexOf(c) >= 0;
     }
 
-    // TODO: remove
-    function throwError(message) {
-        throw message;
-    }
-
-    var buffer = '', // TODO: remove
-        tokens = [], // list of tokens
+    var tokens = [], // list of tokens
         pos, // position of current character in a string
         tn = 0, // token number
         ln = 1; // line number
@@ -211,12 +205,9 @@ var getTokens = (function() {
         // Since we already know first 2 characters (`/*`), start reading
         // from `pos + 2`:
         for (pos = pos + 2; pos < s.length; pos++) {
-            // TODO: combine two conditions
-            if (s.charAt(pos) === '*') {
-                if (s.charAt(pos + 1) === '/') {
-                    pos++;
-                    break;
-                }
+            if (s.charAt(pos) === '*' && s.charAt(pos + 1) === '/') {
+                pos++;
+                break;
             }
         }
 
