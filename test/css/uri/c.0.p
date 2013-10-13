@@ -1,4 +1,4 @@
 ['uri',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['string', ''http://test.com''],
-  ['comment', 'test']]
+  ['commentML', 'test']]

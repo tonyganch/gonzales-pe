@@ -47,7 +47,7 @@
       ['s', '
 
     '],
-      ['comment', ' comment '],
+      ['commentML', ' comment '],
       ['s', '
 
     '],

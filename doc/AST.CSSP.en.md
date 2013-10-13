@@ -11,7 +11,7 @@ In general it looks like this:
     ['stylesheet',
       ['atrules', ..],
       ['s', ' '],
-      ['comment', 'sample'],
+      ['commentML', 'sample'],
       ['ruleset',
         ['selector', ..]],
         ['block', ..]]
@@ -43,7 +43,7 @@ If you do not know in which mode was the parsing, check the type of the first el
 
 Style. The root node of AST.
 
-Consists of *ruleset* (a set of rules with selectors), *atrules* (single-line at-rule), *atruleb* (block at-rule) and *atruler* (at-rule with *ruleset*). Also there are *s* (whitespace) and *comment* (comments).
+Consists of *ruleset* (a set of rules with selectors), *atrules* (single-line at-rule), *atruleb* (block at-rule) and *atruler* (at-rule with *ruleset*). Also there are *s* (whitespace) and *commentML* (comments).
 
     @import "x.png"; /*sample*/ x{p:v}
 
@@ -56,7 +56,7 @@ Consists of *ruleset* (a set of rules with selectors), *atrules* (single-line at
         ['s', ' '],
         ['string', '"x.png"']],
       ['s', ' '],
-      ['comment', 'sample'],
+      ['commentML', 'sample'],
       ['s', ' '],
       ['ruleset',
         ['selector',
@@ -69,15 +69,15 @@ Consists of *ruleset* (a set of rules with selectors), *atrules* (single-line at
             ['value',
               ['ident', 'v']]]]]]
 
-#### comment
+#### commentML
 
-Comment.
+Multi-line comment.
 
     /* test */
 
     ↓
 
-    ['comment', ' test ']
+    ['commentML', ' test ']
 
 #### s
 
@@ -87,9 +87,9 @@ Whitespace: space, `\t`, `\n`, `\r`.
 
     ↓
 
-    ['comment', 'a'],
+    ['commentML', 'a'],
     ['s', '  '],
-    ['comment', 'b']
+    ['commentML', 'b']
 
 #### string
 

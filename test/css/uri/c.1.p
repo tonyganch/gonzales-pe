@@ -1,3 +1,3 @@
 ['uri',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['raw', 'http://test.com/*test*/']]

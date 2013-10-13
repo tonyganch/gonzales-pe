@@ -1,9 +1,9 @@
 ['nthselector',
   ['ident', 'nth-child'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['nth', '2n'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['unary', '+'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['nth', '1'],
-  ['comment', 'test']]
+  ['commentML', 'test']]

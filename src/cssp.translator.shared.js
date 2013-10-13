@@ -66,8 +66,11 @@ function astToCSS(options) {
         'clazz': function(t) {
             return '.' + _t(t[hasInfo? 2 : 1]);
         },
-        'comment': function (t) {
+        'commentML': function (t) {
             return '/*' + t[hasInfo? 2 : 1] + '*/';
+        },
+        'commentSL': function (t) {
+            return '/' + '/' + t[hasInfo? 2 : 1];
         },
         'declaration': function(t) {
             return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);

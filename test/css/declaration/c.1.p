@@ -2,5 +2,5 @@
   ['property',
     ['ident', 'property']],
   ['value',
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['ident', 'value']]]

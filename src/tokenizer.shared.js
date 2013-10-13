@@ -107,7 +107,7 @@ var getTokens = (function() {
      * @returns {Array} List of tokens
      * @private
      */
-    function _getTokens(s) {
+    function _getTokens(s, syntax) {
         if (!s) return [];
 
         tokens = [];
@@ -127,12 +127,16 @@ var getTokens = (function() {
             }
             // If we meet `//` and it is not a part of url:
             else if (!urlMode && c === '/' && cn === '/') {
-                // If we're currently inside a block, treat `//` as a start
-                // of identifier:
-                if (blockMode > 0) parseIdentifier(s);
-                // If we're currently not inside a block, treat `//` as
-                // a start of a single line comment:
-                else parseSLComment(s);
+                // If we parse scss file, treat `//` as a single-line comment:
+                if (syntax === 'scss') parseSLComment(s);
+                else {
+                    // If we're currently inside a block, treat `//` as a start
+                    // of identifier:
+                    if (blockMode > 0) parseIdentifier(s);
+                    // If we're currently not inside a block, treat `//` as
+                    // a start of a single line comment:
+                    else parseSLComment(s);
+                }
             }
             // If current character is a double or single quote, it's a start
             // of a string:
@@ -350,8 +354,9 @@ var getTokens = (function() {
         }
     }
 
-    return function(s) {
-        return _getTokens(s);
+    return function(s, syntax) {
+        syntax = syntax || 'css';
+        return _getTokens(s, syntax);
     };
 
 }());

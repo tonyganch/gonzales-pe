@@ -1,8 +1,8 @@
 ['braces', '[', ']',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['ident', 'x'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['unary', '+'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['number', '1'],
-  ['comment', 'test']]
+  ['commentML', 'test']]

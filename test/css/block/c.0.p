@@ -1,2 +1,2 @@
 ['block',
-  ['comment', 'test']]
+  ['commentML', 'test']]

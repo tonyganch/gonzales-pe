@@ -25,7 +25,8 @@ var getAST = (function() {
         CdoType: 'cdo',
         ClazzType: 'clazz',
         CombinatorType: 'combinator',
-        CommentType: 'comment',
+        CommentMLType: 'commentML',
+        CommentSLType: 'commentSL',
         DeclarationType: 'declaration',
         DecldelimType: 'decldelim',
         DefaultType: 'default',
@@ -82,7 +83,8 @@ var getAST = (function() {
         'braces': function() { if (checkBraces(pos)) return getBraces() },
         'clazz': function() { if (checkClazz(pos)) return getClazz() },
         'combinator': function() { if (checkCombinator(pos)) return getCombinator() },
-        'comment': function() { if (checkComment(pos)) return getComment() },
+        'commentML': function() { if (checkCommentML(pos)) return getCommentML() },
+        'commentSL': function() { if (checkCommentSL(pos)) return getCommentSL() },
         'declaration': function() { if (checkDeclaration(pos)) return getDeclaration() },
         'decldelim': function() { if (checkDecldelim(pos)) return getDecldelim() },
         'default': function () { if (checkDefault(pos)) return getDefault() },
@@ -685,7 +687,6 @@ var getAST = (function() {
             l;
 
         if (l = checkSC(_i)) _i += l;
-
         if (l = checkInclude(_i)) {
             tokens[_i].bd_kind = 1;
         } else if (l = checkAtrule(_i)) {
@@ -959,7 +960,7 @@ var getAST = (function() {
      * @returns {number | undefined} If token is a multiline comment,
      *      returns `1`, else tries to fail token and returns `undefined`.
      */
-    function checkComment(_i) {
+    function checkCommentML(_i) {
         if (tokens[_i].type === TokenType.CommentML) return 1;
 
         return fail(tokens[_i]);
@@ -967,10 +968,10 @@ var getAST = (function() {
 
     /**
      * Get node with a multiline comment
-     * @returns {Array} `['comment', x]` where `x`
+     * @returns {Array} `['commentML', x]` where `x`
      *      is the comment's text (without `/*` and `* /`).
      */
-    function getComment() {
+    function getCommentML() {
         var startPos = pos,
             s = tokens[pos].value.substring(2),
             l = s.length;
@@ -980,8 +981,32 @@ var getAST = (function() {
         pos++;
 
         return needInfo?
-            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.CommentType, s] :
-            [CSSPNodeType.CommentType, s];
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.CommentMLType, s] :
+            [CSSPNodeType.CommentMLType, s];
+    }
+
+    /**
+     * Check if token is part of a single-line comment.
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkCommentSL(_i) {
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if (_i < tokens.length && tokens[_i].type === TokenType.CommentSL) return 1;
+
+        return fail(tokens[_i]);
+    }
+
+    /**
+     * Get node with a single-line comment.
+     * @returns {Array}
+     */
+    function getCommentSL() {
+        return needInfo?
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.CommentSLType, tokens[pos++].value.substring(2)] :
+            [CSSPNodeType.CommentSLType, tokens[pos++].value.substring(2)];
     }
 
     /**
@@ -2179,10 +2204,10 @@ var getAST = (function() {
     }
 
     /**
-     * Check if token is a space or a multiline comment.
+     * Check if token is a space or a comment.
      * @param {number} _i Token's index number
-     * @returns {number | undefined} If token is a space or a multiline
-     *      comment, returns a number of similar (space or comment) tokens
+     * @returns {number | undefined} If token is a space or a comment,
+     *      returns a number of similar (space or comment) tokens
      *      in a row starting with the given token.
      *      Else tries to mark the token's line number as the last line
      *      with a failed token and returns `undefined`.
@@ -2192,7 +2217,9 @@ var getAST = (function() {
             lsc = 0;
 
         while (_i < tokens.length) {
-            if (!(l = checkS(_i)) && !(l = checkComment(_i))) break;
+            if (!(l = checkS(_i)) &&
+                !(l = checkCommentML(_i)) &&
+                !(l = checkCommentSL(_i))) break;
             _i += l;
             lsc += l;
         }
@@ -2216,7 +2243,8 @@ var getAST = (function() {
 
         while (pos < tokens.length) {
             if (checkS(pos)) sc.push(getS());
-            else if (checkComment(pos)) sc.push(getComment());
+            else if (checkCommentML(pos)) sc.push(getCommentML());
+            else if (checkCommentSL(pos)) sc.push(getCommentSL());
             else break;
         }
 
@@ -2955,6 +2983,7 @@ var getAST = (function() {
 
                     break;
                 case TokenType.CommentML:
+                case TokenType.CommentSL:
                     if (ws !== -1) {
                         tokens[ws].ws_last = i - 1;
                         ws = -1;

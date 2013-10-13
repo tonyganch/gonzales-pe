@@ -1,4 +1,4 @@
 ['simpleselector',
   ['ident', 'a'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['ident', 'b']]

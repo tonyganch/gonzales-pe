@@ -2,10 +2,10 @@
   ['property',
     ['ident', 'property'],
     ['s', '  '],
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['s', '  ']],
   ['value',
     ['s', '  '],
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['s', '  '],
     ['ident', 'value']]]

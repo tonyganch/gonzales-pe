@@ -1,5 +1,5 @@
 ['stylesheet',
-  ['comment', ' test '],
+  ['commentML', ' test '],
   ['s', '
 '],
   ['ruleset',
@@ -20,4 +20,4 @@
 ']]]]],
   ['s', '
 '],
-  ['comment', ' test ']]
+  ['commentML', ' test ']]

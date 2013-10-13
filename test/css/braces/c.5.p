@@ -1,4 +1,4 @@
 ['braces', '[', ']',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['number', '1'],
-  ['comment', 'test']]
+  ['commentML', 'test']]

@@ -1,4 +1,4 @@
 ['block',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['decldelim'],
-  ['comment', 'test']]
+  ['commentML', 'test']]

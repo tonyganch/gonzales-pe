@@ -1,10 +1,10 @@
 ['funktion',
   ['ident', 'test'],
   ['functionBody',
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['ident', 'x'],
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['unary', '+'],
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['ident', 'y'],
-    ['comment', 'test']]]
+    ['commentML', 'test']]]

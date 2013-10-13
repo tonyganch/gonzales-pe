@@ -1,7 +1,7 @@
 ['declaration',
   ['property',
     ['ident', 'property'],
-    ['comment', 'test']],
+    ['commentML', 'test']],
   ['value',
-    ['comment', 'test'],
+    ['commentML', 'test'],
     ['ident', 'value']]]

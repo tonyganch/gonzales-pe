@@ -1,8 +1,8 @@
 ['filter',
   ['property',
     ['ident', 'filter'],
-    ['comment', 'test']],
+    ['commentML', 'test']],
   ['filterv',
     ['progid',
-      ['comment', 'test'],
+      ['commentML', 'test'],
       ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')']]]]

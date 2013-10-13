@@ -1,8 +1,8 @@
 ['attrib',
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['ident', 'a'],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['attrselector', '='],
-  ['comment', 'test'],
+  ['commentML', 'test'],
   ['string', ''b''],
-  ['comment', 'test']]
+  ['commentML', 'test']]
