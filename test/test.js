@@ -38,8 +38,8 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
         });
 
         for (var k in files) {
-            if (files[k].css) {
-                var src = fs.readFileSync(ruleDir + '/' + k + '.css').toString().trim();
+            if (files[k][syntax]) {
+                var src = fs.readFileSync(ruleDir + '/' + k + '.' + syntax).toString().trim();
                 for (var a in funcs) {
                     if (!(a in files[k])) continue;
 
