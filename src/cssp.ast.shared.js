@@ -11,119 +11,117 @@ var getAST = (function() {
         CSSPRules;
 
     CSSPNodeType = {
-        IdentType: 'ident',
         AtkeywordType: 'atkeyword',
-        StringType: 'string',
-        ShashType: 'shash',
-        VhashType: 'vhash',
-        NumberType: 'number',
-        PercentageType: 'percentage',
-        DimensionType: 'dimension',
-        CdoType: 'cdo',
-        CdcType: 'cdc',
-        DecldelimType: 'decldelim',
-        SType: 's',
-        AttrselectorType: 'attrselector',
-        AttribType: 'attrib',
-        NthType: 'nth',
-        NthselectorType: 'nthselector',
-        NamespaceType: 'namespace',
-        ClazzType: 'clazz',
-        PseudoeType: 'pseudoe',
-        PseudocType: 'pseudoc',
-        DelimType: 'delim',
-        StylesheetType: 'stylesheet',
         AtrulebType: 'atruleb',
-        AtrulesType: 'atrules',
+        AtrulerType: 'atruler',
         AtrulerqType: 'atrulerq',
         AtrulersType: 'atrulers',
-        AtrulerType: 'atruler',
+        AtrulesType: 'atrules',
+        AttribType: 'attrib',
+        AttrselectorType: 'attrselector',
         BlockType: 'block',
-        RulesetType: 'ruleset',
-        CombinatorType: 'combinator',
-        SimpleselectorType: 'simpleselector',
-        SelectorType: 'selector',
-        DeclarationType: 'declaration',
-        PropertyType: 'property',
-        ImportantType: 'important',
-        UnaryType: 'unary',
-        OperatorType: 'operator',
         BracesType: 'braces',
-        ValueType: 'value',
-        ProgidType: 'progid',
-        FiltervType: 'filterv',
-        FilterType: 'filter',
+        CdcType: 'cdc',
+        CdoType: 'cdo',
+        ClazzType: 'clazz',
+        CombinatorType: 'combinator',
         CommentType: 'comment',
-        UriType: 'uri',
-        RawType: 'raw',
-        FunctionBodyType: 'functionBody',
+        DeclarationType: 'declaration',
+        DecldelimType: 'decldelim',
+        DefaultType: 'default',
+        DelimType: 'delim',
+        DimensionType: 'dimension',
+        FilterType: 'filter',
+        FiltervType: 'filterv',
         FunktionType: 'funktion',
+        FunctionBodyType: 'functionBody',
         FunctionExpressionType: 'functionExpression',
-        UnknownType: 'unknown', // TODO: Rename to single-line comment
-        PlaceholderType: 'placeholder',
+        IdentType: 'ident',
+        ImportantType: 'important',
+        IncludeType :'include',
+        InterpolationType: 'interpolation',
+        NamespaceType: 'namespace',
+        NthType: 'nth',
+        NthselectorType: 'nthselector',
+        NumberType: 'number',
+        OperatorType: 'operator',
         ParentSelectorType: 'parentselector',
+        PercentageType: 'percentage',
+        PlaceholderType: 'placeholder',
+        ProgidType: 'progid',
+        PseudocType: 'pseudoc',
+        PseudoeType: 'pseudoe',
+        PropertyType: 'property',
+        RawType: 'raw',
+        RulesetType: 'ruleset',
+        SType: 's',
+        SelectorType: 'selector',
+        ShashType: 'shash',
+        SimpleselectorType: 'simpleselector',
+        StringType: 'string',
+        StylesheetType: 'stylesheet',
+        UnaryType: 'unary',
+        UnknownType: 'unknown',
+        UriType: 'uri',
+        ValueType: 'value',
         VariableType: 'variable',
         VariablesListType: 'variableslist',
-        InterpolationType: 'interpolation',
-        DefaultType: 'default',
-        IncludeType :'include'
+        VhashType: 'vhash'
     };
 
     CSSPRules = {
-        'ident': function() { if (checkIdent(pos)) return getIdent() },
         'atkeyword': function() { if (checkAtkeyword(pos)) return getAtkeyword() },
-        'string': function() { if (checkString(pos)) return getString() },
-        'shash': function() { if (checkShash(pos)) return getShash() },
-        'vhash': function() { if (checkVhash(pos)) return getVhash() },
-        'number': function() { if (checkNumber(pos)) return getNumber() },
-        'percentage': function() { if (checkPercentage(pos)) return getPercentage() },
-        'dimension': function() { if (checkDimension(pos)) return getDimension() },
-        'decldelim': function() { if (checkDecldelim(pos)) return getDecldelim() },
-        's': function() { if (checkS(pos)) return getS() },
-        'attrselector': function() { if (checkAttrselector(pos)) return getAttrselector() },
-        'attrib': function() { if (checkAttrib(pos)) return getAttrib() },
-        'nth': function() { if (checkNth(pos)) return getNth() },
-        'nthselector': function() { if (checkNthselector(pos)) return getNthselector() },
-        'namespace': function() { if (checkNamespace(pos)) return getNamespace() },
-        'clazz': function() { if (checkClazz(pos)) return getClazz() },
-        'pseudoe': function() { if (checkPseudoe(pos)) return getPseudoe() },
-        'pseudoc': function() { if (checkPseudoc(pos)) return getPseudoc() },
-        'delim': function() { if (checkDelim(pos)) return getDelim() },
-        'stylesheet': function() { if (checkStylesheet(pos)) return getStylesheet() },
         'atruleb': function() { if (checkAtruleb(pos)) return getAtruleb() },
-        'atrules': function() { if (checkAtrules(pos)) return getAtrules() },
+        'atruler': function() { if (checkAtruler(pos)) return getAtruler() },
         'atrulerq': function() { if (checkAtrulerq(pos)) return getAtrulerq() },
         'atrulers': function() { if (checkAtrulers(pos)) return getAtrulers() },
-        'atruler': function() { if (checkAtruler(pos)) return getAtruler() },
+        'atrules': function() { if (checkAtrules(pos)) return getAtrules() },
+        'attrib': function() { if (checkAttrib(pos)) return getAttrib() },
+        'attrselector': function() { if (checkAttrselector(pos)) return getAttrselector() },
         'block': function() { if (checkBlock(pos)) return getBlock() },
-        'ruleset': function() { if (checkRuleset(pos)) return getRuleset() },
-        'combinator': function() { if (checkCombinator(pos)) return getCombinator() },
-        'simpleselector': function() { if (checkSimpleselector(pos)) return getSimpleSelector() },
-        'selector': function() { if (checkSelector(pos)) return getSelector() },
-        'declaration': function() { if (checkDeclaration(pos)) return getDeclaration() },
-        'property': function() { if (checkProperty(pos)) return getProperty() },
-        'important': function() { if (checkImportant(pos)) return getImportant() },
-        'unary': function() { if (checkUnary(pos)) return getUnary() },
-        'operator': function() { if (checkOperator(pos)) return getOperator() },
         'braces': function() { if (checkBraces(pos)) return getBraces() },
-        'value': function() { if (checkValue(pos)) return getValue() },
-        'progid': function() { if (checkProgid(pos)) return getProgid() },
-        'filterv': function() { if (checkFilterv(pos)) return getFilterv() },
-        'filter': function() { if (checkFilter(pos)) return getFilter() },
+        'clazz': function() { if (checkClazz(pos)) return getClazz() },
+        'combinator': function() { if (checkCombinator(pos)) return getCombinator() },
         'comment': function() { if (checkComment(pos)) return getComment() },
-        'uri': function() { if (checkUri(pos)) return getUri() },
-        'raw': function() { if (checkRaw(pos)) return getRaw() },
-        'funktion': function() { if (checkFunktion(pos)) return getFunktion() },
+        'declaration': function() { if (checkDeclaration(pos)) return getDeclaration() },
+        'decldelim': function() { if (checkDecldelim(pos)) return getDecldelim() },
+        'default': function () { if (checkDefault(pos)) return getDefault() },
+        'delim': function() { if (checkDelim(pos)) return getDelim() },
+        'dimension': function() { if (checkDimension(pos)) return getDimension() },
+        'filter': function() { if (checkFilter(pos)) return getFilter() },
+        'filterv': function() { if (checkFilterv(pos)) return getFilterv() },
         'functionExpression': function() { if (checkFunctionExpression(pos)) return getFunctionExpression() },
-        'unknown': function() { if (checkUnknown(pos)) return getUnknown() },
-        'placeholder': function() { if (checkPlaceholder(pos)) return getPlaceholder() },
+        'funktion': function() { if (checkFunktion(pos)) return getFunktion() },
+        'ident': function() { if (checkIdent(pos)) return getIdent() },
+        'important': function() { if (checkImportant(pos)) return getImportant() },
+        'include': function () { if (checkInclude(pos)) return getInclude() },
+        'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
+        'namespace': function() { if (checkNamespace(pos)) return getNamespace() },
+        'nth': function() { if (checkNth(pos)) return getNth() },
+        'nthselector': function() { if (checkNthselector(pos)) return getNthselector() },
+        'number': function() { if (checkNumber(pos)) return getNumber() },
+        'operator': function() { if (checkOperator(pos)) return getOperator() },
         'parentselector': function () { if (checkParentSelector(pos)) return getParentSelector() },
+        'percentage': function() { if (checkPercentage(pos)) return getPercentage() },
+        'placeholder': function() { if (checkPlaceholder(pos)) return getPlaceholder() },
+        'progid': function() { if (checkProgid(pos)) return getProgid() },
+        'property': function() { if (checkProperty(pos)) return getProperty() },
+        'pseudoc': function() { if (checkPseudoc(pos)) return getPseudoc() },
+        'pseudoe': function() { if (checkPseudoe(pos)) return getPseudoe() },
+        'ruleset': function() { if (checkRuleset(pos)) return getRuleset() },
+        's': function() { if (checkS(pos)) return getS() },
+        'selector': function() { if (checkSelector(pos)) return getSelector() },
+        'shash': function() { if (checkShash(pos)) return getShash() },
+        'simpleselector': function() { if (checkSimpleselector(pos)) return getSimpleSelector() },
+        'string': function() { if (checkString(pos)) return getString() },
+        'stylesheet': function() { if (checkStylesheet(pos)) return getStylesheet() },
+        'unary': function() { if (checkUnary(pos)) return getUnary() },
+        'unknown': function() { if (checkUnknown(pos)) return getUnknown() },
+        'uri': function() { if (checkUri(pos)) return getUri() },
+        'value': function() { if (checkValue(pos)) return getValue() },
         'variable': function () { if (checkVariable(pos)) return getVariable() },
         'variableslist': function () { if (checkVariablesList(pos)) return getVariablesList() },
-        'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
-        'default': function () { if (checkDefault(pos)) return getDefault() },
-        'include': function () { if (checkInclude(pos)) return getInclude() }
-
+        'vhash': function() { if (checkVhash(pos)) return getVhash() }
     };
 
     /**
@@ -257,11 +255,12 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkAttrib1(_i) {
-        var start = _i;
+        var start = _i,
+            l;
 
         _i++;
 
-        var l = checkSC(_i); // s0
+        l = checkSC(_i); // s0
 
         if (l) _i += l;
 
@@ -413,21 +412,20 @@ var getAST = (function() {
      *      returns `undefined`.
      */
     function checkAtrule(_i) {
-        var start = _i,
-            l;
+        var l;
 
         // If token already has a record of being part of an @-rule,
         // return the @-rule's length:
-        if (tokens[start].atrule_l !== undefined) return tokens[start].atrule_l;
+        if (tokens[_i].atrule_l !== undefined) return tokens[_i].atrule_l;
 
         // If token is part of an @-rule, save the rule's type to token:
         if (l = checkAtruler(_i)) tokens[_i].atrule_type = 1; // @-rule with ruleset
         else if (l = checkAtruleb(_i)) tokens[_i].atrule_type = 2; // block @-rule
         else if (l = checkAtrules(_i)) tokens[_i].atrule_type = 3; // single-line @-rule
-        else return fail(tokens[start]);
+        else return fail(tokens[_i]);
 
         // If token is part of an @-rule, save the rule's length to token:
-        tokens[start].atrule_l = l;
+        tokens[_i].atrule_l = l;
 
         return l;
     }
@@ -567,8 +565,10 @@ var getAST = (function() {
      * @returns {Array}
      */
     function getAtrulers() {
-        var atrulers = (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulersType] : [CSSPNodeType.AtrulersType]).concat(getSC()),
-            x;
+        var atrulers = (needInfo?
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulersType] :
+            [CSSPNodeType.AtrulersType])
+            .concat(getSC());
 
         while (!tokens[pos].atrulers_end) {
             if (checkSC(pos)) {
@@ -606,9 +606,11 @@ var getAST = (function() {
      * @returns {Array}
      */
     function getAtrules() {
-        var atrules = (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulesType, getAtkeyword()] : [CSSPNodeType.AtrulesType, getAtkeyword()]).concat(getTsets());
+        var x = needInfo ?
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.AtrulesType, getAtkeyword()] :
+            [CSSPNodeType.AtrulesType, getAtkeyword()];
 
-        return atrules;
+        return x.concat(getTsets());
     }
 
     /**
@@ -697,7 +699,7 @@ var getAST = (function() {
         } else return fail(tokens[_i]);
 
         _i += l;
-        if (_i < tokens.length && (l = checkDecldelim(_i))) _i += l
+        if (_i < tokens.length && (l = checkDecldelim(_i))) _i += l;
         else return fail(tokens[_i]);
 
         if (l = checkSC(_i)) _i += l;
@@ -914,7 +916,8 @@ var getAST = (function() {
      *      identifier (without `.`, e.g. `abc`).
      */
     function getClazz() {
-        var startPos = pos;
+        var startPos = pos,
+            x;
 
         pos++;
 
@@ -1368,8 +1371,7 @@ var getAST = (function() {
      */
     function getNotFunctionBody() {
         var startPos = pos,
-            body = [],
-            x;
+            body = [];
 
         while (tokens[pos].type !== TokenType.RightParenthesis) {
             if (checkSimpleselector(pos)) {
@@ -1395,6 +1397,8 @@ var getAST = (function() {
      *      returns `undefined`.
      */
     function checkIdent(_i) {
+        var l;
+
         if (_i >= tokens.length) return fail(tokens[_i]);
 
         var start = _i,
@@ -1526,10 +1530,8 @@ var getAST = (function() {
     }
 
     function getInclude() {
-        var startPos = pos;
-
         return needInfo?
-            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IncludeType, getAtrule()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.IncludeType, getAtrule()] :
             [CSSPNodeType.IncludeType, getAtrule()];
 
     }
@@ -1564,7 +1566,7 @@ var getAST = (function() {
      */
     function getInterpolation() {
         var startPos = pos,
-            x, sc; // TODO: Remove unused `sc` variable
+            x;
 
         // Skip `#{`:
         pos += 2;
@@ -1747,8 +1749,7 @@ var getAST = (function() {
      * @returns {Array}
      */
     function getNthselector() {
-        var startPos = pos,
-            nthf = needInfo?
+        var nthf = needInfo?
                 [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.IdentType, getNthf()] :
                 [CSSPNodeType.IdentType, getNthf()],
             ns = needInfo?
@@ -1916,7 +1917,7 @@ var getAST = (function() {
     function checkPlaceholder(_i) {
         var l;
 
-        if (syntax !== 'scss') fail(tokens[_i])
+        if (syntax !== 'scss') fail(tokens[_i]);
 
         if (_i >= tokens.length) return fail(tokens[_i]);
 
@@ -1953,13 +1954,11 @@ var getAST = (function() {
      */
     function checkProgid(_i) {
         var start = _i,
-            l,
-            x;
+            l;
 
         if (l = checkSC(_i)) _i += l;
 
-        if ((x = joinValues2(_i, 6)) === 'progid:DXImageTransform.Microsoft.') {
-            _start = _i;
+        if (joinValues2(_i, 6) === 'progid:DXImageTransform.Microsoft.') {
             _i += 6;
         } else return fail(tokens[_i - 1]);
 
@@ -1984,10 +1983,9 @@ var getAST = (function() {
      * @returns {Array}
      */
     function getProgid() {
-        var startPos = pos,
-            progid_end = tokens[pos].progid_end;
+        var progid_end = tokens[pos].progid_end;
 
-        return (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ProgidType] : [CSSPNodeType.ProgidType])
+        return (needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.ProgidType] : [CSSPNodeType.ProgidType])
             .concat(getSC())
             .concat([_getProgid(progid_end)])
             .concat(getSC());
@@ -2030,10 +2028,8 @@ var getAST = (function() {
      * @returns {Array}
      */
     function getProperty() {
-        var startPos = pos;
-
         return (needInfo?
-            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()] :
+            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()] :
             [CSSPNodeType.PropertyType, checkVariable(pos) ? getVariable() : getIdent()])
             .concat(getSC());
     }
@@ -2561,8 +2557,7 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkUri(_i) {
-        var start = _i,
-            l;
+        var start = _i;
 
         if (_i < tokens.length && tokens[_i++].value !== 'url') return fail(tokens[_i - 1]);
 
@@ -2578,7 +2573,10 @@ var getAST = (function() {
      */
     function getUri() {
         var startPos = pos,
-            uriExcluding = {};
+            uriExcluding = {},
+            uri,
+            l,
+            raw;
 
         pos += 2;
 
@@ -2589,7 +2587,7 @@ var getAST = (function() {
         uriExcluding[TokenType.RightParenthesis] = 1;
 
         if (checkUri1(pos)) {
-            var uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
+            uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
                 .concat(getSC())
                 .concat([getString()])
                 .concat(getSC());
@@ -2598,7 +2596,7 @@ var getAST = (function() {
 
             return uri;
         } else {
-            var uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
+            uri = (needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.UriType] : [CSSPNodeType.UriType])
                     .concat(getSC()),
                 l = checkExcluding(uriExcluding, pos),
                 raw = needInfo?
@@ -2678,10 +2676,11 @@ var getAST = (function() {
      */
     function getValue() {
         var ss = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.ValueType] : [CSSPNodeType.ValueType],
-            t;
+            t, _pos;
 
         while (pos < tokens.length) {
-            var _pos = pos;
+            _pos = pos;
+
             if (!_checkValue(pos)) break;
             t = _getValue();
 
@@ -2855,8 +2854,6 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkNmName2(_i) {
-        var start = _i;
-
         if (tokens[_i].type === TokenType.Identifier) return 1;
         else if (tokens[_i].type !== TokenType.DecimalNumber) return fail(tokens[_i]);
 

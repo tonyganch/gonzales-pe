@@ -12,17 +12,17 @@ function astToCSS(options) {
     }
 
     var _m_simple = {
-            'unary': 1, 'nth': 1, 'combinator': 1, 'ident': 1, 'number': 1, 's': 1,
-            'string': 1, 'attrselector': 1, 'operator': 1, 'raw': 1, 'unknown': 1
+            'attrselector': 1, 'combinator': 1, 'ident': 1, 'nth': 1, 'number': 1,
+            'operator': 1, 'raw': 1, 's': 1, 'string': 1, 'unary': 1, 'unknown': 1
         },
         _m_composite = {
-            'simpleselector': 1, 'dimension': 1, 'selector': 1, 'property': 1, 'value': 1,
-            'filterv': 1, 'progid': 1, 'ruleset': 1, 'atruleb': 1, 'atrulerq': 1, 'atrulers': 1,
-            'stylesheet': 1
+            'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'dimension': 1,
+            'filterv': 1, 'selector': 1, 'progid': 1, 'property': 1, 'ruleset': 1,
+            'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
         _m_primitive = {
-            'cdo': 'cdo', 'cdc': 'cdc', 'decldelim': ';', 'namespace': '|', 'delim': ',',
-            'parentselector': '&'
+            'cdc': 'cdc', 'cdo': 'cdo', 'decldelim': ';', 'delim': ',',
+            'namespace': '|', 'parentselector': '&'
         };
 
     function _t(tree) {
@@ -45,41 +45,17 @@ function astToCSS(options) {
     }
 
     var _unique = {
-        'percentage': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + '%';
-        },
-        'comment': function (t) {
-            return '/*' + t[hasInfo? 2 : 1] + '*/';
-        },
-        'clazz': function(t) {
-            return '.' + _t(t[hasInfo? 2 : 1]);
-        },
         'atkeyword': function(t) {
             return '@' + _t(t[hasInfo? 2 : 1]);
         },
-        'shash': function (t) {
-            return '#' + t[hasInfo? 2 : 1];
+        'atruler': function(t) {
+            return _t(t[hasInfo? 2 : 1]) + _t(t[hasInfo? 3 : 2]) + '{' + _t(t[hasInfo? 4 : 3]) + '}';
         },
-        'vhash': function(t) {
-            return '#' + t[hasInfo? 2 : 1];
+        'atrules': function(t) {
+            return _composite(t);
         },
         'attrib': function(t) {
             return '[' + _composite(t) + ']';
-        },
-        'important': function(t) {
-            return '!' + _composite(t) + 'important';
-        },
-        'nthselector': function(t) {
-            return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
-        },
-        'funktion': function(t) {
-            return _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t[hasInfo? 3: 2]) + ')';
-        },
-        'declaration': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
-        },
-        'filter': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
         },
         'block': function(t) {
             return '{' + _composite(t) + '}';
@@ -87,23 +63,56 @@ function astToCSS(options) {
         'braces': function(t) {
             return t[hasInfo? 2 : 1] + _composite(t, hasInfo? 4 : 3) + t[hasInfo? 3 : 2];
         },
-        'atrules': function(t) {
+        'clazz': function(t) {
+            return '.' + _t(t[hasInfo? 2 : 1]);
+        },
+        'comment': function (t) {
+            return '/*' + t[hasInfo? 2 : 1] + '*/';
+        },
+        'declaration': function(t) {
+            return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
+        },
+        'default': function(t) {
+            return '!' + _composite(t) + 'default';
+        },
+        'filter': function(t) {
+            return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
+        },
+        'functionExpression': function(t) {
+            return 'expression(' + t[hasInfo? 2 : 1] + ')';
+        },
+        'funktion': function(t) {
+            return _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t[hasInfo? 3: 2]) + ')';
+        },
+        'important': function(t) {
+            return '!' + _composite(t) + 'important';
+        },
+        'include': function(t) {
             return _composite(t);
         },
-        'atruler': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + _t(t[hasInfo? 3 : 2]) + '{' + _t(t[hasInfo? 4 : 3]) + '}';
+        'interpolation': function(t) {
+            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
         },
-        'pseudoe': function(t) {
-            return '::' + _t(t[hasInfo? 2 : 1]);
+        'nthselector': function(t) {
+            return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
+        },
+        'percentage': function(t) {
+            return _t(t[hasInfo? 2 : 1]) + '%';
+        },
+        'placeholder': function(t) {
+            return '%' + _t(t[hasInfo? 2 : 1]);
         },
         'pseudoc': function(t) {
             return ':' + _t(t[hasInfo? 2 : 1]);
         },
+        'pseudoe': function(t) {
+            return '::' + _t(t[hasInfo? 2 : 1]);
+        },
+        'shash': function (t) {
+            return '#' + t[hasInfo? 2 : 1];
+        },
         'uri': function(t) {
             return 'url(' + _composite(t) + ')';
-        },
-        'functionExpression': function(t) {
-            return 'expression(' + t[hasInfo? 2 : 1] + ')';
         },
         'variable': function(t) {
             return '$' + _t(t[hasInfo? 2 : 1]);
@@ -111,17 +120,8 @@ function astToCSS(options) {
         'variableslist': function(t) {
             return _t(t[hasInfo? 2 : 1]) + '...';
         },
-        'placeholder': function(t) {
-            return '%' + _t(t[hasInfo? 2 : 1]);
-        },
-        'interpolation': function(t) {
-            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
-        },
-        'default': function(t) {
-            return '!' + _composite(t) + 'default';
-        },
-        'include': function(t) {
-            return _composite(t);
+        'vhash': function(t) {
+            return '#' + t[hasInfo? 2 : 1];
         }
     };
 
