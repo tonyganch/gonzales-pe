@@ -1,4 +1,4 @@
-var getCSSPAST = (function() {
+var getAST = (function() {
 
     var syntax, // syntax name (e.g. `scss`)
         tokens, // list of tokens

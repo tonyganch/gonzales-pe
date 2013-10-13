@@ -10,21 +10,21 @@
 
     var gonzales = require('gonzales'),
         src = 'a { color: red }',
-        ast = gonzales.srcToCSSP(src);
+        ast = gonzales.cssToAST(src);
 
     console.log('== SRC:');
     console.log(src);
 
     console.log('\n== SRC -> AST:');
-    console.log(gonzales.csspToTree(ast));
+    console.log(gonzales.astToTree(ast));
 
     ast[1][1][1][1][1] = 'b';
 
     console.log('\n== AST\':');
-    console.log(gonzales.csspToTree(ast));
+    console.log(gonzales.astToTree(ast));
 
     console.log('\n== AST\' -> SRC:');
-    console.log(gonzales.csspToSrc(ast));
+    console.log(gonzales.astToCSS(ast));
 Результат выполнения:
 
     == SRC:
@@ -75,22 +75,22 @@
 
 ##### SRC -> AST
 
-Разбирает исходный стиль в AST: `gonzales.srcToCSSP(src, rule, needInfo)`, где:
+Разбирает исходный стиль в AST: `gonzales.cssToAST(src, rule, needInfo)`, где:
 
 * `src` — строка со стилем;
-* `rule` — строка с типом токена, если стиль не является полным; например, вы хотите разобрать только *declaration*, в таком случае следует вызвать `srcToCSSP('color: red', 'declaration')`; если же стиль полный и info-object не нужен, вызов сокращается до `srcToCSSP(src)`;
+* `rule` — строка с типом токена, если стиль не является полным; например, вы хотите разобрать только *declaration*, в таком случае следует вызвать `cssToAST('color: red', 'declaration')`; если же стиль полный и info-object не нужен, вызов сокращается до `cssToAST(src)`;
 * `needInfo` — включать ли info-object в AST; в большинстве случаев вам это не потребуется, но если включили, вы должны передавать то же значение `true` во все методы, где фигурирует аргумент `needInfo`.
 
 ##### AST -> SRC
 
-Транслирует AST в стиль: `gonzales.csspToSrc(ast, hasInfo)`, где:
+Транслирует AST в стиль: `gonzales.astToCSS(ast, hasInfo)`, где:
 
 * `ast` — AST, который требуется транслировать;
 * `needInfo` — включен ли info-object в AST; если при разборе стиля в AST `needInfo` был включен, здесь его тоже надо включить.
 
 ##### AST -> TREE
 
-Транслирует AST в строковое представление дерева: `gonzales.csspToTree(ast)`, где:
+Транслирует AST в строковое представление дерева: `gonzales.astToTree(ast)`, где:
 
 * `ast` — AST, который требуется транслировать.
 

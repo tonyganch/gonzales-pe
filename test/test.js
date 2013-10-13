@@ -1,15 +1,15 @@
 var fs = require('fs'),
-    srcToCSSP = require('./../lib/gonzales.cssp.node.js').srcToCSSP,
-    csspToSrc = require('./../lib/cssp.translator.node.js').csspToSrc,
+    cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
+    astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
     syntaxes = fs.readdirSync(__dirname),
     okn = total = 0;
 
 var funcs = {
     'p': function parse(options) {
-            return treeToString(cleanInfo(srcToCSSP(options)));
+            return treeToString(cleanInfo(cssToAST(options)));
          },
     'l': function translate(options) {
-            return csspToSrc({syntax: options.syntax, tree: srcToCSSP(options), info: true});
+            return astToCSS({syntax: options.syntax, src: cssToAST(options), info: true});
          }
 };
 

@@ -1,1 +1,1 @@
-exports.srcToCSSP = srcToCSSP;
+exports.cssToAST = cssToAST;

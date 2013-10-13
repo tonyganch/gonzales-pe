@@ -1,13 +1,13 @@
 // version: 1.0.0
 
-function csspToSrc(options) {
+function astToCSS(options) {
     var tree, hasInfo;
     // TODO: Better error message
     if (!options) throw new Error('We need tree to translate');
 
     if (typeof options === 'string') tree = options;
     else {
-        tree = options.tree;
+        tree = options.src;
         hasInfo = options.info;
     }
 

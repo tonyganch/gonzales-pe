@@ -10,21 +10,21 @@ Sample code:
 
     var gonzales = require('gonzales'),
         src = 'a { color: red }',
-        ast = gonzales.srcToCSSP(src);
+        ast = gonzales.cssToAST(src);
 
     console.log('== SRC:');
     console.log(src);
 
     console.log('\n== SRC -> AST:');
-    console.log(gonzales.csspToTree(ast));
+    console.log(gonzales.astToTree(ast));
 
     ast[1][1][1][1][1] = 'b';
 
     console.log('\n== AST\':');
-    console.log(gonzales.csspToTree(ast));
+    console.log(gonzales.astToTree(ast));
 
     console.log('\n== AST\' -> SRC:');
-    console.log(gonzales.csspToSrc(ast));
+    console.log(gonzales.astToCSS(ast));
 Result:
 
     == SRC:
@@ -75,22 +75,22 @@ You can use CSSP AST through the next functions.
 
 ##### SRC -> AST
 
-It parses source style to AST: `gonzales.srcToCSSP(src, rule, needInfo)`, where:
+It parses source style to AST: `gonzales.cssToAST(src, rule, needInfo)`, where:
 
 * `src` — a string with the CSS style;
-* `rule` —  a string with the token type (in case the style is not complete);  for example, you want to parse only *declaration*, then you have to call `srcToCSSP('color: red', 'declaration')`; in case the style is complete and you don't need an info-object, the call is shortned to `srcToCSSP(src)`;
+* `rule` —  a string with the token type (in case the style is not complete);  for example, you want to parse only *declaration*, then you have to call `cssToAST('color: red', 'declaration')`; in case the style is complete and you don't need an info-object, the call is shortned to `cssToAST(src)`;
 * `needInfo` — whether to include info-object into AST; in most cases you don't need it, but if it is included, you have to pass this `true` value in all functions with `needInfo` argument in signature.
 
 ##### AST -> SRC
 
-Translates AST to style: `gonzales.csspToSrc(ast, hasInfo)`, where:
+Translates AST to style: `gonzales.astToCSS(ast, hasInfo)`, where:
 
 * `ast` — AST to be translated;
 * `needInfo` — whether an info-object is included into AST; in case it was when the style was parsed, you have to make it `true` here as well.
 
 ##### AST -> TREE
 
-Translates AST to the string representation of the tree: `gonzales.csspToTree(ast)`, where:
+Translates AST to the string representation of the tree: `gonzales.astToTree(ast)`, where:
 
 * `ast` — AST to be translated.
 

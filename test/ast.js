@@ -5,16 +5,16 @@
  */
 var src = 'div {$color: nani}',
     syntax = 'scss',
-    srcToCSSP = require('./../lib/gonzales.cssp.node.js').srcToCSSP,
-    csspToSrc = require('./../lib/cssp.translator.node.js').csspToSrc,
-    csspToTree = function(tree, level) {
+    cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
+    astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
+    astToTree = function(tree, level) {
         level = level || 0;
         var spaces = dummySpaces(level),
             s = (level ? '\n' + spaces : '') + '[';
 
         tree.forEach(function(e) {
             if (e.ln === undefined) {
-                s += (Array.isArray(e) ? csspToTree(e, level + 1) : ('\'' + e.toString() + '\'')) + ', ';
+                s += (Array.isArray(e) ? astToTree(e, level + 1) : ('\'' + e.toString() + '\'')) + ', ';
             }
         });
 
@@ -23,10 +23,10 @@ var src = 'div {$color: nani}',
     dummySpaces = function(num) {
         return '                                                  '.substr(0, num * 2);
     },
-    ast = srcToCSSP({src: src, syntax: syntax});
+    ast = cssToAST({src: src, syntax: syntax});
 
     console.log("\n== Source string:\n", src);
 
-    console.log("\n== AST:\n", csspToTree(ast));
+    console.log("\n== AST:\n", astToTree(ast));
 
-    console.log("\n== Translated string:\n", csspToSrc({tree: ast, syntax: syntax}));
+    console.log("\n== Translated string:\n", astToCSS({src: ast, syntax: syntax}));

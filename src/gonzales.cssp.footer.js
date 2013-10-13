@@ -9,6 +9,6 @@
             _needInfo = options.info;
             _syntax = options.syntax || 'css';
         }
-        return getCSSPAST(_syntax, getTokens(src), rule, _needInfo);
+        return getAST(_syntax, getTokens(src), rule, _needInfo);
     }
 }());
