@@ -65,7 +65,8 @@ var getAST = (function() {
         VariableType: 'variable',
         VariablesListType: 'variableslist',
         InterpolationType: 'interpolation',
-        DefaultType: 'default'
+        DefaultType: 'default',
+        IncludeType :'include'
     };
 
     CSSPRules = {
@@ -120,7 +121,9 @@ var getAST = (function() {
         'variable': function () { if (checkVariable(pos)) return getVariable() },
         'variableslist': function () { if (checkVariablesList(pos)) return getVariablesList() },
         'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
-        'default': function () { if (checkDefault(pos)) return getDefault() }
+        'default': function () { if (checkDefault(pos)) return getDefault() },
+        'include': function () { if (checkInclude(pos)) return getInclude() }
+
     };
 
     /**
@@ -681,14 +684,16 @@ var getAST = (function() {
 
         if (l = checkSC(_i)) _i += l;
 
-        if (l = checkAtrule(_i)) {
+        if (l = checkInclude(_i)) {
             tokens[_i].bd_kind = 1;
+        } else if (l = checkAtrule(_i)) {
+            tokens[_i].bd_kind = 2;
         } else if (l = checkFilter(_i)) {
             tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
             tokens[_i].bd_kind = 4;
         } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 2;
+            tokens[_i].bd_kind = 5;
         } else return fail(tokens[_i]);
 
         _i += l;
@@ -712,16 +717,19 @@ var getAST = (function() {
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = getAtrule();
+                x = getInclude();
                 break;
             case 2:
-                x = getRuleset();
+                x = getAtrule();
                 break;
             case 3:
                 x = getFilter();
                 break;
             case 4:
                 x = getDeclaration();
+                break;
+            case 5:
+                x = getRuleset();
                 break;
         }
 
@@ -742,14 +750,16 @@ var getAST = (function() {
 
         if (l = checkSC(_i)) _i += l;
 
-        if (l = checkAtrule(_i)) {
+        if (l = checkInclude(_i)) {
             tokens[_i].bd_kind = 1;
+        } else if (l = checkAtrule(_i)) {
+            tokens[_i].bd_kind = 2;
         } else if (l = checkFilter(_i)) {
             tokens[_i].bd_kind = 3;
         } else if (l = checkDeclaration(_i)) {
             tokens[_i].bd_kind = 4;
         } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 2;
+            tokens[_i].bd_kind = 5;
         } else return fail(tokens[_i]);
 
         _i += l;
@@ -770,16 +780,19 @@ var getAST = (function() {
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = getAtrule();
+                x = getInclude();
                 break;
             case 2:
-                x = getRuleset();
+                x = getAtrule();
                 break;
             case 3:
                 x = getFilter();
                 break;
             case 4:
                 x = getDeclaration();
+                break;
+            case 5:
+                x = getRuleset();
                 break;
         }
 
@@ -1492,6 +1505,36 @@ var getAST = (function() {
     }
 
     /**
+     * Check if token is part of an include (`@include` or `@extend` directive).
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkInclude(_i) {
+        var start = _i,
+            l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if (!(l = checkAtrule(_i))) return fail(tokens[_i]);
+
+        if (['include', 'extend'].indexOf(tokens[_i + 1].value) < 0) return fail(tokens[_i]);
+
+        _i += l;
+
+        return _i - start;
+    }
+
+    function getInclude() {
+        var startPos = pos;
+
+        return needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IncludeType, getAtrule()] :
+            [CSSPNodeType.IncludeType, getAtrule()];
+
+    }
+
+    /**
      * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
      * Valid only for scss syntax.
      * @param {number} _i Token's index number
@@ -1521,7 +1564,7 @@ var getAST = (function() {
      */
     function getInterpolation() {
         var startPos = pos,
-            x, sc;
+            x, sc; // TODO: Remove unused `sc` variable
 
         // Skip `#{`:
         pos += 2;
@@ -2371,6 +2414,8 @@ var getAST = (function() {
                 // it's ok, continue:
                 if (l = checkDeclaration(_i)) _i += l;
                 else if (l = checkDecldelim(_i)) _i += l;
+                // If token is part of an include, it's ok, continue:
+                else if (l = checkInclude(_i)) _i += l;
                 // If token is a part of an @-rule, it's ok, continue:
                 else if (l = checkAtrule(_i)) _i += l;
                 // If token is a part of a ruleset, it's ok, continue:
@@ -2398,6 +2443,7 @@ var getAST = (function() {
                 // TODO: Move into throwError and remove the var:
                 currentBlockLN = tokens[pos].ln;
                 if (checkRuleset(pos)) stylesheet.push(getRuleset());
+                else if (checkInclude(pos)) stylesheet.push(getInclude());
                 else if (checkAtrule(pos)) stylesheet.push(getAtrule());
                 else if (checkDeclaration(pos)) stylesheet.push(getDeclaration());
                 else if (checkDecldelim(pos)) stylesheet.push(getDecldelim());

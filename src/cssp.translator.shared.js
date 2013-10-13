@@ -119,6 +119,9 @@ function astToCSS(options) {
         },
         'default': function(t) {
             return '!' + _composite(t) + 'default';
+        },
+        'include': function(t) {
+            return _composite(t);
         }
     };
 
