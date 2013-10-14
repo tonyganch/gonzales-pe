@@ -1,0 +1,2 @@
+['arguments',
+  ['number', '10']]

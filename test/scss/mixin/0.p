@@ -1,0 +1,12 @@
+['mixin',
+  ['atkeyword',
+    ['ident', 'mixin']],
+  ['s', ' '],
+  ['ident', 'nani'],
+  ['s', ' '],
+  ['block',
+    ['declaration',
+      ['property',
+        ['ident', 'color']],
+      ['value',
+        ['ident', 'tomato']]]]]

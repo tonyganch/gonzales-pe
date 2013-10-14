@@ -11,6 +11,7 @@ var getAST = (function() {
         CSSPRules;
 
     CSSPNodeType = {
+        ArgumentsType: 'arguments',
         AtkeywordType: 'atkeyword',
         AtrulebType: 'atruleb',
         AtrulerType: 'atruler',
@@ -41,6 +42,7 @@ var getAST = (function() {
         ImportantType: 'important',
         IncludeType :'include',
         InterpolationType: 'interpolation',
+        MixinType: 'mixin',
         NamespaceType: 'namespace',
         NthType: 'nth',
         NthselectorType: 'nthselector',
@@ -71,6 +73,7 @@ var getAST = (function() {
     };
 
     CSSPRules = {
+        'arguments': function() { if (checkArguments(pos)) return getArguments() },
         'atkeyword': function() { if (checkAtkeyword(pos)) return getAtkeyword() },
         'atruleb': function() { if (checkAtruleb(pos)) return getAtruleb() },
         'atruler': function() { if (checkAtruler(pos)) return getAtruler() },
@@ -98,6 +101,7 @@ var getAST = (function() {
         'important': function() { if (checkImportant(pos)) return getImportant() },
         'include': function () { if (checkInclude(pos)) return getInclude() },
         'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
+        'mixin': function () { if (checkMixin(pos)) return getMixin() },
         'namespace': function() { if (checkNamespace(pos)) return getNamespace() },
         'nth': function() { if (checkNth(pos)) return getNth() },
         'nthselector': function() { if (checkNthselector(pos)) return getNthselector() },
@@ -204,6 +208,89 @@ var getAST = (function() {
         else if (checkIdent(pos)) return getIdent();
         else if (checkClazz(pos)) return getClazz();
         else if (checkUnary(pos)) return getUnary();
+    }
+
+    /**
+     * Check if token is part of mixin's arguments.
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkArguments(_i) {
+        var start = _i;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if (_i >= tokens.length ||
+            (tokens[_i].type !== TokenType.LeftParenthesis)) return fail(tokens[_i]);
+
+        _i++;
+
+        while (_i < tokens[start].right) {
+            if (l = _checkArgument(_i)) _i +=l;
+            else return fail(tokens[_i]);
+        }
+
+        return tokens[start].right - start + 1;
+    }
+
+    /**
+     * Get node with mixin's arguments
+     * @returns {Array} `['arguments', x]`
+     */
+    function getArguments() {
+        var startPos = pos,
+            arguments = [];
+
+        pos++;
+
+        while (x = _getArgument()) {
+            if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') arguments.push(x);
+            else arguments = arguments.concat(x);
+        }
+
+        pos++;
+
+        return needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.ArgumentsType].concat(arguments) :
+            [CSSPNodeType.ArgumentsType].concat(arguments);
+    }
+
+    /**
+     *
+     * @param _i
+     * @returns {number | undefined}
+     * @private
+     */
+    function _checkArgument(_i) {
+        return checkDeclaration(_i) ||
+            checkVariablesList(_i) ||
+            checkVariable(_i) ||
+            checkSC(_i) ||
+            checkDelim(_i) ||
+            checkString(_i) ||
+            checkPercentage(_i) ||
+            checkDimension(_i) ||
+            checkNumber(_i) ||
+            checkUri(_i) ||
+            checkIdent(_i);
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function _getArgument() {
+        if (checkDeclaration(pos)) return getDeclaration();
+        else if (checkVariablesList(pos)) return getVariablesList();
+        else if (checkVariable(pos)) return getVariable();
+        else if (checkSC(pos)) return getSC();
+        else if (checkDelim(pos)) return getDelim();
+        else if (checkString(pos)) return getString();
+        else if (checkPercentage(pos)) return getPercentage();
+        else if (checkDimension(pos)) return getDimension();
+        else if (checkNumber(pos)) return getNumber();
+        else if (checkUri(pos)) return getUri();
+        else if (checkIdent(pos)) return getIdent();
     }
 
     /**
@@ -1540,25 +1627,194 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkInclude(_i) {
-        var start = _i,
-            l;
+        var l;
 
         if (syntax !== 'scss') return fail(tokens[_i]);
 
-        if (!(l = checkAtrule(_i))) return fail(tokens[_i]);
+        if (l = _checkInclude0(_i)) tokens[_i].include_type = 1;
+        else if (l = _checkInclude1(_i)) tokens[_i].include_type = 2;
+        else if (l = _checkInclude2(_i)) tokens[_i].include_type = 3;
+        else return fail(tokens[_i]);
 
-        if (['include', 'extend'].indexOf(tokens[_i + 1].value) < 0) return fail(tokens[_i]);
+        return l;
+    }
 
-        _i += l;
+    function getInclude() {
+        switch (tokens[pos].include_type) {
+            case 1: return _getInclude0();
+            case 2: return _getInclude1();
+            case 3: return _getInclude2();
+        }
+    }
+
+    function _checkInclude0(_i) {
+        var start = _i,
+            l;
+
+        if (l = checkAtkeyword(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkIncludeSelector(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkArguments(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
 
         return _i - start;
     }
 
-    function getInclude() {
-        return needInfo?
-            [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.IncludeType, getAtrule()] :
-            [CSSPNodeType.IncludeType, getAtrule()];
+    function _getInclude0() {
+        var startPos = pos,
+            x = [];
 
+        x.push(getAtkeyword());
+
+        x = x.concat(getSC());
+
+        x.push(getIncludeSelector());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        x.push(getArguments());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        return (needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IncludeType] :
+            [CSSPNodeType.IncludeType])
+            .concat(x);
+    }
+
+    function _checkInclude1(_i) {
+        var start = _i,
+            l;
+
+        if (l = checkAtkeyword(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkIncludeSelector(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkBlock(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        return _i - start;
+    }
+
+    function _getInclude1() {
+        var startPos = pos,
+            x = [];
+
+        x.push(getAtkeyword());
+
+        x = x.concat(getSC());
+
+        x.push(getIncludeSelector());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        x.push(getBlock());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        return (needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IncludeType] :
+            [CSSPNodeType.IncludeType])
+            .concat(x);
+    }
+
+    function _checkInclude2(_i) {
+        var start = _i,
+            l;
+
+        if (l = checkAtkeyword(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkIncludeSelector(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        return _i - start;
+    }
+
+    function _getInclude2() {
+        var startPos = pos,
+            x = [];
+
+        x.push(getAtkeyword());
+
+        x = x.concat(getSC());
+
+        x.push(getIncludeSelector());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        return (needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.IncludeType] :
+            [CSSPNodeType.IncludeType])
+            .concat(x);
+    }
+
+    /**
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkIncludeSelector(_i) {
+        var start = _i,
+            l;
+
+        while (_i < tokens.length) {
+            if (l = _checkSimpleSelector1(_i)) _i += l;
+            else break;
+        }
+
+        if (_i - start) return _i - start;
+
+        if (_i >= tokens.length) return fail(tokens[tokens.length - 1]);
+
+        return fail(tokens[_i]);
+    }
+
+    /**
+     * this.concatContent([#simpleselector], [x])
+     * @returns {Array}
+     */
+    function getIncludeSelector() {
+        var ss = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.SimpleselectorType] : [CSSPNodeType.SimpleselectorType],
+            t;
+
+        while (pos < tokens.length && _checkSimpleSelector1(pos)) {
+            t = _getSimpleSelector1();
+
+            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') ss.push(t);
+            else ss = ss.concat(t);
+        }
+
+        return ss;
     }
 
     /**
@@ -1602,6 +1858,65 @@ var getAST = (function() {
         pos++;
 
         return needInfo? [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.InterpolationType, x] : [CSSPNodeType.InterpolationType, x];
+    }
+
+    /**
+     * Check if token is part of a mixin.
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkMixin(_i) {
+        var start = _i,
+            l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if ((l = checkAtkeyword(_i)) && tokens[_i + 1].value === 'mixin') _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkIdent(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkArguments(_i)) _i += l;
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkBlock(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        return _i - start;
+    }
+
+    /**
+     * Get node with a mixin.
+     * @returns {Array} `['namespace']`
+     */
+    function getMixin() {
+        var startPos = pos;
+
+        var x = [getAtkeyword()];
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkIdent(pos)) x.push(getIdent());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkArguments(pos)) x.push(getArguments());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkBlock(pos)) x.push(getBlock());
+
+        return (needInfo?
+            [{ ln: tokens[startPos].ln, tn: tokens[startPos].tn }, CSSPNodeType.MixinType] :
+            [CSSPNodeType.MixinType])
+            .concat(x);
     }
 
     /**
@@ -2326,7 +2641,7 @@ var getAST = (function() {
             l;
 
         while (_i < tokens.length) {
-            if (l = _checkSimpleSelector(_i)) _i += l;
+            if (l = _checkSimpleSelector0(_i)) _i += l;
             else break;
         }
 
@@ -2342,7 +2657,7 @@ var getAST = (function() {
      * @returns {number | undefined}
      * @private
      */
-    function _checkSimpleSelector(_i) {
+    function _checkSimpleSelector0(_i) {
         return checkParentSelector(_i) ||
             checkNthselector(_i) ||
             checkCombinator(_i) ||
@@ -2354,6 +2669,17 @@ var getAST = (function() {
             checkNamespace(_i);
     }
 
+    function _checkSimpleSelector1(_i) {
+        return checkParentSelector(_i) ||
+            checkNthselector(_i) ||
+            checkAttrib(_i) ||
+            checkPseudo(_i) ||
+            checkShash(_i) ||
+            checkPlaceholder(_i) ||
+            checkIdent(_i) ||
+            checkClazz(_i);
+    }
+
     /**
      * this.concatContent([#simpleselector], [x])
      * @returns {Array}
@@ -2362,8 +2688,8 @@ var getAST = (function() {
         var ss = needInfo? [{ ln: tokens[pos].ln, tn: tokens[pos].tn }, CSSPNodeType.SimpleselectorType] : [CSSPNodeType.SimpleselectorType],
             t;
 
-        while (pos < tokens.length && _checkSimpleSelector(pos)) {
-            t = _getSimpleSelector();
+        while (pos < tokens.length && _checkSimpleSelector0(pos)) {
+            t = _getSimpleSelector0();
 
             if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') ss.push(t);
             else ss = ss.concat(t);
@@ -2376,7 +2702,7 @@ var getAST = (function() {
      * @returns {Array}
      * @private
      */
-    function _getSimpleSelector() {
+    function _getSimpleSelector0() {
         if (checkParentSelector(pos)) return getParentSelector();
         else if (checkNthselector(pos)) return getNthselector();
         else if (checkCombinator(pos)) return getCombinator();
@@ -2386,6 +2712,21 @@ var getAST = (function() {
         else if (checkAny(pos)) return getAny();
         else if (checkSC(pos)) return getSC();
         else if (checkNamespace(pos)) return getNamespace();
+    }
+
+    /**
+     * @returns {Array}
+     * @private
+     */
+    function _getSimpleSelector1() {
+        if (checkParentSelector(pos)) return getParentSelector();
+        else if (checkNthselector(pos)) return getNthselector();
+        else if (checkAttrib(pos)) return getAttrib();
+        else if (checkPseudo(pos)) return getPseudo();
+        else if (checkShash(pos)) return getShash();
+        else if (checkPlaceholder(pos)) return getPlaceholder();
+        else if (checkIdent(pos)) return getIdent();
+        else if (checkClazz(pos)) return getClazz();
     }
 
     /**
@@ -2440,6 +2781,8 @@ var getAST = (function() {
                 else if (l = checkDecldelim(_i)) _i += l;
                 // If token is part of an include, it's ok, continue:
                 else if (l = checkInclude(_i)) _i += l;
+                // If token is part of a mixin, it's ok, continue:
+                else if (l = checkMixin(_i)) _i += l;
                 // If token is a part of an @-rule, it's ok, continue:
                 else if (l = checkAtrule(_i)) _i += l;
                 // If token is a part of a ruleset, it's ok, continue:
@@ -2468,6 +2811,7 @@ var getAST = (function() {
                 currentBlockLN = tokens[pos].ln;
                 if (checkRuleset(pos)) stylesheet.push(getRuleset());
                 else if (checkInclude(pos)) stylesheet.push(getInclude());
+                else if (checkMixin(pos)) stylesheet.push(getMixin());
                 else if (checkAtrule(pos)) stylesheet.push(getAtrule());
                 else if (checkDeclaration(pos)) stylesheet.push(getDeclaration());
                 else if (checkDecldelim(pos)) stylesheet.push(getDecldelim());

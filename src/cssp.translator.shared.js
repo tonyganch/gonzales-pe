@@ -17,8 +17,8 @@ function astToCSS(options) {
         },
         _m_composite = {
             'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'dimension': 1,
-            'filterv': 1, 'selector': 1, 'progid': 1, 'property': 1, 'ruleset': 1,
-            'simpleselector': 1, 'stylesheet': 1, 'value': 1
+            'filterv': 1, 'mixin': 1, 'selector': 1, 'progid': 1, 'property': 1,
+            'ruleset': 1, 'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
         _m_primitive = {
             'cdc': 'cdc', 'cdo': 'cdo', 'decldelim': ';', 'delim': ',',
@@ -45,6 +45,9 @@ function astToCSS(options) {
     }
 
     var _unique = {
+        'arguments': function(t) {
+            return '(' + _composite(t) + ')';
+        },
         'atkeyword': function(t) {
             return '@' + _t(t[hasInfo? 2 : 1]);
         },

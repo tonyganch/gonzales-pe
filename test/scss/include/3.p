@@ -3,4 +3,7 @@
     ['ident', 'include']],
   ['s', ' '],
   ['simpleselector',
-    ['ident', 'nani']]]
+    ['ident', 'nani']],
+  ['arguments',
+    ['variable',
+      ['ident', 'v']]]]

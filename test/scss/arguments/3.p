@@ -1,0 +1,11 @@
+['arguments',
+  ['variable',
+    ['ident', 'v1']],
+  ['delim'],
+  ['s', ' '],
+  ['declaration',
+    ['property',
+      ['variable',
+        ['ident', 'v2']]],
+    ['value',
+      ['ident', 'y']]]]

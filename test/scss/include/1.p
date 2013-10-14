@@ -1,7 +1,7 @@
 ['include',
-  ['atrules',
-    ['atkeyword',
-      ['ident', 'extend']],
-    ['s', ' '],
+  ['atkeyword',
+    ['ident', 'extend']],
+  ['s', ' '],
+  ['simpleselector',
     ['clazz',
       ['ident', 'nani']]]]
