@@ -2,7 +2,10 @@ var fs = require('fs'),
     cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
     astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
     syntaxes = fs.readdirSync(__dirname),
-    okn = total = 0;
+    okn = total = 0,
+    logPath = __dirname + '/../log',
+    expected = logPath + '/expected.txt',
+    result = logPath + '/result.txt';
 
 var funcs = {
     'p': function parse(options) {
@@ -14,6 +17,9 @@ var funcs = {
 };
 
 console.log('Running tests...');
+
+fs.writeFile(expected, '', function () {});
+fs.writeFile(result, '', function () {});
 
 for (var s = 0, sl = syntaxes.length; s < sl; s++) {
     var syntax = syntaxes[s];
@@ -52,9 +58,12 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
                     if (!r) {
                         console.log('\n---------------------');
                         console.log('FAIL: ' + '\'' + rule + '\' / \'' + k + '.' + a);
+
                         console.log('\nExpected:\n', c);
+                        fs.appendFile(expected, c + '\n\n\n', function(){});
+
                         console.log('\nResult:\n', b);
-                        console.log();
+                        fs.appendFile(result, b + '\n\n\n', function(){});
                     }
                 }
             }
