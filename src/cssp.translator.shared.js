@@ -16,9 +16,10 @@ function astToCSS(options) {
             'operator': 1, 'raw': 1, 's': 1, 'string': 1, 'unary': 1, 'unknown': 1
         },
         _m_composite = {
-            'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'dimension': 1,
-            'filterv': 1, 'mixin': 1, 'selector': 1, 'progid': 1, 'property': 1,
-            'ruleset': 1, 'simpleselector': 1, 'stylesheet': 1, 'value': 1
+            'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'atrules': 1,'condition': 1,
+            'dimension': 1, 'filterv': 1, 'include': 1, 'mixin': 1, 'selector': 1,
+            'progid': 1, 'property': 1, 'ruleset': 1, 'simpleselector': 1,
+            'stylesheet': 1, 'value': 1
         },
         _m_primitive = {
             'cdc': 'cdc', 'cdo': 'cdo', 'decldelim': ';', 'delim': ',',
@@ -53,9 +54,6 @@ function astToCSS(options) {
         },
         'atruler': function(t) {
             return _t(t[hasInfo? 2 : 1]) + _t(t[hasInfo? 3 : 2]) + '{' + _t(t[hasInfo? 4 : 3]) + '}';
-        },
-        'atrules': function(t) {
-            return _composite(t);
         },
         'attrib': function(t) {
             return '[' + _composite(t) + ']';
@@ -92,9 +90,6 @@ function astToCSS(options) {
         },
         'important': function(t) {
             return '!' + _composite(t) + 'important';
-        },
-        'include': function(t) {
-            return _composite(t);
         },
         'interpolation': function(t) {
             return '#{' + _t(t[hasInfo? 2 : 1]) + '}';

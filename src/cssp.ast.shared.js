@@ -28,6 +28,7 @@ var getAST = (function() {
         CombinatorType: 'combinator',
         CommentMLType: 'commentML',
         CommentSLType: 'commentSL',
+        ConditionType: 'condition',
         DeclarationType: 'declaration',
         DecldelimType: 'decldelim',
         DefaultType: 'default',
@@ -88,6 +89,7 @@ var getAST = (function() {
         'combinator': function() { if (checkCombinator(pos)) return getCombinator() },
         'commentML': function() { if (checkCommentML(pos)) return getCommentML() },
         'commentSL': function() { if (checkCommentSL(pos)) return getCommentSL() },
+        'condition': function() { if (checkCondition(pos)) return getCondition() },
         'declaration': function() { if (checkDeclaration(pos)) return getDeclaration() },
         'decldelim': function() { if (checkDecldelim(pos)) return getDecldelim() },
         'default': function () { if (checkDefault(pos)) return getDefault() },
@@ -152,7 +154,7 @@ var getAST = (function() {
      * @returns {{ln: {number}, tn: {number}}}
      */
     function getInfo(_i) {
-        return { ln: tokens[_i].ln, tn: tokens[_i].tn }
+        return { ln: tokens[_i].ln, tn: tokens[_i].tn };
     }
 
     /**
@@ -786,19 +788,17 @@ var getAST = (function() {
             l;
 
         if (l = checkSC(_i)) _i += l;
-        if (l = checkInclude(_i)) {
-            tokens[_i].bd_kind = 1;
-        } else if (l = checkAtrule(_i)) {
-            tokens[_i].bd_kind = 2;
-        } else if (l = checkFilter(_i)) {
-            tokens[_i].bd_kind = 3;
-        } else if (l = checkDeclaration(_i)) {
-            tokens[_i].bd_kind = 4;
-        } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 5;
-        } else return fail(tokens[_i]);
+
+        if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
+        else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 3;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 6;
+        else return fail(tokens[_i]);
 
         _i += l;
+
         if (_i < tokens.length && (l = checkDecldelim(_i))) _i += l;
         else return fail(tokens[_i]);
 
@@ -819,18 +819,21 @@ var getAST = (function() {
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = getInclude();
+                x = getCondition();
                 break;
             case 2:
-                x = getAtrule();
+                x = getInclude();
                 break;
             case 3:
-                x = getFilter();
+                x = getAtrule();
                 break;
             case 4:
-                x = getDeclaration();
+                x = getFilter();
                 break;
             case 5:
+                x = getDeclaration();
+                break;
+            case 6:
                 x = getRuleset();
                 break;
         }
@@ -852,17 +855,13 @@ var getAST = (function() {
 
         if (l = checkSC(_i)) _i += l;
 
-        if (l = checkInclude(_i)) {
-            tokens[_i].bd_kind = 1;
-        } else if (l = checkAtrule(_i)) {
-            tokens[_i].bd_kind = 2;
-        } else if (l = checkFilter(_i)) {
-            tokens[_i].bd_kind = 3;
-        } else if (l = checkDeclaration(_i)) {
-            tokens[_i].bd_kind = 4;
-        } else if (l = checkRuleset(_i)) {
-            tokens[_i].bd_kind = 5;
-        } else return fail(tokens[_i]);
+        if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
+        else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 3;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 6;
+        else return fail(tokens[_i]);
 
         _i += l;
 
@@ -882,18 +881,21 @@ var getAST = (function() {
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = getInclude();
+                x = getCondition();
                 break;
             case 2:
-                x = getAtrule();
+                x = getInclude();
                 break;
             case 3:
-                x = getFilter();
+                x = getAtrule();
                 break;
             case 4:
-                x = getDeclaration();
+                x = getFilter();
                 break;
             case 5:
+                x = getDeclaration();
+                break;
+            case 6:
                 x = getRuleset();
                 break;
         }
@@ -1106,6 +1108,62 @@ var getAST = (function() {
         return needInfo?
             [getInfo(pos), CSSPNodeType.CommentSLType, tokens[pos++].value.substring(2)] :
             [CSSPNodeType.CommentSLType, tokens[pos++].value.substring(2)];
+    }
+
+    /**
+     * Check if token is part of a condition
+     * (e.g. `@if ... @else if ... @else ...`).
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkCondition(_i) {
+        var start = _i;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if (l = checkAtkeyword(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (['if', 'else'].indexOf(tokens[start + 1].value) < 0) return fail(tokens[start]);
+
+        while (_i < tokens.length) {
+            if (l = checkBlock(_i)) break;
+            else if (l = checkVariable(_i) || checkIdent(_i) || checkSC(_i) ||
+                checkNumber(_i) || checkOperator(_i) || checkCombinator(_i) ||
+                checkString(_i))
+                _i += l;
+            else return fail(tokens[_i]);
+        }
+
+        return _i - start;
+    }
+
+    /**
+     * Get node with a condition.
+     * @returns {Array}
+     */
+    function getCondition() {
+        var startPos = pos,
+            x = [];
+
+        x.push(getAtkeyword());
+
+        while (pos < tokens.length) {
+            if (l = checkBlock(pos)) break;
+            else if (checkVariable(pos)) x.push(getVariable());
+            else if (checkIdent(pos)) x.push(getIdent());
+            else if (checkNumber(pos)) x.push(getNumber());
+            else if (checkOperator(pos)) x.push(getOperator());
+            else if (checkCombinator(pos)) x.push(getCombinator());
+            else if (checkSC(pos)) x = x.concat(getSC());
+            else if (checkString(pos)) x.push(getString());
+        }
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.ConditionType] :
+            [CSSPNodeType.ConditionType])
+            .concat(x);
     }
 
     /**
@@ -2176,17 +2234,27 @@ var getAST = (function() {
     }
 
     /**
-     * Check if token is an operator (`/`, `,`, `:` or `=`)
+     * Check if token is an operator (`/`, `,`, `:` or `=`).
+     * Valid scss operators also are: `>`, `<`, `*`.
      * @param {number} _i Token's index number
      * @returns {number | undefined} If token is an operator, returns `1`,
      *      else tries to fail the token and returns `undefined`.
      */
     function checkOperator(_i) {
-        if (_i < tokens.length &&
-            (tokens[_i].type === TokenType.Solidus ||
-                tokens[_i].type === TokenType.Comma ||
-                tokens[_i].type === TokenType.Colon ||
-                tokens[_i].type === TokenType.EqualsSign)) return 1;
+        // TODO: Don't fail token which does not exist
+        if (_i >= tokens.length) return fail(tokens[_i]);
+
+        switch(tokens[_i].type) {
+            case TokenType.Solidus:
+            case TokenType.Comma:
+            case TokenType.Colon:
+            case TokenType.EqualsSign:
+                return 1;
+            case TokenType.LessThanSign:
+            case TokenType.GreaterThanSign:
+            case TokenType.Asterisk:
+                if (syntax === 'scss') return 1;
+        }
 
         return fail(tokens[_i]);
     }
