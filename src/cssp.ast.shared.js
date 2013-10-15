@@ -43,6 +43,7 @@ var getAST = (function() {
         ImportantType: 'important',
         IncludeType :'include',
         InterpolationType: 'interpolation',
+        LoopType: 'loop',
         MixinType: 'mixin',
         NamespaceType: 'namespace',
         NthType: 'nth',
@@ -103,6 +104,7 @@ var getAST = (function() {
         'important': function() { if (checkImportant(pos)) return getImportant() },
         'include': function () { if (checkInclude(pos)) return getInclude() },
         'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
+        'loop': function() { if (checkLoop(pos)) return getLoop() },
         'mixin': function () { if (checkMixin(pos)) return getMixin() },
         'namespace': function() { if (checkNamespace(pos)) return getNamespace() },
         'nth': function() { if (checkNth(pos)) return getNth() },
@@ -791,10 +793,11 @@ var getAST = (function() {
 
         if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
         else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
-        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 3;
-        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
-        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
-        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkLoop(_i)) tokens[_i].bd_kind = 3;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 7;
         else return fail(tokens[_i]);
 
         _i += l;
@@ -825,15 +828,18 @@ var getAST = (function() {
                 x = getInclude();
                 break;
             case 3:
-                x = getAtrule();
+                x = getLoop();
                 break;
             case 4:
-                x = getFilter();
+                x = getAtrule();
                 break;
             case 5:
-                x = getDeclaration();
+                x = getFilter();
                 break;
             case 6:
+                x = getDeclaration();
+                break;
+            case 7:
                 x = getRuleset();
                 break;
         }
@@ -857,10 +863,11 @@ var getAST = (function() {
 
         if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
         else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
-        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 3;
-        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
-        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
-        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkLoop(_i)) tokens[_i].bd_kind = 3;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 7;
         else return fail(tokens[_i]);
 
         _i += l;
@@ -887,15 +894,18 @@ var getAST = (function() {
                 x = getInclude();
                 break;
             case 3:
-                x = getAtrule();
+                x = getLoop();
                 break;
             case 4:
-                x = getFilter();
+                x = getAtrule();
                 break;
             case 5:
-                x = getDeclaration();
+                x = getFilter();
                 break;
             case 6:
+                x = getDeclaration();
+                break;
+            case 7:
                 x = getRuleset();
                 break;
         }
@@ -1931,6 +1941,68 @@ var getAST = (function() {
     }
 
     /**
+     * Check if token is part of a loop.
+     * Valid only for scss syntax.
+     * @param {number} _i Token's index number
+     * @returns {number | undefined}
+     */
+    function checkLoop(_i) {
+        var start = _i,
+            l;
+
+        if (syntax !== 'scss') return fail(tokens[_i]);
+
+        if (l = checkAtkeyword(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (['for', 'each', 'while'].indexOf(tokens[start + 1].value) < 0) return fail(tokens[start]);
+
+        while (_i < tokens.length) {
+            if (l = checkBlock(_i)) {
+                _i += l;
+                break;
+            }
+            else if (l = checkVariable(_i) || checkIdent(_i) || checkSC(_i) ||
+                checkNumber(_i) || checkOperator(_i) || checkCombinator(_i) ||
+                checkString(_i))
+                _i += l;
+            else return fail(tokens[_i]);
+        }
+
+        return _i - start;
+    }
+
+    /**
+     * Get node with a condition.
+     * @returns {Array}
+     */
+    function getLoop() {
+        var startPos = pos,
+            x = [];
+
+        x.push(getAtkeyword());
+
+        while (pos < tokens.length) {
+            if (l = checkBlock(pos)) {
+                x.push(getBlock());
+                break;
+            }
+            else if (checkVariable(pos)) x.push(getVariable());
+            else if (checkIdent(pos)) x.push(getIdent());
+            else if (checkNumber(pos)) x.push(getNumber());
+            else if (checkOperator(pos)) x.push(getOperator());
+            else if (checkCombinator(pos)) x.push(getCombinator());
+            else if (checkSC(pos)) x = x.concat(getSC());
+            else if (checkString(pos)) x.push(getString());
+        }
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.LoopType] :
+            [CSSPNodeType.LoopType])
+            .concat(x);
+    }
+
+    /**
      * Check if token is part of a mixin.
      * Valid only for scss syntax.
      * @param {number} _i Token's index number
@@ -2861,6 +2933,8 @@ var getAST = (function() {
                 else if (l = checkInclude(_i)) _i += l;
                 // If token is part of a mixin, it's ok, continue:
                 else if (l = checkMixin(_i)) _i += l;
+                // If token is part of a loop, it's ok, continue:
+                else if (l = checkLoop(_i)) _i += l;
                 // If token is a part of an @-rule, it's ok, continue:
                 else if (l = checkAtrule(_i)) _i += l;
                 // If token is a part of a ruleset, it's ok, continue:
@@ -2890,6 +2964,7 @@ var getAST = (function() {
                 if (checkRuleset(pos)) stylesheet.push(getRuleset());
                 else if (checkInclude(pos)) stylesheet.push(getInclude());
                 else if (checkMixin(pos)) stylesheet.push(getMixin());
+                else if (checkLoop(pos)) stylesheet.push(getLoop());
                 else if (checkAtrule(pos)) stylesheet.push(getAtrule());
                 else if (checkDeclaration(pos)) stylesheet.push(getDeclaration());
                 else if (checkDecldelim(pos)) stylesheet.push(getDecldelim());

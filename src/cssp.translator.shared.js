@@ -17,9 +17,9 @@ function astToCSS(options) {
         },
         _m_composite = {
             'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'atrules': 1,'condition': 1,
-            'dimension': 1, 'filterv': 1, 'include': 1, 'mixin': 1, 'selector': 1,
-            'progid': 1, 'property': 1, 'ruleset': 1, 'simpleselector': 1,
-            'stylesheet': 1, 'value': 1
+            'dimension': 1, 'filterv': 1, 'include': 1, 'loop': 1, 'mixin': 1,
+            'selector': 1, 'progid': 1, 'property': 1, 'ruleset': 1,
+            'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
         _m_primitive = {
             'cdc': 'cdc', 'cdo': 'cdo', 'decldelim': ';', 'delim': ',',
