@@ -1420,11 +1420,10 @@ var getAST = (function() {
      */
     function checkFunktion(_i) {
         var start = _i,
-            l = checkIdent(_i);
+            l;
 
-        if (!l) return fail(tokens[_i]);
-
-        _i += l;
+        if (l = checkIdent(_i)) _i +=l;
+        else return fail(tokens[_i]);
 
         if (_i >= tokens.length || tokens[_i].type !== TokenType.LeftParenthesis) return fail(tokens[_i - 1]);
 
@@ -1459,7 +1458,8 @@ var getAST = (function() {
             x;
 
         while (tokens[pos].type !== TokenType.RightParenthesis) {
-            if (checkTset(pos)) {
+            if (checkDeclaration(pos)) body.push(getDeclaration());
+            else if (checkTset(pos)) {
                 x = getTset();
                 if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') body.push(x);
                 else body = body.concat(x);
