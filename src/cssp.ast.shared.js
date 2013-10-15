@@ -286,7 +286,8 @@ var getAST = (function() {
             checkDimension(_i) ||
             checkNumber(_i) ||
             checkUri(_i) ||
-            checkIdent(_i);
+            checkIdent(_i) ||
+            checkVhash(_i);
     }
 
     /**
@@ -304,6 +305,7 @@ var getAST = (function() {
         else if (checkNumber(pos)) return getNumber();
         else if (checkUri(pos)) return getUri();
         else if (checkIdent(pos)) return getIdent();
+        else if (checkVhash(pos)) return getVhash();
     }
 
     /**
