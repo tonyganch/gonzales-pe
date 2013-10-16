@@ -1,7 +1,7 @@
 /* Check one specific css string without creating test files.
  * Print AST and string translated from AST.
  * Just change the first line (`var src`) and run `node test/ast.js`.
- * Make sure to change `syntax` variable too, if it's needed.
+ * Make sure to change `syntax` variable too, if needed.
  */
 var src = 'div {$color: nani}',
     syntax = 'scss',

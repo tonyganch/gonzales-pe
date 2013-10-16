@@ -8,14 +8,14 @@ It is assumed that in the production code you will change AST in a more intellig
 
 Sample code:
 
-    var gonzales = require('gonzales'),
+    var gonzales = require('gonzales-pe'),
         src = 'a { color: red }',
         ast = gonzales.cssToAST(src);
 
-    console.log('== SRC:');
+    console.log('== CSS:');
     console.log(src);
 
-    console.log('\n== SRC -> AST:');
+    console.log('\n== CSS -> AST:');
     console.log(gonzales.astToTree(ast));
 
     ast[1][1][1][1][1] = 'b';
@@ -23,14 +23,15 @@ Sample code:
     console.log('\n== AST\':');
     console.log(gonzales.astToTree(ast));
 
-    console.log('\n== AST\' -> SRC:');
+    console.log('\n== AST\' -> CSS:');
     console.log(gonzales.astToCSS(ast));
+
 Result:
 
-    == SRC:
+    == CSS:
     a { color: red }
 
-    == SRC -> AST:
+    == CSS -> AST:
     ['stylesheet', 
       ['ruleset', 
         ['selector', 
@@ -64,34 +65,72 @@ Result:
               ['ident', 'red'], 
               ['s', ' ']]]]]]
 
-    == AST' -> SRC:
+    == AST' -> CSS:
     b { color: red }
 
 #### 2. API
 
-In Node.js you can use Gonzales module this way: `gonzales = require('gonzales')`.
+In Node.js you can use Gonzales module this way:
+```
+gonzales = require('gonzales-pe');
+```
 
-You can use CSSP AST through the next functions.
+You can use AST through the next functions.
 
-##### SRC -> AST
+##### CSS -> AST
 
-It parses source style to AST: `gonzales.cssToAST(src, rule, needInfo)`, where:
+It parses source style to AST:
+```
+gonzales.cssToAST({
+  css: css,
+  rule: rule,
+  needInfo: true,
+  syntax: 'scss'
+})
+```
+where:
 
-* `src` — a string with the CSS style;
-* `rule` —  a string with the token type (in case the style is not complete);  for example, you want to parse only *declaration*, then you have to call `cssToAST('color: red', 'declaration')`; in case the style is complete and you don't need an info-object, the call is shortned to `cssToAST(src)`;
-* `needInfo` — whether to include info-object into AST; in most cases you don't need it, but if it is included, you have to pass this `true` value in all functions with `needInfo` argument in signature.
+- `css` — a string with the CSS style;
+- `rule` —  a string with the token type (in case the style is not complete);
+- `needInfo` — whether to include info object into AST;
+- `syntax` — a string with syntax name (`css` is default).
 
-##### AST -> SRC
+Example 1: if you want to parse only *declaration*, you have to call:
+```
+cssToAST({
+  css: 'color: red',
+  rule: 'declaration'
+});
+```
 
-Translates AST to style: `gonzales.astToCSS(ast, hasInfo)`, where:
+Example 2: in case the style is complete and you don't need an info object,
+the call is shortned to:
+```
+cssToAST(src);
+```
 
-* `ast` — AST to be translated;
-* `needInfo` — whether an info-object is included into AST; in case it was when the style was parsed, you have to make it `true` here as well.
+##### AST -> CSS
+
+Translates AST to style:
+```
+gonzales.astToCSS({
+  ast: ast,
+  syntax: 'scss'
+})
+```
+where:
+
+- `ast` — AST to be translated;
+- `syntax` — a string with syntax name (`css` is default).
 
 ##### AST -> TREE
 
-Translates AST to the string representation of the tree: `gonzales.astToTree(ast)`, where:
+Translates AST to the string representation of the tree:
+```
+gonzales.astToTree(ast);
+```
+where:
 
-* `ast` — AST to be translated.
+- `ast` — AST to be translated.
 
 This function is useful for debugging or learning purposes.

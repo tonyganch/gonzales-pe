@@ -1,39 +1,80 @@
-# 1. Description
+Gonzales is a fast CSS parser.    
+Gonzales PE is a rework with support of preprocessors.    
 
-Gonzales — fast CSS parser.
+Currently those are supported: SCSS.
 
-This document is an installation guide.
+For a plan of future work see [issue #4](https://github.com/tonyganch/gonzales-pe/issues/4).
 
-Usage: [CSSP.USAGE.en] (https://github.com/css/gonzales/blob/master/doc/CSSP.USAGE.en.md).
+## Install
 
-CSSP AST description: [AST.CSSP.en] (https://github.com/css/gonzales/blob/master/doc/AST.CSSP.en.md).
+To install globally:
 
-Please report issues on [Issues](https://github.com/css/gonzales/issues).
+    npm install gonzales-pe -g
 
-# 2. Install using npm
+To install as a project dependency:
 
-Prerequisites:
+    npm install gonzales-pe
 
-* nodejs 0.6.x&nbsp;— [http://nodejs.org](http://nodejs.org)
-* npm&nbsp;— [http://github.com/isaacs/npm/](http://github.com/isaacs/npm/)
+To clone from github:
 
-To install (global):
+    git clone git@github.com:tonyganch/gonzales-pe.git
 
-* run `npm install gonzales -g`
+## Build
 
-To update:
+If you cloned the repo from GitHub, make sure to build library files first.    
+It can be done by running `make` in a projet directory.    
+`make` will build both Node.js and web versions (all files are comments-free
+but not compressed).    
+If you need a minified version for production, feel free to use uglifier of
+your choice.
 
-* run `npm update gonzales`
+## Use
 
-To uninstall:
+Require Gonzales in your project:
 
-* run `npm uninstall gonzales -g`
+    var gonzales = require('gonzales-pe');
 
-# 3. Authors
+Do something:
 
-* idea, implementation — Sergey Kryzhanovsky (<skryzhanovsky@ya.ru>)
-* english translation — Vera Gavryushina (<v.gavryushina@gmail.com>)
+    var css = 'a { color: tomato }';
+    console.log(gonzales.cssToAST(css));
 
-# 4. And finally
+You can learn more about available methods on [Gonzales usage](doc/Gonzales-Usage.md) page.
 
-* Gonzales is licensed under [MIT](https://github.com/css/gonzales/blob/master/MIT-LICENSE.txt)
+AST is described on [Gonzales AST description](doc/AST-Description.md) page.
+
+## Test
+
+To run tests:
+
+    npm test
+
+This command will build library files from sources and run tests on all files
+in syntax directories.
+
+Every test has 3 files: source stylesheet, expected AST and expected string
+compiled back from AST to css.
+
+If some tests fail, you can find information in test logs:
+
+- `log/test.log` contains all information from stdout;
+- `log/expected.txt` contains only expected text;
+- `log/result.txt` contains only result text.
+
+The last two are made for your convenience: you can use any diff app to see
+the defference between them.
+
+If you want to test one specific string or get a general idea of how Gonzales
+works, you can use `test/ast.js` file.    
+Simply change the first two strings (`src` and `syntax` vars) and run:
+
+    node test/ast.js
+
+Please remember to also run `make` every time you modify any source files.
+
+## Report
+
+If you find a bug or want to add a feature, welcome to [Issues](https://github.com/tonyganch/gonzales-pe/issues).
+
+If you are shy but have a question, feel free to [drop me a
+line](mailto:tonyganch+gonzales@gmail.com).
