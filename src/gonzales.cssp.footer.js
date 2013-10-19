@@ -1,14 +1,14 @@
     return function(options) {
-        var _syntax, src, rule, _needInfo;
+        var css, rule, _needInfo, _syntax;
         // TODO: Better error message
         if (!options) throw new Error('We need a string to parse');
-        if (typeof options === 'string') s = options;
+        if (typeof options === 'string') css = options;
         else {
-            src = options.src;
+            css = options.css;
             rule = options.rule;
-            _needInfo = options.info;
+            _needInfo = options.needInfo;
             _syntax = options.syntax || 'css';
         }
-        return getAST(_syntax, getTokens(src, _syntax), rule, _needInfo);
+        return getAST(_syntax, getTokens(css, _syntax), rule, _needInfo);
     }
 }());

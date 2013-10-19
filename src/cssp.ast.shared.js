@@ -42,7 +42,7 @@ var getAST = (function() {
         IdentType: 'ident',
         ImportantType: 'important',
         IncludeType :'include',
-        InterpolationType: 'interpolation',
+        InterpolatedVariableType: 'interpolatedVariable',
         LoopType: 'loop',
         MixinType: 'mixin',
         NamespaceType: 'namespace',
@@ -103,7 +103,7 @@ var getAST = (function() {
         'ident': function() { if (checkIdent(pos)) return getIdent() },
         'important': function() { if (checkImportant(pos)) return getImportant() },
         'include': function () { if (checkInclude(pos)) return getInclude() },
-        'interpolation': function () { if (checkInterpolation(pos)) return getInterpolation() },
+        'interpolatedVariable': function () { if (checkInterpolatedVariable(pos)) return getInterpolatedVariable() },
         'loop': function() { if (checkLoop(pos)) return getLoop() },
         'mixin': function () { if (checkMixin(pos)) return getMixin() },
         'namespace': function() { if (checkNamespace(pos)) return getNamespace() },
@@ -1015,7 +1015,7 @@ var getAST = (function() {
         if (tokens[_i].clazz_l) return tokens[_i].clazz_l;
 
         if (tokens[_i].type === TokenType.FullStop) {
-            if (l = checkInterpolation(_i + 1) || checkIdent(_i + 1)) {
+            if (l = checkInterpolatedVariable(_i + 1) || checkIdent(_i + 1)) {
                 tokens[_i].clazz_l = l + 1;
                 return l + 1;
             }
@@ -1035,7 +1035,7 @@ var getAST = (function() {
 
         pos++;
 
-        x = checkInterpolation(pos) ? getInterpolation() : getIdent();
+        x = checkInterpolatedVariable(pos) ? getInterpolatedVariable() : getIdent();
 
         return needInfo?
             [getInfo(startPos), CSSPNodeType.ClazzType, x] :
@@ -1612,7 +1612,7 @@ var getAST = (function() {
         wasIdent = tokens[_i - 1].type === TokenType.Identifier;
 
         for (; _i < tokens.length; _i++) {
-            if (l = checkInterpolation(_i)) _i += l;
+            if (l = checkInterpolatedVariable(_i)) _i += l;
 
             if (!tokens[_i]) break;
 
@@ -1905,7 +1905,7 @@ var getAST = (function() {
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
-    function checkInterpolation(_i) {
+    function checkInterpolatedVariable(_i) {
         var start = _i,
             l;
 
@@ -1913,11 +1913,14 @@ var getAST = (function() {
 
         if (tokens[_i].type !== TokenType.NumberSign ||
             !tokens[_i + 1] ||
-            tokens[_i + 1].type !== TokenType.LeftCurlyBracket) return fail(tokens[_i - 1]);
+            tokens[_i + 1].type !== TokenType.LeftCurlyBracket ||
+            !tokens[_i + 2] ||
+            tokens[_i + 2].type !== TokenType.DollarSign) return fail(tokens[_i - 1]);
 
-        _i += 2;
+        _i += 3;
 
-        if (l = checkVariable(_i)) _i += l;
+        if (l = checkIdent(_i)) _i += l;
+        else return fail(tokens[_i]);
 
         if (tokens[_i].type !== TokenType.RightCurlyBracket) return fail(tokens[_i - 1]);
 
@@ -1927,19 +1930,21 @@ var getAST = (function() {
     /**
      * @returns {Array}
      */
-    function getInterpolation() {
+    function getInterpolatedVariable() {
         var startPos = pos,
             x;
 
-        // Skip `#{`:
-        pos += 2;
+        // Skip `#{$`:
+        pos += 3;
 
-        x = getVariable();
+        x = getIdent();
 
         // Skip `}`:
         pos++;
 
-        return needInfo? [getInfo(startPos), CSSPNodeType.InterpolationType, x] : [CSSPNodeType.InterpolationType, x];
+        return needInfo?
+            [getInfo(startPos), CSSPNodeType.InterpolatedVariableType, x] :
+            [CSSPNodeType.InterpolatedVariableType, x];
     }
 
     /**
@@ -2556,7 +2561,7 @@ var getAST = (function() {
 
         if (tokens[_i++].type !== TokenType.Colon) return fail(tokens[_i - 1]);
 
-        if (l = checkInterpolation(_i) || checkIdent(_i)) return l + 2;
+        if (l = checkInterpolatedVariable(_i) || checkIdent(_i)) return l + 2;
 
         return fail(tokens[_i]);
     }
@@ -2569,7 +2574,7 @@ var getAST = (function() {
 
         pos += 2;
 
-        var x = checkInterpolation(pos) ? getInterpolation() : getIdent();
+        var x = checkInterpolatedVariable(pos) ? getInterpolatedVariable() : getIdent();
 
         return needInfo?
             [getInfo(startPos), CSSPNodeType.PseudoeType, x] :
@@ -2585,7 +2590,7 @@ var getAST = (function() {
 
         if (tokens[_i++].type !== TokenType.Colon) return fail(tokens[_i - 1]);
 
-        if (l = checkInterpolation(_i) || checkFunktion(_i) || checkIdent(_i)) return l + 1;
+        if (l = checkInterpolatedVariable(_i) || checkFunktion(_i) || checkIdent(_i)) return l + 1;
 
         return fail(tokens[_i]);
     }
@@ -2599,7 +2604,7 @@ var getAST = (function() {
 
         pos++;
 
-        var x = checkInterpolation(pos) ? getInterpolation() : (checkFunktion(pos) ? getFunktion() : getIdent());
+        var x = checkInterpolatedVariable(pos) ? getInterpolatedVariable() : (checkFunktion(pos) ? getFunktion() : getIdent());
 
         return needInfo?
             [getInfo(startPos), CSSPNodeType.PseudocType, x] :
@@ -3182,7 +3187,7 @@ var getAST = (function() {
      */
     function _checkValue(_i) {
         return checkSC(_i) ||
-            checkInterpolation(_i) ||
+            checkInterpolatedVariable(_i) ||
             checkVariable(_i) ||
             checkVhash(_i) ||
             checkBlock(_i) ||
@@ -3222,7 +3227,7 @@ var getAST = (function() {
      */
     function _getValue() {
         if (checkSC(pos)) return getSC();
-        else if (checkInterpolation(pos)) return getInterpolation();
+        else if (checkInterpolatedVariable(pos)) return getInterpolatedVariable();
         else if (checkVariable(pos)) return getVariable();
         else if (checkVhash(pos)) return getVhash();
         else if (checkBlock(pos)) return getBlock();

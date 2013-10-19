@@ -12,7 +12,7 @@ var funcs = {
             return treeToString(cleanInfo(cssToAST(options)));
          },
     'l': function translate(options) {
-            return astToCSS({syntax: options.syntax, src: cssToAST(options), info: true});
+            return astToCSS({syntax: options.syntax, ast: cssToAST(options)});
          }
 };
 
@@ -45,12 +45,12 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
 
         for (var k in files) {
             if (files[k][syntax]) {
-                var src = fs.readFileSync(ruleDir + '/' + k + '.' + syntax).toString().trim();
+                var css = fs.readFileSync(ruleDir + '/' + k + '.' + syntax).toString().trim();
                 for (var a in funcs) {
                     if (!(a in files[k])) continue;
 
                     total++;
-                    var params = {src: src, rule: rule, info: true, syntax: syntax};
+                    var params = {css: css, rule: rule, needInfo: true, syntax: syntax};
                     var b = funcs[a](params).replace(/,\s\n/g, ',\n');
                     var c = fs.readFileSync(ruleDir + '/' + k + '.' + a).toString().trim();
                     r = b === c;

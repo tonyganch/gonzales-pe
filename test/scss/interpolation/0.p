@@ -1,3 +1,0 @@
-['interpolation',
-  ['variable',
-    ['ident', 'nani']]]

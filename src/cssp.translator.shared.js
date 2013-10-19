@@ -1,14 +1,15 @@
 // version: 1.0.0
 
 function astToCSS(options) {
-    var tree, hasInfo;
+    var tree, hasInfo, syntax;
     // TODO: Better error message
     if (!options) throw new Error('We need tree to translate');
 
     if (typeof options === 'string') tree = options;
     else {
-        tree = options.src;
-        hasInfo = options.info;
+        tree = options.ast;
+        hasInfo = typeof tree[0] === 'object';
+        syntax = options.syntax;
     }
 
     var _m_simple = {
@@ -91,8 +92,8 @@ function astToCSS(options) {
         'important': function(t) {
             return '!' + _composite(t) + 'important';
         },
-        'interpolation': function(t) {
-            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
+        'interpolatedVariable': function(t) {
+            return '#{$' + _t(t[hasInfo? 2 : 1]) + '}';
         },
         'nthselector': function(t) {
             return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';

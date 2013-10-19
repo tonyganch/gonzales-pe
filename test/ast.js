@@ -1,9 +1,9 @@
 /* Check one specific css string without creating test files.
  * Print AST and string translated from AST.
- * Just change the first line (`var src`) and run `node test/ast.js`.
+ * Just change the first line (`var css`) and run `node test/ast.js`.
  * Make sure to change `syntax` variable too, if needed.
  */
-var src = 'div {$color: nani}',
+var css = 'div {$color: nani}',
     syntax = 'scss',
     cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
     astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
@@ -23,10 +23,10 @@ var src = 'div {$color: nani}',
     dummySpaces = function(num) {
         return '                                                  '.substr(0, num * 2);
     },
-    ast = cssToAST({src: src, syntax: syntax});
+    ast = cssToAST({css: css, syntax: syntax});
 
-    console.log("\n== Source string:\n", src);
+    console.log("\n== Source string:\n", css);
 
     console.log("\n== AST:\n", astToTree(ast));
 
-    console.log("\n== Translated string:\n", astToCSS({src: ast, syntax: syntax}));
+    console.log("\n== Translated string:\n", astToCSS({ast: ast, syntax: syntax}));

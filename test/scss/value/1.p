@@ -1,4 +1,3 @@
 ['value',
-  ['interpolation',
-    ['variable',
-      ['ident', 'a']]]]
+  ['interpolatedVariable',
+    ['ident', 'a']]]
