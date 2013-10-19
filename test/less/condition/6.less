@@ -1,0 +1,1 @@
+when (isnumber(@a)) and (@a > 0)

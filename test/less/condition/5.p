@@ -1,0 +1,12 @@
+['condition',
+  ['ident', 'when'],
+  ['s', ' '],
+  ['ident', 'not'],
+  ['s', ' '],
+  ['braces', '(', ')',
+    ['variable',
+      ['ident', 'b']],
+    ['s', ' '],
+    ['operator', '>'],
+    ['s', ' '],
+    ['number', '0']]]

@@ -128,7 +128,7 @@ var getTokens = (function() {
             // If we meet `//` and it is not a part of url:
             else if (!urlMode && c === '/' && cn === '/') {
                 // If we parse scss file, treat `//` as a single-line comment:
-                if (syntax === 'scss') parseSLComment(s);
+                if (['scss', 'less'].indexOf(syntax) > -1) parseSLComment(s);
                 else {
                     // If we're currently inside a block, treat `//` as a start
                     // of identifier:
@@ -231,7 +231,6 @@ var getTokens = (function() {
         // from `pos + 2`:
         for (pos = pos + 2; pos < s.length; pos++) {
             if (s.charAt(pos) === '\n' || s.charAt(pos) === '\r') {
-                pos++;
                 break;
             }
         }

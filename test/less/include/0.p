@@ -1,0 +1,3 @@
+['include',
+  ['clazz',
+    ['ident', 'nani']]]

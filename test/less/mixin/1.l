@@ -1,0 +1,1 @@
+.nani (@color: tomato) {color:@color}

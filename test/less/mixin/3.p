@@ -1,0 +1,13 @@
+['mixin',
+  ['clazz',
+    ['ident', 'nani']],
+  ['s', ' '],
+  ['arguments'],
+  ['s', ' '],
+  ['block',
+    ['declaration',
+      ['property',
+        ['ident', 'color']],
+      ['value',
+        ['variable',
+          ['ident', 'color']]]]]]

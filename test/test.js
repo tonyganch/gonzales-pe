@@ -57,7 +57,7 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
                     r && okn++;
                     if (!r) {
                         console.log('\n---------------------');
-                        console.log('FAIL: ' + '\'' + rule + '\' / \'' + k + '.' + a);
+                        console.log('FAIL: ' + syntax + '/' + rule + '/' + k + '.' + a);
 
                         console.log('\nExpected:\n', c);
                         fs.appendFile(expected, c + '\n\n\n', function(){});

@@ -8,9 +8,9 @@
       ['ident', 'v1']]],
   ['decldelim'],
   ['s', ' '],
-  ['commentSL', ' comment
-'],
-  ['s', '  '],
+  ['commentSL', ' comment'],
+  ['s', '
+  '],
   ['declaration',
     ['property',
       ['ident', 'p2']],

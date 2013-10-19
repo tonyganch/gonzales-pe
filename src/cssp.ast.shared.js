@@ -232,7 +232,7 @@ var getAST = (function() {
     function checkArguments(_i) {
         var start = _i;
 
-        if (syntax !== 'scss') return fail(tokens[_i]);
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
 
         if (_i >= tokens.length ||
             (tokens[_i].type !== TokenType.LeftParenthesis)) return fail(tokens[_i]);
@@ -281,6 +281,7 @@ var getAST = (function() {
             checkVariable(_i) ||
             checkSC(_i) ||
             checkDelim(_i) ||
+            checkDecldelim(_i) ||
             checkString(_i) ||
             checkPercentage(_i) ||
             checkDimension(_i) ||
@@ -299,6 +300,7 @@ var getAST = (function() {
         else if (checkVariable(pos)) return getVariable();
         else if (checkSC(pos)) return getSC();
         else if (checkDelim(pos)) return getDelim();
+        else if (checkDecldelim(pos)) return getDecldelim();
         else if (checkString(pos)) return getString();
         else if (checkPercentage(pos)) return getPercentage();
         else if (checkDimension(pos)) return getDimension();
@@ -796,9 +798,9 @@ var getAST = (function() {
         if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
         else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
         else if (l = checkLoop(_i)) tokens[_i].bd_kind = 3;
-        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 4;
-        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 5;
-        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 6;
         else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 7;
         else return fail(tokens[_i]);
 
@@ -833,13 +835,13 @@ var getAST = (function() {
                 x = getLoop();
                 break;
             case 4:
-                x = getAtrule();
-                break;
-            case 5:
                 x = getFilter();
                 break;
-            case 6:
+            case 5:
                 x = getDeclaration();
+                break;
+            case 6:
+                x = getAtrule();
                 break;
             case 7:
                 x = getRuleset();
@@ -866,9 +868,9 @@ var getAST = (function() {
         if (l = checkCondition(_i)) tokens[_i].bd_kind = 1;
         else if (l = checkInclude(_i)) tokens[_i].bd_kind = 2;
         else if (l = checkLoop(_i)) tokens[_i].bd_kind = 3;
-        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 4;
-        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 5;
-        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 6;
+        else if (l = checkFilter(_i)) tokens[_i].bd_kind = 4;
+        else if (l = checkDeclaration(_i)) tokens[_i].bd_kind = 5;
+        else if (l = checkAtrule(_i)) tokens[_i].bd_kind = 6;
         else if (l = checkRuleset(_i)) tokens[_i].bd_kind = 7;
         else return fail(tokens[_i]);
 
@@ -899,13 +901,13 @@ var getAST = (function() {
                 x = getLoop();
                 break;
             case 4:
-                x = getAtrule();
-                break;
-            case 5:
                 x = getFilter();
                 break;
-            case 6:
+            case 5:
                 x = getDeclaration();
+                break;
+            case 6:
+                x = getAtrule();
                 break;
             case 7:
                 x = getRuleset();
@@ -1105,7 +1107,7 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkCommentSL(_i) {
-        if (syntax !== 'scss') return fail(tokens[_i]);
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
 
         if (_i < tokens.length && tokens[_i].type === TokenType.CommentSL) return 1;
 
@@ -1125,11 +1127,25 @@ var getAST = (function() {
     /**
      * Check if token is part of a condition
      * (e.g. `@if ... @else if ... @else ...`).
-     * Valid only for scss syntax.
+     * Valid only for scss and less syntaxes.
      * @param {number} _i Token's index number
      * @returns {number | undefined}
      */
     function checkCondition(_i) {
+        if (syntax === 'scss') return _checkCondition0(_i);
+        else if (syntax === 'less') return _checkCondition1(_i);
+        else return fail(tokens[_i]);
+    }
+
+    /**
+     * Get node with a condition.
+     * @returns {Array}
+     */
+    function getCondition() {
+        return syntax === 'scss' ? _getCondition0() : _getCondition1();
+    }
+
+    function _checkCondition0(_i) {
         var start = _i;
 
         if (syntax !== 'scss') return fail(tokens[_i]);
@@ -1155,7 +1171,7 @@ var getAST = (function() {
      * Get node with a condition.
      * @returns {Array}
      */
-    function getCondition() {
+    function _getCondition0() {
         var startPos = pos,
             x = [];
 
@@ -1166,6 +1182,57 @@ var getAST = (function() {
             else if (checkVariable(pos)) x.push(getVariable());
             else if (checkIdent(pos)) x.push(getIdent());
             else if (checkNumber(pos)) x.push(getNumber());
+            else if (checkOperator(pos)) x.push(getOperator());
+            else if (checkCombinator(pos)) x.push(getCombinator());
+            else if (checkSC(pos)) x = x.concat(getSC());
+            else if (checkString(pos)) x.push(getString());
+        }
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.ConditionType] :
+            [CSSPNodeType.ConditionType])
+            .concat(x);
+    }
+
+    function _checkCondition1(_i) {
+        var start = _i;
+
+        if (syntax !== 'less') return fail(tokens[_i]);
+
+        if ((l = checkIdent(_i)) && tokens[_i].value === 'when') _i += l;
+        else return fail(tokens[_i]);
+
+        while (_i < tokens.length) {
+            if (l = checkBlock(_i)) break;
+            else if (l = checkFunktion(_i) || checkBraces(_i) ||
+                checkVariable(_i) || checkIdent(_i) || checkSC(_i) ||
+                checkNumber(_i) || checkDelim(_i) || checkOperator(_i) ||
+                checkCombinator(_i) || checkString(_i))
+                _i += l;
+            else return fail(tokens[_i]);
+        }
+
+        return _i - start;
+    }
+
+    /**
+     * Get node with a condition.
+     * @returns {Array}
+     */
+    function _getCondition1() {
+        var startPos = pos,
+            x = [];
+
+        x.push(getIdent());
+
+        while (pos < tokens.length) {
+            if (l = checkBlock(pos)) break;
+            else if (checkFunktion(pos)) x.push(getFunktion());
+            else if (checkBraces(pos)) x.push(getBraces());
+            else if (checkVariable(pos)) x.push(getVariable());
+            else if (checkIdent(pos)) x.push(getIdent());
+            else if (checkNumber(pos)) x.push(getNumber());
+            else if (checkDelim(pos)) x.push(getDelim());
             else if (checkOperator(pos)) x.push(getOperator());
             else if (checkCombinator(pos)) x.push(getCombinator());
             else if (checkSC(pos)) x = x.concat(getSC());
@@ -1678,7 +1745,9 @@ var getAST = (function() {
         var start = _i,
             l;
 
-        if (tokens[_i++].type !== TokenType.ExclamationMark) return fail(tokens[_i - 1]);
+        if (!tokens[_i] || tokens[_i].type !== TokenType.ExclamationMark) return fail(tokens[_i - 1]);
+
+        _i++;
 
         if (l = checkSC(_i)) _i += l;
 
@@ -1711,12 +1780,16 @@ var getAST = (function() {
     function checkInclude(_i) {
         var l;
 
-        if (syntax !== 'scss') return fail(tokens[_i]);
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
 
-        if (l = _checkInclude0(_i)) tokens[_i].include_type = 1;
-        else if (l = _checkInclude1(_i)) tokens[_i].include_type = 2;
-        else if (l = _checkInclude2(_i)) tokens[_i].include_type = 3;
-        else return fail(tokens[_i]);
+        if (syntax === 'scss') {
+            if (l = _checkInclude0(_i)) tokens[_i].include_type = 1;
+            else if (l = _checkInclude1(_i)) tokens[_i].include_type = 2;
+            else if (l = _checkInclude2(_i)) tokens[_i].include_type = 3;
+        } else if (syntax === 'less') {
+            if (l = _checkInclude3(_i)) tokens[_i].include_type = 4;
+            else if (l = _checkInclude4(_i)) tokens[_i].include_type = 5;
+        } else return fail(tokens[_i]);
 
         return l;
     }
@@ -1726,6 +1799,8 @@ var getAST = (function() {
             case 1: return _getInclude0();
             case 2: return _getInclude1();
             case 3: return _getInclude2();
+            case 4: return _getInclude3();
+            case 5: return _getInclude4();
         }
     }
 
@@ -1861,6 +1936,91 @@ var getAST = (function() {
             .concat(x);
     }
 
+    function _checkInclude3(_i) {
+        var start = _i,
+            l;
+
+        if (l = checkClazz(_i) || checkShash(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        while (_i < tokens.length) {
+            if (l = checkClazz(_i) || checkShash(_i) || checkSC(_i)) _i += l;
+            else if (tokens[_i].type == TokenType.GreaterThanSign) _i ++;
+            else break;
+        }
+
+        if (l = checkArguments(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (tokens[_i] && (l = checkSC(_i))) _i += l;
+
+        if (tokens[_i] && (l = checkImportant(_i))) _i += l;
+
+        return _i - start;
+    }
+
+    function _getInclude3() {
+        var startPos = pos,
+            x = [];
+
+        x.push(checkClazz(pos) ? getClazz() : getShash());
+
+        while (pos < tokens.length) {
+            if (checkClazz(pos)) x.push(getClazz());
+            else if (checkShash(pos)) x.push(getShash());
+            else if (checkSC(pos)) x = x.concat(getSC());
+            else if (checkOperator(pos)) x.push(getOperator());
+            else break;
+        }
+
+        x.push(getArguments());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkImportant(pos)) x.push(getImportant());
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.IncludeType] :
+            [CSSPNodeType.IncludeType])
+            .concat(x);
+    }
+
+    function _checkInclude4(_i) {
+        var start = _i,
+            l;
+
+        if (l = checkClazz(_i) || checkShash(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        while (_i < tokens.length) {
+            if (l = checkClazz(_i) || checkShash(_i) || checkSC(_i)) _i += l;
+            else if (tokens[_i].type == TokenType.GreaterThanSign) _i ++;
+            else break;
+        }
+
+        return _i - start;
+    }
+
+    function _getInclude4() {
+        var startPos = pos,
+            x = [];
+
+        x.push(checkClazz(pos) ? getClazz() : getShash());
+
+        while (pos < tokens.length) {
+            if (checkClazz(pos)) x.push(getClazz());
+            else if (checkShash(pos)) x.push(getShash());
+            else if (checkSC(pos)) x = x.concat(getSC());
+            else if (checkOperator(pos)) x.push(getOperator());
+            else break;
+        }
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.IncludeType] :
+            [CSSPNodeType.IncludeType])
+            .concat(x);
+    }
+
     /**
      * @param {number} _i Token's index number
      * @returns {number | undefined}
@@ -1906,6 +2066,19 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkInterpolatedVariable(_i) {
+        if (syntax === 'scss') return _checkInterpolatedVariable0(_i);
+        else if (syntax === 'less') return _checkInterpolatedVariable1(_i);
+        else return fail(tokens[_i]);
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getInterpolatedVariable() {
+        return syntax === 'scss' ? _getInterpolatedVariable0() : _getInterpolatedVariable1();
+    }
+
+    function _checkInterpolatedVariable0(_i) {
         var start = _i,
             l;
 
@@ -1930,12 +2103,52 @@ var getAST = (function() {
     /**
      * @returns {Array}
      */
-    function getInterpolatedVariable() {
+    function _getInterpolatedVariable0() {
         var startPos = pos,
             x;
 
         // Skip `#{$`:
         pos += 3;
+
+        x = getIdent();
+
+        // Skip `}`:
+        pos++;
+
+        return needInfo?
+            [getInfo(startPos), CSSPNodeType.InterpolatedVariableType, x] :
+            [CSSPNodeType.InterpolatedVariableType, x];
+    }
+
+    function _checkInterpolatedVariable1(_i) {
+        var start = _i,
+            l;
+
+        if (syntax !== 'less') return fail(tokens[_i]);
+
+        if (tokens[_i].type !== TokenType.CommercialAt ||
+            !tokens[_i + 1] ||
+            tokens[_i + 1].type !== TokenType.LeftCurlyBracket) return fail(tokens[_i - 1]);
+
+        _i += 2;
+
+        if (l = checkIdent(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        if (tokens[_i].type !== TokenType.RightCurlyBracket) return fail(tokens[_i - 1]);
+
+        return _i - start + 1;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function _getInterpolatedVariable1() {
+        var startPos = pos,
+            x;
+
+        // Skip `@{`:
+        pos += 2;
 
         x = getIdent();
 
@@ -2019,6 +2232,36 @@ var getAST = (function() {
         var start = _i,
             l;
 
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
+
+        if (l = _checkMixin0(_i)) tokens[_i].mixin_type = 1;
+        else if (l = _checkMixin1(_i)) tokens[_i].mixin_type = 2;
+        else return fail(tokens[_i]);
+
+        _i += l;
+
+        return _i - start;
+    }
+
+    /**
+     * Get node with a mixin.
+     * @returns {Array} `['namespace']`
+     */
+    function getMixin() {
+        switch (tokens[pos].mixin_type) {
+            case 1:
+                return _getMixin0();
+                break;
+            case 2:
+                return _getMixin1();
+                break;
+        }
+    }
+
+    function _checkMixin0(_i) {
+        var start = _i,
+            l;
+
         if (syntax !== 'scss') return fail(tokens[_i]);
 
         if ((l = checkAtkeyword(_i)) && tokens[_i + 1].value === 'mixin') _i += l;
@@ -2041,11 +2284,7 @@ var getAST = (function() {
         return _i - start;
     }
 
-    /**
-     * Get node with a mixin.
-     * @returns {Array} `['namespace']`
-     */
-    function getMixin() {
+    function _getMixin0() {
         var startPos = pos;
 
         var x = [getAtkeyword()];
@@ -2053,6 +2292,48 @@ var getAST = (function() {
         if (checkSC(pos)) x = x.concat(getSC());
 
         if (checkIdent(pos)) x.push(getIdent());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkArguments(pos)) x.push(getArguments());
+
+        if (checkSC(pos)) x = x.concat(getSC());
+
+        if (checkBlock(pos)) x.push(getBlock());
+
+        return (needInfo?
+            [getInfo(startPos), CSSPNodeType.MixinType] :
+            [CSSPNodeType.MixinType])
+            .concat(x);
+    }
+
+    function _checkMixin1(_i) {
+        var start = _i,
+            l;
+
+        if (syntax !== 'less') return fail(tokens[_i]);
+
+        if (l = checkClazz(_i) || checkShash(_i)) _i +=l;
+        else return fail(tokens[_i]);
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkArguments(_i)) _i += l;
+
+        if (l = checkSC(_i)) _i += l;
+
+        if (l = checkBlock(_i)) _i += l;
+        else return fail(tokens[_i]);
+
+        return _i - start;
+    }
+
+    function _getMixin1() {
+        var startPos = pos,
+            x = [];
+
+
+        x.push(checkClazz(pos) ? getClazz() : getShash());
 
         if (checkSC(pos)) x = x.concat(getSC());
 
@@ -2332,7 +2613,7 @@ var getAST = (function() {
             case TokenType.LessThanSign:
             case TokenType.GreaterThanSign:
             case TokenType.Asterisk:
-                if (syntax === 'scss') return 1;
+                if (['scss', 'less'].indexOf(syntax) > -1) return 1;
         }
 
         return fail(tokens[_i]);
@@ -2356,7 +2637,7 @@ var getAST = (function() {
      * @returns {number | undefined}
      */
     function checkParentSelector(_i) {
-        if (syntax !== 'scss') return fail(tokens[_i]);
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
 
         if (tokens[_i].type !== TokenType.Ampersand) return fail(tokens[_i]);
 
@@ -3247,6 +3528,34 @@ var getAST = (function() {
     function checkVariable(_i) {
         var l;
 
+        if (l = _checkVariable0(_i) || _checkVariable1(_i)) return l;
+
+        return fail(tokens[_i]);
+    }
+
+
+    /**
+     * Get node of variable
+     * @returns {Array} `['variable', ['ident', x]]` where `x` is
+     *      a variable name.
+     */
+    function getVariable() {
+        var startPos = pos,
+            x;
+
+        pos++;
+
+        if (syntax === 'less' && _checkVariable1(pos)) x = getVariable();
+        else x = getIdent();
+
+        return needInfo?
+            [getInfo(startPos), CSSPNodeType.VariableType, x] :
+            [CSSPNodeType.VariableType, x];
+    }
+
+    function _checkVariable0(_i) {
+        var l;
+
         if (syntax !== 'scss') return fail(tokens[_i]);
 
         if (_i >= tokens.length || tokens[_i].type !== TokenType.DollarSign) return fail(tokens[_i]);
@@ -3256,19 +3565,21 @@ var getAST = (function() {
         return fail(tokens[_i]);
     }
 
-    /**
-     * Get node of variable
-     * @returns {Array} `['variable', ['ident', x]]` where `x` is
-     *      a variable name.
-     */
-    function getVariable() {
-        var startPos = pos;
+    function _checkVariable1(_i) {
+        var l;
 
-        pos++;
+        if (syntax !== 'less') return fail(tokens[_i]);
 
-        return needInfo?
-            [getInfo(startPos), CSSPNodeType.VariableType, getIdent()] :
-            [CSSPNodeType.VariableType, getIdent()];
+        if (_i >= tokens.length || tokens[_i].type !== TokenType.CommercialAt) return fail(tokens[_i]);
+
+        if (tokens[_i - 1] &&
+            tokens[_i - 1].type === TokenType.CommercialAt &&
+            tokens[_i - 2] &&
+            tokens[_i - 2].type === TokenType.CommercialAt) return fail(tokens[_i]);
+
+        if (l = checkVariable(_i + 1) || checkIdent(_i + 1)) return l + 1;
+
+        return fail(tokens[_i]);
     }
 
     /**
@@ -3281,7 +3592,7 @@ var getAST = (function() {
         var d = 0,
             l;
 
-        if (syntax !== 'scss') return fail(tokens[_i]);
+        if (['scss', 'less'].indexOf(syntax) < 0) return fail(tokens[_i]);
 
         if (l = checkVariable(_i)) _i+= l;
         else return fail(tokens[_i]);

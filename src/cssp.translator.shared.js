@@ -93,7 +93,7 @@ function astToCSS(options) {
             return '!' + _composite(t) + 'important';
         },
         'interpolatedVariable': function(t) {
-            return '#{$' + _t(t[hasInfo? 2 : 1]) + '}';
+            return (syntax === 'scss' ? '#\{$' : '@{') + _t(t[hasInfo? 2 : 1]) + '}';
         },
         'nthselector': function(t) {
             return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
@@ -117,7 +117,8 @@ function astToCSS(options) {
             return 'url(' + _composite(t) + ')';
         },
         'variable': function(t) {
-            return '$' + _t(t[hasInfo? 2 : 1]);
+            return (syntax === 'scss' ? '$' : '@') + _t(t[hasInfo? 2 : 1]);
+
         },
         'variableslist': function(t) {
             return _t(t[hasInfo? 2 : 1]) + '...';
