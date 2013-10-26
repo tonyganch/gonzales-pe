@@ -1,5 +1,5 @@
 ['value',
-  ['funktion',
+  ['function',
     ['ident', 'test'],
     ['functionBody',
       ['ident', 'x']]]]

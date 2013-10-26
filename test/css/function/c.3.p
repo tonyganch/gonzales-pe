@@ -1,0 +1,10 @@
+['function',
+  ['ident', 'test'],
+  ['functionBody',
+    ['commentML', 'test'],
+    ['ident', 'x'],
+    ['commentML', 'test'],
+    ['unary', '+'],
+    ['commentML', 'test'],
+    ['ident', 'y'],
+    ['commentML', 'test']]]

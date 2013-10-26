@@ -3,28 +3,32 @@
 build:
 	@echo 'Creating temp files...'
 	@mkdir -p tmp
-	@cat src/gonzales.cssp.header.js > tmp/.gonzales.cssp.js
-	@cat src/tokenizer.shared.js >> tmp/.gonzales.cssp.js
-	@cat src/cssp.ast.shared.js >> tmp/.gonzales.cssp.js
-	@cat src/gonzales.cssp.footer.js >> tmp/.gonzales.cssp.js
-	@cp src/cssp.translator.shared.js tmp/.cssp.translator.js
+	@cat src/css-to-ast.header.js > tmp/.css-to-ast.js
+	@cat src/tokenizer.js >> tmp/.css-to-ast.js
+	@cat src/css-to-ast.js >> tmp/.css-to-ast.js
+	@cat src/rules-css.js >> tmp/.css-to-ast.js
+	@cat src/rules-scss.js >> tmp/.css-to-ast.js
+	@cat src/rules-sass.js >> tmp/.css-to-ast.js
+	@cat src/rules-less.js >> tmp/.css-to-ast.js
+	@cat src/css-to-ast.footer.js >> tmp/.css-to-ast.js
+	@cp src/ast-to-css.js tmp/.ast-to-css.js
 
 	@echo 'Removing comments...'
-	@sed -i '' -e 's/ *\/\/.*//' -e ':t' -e 's|^ */\*.*\*/||' -e 'tt' -e '/^ *\/\*/!b' -e 'N' -e 'bt' tmp/.gonzales.cssp.js
-	@sed -i '' -e 's/ *\/\/.*//' -e ':t' -e 's|^ */\*.*\*/||' -e 'tt' -e '/^ *\/\*/!b' -e 'N' -e 'bt' tmp/.cssp.translator.js
-	@sed -i '' '/^$$/d' tmp/.gonzales.cssp.js
-	@sed -i '' '/^$$/d' tmp/.cssp.translator.js
+	@sed -i '' -e 's/ *\/\/.*//' -e ':t' -e 's|^ */\*.*\*/||' -e 'tt' -e '/^ *\/\*/!b' -e 'N' -e 'bt' tmp/.css-to-ast.js
+	@sed -i '' -e 's/ *\/\/.*//' -e ':t' -e 's|^ */\*.*\*/||' -e 'tt' -e '/^ *\/\*/!b' -e 'N' -e 'bt' tmp/.ast-to-css.js
+	@sed -i '' '/^$$/d' tmp/.css-to-ast.js
+	@sed -i '' '/^$$/d' tmp/.ast-to-css.js
 
 	@echo 'Building lib files...'
-	@cp tmp/.gonzales.cssp.js lib/gonzales.cssp.node.js
-	@cat src/gonzales.cssp.node.js >> lib/gonzales.cssp.node.js
-	@cp tmp/.cssp.translator.js lib/cssp.translator.node.js
-	@cat src/cssp.translator.node.js >> lib/cssp.translator.node.js
+	@cp tmp/.css-to-ast.js lib/gonzales.css-to-ast.js
+	@cat src/css-to-ast.node.js >> lib/gonzales.css-to-ast.js
+	@cp tmp/.ast-to-css.js lib/gonzales.ast-to-css.js
+	@cat src/ast-to-css.node.js >> lib/gonzales.ast-to-css.js
 
 	@echo 'Building web files...'
 	@mkdir -p web
-	@cp tmp/.gonzales.cssp.js web/gonzales.cssp.web.js
-	@cp tmp/.cssp.translator.js web/cssp.translator.js
+	@cp tmp/.css-to-ast.js web/gonzales.css-to-ast.js
+	@cp tmp/.ast-to-css.js web/gonzales.ast-to-css.js
 
 	@echo 'Cleaning up...'
 	@rm -rf tmp

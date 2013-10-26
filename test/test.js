@@ -1,6 +1,5 @@
 var fs = require('fs'),
-    cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
-    astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
+    gonzales = require('./../lib/gonzales'),
     syntaxes = fs.readdirSync(__dirname),
     okn = total = 0,
     logPath = __dirname + '/../log',
@@ -9,10 +8,10 @@ var fs = require('fs'),
 
 var funcs = {
     'p': function parse(options) {
-            return treeToString(cleanInfo(cssToAST(options)));
+            return treeToString(cleanInfo(gonzales.cssToAST(options)));
          },
     'l': function translate(options) {
-            return astToCSS({syntax: options.syntax, ast: cssToAST(options)});
+            return gonzales.astToCSS({syntax: options.syntax, ast: gonzales.cssToAST(options)});
          }
 };
 

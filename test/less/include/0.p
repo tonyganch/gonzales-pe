@@ -1,3 +1,3 @@
 ['include',
-  ['clazz',
+  ['class',
     ['ident', 'nani']]]

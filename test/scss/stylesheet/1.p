@@ -2,7 +2,7 @@
   ['ruleset',
     ['selector',
       ['simpleselector',
-        ['clazz',
+        ['class',
           ['ident', 'nani']]]],
     ['block',
       ['declaration',
@@ -17,6 +17,6 @@
       ['ident', 'extend']],
     ['s', ' '],
     ['simpleselector',
-      ['clazz',
+      ['class',
         ['ident', 'nani']]]],
   ['decldelim']]

@@ -1,5 +1,5 @@
 ['mixin',
-  ['clazz',
+  ['class',
     ['ident', 'nani']],
   ['s', ' '],
   ['arguments',

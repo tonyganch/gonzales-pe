@@ -3,7 +3,7 @@
   ['s', ' '],
   ['operator', '>'],
   ['s', ' '],
-  ['clazz',
+  ['class',
     ['ident', 'button']],
   ['s', ' '],
   ['arguments',

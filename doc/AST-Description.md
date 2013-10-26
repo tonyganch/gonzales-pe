@@ -235,7 +235,7 @@ Braces and their content.
   ['number', '1']]
 ```
 
-#### clazz
+#### class
 
 Class.
 
@@ -244,7 +244,7 @@ Class.
 
 ↓
 
-['clazz',
+['class',
   ['ident', 'abc']]
 ```
 
@@ -432,7 +432,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='a.png',sizingMeth
       ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='a.png',sizingMethod='scale')']]]]
 ```
 
-#### funktion, functionBody
+#### function, functionBody
 
 Function.
 
@@ -450,7 +450,7 @@ color: rgb(255,0,0)
     ['ident', 'color']],
   ['value',
     ['s', ' '],
-    ['funktion',
+    ['function',
       ['ident', 'rgb'],
       ['functionBody',
         ['number', '255'],
@@ -491,13 +491,13 @@ In *atkeyword*:
   ['ident', 'import']]
 ```
 
-In *clazz*:
+In *class*:
 ```
 .abc
 
 ↓
 
-['clazz',
+['class',
   ['ident', 'abc']]
 ```
 
@@ -620,7 +620,7 @@ test(x,y)
 
 ↓
 
-['funktion',
+['function',
   ['ident', 'test'],
   ['functionBody',
     ['ident', 'x'],

@@ -3,5 +3,5 @@
   ['s', ' '],
   ['operator', '>'],
   ['s', ' '],
-  ['clazz',
+  ['class',
     ['ident', 'button']]]

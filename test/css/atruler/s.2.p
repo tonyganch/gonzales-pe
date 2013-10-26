@@ -9,7 +9,7 @@
     ['s', '  '],
     ['ident', 'y'],
     ['s', '  '],
-    ['funktion',
+    ['function',
       ['ident', 'f'],
       ['functionBody',
         ['s', '  '],

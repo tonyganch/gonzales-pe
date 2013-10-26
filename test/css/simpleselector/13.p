@@ -1,9 +1,9 @@
 ['simpleselector',
   ['pseudoc',
-    ['funktion',
+    ['function',
       ['ident', 'not'],
       ['functionBody',
         ['simpleselector',
           ['ident', 'el'],
-          ['clazz',
+          ['class',
             ['ident', 'class-postfix']]]]]]]

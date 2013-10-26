@@ -2,7 +2,7 @@
   ['ruleset',
     ['selector',
       ['simpleselector',
-        ['clazz',
+        ['class',
           ['ident', 't']],
         ['s', '
 ']]],

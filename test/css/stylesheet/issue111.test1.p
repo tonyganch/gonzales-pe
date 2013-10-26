@@ -4,7 +4,7 @@
       ['simpleselector',
         ['ident', 'body'],
         ['pseudoc',
-          ['funktion',
+          ['function',
             ['ident', 'not'],
             ['functionBody',
               ['simpleselector',

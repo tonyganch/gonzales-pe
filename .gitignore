@@ -1,8 +1,8 @@
 *.iml
 .DS_Store
 .idea/
-lib/cssp.translator.node.js
-lib/gonzales.cssp.node.js
+lib/gonzales.css-to-ast.js
+lib/gonzales.ast-to-css.js
 node_modules/
 web/
 log/

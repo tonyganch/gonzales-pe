@@ -3,7 +3,7 @@
   ['namespace'],
   ['ident', '*'],
   ['pseudoc',
-    ['funktion',
+    ['function',
       ['ident', 'not'],
       ['functionBody',
         ['simpleselector',

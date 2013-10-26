@@ -1,5 +1,5 @@
 ['include',
-  ['clazz',
+  ['class',
     ['ident', 'nani']],
   ['arguments',
     ['dimension',

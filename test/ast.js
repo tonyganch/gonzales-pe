@@ -5,8 +5,7 @@
  */
 var css = 'div {$color: nani}',
     syntax = 'scss',
-    cssToAST = require('./../lib/gonzales.cssp.node.js').cssToAST,
-    astToCSS = require('./../lib/cssp.translator.node.js').astToCSS,
+    gonzales = require('./../lib/gonzales'),
     astToTree = function(tree, level) {
         level = level || 0;
         var spaces = dummySpaces(level),
@@ -23,10 +22,10 @@ var css = 'div {$color: nani}',
     dummySpaces = function(num) {
         return '                                                  '.substr(0, num * 2);
     },
-    ast = cssToAST({css: css, syntax: syntax});
+    ast = gonzales.cssToAST({css: css, syntax: syntax});
 
     console.log("\n== Source string:\n", css);
 
     console.log("\n== AST:\n", astToTree(ast));
 
-    console.log("\n== Translated string:\n", astToCSS({ast: ast, syntax: syntax}));
+    console.log("\n== Translated string:\n", gonzales.astToCSS({ast: ast, syntax: syntax}));

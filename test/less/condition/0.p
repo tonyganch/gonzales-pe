@@ -2,7 +2,7 @@
   ['ident', 'when'],
   ['s', ' '],
   ['braces', '(', ')',
-    ['funktion',
+    ['function',
       ['ident', 'lightness'],
       ['functionBody',
         ['variable',

@@ -4,5 +4,5 @@
       ['ident', 'extend']],
     ['s', ' '],
     ['simpleselector',
-      ['clazz',
+      ['class',
         ['ident', 'nani']]]]]

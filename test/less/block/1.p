@@ -1,5 +1,5 @@
 ['block',
   ['include',
-    ['clazz',
+    ['class',
       ['ident', 'nani']]],
   ['decldelim']]
