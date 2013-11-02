@@ -1,0 +1,3 @@
+['value',
+  ['variable',
+    ['ident', 'x']]]

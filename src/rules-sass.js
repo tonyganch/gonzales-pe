@@ -29,6 +29,100 @@
     };
 
     /**
+     * Check if token is part of a declaration (property-value pair)
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the declaration
+     */
+    sass.checkDeclaration = function(i) {
+        return this.checkDeclaration1(i) || this.checkDeclaration2(i);
+    };
+
+    /** Get node with declaration (property-value pair)
+     * @returns {Array} `['declaration', x, y, z]`
+     */
+    sass.getDeclaration = function() {
+        return this.checkDeclaration1(pos) ? this.getDeclaration1() : this.getDeclaration2();
+    };
+
+    /**
+     * Check if token is part of a declaration (property-value pair)
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the declaration
+     */
+    sass.checkDeclaration1 = function(i) {
+        var start = i,
+        l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkProperty(i)) i += l;
+        else return 0;
+
+        if (l = this.checkPropertyDelim(i)) i++;
+        else return 0;
+
+        if (l = this.checkValue(i)) i += l;
+        else return 0;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with a declaration
+     * @returns {Array} `['declaration', ['property', x], ['propertyDelim'],
+     *       ['value', y]]`
+     */
+    sass.getDeclaration1 = function() {
+        var startPos = pos,
+        x = [NodeType.DeclarationType];
+
+        x.push(this.getProperty());
+        x.push(this.getPropertyDelim());
+        x.push(this.getValue());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * Check if token is part of a declaration (property-value pair)
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the declaration
+     */
+    sass.checkDeclaration2 = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkPropertyDelim(i)) i++;
+        else return 0;
+
+        if (l = this.checkProperty(i)) i += l;
+        else return 0;
+
+        if (l = this.checkValue(i)) i += l;
+        else return 0;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with a declaration
+     * @returns {Array} `['declaration', ['propertyDelim'], ['property', x],
+     *       ['value', y]]`
+     */
+    sass.getDeclaration2 = function() {
+        var startPos = pos,
+            x = [NodeType.DeclarationType];
+
+        x.push(this.getPropertyDelim());
+        x.push(this.getProperty());
+        x.push(this.getValue());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
      * Check if token is a semicolon
      * @param {Number} i Token's index number
      * @returns {Number} `1` if token is a semicolon, otherwise `0`
@@ -88,6 +182,313 @@
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
+
+    /**
+     * Check if token is part of an included mixin (`@include` or `@extend`
+     *      directive).
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the included mixin
+     */
+    sass.checkInclude = function(i) {
+        var l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkInclude1(i)) tokens[i].include_type = 1;
+        else if (l = this.checkInclude2(i)) tokens[i].include_type = 2;
+        else if (l = this.checkInclude3(i)) tokens[i].include_type = 3;
+        else if (l = this.checkInclude4(i)) tokens[i].include_type = 4;
+        else if (l = this.checkInclude5(i)) tokens[i].include_type = 5;
+        else if (l = this.checkInclude6(i)) tokens[i].include_type = 6;
+
+        return l;
+    };
+
+    /**
+     * Get node with included mixin
+     * @returns {Array} `['include', x]`
+     */
+    sass.getInclude = function() {
+        switch (tokens[pos].include_type) {
+            case 1: return this.getInclude1();
+            case 2: return this.getInclude2();
+            case 3: return this.getInclude3();
+            case 4: return this.getInclude4();
+            case 5: return this.getInclude5();
+            case 6: return this.getInclude6();
+        }
+    };
+
+
+    /**
+     * Check if token is part of an included mixin like `+nani(foo)`
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the include
+     */
+    sass.checkInclude4 = function(i) {
+        var start = i,
+        l;
+
+        if (tokens[i].type === TokenType.PlusSign) i++;
+        else return 0;
+
+        if (l = this.checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkArguments(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with included mixin like `+nani(foo)`
+     * @returns {Array} `['include', ['operator', '+'], ['selector', y], sc,
+     *      ['arguments', z], sc]` where `y` is
+     *      mixin's identifier (selector), `z` are arguments passed to the
+     *      mixin and `sc` are optional whitespaces
+     */
+    sass.getInclude4 = function() {
+        var startPos = pos,
+            x = [NodeType.IncludeType];
+
+        x.push(this.getOperator());
+
+        x.push(this.getIncludeSelector());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getArguments());
+
+        x = x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * Check if token is part of an included mixin with a content block passed
+     *      as an argument (e.g. `+nani {...}`)
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the mixin
+     */
+    sass.checkInclude5 = function(i) {
+        var start = i,
+            l;
+
+        if (tokens[i].type === TokenType.PlusSign) i++;
+        else return 0;
+
+        if (l = this.checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with an included mixin with a content block passed
+     *      as an argument (e.g. `+nani {...}`)
+     * @returns {Array} `['include', x]`
+     */
+    sass.getInclude5 = function() {
+        var startPos = pos,
+            x = [NodeType.IncludeType];
+
+        x.push(this.getOperator());
+
+        x.push(this.getIncludeSelector());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getBlock());
+
+        x = x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    sass.checkInclude6 = function(i) {
+        var start = i,
+            l;
+
+        if (tokens[i].type === TokenType.PlusSign) i++;
+        else return 0;
+
+        if (l = this.checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * @returns {Array} `['include', x]`
+     */
+    sass.getInclude6 = function() {
+        var startPos = pos,
+            x = [NodeType.IncludeType];
+
+        x.push(this.getOperator());
+
+        x.push(this.getIncludeSelector());
+
+        x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * Check if token is part of a mixin
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the mixin
+     */
+    sass.checkMixin = function(i) {
+        return this.checkMixin1(i) || this.checkMixin2(i);
+    };
+
+    /**
+     * Gent node with mixin
+     * @returns {Array} `['mixin', x]`
+     */
+    sass.getMixin = function() {
+        return this.checkMixin1(pos) ? this.getMixin1() : this.getMixin2();
+    };
+
+    /**
+     * Check if token is part of a mixin
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the mixin
+     */
+    sass.checkMixin1 = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if ((l = this.checkAtkeyword(i)) && tokens[i + 1].value === 'mixin') i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkIdent(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else {
+            if (l = this.checkArguments(i)) i += l;
+
+            if (l = this.checkSC(i)) i += l;
+
+            if (l = this.checkBlock(i)) i += l;
+            else return 0;
+        }
+
+        return i - start;
+    };
+
+    /**
+     * Get node with a mixin
+     * @returns {Array} `['mixin', x]`
+     */
+    sass.getMixin1 = function() {
+        var startPos = pos,
+            x = [NodeType.MixinType, this.getAtkeyword()];
+
+        x = x.concat(this.getSC());
+
+        if (this.checkIdent(pos)) x.push(this.getIdent());
+
+        x = x.concat(this.getSC());
+
+        if (this.checkBlock(pos)) x.push(this.getBlock());
+        else {
+            if (this.checkArguments(pos)) x.push(this.getArguments());
+
+            x = x.concat(this.getSC());
+
+            x.push(this.getBlock());
+        }
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * Check if token is part of a mixin
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the mixin
+     */
+    sass.checkMixin2 = function(i) {
+        var start = i,
+        l;
+
+        if (i >= tokensLength) return 0;
+
+        if (tokens[i].type === TokenType.EqualsSign) i++;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkIdent(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else {
+            if (l = this.checkArguments(i)) i += l;
+
+            if (l = this.checkSC(i)) i += l;
+
+            if (l = this.checkBlock(i)) i += l;
+            else return 0;
+        }
+
+        return i - start;
+    };
+
+    /**
+    * Get node with a mixin
+    * @returns {Array} `['mixin', x]`
+    */
+    sass.getMixin2 = function() {
+        var startPos = pos,
+            x = [NodeType.MixinType, this.getOperator()];
+
+        x = x.concat(this.getSC());
+
+        if (this.checkIdent(pos)) x.push(this.getIdent());
+
+        x = x.concat(this.getSC());
+
+        if (this.checkBlock(pos)) x.push(this.getBlock());
+        else {
+            if (this.checkArguments(pos)) x.push(this.getArguments());
+
+            x = x.concat(this.getSC());
+
+            x.push(this.getBlock());
+        }
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
 
     /**
      * @param {Number} i Token's index number

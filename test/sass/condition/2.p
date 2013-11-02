@@ -1,0 +1,3 @@
+['condition',
+  ['atkeyword',
+    ['ident', 'else']]]

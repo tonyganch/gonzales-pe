@@ -7,7 +7,7 @@ function astToCSS(options) {
 
     tree = typeof options === 'string' ? options : options.ast;
     hasInfo = typeof tree[0] === 'object';
-    syntax = options.syntax;
+    syntax = options.syntax || 'css';
 
     var _m_simple = {
             'attrselector': 1, 'combinator': 1, 'ident': 1, 'nth': 1, 'number': 1,
@@ -20,7 +20,9 @@ function astToCSS(options) {
             'ruleset': 1, 'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
         _m_primitive = {
-            'cdc': 'cdc', 'cdo': 'cdo', 'decldelim': ';', 'delim': ',',
+            'cdc': 'cdc', 'cdo': 'cdo',
+            'decldelim': syntax === 'sass' ? '\n' : ';',
+            'delim': ',',
             'namespace': '|', 'parentselector': '&', 'propertyDelim' : ':'
         };
 
@@ -57,7 +59,7 @@ function astToCSS(options) {
             return '[' + _composite(t) + ']';
         },
         'block': function(t) {
-            return '{' + _composite(t) + '}';
+            return syntax === 'sass' ? _composite(t) : '{' + _composite(t) + '}';
         },
         'braces': function(t) {
             return t[hasInfo? 2 : 1] + _composite(t, hasInfo? 4 : 3) + t[hasInfo? 3 : 2];
@@ -87,7 +89,7 @@ function astToCSS(options) {
             return '!' + _composite(t) + 'important';
         },
         'interpolatedVariable': function(t) {
-            return (syntax === 'scss' ? '#\{$' : '@{') + _t(t[hasInfo? 2 : 1]) + '}';
+            return (syntax === 'less' ? '@{' : '#\{$') + _t(t[hasInfo? 2 : 1]) + '}';
         },
         'nthselector': function(t) {
             return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
@@ -111,7 +113,7 @@ function astToCSS(options) {
             return 'url(' + _composite(t) + ')';
         },
         'variable': function(t) {
-            return (syntax === 'scss' ? '$' : '@') + _t(t[hasInfo? 2 : 1]);
+            return (syntax === 'less' ? '@' : '$') + _t(t[hasInfo? 2 : 1]);
 
         },
         'variableslist': function(t) {

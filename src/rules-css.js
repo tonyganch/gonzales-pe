@@ -816,7 +816,8 @@ syntax.css = {
 
     /**
      * Get node with a declaration
-     * @returns {Array} `['declaration', ['property', x], ['value', y]]`
+     * @returns {Array} `['declaration', ['property', x], ['propertyDelim'],
+     *       ['value', y]]`
      */
     getDeclaration: function() {
         var startPos = pos,

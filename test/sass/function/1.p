@@ -1,0 +1,10 @@
+['function',
+  ['ident', 'f'],
+  ['functionBody',
+    ['declaration',
+      ['property',
+        ['variable',
+          ['ident', 'n']]],
+      ['propertyDelim'],
+      ['value',
+        ['number', '5']]]]]

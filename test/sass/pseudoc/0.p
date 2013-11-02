@@ -1,0 +1,3 @@
+['pseudoc',
+  ['interpolatedVariable',
+    ['ident', 'a']]]

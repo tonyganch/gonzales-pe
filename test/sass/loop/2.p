@@ -1,0 +1,33 @@
+['loop',
+  ['atkeyword',
+    ['ident', 'each']],
+  ['s', ' '],
+  ['variable',
+    ['ident', 'animal']],
+  ['s', ' '],
+  ['ident', 'in'],
+  ['s', ' '],
+  ['ident', 'puma'],
+  ['operator', ','],
+  ['s', ' '],
+  ['ident', 'egret'],
+  ['s', '
+'],
+  ['block',
+    ['s', '  '],
+    ['ruleset',
+      ['selector',
+        ['simpleselector',
+          ['ident', 'a'],
+          ['s', '
+']]],
+      ['block',
+        ['s', '    '],
+        ['declaration',
+          ['property',
+            ['ident', 'p']],
+          ['propertyDelim'],
+          ['value',
+            ['ident', 'v']]]]]]]
+
+

@@ -1,0 +1,2 @@
+=nani
+  color:tomato

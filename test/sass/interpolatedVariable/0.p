@@ -1,0 +1,2 @@
+['interpolatedVariable',
+  ['ident', 'nani']]

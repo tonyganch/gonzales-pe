@@ -1,0 +1,2 @@
+@mixin nani
+  color:tomato

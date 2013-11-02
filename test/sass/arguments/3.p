@@ -1,0 +1,12 @@
+['arguments',
+  ['variable',
+    ['ident', 'v1']],
+  ['delim'],
+  ['s', ' '],
+  ['declaration',
+    ['property',
+      ['variable',
+        ['ident', 'v2']]],
+    ['propertyDelim'],
+    ['value',
+      ['ident', 'y']]]]

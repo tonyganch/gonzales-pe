@@ -1,0 +1,18 @@
+['mixin',
+  ['operator', '='],
+  ['s', ' '],
+  ['ident', 'nani'],
+  ['s', ' '],
+  ['arguments',
+    ['variable',
+      ['ident', 'v1']]],
+  ['s', '
+'],
+  ['block',
+    ['s', '  '],
+    ['declaration',
+      ['property',
+        ['ident', 'x']],
+      ['propertyDelim'],
+      ['value',
+        ['ident', 'y']]]]]
