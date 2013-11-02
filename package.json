@@ -1,7 +1,7 @@
 {
   "name": "gonzales-pe",
   "description": "Gonzales Preprocessor Edition (fast CSS parser)",
-  "version": "2.0.0-rc0",
+  "version": "2.0.0-rc1",
   "homepage": "http://github.com/tonyganch/gonzales-pe",
   "bugs": "http://github.com/tonyganch/gonzales-pe/issues",
   "license": "MIT",

@@ -1,7 +1,7 @@
 Gonzales is a fast CSS parser.    
 Gonzales PE is a rework with support of preprocessors.    
 
-Currently those are supported: SCSS.
+Currently those are supported: SCSS, LESS.
 
 For a plan of future work see [issue #4](https://github.com/tonyganch/gonzales-pe/issues/4).
 
