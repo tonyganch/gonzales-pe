@@ -50,7 +50,12 @@ for (var s = 0, sl = syntaxes.length; s < sl; s++) {
 
                     total++;
                     var params = {css: css, rule: rule, needInfo: true, syntax: syntax};
-                    var b = funcs[a](params).replace(/,\s\n/g, ',\n');
+                    try {
+                        var b = funcs[a](params).replace(/,\s\n/g, ',\n');
+                    } catch (e) {
+                        console.error('Error in file:', syntax + '/' + rule + '/' + k + '.' + a);
+                        throw e;
+                    }
                     var c = fs.readFileSync(ruleDir + '/' + k + '.' + a).toString().trim();
                     r = b === c;
                     r && okn++;
