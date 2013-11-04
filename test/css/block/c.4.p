@@ -3,6 +3,7 @@
   ['declaration',
     ['property',
       ['ident', 'p0']],
+    ['propertyDelim'],
     ['value',
       ['ident', 'v0'],
       ['commentML', 'test']]],
@@ -11,6 +12,7 @@
   ['declaration',
     ['property',
       ['ident', 'p1']],
+    ['propertyDelim'],
     ['value',
       ['ident', 'v1'],
       ['commentML', 'test']]]]

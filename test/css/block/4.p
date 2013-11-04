@@ -2,11 +2,13 @@
   ['declaration',
     ['property',
       ['ident', 'p0']],
+    ['propertyDelim'],
     ['value',
       ['ident', 'v0']]],
   ['decldelim'],
   ['declaration',
     ['property',
       ['ident', 'p1']],
+    ['propertyDelim'],
     ['value',
       ['ident', 'v1']]]]

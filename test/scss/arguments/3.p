@@ -7,5 +7,6 @@
     ['property',
       ['variable',
         ['ident', 'v2']]],
+    ['propertyDelim'],
     ['value',
       ['ident', 'y']]]]

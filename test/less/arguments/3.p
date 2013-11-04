@@ -3,6 +3,7 @@
     ['property',
       ['variable',
         ['ident', 'param1']]],
+    ['propertyDelim'],
     ['value',
       ['s', ' '],
       ['ident', 'red'],

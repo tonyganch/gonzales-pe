@@ -16,5 +16,6 @@
     ['declaration',
       ['property',
         ['ident', 'x']],
+      ['propertyDelim'],
       ['value',
         ['ident', 'y']]]]]

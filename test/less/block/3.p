@@ -8,6 +8,7 @@
     ['property',
       ['variable',
         ['ident', 'var']]],
+    ['propertyDelim'],
     ['value',
       ['s', ' '],
       ['ident', 'white']]],

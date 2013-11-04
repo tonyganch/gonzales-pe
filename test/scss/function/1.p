@@ -5,5 +5,6 @@
       ['property',
         ['variable',
           ['ident', 'n']]],
+      ['propertyDelim'],
       ['value',
         ['number', '5']]]]]

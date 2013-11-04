@@ -7,6 +7,7 @@
       ['property',
         ['variable',
           ['ident', 'color']]],
+      ['propertyDelim'],
       ['value',
         ['s', ' '],
         ['ident', 'tomato']]]],
@@ -15,6 +16,7 @@
     ['declaration',
       ['property',
         ['ident', 'color']],
+      ['propertyDelim'],
       ['value',
         ['variable',
           ['ident', 'color']]]]]]

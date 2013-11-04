@@ -16,6 +16,7 @@
         ['declaration',
           ['property',
             ['ident', 'opacity']],
+          ['propertyDelim'],
           ['value',
             ['s', ' '],
             ['number', '.5']]]]],
@@ -29,6 +30,7 @@
         ['declaration',
           ['property',
             ['ident', 'opacity']],
+          ['propertyDelim'],
           ['value',
             ['s', ' '],
             ['number', '1']]]]],
@@ -42,6 +44,7 @@
         ['declaration',
           ['property',
             ['ident', 'opacity']],
+          ['propertyDelim'],
           ['value',
             ['s', ' '],
             ['number', '.5']]]]]]]

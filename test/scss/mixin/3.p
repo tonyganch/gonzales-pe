@@ -13,6 +13,7 @@
       ['property',
         ['variable',
           ['ident', 'v2']]],
+      ['propertyDelim'],
       ['value',
         ['ident', 'y']]]],
   ['s', ' '],
@@ -20,6 +21,7 @@
     ['declaration',
       ['property',
         ['ident', 'x']],
+      ['propertyDelim'],
       ['value',
         ['variable',
           ['ident', 'v2']]]]]]

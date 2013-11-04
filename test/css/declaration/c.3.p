@@ -4,6 +4,7 @@
     ['s', '  '],
     ['commentML', 'test'],
     ['s', '  ']],
+  ['propertyDelim'],
   ['value',
     ['s', '  '],
     ['commentML', 'test'],

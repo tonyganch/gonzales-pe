@@ -8,6 +8,7 @@
     ['declaration',
       ['property',
         ['ident', 'color']],
+      ['propertyDelim'],
       ['value',
         ['variable',
           ['ident', 'color']]]]]]

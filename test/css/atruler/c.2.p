@@ -33,6 +33,7 @@
           ['property',
             ['ident', 'p'],
             ['commentML', 'test']],
+          ['propertyDelim'],
           ['value',
             ['commentML', 'test'],
             ['ident', 'v'],

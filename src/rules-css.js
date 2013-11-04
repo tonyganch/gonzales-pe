@@ -805,7 +805,7 @@ syntax.css = {
         if (l = this.checkProperty(i)) i += l;
         else return 0;
 
-        if (i < tokensLength && tokens[i].type === TokenType.Colon) i++;
+        if (l = this.checkPropertyDelim(i)) i++;
         else return 0;
 
         if (l = this.checkValue(i)) i += l;
@@ -820,10 +820,10 @@ syntax.css = {
      */
     getDeclaration: function() {
         var startPos = pos,
-            x = [NodeType.DeclarationType, this.getProperty()];
+            x = [NodeType.DeclarationType];
 
-        pos++;
-
+        x.push(this.getProperty());
+        x.push(this.getPropertyDelim());
         x.push(this.getValue());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
@@ -1722,6 +1722,28 @@ syntax.css = {
         x.push(this.getIdent());
 
         x = x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    },
+
+    /**
+     * Check if token is a colon
+     * @param {Number} i Token's index number
+     * @returns {Number} `1` if token is a colon, otherwise `0`
+     */
+    checkPropertyDelim: function(i) {
+        return i < tokensLength && tokens[i].type === TokenType.Colon ? 1 : 0;
+    },
+
+    /**
+     * Get node with a colon
+     * @returns {Array} `['propertyDelim']`
+     */
+    getPropertyDelim: function() {
+        var startPos = pos,
+            x = [NodeType.PropertyDelimType];
+
+        pos++;
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     },

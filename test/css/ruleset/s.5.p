@@ -10,6 +10,7 @@
     ['declaration',
       ['property',
         ['ident', 'color']],
+      ['propertyDelim'],
       ['value',
         ['ident', 'red']]],
     ['decldelim'],

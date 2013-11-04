@@ -19,6 +19,7 @@
           ['declaration',
             ['property',
               ['ident', 'p']],
+            ['propertyDelim'],
             ['value',
               ['s', ' '],
               ['ident', 'v']]],
