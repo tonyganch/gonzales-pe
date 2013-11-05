@@ -2,10 +2,10 @@
   ['atrules',
     ['atkeyword',
       ['ident', 'test0']]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', '
 '],
   ['atrules',
     ['atkeyword',
       ['ident', 'test1']]],
-  ['decldelim']]
+  ['declDelim']]

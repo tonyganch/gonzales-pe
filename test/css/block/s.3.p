@@ -7,5 +7,5 @@
     ['value',
       ['ident', 'v'],
       ['s', '  ']]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', '  ']]

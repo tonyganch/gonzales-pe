@@ -10,4 +10,4 @@
       ['operator', ','],
       ['s', ' '],
       ['ident', 'blue']]],
-  ['decldelim']]
+  ['declDelim']]

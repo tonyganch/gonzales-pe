@@ -19,7 +19,7 @@
         ['s', '  '],
         ['ident', 'v0'],
         ['s', '  ']]],
-    ['decldelim'],
+    ['declDelim'],
     ['s', '  '],
     ['declaration',
       ['property',

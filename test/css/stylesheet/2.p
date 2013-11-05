@@ -2,4 +2,4 @@
   ['atrules',
     ['atkeyword',
       ['ident', 'test']]],
-  ['decldelim']]
+  ['declDelim']]

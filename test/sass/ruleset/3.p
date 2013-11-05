@@ -15,7 +15,7 @@
       ['propertyDelim'],
       ['value',
         ['ident', 'v0']]],
-    ['decldelim'],
+    ['declDelim'],
     ['s', '  '],
     ['declaration',
       ['property',

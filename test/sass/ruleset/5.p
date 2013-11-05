@@ -13,7 +13,7 @@
       ['propertyDelim'],
       ['value',
         ['ident', 'red']]],
-    ['decldelim'],
+    ['declDelim'],
     ['s', '    '],
     ['filter',
       ['property',

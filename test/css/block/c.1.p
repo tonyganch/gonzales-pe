@@ -1,4 +1,4 @@
 ['block',
   ['commentML', 'test'],
-  ['decldelim'],
+  ['declDelim'],
   ['commentML', 'test']]

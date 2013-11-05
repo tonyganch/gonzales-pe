@@ -5,4 +5,4 @@
     ['s', ' '],
     ['simpleselector',
       ['ident', 'nani']]],
-  ['decldelim']]
+  ['declDelim']]

@@ -11,7 +11,7 @@
         ['propertyDelim'],
         ['value',
           ['ident', 'b']]]]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', ' '],
   ['include',
     ['atkeyword',
@@ -20,4 +20,4 @@
     ['simpleselector',
       ['class',
         ['ident', 'nani']]]],
-  ['decldelim']]
+  ['declDelim']]

@@ -17,6 +17,6 @@
             ['raw', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)'],
             ['s', ' ']],
           ['important']]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]]]

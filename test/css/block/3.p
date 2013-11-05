@@ -5,4 +5,4 @@
     ['propertyDelim'],
     ['value',
       ['ident', 'v']]],
-  ['decldelim']]
+  ['declDelim']]

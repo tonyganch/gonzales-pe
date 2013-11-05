@@ -98,7 +98,7 @@
             this.checkVariable(i) ||
             this.checkSC(i) ||
             this.checkDelim(i) ||
-            this.checkDecldelim(i) ||
+            this.checkDeclDelim(i) ||
             this.checkString(i) ||
             this.checkPercentage(i) ||
             this.checkDimension(i) ||
@@ -117,7 +117,7 @@
         else if (this.checkVariable(pos)) return this.getVariable();
         else if (this.checkSC(pos)) return this.getSC();
         else if (this.checkDelim(pos)) return this.getDelim();
-        else if (this.checkDecldelim(pos)) return this.getDecldelim();
+        else if (this.checkDeclDelim(pos)) return this.getDeclDelim();
         else if (this.checkString(pos)) return this.getString();
         else if (this.checkPercentage(pos)) return this.getPercentage();
         else if (this.checkDimension(pos)) return this.getDimension();
@@ -151,7 +151,7 @@
 
         i += l;
 
-        if (i < tokensLength && (l = this.checkDecldelim(i))) i += l;
+        if (i < tokensLength && (l = this.checkDeclDelim(i))) i += l;
         else return 0;
 
         if (l = this.checkSC(i)) i += l;
@@ -193,7 +193,7 @@
 
         return sc
             .concat([x])
-            .concat([this.getDecldelim()])
+            .concat([this.getDeclDelim()])
             .concat(this.getSC());
     };
 
@@ -1123,7 +1123,7 @@
         while (i < tokensLength) {
             if (l = this.checkSC(i) ||
                 this.checkDeclaration(i) ||
-                this.checkDecldelim(i) ||
+                this.checkDeclDelim(i) ||
                 this.checkInclude(i) ||
                 this.checkMixin(i) ||
                 this.checkLoop(i) ||
@@ -1151,7 +1151,7 @@
             else if (this.checkLoop(pos)) x.push(this.getLoop());
             else if (this.checkAtrule(pos)) x.push(this.getAtrule());
             else if (this.checkDeclaration(pos)) x.push(this.getDeclaration());
-            else if (this.checkDecldelim(pos)) x.push(this.getDecldelim());
+            else if (this.checkDeclDelim(pos)) x.push(this.getDeclDelim());
             else throwError();
         }
 

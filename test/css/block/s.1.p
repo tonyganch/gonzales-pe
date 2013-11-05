@@ -1,4 +1,4 @@
 ['block',
   ['s', '  '],
-  ['decldelim'],
+  ['declDelim'],
   ['s', '  ']]

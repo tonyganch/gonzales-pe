@@ -7,7 +7,7 @@
     ['propertyDelim'],
     ['value',
       ['ident', 'v1']]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', ' '],
   ['commentSL', ' comment'],
   ['s', '

@@ -15,7 +15,7 @@
         ['value',
           ['s', ' '],
           ['ident', 'red']]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]],
   ['s', '
@@ -37,6 +37,6 @@
         ['value',
           ['s', ' '],
           ['ident', 'blue']]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]]]

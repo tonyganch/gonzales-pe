@@ -12,6 +12,6 @@
     ['value',
       ['s', ' '],
       ['ident', 'white']]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', '
 ']]

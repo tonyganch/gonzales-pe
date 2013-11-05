@@ -16,6 +16,6 @@
           ['progid',
             ['s', ' '],
             ['raw', 'progid:DXImageTransform.Microsoft.gradient (startColorstr=#33CCCCCC, endColorstr=#33CCCCCC)']]]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]]]

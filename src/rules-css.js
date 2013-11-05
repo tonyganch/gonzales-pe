@@ -531,7 +531,7 @@ syntax.css = {
 
         i += l;
 
-        if (i < tokensLength && (l = this.checkDecldelim(i))) i += l;
+        if (i < tokensLength && (l = this.checkDeclDelim(i))) i += l;
         else return 0;
 
         if (l = this.checkSC(i)) i += l;
@@ -541,7 +541,7 @@ syntax.css = {
     },
 
     /**
-     * sc*:s0 (atrule | ruleset | filter | declaration):x decldelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
+     * sc*:s0 (atrule | ruleset | filter | declaration):x declDelim:y sc*:s1 -> this.concat(s0, [x], [y], s1)
      * @returns {Array}
      */
     getBlockdecl1: function() {
@@ -562,7 +562,7 @@ syntax.css = {
 
         return sc
             .concat([x])
-            .concat([this.getDecldelim()])
+            .concat([this.getDeclDelim()])
             .concat(this.getSC());
     },
 
@@ -622,7 +622,7 @@ syntax.css = {
 
         if (l = this.checkSC(i)) i += l;
 
-        if (l = this.checkDecldelim(i)) i += l;
+        if (l = this.checkDeclDelim(i)) i += l;
         else return 0;
 
         if (l = this.checkSC(i)) i += l;
@@ -631,12 +631,12 @@ syntax.css = {
     },
 
     /**
-     * @returns {Array} `[s0, ['decldelim'], s1]` where `s0` and `s1` are
+     * @returns {Array} `[s0, ['declDelim'], s1]` where `s0` and `s1` are
      *      are optional whitespaces.
      */
     getBlockdecl3: function() {
         return this.getSC()
-            .concat([this.getDecldelim()])
+            .concat([this.getDeclDelim()])
             .concat(this.getSC());
     },
 
@@ -835,17 +835,17 @@ syntax.css = {
      * @param {Number} i Token's index number
      * @returns {Number} `1` if token is a semicolon, otherwise `0`
      */
-    checkDecldelim: function(i) {
+    checkDeclDelim: function(i) {
         return i < tokensLength && tokens[i].type === TokenType.Semicolon ? 1 : 0;
     },
 
     /**
      * Get node with a semicolon
-     * @returns {Array} `['decldelim']`
+     * @returns {Array} `['declDelim']`
      */
-    getDecldelim: function() {
+    getDeclDelim: function() {
         var startPos = pos,
-            x = [NodeType.DecldelimType];
+            x = [NodeType.DeclDelimType];
 
         pos++;
 
@@ -2086,7 +2086,7 @@ syntax.css = {
         // Check every token:
         while (i < tokensLength) {
             if (l = this.checkSC(i) ||
-                this.checkDecldelim(i) ||
+                this.checkDeclDelim(i) ||
                 this.checkAtrule(i) ||
                 this.checkRuleset(i) ||
                 this.checkUnknown(i)) i += l;
@@ -2108,7 +2108,7 @@ syntax.css = {
             if (this.checkSC(pos)) x = x.concat(this.getSC());
             else if (this.checkRuleset(pos)) x.push(this.getRuleset());
             else if (this.checkAtrule(pos)) x.push(this.getAtrule());
-            else if (this.checkDecldelim(pos)) x.push(this.getDecldelim());
+            else if (this.checkDeclDelim(pos)) x.push(this.getDeclDelim());
             else if (this.checkUnknown(pos)) x.push(this.getUnknown());
             else throwError();
         }

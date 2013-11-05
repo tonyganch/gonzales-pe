@@ -5,7 +5,7 @@
   ['arguments',
     ['variable',
       ['ident', 'foo']],
-    ['decldelim'],
+    ['declDelim'],
     ['s', ' '],
     ['declaration',
       ['property',

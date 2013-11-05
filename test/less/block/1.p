@@ -2,4 +2,4 @@
   ['include',
     ['class',
       ['ident', 'nani']]],
-  ['decldelim']]
+  ['declDelim']]

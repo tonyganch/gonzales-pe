@@ -21,7 +21,7 @@ function astToCSS(options) {
         },
         _m_primitive = {
             'cdc': 'cdc', 'cdo': 'cdo',
-            'decldelim': syntax === 'sass' ? '\n' : ';',
+            'declDelim': syntax === 'sass' ? '\n' : ';',
             'delim': ',',
             'namespace': '|', 'parentselector': '&', 'propertyDelim' : ':'
         };

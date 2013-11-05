@@ -127,7 +127,7 @@
      * @param {Number} i Token's index number
      * @returns {Number} `1` if token is a semicolon, otherwise `0`
      */
-    sass.checkDecldelim = function(i) {
+    sass.checkDeclDelim = function(i) {
         if (i >= tokensLength) return 0;
 
         return (tokens[i].type === TokenType.Newline ||
@@ -153,7 +153,7 @@
 
         tokens[start].last_progid = i;
 
-        if (this.checkDecldelim(i)) return i - start;
+        if (this.checkDeclDelim(i)) return i - start;
 
         if (i < tokensLength && (l = this.checkSC(i))) i += l;
 
@@ -174,7 +174,7 @@
             x.push(this.getProgid());
         }
 
-        if (this.checkDecldelim(pos)) return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        if (this.checkDeclDelim(pos)) return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
 
         if (this.checkSC(pos)) x = x.concat(this.getSC());
 
@@ -602,7 +602,7 @@
         while (i < tokensLength) {
             if (tokens[i].ln !== ln) break;
 
-            if ((l = this.checkDecldelim(i) && this.checkBlock(i + l)) || this.checkSC(i)) i += l;
+            if ((l = this.checkDeclDelim(i) && this.checkBlock(i + l)) || this.checkSC(i)) i += l;
 
             if (l = this.checkSimpleSelector(i) || this.checkDelim(i))  i += l;
             else break;
@@ -625,7 +625,7 @@
         while (pos <= selector_end) {
             if (tokens[pos].ln !== ln) break;
 
-            if ((l = this.checkDecldelim(pos)) && this.checkBlock(pos + l)) x.push(this.getDecldelim());
+            if ((l = this.checkDeclDelim(pos)) && this.checkBlock(pos + l)) x.push(this.getDeclDelim());
             else if (this.checkSC(pos)) x = x.concat(this.getSC());
 
             x.push(this.checkDelim(pos) ? this.getDelim() : this.getSimpleSelector());
@@ -687,7 +687,7 @@
             l;
 
         while (i < tokensLength) {
-            if (this.checkDecldelim(i)) break;
+            if (this.checkDeclDelim(i)) break;
             if (l = this._checkValue(i)) i += l;
             if (!l || this.checkBlock(i - l)) break;
         }
@@ -706,7 +706,7 @@
         while (pos < tokensLength) {
             _pos = pos;
 
-            if (this.checkDecldelim(pos)) break;
+            if (this.checkDeclDelim(pos)) break;
 
             if (!this._checkValue(pos)) break;
             t = this._getValue();

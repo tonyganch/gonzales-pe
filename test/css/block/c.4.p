@@ -7,7 +7,7 @@
     ['value',
       ['ident', 'v0'],
       ['commentML', 'test']]],
-  ['decldelim'],
+  ['declDelim'],
   ['commentML', 'test'],
   ['declaration',
     ['property',

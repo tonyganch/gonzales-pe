@@ -23,7 +23,7 @@
             ['value',
               ['s', ' '],
               ['ident', 'v']]],
-          ['decldelim'],
+          ['declDelim'],
           ['s', '
     ']]],
       ['s', '

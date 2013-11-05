@@ -333,7 +333,7 @@ color: red
     ['ident', 'red']]]
 ```
 
-#### decldelim
+#### declDelim
 
 Declaration delimiter in block: `;`.
 
@@ -349,7 +349,7 @@ x {a: b; c: d}
     ['value',
       ['s', ' '],
       ['ident', 'b']]],
-  ['decldelim'],
+  ['declDelim'],
   ['s', ' '],
   ['declaration',
     ['property',

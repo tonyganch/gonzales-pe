@@ -6,7 +6,7 @@
   ['delim'],
   ['s', ' '],
   ['number', '3'],
-  ['decldelim'],
+  ['declDelim'],
   ['s', ' '],
   ['ident', 'something'],
   ['delim'],

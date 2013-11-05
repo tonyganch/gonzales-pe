@@ -6,4 +6,4 @@
   ['delim'],
   ['s', ' '],
   ['number', '3'],
-  ['decldelim']]
+  ['declDelim']]

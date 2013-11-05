@@ -13,7 +13,7 @@
         ['propertyDelim'],
         ['value',
           ['ident', 'v']]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]],
   ['s', '
@@ -43,7 +43,7 @@
             ['propertyDelim'],
             ['value',
               ['ident', 'v']]],
-          ['decldelim'],
+          ['declDelim'],
           ['s', '
     ']]],
       ['s', '
@@ -67,7 +67,7 @@
             ['value',
               ['s', ' '],
               ['ident', 'v']]],
-          ['decldelim'],
+          ['declDelim'],
           ['s', '
     ']]],
       ['s', '
@@ -87,7 +87,7 @@
             ['propertyDelim'],
             ['value',
               ['ident', 'v']]],
-          ['decldelim'],
+          ['declDelim'],
           ['s', '
     ']]],
       ['s', '
@@ -109,6 +109,6 @@
         ['propertyDelim'],
         ['value',
           ['ident', 'v']]],
-      ['decldelim'],
+      ['declDelim'],
       ['s', '
 ']]]]
