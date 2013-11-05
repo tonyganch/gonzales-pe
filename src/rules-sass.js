@@ -29,6 +29,24 @@
     };
 
     /**
+     * Get node with a multiline comment
+     * @returns {Array} `['commentML', x]` where `x`
+     *      is the comment's text (without `/*`).
+     */
+    sass.getCommentML = function() {
+        var startPos = pos,
+            s = tokens[pos].value.substring(2),
+            l = s.length,
+            x;
+
+        pos++;
+
+        x = [NodeType.CommentMLType, s];
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
      * Check if token is part of a declaration (property-value pair)
      * @param {Number} i Token's index number
      * @returns {Number} Length of the declaration
@@ -721,6 +739,33 @@
     };
 
     /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    sass._checkValue = function(i) {
+        return this.checkS(i) ||
+            this.checkCommentML(i) ||
+            this.checkCommentSL(i) ||
+            this.checkVhash(i) ||
+            this.checkAny(i) ||
+            this.checkOperator(i) ||
+            this.checkImportant(i);
+    };
+
+    /**
+     * @returns {Array}
+     */
+    sass._getValue = function() {
+        if (this.checkS(pos)) return this.getS();
+        if (this.checkCommentML(pos)) return this.getCommentML();
+        if (this.checkCommentSL(pos)) return this.getCommentSL();
+        else if (this.checkVhash(pos)) return this.getVhash();
+        else if (this.checkAny(pos)) return this.getAny();
+        else if (this.checkOperator(pos)) return this.getOperator();
+        else if (this.checkImportant(pos)) return this.getImportant();
+    };
+
+    /**
      * Mark whitespaces and comments
      */
     sass.markSC = function() {
@@ -832,6 +877,93 @@
         while (blocks.length > 0) {
             tokens[blocks.pop()].block_end = i - 1;
         }
+    };
+
+
+    /**
+     * Parse a multiline comment
+     * @param {string} css Unparsed part of CSS string
+     */
+    sass.parseMLComment = function(css) {
+        var start = pos;
+
+        // Get current indent level:
+        var il = 0;
+        for (var _pos = pos - 1; _pos > -1; _pos--) {
+            // TODO: Can be tabs:
+            if (css.charAt(_pos) === ' ') il++;
+            else break;
+        }
+
+        for (pos = pos + 2; pos < css.length; pos++) {
+            if (css.charAt(pos) === '\n') {
+                // Get new line's indent level:
+                var _il = 0;
+                for (var _pos = pos + 1; _pos < css.length; _pos++) {
+                    if (css.charAt(_pos) === ' ') _il++;
+                    else break;
+                }
+
+                if (_il > il) {
+                    pos = _pos;
+                } else break;
+            }
+        }
+
+        // Add full comment (including `/*`) to the list of tokens:
+        pushToken(TokenType.CommentML, css.substring(start, pos + 1));
+    };
+
+    /**
+     * Parse a single line comment
+     * @param {string} css Unparsed part of CSS string
+     */
+    sass.parseSLComment = function(css) {
+        var start = pos;
+
+        // Check if comment is the only token on the line, and if so,
+        // get current indent level:
+        var il = 0;
+        var onlyToken = false;
+        for (var _pos = pos - 1; _pos > -1; _pos--) {
+            // TODO: Can be tabs:
+            if (css.charAt(_pos) === ' ') il++;
+            else if (css.charAt(_pos) === '\n') {
+                onlyToken = true;
+                break;
+            } else break;
+        }
+        if (_pos === -1) onlyToken = true;
+
+        // Read the string until we meet comment end.
+        // Since we already know first 2 characters (`//`), start reading
+        // from `pos + 2`:
+        if (!onlyToken) {
+            for (pos = pos + 2; pos < css.length; pos++) {
+                if (css.charAt(pos) === '\n' || css.charAt(pos) === '\r') {
+                    break;
+                }
+            }
+        } else {
+            for (pos = pos + 2; pos < css.length; pos++) {
+                if (css.charAt(pos) === '\n') {
+                    // Get new line's indent level:
+                    var _il = 0;
+                    for (var _pos = pos + 1; _pos < css.length; _pos++) {
+                        if (css.charAt(_pos) === ' ') _il++;
+                        else break;
+                    }
+
+                    if (_il > il) {
+                        pos = _pos;
+                    } else break;
+                }
+            }
+        }
+
+        // Add comment (including `//` and line break) to the list of tokens:
+        pushToken(TokenType.CommentSL, css.substring(start, pos));
+        pos--;
     };
 
     syntaxes.sass = sass;

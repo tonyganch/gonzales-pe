@@ -68,7 +68,7 @@ function astToCSS(options) {
             return '.' + _t(t[hasInfo? 2 : 1]);
         },
         'commentML': function (t) {
-            return '/*' + t[hasInfo? 2 : 1] + '*/';
+            return '/*' + t[hasInfo? 2 : 1] + (syntax === 'sass' ? '' : '*/');
         },
         'commentSL': function (t) {
             return '/' + '/' + t[hasInfo? 2 : 1];
