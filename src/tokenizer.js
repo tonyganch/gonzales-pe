@@ -2,11 +2,7 @@ var getTokens = (function() {
 
     var Punctuation,  // punctuation marks
         urlMode = false,
-        blockMode = 0,
-        tokens = [], // list of tokens
-        pos, // position of current character in a string
-        tn = 0, // token number
-        ln = 1; // line number
+        blockMode = 0;
 
     Punctuation = {
         ' ': TokenType.Space,
@@ -55,127 +51,76 @@ var getTokens = (function() {
     }
 
     /**
-     * Add a token to the token list
-     * @param {string} type
-     * @param {string} value
-     */
-    function pushToken(type, value) {
-        tokens.push({ tn: tn++, ln: ln, type: type, value: value });
-    }
-
-    /**
      * Parse spaces
-     * @param {string} s Unparsed part of CSS string
+     * @param {string} css Unparsed part of CSS string
      */
-    function parseSpaces(s) {
+    function parseSpaces(css) {
         var start = pos;
 
         // Read the string until we meet a non-space character:
-        for (; pos < s.length; pos++) {
-            if (s.charAt(pos) !== ' ') break;
+        for (; pos < css.length; pos++) {
+            if (css.charAt(pos) !== ' ') break;
         }
 
         // Add a substring containing only spaces to tokens:
-        pushToken(TokenType.Space, s.substring(start, pos));
-        pos--;
-    }
-
-    /**
-     * Parse a multiline comment
-     * @param {string} s Unparsed part of CSS string
-     */
-    function parseMLComment(s) {
-        var start = pos;
-
-        // Read the string until we meet `*/`.
-        // Since we already know first 2 characters (`/*`), start reading
-        // from `pos + 2`:
-        for (pos = pos + 2; pos < s.length; pos++) {
-            if (s.charAt(pos) === '*' && s.charAt(pos + 1) === '/') {
-                pos++;
-                break;
-            }
-        }
-
-        // Add full comment (including `/*` and `*/`) to the list of tokens:
-        pushToken(TokenType.CommentML, s.substring(start, pos + 1));
-    }
-
-    /**
-     * Parse a single line comment
-     * @param {string} s Unparsed part of CSS string
-     */
-    function parseSLComment(s) {
-        var start = pos;
-
-        // Read the string until we meet line break.
-        // Since we already know first 2 characters (`//`), start reading
-        // from `pos + 2`:
-        for (pos = pos + 2; pos < s.length; pos++) {
-            if (s.charAt(pos) === '\n' || s.charAt(pos) === '\r') {
-                break;
-            }
-        }
-
-        // Add comment (including `//` and line break) to the list of tokens:
-        pushToken(TokenType.CommentSL, s.substring(start, pos));
+        pushToken(TokenType.Space, css.substring(start, pos));
         pos--;
     }
 
     /**
      * Parse a string within quotes
-     * @param {string} s Unparsed part of CSS string
+     * @param {string} css Unparsed part of CSS string
      * @param {string} q Quote (either `'` or `"`)
      */
-    function parseString(s, q) {
+    function parseString(css, q) {
         var start = pos;
 
         // Read the string until we meet a matching quote:
-        for (pos = pos + 1; pos < s.length; pos++) {
+        for (pos = pos + 1; pos < css.length; pos++) {
             // Skip escaped quotes:
-            if (s.charAt(pos) === '\\') pos++;
-            else if (s.charAt(pos) === q) break;
+            if (css.charAt(pos) === '\\') pos++;
+            else if (css.charAt(pos) === q) break;
         }
 
         // Add the string (including quotes) to tokens:
-        pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ, s.substring(start, pos + 1));
+        pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ, css.substring(start, pos + 1));
     }
 
     /**
      * Parse numbers
-     * @param {string} s Unparsed part of CSS string
+     * @param {string} css Unparsed part of CSS string
      */
-    function parseDecimalNumber(s) {
+    function parseDecimalNumber(css) {
         var start = pos;
 
         // Read the string until we meet a character that's not a digit:
-        for (; pos < s.length; pos++) {
-            if (!isDecimalDigit(s.charAt(pos))) break;
+        for (; pos < css.length; pos++) {
+            if (!isDecimalDigit(css.charAt(pos))) break;
         }
 
         // Add the number to tokens:
-        pushToken(TokenType.DecimalNumber, s.substring(start, pos));
+        pushToken(TokenType.DecimalNumber, css.substring(start, pos));
         pos--;
     }
 
     /**
      * Parse identifier
-     * @param {string} s Unparsed part of CSS string
+     * @param {string} css Unparsed part of CSS string
      */
-    function parseIdentifier(s) {
+    function parseIdentifier(css) {
         var start = pos;
 
         // Skip all opening slashes:
-        while (s.charAt(pos) === '/') pos++;
+        while (css.charAt(pos) === '/') pos++;
 
         // Read the string until we meet a punctuation mark:
-        for (; pos < s.length; pos++) {
+        for (; pos < css.length; pos++) {
             // Skip all '\':
-            if (s.charAt(pos) === '\\') pos++;
-            else if (s.charAt(pos) in Punctuation) break;
+            if (css.charAt(pos) === '\\') pos++;
+            else if (css.charAt(pos) in Punctuation) break;
         }
 
-        var ident = s.substring(start, pos);
+        var ident = css.substring(start, pos);
 
         // Enter url mode if parsed substring is `url`:
         urlMode = urlMode || ident === 'url';
@@ -187,11 +132,11 @@ var getTokens = (function() {
 
     /**
      * Convert a CSS string to a list of tokens
-     * @param {string} s CSS string
+     * @param {string} css CSS string
      * @returns {Array} List of tokens
      * @private
      */
-    function _getTokens(s, syntax) {
+    function _getTokens(css, syntax) {
         var c, // current character
             cn; // next character
 
@@ -202,35 +147,31 @@ var getTokens = (function() {
         ln = 1;
 
         // Parse string, character by character:
-        for (pos = 0; pos < s.length; pos++) {
-            c = s.charAt(pos);
-            cn = s.charAt(pos + 1);
+        for (pos = 0; pos < css.length; pos++) {
+            c = css.charAt(pos);
+            cn = css.charAt(pos + 1);
 
             // If we meet `/*`, it's a start of a multiline comment.
             // Parse following characters as a multiline comment:
             if (c === '/' && cn === '*') {
-                parseMLComment(s);
+                s.parseMLComment(css);
             }
             // If we meet `//` and it is not a part of url:
             else if (!urlMode && c === '/' && cn === '/') {
-                if (syntax !== 'css') parseSLComment(s);
-                else {
-                    // If we're currently inside a block, treat `//` as a start
-                    // of identifier:
-                    if (blockMode > 0) parseIdentifier(s);
-                    // If we're currently not inside a block, treat `//` as
-                    // a start of a single line comment:
-                    else parseSLComment(s);
-                }
+                // If we're currently inside a block, treat `//` as a start
+                // of identifier. Else treat `//` as a start of a single-line
+                // comment:
+                if (syntax === 'css' && blockMode > 0) parseIdentifier(css);
+                else s.parseSLComment && s.parseSLComment(css);
             }
             // If current character is a double or single quote, it's a start
             // of a string:
             else if (c === '"' || c === "'") {
-                parseString(s, c);
+                parseString(css, c);
             }
             // If current character is a space:
             else if (c === ' ') {
-                parseSpaces(s)
+                parseSpaces(css)
             }
             // If current character is a punctuation mark:
             else if (c in Punctuation) {
@@ -243,15 +184,13 @@ var getTokens = (function() {
             }
             // If current character is a decimal digit:
             else if (isDecimalDigit(c)) {
-                parseDecimalNumber(s);
+                parseDecimalNumber(css);
             }
             // If current character is anything else:
             else {
-                parseIdentifier(s);
+                parseIdentifier(css);
             }
         }
-
-        return tokens;
     }
 
     return function(s, syntax) {

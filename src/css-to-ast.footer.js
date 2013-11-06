@@ -1,6 +1,5 @@
     return function(options) {
         var css, rule, syntax;
-        pos = 0;
 
         if (!options) throw new Error('Please, pass a string to parse');
 
@@ -16,8 +15,10 @@
 
         s = syntaxes[syntax];
 
-        tokens = getTokens(css, syntax);
+        getTokens(css, syntax);
         tokensLength = tokens.length;
+
+        pos = 0;
 
         // Mark paired brackets:
         s.markBrackets();

@@ -2485,5 +2485,47 @@ syntaxes.css = {
                     break;
             }
         }
+    },
+
+    /**
+     * Parse a multiline comment
+     * @param {string} css Unparsed part of CSS string
+     */
+    parseMLComment: function(css) {
+        var start = pos;
+
+        // Read the string until we meet `*/`.
+        // Since we already know first 2 characters (`/*`), start reading
+        // from `pos + 2`:
+        for (pos = pos + 2; pos < css.length; pos++) {
+            if (css.charAt(pos) === '*' && css.charAt(pos + 1) === '/') {
+                pos++;
+                break;
+            }
+        }
+
+        // Add full comment (including `/*` and `*/`) to the list of tokens:
+        pushToken(TokenType.CommentML, css.substring(start, pos + 1));
+    },
+
+    /**
+     * Parse a single line comment
+     * @param {string} css Unparsed part of CSS string
+     */
+    parseSLComment: function(css) {
+        var start = pos;
+
+        // Read the string until we meet line break.
+        // Since we already know first 2 characters (`//`), start reading
+        // from `pos + 2`:
+        for (pos = pos + 2; pos < css.length; pos++) {
+            if (css.charAt(pos) === '\n' || css.charAt(pos) === '\r') {
+                break;
+            }
+        }
+
+        // Add comment (including `//` and line break) to the list of tokens:
+        pushToken(TokenType.CommentSL, css.substring(start, pos));
+        pos--;
     }
 };

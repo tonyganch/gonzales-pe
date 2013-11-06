@@ -7,7 +7,18 @@ var cssToAST = (function() {
         needInfo, // whether debug info is needed
         tokens, // list of tokens
         tokensLength, // number of tokens in the list
-        pos = 0; // position of current token in tokens' list
+        tn = 0, // token number
+        ln = 1, // line number
+        pos = 0; // position of current token in tokens' list or current character in a string
+
+    /**
+     * Add a token to the token list
+     * @param {string} type
+     * @param {string} value
+     */
+    function pushToken(type, value) {
+        tokens.push({ tn: tn++, ln: ln, type: type, value: value });
+    }
 
     /**
      * Stop parsing and display error
