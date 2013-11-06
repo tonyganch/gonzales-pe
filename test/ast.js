@@ -24,8 +24,11 @@ var css = 'div {$color: nani}',
     },
     ast = gonzales.cssToAST({css: css, syntax: syntax});
 
-    console.log("\n== Source string:\n", css);
+    console.log('\n== Source string:');
+    console.log(css);
 
-    console.log("\n== AST:\n", astToTree(ast));
+    console.log('\n== AST:');
+    console.log(astToTree(ast));
 
-    console.log("\n== Translated string:\n", gonzales.astToCSS({ast: ast, syntax: syntax}));
+    console.log('\n== Translated string:');
+    console.log(gonzales.astToCSS({ast: ast, syntax: syntax}));
