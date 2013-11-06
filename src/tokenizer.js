@@ -1,49 +1,3 @@
-var TokenType = {
-    StringSQ: 'StringSQ',
-    StringDQ: 'StringDQ',
-    CommentML: 'CommentML',
-    CommentSL: 'CommentSL',
-
-    Newline: 'Newline',
-    Space: 'Space',
-    Tab: 'Tab',
-
-    ExclamationMark: 'ExclamationMark',         // !
-    QuotationMark: 'QuotationMark',             // "
-    NumberSign: 'NumberSign',                   // #
-    DollarSign: 'DollarSign',                   // $
-    PercentSign: 'PercentSign',                 // %
-    Ampersand: 'Ampersand',                     // &
-    Apostrophe: 'Apostrophe',                   // '
-    LeftParenthesis: 'LeftParenthesis',         // (
-    RightParenthesis: 'RightParenthesis',       // )
-    Asterisk: 'Asterisk',                       // *
-    PlusSign: 'PlusSign',                       // +
-    Comma: 'Comma',                             // ,
-    HyphenMinus: 'HyphenMinus',                 // -
-    FullStop: 'FullStop',                       // .
-    Solidus: 'Solidus',                         // /
-    Colon: 'Colon',                             // :
-    Semicolon: 'Semicolon',                     // ;
-    LessThanSign: 'LessThanSign',               // <
-    EqualsSign: 'EqualsSign',                   // =
-    GreaterThanSign: 'GreaterThanSign',         // >
-    QuestionMark: 'QuestionMark',               // ?
-    CommercialAt: 'CommercialAt',               // @
-    LeftSquareBracket: 'LeftSquareBracket',     // [
-    ReverseSolidus: 'ReverseSolidus',           // \
-    RightSquareBracket: 'RightSquareBracket',   // ]
-    CircumflexAccent: 'CircumflexAccent',       // ^
-    LowLine: 'LowLine',                         // _
-    LeftCurlyBracket: 'LeftCurlyBracket',       // {
-    VerticalLine: 'VerticalLine',               // |
-    RightCurlyBracket: 'RightCurlyBracket',     // }
-    Tilde: 'Tilde',                             // ~
-
-    Identifier: 'Identifier',
-    DecimalNumber: 'DecimalNumber'
-};
-
 var getTokens = (function() {
 
     var Punctuation,  // punctuation marks
@@ -98,81 +52,6 @@ var getTokens = (function() {
      */
     function isDecimalDigit(c) {
         return '0123456789'.indexOf(c) >= 0;
-    }
-
-    /**
-     * Convert a CSS string to a list of tokens
-     * @param {string} s CSS string
-     * @returns {Array} List of tokens
-     * @private
-     */
-    function _getTokens(s, syntax) {
-        if (!s) return [];
-
-        // Reset counters:
-        tokens = [];
-        pos = 0;
-        tn = 0;
-        ln = 1;
-
-        var c, // current character
-            cn; // next character
-
-        // Parse string, character by character:
-        for (pos = 0; pos < s.length; pos++) {
-            c = s.charAt(pos);
-            cn = s.charAt(pos + 1);
-
-            // If we meet `/*`, it's a start of a multiline comment.
-            // Parse following characters as a multiline comment:
-            if (c === '/' && cn === '*') {
-                parseMLComment(s);
-            }
-            // If we meet `//` and it is not a part of url:
-            else if (!urlMode && c === '/' && cn === '/') {
-                if (syntax !== 'css') parseSLComment(s);
-                else {
-                    // If we're currently inside a block, treat `//` as a start
-                    // of identifier:
-                    if (blockMode > 0) parseIdentifier(s);
-                    // If we're currently not inside a block, treat `//` as
-                    // a start of a single line comment:
-                    else parseSLComment(s);
-                }
-            }
-            // If current character is a double or single quote, it's a start
-            // of a string:
-            else if (c === '"' || c === "'") {
-                parseString(s, c);
-            }
-            // If current character is a space:
-            else if (c === ' ') {
-                parseSpaces(s)
-            }
-            // If current character is a punctuation mark:
-            else if (c in Punctuation) {
-                // Add it to the list of tokens:
-                pushToken(Punctuation[c], c);
-                if (c === '\n' || c === '\r') ln++; // Go to next line
-                if (c === ')') urlMode = false; // exit url mode
-                if (c === '{') blockMode++; // enter a block
-                if (c === '}') blockMode--; // exit a block
-            }
-            // If current character is a decimal digit:
-            else if (isDecimalDigit(c)) {
-                parseDecimalNumber(s);
-            }
-            // If current character is anything else:
-            else {
-                parseIdentifier(s);
-            }
-        }
-
-        // Pair brackets:
-        mark();
-
-        if (syntax === 'sass') markBlocks();
-        return tokens;
     }
 
     /**
@@ -307,102 +186,75 @@ var getTokens = (function() {
     }
 
     /**
-     * Pair brackets
+     * Convert a CSS string to a list of tokens
+     * @param {string} s CSS string
+     * @returns {Array} List of tokens
+     * @private
      */
-    function mark() {
-        var ps = [], // parenthesis
-            sbs = [], // square brackets
-            cbs = [], // curly brackets
-            t; // current token
+    function _getTokens(s, syntax) {
+        var c, // current character
+            cn; // next character
 
-        // For every token in the token list, if we meet an opening (left)
-        // bracket, push its index number to a corresponding array.
-        // If we then meet a closing (right) bracket, look at the corresponding
-        // array. If there are any elements (records about previously met
-        // left brackets), take a token of the last left bracket (take
-        // the last index number from the array and find a token with
-        // this index number) and save right bracket's index as a reference:
-        for (var i = 0; i < tokens.length; i++) {
-            t = tokens[i];
-            switch(t.type) {
-                case TokenType.LeftParenthesis:
-                    ps.push(i);
-                    break;
-                case TokenType.RightParenthesis:
-                    if (ps.length) {
-                        t.left = ps.pop();
-                        tokens[t.left].right = i;
-                    }
-                    break;
-                case TokenType.LeftSquareBracket:
-                    sbs.push(i);
-                    break;
-                case TokenType.RightSquareBracket:
-                    if (sbs.length) {
-                        t.left = sbs.pop();
-                        tokens[t.left].right = i;
-                    }
-                    break;
-                case TokenType.LeftCurlyBracket:
-                    cbs.push(i);
-                    break;
-                case TokenType.RightCurlyBracket:
-                    if (cbs.length) {
-                        t.left = cbs.pop();
-                        tokens[t.left].right = i;
-                    }
-                    break;
+        // Reset counters:
+        tokens = [];
+        pos = 0;
+        tn = 0;
+        ln = 1;
+
+        // Parse string, character by character:
+        for (pos = 0; pos < s.length; pos++) {
+            c = s.charAt(pos);
+            cn = s.charAt(pos + 1);
+
+            // If we meet `/*`, it's a start of a multiline comment.
+            // Parse following characters as a multiline comment:
+            if (c === '/' && cn === '*') {
+                parseMLComment(s);
             }
-        }
-    }
-
-    function markBlocks() {
-        var blocks = [],
-            currentLN = 1,
-            currentIL = 0,
-            prevIL = 0,
-            i = 0,
-            l = tokens.length,
-            iw;
-
-        for (; i != l; i++) {
-            if (!tokens[i - 1]) continue;
-
-            // Skip all tokens on current line:
-            if (tokens[i].ln == currentLN) continue;
-            else currentLN = tokens[i].ln;
-
-            // Get indent level:
-            prevIL = currentIL;
-            if (tokens[i].type !== TokenType.Space) currentIL = 0;
-            else {
-                // If we don't know ident width yet, count number of spaces:
-                if (!iw) iw = tokens[i].value.length;
-                prevIL = currentIL;
-                currentIL = tokens[i].value.length / iw;
-            }
-
-            // Decide whether it's block's start or end:
-            if (prevIL === currentIL) continue;
-            else if (currentIL > prevIL) {
-                blocks.push(i);
-                continue;
-            } else {
-                var il = prevIL;
-                while (blocks.length > 0 && il !== currentIL) {
-                    tokens[blocks.pop()].block_end = i - 1;
-                    il--;
+            // If we meet `//` and it is not a part of url:
+            else if (!urlMode && c === '/' && cn === '/') {
+                if (syntax !== 'css') parseSLComment(s);
+                else {
+                    // If we're currently inside a block, treat `//` as a start
+                    // of identifier:
+                    if (blockMode > 0) parseIdentifier(s);
+                    // If we're currently not inside a block, treat `//` as
+                    // a start of a single line comment:
+                    else parseSLComment(s);
                 }
             }
+            // If current character is a double or single quote, it's a start
+            // of a string:
+            else if (c === '"' || c === "'") {
+                parseString(s, c);
+            }
+            // If current character is a space:
+            else if (c === ' ') {
+                parseSpaces(s)
+            }
+            // If current character is a punctuation mark:
+            else if (c in Punctuation) {
+                // Add it to the list of tokens:
+                pushToken(Punctuation[c], c);
+                if (c === '\n' || c === '\r') ln++; // Go to next line
+                if (c === ')') urlMode = false; // exit url mode
+                if (c === '{') blockMode++; // enter a block
+                if (c === '}') blockMode--; // exit a block
+            }
+            // If current character is a decimal digit:
+            else if (isDecimalDigit(c)) {
+                parseDecimalNumber(s);
+            }
+            // If current character is anything else:
+            else {
+                parseIdentifier(s);
+            }
         }
 
-        while (blocks.length > 0) {
-            tokens[blocks.pop()].block_end = i - 1;
-        }
+        return tokens;
     }
 
     return function(s, syntax) {
-        syntax = syntax || 'css';
         return _getTokens(s, syntax);
     };
 

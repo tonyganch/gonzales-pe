@@ -1,4 +1,4 @@
-syntax.css = {
+syntaxes.css = {
     /**
      * @param {Number} i Token's index number
      * @returns {Number}
@@ -2435,5 +2435,55 @@ syntax.css = {
 
         if (ws !== -1) tokens[ws].ws_last = i - 1;
         if (sc !== -1) tokens[sc].sc_last = i - 1;
+    },
+
+    /**
+     * Pair brackets
+     */
+    markBrackets: function() {
+        var ps = [], // parenthesis
+            sbs = [], // square brackets
+            cbs = [], // curly brackets
+            t; // current token
+
+        // For every token in the token list, if we meet an opening (left)
+        // bracket, push its index number to a corresponding array.
+        // If we then meet a closing (right) bracket, look at the corresponding
+        // array. If there are any elements (records about previously met
+        // left brackets), take a token of the last left bracket (take
+        // the last index number from the array and find a token with
+        // this index number) and save right bracket's index as a reference:
+        for (var i = 0; i < tokens.length; i++) {
+            t = tokens[i];
+            switch(t.type) {
+                case TokenType.LeftParenthesis:
+                    ps.push(i);
+                    break;
+                case TokenType.RightParenthesis:
+                    if (ps.length) {
+                        t.left = ps.pop();
+                        tokens[t.left].right = i;
+                    }
+                    break;
+                case TokenType.LeftSquareBracket:
+                    sbs.push(i);
+                    break;
+                case TokenType.RightSquareBracket:
+                    if (sbs.length) {
+                        t.left = sbs.pop();
+                        tokens[t.left].right = i;
+                    }
+                    break;
+                case TokenType.LeftCurlyBracket:
+                    cbs.push(i);
+                    break;
+                case TokenType.RightCurlyBracket:
+                    if (cbs.length) {
+                        t.left = cbs.pop();
+                        tokens[t.left].right = i;
+                    }
+                    break;
+            }
+        }
     }
 };

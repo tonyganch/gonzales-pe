@@ -1,5 +1,5 @@
 (function() {
-    var sass = Object.create(syntax.scss);
+    var sass = Object.create(syntaxes.scss);
 
     /**
      * Check if token is part of a block (e.g. `{...}`).
@@ -789,5 +789,50 @@
         if (sc !== -1) tokens[sc].sc_last = i - 1;
     };
 
-    syntax.sass = sass;
+    sass.markBlocks = function() {
+        var blocks = [],
+            currentLN = 1,
+            currentIL = 0,
+            prevIL = 0,
+            i = 0,
+            l = tokens.length,
+            iw;
+
+        for (; i != l; i++) {
+            if (!tokens[i - 1]) continue;
+
+            // Skip all tokens on current line:
+            if (tokens[i].ln == currentLN) continue;
+            else currentLN = tokens[i].ln;
+
+            // Get indent level:
+            prevIL = currentIL;
+            if (tokens[i].type !== TokenType.Space) currentIL = 0;
+            else {
+                // If we don't know ident width yet, count number of spaces:
+                if (!iw) iw = tokens[i].value.length;
+                prevIL = currentIL;
+                currentIL = tokens[i].value.length / iw;
+            }
+
+            // Decide whether it's block's start or end:
+            if (prevIL === currentIL) continue;
+            else if (currentIL > prevIL) {
+                blocks.push(i);
+                continue;
+            } else {
+                var il = prevIL;
+                while (blocks.length > 0 && il !== currentIL) {
+                    tokens[blocks.pop()].block_end = i - 1;
+                    il--;
+                }
+            }
+        }
+
+        while (blocks.length > 0) {
+            tokens[blocks.pop()].block_end = i - 1;
+        }
+    };
+
+    syntaxes.sass = sass;
 })();

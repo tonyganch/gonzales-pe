@@ -3,9 +3,10 @@
 build:
 	@echo 'Creating temp files...'
 	@mkdir -p tmp
-	@cat src/css-to-ast.header.js > tmp/.css-to-ast.js
+	@cat src/css-to-ast.js > tmp/.css-to-ast.js
+	@cat src/types.js >> tmp/.css-to-ast.js
 	@cat src/tokenizer.js >> tmp/.css-to-ast.js
-	@cat src/css-to-ast.js >> tmp/.css-to-ast.js
+	@cat src/rules.js >> tmp/.css-to-ast.js
 	@cat src/rules-css.js >> tmp/.css-to-ast.js
 	@cat src/rules-scss.js >> tmp/.css-to-ast.js
 	@cat src/rules-sass.js >> tmp/.css-to-ast.js

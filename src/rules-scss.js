@@ -1,5 +1,5 @@
 (function() {
-    var scss = Object.create(syntax.css);
+    var scss = Object.create(syntaxes.css);
 
     /**
      * @param {Number} i Token's index number
@@ -1353,5 +1353,5 @@
         if (sc !== -1) tokens[sc].sc_last = i - 1;
     };
 
-    syntax.scss = scss;
+    syntaxes.scss = scss;
 })();
