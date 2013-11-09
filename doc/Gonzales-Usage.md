@@ -1,4 +1,4 @@
-### Gonzales CSSP usage
+### Gonzales usage
 
 #### 1. Sample
 
@@ -32,37 +32,39 @@ Result:
     a { color: red }
 
     == CSS -> AST:
-    ['stylesheet', 
-      ['ruleset', 
-        ['selector', 
-          ['simpleselector', 
-            ['ident', 'a'], 
-            ['s', ' ']]], 
-        ['block', 
-          ['s', ' '], 
-          ['declaration', 
-            ['property', 
-              ['ident', 'color']], 
-            ['value', 
-              ['s', ' '], 
-              ['ident', 'red'], 
+    ['stylesheet',
+      ['ruleset',
+        ['selector',
+          ['simpleselector',
+            ['ident', 'a'],
+            ['s', ' ']]],
+        ['block',
+          ['s', ' '],
+          ['declaration',
+            ['property',
+              ['ident', 'color']],
+            ['propertyDelim'],
+            ['value',
+              ['s', ' '],
+              ['ident', 'red'],
               ['s', ' ']]]]]]
 
     == AST':
-    ['stylesheet', 
-      ['ruleset', 
-        ['selector', 
-          ['simpleselector', 
-            ['ident', 'b'], 
-            ['s', ' ']]], 
-        ['block', 
-          ['s', ' '], 
-          ['declaration', 
-            ['property', 
-              ['ident', 'color']], 
-            ['value', 
-              ['s', ' '], 
-              ['ident', 'red'], 
+    ['stylesheet',
+      ['ruleset',
+        ['selector',
+          ['simpleselector',
+            ['ident', 'b'],
+            ['s', ' ']]],
+        ['block',
+          ['s', ' '],
+          ['declaration',
+            ['property',
+              ['ident', 'color']],
+            ['propertyDelim'],
+            ['value',
+              ['s', ' '],
+              ['ident', 'red'],
               ['s', ' ']]]]]]
 
     == AST' -> CSS:
@@ -86,18 +88,20 @@ gonzales.cssToAST({
   rule: rule,
   needInfo: true,
   syntax: 'scss'
-})
+});
 ```
 where:
 
 - `css` — a string with the CSS style;
-- `rule` —  a string with the token type (in case the style is not complete);
-- `needInfo` — whether to include info object into AST;
-- `syntax` — a string with syntax name (`css` is default).
+- `rule` —  a string with the token type in case the style is not complete
+  (`'stylesheet'` is default);
+- `needInfo` — whether to include info object into AST (`false` is default);
+- `syntax` — a string with syntax name (`css` is default, other supported
+  syntaxes are: `scss`, `sass` and `less`).
 
 Example 1: if you want to parse only *declaration*, you have to call:
 ```
-cssToAST({
+gonzales.cssToAST({
   css: 'color: red',
   rule: 'declaration'
 });
@@ -106,7 +110,15 @@ cssToAST({
 Example 2: in case the style is complete and you don't need an info object,
 the call is shortned to:
 ```
-cssToAST(src);
+gonzales.cssToAST(css);
+```
+
+Example 3: if you want to parse a sass file:
+```
+gonzales.cssToAST({
+    css: css,
+    syntax: 'sass'
+});
 ```
 
 ##### AST -> CSS

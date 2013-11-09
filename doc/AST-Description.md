@@ -1,12 +1,8 @@
-### 1. AST — Abstract Syntax Tree
+### 1. Gonzales AST — Abstract Syntax Tree
 
 If you don't know what AST is, first read [article at Wikipedia] (http://en.wikipedia.org/wiki/Abstract_syntax_tree).
 
-#### 1.1. Gonzales AST
-
-This AST format is compatible with [CSSP] (https://github.com/css/cssp).
-
-In general it looks like this:
+In general Gonzales AST looks like this:
 
     ['stylesheet',
       ['atrules', ..],
@@ -16,7 +12,7 @@ In general it looks like this:
         ['selector', ..]],
         ['block', ..]]
 
-#### 1.2. Known issues
+#### Known issues
 
 *operator* / *unary* — rather artificial division, in addition *unary* is
 misnamed. Utilities working with AST may need to handle both types of nodes
@@ -34,9 +30,8 @@ Node is a JavaScript array of the following type:
 
 Content can be other nodes or CSS source.
 
-In case `info` parameter was `true` when the stylesheet was parsed, the node
-includes info object. Now it only contains the token number and token's line
-number, but in the future there will be more information:
+In case `needInfo` parameter was `true`, the node includes info object.    
+It contains token's index number and token's line number:
 
     [{ ln: ln, tn: tn }, <- info object
      'token type',       <- required
@@ -45,7 +40,6 @@ number, but in the future there will be more information:
 ### 3. Node types
 
 In alphabetical order.
-
 
 #### arguments
 
@@ -109,6 +103,7 @@ Consists of:
     ['declaration',
       ['property',
         ['ident', 'p']],
+      ['propertyDelim'],
       ['value',
         ['ident', 'v']]]]]
 ```
@@ -145,13 +140,14 @@ Consists of:
         ['declaration',
           ['property',
             ['ident', 'p']],
+          ['propertyDelim'],
           ['value',
             ['ident', 'v']]]]]]]
 ```
 
 #### atrules
 
-Singleline @-rule.
+Single-line @-rule.
 
 Consists of:
 - *atkeyword* (@-rule identifier), and
@@ -202,7 +198,8 @@ Attribute selector operator: `=`, `~=`, `^=`, `$=`, `*=`, `|=`.
 
 #### block
 
-Part of the style in the braces.
+Part of the style in braces: `{...}`.    
+For `*.sass` files — code that will be compiled to a block.
 
 ```
 { color: red }
@@ -214,6 +211,7 @@ Part of the style in the braces.
   ['declaration',
     ['property',
       ['ident', 'color']],
+    ['propertyDelim'],
     ['value',
       ['s', ' '],
       ['ident', 'red'],
@@ -278,7 +276,7 @@ Multi-line comment.
 #### commentSL
 
 Single-line comment.
-Valid only for scss syntax.
+Valid for less, scss and sass.
 
 ```
 // comment
@@ -291,7 +289,7 @@ Valid only for scss syntax.
 #### condition
 
 Condition.
-Valid only for scss syntax.
+Valid for less, scss and sass.
 
 ```
 @if nani == panda
@@ -315,7 +313,8 @@ Valid only for scss syntax.
 Property/value pair.
 
 Consists of:
-- *property* and
+- *property*,
+- *propertyDelim* and
 - *value*
 
 mixed with spaces and comments.
@@ -328,6 +327,7 @@ color: red
 ['declaration',
   ['property',
     ['ident', 'color']],
+  ['propertyDelim'],
   ['value',
     ['s', ' '],
     ['ident', 'red']]]
@@ -335,7 +335,7 @@ color: red
 
 #### declDelim
 
-Declaration delimiter in block: `;`.
+Declaration delimiter in block: `\n` for sass, `;` for other syntaxes.
 
 ```
 x {a: b; c: d}
@@ -346,6 +346,7 @@ x {a: b; c: d}
   ['declaration',
     ['property',
       ['ident', 'a']],
+    ['propertyDelim'],
     ['value',
       ['s', ' '],
       ['ident', 'b']]],
@@ -354,6 +355,7 @@ x {a: b; c: d}
   ['declaration',
     ['property',
       ['ident', 'c']],
+    ['propertyDelim'],
     ['value',
       ['s', ' '],
       ['ident', 'd']]]]
@@ -362,7 +364,7 @@ x {a: b; c: d}
 #### default
 
 `!default` keyword.
-Valid only for scss syntax.
+Valid only for scss and syntax.
 
 ```
 a: b !default
@@ -372,6 +374,7 @@ a: b !default
 ['declaration',
   ['property',
     ['ident', 'a']],
+  ['propertyDelim'],
   ['value',
     ['s', ' '],
     ['ident', 'b'],
@@ -427,6 +430,7 @@ filter:progid:DXImageTransform.Microsoft.AlphaImageLoader(src='a.png',sizingMeth
 ['filter',
   ['property',
     ['ident', 'filter']],
+  ['propertyDelim'],
   ['filterv',
     ['progid',
       ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='a.png',sizingMethod='scale')']]]]
@@ -448,6 +452,7 @@ color: rgb(255,0,0)
 ['declaration',
   ['property',
     ['ident', 'color']],
+  ['propertyDelim'],
   ['value',
     ['s', ' '],
     ['function',
@@ -472,6 +477,7 @@ left:expression(document.body.offsetWidth+1)
 ['declaration',
   ['property',
     ['ident', 'left']],
+  ['propertyDelim'],
   ['value',
     ['functionExpression', 'document.body.offsetWidth+1']]]
 ```
@@ -524,6 +530,7 @@ a: b !important
 ['declaration',
   ['property',
     ['ident', 'a']],
+  ['propertyDelim'],
   ['value',
     ['s', ' '],
     ['ident', 'b'],
@@ -533,19 +540,146 @@ a: b !important
 
 #### include
 
-Valid only for scss syntax.
+Included mixin.
+
+For scss and sass:
+
+```
+@include nani
+
+↓
+
+['include',
+  ['atkeyword',
+    ['ident', 'include']],
+  ['s', ' '],
+  ['simpleselector',
+    ['ident', 'nani']]]
+```
+
+For less:
+
+```
+.nani(2px)
+
+↓
+
+['include',
+  ['class',
+    ['ident', 'nani']],
+  ['arguments',
+    ['dimension',
+      ['number', '2'],
+      ['ident', 'px']]]]
+```
 
 #### interpolatedVariable
 
-Valid only for scss syntax.
+Interpolated variable.
+
+For scss and sass:
+
+```
+#{$nani}
+
+↓
+
+['interpolatedVariable',
+  ['ident', 'nani']]
+```
+
+For less:
+
+```
+@{nani}
+
+↓
+
+['interpolatedVariable',
+  ['ident', 'nani']]
+```
 
 #### loop
 
-Valid only for scss syntax.
+Valid only for scss and sass.
+
+```
+@while 1 > 2 {a{p:v}}
+
+↓
+
+['loop',
+  ['atkeyword',
+    ['ident', 'while']],
+  ['s', ' '],
+  ['number', '1'],
+  ['s', ' '],
+  ['operator', '>'],
+  ['s', ' '],
+  ['number', '2'],
+  ['s', ' '],
+  ['block',
+    ['ruleset',
+      ['selector',
+        ['simpleselector',
+          ['ident', 'a']]],
+      ['block',
+        ['declaration',
+          ['property',
+            ['ident', 'p']],
+          ['propertyDelim'],
+          ['value',
+            ['ident', 'v']]]]]]]
+```
 
 #### mixin
 
-Valid only for scss syntax.
+For scss and sass:
+
+```
+@mixin nani {color:tomato}
+
+↓
+
+['mixin',
+  ['atkeyword',
+    ['ident', 'mixin']],
+  ['s', ' '],
+  ['ident', 'nani'],
+  ['s', ' '],
+  ['block',
+    ['declaration',
+      ['property',
+        ['ident', 'color']],
+      ['propertyDelim'],
+      ['value',
+        ['ident', 'tomato']]]]]
+```
+
+For less:
+
+```
+.nani (@color) {color:@color}
+
+↓
+
+['mixin',
+  ['class',
+    ['ident', 'nani']],
+  ['s', ' '],
+  ['arguments',
+    ['variable',
+      ['ident', 'color']]],
+  ['s', ' '],
+  ['block',
+    ['declaration',
+      ['property',
+        ['ident', 'color']],
+      ['propertyDelim'],
+      ['value',
+        ['variable',
+          ['ident', 'color']]]]]]
+```
 
 #### namespace
 
@@ -630,7 +764,17 @@ test(x,y)
 
 #### parentselector
 
-Valid only for scss syntax.
+Valid only for less, scss and sass.
+
+```
+&.nani
+
+↓
+
+['parentselector'],
+['class',
+  ['ident', 'nani']]
+```
 
 #### percentage
 
@@ -647,7 +791,77 @@ Number with percent sign.
 
 #### placeholder
 
-Valid only for scss syntax.
+Placeholder.    
+Valid only for scss and sass.
+
+```
+%button
+
+↓
+
+['placeholder',
+  ['ident', 'button']]
+```
+
+#### property
+
+CSS property.
+
+```
+top:0
+$color: tomato
+
+↓
+
+['declaration',
+  ['property',
+    ['ident', 'top']],
+  ['propertyDelim'],
+  ['value',
+    ['number', '0']]]
+
+
+['declaration',
+  ['property',
+    ['variable', 'color']],
+  ['propertyDelim'],
+  ['value',
+    ['ident', 'tomato']]]
+```
+
+#### propertyDelim
+
+Delimiter `:` between property and value.
+
+```
+color: tomato
+
+↓
+
+['declaration',
+  ['property',
+    ['ident', 'color']],
+  ['propertyDelim'],
+  ['value',
+    ['s', ' '],
+    ['ident', 'tomato']]]
+```
+
+Sass allows you to put `:` before property:
+
+```
+:color tomato
+
+↓
+
+['declaration',
+  ['propertyDelim'],
+  ['property',
+    ['ident', 'color'],
+    ['s', ' ']],
+  ['value',
+    ['ident', 'tomato']]]
+```
 
 #### pseudoc
 
@@ -678,10 +892,6 @@ p::first-line
   ['pseudoe',
     ['ident', 'first-line']]]
 ```
-
-#### property
-
-
 
 #### raw
 
@@ -723,6 +933,7 @@ x, y {p:v}
     ['declaration',
       ['property',
         ['ident', 'p']],
+      ['propertyDelim'],
       ['value',
         ['ident', 'v']]]]]
 ```
@@ -848,6 +1059,7 @@ Can consist of:
       ['declaration',
         ['property',
           ['ident', 'p']],
+        ['propertyDelim'],
         ['value',
           ['ident', 'v']]]]]]
 ```
@@ -900,15 +1112,77 @@ URI.
 
 #### value
 
+Value of a property.
 
+```
+color: tomato
+
+↓
+
+['declaration',
+  ['property',
+    ['ident', 'color']],
+  ['propertyDelim'],
+  ['value',
+    ['s', ' '],
+    ['ident', 'tomato']]]
+```
 
 #### variable
 
-Valid only for scss syntax.
+Valid for less, scss and sass.
+
+Sass:
+
+```
+$color
+
+↓
+
+['variable',
+  ['ident', 'color']]
+```
+
+LESS:
+```
+@color
+@@foo
+
+↓
+
+['variable',
+  ['ident', 'color']]
+
+['variable',
+  ['variable',
+    ['ident', 'foo']]]
+```
 
 #### variableslist
 
-Valid only for scss syntax.
+Valid for less, scss and sass.
+
+Sass:
+```
+$arguments...
+
+↓
+
+['variableslist',
+  ['variable',
+    ['ident', 'arguments']]]
+```
+
+LESS:
+```
+@rest...
+
+↓
+
+['variableslist',
+  ['variable',
+    ['ident', 'rest']]]
+```
 
 #### vhash
 
