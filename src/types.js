@@ -68,6 +68,7 @@ var NodeType = {
     DefaultType: 'default',
     DelimType: 'delim',
     DimensionType: 'dimension',
+    EscapedStringType: 'escapedString',
     FilterType: 'filter',
     FiltervType: 'filterv',
     FunctionType: 'function',

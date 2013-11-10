@@ -413,6 +413,19 @@ Number with dimension unit.
   ['ident', 'px']]
 ```
 
+#### escapedString
+
+Escaped string.    
+Valid only for less.
+
+```
+~"ms:alwaysHasItsOwnSyntax.For.@{what}()"
+
+↓
+
+['escapedString', '"ms:alwaysHasItsOwnSyntax.For.@{what}()"']]
+```
+
 #### filter, filterv, progid
 
 Node to store IE `filter`.

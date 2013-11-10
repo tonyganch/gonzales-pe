@@ -76,6 +76,9 @@ function astToCSS(options) {
         'default': function(t) {
             return '!' + _composite(t) + 'default';
         },
+        'escapedString': function(t) {
+            return '~' + t[hasInfo? 2 : 1];
+        },
         'filter': function(t) {
             return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
         },

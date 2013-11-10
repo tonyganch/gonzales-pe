@@ -1,0 +1,1 @@
+~"ms:alwaysHasItsOwnSyntax.For.@{what}()"

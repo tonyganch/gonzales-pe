@@ -363,6 +363,88 @@
     };
 
     /**
+     * Check if token is part of an escaped string (e.g. `~"ms:something"`).
+     * @param {Number} i Token's index number
+     * @returns {Numer} Length of the string (including `~` and quotes)
+     */
+    less.checkEscapedString = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if (tokens[i].type === TokenType.Tilde && (l = this.checkString(i + 1))) return i + l - start;
+        else return 0;
+    };
+
+    /**
+     * Get node with an escaped string
+     * @returns {Array} `['escapedString', ['string', x]]` where `x` is a string
+     *      without `~` but with quotes
+     */
+    less.getEscapedString = function() {
+       var startPos = pos,
+            x = [NodeType.EscapedStringType];
+
+        pos++;
+
+        x.push(tokens[pos++].value);
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    less.checkFilterv = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkProgid(i) || this.checkEscapedString(i)) i += l;
+        else return 0;
+
+        while (l = this.checkProgid(i) || this.checkEscapedString(i)) {
+            i += l;
+        }
+
+        tokens[start].last_progid = i;
+
+        if (i < tokensLength && (l = this.checkSC(i))) i += l;
+
+        if (i < tokensLength && (l = this.checkImportant(i))) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    less.getFilterv = function() {
+        var startPos = pos,
+            x = [NodeType.FiltervType],
+            last_progid = tokens[pos].last_progid;
+
+        x = x.concat(this.getSC());
+
+        while (pos < last_progid) {
+            x.push(this.checkProgid(pos) ? this.getProgid() : this.getEscapedString());
+        }
+
+        if (this.checkSC(pos)) x = x.concat(this.getSC());
+
+        if (pos < tokensLength && this.checkImportant(pos)) x.push(this.getImportant());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    },
+
+
+
+    /**
      * Check if token is part of an identifier
      * @param {Number} i Token's index number
      * @returns {Number} Length of the identifier
@@ -961,6 +1043,7 @@
      */
     less._checkValue = function(i) {
         return this.checkSC(i) ||
+            this.checkEscapedString(i) ||
             this.checkInterpolatedVariable(i) ||
             this.checkVariable(i) ||
             this.checkVhash(i) ||
@@ -999,6 +1082,7 @@
      */
     less._getValue = function() {
         if (this.checkSC(pos)) return this.getSC();
+        else if (this.checkEscapedString(pos)) return this.getEscapedString();
         else if (this.checkInterpolatedVariable(pos)) return this.getInterpolatedVariable();
         else if (this.checkVariable(pos)) return this.getVariable();
         else if (this.checkVhash(pos)) return this.getVhash();

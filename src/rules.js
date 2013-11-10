@@ -20,6 +20,7 @@ var rules = {
     'default': function () { if (s.checkDefault(pos)) return s.getDefault() },
     'delim': function() { if (s.checkDelim(pos)) return s.getDelim() },
     'dimension': function() { if (s.checkDimension(pos)) return s.getDimension() },
+    'escapedString': function() { if (s.checkEscapedString(pos)) return s.getEscapedString() },
     'filter': function() { if (s.checkFilter(pos)) return s.getFilter() },
     'filterv': function() { if (s.checkFilterv(pos)) return s.getFilterv() },
     'functionExpression': function() { if (s.checkFunctionExpression(pos)) return s.getFunctionExpression() },
