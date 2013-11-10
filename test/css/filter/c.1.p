@@ -3,6 +3,6 @@
     ['ident', 'filter'],
     ['commentML', 'test']],
   ['filterv',
+    ['commentML', 'test'],
     ['progid',
-      ['commentML', 'test'],
       ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(/*)*/src='images/transparent-border.png'/*)*/,/*)*/sizingMethod='scale')']]]]

@@ -13,8 +13,8 @@
         ['property',
           ['ident', 'filter']],
         ['filterv',
+          ['s', ' '],
           ['progid',
-            ['s', ' '],
             ['raw', 'progid:DXImageTransform.Microsoft.gradient (startColorstr=#33CCCCCC, endColorstr=#33CCCCCC)']]]],
       ['declDelim'],
       ['s', '

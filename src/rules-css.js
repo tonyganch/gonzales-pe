@@ -1004,6 +1004,8 @@ syntaxes.css = {
 
         if (i >= tokensLength) return 0;
 
+        if (l = this.checkSC(i)) i += l;
+
         if (l = this.checkProgid(i)) i += l;
         else return 0;
 
@@ -1028,6 +1030,8 @@ syntaxes.css = {
         var startPos = pos,
             x = [NodeType.FiltervType],
             last_progid = tokens[pos].last_progid;
+
+        x = x.concat(this.getSC());
 
         while (pos < last_progid) {
             x.push(this.getProgid());

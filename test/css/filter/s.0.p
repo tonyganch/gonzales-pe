@@ -3,6 +3,6 @@
     ['ident', 'filter'],
     ['s', '  ']],
   ['filterv',
+    ['s', '  '],
     ['progid',
-      ['s', '  '],
       ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')']]]]
