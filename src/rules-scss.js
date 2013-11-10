@@ -904,9 +904,11 @@
      */
     scss.getPlaceholder = function() {
         var startPos = pos,
-            x = [NodeType.PlaceholderType, this.getIdent()];
+            x = [NodeType.PlaceholderType];
 
         pos++;
+
+        x.push(this.getIdent());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -1032,12 +1034,9 @@
      *      and `y` is a comment's text (without `/*` and `* /`).
      */
     scss.getSC = function() {
-        var sc = [],
-            ln;
+        var sc = [];
 
         if (pos >= tokensLength) return sc;
-
-        ln = tokens[pos].ln;
 
         while (pos < tokensLength) {
             if (this.checkS(pos)) sc.push(this.getS());
