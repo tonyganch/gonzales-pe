@@ -15,14 +15,19 @@ To install as a project dependency:
 
     npm install gonzales-pe
 
+To install dev branch:
+
+    npm install git://github.com/tonyganch/gonzales-pe.git#dev
+
 To clone from github:
 
     git clone git@github.com:tonyganch/gonzales-pe.git
 
 ## Build
 
-If you cloned the repo from GitHub, make sure to build library files first.    
-It can be done by running `make` in a projet directory.    
+If you installed/cloned the repo from GitHub, make sure to build library files
+first.    
+It can be done by running `make` in the module's root directory.    
 `make` will build both Node.js and web versions (all files are comments-free
 but not compressed).    
 If you need a minified version for production, feel free to use uglifier of
@@ -66,7 +71,7 @@ the defference between them.
 
 If you want to test one specific string or get a general idea of how Gonzales
 works, you can use `test/ast.js` file.    
-Simply change the first two strings (`src` and `syntax` vars) and run:
+Simply change the first two strings (`css` and `syntax` vars) and run:
 
     node test/ast.js
 
