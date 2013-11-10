@@ -1,7 +1,7 @@
 Gonzales changelog
 ==================
 
-XX.11.2013, Version 2.0.0
+11.11.2013, Version 2.0.0
 -------------------------
 
 - Support preprocessors: Sass (both SCSS and indented syntax), LESS.
