@@ -1,6 +1,10 @@
 Gonzales changelog
 ==================
 
+18.11.2013, Version 2.0.1
+-------------------------
+- Bring back lost whitespaces and comments
+
 11.11.2013, Version 2.0.0
 -------------------------
 

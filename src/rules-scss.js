@@ -640,7 +640,7 @@
 
         x.push(this.getIncludeSelector());
 
-        x.concat(this.getSC());
+        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };

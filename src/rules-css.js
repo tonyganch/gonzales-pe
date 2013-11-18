@@ -416,7 +416,7 @@ syntaxes.css = {
             else x.push(this.getAtrule());
         }
 
-        x.concat(this.getSC());
+        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     },
