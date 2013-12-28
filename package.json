@@ -1,24 +1,28 @@
 {
-  "name": "gonzales-pe",
-  "description": "Gonzales Preprocessor Edition (fast CSS parser)",
-  "version": "2.0.2",
-  "homepage": "http://github.com/tonyganch/gonzales-pe",
-  "bugs": "http://github.com/tonyganch/gonzales-pe/issues",
-  "license": "MIT",
-  "author": "Tony Ganch <tonyganch@gmail.com>",
-  "main": "./lib/gonzales",
-  "repository": {
-    "type": "git",
-    "url": "http://github.com/tonyganch/gonzales-pe.git"
-  },
-  "scripts": {
-    "test": "(make && mkdir -p log && node ./test/test.js) | tee ./log/test.log"
-  },
-  "devDependencies": {
-    "benchmark": "~1.0.0",
-    "microtime": "~0.3.3"
-  },
-  "engines": {
-    "node": ">=0.6.0"
-  }
+    "name": "gonzales-pe",
+    "description": "Gonzales Preprocessor Edition (fast CSS parser)",
+    "version": "2.0.2",
+    "homepage": "http://github.com/tonyganch/gonzales-pe",
+    "bugs": "http://github.com/tonyganch/gonzales-pe/issues",
+    "license": "MIT",
+    "author": {
+        "name" : "Tony Ganch",
+        "email" : "tonyganch+github@gmail.com",
+        "url" : "http://tonyganch.com"
+    },
+    "main": "./lib/gonzales",
+    "repository": {
+        "type": "git",
+        "url": "http://github.com/tonyganch/gonzales-pe.git"
+    },
+    "scripts": {
+        "test": "(make && mkdir -p log && node ./test/test.js) | tee ./log/test.log"
+    },
+    "devDependencies": {
+        "benchmark": "~1.0.0",
+        "microtime": "~0.3.3"
+    },
+    "engines": {
+        "node": ">=0.6.0"
+    }
 }
