@@ -218,6 +218,8 @@
         else if (l = this.checkInclude4(i)) tokens[i].include_type = 4;
         else if (l = this.checkInclude5(i)) tokens[i].include_type = 5;
         else if (l = this.checkInclude6(i)) tokens[i].include_type = 6;
+        else if (l = this.checkInclude7(i)) tokens[i].include_type = 7;
+        else if (l = this.checkInclude8(i)) tokens[i].include_type = 8;
 
         return l;
     };
@@ -234,16 +236,75 @@
             case 4: return this.getInclude4();
             case 5: return this.getInclude5();
             case 6: return this.getInclude6();
+            case 7: return this.getInclude7();
+            case 8: return this.getInclude8();
         }
     };
 
+    /**
+     * Check if token is part of an included mixin like `+nani(foo) {...}`
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the include
+     */
+    sass.checkInclude5 = function(i) {
+        var start = i,
+        l;
+
+        if (tokens[i].type === TokenType.PlusSign) i++;
+        else return 0;
+
+        if (l = this.checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkArguments(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with included mixin like `+nani(foo) {...}`
+     * @returns {Array} `['include', ['operator', '+'], ['selector', x], sc,
+     *      ['arguments', y], sc, ['block', z], sc` where `x` is
+     *      mixin's identifier (selector), `y` are arguments passed to the
+     *      mixin, `z` is block passed to mixin and `sc` are optional whitespaces
+     */
+    sass.getInclude5 = function() {
+        var startPos = pos,
+            x = [NodeType.IncludeType];
+
+        x.push(this.getOperator());
+
+        x.push(this.getIncludeSelector());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getArguments());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getBlock());
+
+        x = x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
 
     /**
      * Check if token is part of an included mixin like `+nani(foo)`
      * @param {Number} i Token's index number
      * @returns {Number} Length of the include
      */
-    sass.checkInclude4 = function(i) {
+    sass.checkInclude6 = function(i) {
         var start = i,
         l;
 
@@ -270,7 +331,7 @@
      *      mixin's identifier (selector), `z` are arguments passed to the
      *      mixin and `sc` are optional whitespaces
      */
-    sass.getInclude4 = function() {
+    sass.getInclude6 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 
@@ -293,7 +354,7 @@
      * @param {Number} i Token's index number
      * @returns {Number} Length of the mixin
      */
-    sass.checkInclude5 = function(i) {
+    sass.checkInclude7 = function(i) {
         var start = i,
             l;
 
@@ -318,7 +379,7 @@
      *      as an argument (e.g. `+nani {...}`)
      * @returns {Array} `['include', x]`
      */
-    sass.getInclude5 = function() {
+    sass.getInclude7 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 
@@ -339,7 +400,7 @@
      * @param {Number} i Token's index number
      * @returns {Number}
      */
-    sass.checkInclude6 = function(i) {
+    sass.checkInclude8 = function(i) {
         var start = i,
             l;
 
@@ -357,7 +418,7 @@
     /**
      * @returns {Array} `['include', x]`
      */
-    sass.getInclude6 = function() {
+    sass.getInclude8 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 

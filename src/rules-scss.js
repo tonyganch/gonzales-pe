@@ -475,6 +475,7 @@
         if (l = this.checkInclude1(i)) tokens[i].include_type = 1;
         else if (l = this.checkInclude2(i)) tokens[i].include_type = 2;
         else if (l = this.checkInclude3(i)) tokens[i].include_type = 3;
+        else if (l = this.checkInclude4(i)) tokens[i].include_type = 4;
 
         return l;
     };
@@ -488,7 +489,75 @@
             case 1: return this.getInclude1();
             case 2: return this.getInclude2();
             case 3: return this.getInclude3();
+            case 4: return this.getInclude4();
         }
+    };
+
+    /**
+     * Check if token is part of an included mixin like `@include nani(foo) {...}`
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the include
+     */
+    scss.checkInclude1 = function(i) {
+        var start = i,
+        l;
+
+        if (l = this.checkAtkeyword(i)) i += l;
+        else return 0;
+
+        // TODO: Check if extends don't take any arguments
+        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return 0;
+
+        if (l = this.checkSC(i)) i += l;
+        else return 0;
+
+        if (l = this.checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkArguments(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with included mixin like `@include nani(foo) {...}`
+     * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
+     *      ['arguments', z], sc, ['block', q], sc` where `x` is `include` or
+     *      `extend`, `y` is mixin's identifier (selector), `z` are arguments
+     *      passed to the mixin, `q` is block passed to the mixin and `sc`
+     *      are optional whitespaces
+     */
+    scss.getInclude1 = function() {
+        var startPos = pos,
+            x = [NodeType.IncludeType];
+
+        x.push(this.getAtkeyword());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getIncludeSelector());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getArguments());
+
+        x = x.concat(this.getSC());
+
+        x.push(this.getBlock());
+
+        x = x.concat(this.getSC());
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
 
     /**
@@ -496,7 +565,7 @@
      * @param {Number} i Token's index number
      * @returns {Number} Length of the include
      */
-    scss.checkInclude1 = function(i) {
+    scss.checkInclude2 = function(i) {
         var start = i,
         l;
 
@@ -529,7 +598,7 @@
      *      mixin's identifier (selector), `z` are arguments passed to the
      *      mixin and `sc` are optional whitespaces
      */
-    scss.getInclude1 = function() {
+    scss.getInclude2 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 
@@ -554,7 +623,7 @@
      * @param {Number} i Token's index number
      * @returns {Number} Length of the mixin
      */
-    scss.checkInclude2 = function(i) {
+    scss.checkInclude3 = function(i) {
         var start = i,
             l;
 
@@ -584,7 +653,7 @@
      *      as an argument (e.g. `@include nani {...}`)
      * @returns {Array} `['include', x]`
      */
-    scss.getInclude2 = function() {
+    scss.getInclude3 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 
@@ -607,7 +676,7 @@
      * @param {Number} i Token's index number
      * @returns {Number}
      */
-    scss.checkInclude3 = function(i) {
+    scss.checkInclude4 = function(i) {
         var start = i,
             l;
 
@@ -630,7 +699,7 @@
     /**
      * @returns {Array} `['include', x]`
      */
-    scss.getInclude3 = function() {
+    scss.getInclude4 = function() {
         var startPos = pos,
             x = [NodeType.IncludeType];
 
