@@ -1,6 +1,12 @@
 Gonzales changelog
 ==================
 
+29.12.2013, Version 2.0.2
+-------------------------
+
+- Sass includes can have both arguments list and content block,
+  i.e. `@include nani() { color: tomato }` is valid syntax.
+
 18.11.2013, Version 2.0.1
 -------------------------
 - Bring back lost whitespaces and comments
