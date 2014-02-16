@@ -78,6 +78,7 @@ var NodeType = {
     ImportantType: 'important',
     IncludeType :'include',
     InterpolatedVariableType: 'interpolatedVariable',
+    InterpolationType: 'interpolation',
     LoopType: 'loop',
     MixinType: 'mixin',
     NamespaceType: 'namespace',
