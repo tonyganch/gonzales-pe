@@ -92,7 +92,10 @@ function astToCSS(options) {
             return '!' + _composite(t) + 'important';
         },
         'interpolatedVariable': function(t) {
-            return (syntax === 'less' ? '@{' : '#\{$') + _t(t[hasInfo? 2 : 1]) + '}';
+            return '@{' + _t(t[hasInfo? 2 : 1]) + '}';
+        },
+        'interpolation': function(t) {
+            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
         },
         'nthselector': function(t) {
             return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
