@@ -274,7 +274,7 @@
         if (tokens[i].class_l) return tokens[i].class_l;
 
         if (tokens[i++].type === TokenType.FullStop &&
-            (l = this.checkInterpolatedVariable(i) || this.checkIdent(i))) {
+            (l = this.checkInterpolation(i) || this.checkIdent(i))) {
             tokens[i].class_l = l + 1;
             return l + 1;
         }
@@ -293,7 +293,7 @@
 
         pos++;
 
-        x.push(this.checkInterpolatedVariable(pos) ? this.getInterpolatedVariable() : this.getIdent());
+        x.push(this.checkInterpolation(pos) ? this.getInterpolation() : this.getIdent());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -442,7 +442,7 @@
         wasIdent = tokens[i - 1].type === TokenType.Identifier;
 
         for (; i < tokensLength; i++) {
-            if (l = this.checkInterpolatedVariable(i)) i += l;
+            if (l = this.checkInterpolation(i)) i += l;
 
             if (i >= tokensLength) break;
 
@@ -753,19 +753,19 @@
      * @param {Number} i Token's index number
      * @returns {Number}
      */
-    scss.checkInterpolatedVariable = function(i) {
+    scss.checkInterpolation = function(i) {
         var start = i,
             l;
 
         if (i >= tokensLength) return 0;
 
         if (tokens[i].type !== TokenType.NumberSign ||
-            !tokens[i + 1] || tokens[i + 1].type !== TokenType.LeftCurlyBracket ||
-            !tokens[i + 2] || tokens[i + 2].type !== TokenType.DollarSign) return 0;
+            !tokens[i + 1] ||
+            tokens[i + 1].type !== TokenType.LeftCurlyBracket) return 0;
 
-        i += 3;
+        i += 2;
 
-        if (l = this.checkIdent(i)) i += l;
+        if (l = this.checkVariable(i)) i += l;
         else return 0;
 
         return tokens[i].type === TokenType.RightCurlyBracket ? i - start + 1 : 0;
@@ -773,16 +773,16 @@
 
     /**
      * Get node with an interpolated variable
-     * @returns {Array} `['interpolatedVariable', x]`
+     * @returns {Array} `['interpolation', x]`
      */
-    scss.getInterpolatedVariable = function() {
+    scss.getInterpolation = function() {
         var startPos = pos,
-            x = [NodeType.InterpolatedVariableType];
+            x = [NodeType.InterpolationType];
 
-        // Skip `#{$`:
-        pos += 3;
+        // Skip `#{`:
+        pos += 2;
 
-        x.push(this.getIdent());
+        x.push(this.getVariable());
 
         // Skip `}`:
         pos++;
@@ -1026,7 +1026,7 @@
         if (i >= tokensLength || tokens[i++].type !== TokenType.Colon ||
             i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
 
-        return (l = this.checkInterpolatedVariable(i) || this.checkIdent(i)) ? l + 2 : 0;
+        return (l = this.checkInterpolation(i) || this.checkIdent(i)) ? l + 2 : 0;
     };
 
     /**
@@ -1038,7 +1038,7 @@
 
         pos += 2;
 
-        x.push(this.checkInterpolatedVariable(pos) ? this.getInterpolatedVariable() : this.getIdent());
+        x.push(this.checkInterpolation(pos) ? this.getInterpolation() : this.getIdent());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -1052,7 +1052,7 @@
 
         if (i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
 
-        return (l = this.checkInterpolatedVariable(i) || this.checkFunction(i) || this.checkIdent(i)) ? l + 1 : 0;
+        return (l = this.checkInterpolation(i) || this.checkFunction(i) || this.checkIdent(i)) ? l + 1 : 0;
     };
 
     /**
@@ -1064,7 +1064,7 @@
 
         pos ++;
 
-        if (this.checkInterpolatedVariable(pos)) x.push(this.getInterpolatedVariable());
+        if (this.checkInterpolation(pos)) x.push(this.getInterpolation());
         else if (this.checkFunction(pos)) x.push(this.getFunction());
         else x.push(this.getIdent());
 
@@ -1249,7 +1249,7 @@
      */
     scss._checkValue = function(i) {
         return this.checkSC(i) ||
-            this.checkInterpolatedVariable(i) ||
+            this.checkInterpolation(i) ||
             this.checkVariable(i) ||
             this.checkVhash(i) ||
             this.checkBlock(i) ||
@@ -1288,7 +1288,7 @@
      */
     scss._getValue = function() {
         if (this.checkSC(pos)) return this.getSC();
-        else if (this.checkInterpolatedVariable(pos)) return this.getInterpolatedVariable();
+        else if (this.checkInterpolation(pos)) return this.getInterpolation();
         else if (this.checkVariable(pos)) return this.getVariable();
         else if (this.checkVhash(pos)) return this.getVhash();
         else if (this.checkBlock(pos)) return this.getBlock();

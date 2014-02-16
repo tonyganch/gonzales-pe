@@ -29,6 +29,7 @@ var rules = {
     'important': function() { if (s.checkImportant(pos)) return s.getImportant() },
     'include': function () { if (s.checkInclude(pos)) return s.getInclude() },
     'interpolatedVariable': function () { if (s.checkInterpolatedVariable(pos)) return s.getInterpolatedVariable() },
+    'interpolation': function () { if (s.checkInterpolation(pos)) return s.getInterpolation() },
     'loop': function() { if (s.checkLoop(pos)) return s.getLoop() },
     'mixin': function () { if (s.checkMixin(pos)) return s.getMixin() },
     'namespace': function() { if (s.checkNamespace(pos)) return s.getNamespace() },
