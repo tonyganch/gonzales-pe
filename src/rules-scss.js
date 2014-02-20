@@ -104,6 +104,7 @@
             this.checkDimension(i) ||
             this.checkNumber(i) ||
             this.checkUri(i) ||
+            this.checkInterpolation(i) ||
             this.checkIdent(i) ||
             this.checkVhash(i);
     };
@@ -123,6 +124,7 @@
         else if (this.checkDimension(pos)) return this.getDimension();
         else if (this.checkNumber(pos)) return this.getNumber();
         else if (this.checkUri(pos)) return this.getUri();
+        else if (this.checkInterpolation(pos)) return this.getInterpolation();
         else if (this.checkIdent(pos)) return this.getIdent();
         else if (this.checkVhash(pos)) return this.getVhash();
     };
