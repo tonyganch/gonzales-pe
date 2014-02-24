@@ -10,12 +10,12 @@ function astToCSS(options) {
     syntax = options.syntax || 'css';
 
     var _m_simple = {
-            'attrselector': 1, 'combinator': 1, 'ident': 1, 'nth': 1, 'number': 1,
+            'attrselector': 1, 'combinator': 1, 'nth': 1, 'number': 1,
             'operator': 1, 'raw': 1, 's': 1, 'string': 1, 'unary': 1, 'unknown': 1
         },
         _m_composite = {
             'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'atrules': 1,'condition': 1,
-            'declaration': 1, 'dimension': 1, 'filterv': 1, 'include': 1,
+            'declaration': 1, 'dimension': 1, 'filterv': 1, 'ident': 1, 'include': 1,
             'loop': 1, 'mixin': 1, 'selector': 1, 'progid': 1, 'property': 1,
             'ruleset': 1, 'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
@@ -37,7 +37,7 @@ function astToCSS(options) {
     function _composite(t, i) {
         var s = '';
         i = i === undefined ? (hasInfo? 2 : 1) : i;
-        for (; i < t.length; i++) s += _t(t[i]);
+        for (; i < t.length; i++) s += typeof t[i] === 'string' ? t[i] : _t(t[i]);
         return s;
     }
 

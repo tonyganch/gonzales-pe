@@ -1,2 +1,5 @@
 ['class',
-  ['ident', 'abc-#{$nani}']]
+  ['ident', 'abc-',
+    ['interpolation',
+      ['variable',
+        ['ident', 'nani']]]]]
