@@ -5,6 +5,7 @@
  */
 var css = 'div {$color: nani}',
     syntax = 'scss',
+    rule = 'stylesheet',
     gonzales = require('./../lib/gonzales'),
     astToTree = function(tree, level) {
         level = level || 0;
@@ -22,7 +23,7 @@ var css = 'div {$color: nani}',
     dummySpaces = function(num) {
         return '                                                  '.substr(0, num * 2);
     },
-    ast = gonzales.cssToAST({css: css, syntax: syntax});
+    ast = gonzales.cssToAST({css: css, syntax: syntax, rule: rule});
 
     console.log('\n== Source string:');
     console.log(css);
