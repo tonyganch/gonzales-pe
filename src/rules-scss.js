@@ -949,6 +949,62 @@
     };
 
     /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    scss.checkNthselector = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkNthf(i)) i += l;
+        else return 0;
+
+        if (tokens[i].type !== TokenType.LeftParenthesis || !tokens[i].right) return 0;
+
+        l++;
+
+        var rp = tokens[i++].right;
+
+        while (i < rp) {
+            if (l = this.checkSC(i) ||
+                this.checkUnary(i) ||
+                this.checkInterpolation(i) ||
+                this.checkNth(i)) i += l;
+            else return 0;
+        }
+
+        return rp - start + 1;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    scss.getNthselector = function() {
+        var startPos = pos,
+            nthf = [NodeType.IdentType, this.getNthf()],
+            x = [NodeType.NthselectorType];
+
+        if (needInfo) nthf.unshift(getInfo(startPos));
+
+        x.push(nthf);
+
+        pos++;
+
+        while (tokens[pos].type !== TokenType.RightParenthesis) {
+            if (this.checkSC(pos)) x = x.concat(this.getSC());
+            else if (this.checkUnary(pos)) x.push(this.getUnary());
+            else if (this.checkInterpolation(pos)) x.push(this.getInterpolation());
+            else if (this.checkNth(pos)) x.push(this.getNth());
+        }
+
+        pos++;
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    /**
      * Check if token is an operator (`/`, `,`, `:`, `=`, `>`, `<` or `*`)
      * @param {Number} i Token's index number
      * @returns {Number} `1` if token is an operator, `0` if not
