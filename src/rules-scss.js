@@ -425,42 +425,84 @@
      */
     scss.checkIdent = function(i) {
         var start = i,
+            interpolations = [],
             wasIdent,
+            wasInt = false,
             l;
 
         if (i >= tokensLength) return 0;
 
         // Check if token is part of an identifier starting with `_`:
-        if (tokens[i].type === TokenType.LowLine) return this.checkIdentLowLine(i);
+        if (tokens[i].type === TokenType.LowLine) i++;
 
         // If token is a character, `-`, `$` or `*`, skip it & continue:
+        if (l = this._checkIdent(i)) i += l;
+        else return 0;
+
+        if (l > 1) {
+            interpolations.push(i - l);
+            wasInt = true;
+        } else {
+            // Remember if previous token's type was identifier:
+            wasIdent = tokens[i - 1].type === TokenType.Identifier;
+        }
+
+        while (i < tokensLength) {
+            l = this._checkIdent(i);
+
+            if (!l) break;
+
+            if (l > 1) {
+                wasInt = true;
+                interpolations.push(i);
+            } else {
+                wasIdent = true;
+            }
+            i += l;
+        }
+
+        if (!wasIdent && !wasInt && tokens[start].type !== TokenType.Asterisk) return 0;
+
+        tokens[start].ident_last = i - 1;
+        if (interpolations.length) tokens[start].interpolations = interpolations;
+
+        return i - start;
+    }
+
+    scss._checkIdent = function(i) {
         if (tokens[i].type === TokenType.HyphenMinus ||
             tokens[i].type === TokenType.Identifier ||
             tokens[i].type === TokenType.DollarSign ||
-            tokens[i].type === TokenType.Asterisk) i++;
-        else return 0;
+            tokens[i].type === TokenType.LowLine ||
+            tokens[i].type === TokenType.Asterisk) return 1;
+        if (l = this.checkInterpolation(i)) return l;
+        return 0;
+    };
 
-        // Remember if previous token's type was identifier:
-        wasIdent = tokens[i - 1].type === TokenType.Identifier;
+    /**
+     * Get node with an identifier
+     * @returns {Array} `['ident', x]` where `x` is identifier's name
+     */
+    scss.getIdent = function() {
+        var startPos = pos,
+            interpolations = tokens[pos].interpolations,
+            x = [NodeType.IdentType];
 
-        for (; i < tokensLength; i++) {
-            if (l = this.checkInterpolation(i)) i += l;
-
-            if (i >= tokensLength) break;
-
-            if (tokens[i].type !== TokenType.HyphenMinus &&
-                tokens[i].type !== TokenType.LowLine) {
-                if (tokens[i].type !== TokenType.Identifier &&
-                    (tokens[i].type !== TokenType.DecimalNumber || !wasIdent)) break;
-                else wasIdent = true;
+        if (interpolations) {
+            for (var i = 0, l = interpolations.length; i < l; i++) {
+                var s = joinValues(pos, interpolations[i] - 1);
+                if (s) x.push(s);
+                pos = interpolations[i];
+                x.push(this.getInterpolation());
             }
         }
 
-        if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
+        if (pos < tokensLength && pos <= tokens[startPos].ident_last) {
+            x.push(joinValues(pos, tokens[startPos].ident_last));
+            pos = tokens[pos].ident_last + 1;
+        }
 
-        tokens[start].ident_last = i - 1;
-
-        return i - start;
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
 
     /**
