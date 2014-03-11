@@ -159,7 +159,6 @@
         else return 0;
 
         if (l = this.checkSC(i)) i += l;
-        else return 0;
 
         return i - start;
     };
