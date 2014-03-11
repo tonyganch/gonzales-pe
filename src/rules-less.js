@@ -63,7 +63,6 @@
     /**
      * Get node with mixin's arguments
      * @returns {Array} `['arguments', x]`
-     */
     less.getArguments = function() {
         var startPos = pos,
             arguments = [],
@@ -82,6 +81,7 @@
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
+     */
 
     /**
      * Check if token is valid to be part of arguments list.

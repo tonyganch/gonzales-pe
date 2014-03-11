@@ -1,6 +1,6 @@
 ['function',
   ['ident', 'f'],
-  ['functionBody',
+  ['arguments',
     ['declaration',
       ['property',
         ['variable',

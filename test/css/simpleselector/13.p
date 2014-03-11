@@ -2,7 +2,7 @@
   ['pseudoc',
     ['function',
       ['ident', 'not'],
-      ['functionBody',
+      ['arguments',
         ['simpleselector',
           ['ident', 'el'],
           ['class',

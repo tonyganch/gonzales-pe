@@ -1,6 +1,6 @@
 ['function',
   ['ident', 'test'],
-  ['functionBody',
+  ['arguments',
     ['commentML', 'test'],
     ['ident', 'x'],
     ['commentML', 'test'],

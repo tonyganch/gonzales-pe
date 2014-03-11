@@ -10,7 +10,7 @@
   ['commentML', 'test'],
   ['function',
     ['ident', 'x'],
-    ['functionBody',
+    ['arguments',
       ['commentML', 'test'],
       ['number', '1'],
       ['commentML', 'test'],

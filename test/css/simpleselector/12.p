@@ -3,7 +3,7 @@
   ['pseudoc',
     ['function',
       ['ident', 'not'],
-      ['functionBody',
+      ['arguments',
         ['simpleselector',
           ['attrib',
             ['ident', 'ABC']]]]]]]

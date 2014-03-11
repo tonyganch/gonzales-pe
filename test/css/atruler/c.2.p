@@ -11,7 +11,7 @@
     ['commentML', 'test'],
     ['function',
       ['ident', 'f'],
-      ['functionBody',
+      ['arguments',
         ['commentML', 'test'],
         ['number', '1'],
         ['commentML', 'test'],

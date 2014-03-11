@@ -1,4 +1,4 @@
 ['function',
   ['ident', 'test-test'],
-  ['functionBody',
+  ['arguments',
     ['ident', 'n']]]
