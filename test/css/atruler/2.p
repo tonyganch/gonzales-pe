@@ -10,7 +10,7 @@
     ['s', ' '],
     ['function',
       ['ident', 'f'],
-      ['functionBody',
+      ['arguments',
         ['number', '1'],
         ['unary', '+'],
         ['number', '2']]],

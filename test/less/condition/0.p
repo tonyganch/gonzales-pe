@@ -4,7 +4,7 @@
   ['braces', '(', ')',
     ['function',
       ['ident', 'lightness'],
-      ['functionBody',
+      ['arguments',
         ['variable',
           ['ident', 'a']]]],
     ['s', ' '],

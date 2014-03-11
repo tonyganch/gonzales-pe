@@ -72,7 +72,6 @@ var NodeType = {
     FilterType: 'filter',
     FiltervType: 'filterv',
     FunctionType: 'function',
-    FunctionBodyType: 'functionBody',
     FunctionExpressionType: 'functionExpression',
     IdentType: 'ident',
     ImportantType: 'important',

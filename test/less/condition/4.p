@@ -4,6 +4,6 @@
   ['braces', '(', ')',
     ['function',
       ['ident', 'isnumber'],
-      ['functionBody',
+      ['arguments',
         ['variable',
           ['ident', 'b']]]]]]

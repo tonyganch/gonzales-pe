@@ -3,9 +3,9 @@
  * Just change the first line (`var css`) and run `node test/ast.js`.
  * Make sure to change `syntax` variable too, if needed.
  */
-var css = 'div {$color: nani}',
-    syntax = 'scss',
-    rule = 'stylesheet',
+var css = 'a,\nb',
+    syntax = 'css',
+    rule = 'selector',
     gonzales = require('./../lib/gonzales'),
     astToTree = function(tree, level) {
         level = level || 0;
