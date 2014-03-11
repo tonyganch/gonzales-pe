@@ -14,8 +14,7 @@
         ['propertyDelim'],
         ['value',
           ['ident', 'b']]],
-      ['s', '
-']]],
+      ['declDelim']]],
   ['include',
     ['atkeyword',
       ['ident', 'extend']],
