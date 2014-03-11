@@ -11,7 +11,7 @@
     ['s', '  '],
     ['function',
       ['ident', 'f'],
-      ['functionBody',
+      ['arguments',
         ['s', '  '],
         ['number', '1'],
         ['s', '  '],

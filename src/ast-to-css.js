@@ -15,7 +15,8 @@ function astToCSS(options) {
         },
         _m_composite = {
             'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'atrules': 1,'condition': 1,
-            'declaration': 1, 'dimension': 1, 'filterv': 1, 'ident': 1, 'include': 1,
+            'declaration': 1, 'dimension': 1, 'filterv': 1, 'function': 1,
+            'ident': 1, 'include': 1,
             'loop': 1, 'mixin': 1, 'selector': 1, 'progid': 1, 'property': 1,
             'ruleset': 1, 'simpleselector': 1, 'stylesheet': 1, 'value': 1
         },
@@ -84,9 +85,6 @@ function astToCSS(options) {
         },
         'functionExpression': function(t) {
             return 'expression(' + t[hasInfo? 2 : 1] + ')';
-        },
-        'function': function(t) {
-            return _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t[hasInfo? 3: 2]) + ')';
         },
         'important': function(t) {
             return '!' + _composite(t) + 'important';

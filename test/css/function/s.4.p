@@ -1,6 +1,6 @@
 ['function',
   ['ident', 'test'],
-  ['functionBody',
+  ['arguments',
     ['s', '  '],
     ['ident', 'x'],
     ['s', '  '],

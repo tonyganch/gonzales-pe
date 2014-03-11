@@ -1101,9 +1101,7 @@ syntaxes.css = {
             x = [NodeType.FunctionType, ident],
             body;
 
-        pos++;
-
-        body = ident[needInfo ? 2 : 1] === 'not' ? this.getNotFunctionBody() : this.getFunctionBody();
+        body = ident[needInfo ? 2 : 1] === 'not' ? this.getNotArguments() : this.getArguments();
 
         x.push(body);
 
@@ -1113,15 +1111,17 @@ syntaxes.css = {
     /**
      * @returns {Array}
      */
-    getFunctionBody: function() {
+    getArguments: function() {
         var startPos = pos,
-            x = [NodeType.FunctionBodyType],
+            x = [NodeType.ArgumentsType],
             body;
 
-        while (tokens[pos].type !== TokenType.RightParenthesis) {
+        pos++;
+
+        while (pos < tokensLength && tokens[pos].type !== TokenType.RightParenthesis) {
             if (this.checkDeclaration(pos)) x.push(this.getDeclaration());
-            else if (this.checkTset(pos)) {
-                body = this.getTset();
+            else if (this.checkArgument(pos)) {
+                body = this.getArgument();
                 if ((needInfo && typeof body[1] === 'string') || typeof body[0] === 'string') x.push(body);
                 else x = x.concat(body);
             } else if (this.checkClass(pos)) x.push(this.getClass());
@@ -1134,13 +1134,36 @@ syntaxes.css = {
     },
 
     /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    checkArgument: function(i) {
+        return this.checkVhash(i) ||
+            this.checkAny(i) ||
+            this.checkSC(i) ||
+            this.checkOperator(i);
+    },
+
+    /**
      * @returns {Array}
      */
-    getNotFunctionBody: function() {
-        var startPos = pos,
-            x = [NodeType.FunctionBodyType];
+    getArgument: function() {
+        if (this.checkVhash(pos)) return this.getVhash();
+        else if (this.checkAny(pos)) return this.getAny();
+        else if (this.checkSC(pos)) return this.getSC();
+        else if (this.checkOperator(pos)) return this.getOperator();
+    },
 
-        while (tokens[pos].type !== TokenType.RightParenthesis) {
+    /**
+     * @returns {Array}
+     */
+    getNotArguments: function() {
+        var startPos = pos,
+            x = [NodeType.ArgumentsType];
+
+        pos++;
+
+        while (pos < tokensLength && tokens[pos].type !== TokenType.RightParenthesis) {
             if (this.checkSimpleSelector(pos)) x.push(this.getSimpleSelector());
             else throwError();
         }

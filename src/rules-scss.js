@@ -67,25 +67,25 @@
     /**
      * Get node with mixin's arguments
      * @returns {Array} `['arguments', x]`
-     */
     scss.getArguments = function() {
         var startPos = pos,
-            arguments = [],
+            args = [],
             x;
 
         pos++;
 
         while (x = this.getArgument()) {
-            if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') arguments.push(x);
-            else arguments = arguments.concat(x);
+            if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') args.push(x);
+            else args = args.concat(x);
         }
 
         pos++;
 
-        x = [NodeType.ArgumentsType].concat(arguments);
+        x = [NodeType.ArgumentsType].concat(args);
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
+     */
 
     /**
      * Check if token is valid to be part of arguments list
