@@ -107,7 +107,8 @@
             this.checkUri(i) ||
             this.checkInterpolation(i) ||
             this.checkIdent(i) ||
-            this.checkVhash(i);
+            this.checkVhash(i) ||
+            this.checkUnary(i);
     };
 
     /**
@@ -129,6 +130,7 @@
         else if (this.checkInterpolation(pos)) return this.getInterpolation();
         else if (this.checkIdent(pos)) return this.getIdent();
         else if (this.checkVhash(pos)) return this.getVhash();
+        else if (this.checkUnary(pos)) return this.getUnary();
     };
 
     /**
