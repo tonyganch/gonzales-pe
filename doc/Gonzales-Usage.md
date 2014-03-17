@@ -24,7 +24,7 @@ Sample code:
     console.log(gonzales.astToTree(ast));
 
     console.log('\n== AST\' -> CSS:');
-    console.log(gonzales.astToCSS(ast));
+    console.log(gonzales.astToCSS({ ast: ast }));
 
 Result:
 
