@@ -73,7 +73,7 @@ Result:
 #### 2. API
 
 In Node.js you can use Gonzales module this way:
-```
+```js
 gonzales = require('gonzales-pe');
 ```
 
@@ -82,7 +82,7 @@ You can use AST through the next functions.
 ##### CSS -> AST
 
 It parses source style to AST:
-```
+```js
 gonzales.cssToAST({
   css: css,
   rule: rule,
@@ -100,7 +100,7 @@ where:
   syntaxes are: `scss`, `sass` and `less`).
 
 Example 1: if you want to parse only *declaration*, you have to call:
-```
+```js
 gonzales.cssToAST({
   css: 'color: red',
   rule: 'declaration'
@@ -109,12 +109,12 @@ gonzales.cssToAST({
 
 Example 2: in case the style is complete and you don't need an info object,
 the call is shortned to:
-```
+```js
 gonzales.cssToAST(css);
 ```
 
 Example 3: if you want to parse a sass file:
-```
+```js
 gonzales.cssToAST({
     css: css,
     syntax: 'sass'
@@ -124,13 +124,19 @@ gonzales.cssToAST({
 ##### AST -> CSS
 
 Translates AST to style:
-```
+```js
 gonzales.astToCSS({
   ast: ast,
   syntax: 'scss'
-})
+});
 ```
-where:
+or simple
+```js
+gonzales.astToCSS(ast);
+```
+if you want to perform a default translation to css.
+
+Where:
 
 - `ast` — AST to be translated;
 - `syntax` — a string with syntax name (`css` is default).
@@ -138,7 +144,7 @@ where:
 ##### AST -> TREE
 
 Translates AST to the string representation of the tree:
-```
+```js
 gonzales.astToTree(ast);
 ```
 where:
