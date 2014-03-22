@@ -1099,8 +1099,6 @@
         if (l = this.checkVariable(i) || this.checkIdent(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     };
 
@@ -1113,8 +1111,6 @@
             x = [NodeType.PropertyType];
 
         x.push(this.checkVariable(pos) ? this.getVariable() : this.getIdent());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };

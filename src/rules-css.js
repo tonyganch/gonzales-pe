@@ -805,6 +805,8 @@ syntaxes.css = {
         if (l = this.checkProperty(i)) i += l;
         else return 0;
 
+        if (l = this.checkSC(i)) i += l;
+
         if (l = this.checkPropertyDelim(i)) i++;
         else return 0;
 
@@ -824,6 +826,7 @@ syntaxes.css = {
             x = [NodeType.DeclarationType];
 
         x.push(this.getProperty());
+        x = x.concat(this.getSC());
         x.push(this.getPropertyDelim());
         x.push(this.getValue());
 
@@ -1734,8 +1737,6 @@ syntaxes.css = {
         if (l = this.checkIdent(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     },
 
@@ -1748,8 +1749,6 @@ syntaxes.css = {
             x = [NodeType.PropertyType];
 
         x.push(this.getIdent());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     },
