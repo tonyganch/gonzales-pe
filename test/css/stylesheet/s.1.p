@@ -11,11 +11,11 @@
         ['property',
           ['ident', 'p0']],
         ['propertyDelim'],
+        ['s', ' '],
         ['value',
-          ['s', ' '],
-          ['ident', 'v0'],
-          ['s', '
-']]]]],
+          ['ident', 'v0']]],
+      ['s', '
+']]],
   ['s', '
 
 '],
@@ -31,8 +31,8 @@
         ['property',
           ['ident', 'p1']],
         ['propertyDelim'],
+        ['s', ' '],
         ['value',
-          ['s', ' '],
-          ['ident', 'v1'],
-          ['s', '
-']]]]]]
+          ['ident', 'v1']]],
+      ['s', '
+']]]]

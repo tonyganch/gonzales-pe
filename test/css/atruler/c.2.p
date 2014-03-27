@@ -34,8 +34,8 @@
             ['ident', 'p']],
           ['commentML', 'test'],
           ['propertyDelim'],
+          ['commentML', 'test'],
           ['value',
-            ['commentML', 'test'],
-            ['ident', 'v'],
-            ['commentML', 'test']]]]],
+            ['ident', 'v']]],
+        ['commentML', 'test']]],
     ['commentML', 'test']]]

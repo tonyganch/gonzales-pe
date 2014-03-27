@@ -810,6 +810,8 @@ syntaxes.css = {
         if (l = this.checkPropertyDelim(i)) i++;
         else return 0;
 
+        if (l = this.checkSC(i)) i += l;
+
         if (l = this.checkValue(i)) i += l;
         else return 0;
 
@@ -828,6 +830,7 @@ syntaxes.css = {
         x.push(this.getProperty());
         x = x.concat(this.getSC());
         x.push(this.getPropertyDelim());
+        x = x.concat(this.getSC());
         x.push(this.getValue());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
@@ -2323,10 +2326,13 @@ syntaxes.css = {
      */
     checkValue: function(i) {
         var start = i,
-            l;
+            l, s, _i;
 
         while (i < tokensLength) {
-            if (l = this._checkValue(i)) i += l;
+            s = this.checkSC(i);
+            _i = i + s;
+
+            if (l = this._checkValue(_i)) i += l + s;
             else break;
         }
 
@@ -2338,8 +2344,7 @@ syntaxes.css = {
      * @returns {Number}
      */
     _checkValue: function(i) {
-        return this.checkSC(i) ||
-            this.checkVhash(i) ||
+        return this.checkVhash(i) ||
             this.checkAny(i) ||
             this.checkOperator(i) ||
             this.checkImportant(i);
@@ -2351,17 +2356,16 @@ syntaxes.css = {
     getValue: function() {
         var startPos = pos,
             x = [NodeType.ValueType],
-            t,
-            _pos;
+            s, _pos;
 
         while (pos < tokensLength) {
-            _pos = pos;
+            s = this.checkSC(pos);
+            _pos = pos + s;
 
-            if (!this._checkValue(pos)) break;
-            t = this._getValue();
+            if (!this._checkValue(_pos)) break;
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
-            else x = x.concat(t);
+            if (s) x = x.concat(this.getSC());
+            x.push(this._getValue());
         }
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
@@ -2371,8 +2375,7 @@ syntaxes.css = {
      * @returns {Array}
      */
     _getValue: function() {
-        if (this.checkSC(pos)) return this.getSC();
-        else if (this.checkVhash(pos)) return this.getVhash();
+        if (this.checkVhash(pos)) return this.getVhash();
         else if (this.checkAny(pos)) return this.getAny();
         else if (this.checkOperator(pos)) return this.getOperator();
         else if (this.checkImportant(pos)) return this.getImportant();

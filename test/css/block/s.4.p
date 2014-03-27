@@ -5,8 +5,8 @@
       ['ident', 'p0']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v0'],
-      ['s', '  ']]],
+      ['ident', 'v0']]],
+  ['s', '  '],
   ['declDelim'],
   ['s', '  '],
   ['declaration',
@@ -14,5 +14,5 @@
       ['ident', 'p1']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v1'],
-      ['s', '  ']]]]
+      ['ident', 'v1']]],
+  ['s', '  ']]

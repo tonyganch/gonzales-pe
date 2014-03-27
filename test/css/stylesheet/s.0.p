@@ -11,8 +11,8 @@
         ['property',
           ['ident', 'p']],
         ['propertyDelim'],
+        ['s', ' '],
         ['value',
-          ['s', ' '],
-          ['ident', 'v'],
-          ['s', '
-']]]]]]
+          ['ident', 'v']]],
+      ['s', '
+']]]]
