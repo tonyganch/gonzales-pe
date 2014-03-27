@@ -2,6 +2,6 @@
   ['property',
     ['ident', 'property']],
   ['propertyDelim'],
+  ['s', ' '],
   ['value',
-    ['s', ' '],
     ['ident', 'value']]]

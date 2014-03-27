@@ -5,8 +5,8 @@
   ['commentML', 'test'],
   ['s', '  '],
   ['propertyDelim'],
+  ['s', '  '],
+  ['commentML', 'test'],
+  ['s', '  '],
   ['value',
-    ['s', '  '],
-    ['commentML', 'test'],
-    ['s', '  '],
     ['ident', 'value']]]

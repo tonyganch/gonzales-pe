@@ -5,8 +5,8 @@
       ['ident', 'p0']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v0'],
-      ['commentML', 'test']]],
+      ['ident', 'v0']]],
+  ['commentML', 'test'],
   ['declDelim'],
   ['commentML', 'test'],
   ['declaration',
@@ -14,5 +14,5 @@
       ['ident', 'p1']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v1'],
-      ['commentML', 'test']]]]
+      ['ident', 'v1']]],
+  ['commentML', 'test']]

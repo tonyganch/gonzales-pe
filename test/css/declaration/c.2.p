@@ -3,6 +3,6 @@
     ['ident', 'property']],
   ['commentML', 'test'],
   ['propertyDelim'],
+  ['commentML', 'test'],
   ['value',
-    ['commentML', 'test'],
     ['ident', 'value']]]

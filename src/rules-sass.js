@@ -81,6 +81,8 @@
         if (l = this.checkPropertyDelim(i)) i++;
         else return 0;
 
+        if (l = this.checkS(i)) i += l;
+
         if (l = this.checkValue(i)) i += l;
         else return 0;
 
@@ -97,8 +99,9 @@
         x = [NodeType.DeclarationType];
 
         x.push(this.getProperty());
-        x = x.concat(this.getSC());
+        if (this.checkS(pos)) x.push(this.getS());
         x.push(this.getPropertyDelim());
+        if (this.checkS(pos)) x.push(this.getS());
         x.push(this.getValue());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
@@ -763,17 +766,55 @@
     };
 
     /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    sass.checkTsets = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        while (tokens[i - 1].type !== TokenType.Newline &&
+              (l = this.checkTset(i))) {
+            i += l;
+        }
+
+        return i - start;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    sass.getTsets = function() {
+        var x = [],
+            t;
+
+        while (tokens[pos - 1].type !== TokenType.Newline &&
+              (t = this.getTset())) {
+            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            else x = x.concat(t);
+        }
+
+        return x;
+    };
+
+    /**
      * Check if token is part of a value
      * @param {Number} i Token's index number
      * @returns {Number} Length of the value
      */
     sass.checkValue = function(i) {
         var start = i,
-            l;
+            l, s, _i;
 
         while (i < tokensLength) {
             if (this.checkDeclDelim(i)) break;
-            if (l = this._checkValue(i)) i += l;
+
+            s = this.checkS(i);
+            _i = i + s;
+
+            if (l = this._checkValue(_i)) i += l + s;
             if (!l || this.checkBlock(i - l)) break;
         }
 
@@ -786,18 +827,18 @@
     sass.getValue = function() {
         var startPos = pos,
             x = [NodeType.ValueType],
-            t, _pos;
+            t, _pos, s;
 
         while (pos < tokensLength) {
-            _pos = pos;
+            s = this.checkS(pos);
+            _pos = pos + s;
 
-            if (this.checkDeclDelim(pos)) break;
+            if (this.checkDeclDelim(_pos)) break;
 
-            if (!this._checkValue(pos)) break;
-            t = this._getValue();
+            if (!this._checkValue(_pos)) break;
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
-            else x = x.concat(t);
+            if (s) x.push(this.getS());
+            x.push(this._getValue());
 
             if (this.checkBlock(_pos)) break;
         }
@@ -810,10 +851,7 @@
      * @returns {Number}
      */
     sass._checkValue = function(i) {
-        return this.checkS(i) ||
-            this.checkCommentML(i) ||
-            this.checkCommentSL(i) ||
-            this.checkVhash(i) ||
+        return this.checkVhash(i) ||
             this.checkAny(i) ||
             this.checkOperator(i) ||
             this.checkImportant(i);
@@ -823,13 +861,10 @@
      * @returns {Array}
      */
     sass._getValue = function() {
-        if (this.checkS(pos)) return this.getS();
-        if (this.checkCommentML(pos)) return this.getCommentML();
-        if (this.checkCommentSL(pos)) return this.getCommentSL();
-        else if (this.checkVhash(pos)) return this.getVhash();
-        else if (this.checkAny(pos)) return this.getAny();
-        else if (this.checkOperator(pos)) return this.getOperator();
-        else if (this.checkImportant(pos)) return this.getImportant();
+        if (this.checkVhash(pos)) return this.getVhash();
+        if (this.checkAny(pos)) return this.getAny();
+        if (this.checkOperator(pos)) return this.getOperator();
+        if (this.checkImportant(pos)) return this.getImportant();
     };
 
     /**
