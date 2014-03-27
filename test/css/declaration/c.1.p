@@ -2,6 +2,6 @@
   ['property',
     ['ident', 'property']],
   ['propertyDelim'],
+  ['commentML', 'test'],
   ['value',
-    ['commentML', 'test'],
     ['ident', 'value']]]

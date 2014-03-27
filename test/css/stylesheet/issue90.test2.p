@@ -64,8 +64,8 @@
             ['property',
               ['ident', 'p']],
             ['propertyDelim'],
+            ['s', ' '],
             ['value',
-              ['s', ' '],
               ['ident', 'v']]],
           ['declDelim'],
           ['s', '

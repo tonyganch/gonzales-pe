@@ -5,5 +5,5 @@
       ['ident', 'p']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v'],
-      ['s', '  ']]]]
+      ['ident', 'v']]],
+  ['s', '  ']]

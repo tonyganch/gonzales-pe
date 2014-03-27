@@ -1332,10 +1332,15 @@
      */
     scss.checkValue = function(i) {
         var start = i,
-            l;
+            l, s, _i;
 
         while (i < tokensLength) {
-            if (l = this._checkValue(i)) i += l;
+            if (this.checkDeclDelim(i)) break;
+
+            s = this.checkS(i);
+            _i = i + s;
+
+            if (l = this._checkValue(_i)) i += l + s;
             if (!l || this.checkBlock(i - l)) break;
         }
 
@@ -1347,8 +1352,7 @@
      * @returns {Number}
      */
     scss._checkValue = function(i) {
-        return this.checkSC(i) ||
-            this.checkInterpolation(i) ||
+        return this.checkInterpolation(i) ||
             this.checkVariable(i) ||
             this.checkVhash(i) ||
             this.checkBlock(i) ||
@@ -1365,16 +1369,18 @@
     scss.getValue = function() {
         var startPos = pos,
             x = [NodeType.ValueType],
-            t, _pos;
+            t, _pos, s;
 
         while (pos < tokensLength) {
-            _pos = pos;
+            s = this.checkS(pos);
+            _pos = pos + s;
 
-            if (!this._checkValue(pos)) break;
-            t = this._getValue();
+            if (this.checkDeclDelim(_pos)) break;
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
-            else x = x.concat(t);
+            if (!this._checkValue(_pos)) break;
+
+            if (s) x.push(this.getS());
+            x.push(this._getValue());
 
             if (this.checkBlock(_pos)) break;
         }
@@ -1386,8 +1392,7 @@
      * @returns {Array}
      */
     scss._getValue = function() {
-        if (this.checkSC(pos)) return this.getSC();
-        else if (this.checkInterpolation(pos)) return this.getInterpolation();
+        if (this.checkInterpolation(pos)) return this.getInterpolation();
         else if (this.checkVariable(pos)) return this.getVariable();
         else if (this.checkVhash(pos)) return this.getVhash();
         else if (this.checkBlock(pos)) return this.getBlock();

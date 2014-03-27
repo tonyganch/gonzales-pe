@@ -21,6 +21,6 @@
         ['ident', 'color']],
       ['propertyDelim'],
       ['value',
-        ['ident', 'red'],
-        ['s', '
-']]]]]
+        ['ident', 'red']]],
+    ['s', '
+']]]

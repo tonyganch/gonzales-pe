@@ -5,5 +5,5 @@
       ['ident', 'p']],
     ['propertyDelim'],
     ['value',
-      ['ident', 'v'],
-      ['commentML', 'test']]]]
+      ['ident', 'v']]],
+  ['commentML', 'test']]
