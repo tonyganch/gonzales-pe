@@ -146,7 +146,7 @@
 
         if (l = this.checkSC(i)) i += l;
 
-        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        if (l = this.checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
@@ -174,7 +174,7 @@
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = this.getCondition();
+                x = this.getConditionalStatement();
                 break;
             case 2:
                 x = this.getInclude();
@@ -214,7 +214,7 @@
 
         if (l = this.checkSC(i)) i += l;
 
-        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        if (l = this.checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
@@ -239,7 +239,7 @@
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = this.getCondition();
+                x = this.getConditionalStatement();
                 break;
             case 2:
                 x = this.getInclude();
@@ -328,13 +328,13 @@
 
     /**
      * Check if token is part of a condition
-     * (e.g. `@if ... @else if ... @else ...`).
+     * (e.g. `@if ...`, `@else if ...` or `@else ...`).
      * @param {Number} i Token's index number
      * @returns {Number} Length of the condition
      */
     scss.checkCondition = function(i) {
         var start = i,
-            l;
+            l, _i, s;
 
         if (i >= tokensLength) return 0;
 
@@ -345,17 +345,24 @@
 
         while (i < tokensLength) {
             if (l = this.checkBlock(i)) break;
-            else if (l = this.checkVariable(i) ||
-                     this.checkIdent(i) ||
-                     this.checkSC(i) ||
-                     this.checkNumber(i) ||
-                     this.checkOperator(i) ||
-                     this.checkCombinator(i) ||
-                     this.checkString(i)) i += l;
-            else return 0;
+
+            s = this.checkSC(i);
+            _i = i + s;
+
+            if (l = this._checkCondition(_i)) i += l + s;
+            else break;
         }
 
         return i - start;
+    };
+
+    scss._checkCondition = function(i) {
+        return this.checkVariable(i) ||
+             this.checkIdent(i) ||
+             this.checkNumber(i) ||
+             this.checkOperator(i) ||
+             this.checkCombinator(i) ||
+             this.checkString(i);
     };
 
     /**
@@ -370,14 +377,62 @@
 
         while (pos < tokensLength) {
             if (this.checkBlock(pos)) break;
-            else if (this.checkVariable(pos)) x.push(this.getVariable());
-            else if (this.checkIdent(pos)) x.push(this.getIdent());
-            else if (this.checkNumber(pos)) x.push(this.getNumber());
-            else if (this.checkOperator(pos)) x.push(this.getOperator());
-            else if (this.checkCombinator(pos)) x.push(this.getCombinator());
-            else if (this.checkSC(pos)) x = x.concat(this.getSC());
-            else if (this.checkString(pos)) x.push(this.getString());
+
+            s = this.checkSC(pos);
+            _pos = pos + s;
+
+            if (!this._checkCondition(_pos)) break;
+
+            if (s) x = x.concat(this.getSC());
+            x.push(this._getCondition());
         }
+
+        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+    };
+
+    scss._getCondition = function() {
+        if (this.checkVariable(pos)) return this.getVariable();
+        if (this.checkIdent(pos)) return this.getIdent();
+        if (this.checkNumber(pos)) return this.getNumber();
+        if (this.checkOperator(pos)) return this.getOperator();
+        if (this.checkCombinator(pos)) return this.getCombinator();
+        if (this.checkString(pos)) return this.getString();
+    };
+
+    /**
+     * Check if token is part of a conditional statement
+     * (e.g. `@if ... {} @else if ... {} @else ... {}`).
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the condition
+     */
+    scss.checkConditionalStatement = function(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkCondition(i)) i += l;
+        else return 0;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkBlock(i)) i += l;
+        else return 0;
+
+        return i - start;
+    };
+
+    /**
+     * Get node with a condition.
+     * @returns {Array} `['condition', x]`
+     */
+    scss.getConditionalStatement = function() {
+        var startPos = pos,
+            x = [NodeType.ConditionalStatementType];
+
+        x.push(this.getCondition());
+        x = x.concat(this.getSC());
+        x.push(this.getBlock());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -1294,6 +1349,7 @@
                 this.checkInclude(i) ||
                 this.checkMixin(i) ||
                 this.checkLoop(i) ||
+                this.checkConditionalStatement(i) ||
                 this.checkAtrule(i) ||
                 this.checkRuleset(i)) i += l;
             else throwError(i);
@@ -1316,6 +1372,7 @@
             else if (this.checkInclude(pos)) x.push(this.getInclude());
             else if (this.checkMixin(pos)) x.push(this.getMixin());
             else if (this.checkLoop(pos)) x.push(this.getLoop());
+            else if (this.checkConditionalStatement(pos)) x.push(this.getConditionalStatement());
             else if (this.checkAtrule(pos)) x.push(this.getAtrule());
             else if (this.checkDeclaration(pos)) x.push(this.getDeclaration());
             else if (this.checkDeclDelim(pos)) x.push(this.getDeclDelim());

@@ -15,6 +15,7 @@ var rules = {
     'commentML': function() { if (s.checkCommentML(pos)) return s.getCommentML() },
     'commentSL': function() { if (s.checkCommentSL(pos)) return s.getCommentSL() },
     'condition': function() { if (s.checkCondition(pos)) return s.getCondition() },
+    'conditionalStatement': function() { if (s.checkConditionalStatement(pos)) return s.getConditionalStatement() },
     'declaration': function() { if (s.checkDeclaration(pos)) return s.getDeclaration() },
     'declDelim': function() { if (s.checkDeclDelim(pos)) return s.getDeclDelim() },
     'default': function () { if (s.checkDefault(pos)) return s.getDefault() },

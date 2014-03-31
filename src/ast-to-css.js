@@ -15,6 +15,7 @@ function astToCSS(options) {
         },
         _m_composite = {
             'atruleb': 1, 'atrulerq': 1, 'atrulers': 1, 'atrules': 1,'condition': 1,
+            'conditionalStatement': 1,
             'declaration': 1, 'dimension': 1, 'filterv': 1, 'function': 1,
             'ident': 1, 'include': 1,
             'loop': 1, 'mixin': 1, 'selector': 1, 'progid': 1, 'property': 1,
