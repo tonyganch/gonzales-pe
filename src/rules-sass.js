@@ -72,7 +72,7 @@
 
         if (l = this.checkSC(i)) i += l;
 
-        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        if (l = this.checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
@@ -106,7 +106,7 @@
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = this.getCondition();
+                x = this.getConditionalStatement();
                 break;
             case 2:
                 x = this.getInclude();
@@ -153,7 +153,7 @@
 
         if (l = this.checkSC(i)) i += l;
 
-        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        if (l = this.checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
@@ -176,7 +176,7 @@
 
         switch (tokens[pos].bd_kind) {
             case 1:
-                x = this.getCondition();
+                x = this.getConditionalStatement();
                 break;
             case 2:
                 x = this.getInclude();

@@ -63,6 +63,7 @@ var NodeType = {
     CommentMLType: 'commentML',
     CommentSLType: 'commentSL',
     ConditionType: 'condition',
+    ConditionalStatementType: 'conditionalStatement',
     DeclarationType: 'declaration',
     DeclDelimType: 'declDelim',
     DefaultType: 'default',
