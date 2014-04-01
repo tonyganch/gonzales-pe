@@ -1,1 +1,0 @@
-@mixin nani {color:tomato}

@@ -3,9 +3,9 @@
  * Just change the first line (`var css`) and run `node test/ast.js`.
  * Make sure to change `syntax` variable too, if needed.
  */
-var css = 'a,\nb',
-    syntax = 'css',
-    rule = 'selector',
+var css = 'a{span:hover{}}',
+    syntax = 'scss',
+    rule = 'stylesheet',
     gonzales = require('./../lib/gonzales'),
     astToTree = function(tree, level) {
         level = level || 0;

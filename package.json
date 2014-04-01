@@ -16,11 +16,13 @@
         "url": "http://github.com/tonyganch/gonzales-pe.git"
     },
     "scripts": {
-        "test": "(make && mkdir -p log && node ./test/test.js) | tee ./log/test.log"
+        "test": "(make && mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
     },
     "devDependencies": {
         "benchmark": "~1.0.0",
-        "microtime": "~0.3.3"
+        "coffee-script": "latest",
+        "microtime": "~0.3.3",
+        "mocha": "latest"
     },
     "engines": {
         "node": ">=0.6.0"
