@@ -1,2 +1,0 @@
-+nani(foo)
-  p:v

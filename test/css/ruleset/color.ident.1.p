@@ -1,0 +1,11 @@
+['ruleset',
+  ['selector',
+    ['simpleselector',
+      ['ident', 'yellow']]],
+  ['block',
+    ['declaration',
+      ['property',
+        ['ident', 'p']],
+      ['propertyDelim'],
+      ['value',
+        ['ident', 'yellow']]]]]

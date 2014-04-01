@@ -1,1 +1,0 @@
-when (lightness(@a) >= 50%)
