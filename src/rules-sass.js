@@ -29,6 +29,180 @@
     };
 
     /**
+     * Check if token is part of a declaration (property-value pair)
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the declaration
+     */
+    sass.checkBlockdecl = function(i) {
+        var l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = this.checkBlockdecl1(i)) tokens[i].bd_type = 1;
+        else if (l = this.checkBlockdecl2(i)) tokens[i].bd_type = 2;
+        else if (l = this.checkBlockdecl3(i)) tokens[i].bd_type = 3;
+        else if (l = this.checkBlockdecl4(i)) tokens[i].bd_type = 4;
+        else return 0;
+
+        return l;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    sass.getBlockdecl = function() {
+        switch (tokens[pos].bd_type) {
+            case 1: return this.getBlockdecl1();
+            case 2: return this.getBlockdecl2();
+            case 3: return this.getBlockdecl3();
+            case 4: return this.getBlockdecl4();
+        }
+    };
+
+    /**
+     * Check if token is part of a declaration (property-value pair,
+     *      loop, mixin, etc.), followed by a declaration delimiter ';' and
+     *      mixed with optional whitespaces.
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of declaration
+     */
+    sass.checkBlockdecl1 = function(i) {
+        var start = i,
+            l;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
+        else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
+        else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
+        else if (l = this.checkDeclaration(i)) tokens[i].bd_kind = 5;
+        else if (l = this.checkAtrule(i)) tokens[i].bd_kind = 6;
+        else if (l = this.checkRuleset(i)) tokens[i].bd_kind = 7;
+        else return 0;
+
+        i += l;
+
+        if (i >= tokensLength) return 0;
+
+        while (i < tokensLength) {
+            if (l = this.checkDeclDelim(i)) {
+                i += l;
+                break;
+            } else if (l = this.checkS(i)) i += l;
+            else if (l = this.checkCommentSL(i)) i += l;
+            else return 0;
+        }
+
+        return i - start;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    sass.getBlockdecl1 = function() {
+        var sc = this.getSC(),
+            x;
+
+        switch (tokens[pos].bd_kind) {
+            case 1:
+                x = this.getCondition();
+                break;
+            case 2:
+                x = this.getInclude();
+                break;
+            case 3:
+                x = this.getLoop();
+                break;
+            case 4:
+                x = this.getFilter();
+                break;
+            case 5:
+                x = this.getDeclaration();
+                break;
+            case 6:
+                x = this.getAtrule();
+                break;
+            case 7:
+                x = this.getRuleset();
+                break;
+        }
+
+        x = sc.concat([x]);
+
+        while (pos < tokensLength) {
+            if (this.checkDeclDelim(pos)) {
+                x.push(this.getDeclDelim());
+                break;
+            } else if (this.checkS(pos)) x.push(this.getS());
+            else if (this.checkCommentSL(pos)) x.push(this.getCommentSL());
+            else break;
+        }
+        return x;
+    };
+
+    /**
+     * Check if token is part of a declaration not followed by declaration
+     *      delimiter but mixed with optional whitespaces.
+     * @param {Number} i Token's index number
+     * @returns {Number} Length of the declaration
+     */
+    sass.checkBlockdecl2 = function(i) {
+        var start = i,
+            l;
+
+        if (l = this.checkSC(i)) i += l;
+
+        if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
+        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
+        else if (l = this.checkLoop(i)) tokens[i].bd_kind = 3;
+        else if (l = this.checkFilter(i)) tokens[i].bd_kind = 4;
+        else if (l = this.checkDeclaration(i)) tokens[i].bd_kind = 5;
+        else if (l = this.checkAtrule(i)) tokens[i].bd_kind = 6;
+        else if (l = this.checkRuleset(i)) tokens[i].bd_kind = 7;
+        else return 0;
+
+        i += l;
+
+        return i - start;
+    };
+
+    /**
+     * @returns {Array}
+     */
+    sass.getBlockdecl2 = function() {
+        var sc = this.getSC(),
+            x;
+
+        switch (tokens[pos].bd_kind) {
+            case 1:
+                x = this.getCondition();
+                break;
+            case 2:
+                x = this.getInclude();
+                break;
+            case 3:
+                x = this.getLoop();
+                break;
+            case 4:
+                x = this.getFilter();
+                break;
+            case 5:
+                x = this.getDeclaration();
+                break;
+            case 6:
+                x = this.getAtrule();
+                break;
+            case 7:
+                x = this.getRuleset();
+                break;
+        }
+
+        return sc.concat([x]);
+    };
+
+
+    /**
      * Get node with a multiline comment
      * @returns {Array} `['commentML', x]` where `x`
      *      is the comment's text (without `/*`).
@@ -902,8 +1076,10 @@
                     ws = ws === -1 ? i : ws;
                     sc = sc === -1 ? i : ws;
 
-                    tokens[ws].ws_last = i;
-                    tokens[sc].sc_last = i;
+                    tokens[ws].ws_last = i - 1;
+                    tokens[sc].sc_last = i - 1;
+                    tokens[i].ws_last = i;
+                    tokens[i].sc_last = i;
 
                     ws = -1;
                     sc = -1;

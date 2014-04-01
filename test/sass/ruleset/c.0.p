@@ -18,9 +18,9 @@
         ['ident', 'p1']],
       ['propertyDelim'],
       ['value',
-        ['ident', 'v1'],
-        ['s', ' '],
-        ['commentSL', ' test 2']]],
+        ['ident', 'v1']]],
+    ['s', ' '],
+    ['commentSL', ' test 2'],
     ['declDelim'],
     ['s', '  '],
     ['declaration',
@@ -28,6 +28,6 @@
         ['ident', 'p2']],
       ['propertyDelim'],
       ['value',
-        ['ident', 'v2'],
-        ['s', ' '],
-        ['commentSL', ' test 3']]]]]
+        ['ident', 'v2']]],
+    ['s', ' '],
+    ['commentSL', ' test 3']]]
