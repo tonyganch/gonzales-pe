@@ -1,1 +1,0 @@
-#bundle > .button (tomato)

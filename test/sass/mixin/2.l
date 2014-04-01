@@ -1,2 +1,0 @@
-@mixin nani ($v1, $v2)
-  x:y

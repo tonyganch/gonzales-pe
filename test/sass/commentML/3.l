@@ -1,3 +1,0 @@
-/* Tomatos
-      are
-    red
