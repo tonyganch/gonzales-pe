@@ -531,6 +531,8 @@ syntaxes.css = {
 
         i += l;
 
+        if (l = this.checkSC(i)) i += l;
+
         if (i < tokensLength && (l = this.checkDeclDelim(i))) i += l;
         else return 0;
 
@@ -562,6 +564,7 @@ syntaxes.css = {
 
         return sc
             .concat([x])
+            .concat(this.getSC())
             .concat([this.getDeclDelim()])
             .concat(this.getSC());
     },
