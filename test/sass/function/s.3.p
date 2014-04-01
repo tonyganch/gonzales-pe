@@ -1,0 +1,10 @@
+['function',
+  ['ident', 'test'],
+  ['arguments',
+    ['s', '  '],
+    ['ident', 'x'],
+    ['s', '  '],
+    ['unary', '+'],
+    ['s', '  '],
+    ['ident', 'y'],
+    ['s', '  ']]]
