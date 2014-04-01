@@ -1,0 +1,12 @@
+['declaration',
+  ['property',
+    ['ident', 'property']],
+  ['s', '  '],
+  ['commentML', 'test'],
+  ['s', '  '],
+  ['propertyDelim'],
+  ['s', '  '],
+  ['commentML', 'test'],
+  ['s', '  '],
+  ['value',
+    ['ident', 'value']]]
