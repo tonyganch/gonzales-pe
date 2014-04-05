@@ -61,29 +61,6 @@
     };
 
     /**
-     * Get node with mixin's arguments
-     * @returns {Array} `['arguments', x]`
-    less.getArguments = function() {
-        var startPos = pos,
-            arguments = [],
-            x;
-
-        pos++;
-
-        while (x = this.getArgument()) {
-            if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') arguments.push(x);
-            else arguments = arguments.concat(x);
-        }
-
-        pos++;
-
-        x = [NodeType.ArgumentsType].concat(arguments);
-
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
-    };
-     */
-
-    /**
      * Check if token is valid to be part of arguments list.
      * @param i Token's index number
      * @returns {Number}
@@ -93,6 +70,8 @@
             this.checkVariablesList(i) ||
             this.checkVariable(i) ||
             this.checkSC(i) ||
+            this.checkUnary(i) ||
+            this.checkOperator(i) ||
             this.checkDelim(i) ||
             this.checkDeclDelim(i) ||
             this.checkString(i) ||
@@ -109,18 +88,20 @@
      */
     less.getArgument = function() {
         if (this.checkDeclaration(pos)) return this.getDeclaration();
-        else if (this.checkVariablesList(pos)) return this.getVariablesList();
-        else if (this.checkVariable(pos)) return this.getVariable();
-        else if (this.checkSC(pos)) return this.getSC();
-        else if (this.checkDelim(pos)) return this.getDelim();
-        else if (this.checkDeclDelim(pos)) return this.getDeclDelim();
-        else if (this.checkString(pos)) return this.getString();
-        else if (this.checkPercentage(pos)) return this.getPercentage();
-        else if (this.checkDimension(pos)) return this.getDimension();
-        else if (this.checkNumber(pos)) return this.getNumber();
-        else if (this.checkUri(pos)) return this.getUri();
-        else if (this.checkIdent(pos)) return this.getIdent();
-        else if (this.checkVhash(pos)) return this.getVhash();
+        if (this.checkVariablesList(pos)) return this.getVariablesList();
+        if (this.checkVariable(pos)) return this.getVariable();
+        if (this.checkSC(pos)) return this.getSC();
+        if (this.checkUnary(pos)) return this.getUnary();
+        if (this.checkOperator(pos)) return this.getOperator();
+        if (this.checkDelim(pos)) return this.getDelim();
+        if (this.checkDeclDelim(pos)) return this.getDeclDelim();
+        if (this.checkString(pos)) return this.getString();
+        if (this.checkPercentage(pos)) return this.getPercentage();
+        if (this.checkDimension(pos)) return this.getDimension();
+        if (this.checkNumber(pos)) return this.getNumber();
+        if (this.checkUri(pos)) return this.getUri();
+        if (this.checkIdent(pos)) return this.getIdent();
+        if (this.checkVhash(pos)) return this.getVhash();
     };
 
     /**
