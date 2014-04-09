@@ -11,14 +11,14 @@ describe 'sass/condition >>', ->
   it '2.p', ->
     this.shouldBeOk '2'
 
-  it '3.p', ->
+  it.skip '3.p', ->
     this.shouldBeOk '3'
 
-  it '4.p', ->
+  it.skip '4.p', ->
     this.shouldBeOk '4'
 
-  it '5.p', ->
+  it.skip '5.p', ->
     this.shouldBeOk '5'
 
-  it '6.p', ->
+  it.skip '6.p', ->
     this.shouldBeOk '6'

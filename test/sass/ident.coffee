@@ -20,5 +20,5 @@ describe 'sass/ident >>', ->
   it '5.p', ->
     this.shouldBeOk '5'
 
-  it '6.p', ->
+  it.skip '6.p', ->
     this.shouldBeOk '6'

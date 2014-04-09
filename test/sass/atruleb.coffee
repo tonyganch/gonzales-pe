@@ -1,4 +1,4 @@
-describe 'sass/atruleb >>', ->
+describe.skip 'sass/atruleb >>', ->
   beforeEach ->
     this.filename = __filename
 

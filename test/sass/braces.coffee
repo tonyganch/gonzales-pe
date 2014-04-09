@@ -29,28 +29,28 @@ describe 'sass/braces >>', ->
   it '8.p', ->
     this.shouldBeOk '8'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
-  it 'c.1.p', ->
+  it.skip 'c.1.p', ->
     this.shouldBeOk 'c.1'
 
-  it 'c.2.p', ->
+  it.skip 'c.2.p', ->
     this.shouldBeOk 'c.2'
 
-  it 'c.3.p', ->
+  it.skip 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it 'c.4.p', ->
+  it.skip 'c.4.p', ->
     this.shouldBeOk 'c.4'
 
-  it 'c.5.p', ->
+  it.skip 'c.5.p', ->
     this.shouldBeOk 'c.5'
 
-  it 'c.6.p', ->
+  it.skip 'c.6.p', ->
     this.shouldBeOk 'c.6'
 
-  it 'c.7.p', ->
+  it.skip 'c.7.p', ->
     this.shouldBeOk 'c.7'
 
   it 's.0.p', ->

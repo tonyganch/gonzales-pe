@@ -20,7 +20,7 @@ describe 'scss/atruler >>', ->
   it 'c.2.p', ->
     this.shouldBeOk 'c.2'
 
-  it 'keyframes.0.p', ->
+  it.skip 'keyframes.0.p', ->
     this.shouldBeOk 'keyframes.0'
 
   it 's.0.p', ->

@@ -1,4 +1,4 @@
-describe 'sass/atruler >>', ->
+describe.skip 'sass/atruler >>', ->
   beforeEach ->
     this.filename = __filename
 

@@ -5,7 +5,7 @@ describe 'sass/important >>', ->
   it '0.p', ->
     this.shouldBeOk '0'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
   it 's.0.p', ->

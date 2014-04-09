@@ -20,7 +20,7 @@ describe 'scss/filter >>', ->
   it '5.p', ->
     this.shouldBeOk '5'
 
-  it '6.p', ->
+  it.skip '6.p', ->
     this.shouldBeOk '6'
 
   it 'c.0.p', ->

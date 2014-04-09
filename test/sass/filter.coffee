@@ -20,17 +20,17 @@ describe 'sass/filter >>', ->
   it '5.p', ->
     this.shouldBeOk '5'
 
-  it '6.p', ->
+  it.skip '6.p', ->
     this.shouldBeOk '6'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
-  it 'c.1.p', ->
+  it.skip 'c.1.p', ->
     this.shouldBeOk 'c.1'
 
-  it 's.0.p', ->
+  it.skip 's.0.p', ->
     this.shouldBeOk 's.0'
 
-  it 's.1.p', ->
+  it.skip 's.1.p', ->
     this.shouldBeOk 's.1'
