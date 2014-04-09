@@ -17,7 +17,7 @@ describe 'less/stylesheet >>', ->
   it '4.p', ->
     this.shouldBeOk '4'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
   it 'issue86.test1.p', ->
@@ -29,23 +29,23 @@ describe 'less/stylesheet >>', ->
   it 'issue88.test1.p', ->
     this.shouldBeOk 'issue88.test1'
 
-  it 'issue90.test1.p', ->
+  it.skip 'issue90.test1.p', ->
     this.shouldBeOk 'issue90.test1'
 
-  it 'issue90.test2.p', ->
+  it.skip 'issue90.test2.p', ->
     this.shouldBeOk 'issue90.test2'
 
   it 'issue111.test1.p', ->
     this.shouldBeOk 'issue111.test1'
 
-  it 's.0.p', ->
+  it.skip 's.0.p', ->
     this.shouldBeOk 's.0'
 
-  it 's.1.p', ->
+  it.skip 's.1.p', ->
     this.shouldBeOk 's.1'
 
   it 's.2.p', ->
     this.shouldBeOk 's.2'
 
-  it 's.3.p', ->
+  it.skip 's.3.p', ->
     this.shouldBeOk 's.3'

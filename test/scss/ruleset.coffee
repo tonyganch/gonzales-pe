@@ -32,10 +32,10 @@ describe 'scss/ruleset >>', ->
   it 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it 'color.ident.0.p', ->
+  it.skip 'color.ident.0.p', ->
     this.shouldBeOk 'color.ident.0'
 
-  it 'color.ident.1.p', ->
+  it.skip 'color.ident.1.p', ->
     this.shouldBeOk 'color.ident.1'
 
   it 's.0.p', ->

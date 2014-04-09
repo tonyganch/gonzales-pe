@@ -1,4 +1,4 @@
-describe 'sass/block >>', ->
+describe.skip 'sass/block >>', ->
   beforeEach ->
     this.filename = __filename
 
