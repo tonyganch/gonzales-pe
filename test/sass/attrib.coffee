@@ -11,10 +11,10 @@ describe 'sass/attrib >>', ->
   it '2.p', ->
     this.shouldBeOk '2'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
-  it 'c.1.p', ->
+  it.skip 'c.1.p', ->
     this.shouldBeOk 'c.1'
 
   it 's.0.p', ->

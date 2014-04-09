@@ -44,19 +44,19 @@ describe 'sass/simpleselector >>', ->
   it '13.p', ->
     this.shouldBeOk '13'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
-  it 'c.1.p', ->
+  it.skip 'c.1.p', ->
     this.shouldBeOk 'c.1'
 
-  it 'c.2.p', ->
+  it.skip 'c.2.p', ->
     this.shouldBeOk 'c.2'
 
-  it 'c.3.p', ->
+  it.skip 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it 'c.4.p', ->
+  it.skip 'c.4.p', ->
     this.shouldBeOk 'c.4'
 
   it 's.0.p', ->
