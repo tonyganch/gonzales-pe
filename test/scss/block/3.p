@@ -7,6 +7,6 @@
     ['s', ' '],
     ['simpleselector',
       ['class',
-        ['ident', 'nani']]],
-    ['s', '
-']]]
+        ['ident', 'nani']]]],
+  ['s', '
+']]
