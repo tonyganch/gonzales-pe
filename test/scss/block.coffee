@@ -16,3 +16,6 @@ describe 'scss/block >>', ->
 
   it '4.p', ->
     this.shouldBeOk '4'
+
+  it '5.p', ->
+    this.shouldBeOk '5'

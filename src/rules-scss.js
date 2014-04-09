@@ -626,8 +626,6 @@
         if (l = this.checkBlock(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     };
 
@@ -656,8 +654,6 @@
         x = x.concat(this.getSC());
 
         x.push(this.getBlock());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -688,8 +684,6 @@
         if (l = this.checkArguments(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     };
 
@@ -713,8 +707,6 @@
         x = x.concat(this.getSC());
 
         x.push(this.getArguments());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -745,8 +737,6 @@
         if (l = this.checkBlock(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     };
 
@@ -768,8 +758,6 @@
         x = x.concat(this.getSC());
 
         x.push(this.getBlock());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
@@ -793,8 +781,6 @@
         if (l = this.checkIncludeSelector(i)) i += l;
         else return 0;
 
-        if (l = this.checkSC(i)) i += l;
-
         return i - start;
     };
 
@@ -810,8 +796,6 @@
         x = x.concat(this.getSC());
 
         x.push(this.getIncludeSelector());
-
-        x = x.concat(this.getSC());
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
     };
