@@ -6,7 +6,6 @@ var path = require('path');
 require('coffee-script/register');
 
 var mocha = new Mocha();
-mocha.reporter('spec');
 if (process.env.TEST_COV) mocha.reporter('html-cov');
 
 // Tell mocha which tests to run:
