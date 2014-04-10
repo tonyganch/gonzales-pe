@@ -115,11 +115,11 @@
         if (l = this.checkSC(i)) i += l;
 
         if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
-        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkDeclaration(i)) tokens[i].bd_kind = 4;
         else if (l = this.checkAtrule(i)) tokens[i].bd_kind = 5;
         else if (l = this.checkRuleset(i)) tokens[i].bd_kind = 6;
+        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else return 0;
 
         i += l;
@@ -178,11 +178,11 @@
         if (l = this.checkSC(i)) i += l;
 
         if (l = this.checkCondition(i)) tokens[i].bd_kind = 1;
-        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = this.checkFilter(i)) tokens[i].bd_kind = 3;
         else if (l = this.checkDeclaration(i)) tokens[i].bd_kind = 4;
         else if (l = this.checkAtrule(i)) tokens[i].bd_kind = 5;
         else if (l = this.checkRuleset(i)) tokens[i].bd_kind = 6;
+        else if (l = this.checkInclude(i)) tokens[i].bd_kind = 2;
         else return 0;
 
         i += l;
