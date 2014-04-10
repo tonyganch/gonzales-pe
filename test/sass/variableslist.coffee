@@ -1,4 +1,4 @@
-describe 'sass/variablelist >>', ->
+describe 'sass/variableslist >>', ->
   beforeEach ->
     this.filename = __filename
 

@@ -7,6 +7,3 @@ describe 'scss/variable >>', ->
 
   it '1.p', ->
     this.shouldBeOk '1'
-
-  it.skip '2.p', ->
-    this.shouldBeOk '2'

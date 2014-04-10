@@ -1,4 +1,4 @@
-describe 'scss/variablelist >>', ->
+describe 'scss/variableslist >>', ->
   beforeEach ->
     this.filename = __filename
 

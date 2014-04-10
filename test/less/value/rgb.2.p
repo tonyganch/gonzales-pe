@@ -1,0 +1,10 @@
+['value',
+  ['function',
+    ['ident', 'rgb'],
+    ['arguments',
+      ['number', '10.0'],
+      ['operator', ','],
+      ['number', '00.00'],
+      ['operator', ','],
+      ['percentage',
+        ['number', '10']]]]]

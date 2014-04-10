@@ -20,5 +20,5 @@ describe 'scss/ident >>', ->
   it '5.p', ->
     this.shouldBeOk '5'
 
-  it.skip '6.p', ->
+  it '6.p', ->
     this.shouldBeOk '6'

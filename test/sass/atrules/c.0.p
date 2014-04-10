@@ -1,4 +1,4 @@
 ['atrules',
   ['atkeyword',
     ['ident', 'test']],
-  ['commentML', 'test']]
+  ['commentML', 'test*/']]

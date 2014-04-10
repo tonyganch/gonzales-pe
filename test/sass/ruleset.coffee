@@ -32,26 +32,23 @@ describe 'sass/ruleset >>', ->
   it.skip 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it.skip 'color.ident.0.p', ->
+  it 'color.ident.0.p', ->
     this.shouldBeOk 'color.ident.0'
 
-  it.skip 'color.ident.1.p', ->
+  it 'color.ident.1.p', ->
     this.shouldBeOk 'color.ident.1'
 
-  it.skip 's.0.p', ->
+  it 's.0.p', ->
     this.shouldBeOk 's.0'
 
-  it.skip 's.1.p', ->
+  it 's.1.p', ->
     this.shouldBeOk 's.1'
 
-  it.skip 's.2.p', ->
+  it 's.2.p', ->
     this.shouldBeOk 's.2'
 
-  it.skip 's.3.p', ->
+  it 's.3.p', ->
     this.shouldBeOk 's.3'
 
-  it.skip 's.4.p', ->
+  it 's.4.p', ->
     this.shouldBeOk 's.4'
-
-  it.skip 's.5.p', ->
-    this.shouldBeOk 's.5'

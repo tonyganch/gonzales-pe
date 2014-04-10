@@ -1,7 +1,7 @@
 ['atrules',
   ['atkeyword',
     ['ident', 'test']],
-  ['commentML', 'test'],
+  ['commentML', 'test*/'],
   ['ident', 'x'],
-  ['commentML', 'test'],
+  ['commentML', 'test*/'],
   ['ident', 'y']]

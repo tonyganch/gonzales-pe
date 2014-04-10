@@ -3,10 +3,10 @@
     ['simpleselector',
       ['class',
         ['ident', 'test']],
-      ['s', ' ']]],
+      ['s', '
+']]],
   ['block',
-    ['s', '
-    '],
+    ['s', '    '],
     ['filter',
       ['property',
         ['ident', 'filter']],
@@ -14,13 +14,10 @@
         ['progid',
           ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')']]]],
     ['declDelim'],
-    ['s', '
-    '],
+    ['s', '    '],
     ['declaration',
       ['property',
         ['ident', 'color']],
       ['propertyDelim'],
       ['value',
-        ['ident', 'red']]],
-    ['s', '
-']]]
+        ['ident', 'red']]]]]
