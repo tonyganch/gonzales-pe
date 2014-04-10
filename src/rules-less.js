@@ -79,6 +79,7 @@
             this.checkDimension(i) ||
             this.checkNumber(i) ||
             this.checkUri(i) ||
+            this.checkFunction(i) ||
             this.checkIdent(i) ||
             this.checkVhash(i);
     };
@@ -100,6 +101,7 @@
         if (this.checkDimension(pos)) return this.getDimension();
         if (this.checkNumber(pos)) return this.getNumber();
         if (this.checkUri(pos)) return this.getUri();
+        if (this.checkFunction(pos)) return this.getFunction();
         if (this.checkIdent(pos)) return this.getIdent();
         if (this.checkVhash(pos)) return this.getVhash();
     };
@@ -985,10 +987,10 @@
 
         while (pos < tokensLength) {
             if (this.checkSC(pos)) x = x.concat(this.getSC());
+            else if (this.checkAtrule(pos)) x.push(this.getAtrule());
             else if (this.checkRuleset(pos)) x.push(this.getRuleset());
             else if (this.checkInclude(pos)) x.push(this.getInclude());
             else if (this.checkMixin(pos)) x.push(this.getMixin());
-            else if (this.checkAtrule(pos)) x.push(this.getAtrule());
             else if (this.checkDeclaration(pos)) x.push(this.getDeclaration());
             else if (this.checkDeclDelim(pos)) x.push(this.getDeclDelim());
             else throwError();
@@ -1004,11 +1006,14 @@
      */
     less.checkValue = function(i) {
         var start = i,
-            l;
+            l, s, _i;
 
         while (i < tokensLength) {
-            if (l = this._checkValue(i)) i += l;
-            if (!l || this.checkBlock(i - l)) break;
+            s = this.checkSC(i);
+            _i = i + s;
+
+            if (l = this._checkValue(_i)) i += l + s;
+            if (!l || this.checkBlock(_i)) break;
         }
 
         return i - start;
@@ -1019,8 +1024,7 @@
      * @returns {Number}
      */
     less._checkValue = function(i) {
-        return this.checkSC(i) ||
-            this.checkEscapedString(i) ||
+        return this.checkEscapedString(i) ||
             this.checkInterpolatedVariable(i) ||
             this.checkVariable(i) ||
             this.checkVhash(i) ||
@@ -1037,18 +1041,16 @@
     less.getValue = function() {
         var startPos = pos,
             x = [NodeType.ValueType],
-            t, _pos;
+            s, _pos;
 
         while (pos < tokensLength) {
-            _pos = pos;
+            s = this.checkSC(pos);
+            _pos = pos + s;
 
-            if (!this._checkValue(pos)) break;
-            t = this._getValue();
+            if (!this._checkValue(_pos)) break;
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
-            else x = x.concat(t);
-
-            if (this.checkBlock(_pos)) break;
+            if (s) x = x.concat(this.getSC());
+            x.push(this._getValue());
         }
 
         return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
@@ -1058,8 +1060,7 @@
      * @returns {Array}
      */
     less._getValue = function() {
-        if (this.checkSC(pos)) return this.getSC();
-        else if (this.checkEscapedString(pos)) return this.getEscapedString();
+        if (this.checkEscapedString(pos)) return this.getEscapedString();
         else if (this.checkInterpolatedVariable(pos)) return this.getInterpolatedVariable();
         else if (this.checkVariable(pos)) return this.getVariable();
         else if (this.checkVhash(pos)) return this.getVhash();

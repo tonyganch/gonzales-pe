@@ -358,8 +358,8 @@
 
     scss._checkCondition = function(i) {
         return this.checkVariable(i) ||
-             this.checkIdent(i) ||
              this.checkNumber(i) ||
+             this.checkIdent(i) ||
              this.checkOperator(i) ||
              this.checkCombinator(i) ||
              this.checkString(i);
@@ -392,8 +392,8 @@
 
     scss._getCondition = function() {
         if (this.checkVariable(pos)) return this.getVariable();
-        if (this.checkIdent(pos)) return this.getIdent();
         if (this.checkNumber(pos)) return this.getNumber();
+        if (this.checkIdent(pos)) return this.getIdent();
         if (this.checkOperator(pos)) return this.getOperator();
         if (this.checkCombinator(pos)) return this.getCombinator();
         if (this.checkString(pos)) return this.getString();
@@ -491,7 +491,7 @@
         if (i >= tokensLength) return 0;
 
         // Check if token is part of an identifier starting with `_`:
-        if (tokens[i].type === TokenType.LowLine) i++;
+        if (tokens[i].type === TokenType.LowLine) return this.checkIdentLowLine(i);
 
         // If token is a character, `-`, `$` or `*`, skip it & continue:
         if (l = this._checkIdent(i)) i += l;
@@ -897,9 +897,9 @@
                 i += l;
                 break;
             } else if (l = this.checkVariable(i) ||
+                       this.checkNumber(i) ||
                        this.checkIdent(i) ||
                        this.checkSC(i) ||
-                       this.checkNumber(i) ||
                        this.checkOperator(i) ||
                        this.checkCombinator(i) ||
                        this.checkString(i)) i += l;
@@ -925,8 +925,8 @@
                 break;
             }
             else if (this.checkVariable(pos)) x.push(this.getVariable());
-            else if (this.checkIdent(pos)) x.push(this.getIdent());
             else if (this.checkNumber(pos)) x.push(this.getNumber());
+            else if (this.checkIdent(pos)) x.push(this.getIdent());
             else if (this.checkOperator(pos)) x.push(this.getOperator());
             else if (this.checkCombinator(pos)) x.push(this.getCombinator());
             else if (this.checkSC(pos)) x = x.concat(this.getSC());

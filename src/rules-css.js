@@ -412,8 +412,8 @@ syntaxes.css = {
 
         while (!tokens[pos].atrulers_end) {
             if (this.checkSC(pos)) x = x.concat(this.getSC());
+            else if (this.checkAtrule(pos)) x.push(this.getAtrule());
             else if (this.checkRuleset(pos)) x.push(this.getRuleset());
-            else x.push(this.getAtrule());
         }
 
         x = x.concat(this.getSC());

@@ -56,7 +56,7 @@ describe 'scss/simpleselector >>', ->
   it 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it.skip 'c.4.p', ->
+  it 'c.4.p', ->
     this.shouldBeOk 'c.4'
 
   it 's.0.p', ->

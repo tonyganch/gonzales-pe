@@ -2,7 +2,9 @@
   ['selector',
     ['simpleselector',
       ['ident', 's'],
-      ['s', '  ']]],
+      ['s', '  '],
+      ['s', '
+']]],
   ['block',
     ['s', '  '],
     ['declaration',
@@ -12,5 +14,4 @@
       ['propertyDelim'],
       ['s', '  '],
       ['value',
-        ['ident', 'v']]],
-    ['s', '  ']]]
+        ['ident', 'v']]]]]
