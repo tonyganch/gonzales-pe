@@ -17,6 +17,9 @@ describe 'less/block >>', ->
   it '4.p', ->
     this.shouldBeOk '0'
 
+  it '5.p', ->
+    this.shouldBeOk '5'
+
   it 'c.0.p', ->
     this.shouldBeOk '0'
 
