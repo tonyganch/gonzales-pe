@@ -20,9 +20,6 @@ describe 'sass/filter >>', ->
   it '5.p', ->
     this.shouldBeOk '5'
 
-  it.skip '6.p', ->
-    this.shouldBeOk '6'
-
   it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 

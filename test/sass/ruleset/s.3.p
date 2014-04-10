@@ -4,10 +4,12 @@
       ['ident', 's0'],
       ['s', '  ']],
     ['delim'],
+    ['s', '  '],
     ['simpleselector',
-      ['s', '  '],
       ['ident', 's1'],
-      ['s', '  ']]],
+      ['s', '  '],
+      ['s', '
+']]],
   ['block',
     ['s', '  '],
     ['declaration',
@@ -28,5 +30,4 @@
       ['propertyDelim'],
       ['s', '  '],
       ['value',
-        ['ident', 'v1']]],
-    ['s', '  ']]]
+        ['ident', 'v1']]]]]
