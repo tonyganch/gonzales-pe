@@ -17,6 +17,9 @@ describe 'sass/stylesheet >>', ->
   it.skip '4.p', ->
     this.shouldBeOk '4'
 
+  it '5.p', ->
+    this.shouldBeOk '5'
+
   it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 

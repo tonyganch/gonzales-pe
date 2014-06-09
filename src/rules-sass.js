@@ -88,6 +88,9 @@
         while (i < tokensLength) {
             if (l = this.checkDeclDelim(i)) {
                 i += l;
+                while (i < tokensLength &&
+                    (l = this.checkS(i)) &&
+                    tokens[i].type === 'Newline') i += l;
                 break;
             } else if (l = this.checkS(i)) i += l;
             else if (l = this.checkCommentSL(i)) i += l;
@@ -133,6 +136,9 @@
         while (pos < tokensLength) {
             if (this.checkDeclDelim(pos)) {
                 x.push(this.getDeclDelim());
+                while (pos < tokensLength &&
+                    this.checkS(pos) &&
+                    tokens[pos].type === 'Newline') x.push(this.getS());
                 break;
             } else if (this.checkS(pos)) x.push(this.getS());
             else if (this.checkCommentSL(pos)) x.push(this.getCommentSL());
@@ -255,6 +261,8 @@
         if (l = this.checkPropertyDelim(i)) i++;
         else return 0;
 
+        if (l = this.checkValue(i)) return i + l - start;
+
         if (l = this.checkS(i)) i += l;
 
         if (l = this.checkValue(i)) i += l;
@@ -297,6 +305,8 @@
 
         if (l = this.checkProperty(i)) i += l;
         else return 0;
+
+        if (l = this.checkValue(i)) return i + l - start;
 
         if (l = this.checkSC(i)) i += l;
 
@@ -985,6 +995,11 @@
         while (i < tokensLength) {
             if (this.checkDeclDelim(i)) break;
 
+            if (l = this.checkBlock(i)) {
+                i += l;
+                break;
+            }
+
             s = this.checkS(i);
             _i = i + s;
 
@@ -1009,6 +1024,11 @@
 
             if (this.checkDeclDelim(_pos)) break;
 
+            if (this.checkBlock(pos)) {
+                x.push(this.getBlock());
+                break;
+            }
+
             if (!this._checkValue(_pos)) break;
 
             if (s) x.push(this.getS());
@@ -1028,7 +1048,8 @@
         return this.checkVhash(i) ||
             this.checkAny(i) ||
             this.checkOperator(i) ||
-            this.checkImportant(i);
+            this.checkImportant(i) ||
+            this.checkDefault(i);
     };
 
     /**
@@ -1039,6 +1060,7 @@
         if (this.checkAny(pos)) return this.getAny();
         if (this.checkOperator(pos)) return this.getOperator();
         if (this.checkImportant(pos)) return this.getImportant();
+        if (this.checkDefault(pos)) return this.getDefault();
     };
 
     /**
@@ -1130,7 +1152,10 @@
 
             // Get indent level:
             prevIL = currentIL;
-            if (tokens[i].type !== TokenType.Space) currentIL = 0;
+            if (tokens[i].type === TokenType.Newline) continue;
+            else if (tokens[i].type === TokenType.Space &&
+                     tokens[i + 1].type === TokenType.Newline) continue;
+            else if (tokens[i].type !== TokenType.Space) currentIL = 0;
             else {
                 // If we don't know ident width yet, count number of spaces:
                 if (!iw) iw = tokens[i].value.length;
