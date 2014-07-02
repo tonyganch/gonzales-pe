@@ -1,0 +1,13 @@
+['block',
+  ['declaration',
+    ['property',
+      ['ident', 'filter']],
+    ['propertyDelim'],
+    ['s', ' '],
+    ['value',
+      ['function',
+        ['ident', 'alpha'],
+        ['arguments',
+          ['ident', 'opacity'],
+          ['operator', '='],
+          ['number', '42']]]]]]
