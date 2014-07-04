@@ -34,14 +34,14 @@ mocha.suite.beforeEach(function() {
         var expected = readFile(dirname, filename + '.p');
 
         var options = {
-            css: input,
+            src: input,
             rule: rule,
             syntax: syntax
         };
 
-        var ast = gonzales.cssToAST(options);
-        var parsedTree = treeToString(ast).replace(/,\s\n/g, ',\n');
-        var compiledString = gonzales.astToCSS({ syntax: syntax, ast: ast });
+        var ast = gonzales.srcToAST(options);
+        var parsedTree = gonzales.astToString(ast).replace(/,\s\n/g, ',\n');
+        var compiledString = gonzales.astToSrc({ syntax: syntax, ast: ast });
 
         try {
             assert.equal(parsedTree, expected);
@@ -66,24 +66,4 @@ mocha.run(function(failures) {
 function readFile(dirname, filename) {
     var filePath = path.join(dirname, filename);
     return fs.readFileSync(filePath, 'utf8').trim();
-}
-
-function treeToString(tree, level) {
-    level = level || 0;
-    var spaces = dummySpaces(level),
-        s = (level ? '\n' + spaces : '') + '[';
-
-    tree.forEach(function(e) {
-        s += Array.isArray(e) ?
-                 treeToString(e, level + 1) :
-                 ('\'' + e.toString() + '\'');
-        s += ', ';
-    });
-
-    return (s.substr(0, s.length - 2) + ']').replace(/,\s\n/g, ',\n');
-}
-
-function dummySpaces(num) {
-    return '                                                  '
-        .substr(0, num * 2);
 }
