@@ -62,7 +62,7 @@ syntaxes.css = {
 
         x = [NodeType.AtkeywordType, this.getIdent()];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -144,7 +144,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -186,7 +186,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -234,7 +234,7 @@ syntaxes.css = {
 
         x = [NodeType.AttrselectorType, s];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -309,7 +309,7 @@ syntaxes.css = {
             .concat(this.getTsets())
             .concat([this.getBlock()]);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -355,7 +355,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -375,7 +375,7 @@ syntaxes.css = {
 
         x = [NodeType.AtrulerqType].concat(this.getTsets());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -418,7 +418,7 @@ syntaxes.css = {
 
         x = x.concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -448,7 +448,7 @@ syntaxes.css = {
 
         x = [NodeType.AtrulesType, this.getAtkeyword()].concat(this.getTsets());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -480,7 +480,7 @@ syntaxes.css = {
 
         pos = end + 1;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -694,7 +694,7 @@ syntaxes.css = {
         x = [NodeType.BracesType, tokens[left].value, tokens[right].value]
             .concat(tsets);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -730,7 +730,7 @@ syntaxes.css = {
 
         x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -762,7 +762,7 @@ syntaxes.css = {
 
         x = [NodeType.CombinatorType, tokens[pos++].value];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -791,7 +791,7 @@ syntaxes.css = {
 
         x = [NodeType.CommentMLType, s];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -836,7 +836,7 @@ syntaxes.css = {
         x = x.concat(this.getSC());
         x.push(this.getValue());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -858,7 +858,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -880,7 +880,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -910,11 +910,9 @@ syntaxes.css = {
             x = [NodeType.DimensionType, this.getNumber()],
             ident = [NodeType.IdentType, this.getNmName2()];
 
-        if (needInfo) ident.unshift(getInfo(startPos));
-
         x.push(ident);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -950,7 +948,7 @@ syntaxes.css = {
 
         x.push(this.getFilterv());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -994,13 +992,11 @@ syntaxes.css = {
             ident = [NodeType.IdentType, joinValues2(pos, tokens[pos].filterp_l)],
             x;
 
-        if (needInfo) ident.unshift(getInfo(startPos));
-
         pos += tokens[pos].filterp_l;
 
         x = [NodeType.PropertyType, ident].concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1050,7 +1046,7 @@ syntaxes.css = {
 
         if (pos < tokensLength && this.checkImportant(pos)) x.push(this.getImportant());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1081,7 +1077,7 @@ syntaxes.css = {
 
         x = [NodeType.FunctionExpressionType, e];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1110,11 +1106,11 @@ syntaxes.css = {
             x = [NodeType.FunctionType, ident],
             body;
 
-        body = ident[needInfo ? 2 : 1] === 'not' ? this.getNotArguments() : this.getArguments();
+        body = ident[1] === 'not' ? this.getNotArguments() : this.getArguments();
 
         x.push(body);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1131,7 +1127,7 @@ syntaxes.css = {
             if (this.checkDeclaration(pos)) x.push(this.getDeclaration());
             else if (this.checkArgument(pos)) {
                 body = this.getArgument();
-                if ((needInfo && typeof body[1] === 'string') || typeof body[0] === 'string') x.push(body);
+                if (typeof body[0] === 'string') x.push(body);
                 else x = x.concat(body);
             } else if (this.checkClass(pos)) x.push(this.getClass());
             else throwError();
@@ -1139,7 +1135,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1179,7 +1175,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1258,7 +1254,7 @@ syntaxes.css = {
 
         pos = tokens[pos].ident_last + 1;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1292,7 +1288,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1314,7 +1310,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1427,7 +1423,7 @@ syntaxes.css = {
             x.push(tokens[pos++].value);
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1530,8 +1526,6 @@ syntaxes.css = {
             nthf = [NodeType.IdentType, this.getNthf()],
             x = [NodeType.NthselectorType];
 
-        if (needInfo) nthf.unshift(getInfo(startPos));
-
         x.push(nthf);
 
         pos++;
@@ -1544,7 +1538,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1605,7 +1599,7 @@ syntaxes.css = {
 
         x.push(s);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1636,7 +1630,7 @@ syntaxes.css = {
         var startPos = pos,
             x = [NodeType.OperatorType, tokens[pos++].value];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1667,7 +1661,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1713,7 +1707,7 @@ syntaxes.css = {
             .concat([this._getProgid(progid_end)])
             .concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1726,7 +1720,7 @@ syntaxes.css = {
 
         pos = progid_end + 1;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1756,7 +1750,7 @@ syntaxes.css = {
 
         x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1778,7 +1772,7 @@ syntaxes.css = {
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1822,7 +1816,7 @@ syntaxes.css = {
 
         x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1848,7 +1842,7 @@ syntaxes.css = {
 
         x.push(this.checkFunction(pos) ? this.getFunction() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1887,7 +1881,7 @@ syntaxes.css = {
             else break;
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1910,7 +1904,7 @@ syntaxes.css = {
 
         pos = tokens[pos].ws_last + 1;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -1985,7 +1979,7 @@ syntaxes.css = {
             x.push(this.checkDelim(pos) ? this.getDelim() : this.getSimpleSelector());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2016,7 +2010,7 @@ syntaxes.css = {
 
         x.push(this.getNmName());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2047,11 +2041,11 @@ syntaxes.css = {
             if (!this.checkSimpleSelector1(pos)) break;
             t = this.getSimpleSelector1();
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2101,7 +2095,7 @@ syntaxes.css = {
         var startPos = pos,
             x = [NodeType.StringType, tokens[pos++].value];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2145,7 +2139,7 @@ syntaxes.css = {
             else throwError();
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2194,7 +2188,7 @@ syntaxes.css = {
             t;
 
         while (t = this.getTset()) {
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
@@ -2219,7 +2213,7 @@ syntaxes.css = {
         var startPos = pos,
             x = [NodeType.UnaryType, tokens[pos++].value];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2237,7 +2231,7 @@ syntaxes.css = {
         var startPos = pos,
             x = [NodeType.UnknownType, tokens[pos++].value];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2287,8 +2281,6 @@ syntaxes.css = {
             l = checkExcluding(uriExcluding, pos),
             raw = [NodeType.RawType, joinValues(pos, pos + l)];
 
-            if (needInfo) raw.unshift(getInfo(startPos));
-
             uri.push(raw);
 
             pos += l + 1;
@@ -2298,7 +2290,7 @@ syntaxes.css = {
             pos++;
         }
 
-        return needInfo ? (uri.unshift(getInfo(startPos)), uri) : uri;
+        return uri;
     },
 
     /**
@@ -2371,7 +2363,7 @@ syntaxes.css = {
             x.push(this._getValue());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**
@@ -2411,7 +2403,7 @@ syntaxes.css = {
 
         x.push(this.getNmName2());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
     /**

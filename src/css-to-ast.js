@@ -4,7 +4,6 @@
 var cssToAST = (function() {
     var syntaxes = {}, // list of supported syntaxes
         s, // syntax of current stylesheet
-        needInfo, // whether debug info is needed
         tokens, // list of tokens
         tokensLength, // number of tokens in the list
         tn = 0, // token number
@@ -28,15 +27,6 @@ var cssToAST = (function() {
         var ln = i ? tokens[i].ln : tokens[pos].ln;
 
         throw new Error('Please check the validity of the CSS block starting from the line #' + ln);
-    }
-
-    /**
-     * Get info object
-     * @param {Number} i Token's index number
-     * @returns {{ln: {Number}, tn: {Number}}}
-     */
-    function getInfo(i) {
-        return { ln: tokens[i].ln, tn: tokens[i].tn };
     }
 
     /**

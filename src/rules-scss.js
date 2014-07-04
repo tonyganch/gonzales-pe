@@ -75,7 +75,7 @@
         pos++;
 
         while (x = this.getArgument()) {
-            if ((needInfo && typeof x[1] === 'string') || typeof x[0] === 'string') args.push(x);
+            if (typeof x[0] === 'string') args.push(x);
             else args = args.concat(x);
         }
 
@@ -83,7 +83,7 @@
 
         x = [NodeType.ArgumentsType].concat(args);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
      */
 
@@ -302,7 +302,7 @@
 
         x.push(this.checkInterpolation(pos) ? this.getInterpolation() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -325,7 +325,7 @@
 
         x = [NodeType.CommentSLType, tokens[pos++].value.substring(2)];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -389,7 +389,7 @@
             x.push(this._getCondition());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     scss._getCondition = function() {
@@ -436,7 +436,7 @@
         x = x.concat(this.getSC());
         x.push(this.getBlock());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -475,7 +475,7 @@
 
         x = x.concat(sc);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -562,7 +562,7 @@
             pos = tokens[pos].ident_last + 1;
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -657,7 +657,7 @@
 
         x.push(this.getBlock());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -710,7 +710,7 @@
 
         x.push(this.getArguments());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -761,7 +761,7 @@
 
         x.push(this.getBlock());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -799,7 +799,7 @@
 
         x.push(this.getIncludeSelector());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -829,11 +829,11 @@
         while (pos < tokensLength && this.checkSimpleSelector2(pos)) {
             t = this.getSimpleSelector2();
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -875,7 +875,7 @@
         // Skip `}`:
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -935,7 +935,7 @@
             else if (this.checkString(pos)) x.push(this.getString());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -989,7 +989,7 @@
 
         if (this.checkBlock(pos)) x.push(this.getBlock());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1030,8 +1030,6 @@
             nthf = [NodeType.IdentType, this.getNthf()],
             x = [NodeType.NthselectorType];
 
-        if (needInfo) nthf.unshift(getInfo(startPos));
-
         x.push(nthf);
 
         pos++;
@@ -1045,7 +1043,7 @@
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1089,7 +1087,7 @@
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1123,7 +1121,7 @@
 
         x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1153,7 +1151,7 @@
 
         x.push(this.checkVariable(pos) ? this.getVariable() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1180,7 +1178,7 @@
 
         x.push(this.checkInterpolation(pos) ? this.getInterpolation() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1208,7 +1206,7 @@
         else if (this.checkFunction(pos)) x.push(this.getFunction());
         else x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1365,7 +1363,7 @@
             else throwError();
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1428,7 +1426,7 @@
             if (this.checkBlock(_pos)) break;
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1472,7 +1470,7 @@
 
         x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
 
@@ -1509,7 +1507,7 @@
 
         pos += 3;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
