@@ -25,7 +25,7 @@
             else throwError();
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -223,7 +223,7 @@
 
         x = [NodeType.CommentMLType, s];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -286,7 +286,7 @@
         if (this.checkS(pos)) x.push(this.getS());
         x.push(this.getValue());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -330,7 +330,7 @@
         x = x.concat(this.getSC());
         x.push(this.getValue());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -385,13 +385,13 @@
             x.push(this.getProgid());
         }
 
-        if (this.checkDeclDelim(pos)) return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        if (this.checkDeclDelim(pos)) return x;
 
         if (this.checkSC(pos)) x = x.concat(this.getSC());
 
         if (pos < tokensLength && this.checkImportant(pos)) x.push(this.getImportant());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -489,7 +489,7 @@
 
         x = x.concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -538,7 +538,7 @@
 
         x = x.concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -586,7 +586,7 @@
 
         x = x.concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -621,7 +621,7 @@
 
         x = x.concat(this.getSC());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -698,7 +698,7 @@
             x.push(this.getBlock());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -758,7 +758,7 @@
             x.push(this.getBlock());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
 
@@ -802,7 +802,7 @@
             .concat(this.getSC())
             .concat([this._getProgid(progid_end)]);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -903,7 +903,7 @@
             x.push(this.checkDelim(pos) ? this.getDelim() : this.getSimpleSelector());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -942,11 +942,11 @@
 
             t = this.getSimpleSelector1();
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -976,7 +976,7 @@
 
         while (tokens[pos - 1].type !== TokenType.Newline &&
               (t = this.getTset())) {
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
@@ -1037,7 +1037,7 @@
             if (this.checkBlock(_pos)) break;
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**

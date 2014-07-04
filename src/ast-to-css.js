@@ -1,12 +1,11 @@
 // version: 1.0.0
 
 function astToCSS(options) {
-    var tree, hasInfo, syntax;
+    var tree, syntax;
     // TODO: Better error message
     if (!options) throw new Error('We need tree to translate');
 
     tree = typeof options === 'string' ? options : options.ast;
-    hasInfo = typeof tree[0] === 'object';
     syntax = options.syntax || 'css';
 
     var _m_simple = {
@@ -29,7 +28,7 @@ function astToCSS(options) {
         };
 
     function _t(tree) {
-        var t = tree[hasInfo? 1 : 0];
+        var t = tree[0];
         if (t in _m_primitive) return _m_primitive[t];
         else if (t in _m_simple) return _simple(tree);
         else if (t in _m_composite) return _composite(tree);
@@ -38,13 +37,13 @@ function astToCSS(options) {
 
     function _composite(t, i) {
         var s = '';
-        i = i === undefined ? (hasInfo? 2 : 1) : i;
+        i = i === undefined ? 1 : i;
         for (; i < t.length; i++) s += typeof t[i] === 'string' ? t[i] : _t(t[i]);
         return s;
     }
 
     function _simple(t) {
-        return t[hasInfo? 2 : 1];
+        return t[1];
     }
 
     var _unique = {
@@ -52,10 +51,10 @@ function astToCSS(options) {
             return '(' + _composite(t) + ')';
         },
         'atkeyword': function(t) {
-            return '@' + _t(t[hasInfo? 2 : 1]);
+            return '@' + _t(t[1]);
         },
         'atruler': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + _t(t[hasInfo? 3 : 2]) + '{' + _t(t[hasInfo? 4 : 3]) + '}';
+            return _t(t[1]) + _t(t[2]) + '{' + _t(t[3]) + '}';
         },
         'attrib': function(t) {
             return '[' + _composite(t) + ']';
@@ -64,68 +63,68 @@ function astToCSS(options) {
             return syntax === 'sass' ? _composite(t) : '{' + _composite(t) + '}';
         },
         'braces': function(t) {
-            return t[hasInfo? 2 : 1] + _composite(t, hasInfo? 4 : 3) + t[hasInfo? 3 : 2];
+            return t[1] + _composite(t, 3) + t[2];
         },
         'class': function(t) {
-            return '.' + _t(t[hasInfo? 2 : 1]);
+            return '.' + _t(t[1]);
         },
         'commentML': function (t) {
-            return '/*' + t[hasInfo? 2 : 1] + (syntax === 'sass' ? '' : '*/');
+            return '/*' + t[1] + (syntax === 'sass' ? '' : '*/');
         },
         'commentSL': function (t) {
-            return '/' + '/' + t[hasInfo? 2 : 1];
+            return '/' + '/' + t[1];
         },
         'default': function(t) {
             return '!' + _composite(t) + 'default';
         },
         'escapedString': function(t) {
-            return '~' + t[hasInfo? 2 : 1];
+            return '~' + t[1];
         },
         'filter': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + ':' + _t(t[hasInfo? 3 : 2]);
+            return _t(t[1]) + ':' + _t(t[2]);
         },
         'functionExpression': function(t) {
-            return 'expression(' + t[hasInfo? 2 : 1] + ')';
+            return 'expression(' + t[1] + ')';
         },
         'important': function(t) {
             return '!' + _composite(t) + 'important';
         },
         'interpolatedVariable': function(t) {
-            return '@{' + _t(t[hasInfo? 2 : 1]) + '}';
+            return '@{' + _t(t[1]) + '}';
         },
         'interpolation': function(t) {
-            return '#{' + _t(t[hasInfo? 2 : 1]) + '}';
+            return '#{' + _t(t[1]) + '}';
         },
         'nthselector': function(t) {
-            return ':' + _simple(t[hasInfo? 2 : 1]) + '(' + _composite(t, hasInfo? 3 : 2) + ')';
+            return ':' + _simple(t[1]) + '(' + _composite(t, 2) + ')';
         },
         'percentage': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + '%';
+            return _t(t[1]) + '%';
         },
         'placeholder': function(t) {
-            return '%' + _t(t[hasInfo? 2 : 1]);
+            return '%' + _t(t[1]);
         },
         'pseudoc': function(t) {
-            return ':' + _t(t[hasInfo? 2 : 1]);
+            return ':' + _t(t[1]);
         },
         'pseudoe': function(t) {
-            return '::' + _t(t[hasInfo? 2 : 1]);
+            return '::' + _t(t[1]);
         },
         'shash': function (t) {
-            return '#' + t[hasInfo? 2 : 1];
+            return '#' + t[1];
         },
         'uri': function(t) {
             return 'url(' + _composite(t) + ')';
         },
         'variable': function(t) {
-            return (syntax === 'less' ? '@' : '$') + _t(t[hasInfo? 2 : 1]);
+            return (syntax === 'less' ? '@' : '$') + _t(t[1]);
 
         },
         'variableslist': function(t) {
-            return _t(t[hasInfo? 2 : 1]) + '...';
+            return _t(t[1]) + '...';
         },
         'vhash': function(t) {
-            return '#' + t[hasInfo? 2 : 1];
+            return '#' + t[1];
         }
     };
 
