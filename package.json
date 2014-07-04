@@ -16,7 +16,7 @@
         "url": "http://github.com/tonyganch/gonzales-pe.git"
     },
     "scripts": {
-        "test": "(make && mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
+        "test": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
     },
     "devDependencies": {
         "benchmark": "~1.0.0",
