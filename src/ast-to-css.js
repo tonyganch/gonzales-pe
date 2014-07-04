@@ -5,7 +5,7 @@ function astToCSS(options) {
     // TODO: Better error message
     if (!options) throw new Error('We need tree to translate');
 
-    tree = typeof options === 'string' ? options : options.ast;
+    tree =  (options instanceof Array && ~['stylesheet', 'block'].indexOf(options[0])) ? options : options.ast;
     hasInfo = typeof tree[0] === 'object';
     syntax = options.syntax || 'css';
 
