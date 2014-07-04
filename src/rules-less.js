@@ -261,7 +261,7 @@
 
         x.push(this.checkInterpolatedVariable(pos) ? this.getInterpolatedVariable() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -283,7 +283,7 @@
 
         x = [NodeType.CommentSLType, tokens[pos++].value.substring(2)];
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -342,7 +342,7 @@
             else if (this.checkString(pos)) x.push(this.getString());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -373,7 +373,7 @@
 
         x.push(tokens[pos++].value);
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -422,7 +422,7 @@
 
         if (pos < tokensLength && this.checkImportant(pos)) x.push(this.getImportant());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     },
 
 
@@ -549,7 +549,7 @@
 
         if (this.checkImportant(pos)) x.push(this.getImportant());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -589,7 +589,7 @@
             else break;
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -619,11 +619,11 @@
         while (pos < tokensLength && this.checkSimpleSelector2(pos)) {
             t = this.getSimpleSelector2();
 
-            if ((needInfo && typeof t[1] === 'string') || typeof t[0] === 'string') x.push(t);
+            if (typeof t[0] === 'string') x.push(t);
             else x = x.concat(t);
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -664,7 +664,7 @@
         // Skip `}`:
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -711,7 +711,7 @@
 
         if (this.checkBlock(pos)) x.push(this.getBlock());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -755,7 +755,7 @@
 
         pos++;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -786,7 +786,7 @@
         if (this.checkVariable(pos)) x.push(this.getVariable());
         else x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -813,7 +813,7 @@
 
         x.push(this.checkInterpolatedVariable(pos) ? this.getInterpolatedVariable() : this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -841,7 +841,7 @@
         else if (this.checkFunction(pos)) x.push(this.getFunction());
         else x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -996,7 +996,7 @@
             else throwError();
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1053,7 +1053,7 @@
             x.push(this._getValue());
         }
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**
@@ -1103,7 +1103,7 @@
         if (this.checkVariable(pos)) x.push(this.getVariable());
         else x.push(this.getIdent());
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
 
@@ -1140,7 +1140,7 @@
 
         pos += 3;
 
-        return needInfo ? (x.unshift(getInfo(startPos)), x) : x;
+        return x;
     };
 
     /**

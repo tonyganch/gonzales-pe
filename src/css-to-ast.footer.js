@@ -7,7 +7,6 @@
         if (!css) throw new Error('String can not be empty');
 
         rule = options.rule || 'stylesheet';
-        needInfo = options.needInfo || false;
 
         syntax = options.syntax || 'css';
         if (!syntaxes[syntax]) throw new Error('Syntax "' + _syntax +
