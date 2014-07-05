@@ -16,7 +16,7 @@ fs.writeFile(expectedLogPath, '', function () {});
 fs.writeFile(resultLogPath, '', function () {});
 
 // Tell mocha which tests to run:
-['test/css', 'test/less', 'test/sass', 'test/scss'].forEach(function(dirname) {
+['test/css', 'test/less', 'test/sass', 'test/scss', 'test/js'].forEach(function(dirname) {
     fs.readdirSync(dirname).forEach(function(file) {
         mocha.addFile(path.join(dirname, file));
     });
