@@ -1,5 +1,5 @@
-Gonzales is a fast CSS parser.    
-Gonzales PE is a rework with support of preprocessors.    
+Gonzales is a fast CSS parser.
+Gonzales PE is a rework with support of preprocessors.
 
 Currently those are supported: SCSS, Sass, LESS.
 
@@ -26,10 +26,10 @@ To clone from github:
 ## Build
 
 If you installed/cloned the repo from GitHub, make sure to build library files
-first.    
-It can be done by running `make` in the module's root directory.    
+first.
+It can be done by running `make` in the module's root directory.
 `make` will build both Node.js and web versions (all files are comments-free
-but not compressed).    
+but not compressed).
 If you need a minified version for production, feel free to use uglifier of
 your choice.
 
@@ -47,6 +47,23 @@ Do something:
 You can learn more about available methods on [Gonzales usage](doc/Gonzales-Usage.md) page.
 
 AST is described on [Gonzales AST description](doc/AST-Description.md) page.
+
+You can also invoke gonzales via a shell command (if you globally install it via `npm install gonzales-pe -g`)
+
+```
+gonzales myFile.css
+```
+
+Outputs the AST for that file. Example output:
+
+```
+['stylesheet',
+  ['atrules',
+    ['atkeyword',
+      ['ident', 'import']],
+    ['s', '
+']]]
+```
 
 ## Test
 
@@ -70,7 +87,7 @@ The last two are made for your convenience: you can use any diff app to see
 the defference between them.
 
 If you want to test one specific string or get a general idea of how Gonzales
-works, you can use `test/ast.js` file.    
+works, you can use `test/ast.js` file.
 Simply change the first two strings (`css` and `syntax` vars) and run:
 
     node test/ast.js
