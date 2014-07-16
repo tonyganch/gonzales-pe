@@ -18,6 +18,9 @@
     "scripts": {
         "test": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
     },
+    "bin": {
+        "gonzales": "./bin/gonzales.js"
+    },
     "devDependencies": {
         "benchmark": "~1.0.0",
         "coffee-script": "~1.7.1",
