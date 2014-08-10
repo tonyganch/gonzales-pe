@@ -36,7 +36,8 @@ mocha.suite.beforeEach(function() {
         var options = {
             src: input,
             rule: rule,
-            syntax: syntax
+            syntax: syntax,
+            needInfo: true
         };
 
         var ast = gonzales.srcToAST(options);
