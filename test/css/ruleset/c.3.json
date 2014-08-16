@@ -1,0 +1,267 @@
+{
+  "type": "ruleset",
+  "content": [
+    {
+      "type": "selector",
+      "content": [
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "ident",
+              "content": "s0",
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "delim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 12
+              }
+            },
+            {
+              "type": "ident",
+              "content": "s1",
+              "start": {
+                "line": 1,
+                "column": 20
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 22
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 31
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p0",
+                  "start": {
+                    "line": 1,
+                    "column": 39
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 39
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 41
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 49
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 50
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v0",
+                  "start": {
+                    "line": 1,
+                    "column": 58
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 58
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 39
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 60
+          }
+        },
+        {
+          "type": "declDelim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 68
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 69
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p1",
+                  "start": {
+                    "line": 1,
+                    "column": 77
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 77
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 79
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 87
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 88
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v1",
+                  "start": {
+                    "line": 1,
+                    "column": 96
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 96
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 77
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 98
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 30
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

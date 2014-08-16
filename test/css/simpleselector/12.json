@@ -1,0 +1,78 @@
+{
+  "type": "simpleselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "pseudoc",
+      "content": [
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "not",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "simpleselector",
+                  "content": [
+                    {
+                      "type": "attrib",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "ABC",
+                          "start": {
+                            "line": 1,
+                            "column": 8
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 7
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 7
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

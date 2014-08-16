@@ -1,0 +1,82 @@
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "ident",
+          "content": "x",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "operator",
+          "content": ",",
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "ident",
+          "content": "y",
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 15
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

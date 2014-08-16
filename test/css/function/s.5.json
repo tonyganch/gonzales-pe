@@ -1,0 +1,198 @@
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "dimension",
+          "content": [
+            {
+              "type": "number",
+              "content": "10",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "ident",
+              "content": "px",
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "operator",
+          "content": ",",
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "string",
+          "content": "'test'",
+          "start": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 23
+          }
+        },
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 25
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "s",
+                  "content": "  ",
+                  "start": {
+                    "line": 1,
+                    "column": 30
+                  }
+                },
+                {
+                  "type": "ident",
+                  "content": "x",
+                  "start": {
+                    "line": 1,
+                    "column": 32
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": "  ",
+                  "start": {
+                    "line": 1,
+                    "column": 33
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 29
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 25
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 36
+          }
+        },
+        {
+          "type": "operator",
+          "content": ",",
+          "start": {
+            "line": 1,
+            "column": 38
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 39
+          }
+        },
+        {
+          "type": "percentage",
+          "content": [
+            {
+              "type": "number",
+              "content": "89",
+              "start": {
+                "line": 1,
+                "column": 41
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 41
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 44
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

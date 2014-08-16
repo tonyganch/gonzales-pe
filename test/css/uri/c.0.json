@@ -1,0 +1,33 @@
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "string",
+      "content": "'http://test.com'",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 30
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

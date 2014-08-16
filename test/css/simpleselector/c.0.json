@@ -1,0 +1,33 @@
+{
+  "type": "simpleselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "a",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ident",
+      "content": "b",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

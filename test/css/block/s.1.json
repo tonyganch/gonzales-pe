@@ -1,0 +1,33 @@
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
