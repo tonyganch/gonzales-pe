@@ -16,9 +16,10 @@ fs.writeFile(expectedLogPath, '', function () {});
 fs.writeFile(resultLogPath, '', function () {});
 
 // Tell mocha which tests to run:
-['test/css', 'test/less', 'test/sass', 'test/scss', 'test/js'].forEach(function(dirname) {
-    fs.readdirSync(dirname).forEach(function(file) {
-        mocha.addFile(path.join(dirname, file));
+var syntaxDirs = ['test/css', 'test/less', 'test/sass', 'test/scss', 'test/js'];
+syntaxDirs.forEach(function(syntaxDir) {
+    fs.readdirSync(syntaxDir).forEach(function(testDir) {
+        mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));
     });
 });
 
@@ -26,12 +27,12 @@ mocha.suite.beforeEach(function() {
     this.filename = null;
 
     this.shouldBeOk = function(filename) {
-        var rule = path.basename(this.filename, '.coffee');
-        var syntax = path.basename(path.dirname(this.filename));
+        var testDir = path.dirname(this.filename);
+        var rule = path.basename(testDir);
+        var syntax = path.basename(path.dirname(testDir));
 
-        var dirname = this.filename.slice(0, -7);
-        var input = readFile(dirname, filename + '.' + syntax);
-        var expected = readFile(dirname, filename + '.p');
+        var input = readFile(testDir, filename + '.' + syntax);
+        var expected = readFile(testDir, filename + '.p');
 
         var options = {
             src: input,
