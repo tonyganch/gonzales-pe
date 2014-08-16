@@ -1,0 +1,65 @@
+{
+  "type": "attrib",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ident",
+      "content": "a",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "attrselector",
+      "content": "=",
+      "start": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "ident",
+      "content": "b",
+      "start": {
+        "line": 1,
+        "column": 28
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 29
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

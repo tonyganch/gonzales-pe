@@ -1,0 +1,33 @@
+{
+  "type": "attrib",
+  "content": [
+    {
+      "type": "ident",
+      "content": "a",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "attrselector",
+      "content": "=",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "string",
+      "content": "'b'",
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,0 +1,91 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "rgb",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "number",
+              "content": "10",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "operator",
+              "content": ",",
+              "start": {
+                "line": 1,
+                "column": 7
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "number",
+              "content": "10",
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            },
+            {
+              "type": "operator",
+              "content": ",",
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 12
+              }
+            },
+            {
+              "type": "number",
+              "content": "10",
+              "start": {
+                "line": 1,
+                "column": 13
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

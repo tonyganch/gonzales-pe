@@ -1,0 +1,8 @@
+{
+  "type": "nth",
+  "content": "odd",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

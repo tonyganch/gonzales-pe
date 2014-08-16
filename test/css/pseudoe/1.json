@@ -1,0 +1,17 @@
+{
+  "type": "pseudoe",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test-test",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

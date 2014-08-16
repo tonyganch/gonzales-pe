@@ -1,0 +1,17 @@
+{
+  "type": "percentage",
+  "content": [
+    {
+      "type": "number",
+      "content": "10",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "type": "filter",
+  "content": [
+    {
+      "type": "property",
+      "content": [
+        {
+          "type": "ident",
+          "content": "_filter",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "filterv",
+      "content": [
+        {
+          "type": "progid",
+          "content": [
+            {
+              "type": "raw",
+              "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

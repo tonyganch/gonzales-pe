@@ -35,7 +35,7 @@ describe 'css/stylesheet >>', ->
   it 'issue90.test2.p', ->
     this.shouldBeOk 'issue90.test2'
 
-  it 'issue111.test1.p', ->
+  it.skip 'issue111.test1.p', ->
     this.shouldBeOk 'issue111.test1'
 
   it 's.0.p', ->

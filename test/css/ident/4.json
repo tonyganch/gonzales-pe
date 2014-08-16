@@ -1,0 +1,8 @@
+{
+  "type": "ident",
+  "content": "x\\:y",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
