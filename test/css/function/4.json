@@ -1,0 +1,50 @@
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "ident",
+          "content": "x",
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "operator",
+          "content": ",",
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "ident",
+          "content": "y",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

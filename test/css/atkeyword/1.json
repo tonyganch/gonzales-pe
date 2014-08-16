@@ -1,0 +1,17 @@
+{
+  "type": "atkeyword",
+  "content": [
+    {
+      "type": "ident",
+      "content": "font-face",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

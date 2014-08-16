@@ -16,7 +16,7 @@ fs.writeFile(expectedLogPath, '', function () {});
 fs.writeFile(resultLogPath, '', function () {});
 
 // Tell mocha which tests to run:
-var syntaxDirs = ['test/css', 'test/less', 'test/sass', 'test/scss', 'test/js'];
+var syntaxDirs = ['test/css'];
 syntaxDirs.forEach(function(syntaxDir) {
     fs.readdirSync(syntaxDir).forEach(function(testDir) {
         mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));
@@ -32,7 +32,7 @@ mocha.suite.beforeEach(function() {
         var syntax = path.basename(path.dirname(testDir));
 
         var input = readFile(testDir, filename + '.' + syntax);
-        var expected = readFile(testDir, filename + '.p');
+        var expected = readFile(testDir, filename + '.json');
 
         var options = {
             src: input,
@@ -42,18 +42,15 @@ mocha.suite.beforeEach(function() {
         };
 
         var ast = gonzales.srcToAST(options);
-        var parsedTree = gonzales.astToString(ast).replace(/,\s\n/g, ',\n');
-        var compiledString = gonzales.astToSrc({ syntax: syntax, ast: ast });
-
+        var parsedTree = gonzales.astToString(ast);
         try {
-            assert.equal(parsedTree, expected);
+            parsedTree = JSON.parse(parsedTree);
+            expected = JSON.parse(expected);
+            assert.deepEqual(parsedTree, expected);
+            var compiledString = gonzales.astToSrc({ syntax: syntax, ast: ast });
             assert.equal(compiledString, input);
         } catch (e) {
-            var message = '\nExpected:\n' +
-                e.expected + '\n\nResult:\n' + e.actual;
-            fs.appendFile(expectedLogPath, e.expected + '\n\n\n', function(){});
-            fs.appendFile(resultLogPath, e.actual + '\n\n\n', function(){});
-            throw { message: message };
+            logAndThrow(e);
         }
     };
 
@@ -68,4 +65,17 @@ mocha.run(function(failures) {
 function readFile(dirname, filename) {
     var filePath = path.join(dirname, filename);
     return fs.readFileSync(filePath, 'utf8').trim();
+}
+
+function logAndThrow(e) {
+    var expected = JSON.stringify(e.expected, false, 2);
+    var actual = JSON.stringify(e.actual, false, 2);
+
+    var message = '\nExpected:\n' + expected +
+        '\n\nResult:\n' + actual;
+
+    fs.appendFile(expectedLogPath, expected + '\n\n\n', function(){});
+    fs.appendFile(resultLogPath, actual + '\n\n\n', function(){});
+
+    throw { message: message };
 }

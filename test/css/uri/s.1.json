@@ -1,0 +1,33 @@
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "raw",
+      "content": "http://test.com",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

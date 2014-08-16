@@ -1,0 +1,11 @@
+{
+  "type": "braces",
+  "content": [
+    "[",
+    "]"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
