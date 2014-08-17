@@ -23,8 +23,12 @@
         "gonzales": "./bin/gonzales.js"
     },
     "devDependencies": {
+        "cli-table": "0.3.0",
         "coffee-script": "~1.7.1",
-        "mocha": "~1.20.0"
+        "gonzales": "latest",
+        "gonzales-pe": "2.0.2",
+        "mocha": "~1.20.0",
+        "postcss": "latest"
     },
     "engines": {
         "node": ">=0.6.0"
