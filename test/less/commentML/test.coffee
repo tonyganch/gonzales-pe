@@ -1,4 +1,4 @@
-describe 'less/commentML >>', ->
+describe.skip 'less/commentML >>', ->
   beforeEach ->
     this.filename = __filename
 

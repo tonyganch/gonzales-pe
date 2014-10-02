@@ -1,4 +1,4 @@
-describe 'less/dimension >>', ->
+describe.skip 'less/dimension >>', ->
   beforeEach ->
     this.filename = __filename
 

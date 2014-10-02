@@ -1,4 +1,4 @@
-describe 'less/atruler >>', ->
+describe.skip 'less/atruler >>', ->
   beforeEach ->
     this.filename = __filename
 

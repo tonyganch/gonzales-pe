@@ -1,4 +1,4 @@
-describe 'less/nthselector >>', ->
+describe.skip 'less/nthselector >>', ->
   beforeEach ->
     this.filename = __filename
 

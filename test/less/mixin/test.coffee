@@ -1,4 +1,4 @@
-describe 'less/mixin >>', ->
+describe.skip 'less/mixin >>', ->
   beforeEach ->
     this.filename = __filename
 
