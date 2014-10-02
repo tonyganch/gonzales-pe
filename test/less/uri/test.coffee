@@ -1,4 +1,4 @@
-describe 'less/uri >>', ->
+describe.skip 'less/uri >>', ->
   beforeEach ->
     this.filename = __filename
 

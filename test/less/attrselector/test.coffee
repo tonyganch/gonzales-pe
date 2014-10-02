@@ -1,4 +1,4 @@
-describe 'less/attrselector >>', ->
+describe.skip 'less/attrselector >>', ->
   beforeEach ->
     this.filename = __filename
 

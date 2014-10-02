@@ -1,4 +1,4 @@
-describe 'less/combinator >>', ->
+describe.skip 'less/combinator >>', ->
   beforeEach ->
     this.filename = __filename
 

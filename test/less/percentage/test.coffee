@@ -1,4 +1,4 @@
-describe 'less/percentage >>', ->
+describe.skip 'less/percentage >>', ->
   beforeEach ->
     this.filename = __filename
 

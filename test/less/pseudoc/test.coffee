@@ -1,4 +1,4 @@
-describe 'less/pseudoc >>', ->
+describe.skip 'less/pseudoc >>', ->
   beforeEach ->
     this.filename = __filename
 
