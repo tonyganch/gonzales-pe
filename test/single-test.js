@@ -3,9 +3,9 @@
  * Just change the first line (`var css`) and run `node test/ast.js`.
  * Make sure to change `syntax` variable too, if needed.
  */
-var css = 'a{go: expression(\n// )\n)}',
+var css = 'a-23',
     syntax = 'css',
-    rule = 'stylesheet',
+    rule = 'ident',
     gonzales = require('./../lib/gonzales'),
     ast = gonzales.srcToAST({src: css, syntax: syntax, rule: rule});
 

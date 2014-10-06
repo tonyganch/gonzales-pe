@@ -2,16 +2,16 @@ describe 'less/arguments >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it.skip '0.p', ->
+  it '0.p', ->
     this.shouldBeOk '0'
 
-  it.only '1.p', ->
+  it '1.p', ->
     this.shouldBeOk '1'
 
-  it.skip '2.p', ->
+  it '2.p', ->
     this.shouldBeOk '2'
 
-  it.skip '3.p', ->
+  it '3.p', ->
     this.shouldBeOk '3'
 
   it '4.p', ->

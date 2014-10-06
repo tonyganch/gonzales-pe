@@ -1,14 +1,113 @@
-['arguments',
-  ['number', '1'],
-  ['delim'],
-  ['s', ' '],
-  ['number', '2'],
-  ['delim'],
-  ['s', ' '],
-  ['number', '3'],
-  ['declDelim'],
-  ['s', ' '],
-  ['ident', 'something'],
-  ['delim'],
-  ['s', ' '],
-  ['ident', 'else']]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "number",
+      "content": "1",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "number",
+      "content": "2",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "number",
+      "content": "3",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "ident",
+      "content": "something",
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "start": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 21
+      }
+    },
+    {
+      "type": "ident",
+      "content": "else",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

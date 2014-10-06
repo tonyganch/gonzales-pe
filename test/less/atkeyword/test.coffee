@@ -1,4 +1,4 @@
-describe.skip 'less/atkeyword >>', ->
+describe 'less/atkeyword >>', ->
   beforeEach ->
     this.filename = __filename
 
