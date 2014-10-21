@@ -9,11 +9,11 @@ For a plan of future work see [issue #4](https://github.com/tonyganch/gonzales-p
 
 To install globally:
 
-    npm install gonzales-pe -g
+    npm install gonzales-pe@2.0.2 -g
 
 To install as a project dependency:
 
-    npm install gonzales-pe
+    npm install gonzales-pe@2.0.2
 
 To install dev branch:
 
