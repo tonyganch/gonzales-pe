@@ -7,3 +7,6 @@ describe 'scss/function >>', ->
 
   it '1.p', ->
     this.shouldBeOk '1'
+
+  it '2.p', ->
+    this.shouldBeOk '2'
