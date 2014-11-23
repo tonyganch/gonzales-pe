@@ -11,7 +11,7 @@ describe 'scss/condition >>', ->
   it '2.p', ->
     this.shouldBeOk '2'
 
-  it.skip '3.p', ->
+  it '3.p', ->
     this.shouldBeOk '3'
 
   it.skip '4.p', ->
