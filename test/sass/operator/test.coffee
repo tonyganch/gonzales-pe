@@ -13,3 +13,9 @@ describe 'sass/operator >>', ->
 
   it '3.p', ->
     this.shouldBeOk '3'
+
+  it '4.p', ->
+    this.shouldBeOk '4'
+
+  it '5.p', ->
+    this.shouldBeOk '5'

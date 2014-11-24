@@ -10,3 +10,6 @@ describe 'sass/condition >>', ->
 
   it '2.p', ->
     this.shouldBeOk '2'
+
+  it '3.p', ->
+    this.shouldBeOk '3'
