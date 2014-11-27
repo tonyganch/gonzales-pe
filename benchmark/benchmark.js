@@ -8,7 +8,7 @@ var css3pane = read('3pane.css');
 
 suite
     .add('cssToAST(3pane.css)', function() {
-        G.cssToAST(css3pane);
+        G.srcToAST({ src: css3pane });
     })
     .on('cycle', function(data) {
         if (data.target.error) console.error(data.target.error.stack);

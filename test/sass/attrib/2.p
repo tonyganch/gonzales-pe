@@ -1,0 +1,2 @@
+['attrib',
+  ['ident', 'b']]

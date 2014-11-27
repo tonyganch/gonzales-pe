@@ -1,1 +1,0 @@
-@each $animal in puma, egret {a{p:v}}

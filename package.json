@@ -1,7 +1,7 @@
 {
     "name": "gonzales-pe",
     "description": "Gonzales Preprocessor Edition (fast CSS parser)",
-    "version": "2.0.2",
+    "version": "3.0.0-11",
     "homepage": "http://github.com/tonyganch/gonzales-pe",
     "bugs": "http://github.com/tonyganch/gonzales-pe/issues",
     "license": "MIT",
@@ -16,11 +16,16 @@
         "url": "http://github.com/tonyganch/gonzales-pe.git"
     },
     "scripts": {
-        "test": "(make && mkdir -p log && node ./test/test.js) | tee ./log/test.log"
+        "test": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
+    },
+    "bin": {
+        "gonzales": "./bin/gonzales.js"
     },
     "devDependencies": {
         "benchmark": "~1.0.0",
-        "microtime": "~0.3.3"
+        "coffee-script": "~1.7.1",
+        "microtime": "~0.3.3",
+        "mocha": "~1.20.0"
     },
     "engines": {
         "node": ">=0.6.0"

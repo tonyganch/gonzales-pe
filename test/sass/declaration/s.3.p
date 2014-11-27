@@ -1,8 +1,8 @@
 ['declaration',
   ['property',
-    ['ident', 'property'],
-    ['s', '   ']],
+    ['ident', 'property']],
+  ['s', '   '],
   ['propertyDelim'],
+  ['s', '   '],
   ['value',
-    ['s', '   '],
     ['ident', 'value']]]
