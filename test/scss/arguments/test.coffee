@@ -13,3 +13,6 @@ describe 'scss/arguments >>', ->
 
   it '3.p', ->
     this.shouldBeOk '3'
+
+  it '8.p', ->
+    this.shouldBeOk '8'
