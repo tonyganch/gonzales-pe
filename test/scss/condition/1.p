@@ -7,8 +7,7 @@
   ['variable',
     ['ident', 'ocean']],
   ['s', ' '],
-  ['operator', '='],
-  ['operator', '='],
+  ['operator', '=='],
   ['s', ' '],
   ['string', ''big'']]
 
