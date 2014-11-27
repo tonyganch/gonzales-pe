@@ -16,7 +16,8 @@
         "url": "http://github.com/tonyganch/gonzales-pe.git"
     },
     "scripts": {
-        "test": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log"
+        "log": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log",
+        "test": "node ./test/mocha.js"
     },
     "bin": {
         "gonzales": "./bin/gonzales.js"
