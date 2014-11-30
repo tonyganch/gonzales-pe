@@ -1,8 +1,4 @@
 *.iml
 .DS_Store
-.idea/
-lib/gonzales.css-to-ast.js
-lib/gonzales.ast-to-css.js
 node_modules/
-web/
 log/
