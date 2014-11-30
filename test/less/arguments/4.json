@@ -1,0 +1,17 @@
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "escapedString",
+      "content": "\"border linear .2s\"",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
