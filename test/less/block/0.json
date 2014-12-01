@@ -1,4 +1,35 @@
-['block',
-  ['include',
-    ['class',
-      ['ident', 'nani']]]]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "include",
+      "content": [
+        {
+          "type": "class",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

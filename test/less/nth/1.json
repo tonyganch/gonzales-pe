@@ -1,1 +1,10 @@
-['nth', '2n']
+{
+  "type": "nth",
+  "content": [
+    "2n"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

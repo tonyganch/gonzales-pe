@@ -1,4 +1,4 @@
-describe.skip 'less/stylesheet >>', ->
+describe 'less/stylesheet >>', ->
   beforeEach ->
     this.filename = __filename
 

@@ -1,11 +1,93 @@
-['nthselector',
-  ['ident', 'nth-last-child'],
-  ['commentML', 'test'],
-  ['unary', '+'],
-  ['commentML', 'test'],
-  ['nth', '3n'],
-  ['commentML', 'test'],
-  ['unary', '-'],
-  ['commentML', 'test'],
-  ['nth', '2'],
-  ['commentML', 'test']]
+{
+  "type": "nthselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nth-last-child",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    },
+    {
+      "type": "unary",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 25
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 33
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "3n"
+      ],
+      "start": {
+        "line": 1,
+        "column": 34
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 43
+      }
+    },
+    {
+      "type": "unary",
+      "content": "-",
+      "start": {
+        "line": 1,
+        "column": 44
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 52
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "2"
+      ],
+      "start": {
+        "line": 1,
+        "column": 53
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 61
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

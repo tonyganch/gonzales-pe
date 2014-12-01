@@ -1,5 +1,43 @@
-['block',
-  ['include',
-    ['class',
-      ['ident', 'nani']]],
-  ['declDelim']]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "include",
+      "content": [
+        {
+          "type": "class",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

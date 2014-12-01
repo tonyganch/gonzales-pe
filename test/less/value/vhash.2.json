@@ -1,2 +1,19 @@
-['value',
-  ['vhash', 'F0f0C0']]
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "vhash",
+      "content": [
+        "F0f0C0"
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

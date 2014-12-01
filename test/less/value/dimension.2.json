@@ -1,4 +1,34 @@
-['value',
-  ['dimension',
-    ['number', '0000.000'],
-    ['ident', 'px']]]
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": "0000.000",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "ident",
+          "content": "px",
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

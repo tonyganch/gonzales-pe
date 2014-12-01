@@ -1,1 +1,10 @@
-['nth', 'even']
+{
+  "type": "nth",
+  "content": [
+    "even"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

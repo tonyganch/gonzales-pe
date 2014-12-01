@@ -1,30 +1,219 @@
-['stylesheet',
-  ['atruler',
-    ['atkeyword',
-      ['ident', 'media']],
-    ['atrulerq',
-      ['s', ' '],
-      ['ident', 'test'],
-      ['s', ' ']],
-    ['atrulers',
-      ['s', '
-    '],
-      ['atruleb',
-        ['atkeyword',
-          ['ident', 'page']],
-        ['s', ' '],
-        ['block',
-          ['s', '
-        '],
-          ['declaration',
-            ['property',
-              ['ident', 'p']],
-            ['propertyDelim'],
-            ['s', ' '],
-            ['value',
-              ['ident', 'v']]],
-          ['declDelim'],
-          ['s', '
-    ']]],
-      ['s', '
-']]]]
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "atruler",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "media",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "atrulerq",
+          "content": [
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 7
+              }
+            },
+            {
+              "type": "ident",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "atrulers",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 1,
+                "column": 14
+              }
+            },
+            {
+              "type": "atruleb",
+              "content": [
+                {
+                  "type": "atkeyword",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "page",
+                      "start": {
+                        "line": 2,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 2,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "block",
+                  "content": [
+                    {
+                      "type": "s",
+                      "content": "\n        ",
+                      "start": {
+                        "line": 2,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "declaration",
+                      "content": [
+                        {
+                          "type": "property",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "p",
+                              "start": {
+                                "line": 3,
+                                "column": 9
+                              }
+                            }
+                          ],
+                          "start": {
+                            "line": 3,
+                            "column": 9
+                          }
+                        },
+                        {
+                          "type": "propertyDelim",
+                          "content": null,
+                          "start": {
+                            "line": 3,
+                            "column": 10
+                          }
+                        },
+                        {
+                          "type": "s",
+                          "content": " ",
+                          "start": {
+                            "line": 3,
+                            "column": 11
+                          }
+                        },
+                        {
+                          "type": "value",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "v",
+                              "start": {
+                                "line": 3,
+                                "column": 12
+                              }
+                            }
+                          ],
+                          "start": {
+                            "line": 3,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 3,
+                        "column": 9
+                      }
+                    },
+                    {
+                      "type": "declDelim",
+                      "content": null,
+                      "start": {
+                        "line": 3,
+                        "column": 13
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": "\n    ",
+                      "start": {
+                        "line": 3,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 4,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

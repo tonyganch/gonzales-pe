@@ -1,4 +1,35 @@
-['braces', '(', ')',
-  ['ident', 'test'],
-  ['operator', ':'],
-  ['number', '0']]
+{
+  "type": "braces",
+  "content": [
+    "(",
+    ")",
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "operator",
+      "content": ":",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "number",
+      "content": "0",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

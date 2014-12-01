@@ -1,12 +1,101 @@
-['condition',
-  ['ident', 'when'],
-  ['s', ' '],
-  ['ident', 'not'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['variable',
-      ['ident', 'b']],
-    ['s', ' '],
-    ['operator', '>'],
-    ['s', ' '],
-    ['number', '0']]]
+{
+  "type": "condition",
+  "content": [
+    {
+      "type": "ident",
+      "content": "when",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "ident",
+      "content": "not",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "b",
+              "start": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "operator",
+          "content": ">",
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "number",
+          "content": "0",
+          "start": {
+            "line": 1,
+            "column": 16
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,17 +1,142 @@
-['atrules',
-  ['atkeyword',
-    ['ident', 'import']],
-  ['s', ' '],
-  ['string', '"library.less"'],
-  ['s', ' '],
-  ['ident', 'screen'],
-  ['s', ' '],
-  ['ident', 'and'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['ident', 'max-width'],
-    ['operator', ':'],
-    ['s', ' '],
-    ['dimension',
-      ['number', '400'],
-      ['ident', 'px']]]]
+{
+  "type": "atrules",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "import",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "string",
+      "content": "\"library.less\"",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "ident",
+      "content": "screen",
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 30
+      }
+    },
+    {
+      "type": "ident",
+      "content": "and",
+      "start": {
+        "line": 1,
+        "column": 31
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 34
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "ident",
+          "content": "max-width",
+          "start": {
+            "line": 1,
+            "column": 36
+          }
+        },
+        {
+          "type": "operator",
+          "content": ":",
+          "start": {
+            "line": 1,
+            "column": 45
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 46
+          }
+        },
+        {
+          "type": "dimension",
+          "content": [
+            {
+              "type": "number",
+              "content": "400",
+              "start": {
+                "line": 1,
+                "column": 47
+              }
+            },
+            {
+              "type": "ident",
+              "content": "px",
+              "start": {
+                "line": 1,
+                "column": 50
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 47
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 35
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

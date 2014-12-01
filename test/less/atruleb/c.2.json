@@ -1,32 +1,264 @@
-['atruleb',
-  ['atkeyword',
-    ['ident', 'test']],
-  ['commentML', 'test'],
-  ['ident', 'x'],
-  ['commentML', 'test'],
-  ['operator', ','],
-  ['commentML', 'test'],
-  ['ident', 'y'],
-  ['commentML', 'test'],
-  ['function',
-    ['ident', 'x'],
-    ['arguments',
-      ['commentML', 'test'],
-      ['number', '1'],
-      ['commentML', 'test'],
-      ['unary', '+'],
-      ['commentML', 'test'],
-      ['number', '2'],
-      ['commentML', 'test']]],
-  ['commentML', 'test'],
-  ['block',
-    ['commentML', 'test'],
-    ['declaration',
-      ['property',
-        ['ident', 'p']],
-      ['commentML', 'test'],
-      ['propertyDelim'],
-      ['commentML', 'test'],
-      ['value',
-        ['ident', 'v']]],
-    ['commentML', 'test']]]
+{
+  "type": "atruleb",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 31
+      }
+    },
+    {
+      "type": "ident",
+      "content": "y",
+      "start": {
+        "line": 1,
+        "column": 32
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 40
+      }
+    },
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "x",
+          "start": {
+            "line": 1,
+            "column": 41
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 50
+              }
+            },
+            {
+              "type": "number",
+              "content": "1",
+              "start": {
+                "line": 1,
+                "column": 51
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "type": "unary",
+              "content": "+",
+              "start": {
+                "line": 1,
+                "column": 60
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 68
+              }
+            },
+            {
+              "type": "number",
+              "content": "2",
+              "start": {
+                "line": 1,
+                "column": 69
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 77
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 41
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 86
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 95
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "start": {
+                    "line": 1,
+                    "column": 96
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 104
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 105
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 113
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "start": {
+                    "line": 1,
+                    "column": 114
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 114
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 96
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 122
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 87
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

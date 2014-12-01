@@ -1,6 +1,50 @@
-['function',
-  ['ident', 'test-test'],
-  ['arguments',
-    ['commentML', 'test'],
-    ['ident', 'n'],
-    ['commentML', 'test']]]
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test-test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 18
+          }
+        },
+        {
+          "type": "ident",
+          "content": "n",
+          "start": {
+            "line": 1,
+            "column": 19
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 27
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

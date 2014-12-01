@@ -1,6 +1,53 @@
-['condition',
-  ['ident', 'when'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['variable',
-      ['ident', 'a']]]]
+{
+  "type": "condition",
+  "content": [
+    {
+      "type": "ident",
+      "content": "when",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "a",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,1 +1,10 @@
-['shash', '100']
+{
+  "type": "shash",
+  "content": [
+    "100"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
