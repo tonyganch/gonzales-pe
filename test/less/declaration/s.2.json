@@ -1,8 +1,67 @@
-['declaration',
-  ['property',
-    ['ident', 'property']],
-  ['s', ' '],
-  ['propertyDelim'],
-  ['s', ' '],
-  ['value',
-    ['ident', 'value']]]
+{
+  "type": "declaration",
+  "content": [
+    {
+      "type": "property",
+      "content": [
+        {
+          "type": "ident",
+          "content": "property",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "propertyDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "value",
+      "content": [
+        {
+          "type": "ident",
+          "content": "value",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 12
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

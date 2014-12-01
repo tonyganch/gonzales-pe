@@ -1,9 +1,75 @@
-['value',
-  ['dimension',
-    ['number', '2'],
-    ['ident', 'em']],
-  ['s', ' '],
-  ['ident', '*'],
-  ['s', ' '],
-  ['variable',
-    ['ident', 'i']]]
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": "2",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "ident",
+          "content": "em",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "ident",
+      "content": "*",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "i",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

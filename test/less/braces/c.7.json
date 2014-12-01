@@ -1,8 +1,67 @@
-['braces', '[', ']',
-  ['commentML', 'test'],
-  ['ident', 'x'],
-  ['commentML', 'test'],
-  ['unary', '+'],
-  ['commentML', 'test'],
-  ['number', '1'],
-  ['commentML', 'test']]
+{
+  "type": "braces",
+  "content": [
+    "[",
+    "]",
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "unary",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "number",
+      "content": "1",
+      "start": {
+        "line": 1,
+        "column": 28
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 36
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

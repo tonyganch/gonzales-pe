@@ -1,16 +1,137 @@
-['stylesheet',
-  ['ruleset',
-    ['selector',
-      ['simpleselector',
-        ['ident', 'body'],
-        ['pseudoc',
-          ['function',
-            ['ident', 'not'],
-            ['arguments',
-              ['simpleselector',
-                ['attrib',
-                  ['ident', 'x'],
-                  ['attrselector', '|'],
-                  ['ident', 'x']]]]]],
-        ['s', ' ']]],
-    ['block']]]
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "body",
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "pseudoc",
+                  "content": [
+                    {
+                      "type": "function",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "not",
+                          "start": {
+                            "line": 1,
+                            "column": 6
+                          }
+                        },
+                        {
+                          "type": "arguments",
+                          "content": [
+                            {
+                              "type": "simpleselector",
+                              "content": [
+                                {
+                                  "type": "attrib",
+                                  "content": [
+                                    {
+                                      "type": "ident",
+                                      "content": "x",
+                                      "start": {
+                                        "line": 1,
+                                        "column": 11
+                                      }
+                                    },
+                                    {
+                                      "type": "attrselector",
+                                      "content": "|",
+                                      "start": {
+                                        "line": 1,
+                                        "column": 12
+                                      }
+                                    },
+                                    {
+                                      "type": "ident",
+                                      "content": "x",
+                                      "start": {
+                                        "line": 1,
+                                        "column": 13
+                                      }
+                                    }
+                                  ],
+                                  "start": {
+                                    "line": 1,
+                                    "column": 10
+                                  }
+                                }
+                              ],
+                              "start": {
+                                "line": 1,
+                                "column": 10
+                              }
+                            }
+                          ],
+                          "start": {
+                            "line": 1,
+                            "column": 9
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 16
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [],
+          "start": {
+            "line": 1,
+            "column": 17
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

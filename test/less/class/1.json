@@ -1,2 +1,17 @@
-['class',
-  ['ident', 'abc-nani']]
+{
+  "type": "class",
+  "content": [
+    {
+      "type": "ident",
+      "content": "abc-nani",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

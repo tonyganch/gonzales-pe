@@ -1,9 +1,79 @@
-['condition',
-  ['ident', 'when'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['function',
-      ['ident', 'isnumber'],
-      ['arguments',
-        ['variable',
-          ['ident', 'b']]]]]]
+{
+  "type": "condition",
+  "content": [
+    {
+      "type": "ident",
+      "content": "when",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "isnumber",
+              "start": {
+                "line": 1,
+                "column": 7
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "variable",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "b",
+                      "start": {
+                        "line": 1,
+                        "column": 17
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 16
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

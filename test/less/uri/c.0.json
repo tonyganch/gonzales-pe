@@ -1,4 +1,33 @@
-['uri',
-  ['commentML', 'test'],
-  ['string', ''http://test.com''],
-  ['commentML', 'test']]
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 12
+      }
+    },
+    {
+      "type": "string",
+      "content": "'http://test.com'",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 37
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

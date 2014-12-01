@@ -1,2 +1,17 @@
-['block',
-  ['s', '  ']]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

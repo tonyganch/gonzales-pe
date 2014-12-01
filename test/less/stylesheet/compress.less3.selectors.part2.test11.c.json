@@ -1,0 +1,203 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "E",
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "nthselector",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "nth-child",
+                      "start": {
+                        "line": 1,
+                        "column": 10
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 28
+                      }
+                    },
+                    {
+                      "type": "nth",
+                      "content": [
+                        "n"
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 29
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 37
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 46
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 55
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "p",
+                      "start": {
+                        "line": 1,
+                        "column": 56
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 56
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 64
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 1,
+                    "column": 65
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 73
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "v",
+                      "start": {
+                        "line": 1,
+                        "column": 74
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 74
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 56
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 82
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 47
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 91
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 8
+  }
+}

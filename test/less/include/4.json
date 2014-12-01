@@ -1,7 +1,60 @@
-['include',
-  ['shash', 'bundle'],
-  ['s', ' '],
-  ['operator', '>'],
-  ['s', ' '],
-  ['class',
-    ['ident', 'button']]]
+{
+  "type": "include",
+  "content": [
+    {
+      "type": "shash",
+      "content": [
+        "bundle"
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "operator",
+      "content": ">",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "class",
+      "content": [
+        {
+          "type": "ident",
+          "content": "button",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

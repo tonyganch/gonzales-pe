@@ -1,6 +1,6 @@
-describe.skip 'less/delim >>', ->
+describe 'less/delim >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it '0.p', ->
+  it.skip '0.p', ->
     this.shouldBeOk '0'
