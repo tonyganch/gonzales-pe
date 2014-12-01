@@ -1,3 +1,25 @@
-['dimension',
-  ['number', '12.34'],
-  ['ident', 'px']]
+{
+  "type": "dimension",
+  "content": [
+    {
+      "type": "number",
+      "content": "12.34",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "ident",
+      "content": "px",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

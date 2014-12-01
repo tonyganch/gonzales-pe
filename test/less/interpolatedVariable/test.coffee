@@ -1,4 +1,4 @@
-describe.skip 'less/interpolatedVariable >>', ->
+describe 'less/interpolatedVariable >>', ->
   beforeEach ->
     this.filename = __filename
 

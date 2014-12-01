@@ -1,9 +1,9 @@
-describe.skip 'less/selector >>', ->
+describe 'less/selector >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it '0.p', ->
+  it.skip '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
+  it.skip '1.p', ->
     this.shouldBeOk '1'

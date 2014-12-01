@@ -1,7 +1,58 @@
-['atrules',
-  ['atkeyword',
-    ['ident', 'test']],
-  ['commentML', 'test'],
-  ['ident', 'x'],
-  ['commentML', 'test'],
-  ['ident', 'y']]
+{
+  "type": "atrules",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "ident",
+      "content": "y",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

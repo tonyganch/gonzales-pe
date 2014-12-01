@@ -1,16 +1,139 @@
-['block',
-  ['s', ' '],
-  ['ruleset',
-    ['selector',
-      ['simpleselector',
-        ['shash', 'a'],
-        ['s', ' ']]],
-    ['block']],
-  ['s', ' '],
-  ['ruleset',
-    ['selector',
-      ['simpleselector',
-        ['shash', 'b'],
-        ['s', ' ']]],
-    ['block']],
-  ['s', ' ']]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "shash",
+                  "content": [
+                    "a"
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 5
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        },
+        {
+          "type": "block",
+          "content": [],
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "shash",
+                  "content": [
+                    "b"
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "block",
+          "content": [],
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

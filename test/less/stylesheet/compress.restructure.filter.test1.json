@@ -1,0 +1,307 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 1,
+                        "column": 2
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "filter",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "filter",
+                      "start": {
+                        "line": 2,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "filterv",
+                  "content": [
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 2,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "progid",
+                      "content": [
+                        {
+                          "type": "raw",
+                          "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='x', sizingMethod=\"y\")",
+                          "start": {
+                            "line": 2,
+                            "column": 13
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 2,
+                        "column": 13
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "declDelim",
+              "content": null,
+              "start": {
+                "line": 2,
+                "column": 90
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 2,
+                "column": 91
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n\n",
+      "start": {
+        "line": 3,
+        "column": 2
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 5,
+                        "column": 2
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 5,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 5,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 5,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 5,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 5,
+                "column": 5
+              }
+            },
+            {
+              "type": "filter",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "filter",
+                      "start": {
+                        "line": 6,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 6,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "filterv",
+                  "content": [
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 6,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "progid",
+                      "content": [
+                        {
+                          "type": "raw",
+                          "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='y', sizingMethod=\"z\")",
+                          "start": {
+                            "line": 6,
+                            "column": 13
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 6,
+                        "column": 13
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 6,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 6,
+                "column": 5
+              }
+            },
+            {
+              "type": "declDelim",
+              "content": null,
+              "start": {
+                "line": 6,
+                "column": 90
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 6,
+                "column": 91
+              }
+            }
+          ],
+          "start": {
+            "line": 5,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 5,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

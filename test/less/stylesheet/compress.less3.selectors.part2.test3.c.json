@@ -1,0 +1,193 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "E",
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "attrib",
+                  "content": [
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 18
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "foo",
+                      "start": {
+                        "line": 1,
+                        "column": 19
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 29
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 38
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 47
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "p",
+                      "start": {
+                        "line": 1,
+                        "column": 48
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 48
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 56
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 1,
+                    "column": 57
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 65
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "v",
+                      "start": {
+                        "line": 1,
+                        "column": 66
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 66
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 48
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 74
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 39
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 83
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 8
+  }
+}

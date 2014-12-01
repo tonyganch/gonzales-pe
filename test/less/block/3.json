@@ -1,17 +1,117 @@
-['block',
-  ['s', '
-  '],
-  ['commentSL', ' Get in line!'],
-  ['s', '
-  '],
-  ['declaration',
-    ['property',
-      ['variable',
-        ['ident', 'var']]],
-    ['propertyDelim'],
-    ['s', ' '],
-    ['value',
-      ['ident', 'white']]],
-  ['declDelim'],
-  ['s', '
-']]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "s",
+      "content": "\n  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "commentSL",
+      "content": " Get in line!",
+      "start": {
+        "line": 2,
+        "column": 3
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n  ",
+      "start": {
+        "line": 2,
+        "column": 18
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "var",
+                  "start": {
+                    "line": 3,
+                    "column": 4
+                  }
+                }
+              ],
+              "start": {
+                "line": 3,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 3
+          }
+        },
+        {
+          "type": "propertyDelim",
+          "content": null,
+          "start": {
+            "line": 3,
+            "column": 7
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 3,
+            "column": 8
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "white",
+              "start": {
+                "line": 3,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 3,
+        "column": 3
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 3,
+        "column": 14
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 3,
+        "column": 15
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,3 +1,25 @@
-['uri',
-  ['commentML', 'test'],
-  ['raw', 'http://test.com/*test*/']]
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 12
+      }
+    },
+    {
+      "type": "raw",
+      "content": "http://test.com/*test*/",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

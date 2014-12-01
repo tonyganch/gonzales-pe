@@ -1,15 +1,126 @@
-['condition',
-  ['ident', 'when'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['function',
-      ['ident', 'lightness'],
-      ['arguments',
-        ['variable',
-          ['ident', 'a']]]],
-    ['s', ' '],
-    ['operator', '>'],
-    ['operator', '='],
-    ['s', ' '],
-    ['percentage',
-      ['number', '50']]]]
+{
+  "type": "condition",
+  "content": [
+    {
+      "type": "ident",
+      "content": "when",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "lightness",
+              "start": {
+                "line": 1,
+                "column": 7
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "variable",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 1,
+                        "column": 18
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 17
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 16
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 20
+          }
+        },
+        {
+          "type": "operator",
+          "content": ">",
+          "start": {
+            "line": 1,
+            "column": 21
+          }
+        },
+        {
+          "type": "operator",
+          "content": "=",
+          "start": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 23
+          }
+        },
+        {
+          "type": "percentage",
+          "content": {
+            "type": "number",
+            "content": "50",
+            "start": {
+              "line": 1,
+              "column": 24
+            }
+          },
+          "start": {
+            "line": 1,
+            "column": 24
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

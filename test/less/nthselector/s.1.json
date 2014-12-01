@@ -1,11 +1,93 @@
-['nthselector',
-  ['ident', 'nth-last-child'],
-  ['s', '  '],
-  ['unary', '+'],
-  ['s', '  '],
-  ['nth', '3n'],
-  ['s', '  '],
-  ['unary', '-'],
-  ['s', '  '],
-  ['nth', '2'],
-  ['s', '  ']]
+{
+  "type": "nthselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nth-last-child",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 17
+      }
+    },
+    {
+      "type": "unary",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "3n"
+      ],
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    },
+    {
+      "type": "unary",
+      "content": "-",
+      "start": {
+        "line": 1,
+        "column": 26
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "2"
+      ],
+      "start": {
+        "line": 1,
+        "column": 29
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 30
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

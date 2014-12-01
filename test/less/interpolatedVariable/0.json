@@ -1,2 +1,17 @@
-['interpolatedVariable',
-  ['ident', 'nani']]
+{
+  "type": "interpolatedVariable",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nani",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

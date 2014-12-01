@@ -1,14 +1,119 @@
-['mixin',
-  ['class',
-    ['ident', 'nani']],
-  ['s', ' '],
-  ['arguments'],
-  ['s', ' '],
-  ['block',
-    ['declaration',
-      ['property',
-        ['ident', 'color']],
-      ['propertyDelim'],
-      ['value',
-        ['variable',
-          ['ident', 'color']]]]]]
+{
+  "type": "mixin",
+  "content": [
+    {
+      "type": "class",
+      "content": [
+        {
+          "type": "ident",
+          "content": "nani",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [],
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 16
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "variable",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "color",
+                      "start": {
+                        "line": 1,
+                        "column": 18
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 17
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 17
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

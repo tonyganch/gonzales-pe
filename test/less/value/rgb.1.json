@@ -1,9 +1,75 @@
-['value',
-  ['function',
-    ['ident', 'rgb'],
-    ['arguments',
-      ['number', '255'],
-      ['operator', ','],
-      ['number', '0'],
-      ['operator', ','],
-      ['number', '0']]]]
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "rgb",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "number",
+              "content": "255",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "operator",
+              "content": ",",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "number",
+              "content": "0",
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            },
+            {
+              "type": "operator",
+              "content": ",",
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            },
+            {
+              "type": "number",
+              "content": "0",
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
