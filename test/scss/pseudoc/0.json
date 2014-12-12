@@ -1,4 +1,35 @@
-['pseudoc',
-  ['interpolation',
-    ['variable',
-      ['ident', 'a']]]]
+{
+  "type": "pseudoc",
+  "content": [
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "a",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

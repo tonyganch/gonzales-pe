@@ -1,15 +1,126 @@
-['atruleb',
-  ['atkeyword',
-    ['ident', 'test']],
-  ['commentML', 'test'],
-  ['block',
-    ['commentML', 'test'],
-    ['declaration',
-      ['property',
-        ['ident', 'p']],
-      ['commentML', 'test'],
-      ['propertyDelim'],
-      ['commentML', 'test'],
-      ['value',
-        ['ident', 'v']]],
-    ['commentML', 'test']]]
+{
+  "type": "atruleb",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "start": {
+                    "line": 1,
+                    "column": 23
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 23
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 24
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 32
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 33
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "start": {
+                    "line": 1,
+                    "column": 41
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 41
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 23
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

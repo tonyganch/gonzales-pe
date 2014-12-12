@@ -1,4 +1,37 @@
-['braces', '(', ')',
-  ['s', '  '],
-  ['number', '1'],
-  ['s', '  ']]
+{
+  "type": "braces",
+  "content": [
+    "(",
+    ")",
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "number",
+      "content": [
+        "1"
+      ],
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

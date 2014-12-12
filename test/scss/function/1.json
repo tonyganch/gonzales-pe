@@ -1,10 +1,88 @@
-['function',
-  ['ident', 'f'],
-  ['arguments',
-    ['declaration',
-      ['property',
-        ['variable',
-          ['ident', 'n']]],
-      ['propertyDelim'],
-      ['value',
-        ['number', '5']]]]]
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "f",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "variable",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "n",
+                      "start": {
+                        "line": 1,
+                        "column": 4
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "number",
+                  "content": [
+                    "5"
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

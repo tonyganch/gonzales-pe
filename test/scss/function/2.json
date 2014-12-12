@@ -1,5 +1,47 @@
-['function',
-  ['ident', 'fn'],
-  ['arguments',
-    ['braces', '(', ')',
-      ['number', '5']]]]
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "fn",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "braces",
+          "content": [
+            "(",
+            ")",
+            {
+              "type": "number",
+              "content": [
+                "5"
+              ],
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

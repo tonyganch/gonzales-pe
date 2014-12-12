@@ -1,13 +1,112 @@
-['block',
-  ['declaration',
-    ['property',
-      ['ident', 'filter']],
-    ['propertyDelim'],
-    ['s', ' '],
-    ['value',
-      ['function',
-        ['ident', 'alpha'],
-        ['arguments',
-          ['ident', 'opacity'],
-          ['operator', '='],
-          ['number', '42']]]]]]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "ident",
+              "content": "filter",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "propertyDelim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "function",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "alpha",
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "arguments",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "opacity",
+                      "start": {
+                        "line": 1,
+                        "column": 16
+                      }
+                    },
+                    {
+                      "type": "operator",
+                      "content": "=",
+                      "start": {
+                        "line": 1,
+                        "column": 23
+                      }
+                    },
+                    {
+                      "type": "number",
+                      "content": [
+                        "42"
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 24
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 15
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

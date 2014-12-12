@@ -1,4 +1,37 @@
-['braces', '(', ')',
-  ['commentML', 'test'],
-  ['number', '1'],
-  ['commentML', 'test']]
+{
+  "type": "braces",
+  "content": [
+    "(",
+    ")",
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "number",
+      "content": [
+        "1"
+      ],
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

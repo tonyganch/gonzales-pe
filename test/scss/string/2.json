@@ -1,1 +1,8 @@
-['string', ''te\'st'']
+{
+  "type": "string",
+  "content": "'te\\'st'",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

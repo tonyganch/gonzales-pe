@@ -1,3 +1,30 @@
-['arguments',
-  ['braces', '(', ')',
-    ['number', '10']]]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "number",
+          "content": [
+            "10"
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

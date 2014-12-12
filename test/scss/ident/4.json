@@ -1,1 +1,8 @@
-['ident', 'x\:y']
+{
+  "type": "ident",
+  "content": "x\\:y",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
