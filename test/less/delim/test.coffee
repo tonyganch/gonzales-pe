@@ -1,6 +1,4 @@
 describe 'less/delim >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it.skip '0.p', ->
-    this.shouldBeOk '0'
+  it.skip '0', -> this.shouldBeOk()

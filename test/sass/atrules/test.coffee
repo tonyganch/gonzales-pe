@@ -1,22 +1,11 @@
 describe 'sass/atrules >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it '0.p', ->
-    this.shouldBeOk '0'
+  it '0', -> this.shouldBeOk()
+  it '1', -> this.shouldBeOk()
+  it '2', -> this.shouldBeOk()
 
-  it '1.p', ->
-    this.shouldBeOk '1'
+  it.skip 'c.0', -> this.shouldBeOk()
+  it.skip 'c.1', -> this.shouldBeOk()
 
-  it '2.p', ->
-    this.shouldBeOk '2'
-
-  it.skip 'c.0.p', ->
-    this.shouldBeOk 'c.0'
-
-  it.skip 'c.1.p', ->
-    this.shouldBeOk 'c.1'
-
-  it 's.0.p', ->
-    this.shouldBeOk 's.0'
-
+  it 's.0', -> this.shouldBeOk()

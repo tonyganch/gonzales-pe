@@ -1,9 +1,5 @@
 describe 'scss/class >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it '0.p', ->
-    this.shouldBeOk '0'
-
-  it.skip '1.p', ->
-    this.shouldBeOk '1'
+  it '0', -> this.shouldBeOk()
+  it.skip '1', -> this.shouldBeOk()
