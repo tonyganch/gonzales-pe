@@ -1,27 +1,11 @@
 describe 'sass/mixin >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it.skip '0.p', ->
-    this.shouldBeOk '0'
-
-  it.skip '1.p', ->
-    this.shouldBeOk '1'
-
-  it.skip '2.p', ->
-    this.shouldBeOk '2'
-
-  it.skip '3.p', ->
-    this.shouldBeOk '3'
-
-  it.skip '4.p', ->
-    this.shouldBeOk '4'
-
-  it.skip '5.p', ->
-    this.shouldBeOk '5'
-
-  it.skip '6.p', ->
-    this.shouldBeOk '6'
-
-  it.skip '7.p', ->
-    this.shouldBeOk '7'
+  it.skip '0', -> this.shouldBeOk()
+  it.skip '1', -> this.shouldBeOk()
+  it.skip '2', -> this.shouldBeOk()
+  it.skip '3', -> this.shouldBeOk()
+  it.skip '4', -> this.shouldBeOk()
+  it.skip '5', -> this.shouldBeOk()
+  it.skip '6', -> this.shouldBeOk()
+  it.skip '7', -> this.shouldBeOk()

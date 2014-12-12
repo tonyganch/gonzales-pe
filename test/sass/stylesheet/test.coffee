@@ -1,57 +1,24 @@
 describe 'sass/stylesheet >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it '0.p', ->
-    this.shouldBeOk '0'
+  it '0', -> this.shouldBeOk()
+  it.skip '1', -> this.shouldBeOk()
+  it.skip '2', -> this.shouldBeOk()
+  it '3', -> this.shouldBeOk()
+  it.skip '4', -> this.shouldBeOk()
+  it.skip '5', -> this.shouldBeOk()
+  it.skip '6', -> this.shouldBeOk()
 
-  it.skip '1.p', ->
-    this.shouldBeOk '1'
+  it.skip 'c.0', -> this.shouldBeOk()
 
-  it.skip '2.p', ->
-    this.shouldBeOk '2'
+  it.skip 'issue86.test1', -> this.shouldBeOk()
+  it.skip 'issue87.test1', -> this.shouldBeOk()
+  it.skip 'issue88.test1', -> this.shouldBeOk()
+  it.skip 'issue90.test1', -> this.shouldBeOk()
+  it.skip 'issue90.test2', -> this.shouldBeOk()
+  it.skip 'issue111.test1', -> this.shouldBeOk()
 
-  it '3.p', ->
-    this.shouldBeOk '3'
-
-  it.skip '4.p', ->
-    this.shouldBeOk '4'
-
-  it.skip '5.p', ->
-    this.shouldBeOk '5'
-
-  it.skip '6.p', ->
-    this.shouldBeOk '6'
-
-  it.skip 'c.0.p', ->
-    this.shouldBeOk 'c.0'
-
-  it.skip 'issue86.test1.p', ->
-    this.shouldBeOk 'issue86.test1'
-
-  it.skip 'issue87.test1.p', ->
-    this.shouldBeOk 'issue87.test1'
-
-  it.skip 'issue88.test1.p', ->
-    this.shouldBeOk 'issue88.test1'
-
-  it.skip 'issue90.test1.p', ->
-    this.shouldBeOk 'issue90.test1'
-
-  it.skip 'issue90.test2.p', ->
-    this.shouldBeOk 'issue90.test2'
-
-  it.skip 'issue111.test1.p', ->
-    this.shouldBeOk 'issue111.test1'
-
-  it.skip 's.0.p', ->
-    this.shouldBeOk 's.0'
-
-  it.skip 's.1.p', ->
-    this.shouldBeOk 's.1'
-
-  it 's.2.p', ->
-    this.shouldBeOk 's.2'
-
-  it.skip 's.3.p', ->
-    this.shouldBeOk 's.3'
+  it.skip 's.0', -> this.shouldBeOk()
+  it.skip 's.1', -> this.shouldBeOk()
+  it 's.2', -> this.shouldBeOk()
+  it.skip 's.3', -> this.shouldBeOk()
