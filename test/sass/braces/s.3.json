@@ -1,8 +1,67 @@
-['braces', '(', ')',
-  ['s', '  '],
-  ['ident', 'x'],
-  ['s', '  '],
-  ['unary', '+'],
-  ['s', '  '],
-  ['number', '1'],
-  ['s', '  ']]
+{
+  "type": "braces",
+  "content": [
+    "(",
+    ")",
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "unary",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "number",
+      "content": "1",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 12
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

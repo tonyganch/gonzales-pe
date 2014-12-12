@@ -1,7 +1,60 @@
-['include',
-  ['operator', '+'],
-  ['simpleselector',
-    ['ident', 'nani']],
-  ['arguments',
-    ['variable',
-      ['ident', 'v']]]]
+{
+  "type": "include",
+  "content": [
+    {
+      "type": "operator",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "nani",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

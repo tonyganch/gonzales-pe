@@ -16,7 +16,7 @@ fs.writeFile(expectedLogPath, '', function () {});
 fs.writeFile(resultLogPath, '', function () {});
 
 // Tell mocha which tests to run:
-var syntaxDirs = ['test/css', 'test/less'];
+var syntaxDirs = ['test/css', 'test/less', 'test/sass'];
 syntaxDirs.forEach(function(syntaxDir) {
     fs.readdirSync(syntaxDir).forEach(function(testDir) {
         mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));

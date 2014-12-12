@@ -1,1 +1,10 @@
-['vhash', '100']
+{
+  "type": "vhash",
+  "content": [
+    "100"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

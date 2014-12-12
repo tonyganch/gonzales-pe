@@ -5,7 +5,7 @@ describe 'sass/function >>', ->
   it '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
+  it.skip '1.p', ->
     this.shouldBeOk '0'
 
   it '2.p', ->

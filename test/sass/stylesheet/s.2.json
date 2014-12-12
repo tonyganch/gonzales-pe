@@ -1,11 +1,69 @@
-['stylesheet',
-  ['atrules',
-    ['atkeyword',
-      ['ident', 'test0']]],
-  ['declDelim'],
-  ['s', '
-'],
-  ['atrules',
-    ['atkeyword',
-      ['ident', 'test1']]],
-  ['declDelim']]
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "atrules",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "test0",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "s",
+          "content": "\n",
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "atrules",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "test1",
+              "start": {
+                "line": 2,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

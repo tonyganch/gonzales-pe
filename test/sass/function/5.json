@@ -1,16 +1,134 @@
-['function',
-  ['ident', 'test'],
-  ['arguments',
-    ['dimension',
-      ['number', '10'],
-      ['ident', 'px']],
-    ['operator', ','],
-    ['string', ''test''],
-    ['s', ' '],
-    ['function',
-      ['ident', 'test'],
-      ['arguments',
-        ['ident', 'x']]],
-    ['operator', ','],
-    ['percentage',
-      ['number', '89']]]]
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "dimension",
+          "content": [
+            {
+              "type": "number",
+              "content": "10",
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            },
+            {
+              "type": "ident",
+              "content": "px",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "delim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "type": "string",
+          "content": "'test'",
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 18
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "x",
+                  "start": {
+                    "line": 1,
+                    "column": 23
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 22
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 18
+          }
+        },
+        {
+          "type": "delim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 25
+          }
+        },
+        {
+          "type": "percentage",
+          "content": [
+            {
+              "type": "number",
+              "content": "89",
+              "start": {
+                "line": 1,
+                "column": 26
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 26
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

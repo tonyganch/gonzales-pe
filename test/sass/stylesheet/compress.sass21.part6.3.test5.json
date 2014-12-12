@@ -1,0 +1,117 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "atrules",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "import",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "string",
+          "content": "\"mystyle.css\"",
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "atrules",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "import",
+              "start": {
+                "line": 2,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 1
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 2,
+            "column": 31
+          }
+        },
+        {
+          "type": "string",
+          "content": "\"mystyle.css\"",
+          "start": {
+            "line": 2,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 1
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 2,
+        "column": 22
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
