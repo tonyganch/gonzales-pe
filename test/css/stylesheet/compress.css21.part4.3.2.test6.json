@@ -1,0 +1,153 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "h3",
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "word-spacing",
+                      "start": {
+                        "line": 1,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 6
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 1,
+                    "column": 18
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 19
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "dimension",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "4",
+                          "start": {
+                            "line": 1,
+                            "column": 20
+                          }
+                        },
+                        {
+                          "type": "ident",
+                          "content": "mm",
+                          "start": {
+                            "line": 1,
+                            "column": 21
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 20
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 20
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 23
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
