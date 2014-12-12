@@ -1,48 +1,21 @@
 describe 'css/value >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it '0.p', ->
-    this.shouldBeOk '0'
+  it '0', -> this.shouldBeOk()
+  it '1', -> this.shouldBeOk()
+  it '2', -> this.shouldBeOk()
+  it '3', -> this.shouldBeOk()
+  it '4', -> this.shouldBeOk()
 
-  it '1.p', ->
-    this.shouldBeOk '1'
+  it 'dimension.0', -> this.shouldBeOk()
+  it 'dimension.1', -> this.shouldBeOk()
+  it 'dimension.2', -> this.shouldBeOk()
 
-  it '2.p', ->
-    this.shouldBeOk '2'
+  it 'rgb.0', -> this.shouldBeOk()
+  it 'rgb.1', -> this.shouldBeOk()
+  it 'rgb.2', -> this.shouldBeOk()
 
-  it '3.p', ->
-    this.shouldBeOk '3'
-
-  it '4.p', ->
-    this.shouldBeOk '4'
-
-  it 'dimension.0.p', ->
-    this.shouldBeOk 'dimension.0'
-
-  it 'dimension.1.p', ->
-    this.shouldBeOk 'dimension.1'
-
-  it 'dimension.2.p', ->
-    this.shouldBeOk 'dimension.2'
-
-  it 'rgb.0.p', ->
-    this.shouldBeOk 'rgb.0'
-
-  it 'rgb.1.p', ->
-    this.shouldBeOk 'rgb.1'
-
-  it 'rgb.2.p', ->
-    this.shouldBeOk 'rgb.2'
-
-  it 'vhash.0.p', ->
-    this.shouldBeOk 'vhash.0'
-
-  it 'vhash.1.p', ->
-    this.shouldBeOk 'vhash.1'
-
-  it 'vhash.2.p', ->
-    this.shouldBeOk 'vhash.2'
-
-  it 'vhash.3.p', ->
-    this.shouldBeOk 'vhash.3'
+  it 'vhash.0', -> this.shouldBeOk()
+  it 'vhash.1', -> this.shouldBeOk()
+  it 'vhash.2', -> this.shouldBeOk()
+  it 'vhash.3', -> this.shouldBeOk()

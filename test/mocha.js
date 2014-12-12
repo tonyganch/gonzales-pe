@@ -26,7 +26,8 @@ syntaxDirs.forEach(function(syntaxDir) {
 mocha.suite.beforeEach(function() {
     this.filename = null;
 
-    this.shouldBeOk = function(filename) {
+    this.shouldBeOk = function() {
+        var filename = this.test.title;
         var testDir = path.dirname(this.filename);
         var rule = path.basename(testDir);
         var syntax = path.basename(path.dirname(testDir));

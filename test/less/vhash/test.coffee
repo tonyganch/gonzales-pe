@@ -1,9 +1,5 @@
 describe 'less/vhash >>', ->
-  beforeEach ->
-    this.filename = __filename
+  beforeEach -> this.filename = __filename
 
-  it '0.p', ->
-    this.shouldBeOk '0'
-
-  it '1.p', ->
-    this.shouldBeOk '1'
+  it '0', -> this.shouldBeOk()
+  it '1', -> this.shouldBeOk()
