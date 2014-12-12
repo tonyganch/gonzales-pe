@@ -1,0 +1,194 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "em",
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "color",
+                      "start": {
+                        "line": 1,
+                        "column": 6
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 6
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "function",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "rgb",
+                          "start": {
+                            "line": 1,
+                            "column": 13
+                          }
+                        },
+                        {
+                          "type": "arguments",
+                          "content": [
+                            {
+                              "type": "number",
+                              "content": "255",
+                              "start": {
+                                "line": 1,
+                                "column": 17
+                              }
+                            },
+                            {
+                              "type": "operator",
+                              "content": ",",
+                              "start": {
+                                "line": 1,
+                                "column": 20
+                              }
+                            },
+                            {
+                              "type": "number",
+                              "content": "0",
+                              "start": {
+                                "line": 1,
+                                "column": 21
+                              }
+                            },
+                            {
+                              "type": "operator",
+                              "content": ",",
+                              "start": {
+                                "line": 1,
+                                "column": 22
+                              }
+                            },
+                            {
+                              "type": "number",
+                              "content": "0",
+                              "start": {
+                                "line": 1,
+                                "column": 23
+                              }
+                            }
+                          ],
+                          "start": {
+                            "line": 1,
+                            "column": 16
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 13
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 13
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 25
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

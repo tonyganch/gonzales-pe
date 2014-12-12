@@ -1,0 +1,108 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "atrules",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "import",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "uri",
+          "content": [
+            {
+              "type": "string",
+              "content": "\"bluish.css\"",
+              "start": {
+                "line": 1,
+                "column": 13
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 26
+          }
+        },
+        {
+          "type": "ident",
+          "content": "projection",
+          "start": {
+            "line": 1,
+            "column": 27
+          }
+        },
+        {
+          "type": "operator",
+          "content": ",",
+          "start": {
+            "line": 1,
+            "column": 37
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 38
+          }
+        },
+        {
+          "type": "ident",
+          "content": "tv",
+          "start": {
+            "line": 1,
+            "column": 39
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 41
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

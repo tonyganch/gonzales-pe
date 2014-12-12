@@ -1,0 +1,225 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "E",
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "attrib",
+                  "content": [
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 11
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "foo",
+                      "start": {
+                        "line": 1,
+                        "column": 19
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 22
+                      }
+                    },
+                    {
+                      "type": "attrselector",
+                      "content": "*=",
+                      "start": {
+                        "line": 1,
+                        "column": 30
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 32
+                      }
+                    },
+                    {
+                      "type": "string",
+                      "content": "\"b ar\"",
+                      "start": {
+                        "line": 1,
+                        "column": 40
+                      }
+                    },
+                    {
+                      "type": "commentML",
+                      "content": "test",
+                      "start": {
+                        "line": 1,
+                        "column": 46
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 55
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 64
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "p",
+                      "start": {
+                        "line": 1,
+                        "column": 72
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 72
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 73
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 1,
+                    "column": 81
+                  }
+                },
+                {
+                  "type": "commentML",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 82
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "v",
+                      "start": {
+                        "line": 1,
+                        "column": 90
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 90
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 72
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 91
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 63
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 100
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

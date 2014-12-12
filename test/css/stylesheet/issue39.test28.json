@@ -1,0 +1,532 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "a",
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 1,
+                "column": 4
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "color",
+                      "start": {
+                        "line": 2,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 2,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "red",
+                      "start": {
+                        "line": 2,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 2,
+                "column": 15
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 3,
+        "column": 2
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "a",
+                  "start": {
+                    "line": 4,
+                    "column": 1
+                  }
+                }
+              ],
+              "start": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            {
+              "type": "delim",
+              "content": null,
+              "start": {
+                "line": 4,
+                "column": 2
+              }
+            },
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 4,
+                    "column": 3
+                  }
+                },
+                {
+                  "type": "pseudoc",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "b",
+                      "start": {
+                        "line": 4,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 4,
+                    "column": 4
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 4,
+                    "column": 6
+                  }
+                }
+              ],
+              "start": {
+                "line": 4,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "color",
+                      "start": {
+                        "line": 5,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 5,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 5,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 5,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "red",
+                      "start": {
+                        "line": 5,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 5,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 5,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 5,
+                "column": 15
+              }
+            }
+          ],
+          "start": {
+            "line": 4,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 4,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 6,
+        "column": 2
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "a",
+                  "start": {
+                    "line": 7,
+                    "column": 1
+                  }
+                }
+              ],
+              "start": {
+                "line": 7,
+                "column": 1
+              }
+            },
+            {
+              "type": "delim",
+              "content": null,
+              "start": {
+                "line": 7,
+                "column": 2
+              }
+            },
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 7,
+                    "column": 3
+                  }
+                },
+                {
+                  "type": "pseudoc",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "b",
+                      "start": {
+                        "line": 7,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 7,
+                    "column": 4
+                  }
+                }
+              ],
+              "start": {
+                "line": 7,
+                "column": 3
+              }
+            },
+            {
+              "type": "delim",
+              "content": null,
+              "start": {
+                "line": 7,
+                "column": 6
+              }
+            },
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 7,
+                    "column": 7
+                  }
+                },
+                {
+                  "type": "pseudoc",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "c",
+                      "start": {
+                        "line": 7,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 7,
+                    "column": 8
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 7,
+                    "column": 10
+                  }
+                }
+              ],
+              "start": {
+                "line": 7,
+                "column": 7
+              }
+            }
+          ],
+          "start": {
+            "line": 7,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 7,
+                "column": 12
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "color",
+                      "start": {
+                        "line": 8,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 8,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 8,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 8,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "red",
+                      "start": {
+                        "line": 8,
+                        "column": 12
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 8,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 8,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 8,
+                "column": 15
+              }
+            }
+          ],
+          "start": {
+            "line": 7,
+            "column": 11
+          }
+        }
+      ],
+      "start": {
+        "line": 7,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
