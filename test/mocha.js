@@ -43,14 +43,20 @@ mocha.suite.beforeEach(function() {
 
         var ast = gonzales.srcToAST(options);
         var parsedTree = gonzales.astToString(ast);
+
         try {
             parsedTree = JSON.parse(parsedTree);
             expected = JSON.parse(expected);
             assert.deepEqual(parsedTree, expected);
+        } catch (e) {
+            logAndThrow(e, 'Failed src -> ast');
+        }
+
+        try {
             var compiledString = gonzales.astToSrc({ syntax: syntax, ast: ast });
             assert.equal(compiledString, input);
         } catch (e) {
-            logAndThrow(e);
+            logAndThrow(e, 'Failed ast -> src');
         }
     };
 
@@ -67,11 +73,11 @@ function readFile(dirname, filename) {
     return fs.readFileSync(filePath, 'utf8').trim();
 }
 
-function logAndThrow(e) {
+function logAndThrow(e, message) {
     var expected = JSON.stringify(e.expected, false, 2);
     var actual = JSON.stringify(e.actual, false, 2);
 
-    var message = '\nExpected:\n' + expected +
+    message = '\n' + message + '\n\nExpected:\n' + expected +
         '\n\nResult:\n' + actual;
 
     fs.appendFile(expectedLogPath, expected + '\n\n\n', function(){});
