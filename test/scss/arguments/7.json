@@ -1,5 +1,47 @@
-['arguments',
-  ['unary', '-'],
-  ['dimension',
-    ['number', '90'],
-    ['ident', 'deg']]]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "unary",
+      "content": "-",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": [
+            "90"
+          ],
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        },
+        {
+          "type": [
+            "ident",
+            "deg"
+          ],
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

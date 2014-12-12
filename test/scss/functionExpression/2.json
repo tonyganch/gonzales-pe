@@ -1,1 +1,8 @@
-['functionExpression', 'expression()']
+{
+  "type": "functionExpression",
+  "content": "expression()",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

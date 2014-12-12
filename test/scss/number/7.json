@@ -1,1 +1,10 @@
-['number', '1.200000']
+{
+  "type": "number",
+  "content": [
+    "1.200000"
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,8 +1,71 @@
-['nthselector',
-  ['ident', 'nth-last-child'],
-  ['unary', '+'],
-  ['nth', '3n'],
-  ['interpolation',
-    ['variable',
-      ['ident', 'sign']]],
-  ['nth', '2']]
+{
+  "type": "nthselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nth-last-child",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "unary",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 17
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "3n"
+      ],
+      "start": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "sign",
+              "start": {
+                "line": 1,
+                "column": 23
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 22
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "nth",
+      "content": [
+        "2"
+      ],
+      "start": {
+        "line": 1,
+        "column": 28
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

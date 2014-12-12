@@ -1,12 +1,102 @@
-['arguments',
-  ['variable',
-    ['ident', 'v1']],
-  ['delim'],
-  ['s', ' '],
-  ['declaration',
-    ['property',
-      ['variable',
-        ['ident', 'v2']]],
-    ['propertyDelim'],
-    ['value',
-      ['ident', 'y']]]]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "v1",
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "delim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v2",
+                  "start": {
+                    "line": 1,
+                    "column": 8
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 7
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "propertyDelim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "y",
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

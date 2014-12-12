@@ -1,5 +1,43 @@
-['class',
-  ['ident', 'abc-',
-    ['interpolation',
-      ['variable',
-        ['ident', 'nani']]]]]
+{
+  "type": "class",
+  "content": [
+    {
+      "type": "ident",
+      "content": "abc-",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,10 +1,83 @@
-['filter',
-  ['property',
-    ['ident', 'filter']],
-  ['filterv',
-    ['progid',
-      ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')'],
-      ['s', '
-       ']],
-    ['progid',
-      ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='something')']]]]
+{
+  "type": "filter",
+  "content": [
+    {
+      "type": "property",
+      "content": [
+        {
+          "type": "ident",
+          "content": "filter",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "filterv",
+      "content": [
+        {
+          "type": "progid",
+          "content": [
+            {
+              "type": [
+                "raw",
+                "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')"
+              ],
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n       ",
+              "start": {
+                "line": 1,
+                "column": 116
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "progid",
+          "content": [
+            {
+              "type": [
+                "raw",
+                "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='something')"
+              ],
+              "content": null,
+              "start": {
+                "line": 2,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 8
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

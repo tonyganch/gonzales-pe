@@ -1,30 +1,227 @@
-['ruleset',
-  ['selector',
-    ['simpleselector',
-      ['class',
-        ['ident', 'test']],
-      ['s', ' ']]],
-  ['block',
-    ['s', '
-    '],
-    ['declaration',
-      ['property',
-        ['ident', 'color']],
-      ['propertyDelim'],
-      ['value',
-        ['ident', 'red']]],
-    ['declDelim'],
-    ['s', '
-    '],
-    ['filter',
-      ['property',
-        ['ident', 'filter']],
-      ['filterv',
-        ['progid',
-          ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')'],
-          ['s', '
-           ']],
-        ['progid',
-          ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')'],
-          ['s', '
-']]]]]]
+{
+  "type": "ruleset",
+  "content": [
+    {
+      "type": "selector",
+      "content": [
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "s",
+          "content": "\n    ",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color",
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 2,
+                "column": 10
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "red",
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 11
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        {
+          "type": "declDelim",
+          "content": null,
+          "start": {
+            "line": 2,
+            "column": 14
+          }
+        },
+        {
+          "type": "s",
+          "content": "\n    ",
+          "start": {
+            "line": 2,
+            "column": 15
+          }
+        },
+        {
+          "type": "filter",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "filter",
+                  "start": {
+                    "line": 3,
+                    "column": 5
+                  }
+                }
+              ],
+              "start": {
+                "line": 3,
+                "column": 5
+              }
+            },
+            {
+              "type": "filterv",
+              "content": [
+                {
+                  "type": "progid",
+                  "content": [
+                    {
+                      "type": [
+                        "raw",
+                        "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')"
+                      ],
+                      "content": null,
+                      "start": {
+                        "line": 3,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": "\n           ",
+                      "start": {
+                        "line": 3,
+                        "column": 120
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 3,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "progid",
+                  "content": [
+                    {
+                      "type": [
+                        "raw",
+                        "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')"
+                      ],
+                      "content": null,
+                      "start": {
+                        "line": 4,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": "\n",
+                      "start": {
+                        "line": 4,
+                        "column": 98
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 4,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 3,
+                "column": 12
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

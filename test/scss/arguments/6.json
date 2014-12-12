@@ -1,14 +1,120 @@
-['arguments',
-  ['function',
-    ['ident', 'lighten'],
-    ['arguments',
-      ['variable',
-        ['ident', 'grey']],
-      ['delim'],
-      ['s', ' '],
-      ['percentage',
-        ['number', '30']]]],
-  ['delim'],
-  ['s', ' '],
-  ['variable',
-    ['ident', 'primary']]]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "lighten",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "grey",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            },
+            {
+              "type": "delim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 15
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 16
+              }
+            },
+            {
+              "type": "percentage",
+              "content": [
+                {
+                  "type": "number",
+                  "content": [
+                    "30"
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 17
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 17
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "delim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 21
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "primary",
+          "start": {
+            "line": 1,
+            "column": 24
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

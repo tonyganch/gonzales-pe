@@ -1,22 +1,159 @@
-['block',
-  ['s', '
-  '],
-  ['declaration',
-    ['property',
-      ['ident', 'p1']],
-    ['propertyDelim'],
-    ['value',
-      ['ident', 'v1']]],
-  ['declDelim'],
-  ['s', ' '],
-  ['commentSL', ' comment'],
-  ['s', '
-  '],
-  ['declaration',
-    ['property',
-      ['ident', 'p2']],
-    ['propertyDelim'],
-    ['value',
-      ['ident', 'v2']]],
-  ['s', '
-']]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "s",
+      "content": "\n  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "ident",
+              "content": "p1",
+              "start": {
+                "line": 2,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 3
+          }
+        },
+        {
+          "type": "propertyDelim",
+          "content": null,
+          "start": {
+            "line": 2,
+            "column": 5
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v1",
+              "start": {
+                "line": 2,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 6
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 3
+      }
+    },
+    {
+      "type": "declDelim",
+      "content": null,
+      "start": {
+        "line": 2,
+        "column": 8
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 2,
+        "column": 9
+      }
+    },
+    {
+      "type": "commentSL",
+      "content": " comment",
+      "start": {
+        "line": 2,
+        "column": 10
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n  ",
+      "start": {
+        "line": 2,
+        "column": 20
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "ident",
+              "content": "p2",
+              "start": {
+                "line": 3,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 3
+          }
+        },
+        {
+          "type": "propertyDelim",
+          "content": null,
+          "start": {
+            "line": 3,
+            "column": 5
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v2",
+              "start": {
+                "line": 3,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 6
+          }
+        }
+      ],
+      "start": {
+        "line": 3,
+        "column": 3
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 3,
+        "column": 8
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

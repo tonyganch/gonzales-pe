@@ -1,7 +1,60 @@
-['block',
-  ['include',
-    ['atkeyword',
-      ['ident', 'include']],
-    ['s', ' '],
-    ['simpleselector',
-      ['ident', 'nani']]]]
+{
+  "type": "block",
+  "content": [
+    {
+      "type": "include",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "include",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
