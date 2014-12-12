@@ -1,29 +1,231 @@
-['loop',
-  ['atkeyword',
-    ['ident', 'for']],
-  ['s', ' '],
-  ['variable',
-    ['ident', 'i']],
-  ['s', ' '],
-  ['ident', 'from'],
-  ['s', ' '],
-  ['number', '1'],
-  ['s', ' '],
-  ['ident', 'through'],
-  ['s', ' '],
-  ['number', '3'],
-  ['s', ' '],
-  ['block',
-    ['ruleset',
-      ['selector',
-        ['simpleselector',
-          ['ident', 'a']]],
-      ['block',
-        ['declaration',
-          ['property',
-            ['ident', 'p']],
-          ['propertyDelim'],
-          ['value',
-            ['ident', 'v']]]]]]]
-
-
+{
+  "type": "loop",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "for",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "i",
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "ident",
+      "content": "from",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "number",
+      "content": [
+        "1"
+      ],
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 15
+      }
+    },
+    {
+      "type": "ident",
+      "content": "through",
+      "start": {
+        "line": 1,
+        "column": 16
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "number",
+      "content": [
+        "3"
+      ],
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 25
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "simpleselector",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 1,
+                        "column": 27
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 27
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 27
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "p",
+                          "start": {
+                            "line": 1,
+                            "column": 29
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 29
+                      }
+                    },
+                    {
+                      "type": "propertyDelim",
+                      "content": null,
+                      "start": {
+                        "line": 1,
+                        "column": 30
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "v",
+                          "start": {
+                            "line": 1,
+                            "column": 31
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 1,
+                        "column": 31
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 29
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 28
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 27
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 26
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

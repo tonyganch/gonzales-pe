@@ -1,19 +1,158 @@
-['atruleb',
-  ['atkeyword',
-    ['ident', 'test']],
-  ['commentML', 'test'],
-  ['ident', 'x'],
-  ['commentML', 'test'],
-  ['ident', 'y'],
-  ['commentML', 'test'],
-  ['block',
-    ['commentML', 'test'],
-    ['declaration',
-      ['property',
-        ['ident', 'p']],
-      ['commentML', 'test'],
-      ['propertyDelim'],
-      ['commentML', 'test'],
-      ['value',
-        ['ident', 'v']]],
-    ['commentML', 'test']]]
+{
+  "type": "atruleb",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 15
+      }
+    },
+    {
+      "type": "ident",
+      "content": "y",
+      "start": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "commentML",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 33
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "start": {
+                    "line": 1,
+                    "column": 41
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 41
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 42
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 50
+              }
+            },
+            {
+              "type": "commentML",
+              "content": "test",
+              "start": {
+                "line": 1,
+                "column": 51
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "start": {
+                    "line": 1,
+                    "column": 59
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 59
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 41
+          }
+        },
+        {
+          "type": "commentML",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 60
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 32
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

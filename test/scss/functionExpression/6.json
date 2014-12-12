@@ -1,1 +1,8 @@
-['functionExpression', '()()']
+{
+  "type": "functionExpression",
+  "content": "()()",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

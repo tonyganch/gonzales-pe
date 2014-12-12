@@ -1,2 +1,17 @@
-['uri',
-  ['string', ''http://test.com'']]
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "string",
+      "content": "'http://test.com'",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

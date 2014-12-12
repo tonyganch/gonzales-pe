@@ -1,1 +1,8 @@
-['string', '"test"']
+{
+  "type": "string",
+  "content": "\"test\"",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

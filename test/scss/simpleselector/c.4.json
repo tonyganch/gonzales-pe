@@ -1,16 +1,129 @@
-['simpleselector',
-  ['ident', 'a'],
-  ['s', '  '],
-  ['ident', 'b'],
-  ['s', '  '],
-  ['combinator', '+'],
-  ['s', '  '],
-  ['ident', 'c'],
-  ['s', '  '],
-  ['combinator', '>'],
-  ['s', '  '],
-  ['ident', 'd'],
-  ['s', '  '],
-  ['combinator', '~'],
-  ['s', '  '],
-  ['ident', 'e']]
+{
+  "type": "simpleselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "a",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ident",
+      "content": "b",
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "combinator",
+      "content": "+",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "ident",
+      "content": "c",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "combinator",
+      "content": ">",
+      "start": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "ident",
+      "content": "d",
+      "start": {
+        "line": 1,
+        "column": 16
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 17
+      }
+    },
+    {
+      "type": "combinator",
+      "content": "~",
+      "start": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "ident",
+      "content": "e",
+      "start": {
+        "line": 1,
+        "column": 22
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

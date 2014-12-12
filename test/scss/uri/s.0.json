@@ -1,4 +1,33 @@
-['uri',
-  ['s', '  '],
-  ['string', ''http://test.com''],
-  ['s', '  ']]
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "string",
+      "content": "'http://test.com'",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "s",
+      "content": "  ",
+      "start": {
+        "line": 1,
+        "column": 24
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

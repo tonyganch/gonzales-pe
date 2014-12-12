@@ -1,2 +1,17 @@
-['placeholder',
-  ['ident', 'nani']]
+{
+  "type": "placeholder",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nani",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

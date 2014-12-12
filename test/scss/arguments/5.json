@@ -1,4 +1,35 @@
-['arguments',
-  ['interpolation',
-    ['variable',
-      ['ident', 'nani']]]]
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

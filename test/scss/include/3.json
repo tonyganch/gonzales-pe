@@ -1,9 +1,77 @@
-['include',
-  ['atkeyword',
-    ['ident', 'include']],
-  ['s', ' '],
-  ['simpleselector',
-    ['ident', 'nani']],
-  ['arguments',
-    ['variable',
-      ['ident', 'v']]]]
+{
+  "type": "include",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "include",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "nani",
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v",
+              "start": {
+                "line": 1,
+                "column": 16
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 15
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

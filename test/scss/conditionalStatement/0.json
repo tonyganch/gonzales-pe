@@ -1,22 +1,187 @@
-['conditionalStatement',
-  ['condition',
-    ['atkeyword',
-      ['ident', 'if']],
-    ['s', ' '],
-    ['number', '1'],
-    ['s', ' '],
-    ['operator', '>'],
-    ['s', ' '],
-    ['number', '2']],
-  ['s', ' '],
-  ['block',
-    ['s', ' '],
-    ['declaration',
-      ['property',
-        ['ident', 'color']],
-      ['propertyDelim'],
-      ['s', ' '],
-      ['value',
-        ['ident', 'tomato']]],
-    ['declDelim'],
-    ['s', ' ']]]
+{
+  "type": "conditionalStatement",
+  "content": [
+    {
+      "type": "condition",
+      "content": [
+        {
+          "type": "atkeyword",
+          "content": [
+            {
+              "type": "ident",
+              "content": "if",
+              "start": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        },
+        {
+          "type": "number",
+          "content": [
+            "1"
+          ],
+          "start": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "operator",
+          "content": ">",
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "number",
+          "content": [
+            "2"
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color",
+                  "start": {
+                    "line": 1,
+                    "column": 13
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 13
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 1,
+                "column": 18
+              }
+            },
+            {
+              "type": "s",
+              "content": " ",
+              "start": {
+                "line": 1,
+                "column": 19
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "tomato",
+                  "start": {
+                    "line": 1,
+                    "column": 20
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 20
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "declDelim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 26
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 27
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 11
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
