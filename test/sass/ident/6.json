@@ -1,1 +1,8 @@
-['ident', '_0']
+{
+  "type": "ident",
+  "content": "_0",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

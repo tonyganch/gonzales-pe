@@ -1,22 +1,176 @@
-['mixin',
-  ['operator', '='],
-  ['s', ' '],
-  ['ident', 'nani'],
-  ['s', ' '],
-  ['arguments',
-    ['variable',
-      ['ident', 'v1']],
-    ['delim'],
-    ['s', ' '],
-    ['variable',
-      ['ident', 'v2']]],
-  ['s', '
-'],
-  ['block',
-    ['s', '  '],
-    ['declaration',
-      ['property',
-        ['ident', 'x']],
-      ['propertyDelim'],
-      ['value',
-        ['ident', 'y']]]]]
+{
+  "type": "mixin",
+  "content": [
+    {
+      "type": "operator",
+      "content": "=",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ident",
+      "content": "nani",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v1",
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "delim",
+          "content": null,
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "v2",
+              "start": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 2,
+            "column": 20
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "x",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 2,
+                "column": 4
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "y",
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 20
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

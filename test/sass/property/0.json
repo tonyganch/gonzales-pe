@@ -1,3 +1,26 @@
-['property',
-  ['variable',
-    ['ident', 'nani']]]
+{
+  "type": "property",
+  "content": [
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "nani",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

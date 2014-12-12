@@ -2,32 +2,26 @@ describe 'sass/declaration >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it '0.p', ->
+  it.skip '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
-    this.shouldBeOk '0'
+  it.skip '1.p', ->
+    this.shouldBeOk '1'
 
-  it 'c.0.p', ->
-    this.shouldBeOk '0'
+  it.skip '2.p', ->
+    this.shouldBeOk '2'
 
-  it 'c.1.p', ->
-    this.shouldBeOk '0'
+  it.skip 's.0.p', ->
+    this.shouldBeOk 's.0'
 
-  it 'c.2.p', ->
-    this.shouldBeOk '0'
+  it.skip 's.1.p', ->
+    this.shouldBeOk 's.1'
 
-  it 'c.3.p', ->
-    this.shouldBeOk '0'
+  it.skip 's.2.p', ->
+    this.shouldBeOk 's.2'
 
-  it 's.0.p', ->
-    this.shouldBeOk '0'
+  it.skip 's.3.p', ->
+    this.shouldBeOk 's.3'
 
-  it 's.1.p', ->
-    this.shouldBeOk '0'
-
-  it 's.2.p', ->
-    this.shouldBeOk '0'
-
-  it 's.3.p', ->
-    this.shouldBeOk '0'
+  it.skip 's.4.p', ->
+    this.shouldBeOk 's.4'

@@ -1,22 +1,146 @@
-['stylesheet',
-  ['ruleset',
-    ['selector',
-      ['simpleselector',
-        ['class',
-          ['ident', 't']],
-        ['s', '
-']]],
-    ['block',
-      ['s', '
-        '],
-      ['filter',
-        ['property',
-          ['ident', 'filter']],
-        ['filterv',
-          ['progid',
-            ['raw', 'progid:DXImageTransform.Microsoft.Alpha(Opacity=40)'],
-            ['s', ' ']],
-          ['important']]],
-      ['declDelim'],
-      ['s', '
-']]]]
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "t",
+                      "start": {
+                        "line": 1,
+                        "column": 2
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": "\n",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "    ",
+              "start": {
+                "line": 2,
+                "column": 7
+              }
+            },
+            {
+              "type": "filter",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "filter",
+                      "start": {
+                        "line": 2,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "filterv",
+                  "content": [
+                    {
+                      "type": "progid",
+                      "content": [
+                        {
+                          "type": "raw",
+                          "content": "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)",
+                          "start": {
+                            "line": 2,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 2,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 2,
+                        "column": 66
+                      }
+                    },
+                    {
+                      "type": "important",
+                      "content": [],
+                      "start": {
+                        "line": 2,
+                        "column": 64
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 12
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

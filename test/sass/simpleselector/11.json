@@ -1,10 +1,85 @@
-['simpleselector',
-  ['ident', '*'],
-  ['namespace'],
-  ['ident', '*'],
-  ['pseudoc',
-    ['function',
-      ['ident', 'not'],
-      ['arguments',
-        ['simpleselector',
-          ['ident', '*']]]]]]
+{
+  "type": "simpleselector",
+  "content": [
+    {
+      "type": "ident",
+      "content": "*",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "namespace",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "ident",
+      "content": "*",
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "pseudoc",
+      "content": [
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "not",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "simpleselector",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "*",
+                      "start": {
+                        "line": 1,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

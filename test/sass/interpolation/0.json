@@ -1,3 +1,26 @@
-['interpolation',
-  ['variable',
-    ['ident', 'nani']]]
+{
+  "type": "interpolation",
+  "content": [
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "nani",
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,10 +1,82 @@
-['function',
-  ['ident', 'test'],
-  ['arguments',
-    ['s', '  '],
-    ['ident', 'x'],
-    ['s', '  '],
-    ['unary', '+'],
-    ['s', '  '],
-    ['ident', 'y'],
-    ['s', '  ']]]
+{
+  "type": "function",
+  "content": [
+    {
+      "type": "ident",
+      "content": "test",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "ident",
+          "content": "x",
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "type": "unary",
+          "content": "+",
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "ident",
+          "content": "y",
+          "start": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 1,
+            "column": 16
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

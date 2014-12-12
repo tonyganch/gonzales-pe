@@ -11,7 +11,7 @@ describe 'sass/atrules >>', ->
   it '2.p', ->
     this.shouldBeOk '2'
 
-  it 'c.0.p', ->
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
   it.skip 'c.1.p', ->

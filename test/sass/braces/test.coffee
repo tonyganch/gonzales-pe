@@ -29,30 +29,6 @@ describe 'sass/braces >>', ->
   it '8.p', ->
     this.shouldBeOk '8'
 
-  it.skip 'c.0.p', ->
-    this.shouldBeOk 'c.0'
-
-  it.skip 'c.1.p', ->
-    this.shouldBeOk 'c.1'
-
-  it.skip 'c.2.p', ->
-    this.shouldBeOk 'c.2'
-
-  it.skip 'c.3.p', ->
-    this.shouldBeOk 'c.3'
-
-  it.skip 'c.4.p', ->
-    this.shouldBeOk 'c.4'
-
-  it.skip 'c.5.p', ->
-    this.shouldBeOk 'c.5'
-
-  it.skip 'c.6.p', ->
-    this.shouldBeOk 'c.6'
-
-  it.skip 'c.7.p', ->
-    this.shouldBeOk 'c.7'
-
   it 's.0.p', ->
     this.shouldBeOk 's.0'
 

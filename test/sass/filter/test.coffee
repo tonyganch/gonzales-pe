@@ -26,8 +26,5 @@ describe 'sass/filter >>', ->
   it.skip 'c.1.p', ->
     this.shouldBeOk 'c.1'
 
-  it.skip 's.0.p', ->
+  it 's.0.p', ->
     this.shouldBeOk 's.0'
-
-  it.skip 's.1.p', ->
-    this.shouldBeOk 's.1'

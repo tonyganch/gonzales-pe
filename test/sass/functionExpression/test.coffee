@@ -11,9 +11,6 @@ describe 'sass/functionExpression >>', ->
   it '2.p', ->
     this.shouldBeOk '2'
 
-  it.skip '3.p', ->
-    this.shouldBeOk '3'
-
   it '4.p', ->
     this.shouldBeOk '4'
 

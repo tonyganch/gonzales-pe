@@ -1,17 +1,135 @@
-['ruleset',
-  ['selector',
-    ['simpleselector',
-      ['ident', 's'],
-      ['s', '  '],
-      ['s', '
-']]],
-  ['block',
-    ['s', '  '],
-    ['declaration',
-      ['property',
-        ['ident', 'p']],
-      ['s', '  '],
-      ['propertyDelim'],
-      ['s', '  '],
-      ['value',
-        ['ident', 'v']]]]]
+{
+  "type": "ruleset",
+  "content": [
+    {
+      "type": "selector",
+      "content": [
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "ident",
+              "content": "s",
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "s",
+              "content": "  ",
+              "start": {
+                "line": 1,
+                "column": 3
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 1,
+                "column": 4
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 2,
+            "column": 6
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "s",
+              "content": "  ",
+              "start": {
+                "line": 2,
+                "column": 9
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 2,
+                "column": 6
+              }
+            },
+            {
+              "type": "s",
+              "content": "  ",
+              "start": {
+                "line": 2,
+                "column": 12
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "start": {
+                    "line": 2,
+                    "column": 9
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 6
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

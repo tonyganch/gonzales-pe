@@ -1,6 +1,51 @@
-['selector',
-  ['simpleselector',
-    ['ident', 'a']],
-  ['delim'],
-  ['simpleselector',
-    ['ident', 'b']]]
+{
+  "type": "selector",
+  "content": [
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "a",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "delim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "b",
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

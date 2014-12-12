@@ -5,22 +5,22 @@ describe 'sass/stylesheet >>', ->
   it '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
+  it.skip '1.p', ->
     this.shouldBeOk '1'
 
-  it '2.p', ->
+  it.skip '2.p', ->
     this.shouldBeOk '2'
 
-  it.skip '3.p', ->
+  it '3.p', ->
     this.shouldBeOk '3'
 
   it.skip '4.p', ->
     this.shouldBeOk '4'
 
-  it '5.p', ->
+  it.skip '5.p', ->
     this.shouldBeOk '5'
 
-  it '6.p', ->
+  it.skip '6.p', ->
     this.shouldBeOk '6'
 
   it.skip 'c.0.p', ->
@@ -50,7 +50,7 @@ describe 'sass/stylesheet >>', ->
   it.skip 's.1.p', ->
     this.shouldBeOk 's.1'
 
-  it.skip 's.2.p', ->
+  it 's.2.p', ->
     this.shouldBeOk 's.2'
 
   it.skip 's.3.p', ->
