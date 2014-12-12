@@ -8,12 +8,6 @@ describe 'sass/nthselector >>', ->
   it '1.p', ->
     this.shouldBeOk '1'
 
-  it.skip 'c.0.p', ->
-    this.shouldBeOk 'c.0'
-
-  it.skip 'c.1.p', ->
-    this.shouldBeOk 'c.1'
-
   it 's.0.p', ->
     this.shouldBeOk 's.0'
 

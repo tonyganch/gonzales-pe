@@ -1,1 +1,8 @@
-['arguments']
+{
+  "type": "arguments",
+  "content": [],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

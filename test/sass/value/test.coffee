@@ -2,19 +2,19 @@ describe 'sass/value >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it '0.p', ->
+  it.skip '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
+  it.skip '1.p', ->
     this.shouldBeOk '1'
 
-  it '2.p', ->
+  it.skip '2.p', ->
     this.shouldBeOk '2'
 
-  it '3.p', ->
+  it.skip '3.p', ->
     this.shouldBeOk '3'
 
-  it '4.p', ->
+  it.skip '4.p', ->
     this.shouldBeOk '4'
 
   it.skip 'dimension.0.p', ->
@@ -35,14 +35,14 @@ describe 'sass/value >>', ->
   it.skip 'rgb.2.p', ->
     this.shouldBeOk 'rgb.2'
 
-  it.skip 'vhash.0.p', ->
+  it 'vhash.0.p', ->
     this.shouldBeOk 'vhash.0'
 
-  it.skip 'vhash.1.p', ->
+  it 'vhash.1.p', ->
     this.shouldBeOk 'vhash.1'
 
-  it.skip 'vhash.2.p', ->
+  it 'vhash.2.p', ->
     this.shouldBeOk 'vhash.2'
 
-  it.skip 'vhash.3.p', ->
+  it 'vhash.3.p', ->
     this.shouldBeOk 'vhash.3'

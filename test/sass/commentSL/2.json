@@ -1,2 +1,8 @@
-['commentSL', ' Long
-  comment']
+{
+  "type": "commentSL",
+  "content": " Long\n  comment",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

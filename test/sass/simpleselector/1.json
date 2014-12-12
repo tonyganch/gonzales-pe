@@ -1,3 +1,26 @@
-['simpleselector',
-  ['class',
-    ['ident', 'test']]]
+{
+  "type": "simpleselector",
+  "content": [
+    {
+      "type": "class",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

@@ -1,15 +1,1 @@
-['atruleb',
-  ['atkeyword',
-    ['ident', 'test']],
-  ['s', '  '],
-  ['block',
-    ['s', '  '],
-    ['declaration',
-      ['property',
-        ['ident', 'p']],
-      ['s', '  '],
-      ['propertyDelim'],
-      ['s', '  '],
-      ['value',
-        ['ident', 'v']]],
-    ['s', '  ']]]
+0

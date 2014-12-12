@@ -1,8 +1,77 @@
-['class',
-  ['ident', 'abc-',
-    ['interpolation',
-      ['variable',
-        ['ident', 'nani']]], '_xy',
-    ['interpolation',
-      ['variable',
-        ['ident', 'panda']]]]]
+{
+  "type": "class",
+  "content": [
+    {
+      "type": "ident",
+      "content": "abc-",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "nani",
+              "start": {
+                "line": 1,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "ident",
+      "content": "_xy",
+      "start": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "panda",
+              "start": {
+                "line": 1,
+                "column": 20
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 19
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 17
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

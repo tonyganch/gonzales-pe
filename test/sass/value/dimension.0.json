@@ -1,0 +1,34 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": "0",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "ident",
+          "content": "px",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

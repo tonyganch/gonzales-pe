@@ -1,23 +1,188 @@
-['ruleset',
-  ['selector',
-    ['simpleselector',
-      ['class',
-        ['ident', 'test']],
-      ['s', '
-']]],
-  ['block',
-    ['s', '  '],
-    ['filter',
-      ['property',
-        ['ident', 'filter']],
-      ['filterv',
-        ['progid',
-          ['raw', 'progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')']]]],
-    ['declDelim'],
-    ['s', '  '],
-    ['declaration',
-      ['property',
-        ['ident', 'color']],
-      ['propertyDelim'],
-      ['value',
-        ['ident', 'red']]]]]
+{
+  "type": "ruleset",
+  "content": [
+    {
+      "type": "selector",
+      "content": [
+        {
+          "type": "simpleselector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "test",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 2,
+            "column": 8
+          }
+        },
+        {
+          "type": "filter",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "filter",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "filterv",
+              "content": [
+                {
+                  "type": "progid",
+                  "content": [
+                    {
+                      "type": "raw",
+                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
+                      "start": {
+                        "line": 2,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 10
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 10
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 3
+          }
+        },
+        {
+          "type": "declDelim",
+          "content": null,
+          "start": {
+            "line": 2,
+            "column": 118
+          }
+        },
+        {
+          "type": "s",
+          "content": "  ",
+          "start": {
+            "line": 3,
+            "column": 126
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color",
+                  "start": {
+                    "line": 3,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 3,
+                "column": 3
+              }
+            },
+            {
+              "type": "propertyDelim",
+              "content": null,
+              "start": {
+                "line": 3,
+                "column": 8
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "red",
+                  "start": {
+                    "line": 3,
+                    "column": 9
+                  }
+                }
+              ],
+              "start": {
+                "line": 3,
+                "column": 9
+              }
+            }
+          ],
+          "start": {
+            "line": 3,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 8
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

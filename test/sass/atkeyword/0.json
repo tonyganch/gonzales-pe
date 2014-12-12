@@ -1,2 +1,17 @@
-['atkeyword',
-  ['ident', 'import']]
+{
+  "type": "atkeyword",
+  "content": [
+    {
+      "type": "ident",
+      "content": "import",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

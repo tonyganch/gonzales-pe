@@ -2,25 +2,31 @@ describe 'sass/ruleset >>', ->
   beforeEach ->
     this.filename = __filename
 
-  it '0.p', ->
+  it.skip '0.p', ->
     this.shouldBeOk '0'
 
-  it '1.p', ->
+  it.skip '1.p', ->
     this.shouldBeOk '1'
 
-  it '2.p', ->
+  it.skip '2.p', ->
     this.shouldBeOk '2'
 
-  it '3.p', ->
+  it.skip '3.p', ->
     this.shouldBeOk '3'
 
-  it '4.p', ->
+  it.skip '4.p', ->
     this.shouldBeOk '4'
 
-  it '5.p', ->
+  it.skip '5.p', ->
     this.shouldBeOk '5'
 
-  it 'c.0.p', ->
+  it.skip '6.p', ->
+    this.shouldBeOk '6'
+
+  it.skip '7.p', ->
+    this.shouldBeOk '7'
+
+  it.skip 'c.0.p', ->
     this.shouldBeOk 'c.0'
 
   it.skip 'c.1.p', ->
@@ -32,23 +38,23 @@ describe 'sass/ruleset >>', ->
   it.skip 'c.3.p', ->
     this.shouldBeOk 'c.3'
 
-  it 'color.ident.0.p', ->
+  it.skip 'color.ident.0.p', ->
     this.shouldBeOk 'color.ident.0'
 
-  it 'color.ident.1.p', ->
+  it.skip 'color.ident.1.p', ->
     this.shouldBeOk 'color.ident.1'
 
-  it 's.0.p', ->
+  it.skip 's.0.p', ->
     this.shouldBeOk 's.0'
 
-  it 's.1.p', ->
+  it.skip 's.1.p', ->
     this.shouldBeOk 's.1'
 
-  it 's.2.p', ->
+  it.skip 's.2.p', ->
     this.shouldBeOk 's.2'
 
-  it 's.3.p', ->
+  it.skip 's.3.p', ->
     this.shouldBeOk 's.3'
 
-  it 's.4.p', ->
+  it.skip 's.4.p', ->
     this.shouldBeOk 's.4'
