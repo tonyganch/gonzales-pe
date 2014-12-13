@@ -16,12 +16,6 @@ describe 'sass/simpleselector >>', ->
   it.skip '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
 
-  it.skip 'c.0', -> this.shouldBeOk()
-  it.skip 'c.1', -> this.shouldBeOk()
-  it.skip 'c.2', -> this.shouldBeOk()
-  it.skip 'c.3', -> this.shouldBeOk()
-  it.skip 'c.4', -> this.shouldBeOk()
-
   it.skip 's.0', -> this.shouldBeOk()
   it.skip 's.1', -> this.shouldBeOk()
   it.skip 's.2', -> this.shouldBeOk()

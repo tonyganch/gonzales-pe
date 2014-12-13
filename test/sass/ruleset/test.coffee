@@ -10,11 +10,6 @@ describe 'sass/ruleset >>', ->
   it.skip '6', -> this.shouldBeOk()
   it.skip '7', -> this.shouldBeOk()
 
-  it.skip 'c.0', -> this.shouldBeOk()
-  it.skip 'c.1', -> this.shouldBeOk()
-  it.skip 'c.2', -> this.shouldBeOk()
-  it.skip 'c.3', -> this.shouldBeOk()
-
   it.skip 'color.ident.0', -> this.shouldBeOk()
   it.skip 'color.ident.1', -> this.shouldBeOk()
 

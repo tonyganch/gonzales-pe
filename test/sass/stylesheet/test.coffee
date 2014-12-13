@@ -15,8 +15,6 @@ describe 'sass/stylesheet >>', ->
   it.skip 'issue87.test1', -> this.shouldBeOk()
   it.skip 'issue88.test1', -> this.shouldBeOk()
   it.skip 'issue90.test1', -> this.shouldBeOk()
-  it.skip 'issue90.test2', -> this.shouldBeOk()
-  it.skip 'issue111.test1', -> this.shouldBeOk()
 
   it.skip 's.0', -> this.shouldBeOk()
   it.skip 's.1', -> this.shouldBeOk()
