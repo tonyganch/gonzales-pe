@@ -1,1 +1,8 @@
-['delim']
+{
+  "type": "delim",
+  "content": null,
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
