@@ -1,0 +1,396 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 1,
+                        "column": 2
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 1,
+                    "column": 1
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 1
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 1,
+                "column": 5
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "padding",
+                      "start": {
+                        "line": 2,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 2,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "number",
+                      "content": "0",
+                      "start": {
+                        "line": 2,
+                        "column": 13
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 2,
+                        "column": 14
+                      }
+                    },
+                    {
+                      "type": "number",
+                      "content": "0",
+                      "start": {
+                        "line": 2,
+                        "column": 15
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 2,
+                        "column": 16
+                      }
+                    },
+                    {
+                      "type": "dimension",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "1",
+                          "start": {
+                            "line": 2,
+                            "column": 17
+                          }
+                        },
+                        {
+                          "type": "ident",
+                          "content": "em",
+                          "start": {
+                            "line": 2,
+                            "column": 18
+                          }
+                        }
+                      ],
+                      "start": {
+                        "line": 2,
+                        "column": 17
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 2,
+                        "column": 20
+                      }
+                    },
+                    {
+                      "type": "important",
+                      "content": null,
+                      "start": {
+                        "line": 2,
+                        "column": 21
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 2,
+                    "column": 13
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 2,
+                "column": 31
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 4
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": "\n",
+      "start": {
+        "line": 3,
+        "column": 2
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "a",
+                      "start": {
+                        "line": 4,
+                        "column": 2
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 4,
+                    "column": 1
+                  }
+                }
+              ],
+              "start": {
+                "line": 4,
+                "column": 1
+              }
+            },
+            {
+              "type": "delim",
+              "content": null,
+              "start": {
+                "line": 4,
+                "column": 3
+              }
+            },
+            {
+              "type": "simpleselector",
+              "content": [
+                {
+                  "type": "class",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "b",
+                      "start": {
+                        "line": 4,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 4,
+                    "column": 4
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 4,
+                    "column": 6
+                  }
+                }
+              ],
+              "start": {
+                "line": 4,
+                "column": 4
+              }
+            }
+          ],
+          "start": {
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "s",
+              "content": "\n    ",
+              "start": {
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "padding-bottom",
+                      "start": {
+                        "line": 5,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 5,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "propertyDelim",
+                  "content": null,
+                  "start": {
+                    "line": 5,
+                    "column": 19
+                  }
+                },
+                {
+                  "type": "s",
+                  "content": " ",
+                  "start": {
+                    "line": 5,
+                    "column": 20
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "number",
+                      "content": "0",
+                      "start": {
+                        "line": 5,
+                        "column": 21
+                      }
+                    },
+                    {
+                      "type": "s",
+                      "content": " ",
+                      "start": {
+                        "line": 5,
+                        "column": 22
+                      }
+                    },
+                    {
+                      "type": "important",
+                      "content": null,
+                      "start": {
+                        "line": 5,
+                        "column": 23
+                      }
+                    }
+                  ],
+                  "start": {
+                    "line": 5,
+                    "column": 21
+                  }
+                }
+              ],
+              "start": {
+                "line": 5,
+                "column": 5
+              }
+            },
+            {
+              "type": "s",
+              "content": "\n",
+              "start": {
+                "line": 5,
+                "column": 33
+              }
+            }
+          ],
+          "start": {
+            "line": 4,
+            "column": 7
+          }
+        }
+      ],
+      "start": {
+        "line": 4,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

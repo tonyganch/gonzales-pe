@@ -1,20 +1,169 @@
-['condition',
-  ['ident', 'when'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['variable',
-      ['ident', 'a']],
-    ['s', ' '],
-    ['operator', '>'],
-    ['s', ' '],
-    ['number', '10']],
-  ['delim'],
-  ['s', ' '],
-  ['braces', '(', ')',
-    ['variable',
-      ['ident', 'a']],
-    ['s', ' '],
-    ['operator', '<'],
-    ['s', ' '],
-    ['unary', '-'],
-    ['number', '10']]]
+{
+  "type": "condition",
+  "content": [
+    {
+      "type": "ident",
+      "content": "when",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "a",
+              "start": {
+                "line": 1,
+                "column": 8
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "operator",
+          "content": ">",
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "number",
+          "content": "10",
+          "start": {
+            "line": 1,
+            "column": 12
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "delim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 15
+      }
+    },
+    {
+      "type": "s",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 16
+      }
+    },
+    {
+      "type": "braces",
+      "content": [
+        "(",
+        ")",
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "a",
+              "start": {
+                "line": 1,
+                "column": 19
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 18
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 20
+          }
+        },
+        {
+          "type": "operator",
+          "content": "<",
+          "start": {
+            "line": 1,
+            "column": 21
+          }
+        },
+        {
+          "type": "s",
+          "content": " ",
+          "start": {
+            "line": 1,
+            "column": 22
+          }
+        },
+        {
+          "type": "unary",
+          "content": "-",
+          "start": {
+            "line": 1,
+            "column": 23
+          }
+        },
+        {
+          "type": "number",
+          "content": "10",
+          "start": {
+            "line": 1,
+            "column": 24
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 17
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

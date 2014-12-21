@@ -1,8 +1,69 @@
-['selector',
-  ['simpleselector',
-    ['ident', 'a'],
-    ['combinator', '+'],
-    ['ident', 'b']],
-  ['delim'],
-  ['simpleselector',
-    ['ident', 'c']]]
+{
+  "type": "selector",
+  "content": [
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "a",
+          "start": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "combinator",
+          "content": [
+            "+"
+          ],
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "ident",
+          "content": "b",
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "delim",
+      "content": null,
+      "start": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "simpleselector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "c",
+          "start": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 5
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
