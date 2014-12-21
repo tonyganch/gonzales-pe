@@ -1,3 +1,8 @@
-['commentML', ' Tomatos
-      are
-    red']
+{
+  "type": "commentML",
+  "content": " Tomatos\n      are\n    red",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

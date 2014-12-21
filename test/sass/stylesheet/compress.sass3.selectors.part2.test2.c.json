@@ -1,0 +1,17 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "commentML",
+      "content": "test*/E/*test*/{/*test*/p/*test*/:/*test*/v/*test*/}/*test*/",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}

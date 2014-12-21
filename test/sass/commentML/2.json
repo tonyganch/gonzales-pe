@@ -1,2 +1,8 @@
-['commentML', 'Nice
-  comment']
+{
+  "type": "commentML",
+  "content": "Nice\n  comment",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
