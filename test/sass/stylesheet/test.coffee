@@ -3,13 +3,13 @@ describe 'sass/stylesheet >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
-  it.skip '2', -> this.shouldBeOk()
+  it '2', -> this.shouldBeOk()
   it '3', -> this.shouldBeOk()
   it '4', -> this.shouldBeOk()
   it '5', -> this.shouldBeOk()
   it '6', -> this.shouldBeOk()
 
-  it.skip 'c.0', -> this.shouldBeOk()
+  it 'c.0', -> this.shouldBeOk()
 
   it 'issue86.test1', -> this.shouldBeOk()
   it 'issue87.test1', -> this.shouldBeOk()
