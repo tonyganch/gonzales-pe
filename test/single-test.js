@@ -7,7 +7,7 @@ var css = 'a-23',
     syntax = 'css',
     rule = 'ident',
     gonzales = require('./../lib/gonzales'),
-    ast = gonzales.parse({src: css, syntax: syntax, rule: rule});
+    ast = gonzales.parse(css, {syntax: syntax, rule: rule});
 
     console.log('\n== Source string:');
     console.log(css);
