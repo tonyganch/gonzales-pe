@@ -36,14 +36,13 @@ mocha.suite.beforeEach(function() {
         var expected = readFile(testDir, filename + '.json');
 
         var options = {
-            src: input,
             rule: rule,
             syntax: syntax,
             needInfo: true
         };
 
         try {
-            var ast = gonzales.parse(options);
+            var ast = gonzales.parse(input, options);
             expected = JSON.parse(expected);
             assert.deepEqual(ast, expected);
         } catch (e) {
