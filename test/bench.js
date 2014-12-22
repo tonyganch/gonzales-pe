@@ -24,9 +24,9 @@ function runTest(test) {
         table = new Table({head: ['', 'Average time', 'Min time', 'Max time']});
 
     table.push(bench('Gonzales 3.0 (objects)',
-                     gonzales30.srcToAST.bind(null, {src: css})));
+                     gonzales30.parse.bind(null, {src: css})));
     table.push(bench('Gonzales 3.0 (arrays)',
-                     gonzales30.srcToAST.bind(null, {src: css, syntax: 'test'})));
+                     gonzales30.parse.bind(null, {src: css, syntax: 'test'})));
     table.push(bench('Gonzales 2.0',
                      gonzales20.cssToAST.bind(null, css)));
     table.push(bench('Gonzales',
