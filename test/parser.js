@@ -6,64 +6,56 @@ var path = require('path');
 require('coffee-script/register');
 
 var mocha = new Mocha();
-// mocha.reporter('spec');
+var expectedLogPath, resultLogPath;
 
-// Clear log files:
-var logPath = __dirname + '/../log';
-var expectedLogPath = logPath + '/expected.txt';
-var resultLogPath = logPath + '/result.txt';
-fs.writeFile(expectedLogPath, '', function () {});
-fs.writeFile(resultLogPath, '', function () {});
+function clearLogFiles() {
+    var logPath = __dirname + '/../log';
+    expectedLogPath = logPath + '/expected.txt';
+    resultLogPath = logPath + '/result.txt';
+    fs.writeFile(expectedLogPath, '', function () {});
+    fs.writeFile(resultLogPath, '', function () {});
+}
 
 // Tell mocha which tests to run:
-var syntaxDirs = ['test/css', 'test/less', 'test/sass'];
-syntaxDirs.forEach(function(syntaxDir) {
-    fs.readdirSync(syntaxDir).forEach(function(testDir) {
-        mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));
+function addTestFiles() {
+    var syntaxDirs = ['test/css', 'test/less', 'test/sass'];
+    syntaxDirs.forEach(function(syntaxDir) {
+        fs.readdirSync(syntaxDir).forEach(function(testDir) {
+            mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));
+        });
     });
-});
+};
 
-mocha.suite.beforeEach(function() {
-    this.filename = null;
+function shouldBeOk() {
+    var filename = this.test.title;
+    var testDir = path.dirname(this.test.file);
+    var rule = path.basename(testDir);
+    var syntax = path.basename(path.dirname(testDir));
 
-    this.shouldBeOk = function() {
-        var filename = this.test.title;
-        var testDir = path.dirname(this.filename);
-        var rule = path.basename(testDir);
-        var syntax = path.basename(path.dirname(testDir));
+    var input = readFile(testDir, filename + '.' + syntax);
+    var expected = readFile(testDir, filename + '.json');
 
-        var input = readFile(testDir, filename + '.' + syntax);
-        var expected = readFile(testDir, filename + '.json');
-
-        var options = {
-            rule: rule,
-            syntax: syntax,
-            needInfo: true
-        };
-
-        try {
-            var ast = gonzales.parse(input, options);
-            expected = JSON.parse(expected);
-            assert.deepEqual(ast, expected);
-        } catch (e) {
-            logAndThrow(e, 'Failed src -> ast');
-        }
-
-        try {
-            var compiledString = gonzales.stringify({ syntax: syntax, ast: ast });
-            assert.equal(compiledString, input);
-        } catch (e) {
-            logAndThrow(e, 'Failed ast -> src');
-        }
+    var options = {
+        rule: rule,
+        syntax: syntax,
+        needInfo: true
     };
 
-});
+    try {
+        var ast = gonzales.parse(input, options);
+        expected = JSON.parse(expected);
+        assert.deepEqual(ast, expected);
+    } catch (e) {
+        logAndThrow(e, 'Failed src -> ast');
+    }
 
-mocha.run(function(failures) {
-    process.on('exit', function() {
-        process.exit(failures);
-    });
-});
+    try {
+        var compiledString = gonzales.stringify({ syntax: syntax, ast: ast });
+        assert.equal(compiledString, input);
+    } catch (e) {
+        logAndThrow(e, 'Failed ast -> src');
+    }
+}
 
 function readFile(dirname, filename) {
     var filePath = path.join(dirname, filename);
@@ -82,3 +74,20 @@ function logAndThrow(e, message) {
 
     throw { message: message };
 }
+
+function runTests() {
+    mocha.run(function(failures) {
+        process.on('exit', function() {
+            process.exit(failures);
+        });
+    });
+}
+
+mocha.suite.beforeEach(function() {
+    this.shouldBeOk = shouldBeOk;
+});
+
+clearLogFiles();
+addTestFiles();
+runTests();
+
