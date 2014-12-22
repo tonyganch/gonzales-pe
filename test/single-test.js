@@ -7,13 +7,13 @@ var css = 'a-23',
     syntax = 'css',
     rule = 'ident',
     gonzales = require('./../lib/gonzales'),
-    ast = gonzales.srcToAST({src: css, syntax: syntax, rule: rule});
+    ast = gonzales.parse({src: css, syntax: syntax, rule: rule});
 
     console.log('\n== Source string:');
     console.log(css);
 
     console.log('\n== AST:');
-    console.log(gonzales.astToString(ast));
+    console.log(gonzales.toString(ast));
 
     console.log('\n== Translated string:');
-    console.log(gonzales.astToSrc({ast: ast, syntax: syntax}));
+    console.log(gonzales.stringify({ast: ast, syntax: syntax}));

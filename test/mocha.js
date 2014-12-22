@@ -42,19 +42,16 @@ mocha.suite.beforeEach(function() {
             needInfo: true
         };
 
-        var ast = gonzales.srcToAST(options);
-        var parsedTree = gonzales.astToString(ast);
-
         try {
-            parsedTree = JSON.parse(parsedTree);
+            var ast = gonzales.parse(options);
             expected = JSON.parse(expected);
-            assert.deepEqual(parsedTree, expected);
+            assert.deepEqual(ast, expected);
         } catch (e) {
             logAndThrow(e, 'Failed src -> ast');
         }
 
         try {
-            var compiledString = gonzales.astToSrc({ syntax: syntax, ast: ast });
+            var compiledString = gonzales.stringify({ syntax: syntax, ast: ast });
             assert.equal(compiledString, input);
         } catch (e) {
             logAndThrow(e, 'Failed ast -> src');
