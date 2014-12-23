@@ -1,9 +1,10 @@
-var fs = require('fs'),
-    gonzales = require('gonzales'),
+var Benchmark = require('benchmark');
+var fs = require('fs');
+
+var gonzales = require('gonzales'),
     gonzales20 = require('gonzales-pe'),
     gonzales30 = require('./../lib/gonzales'),
     postcss = require('postcss')(),
-    Table = require('cli-table'),
     tests = [{
         title: '3pane.css, 16 KB',
         css: fs.readFileSync('./test/bench/3pane.css', 'utf8')
@@ -18,41 +19,47 @@ var fs = require('fs'),
 tests.forEach(runTest);
 
 function runTest(test) {
-    console.log('\nProcessing test file: ' + test.title);
+    console.log('\n---\nProcessing test file: ' + test.title + '\n');
 
-    var css = test.css,
-        table = new Table({head: ['', 'Average time', 'Min time', 'Max time']});
+    var suite = new Benchmark.Suite;
+    var css = test.css;
 
-    table.push(bench('Gonzales 3.0 (objects)',
-                     gonzales30.parse.bind(null, css)));
-    table.push(bench('Gonzales 3.0 (arrays)',
-                     gonzales30.parse.bind(null, css, {syntax: 'test'})));
-    table.push(bench('Gonzales 2.0',
-                     gonzales20.cssToAST.bind(null, css)));
-    table.push(bench('Gonzales',
-                     gonzales.srcToCSSP.bind(null, css)));
-    table.push(bench('PostCSS',
-                     postcss.process.bind(postcss, css)));
+    suite.add('Gonzales 3.0 (objects)', function() {
+        gonzales30.parse(css);
+    })
+    .add('Gonzales 3.0 (arrays)', function() {
+        gonzales30.parse(css, {syntax: 'test'});
+    })
+    .add('Gonzales 2.0', function() {
+        gonzales20.cssToAST(css);
+    })
+    .add('Gonzales', function() {
+        gonzales.srcToCSSP(css);
+    })
+    .add('PostCSS', function() {
+        postcss.process(css);
+    })
+    .on('cycle', function(event) {
+      console.log(String(event.target));
+    })
+    .on('complete', function() {
+        var sorted = this.sort(function(a, b) {
+            a = a.stats; b = b.stats;
+            return (a.mean + a.moe > b.mean + b.moe ? 1 : -1);
+        });
 
-    console.log('\n' + table.toString());
+        var times = sorted.map(function(test) {
+            return ((test.stats.mean + test.stats.moe) * 1000).toFixed(2);
+        });
+
+        var table = sorted.pluck('name')
+            .map(function(name, i) {
+                return i + 1 + '. ' + name + ', ' + times[i] + ' ms';
+            });
+
+        console.log('');
+        console.log(table.join('\n'));
+    })
+    .run();
 }
 
-function bench(title, callback) {
-    var sum = 0,
-        min = Infinity,
-        max = 0,
-        now = 0,
-        i = x = 10;
-
-    for (; i--;) {
-        process.stdout.write('.');
-        now = Date.now();
-        callback();
-        time = Date.now() - now;
-        sum += time;
-        if (time < min) min = time;
-        if (time > max) max = time;
-    }
-
-    return [title, sum/x + ' ms', min + ' ms', max + ' ms'];
-}
