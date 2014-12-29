@@ -9,5 +9,5 @@ if (!filename) {
   process.exit();
 }
 
-console.log(gonzales.astToTree(gonzales.cssToAST(fs.readFileSync(filename).toString())));
+console.log(gonzales.toString({ast: gonzales.parse(fs.readFileSync(filename).toString())}));
 
