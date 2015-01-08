@@ -23,13 +23,8 @@
         "gonzales": "./bin/gonzales.js"
     },
     "devDependencies": {
-        "benchmark": "^1.0.0",
         "coffee-script": "~1.7.1",
-        "gonzales": "latest",
-        "gonzales-pe": "2.0.2",
-        "microtime": "^1.0.1",
-        "mocha": "~1.20.0",
-        "postcss": "latest"
+        "mocha": "~1.20.0"
     },
     "engines": {
         "node": ">=0.6.0"
