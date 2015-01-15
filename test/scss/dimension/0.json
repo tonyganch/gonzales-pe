@@ -12,11 +12,8 @@
       }
     },
     {
-      "type": [
-        "ident",
-        "px"
-      ],
-      "content": null,
+      "type": "ident",
+      "content": "px",
       "start": {
         "line": 1,
         "column": 3

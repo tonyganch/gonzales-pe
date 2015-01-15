@@ -7,4 +7,4 @@ describe 'scss/atrules >>', ->
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
 
-  it 's', -> this.shouldBeOk()
+  it 's.0', -> this.shouldBeOk()

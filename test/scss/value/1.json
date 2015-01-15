@@ -15,11 +15,8 @@
           }
         },
         {
-          "type": [
-            "ident",
-            "em"
-          ],
-          "content": null,
+          "type": "ident",
+          "content": "em",
           "start": {
             "line": 1,
             "column": 2
