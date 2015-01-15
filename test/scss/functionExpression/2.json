@@ -1,6 +1,8 @@
 {
   "type": "functionExpression",
-  "content": "expression()",
+  "content": [
+    "expression()"
+  ],
   "start": {
     "line": 1,
     "column": 1

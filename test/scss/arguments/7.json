@@ -23,11 +23,8 @@
           }
         },
         {
-          "type": [
-            "ident",
-            "deg"
-          ],
-          "content": null,
+          "type": "ident",
+          "content": "deg",
           "start": {
             "line": 1,
             "column": 5
