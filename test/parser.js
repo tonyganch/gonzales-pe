@@ -18,7 +18,7 @@ function clearLogFiles() {
 
 // Tell mocha which tests to run:
 function addTestFiles() {
-    var syntaxDirs = ['test/css', 'test/less', 'test/sass'];
+    var syntaxDirs = ['test/css', 'test/less', 'test/sass', 'test/scss'];
     syntaxDirs.forEach(function(syntaxDir) {
         fs.readdirSync(syntaxDir).forEach(function(testDir) {
             mocha.addFile(path.join(syntaxDir, testDir, 'test.coffee'));

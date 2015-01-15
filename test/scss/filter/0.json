@@ -25,11 +25,8 @@
           "type": "progid",
           "content": [
             {
-              "type": [
-                "raw",
-                "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')"
-              ],
-              "content": null,
+              "type": "raw",
+              "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
               "start": {
                 "line": 1,
                 "column": 8

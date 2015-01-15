@@ -125,11 +125,8 @@
                   "type": "progid",
                   "content": [
                     {
-                      "type": [
-                        "raw",
-                        "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')"
-                      ],
-                      "content": null,
+                      "type": "raw",
+                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
                       "start": {
                         "line": 1,
                         "column": 24
@@ -145,11 +142,8 @@
                   "type": "progid",
                   "content": [
                     {
-                      "type": [
-                        "raw",
-                        "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')"
-                      ],
-                      "content": null,
+                      "type": "raw",
+                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')",
                       "start": {
                         "line": 1,
                         "column": 132
