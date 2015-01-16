@@ -10,7 +10,7 @@
         "email" : "tonyganch+github@gmail.com",
         "url" : "http://tonyganch.com"
     },
-    "main": "./lib/gonzales",
+    "main": "./lib/parse",
     "repository": {
         "type": "git",
         "url": "http://github.com/tonyganch/gonzales-pe.git"

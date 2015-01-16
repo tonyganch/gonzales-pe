@@ -1,4 +1,4 @@
-var gonzales = require('./../lib/gonzales');
+var gonzales = require('./..');
 var assert = require('assert');
 var fs = require('fs');
 var Mocha = require('mocha');
@@ -50,7 +50,7 @@ function shouldBeOk() {
     }
 
     try {
-        var compiledString = gonzales.stringify({ syntax: syntax, ast: ast });
+        var compiledString = ast.toCSS(syntax);
         assert.equal(compiledString, input);
     } catch (e) {
         logAndThrow(e, 'Failed ast -> src');
