@@ -6,7 +6,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 8
+        "column": 1
       }
     },
     {
@@ -41,7 +41,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 22
+                    "column": 15
                   }
                 }
               ],
@@ -64,7 +64,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 31
+                "column": 24
               }
             },
             {
@@ -92,7 +92,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 40
+                    "column": 33
                   }
                 },
                 {
@@ -108,7 +108,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 49
+                    "column": 42
                   }
                 },
                 {
@@ -139,7 +139,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 58
+                "column": 51
               }
             }
           ],
@@ -159,12 +159,12 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 67
+        "column": 60
       }
     }
   ],
   "start": {
     "line": 1,
-    "column": 8
+    "column": 1
   }
 }

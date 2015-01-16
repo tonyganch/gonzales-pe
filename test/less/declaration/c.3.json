@@ -31,7 +31,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 18
+        "column": 11
       }
     },
     {
@@ -63,7 +63,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 31
+        "column": 24
       }
     },
     {
