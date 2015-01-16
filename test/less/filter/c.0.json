@@ -17,7 +17,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 14
+            "column": 7
           }
         }
       ],
@@ -34,7 +34,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 23
+            "column": 16
           }
         },
         {
@@ -57,7 +57,7 @@
       ],
       "start": {
         "line": 1,
-        "column": 23
+        "column": 16
       }
     }
   ],

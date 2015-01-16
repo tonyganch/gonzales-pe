@@ -6,7 +6,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 9
+        "column": 2
       }
     },
     {
@@ -65,7 +65,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 22
+        "column": 15
       }
     },
     {
@@ -81,7 +81,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 31
+        "column": 24
       }
     },
     {
@@ -140,7 +140,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 44
+        "column": 37
       }
     }
   ],

@@ -6,7 +6,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 8
+        "column": 1
       }
     },
     {
@@ -42,7 +42,7 @@
                       "content": "test",
                       "start": {
                         "line": 1,
-                        "column": 30
+                        "column": 23
                       }
                     },
                     {
@@ -60,7 +60,7 @@
                       "content": "test",
                       "start": {
                         "line": 1,
-                        "column": 39
+                        "column": 32
                       }
                     }
                   ],
@@ -74,7 +74,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 48
+                    "column": 41
                   }
                 }
               ],
@@ -97,7 +97,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 57
+                "column": 50
               }
             },
             {
@@ -125,7 +125,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 66
+                    "column": 59
                   }
                 },
                 {
@@ -141,7 +141,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 75
+                    "column": 68
                   }
                 },
                 {
@@ -172,7 +172,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 84
+                "column": 77
               }
             }
           ],
@@ -192,12 +192,12 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 93
+        "column": 86
       }
     }
   ],
   "start": {
     "line": 1,
-    "column": 8
+    "column": 1
   }
 }

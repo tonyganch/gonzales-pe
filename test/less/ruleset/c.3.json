@@ -20,7 +20,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 10
+                "column": 3
               }
             }
           ],
@@ -45,7 +45,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 19
+                "column": 12
               }
             },
             {
@@ -61,13 +61,13 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 29
+                "column": 22
               }
             }
           ],
           "start": {
             "line": 1,
-            "column": 19
+            "column": 12
           }
         }
       ],
@@ -84,7 +84,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 38
+            "column": 31
           }
         },
         {
@@ -112,7 +112,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 48
+                "column": 41
               }
             },
             {
@@ -128,7 +128,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 57
+                "column": 50
               }
             },
             {
@@ -159,7 +159,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 67
+            "column": 60
           }
         },
         {
@@ -175,7 +175,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 76
+            "column": 69
           }
         },
         {
@@ -203,7 +203,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 86
+                "column": 79
               }
             },
             {
@@ -219,7 +219,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 95
+                "column": 88
               }
             },
             {
@@ -250,7 +250,7 @@
           "content": "test",
           "start": {
             "line": 1,
-            "column": 105
+            "column": 98
           }
         }
       ],

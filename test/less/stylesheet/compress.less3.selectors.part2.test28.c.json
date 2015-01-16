@@ -6,7 +6,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 8
+        "column": 1
       }
     },
     {
@@ -48,7 +48,7 @@
                               "content": "test",
                               "start": {
                                 "line": 1,
-                                "column": 23
+                                "column": 16
                               }
                             },
                             {
@@ -64,7 +64,7 @@
                               "content": "test",
                               "start": {
                                 "line": 1,
-                                "column": 33
+                                "column": 26
                               }
                             }
                           ],
@@ -90,7 +90,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 42
+                    "column": 35
                   }
                 }
               ],
@@ -113,7 +113,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 51
+                "column": 44
               }
             },
             {
@@ -141,7 +141,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 60
+                    "column": 53
                   }
                 },
                 {
@@ -157,7 +157,7 @@
                   "content": "test",
                   "start": {
                     "line": 1,
-                    "column": 69
+                    "column": 62
                   }
                 },
                 {
@@ -188,7 +188,7 @@
               "content": "test",
               "start": {
                 "line": 1,
-                "column": 78
+                "column": 71
               }
             }
           ],
@@ -208,12 +208,12 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 87
+        "column": 80
       }
     }
   ],
   "start": {
     "line": 1,
-    "column": 8
+    "column": 1
   }
 }
