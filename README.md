@@ -1,69 +1,65 @@
-Gonzales is a fast CSS parser.    
-Gonzales PE is a rework with support of preprocessors.    
+## API
 
-Currently those are supported: SCSS, Sass, LESS.
+### gonzales.parse(css, options)
 
-For a plan of future work see [issue #4](https://github.com/tonyganch/gonzales-pe/issues/4).
+Parse CSS.
 
-## Install
+Parameters:
 
-To install globally:
+* `{String} css`
+* `{{syntax: String, rule: String}} options`
 
-    npm install gonzales-pe@2.0.2 -g
+Returns:
 
-To install as a project dependency:
+* `{Object} ast`.
 
-    npm install gonzales-pe@2.0.2
+Example:
 
-To install dev branch:
+    var css = 'a {color: tomato}';
+    var ast = gonzales.parse(css);
 
-    npm install git://github.com/tonyganch/gonzales-pe.git#dev
+Example:
 
-To clone from github:
+    var less = 'a {$color: tomato}';
+    var ast = gonzales.parse(less, {syntax: 'less'});
 
-    git clone git@github.com:tonyganch/gonzales-pe.git
+Example:
 
-## Build
+    var less = '$color: tomato';
+    var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 
-If you installed/cloned the repo from GitHub, make sure to build library files
-first.    
-It can be done by running `make` in the module's root directory.    
-`make` will build both Node.js and web versions (all files are comments-free
-but not compressed).    
-If you need a minified version for production, feel free to use uglifier of
-your choice.
+### ast.toString()
 
-## Use
+### ast.toCSS(syntax)
 
-Require Gonzales in your project:
+Converts AST to code.
 
-    var gonzales = require('gonzales-pe');
+Parameters:
 
-Do something:
+* `{String} syntax`
 
-    var css = 'a { color: tomato }';
-    console.log(gonzales.cssToAST(css));
+Returns:
 
-You can learn more about available methods on [Gonzales usage](doc/Gonzales-Usage.md) page.
+* `{String} css`
 
-AST is described on [Gonzales AST description](doc/AST-Description.md) page.
+Example:
 
-You can also invoke gonzales via a shell command (if you globally install it via `npm install gonzales-pe -g`)
+    var css = ast.toCSS('css');
+    var less = ast.toCSS('less');
 
-```
-gonzales myFile.css
-```
+### ast.map(function)
 
-Outputs the AST for that file. Example output:
+Calls the function for every node in a tree. Modifies the tree!
 
-```
-['stylesheet',
-  ['atrules',
-    ['atkeyword',
-      ['ident', 'import']],
-    ['s', '
-']]]
-```
+Parameters:
+
+* `{Function} function`
+
+Example:
+
+    ast.map(function(node) {
+        if (node.type === 'commentML') node.content = 'panda';
+    });
 
 ## Test
 
@@ -90,9 +86,7 @@ If you want to test one specific string or get a general idea of how Gonzales
 works, you can use `test/ast.js` file.    
 Simply change the first two strings (`css` and `syntax` vars) and run:
 
-    node test/ast.js
-
-Please remember to also run `make` every time you modify any source files.
+    node test/single-test.js
 
 ## Report
 
