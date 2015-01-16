@@ -6,7 +6,7 @@
  * Example: `./bin/generate-tests.js scss less`.
  */
 
-var gonzales = require('../lib/gonzales'),
+var gonzales = require('..'),
     fs = require('fs'),
     path = require('path'),
     syntaxList = process.argv.slice(2);
@@ -38,15 +38,8 @@ function generateTest(filePath) {
     var outputPath = path.join(testDir, fileName + '.json');
 
     var string = fs.readFileSync(inputPath, 'utf-8').trim();
-    var ast = gonzales.srcToAST({
-        src: string,
-        syntax: syntax,
-        needInfo: true,
-        rule: rule
-    });
+    var ast = gonzales.parse(string, {syntax: syntax, rule: rule});
 
-    ast = gonzales.astToString(ast);
-
-    fs.writeFileSync(outputPath, ast);
+    fs.writeFileSync(outputPath, ast.toString());
 }
 
