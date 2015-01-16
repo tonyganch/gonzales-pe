@@ -6,14 +6,14 @@
 var css = 'a-23',
     syntax = 'css',
     rule = 'ident',
-    gonzales = require('./../lib/gonzales'),
+    gonzales = require('./..'),
     ast = gonzales.parse(css, {syntax: syntax, rule: rule});
 
     console.log('\n== Source string:');
     console.log(css);
 
     console.log('\n== AST:');
-    console.log(gonzales.toString(ast));
+    console.log(ast.toString());
 
     console.log('\n== Translated string:');
-    console.log(gonzales.stringify({ast: ast, syntax: syntax}));
+    console.log(ast.toCSS(syntax));
