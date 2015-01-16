@@ -23,7 +23,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 13
+        "column": 6
       }
     },
     {
@@ -39,7 +39,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 22
+        "column": 15
       }
     },
     {

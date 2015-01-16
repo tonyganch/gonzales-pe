@@ -14,7 +14,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 24
+        "column": 17
       }
     },
     {
@@ -30,7 +30,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 33
+        "column": 26
       }
     },
     {
@@ -48,7 +48,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 43
+        "column": 36
       }
     },
     {
@@ -64,7 +64,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 52
+        "column": 45
       }
     },
     {
@@ -82,7 +82,7 @@
       "content": "test",
       "start": {
         "line": 1,
-        "column": 61
+        "column": 54
       }
     }
   ],
