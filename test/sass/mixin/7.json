@@ -151,7 +151,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 22
+            "column": 1
           }
         },
         {
@@ -217,7 +217,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 22
+        "column": 1
       }
     }
   ],

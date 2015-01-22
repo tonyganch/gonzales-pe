@@ -52,7 +52,7 @@
           "content": "    ",
           "start": {
             "line": 2,
-            "column": 10
+            "column": 1
           }
         },
         {
@@ -120,7 +120,7 @@
           "content": "    ",
           "start": {
             "line": 3,
-            "column": 130
+            "column": 1
           }
         },
         {
@@ -177,7 +177,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 10
+        "column": 1
       }
     }
   ],

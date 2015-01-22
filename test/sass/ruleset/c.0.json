@@ -92,7 +92,7 @@
           "content": "  ",
           "start": {
             "line": 3,
-            "column": 19
+            "column": 1
           }
         },
         {
@@ -151,7 +151,7 @@
           "content": " ",
           "start": {
             "line": 3,
-            "column": 25
+            "column": 8
           }
         },
         {
@@ -175,7 +175,7 @@
           "content": "  ",
           "start": {
             "line": 4,
-            "column": 37
+            "column": 1
           }
         },
         {
@@ -234,7 +234,7 @@
           "content": " ",
           "start": {
             "line": 4,
-            "column": 43
+            "column": 8
           }
         },
         {
@@ -248,7 +248,7 @@
       ],
       "start": {
         "line": 3,
-        "column": 19
+        "column": 1
       }
     }
   ],
