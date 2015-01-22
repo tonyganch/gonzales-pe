@@ -53,7 +53,7 @@
               "content": "    ",
               "start": {
                 "line": 2,
-                "column": 16
+                "column": 1
               }
             },
             {
@@ -92,7 +92,7 @@
                       "content": "        ",
                       "start": {
                         "line": 3,
-                        "column": 30
+                        "column": 1
                       }
                     },
                     {
@@ -128,7 +128,7 @@
                           "content": " ",
                           "start": {
                             "line": 3,
-                            "column": 33
+                            "column": 11
                           }
                         },
                         {
@@ -157,7 +157,7 @@
                   ],
                   "start": {
                     "line": 3,
-                    "column": 30
+                    "column": 1
                   }
                 }
               ],
@@ -169,7 +169,7 @@
           ],
           "start": {
             "line": 2,
-            "column": 16
+            "column": 1
           }
         }
       ],

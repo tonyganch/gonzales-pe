@@ -6,15 +6,15 @@
       "content": " First\n  comment\n",
       "start": {
         "line": 1,
-        "column": 1
+        "column": 0
       }
     },
     {
       "type": "commentML",
       "content": " Second\n  comment\n",
       "start": {
-        "line": 1,
-        "column": 11
+        "line": 3,
+        "column": 0
       }
     },
     {
@@ -33,34 +33,34 @@
                       "type": "ident",
                       "content": "nani",
                       "start": {
-                        "line": 1,
-                        "column": 12
+                        "line": 5,
+                        "column": 2
                       }
                     }
                   ],
                   "start": {
-                    "line": 1,
-                    "column": 11
+                    "line": 5,
+                    "column": 1
                   }
                 },
                 {
                   "type": "s",
                   "content": "\n",
                   "start": {
-                    "line": 1,
-                    "column": 16
+                    "line": 5,
+                    "column": 6
                   }
                 }
               ],
               "start": {
-                "line": 1,
-                "column": 11
+                "line": 5,
+                "column": 1
               }
             }
           ],
           "start": {
-            "line": 1,
-            "column": 11
+            "line": 5,
+            "column": 1
           }
         },
         {
@@ -70,8 +70,8 @@
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 2,
-                "column": 49
+                "line": 6,
+                "column": 1
               }
             },
             {
@@ -84,13 +84,13 @@
                       "type": "ident",
                       "content": "color",
                       "start": {
-                        "line": 2,
+                        "line": 6,
                         "column": 5
                       }
                     }
                   ],
                   "start": {
-                    "line": 2,
+                    "line": 6,
                     "column": 5
                   }
                 },
@@ -98,7 +98,7 @@
                   "type": "propertyDelim",
                   "content": null,
                   "start": {
-                    "line": 2,
+                    "line": 6,
                     "column": 10
                   }
                 },
@@ -106,8 +106,8 @@
                   "type": "s",
                   "content": " ",
                   "start": {
-                    "line": 2,
-                    "column": 56
+                    "line": 6,
+                    "column": 11
                   }
                 },
                 {
@@ -117,19 +117,19 @@
                       "type": "ident",
                       "content": "tomato",
                       "start": {
-                        "line": 2,
+                        "line": 6,
                         "column": 12
                       }
                     }
                   ],
                   "start": {
-                    "line": 2,
+                    "line": 6,
                     "column": 12
                   }
                 }
               ],
               "start": {
-                "line": 2,
+                "line": 6,
                 "column": 5
               }
             },
@@ -137,7 +137,7 @@
               "type": "declDelim",
               "content": null,
               "start": {
-                "line": 2,
+                "line": 6,
                 "column": 18
               }
             },
@@ -145,8 +145,8 @@
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 3,
-                "column": 67
+                "line": 7,
+                "column": 1
               }
             },
             {
@@ -159,13 +159,13 @@
                       "type": "ident",
                       "content": "top",
                       "start": {
-                        "line": 3,
+                        "line": 7,
                         "column": 5
                       }
                     }
                   ],
                   "start": {
-                    "line": 3,
+                    "line": 7,
                     "column": 5
                   }
                 },
@@ -173,7 +173,7 @@
                   "type": "propertyDelim",
                   "content": null,
                   "start": {
-                    "line": 3,
+                    "line": 7,
                     "column": 8
                   }
                 },
@@ -181,8 +181,8 @@
                   "type": "s",
                   "content": " ",
                   "start": {
-                    "line": 3,
-                    "column": 72
+                    "line": 7,
+                    "column": 9
                   }
                 },
                 {
@@ -192,19 +192,19 @@
                       "type": "number",
                       "content": "0",
                       "start": {
-                        "line": 3,
+                        "line": 7,
                         "column": 10
                       }
                     }
                   ],
                   "start": {
-                    "line": 3,
+                    "line": 7,
                     "column": 10
                   }
                 }
               ],
               "start": {
-                "line": 3,
+                "line": 7,
                 "column": 5
               }
             },
@@ -212,7 +212,7 @@
               "type": "declDelim",
               "content": null,
               "start": {
-                "line": 3,
+                "line": 7,
                 "column": 11
               }
             },
@@ -220,56 +220,56 @@
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 4,
-                "column": 78
+                "line": 8,
+                "column": 1
               }
             },
             {
               "type": "commentSL",
               "content": " Third\n      comment",
               "start": {
-                "line": 4,
-                "column": 5
+                "line": 8,
+                "column": 0
               }
             },
             {
               "type": "s",
               "content": "\n",
               "start": {
-                "line": 4,
-                "column": 14
+                "line": 8,
+                "column": 22
               }
             },
             {
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 5,
-                "column": 105
+                "line": 9,
+                "column": 1
               }
             },
             {
               "type": "commentSL",
               "content": " Fourth\n      comment",
               "start": {
-                "line": 5,
-                "column": 5
+                "line": 9,
+                "column": 0
               }
             },
             {
               "type": "s",
               "content": "\n",
               "start": {
-                "line": 5,
-                "column": 14
+                "line": 9,
+                "column": 23
               }
             },
             {
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 6,
-                "column": 133
+                "line": 10,
+                "column": 1
               }
             },
             {
@@ -282,13 +282,13 @@
                       "type": "ident",
                       "content": "left",
                       "start": {
-                        "line": 6,
+                        "line": 10,
                         "column": 5
                       }
                     }
                   ],
                   "start": {
-                    "line": 6,
+                    "line": 10,
                     "column": 5
                   }
                 },
@@ -296,7 +296,7 @@
                   "type": "propertyDelim",
                   "content": null,
                   "start": {
-                    "line": 6,
+                    "line": 10,
                     "column": 9
                   }
                 },
@@ -304,8 +304,8 @@
                   "type": "s",
                   "content": " ",
                   "start": {
-                    "line": 6,
-                    "column": 139
+                    "line": 10,
+                    "column": 10
                   }
                 },
                 {
@@ -315,37 +315,37 @@
                       "type": "number",
                       "content": "0",
                       "start": {
-                        "line": 6,
+                        "line": 10,
                         "column": 11
                       }
                     }
                   ],
                   "start": {
-                    "line": 6,
+                    "line": 10,
                     "column": 11
                   }
                 }
               ],
               "start": {
-                "line": 6,
+                "line": 10,
                 "column": 5
               }
             }
           ],
           "start": {
-            "line": 2,
-            "column": 49
+            "line": 6,
+            "column": 1
           }
         }
       ],
       "start": {
-        "line": 1,
-        "column": 11
+        "line": 5,
+        "column": 1
       }
     }
   ],
   "start": {
     "line": 1,
-    "column": 1
+    "column": 0
   }
 }

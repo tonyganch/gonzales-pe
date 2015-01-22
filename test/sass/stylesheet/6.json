@@ -46,7 +46,7 @@
               "content": "  ",
               "start": {
                 "line": 2,
-                "column": 4
+                "column": 1
               }
             },
             {
@@ -96,7 +96,7 @@
               "content": "  ",
               "start": {
                 "line": 3,
-                "column": 20
+                "column": 1
               }
             },
             {
@@ -132,7 +132,7 @@
                   "content": " ",
                   "start": {
                     "line": 3,
-                    "column": 27
+                    "column": 9
                   }
                 },
                 {
@@ -161,7 +161,7 @@
           ],
           "start": {
             "line": 2,
-            "column": 4
+            "column": 1
           }
         }
       ],

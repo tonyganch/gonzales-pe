@@ -20,7 +20,7 @@
               "content": "  ",
               "start": {
                 "line": 1,
-                "column": 4
+                "column": 3
               }
             }
           ],
@@ -42,7 +42,7 @@
           "content": "  ",
           "start": {
             "line": 1,
-            "column": 7
+            "column": 6
           }
         },
         {
@@ -61,7 +61,7 @@
               "content": "  ",
               "start": {
                 "line": 1,
-                "column": 11
+                "column": 10
               }
             },
             {
@@ -92,7 +92,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 14
+            "column": 1
           }
         },
         {
@@ -120,7 +120,7 @@
               "content": "  ",
               "start": {
                 "line": 2,
-                "column": 18
+                "column": 5
               }
             },
             {
@@ -136,7 +136,7 @@
               "content": "  ",
               "start": {
                 "line": 2,
-                "column": 21
+                "column": 8
               }
             },
             {
@@ -167,7 +167,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 25
+            "column": 12
           }
         },
         {
@@ -183,7 +183,7 @@
           "content": "  ",
           "start": {
             "line": 3,
-            "column": 28
+            "column": 1
           }
         },
         {
@@ -211,7 +211,7 @@
               "content": "  ",
               "start": {
                 "line": 3,
-                "column": 32
+                "column": 5
               }
             },
             {
@@ -227,7 +227,7 @@
               "content": "  ",
               "start": {
                 "line": 3,
-                "column": 35
+                "column": 8
               }
             },
             {
@@ -256,7 +256,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 14
+        "column": 1
       }
     }
   ],

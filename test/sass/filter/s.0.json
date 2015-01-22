@@ -17,7 +17,7 @@
           "content": "  ",
           "start": {
             "line": 1,
-            "column": 8
+            "column": 7
           }
         }
       ],
@@ -37,7 +37,7 @@
               "content": "  ",
               "start": {
                 "line": 1,
-                "column": 11
+                "column": 10
               }
             },
             {
@@ -51,13 +51,13 @@
           ],
           "start": {
             "line": 1,
-            "column": 11
+            "column": 10
           }
         }
       ],
       "start": {
         "line": 1,
-        "column": 11
+        "column": 10
       }
     }
   ],

@@ -76,7 +76,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 21
+            "column": 1
           }
         },
         {
@@ -133,7 +133,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 21
+        "column": 1
       }
     }
   ],
