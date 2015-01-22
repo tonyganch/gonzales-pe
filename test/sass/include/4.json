@@ -59,7 +59,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 16
+            "column": 1
           }
         },
         {
@@ -116,7 +116,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 16
+        "column": 1
       }
     }
   ],

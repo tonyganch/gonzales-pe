@@ -50,7 +50,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 14
+            "column": 1
           }
         },
         {
@@ -107,7 +107,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 14
+        "column": 1
       }
     }
   ],

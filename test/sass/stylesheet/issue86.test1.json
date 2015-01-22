@@ -55,7 +55,7 @@
               "content": "    ",
               "start": {
                 "line": 2,
-                "column": 13
+                "column": 1
               }
             },
             {
@@ -89,7 +89,7 @@
                           "content": " ",
                           "start": {
                             "line": 2,
-                            "column": 21
+                            "column": 12
                           }
                         },
                         {
@@ -103,13 +103,13 @@
                       ],
                       "start": {
                         "line": 2,
-                        "column": 21
+                        "column": 12
                       }
                     }
                   ],
                   "start": {
                     "line": 2,
-                    "column": 21
+                    "column": 12
                   }
                 }
               ],
@@ -121,7 +121,7 @@
           ],
           "start": {
             "line": 2,
-            "column": 13
+            "column": 1
           }
         }
       ],

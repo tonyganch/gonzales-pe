@@ -84,7 +84,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 20
+            "column": 1
           }
         },
         {
@@ -141,7 +141,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 20
+        "column": 1
       }
     }
   ],

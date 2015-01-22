@@ -22,28 +22,28 @@
                   "type": "ident",
                   "content": "s",
                   "start": {
-                    "line": 1,
-                    "column": 12
+                    "line": 2,
+                    "column": 1
                   }
                 },
                 {
                   "type": "s",
                   "content": "\n",
                   "start": {
-                    "line": 1,
-                    "column": 13
+                    "line": 2,
+                    "column": 2
                   }
                 }
               ],
               "start": {
-                "line": 1,
-                "column": 12
+                "line": 2,
+                "column": 1
               }
             }
           ],
           "start": {
-            "line": 1,
-            "column": 12
+            "line": 2,
+            "column": 1
           }
         },
         {
@@ -53,8 +53,8 @@
               "type": "s",
               "content": "    ",
               "start": {
-                "line": 2,
-                "column": 17
+                "line": 3,
+                "column": 1
               }
             },
             {
@@ -67,13 +67,13 @@
                       "type": "ident",
                       "content": "p",
                       "start": {
-                        "line": 2,
+                        "line": 3,
                         "column": 5
                       }
                     }
                   ],
                   "start": {
-                    "line": 2,
+                    "line": 3,
                     "column": 5
                   }
                 },
@@ -81,7 +81,7 @@
                   "type": "propertyDelim",
                   "content": null,
                   "start": {
-                    "line": 2,
+                    "line": 3,
                     "column": 6
                   }
                 },
@@ -89,8 +89,8 @@
                   "type": "s",
                   "content": " ",
                   "start": {
-                    "line": 2,
-                    "column": 20
+                    "line": 3,
+                    "column": 7
                   }
                 },
                 {
@@ -100,19 +100,19 @@
                       "type": "ident",
                       "content": "v",
                       "start": {
-                        "line": 2,
+                        "line": 3,
                         "column": 8
                       }
                     }
                   ],
                   "start": {
-                    "line": 2,
+                    "line": 3,
                     "column": 8
                   }
                 }
               ],
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 5
               }
             },
@@ -120,7 +120,7 @@
               "type": "declDelim",
               "content": null,
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 9
               }
             },
@@ -128,27 +128,27 @@
               "type": "s",
               "content": "\n",
               "start": {
-                "line": 3,
+                "line": 4,
                 "column": 1
               }
             }
           ],
           "start": {
-            "line": 2,
-            "column": 17
+            "line": 3,
+            "column": 1
           }
         }
       ],
       "start": {
-        "line": 1,
-        "column": 12
+        "line": 2,
+        "column": 1
       }
     },
     {
       "type": "commentML",
       "content": " test */",
       "start": {
-        "line": 4,
+        "line": 5,
         "column": 1
       }
     }

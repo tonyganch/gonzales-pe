@@ -115,7 +115,7 @@
           "content": "  ",
           "start": {
             "line": 2,
-            "column": 31
+            "column": 1
           }
         },
         {
@@ -163,7 +163,7 @@
                   "content": "    ",
                   "start": {
                     "line": 3,
-                    "column": 37
+                    "column": 1
                   }
                 },
                 {
@@ -220,7 +220,7 @@
               ],
               "start": {
                 "line": 3,
-                "column": 37
+                "column": 1
               }
             }
           ],
@@ -232,7 +232,7 @@
       ],
       "start": {
         "line": 2,
-        "column": 31
+        "column": 1
       }
     }
   ],
