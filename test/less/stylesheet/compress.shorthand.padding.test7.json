@@ -71,7 +71,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 2,
                     "column": 16
@@ -110,7 +110,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 2,
                 "column": 20
@@ -146,7 +146,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 3,
                     "column": 18
@@ -185,7 +185,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 3,
                 "column": 23
@@ -221,7 +221,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 4,
                     "column": 19
@@ -277,7 +277,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 4,
                 "column": 24
@@ -313,7 +313,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 5,
                     "column": 17

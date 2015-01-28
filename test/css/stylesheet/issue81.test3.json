@@ -71,7 +71,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 2,
                     "column": 11
@@ -194,7 +194,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 2,
                 "column": 38
@@ -230,7 +230,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 3,
                     "column": 11
@@ -353,7 +353,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 3,
                 "column": 35
@@ -457,7 +457,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 6,
                     "column": 11
@@ -580,7 +580,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 6,
                 "column": 38
@@ -616,7 +616,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 7,
                     "column": 11
@@ -739,7 +739,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 7,
                 "column": 34

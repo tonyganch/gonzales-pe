@@ -103,7 +103,7 @@
             },
             {
               "type": "delim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 2,
                 "column": 3
@@ -190,7 +190,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 3,
                     "column": 12
@@ -246,7 +246,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 3,
                 "column": 17
@@ -282,7 +282,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 4,
                     "column": 10
@@ -321,7 +321,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 4,
                 "column": 15
@@ -357,7 +357,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 5,
                     "column": 10
@@ -501,7 +501,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 8,
                     "column": 10
@@ -540,7 +540,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 8,
                 "column": 15
@@ -576,7 +576,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 9,
                     "column": 15
@@ -632,7 +632,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 9,
                 "column": 20
@@ -668,7 +668,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 10,
                     "column": 12
@@ -829,7 +829,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 13,
                     "column": 11
@@ -990,7 +990,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 16,
                     "column": 11

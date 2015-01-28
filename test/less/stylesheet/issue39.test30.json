@@ -71,7 +71,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 2,
                     "column": 15
@@ -127,7 +127,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 2,
                 "column": 20
@@ -163,7 +163,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 3,
                     "column": 17
@@ -219,7 +219,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 3,
                 "column": 22
@@ -255,7 +255,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 4,
                     "column": 18
@@ -311,7 +311,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 4,
                 "column": 23
@@ -347,7 +347,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 5,
                     "column": 16
@@ -403,7 +403,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 5,
                 "column": 21
@@ -462,7 +462,7 @@
             },
             {
               "type": "delim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 7,
                 "column": 2
@@ -549,7 +549,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 8,
                     "column": 15
@@ -605,7 +605,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 8,
                 "column": 20
@@ -641,7 +641,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 9,
                     "column": 17
@@ -697,7 +697,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 9,
                 "column": 22
@@ -733,7 +733,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 10,
                     "column": 18
@@ -789,7 +789,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 10,
                 "column": 23
@@ -825,7 +825,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 11,
                     "column": 16
@@ -881,7 +881,7 @@
             },
             {
               "type": "declDelim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 11,
                 "column": 21
