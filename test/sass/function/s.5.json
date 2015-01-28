@@ -55,7 +55,7 @@
         },
         {
           "type": "delim",
-          "content": null,
+          "content": "",
           "start": {
             "line": 1,
             "column": 14
@@ -145,7 +145,7 @@
         },
         {
           "type": "delim",
-          "content": null,
+          "content": "",
           "start": {
             "line": 1,
             "column": 38

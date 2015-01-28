@@ -20,7 +20,7 @@
     },
     {
       "type": "delim",
-      "content": null,
+      "content": "",
       "start": {
         "line": 1,
         "column": 5
@@ -65,7 +65,7 @@
         },
         {
           "type": "propertyDelim",
-          "content": null,
+          "content": "",
           "start": {
             "line": 1,
             "column": 10

@@ -188,7 +188,7 @@
                     },
                     {
                       "type": "propertyDelim",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 3,
                         "column": 6
