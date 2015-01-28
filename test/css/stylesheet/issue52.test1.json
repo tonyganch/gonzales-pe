@@ -64,7 +64,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 1,
                     "column": 11
@@ -188,7 +188,7 @@
             },
             {
               "type": "delim",
-              "content": null,
+              "content": "",
               "start": {
                 "line": 1,
                 "column": 22
@@ -251,7 +251,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 1,
                     "column": 40
@@ -270,7 +270,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 1,
                         "column": 42

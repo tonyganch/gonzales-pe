@@ -38,7 +38,7 @@
         },
         {
           "type": "delim",
-          "content": null,
+          "content": "",
           "start": {
             "line": 1,
             "column": 11

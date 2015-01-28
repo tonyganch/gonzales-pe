@@ -20,7 +20,7 @@
                 },
                 {
                   "type": "namespace",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 1,
                     "column": 2
@@ -155,7 +155,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 2,
                     "column": 6

@@ -80,7 +80,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 2,
                     "column": 15
@@ -115,7 +115,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 2,
                         "column": 29
@@ -240,7 +240,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 5,
                     "column": 15
@@ -275,7 +275,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 5,
                         "column": 22
@@ -400,7 +400,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 8,
                     "column": 15
@@ -435,7 +435,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 8,
                         "column": 24
@@ -560,7 +560,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 11,
                     "column": 15
@@ -595,7 +595,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 11,
                         "column": 24
@@ -720,7 +720,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": null,
+                  "content": "",
                   "start": {
                     "line": 14,
                     "column": 15
@@ -803,7 +803,7 @@
                     },
                     {
                       "type": "important",
-                      "content": null,
+                      "content": "",
                       "start": {
                         "line": 14,
                         "column": 48
