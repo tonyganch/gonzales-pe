@@ -31,14 +31,13 @@ Example:
     var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 ```
 
-### gonzales.createNode(type, content)
+### gonzales.createNode(options)
 
 Creates a new node.
 
 Parameters:
 
-* `{String} type`
-* `{String|Array} content`
+* `{{type: String, content: String|Array}} options`
 
 Returns:
 
@@ -48,7 +47,7 @@ Example:
 ```js
     var css = 'a {color: tomato}';
     var ast = gonzales.parse(css);
-    var node = gonzales.createNode('animal', 'panda');
+    var node = gonzales.createNode({ type: 'animal', content: 'panda' });
     ast.content.push(node);
 ```
 
