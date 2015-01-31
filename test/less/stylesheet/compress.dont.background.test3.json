@@ -1736,9 +1736,7 @@
                   "content": [
                     {
                       "type": "vhash",
-                      "content": [
-                        "FFF"
-                      ],
+                      "content": "FFF",
                       "start": {
                         "line": 9,
                         "column": 17

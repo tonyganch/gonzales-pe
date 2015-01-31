@@ -31,9 +31,7 @@
       "content": [
         {
           "type": "vhash",
-          "content": [
-            "595959"
-          ],
+          "content": "595959",
           "start": {
             "line": 1,
             "column": 12
