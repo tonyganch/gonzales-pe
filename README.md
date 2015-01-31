@@ -14,23 +14,26 @@ Returns:
 * `{Object} ast`.
 
 Example:
-
+```js
     var css = 'a {color: tomato}';
     var ast = gonzales.parse(css);
+```
 
 Example:
-
+```js
     var less = 'a {$color: tomato}';
     var ast = gonzales.parse(less, {syntax: 'less'});
+```
 
 Example:
-
+```js
     var less = '$color: tomato';
     var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
+```
 
 ### gonzales.createNode(type, content)
 
-Create a new node.
+Creates a new node.
 
 Parameters:
 
@@ -42,11 +45,12 @@ Returns:
 * `{Object} ast`
 
 Example:
-
+```js
     var css = 'a {color: tomato}';
     var ast = gonzales.parse(css);
     var node = gonzales.createNode('animal', 'panda');
     ast.content.push(node);
+```
 
 ### ast.toString()
 
@@ -63,9 +67,10 @@ Returns:
 * `{String} css`
 
 Example:
-
+```js
     var css = ast.toCSS('css');
     var less = ast.toCSS('less');
+```
 
 ### ast.map(function)
 
@@ -76,10 +81,11 @@ Parameters:
 * `{Function} function`
 
 Example:
-
+```js
     ast.map(function(node) {
         if (node.type === 'commentML') node.content = 'panda';
     });
+```
 
 ### ast.forEach(type, function)
 
@@ -91,10 +97,11 @@ Parameters:
 * `{Function} function`
 
 Example:
-
+```js
     ast.forEach('commentML', function(node) {
         node.content = 'panda';
     });
+```
 
 ### ast.find(type)
 
@@ -109,9 +116,10 @@ Returns:
 * `{Node} node`
 
 Example:
-
+```js
     var node = ast.find('commentML');
     node.content = 'panda';
+```
 
 ### ast.contains(type)
 
@@ -126,9 +134,10 @@ Returns:
 * `{Boolean}`
 
 Example:
-
+```js
     if (ast.contains('panda'))
         doSomething();
+```
 
 ## Test
 
