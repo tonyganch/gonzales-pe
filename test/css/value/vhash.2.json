@@ -3,9 +3,7 @@
   "content": [
     {
       "type": "vhash",
-      "content": [
-        "F0f0C0"
-      ],
+      "content": "F0f0C0",
       "start": {
         "line": 1,
         "column": 1

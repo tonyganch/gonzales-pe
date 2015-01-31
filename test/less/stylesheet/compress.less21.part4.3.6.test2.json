@@ -90,9 +90,7 @@
                   "content": [
                     {
                       "type": "vhash",
-                      "content": [
-                        "ff0000"
-                      ],
+                      "content": "ff0000",
                       "start": {
                         "line": 1,
                         "column": 13
