@@ -28,6 +28,26 @@ Example:
     var less = '$color: tomato';
     var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 
+### gonzales.createNode(type, content)
+
+Create a new node.
+
+Parameters:
+
+* `{String} type`
+* `{String|Array} content`
+
+Returns:
+
+* `{Object} ast`
+
+Example:
+
+    var css = 'a {color: tomato}';
+    var ast = gonzales.parse(css);
+    var node = gonzales.createNode('animal', 'panda');
+    ast.content.push(node);
+
 ### ast.toString()
 
 ### ast.toCSS(syntax)
@@ -60,6 +80,55 @@ Example:
     ast.map(function(node) {
         if (node.type === 'commentML') node.content = 'panda';
     });
+
+### ast.forEach(type, function)
+
+Calls the function for every child node of given type.
+
+Parameters:
+
+* `{String} type`
+* `{Function} function`
+
+Example:
+
+    ast.forEach('commentML', function(node) {
+        node.content = 'panda';
+    });
+
+### ast.find(type)
+
+Returns the first child node of given type.
+
+Parameters:
+
+* `{String} type`
+
+Returns:
+
+* `{Node} node`
+
+Example:
+
+    var node = ast.find('commentML');
+    node.content = 'panda';
+
+### ast.contains(type)
+
+Checks whether there is a child node of given type.
+
+Parameters:
+
+* `{String} type`
+
+Returns:
+
+* `{Boolean}`
+
+Example:
+
+    if (ast.contains('panda'))
+        doSomething();
 
 ## Test
 
