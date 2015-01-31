@@ -26,7 +26,7 @@
             },
             {
               "type": "delim",
-              "content": "",
+              "content": ",",
               "start": {
                 "line": 1,
                 "column": 2
@@ -59,7 +59,7 @@
             },
             {
               "type": "delim",
-              "content": "",
+              "content": ",",
               "start": {
                 "line": 1,
                 "column": 5
@@ -154,7 +154,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 2,
                     "column": 10
@@ -244,7 +244,7 @@
             },
             {
               "type": "delim",
-              "content": "",
+              "content": ",",
               "start": {
                 "line": 4,
                 "column": 2
@@ -339,7 +339,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 5,
                     "column": 10
