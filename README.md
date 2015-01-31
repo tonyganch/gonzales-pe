@@ -138,6 +138,25 @@ Example:
         doSomething();
 ```
 
+### ast.is(type)
+
+Checks whether the node is of given type.
+
+Parameters:
+
+* `{String} type`
+
+Returns:
+
+* `{Boolean}`
+
+Example:
+```js
+    if (ast.is('s'))
+        ast.content = '';
+```
+
+
 ## Test
 
 To run tests:
