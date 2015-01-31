@@ -54,7 +54,7 @@
     },
     {
       "type": "declDelim",
-      "content": "",
+      "content": "\n",
       "start": {
         "line": 1,
         "column": 27
