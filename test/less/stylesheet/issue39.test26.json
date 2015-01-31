@@ -78,9 +78,7 @@
                 },
                 {
                   "type": "combinator",
-                  "content": [
-                    "+"
-                  ],
+                  "content": "+",
                   "start": {
                     "line": 1,
                     "column": 11
@@ -297,9 +295,7 @@
                 },
                 {
                   "type": "combinator",
-                  "content": [
-                    "+"
-                  ],
+                  "content": "+",
                   "start": {
                     "line": 4,
                     "column": 11
