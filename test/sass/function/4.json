@@ -22,7 +22,7 @@
         },
         {
           "type": "delim",
-          "content": "",
+          "content": ",",
           "start": {
             "line": 1,
             "column": 7
