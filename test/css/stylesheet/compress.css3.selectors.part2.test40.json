@@ -28,9 +28,7 @@
                 },
                 {
                   "type": "combinator",
-                  "content": [
-                    ">"
-                  ],
+                  "content": ">",
                   "start": {
                     "line": 1,
                     "column": 3
