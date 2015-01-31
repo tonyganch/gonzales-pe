@@ -19,9 +19,7 @@
     },
     {
       "type": "nth",
-      "content": [
-        "3n"
-      ],
+      "content": "3n",
       "start": {
         "line": 1,
         "column": 18
@@ -55,9 +53,7 @@
     },
     {
       "type": "nth",
-      "content": [
-        "2"
-      ],
+      "content": "2",
       "start": {
         "line": 1,
         "column": 28

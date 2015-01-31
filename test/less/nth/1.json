@@ -1,8 +1,6 @@
 {
   "type": "nth",
-  "content": [
-    "2n"
-  ],
+  "content": "2n",
   "start": {
     "line": 1,
     "column": 1

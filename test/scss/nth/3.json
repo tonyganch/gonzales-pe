@@ -1,8 +1,6 @@
 {
   "type": "nth",
-  "content": [
-    "even"
-  ],
+  "content": "even",
   "start": {
     "line": 1,
     "column": 1

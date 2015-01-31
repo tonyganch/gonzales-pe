@@ -47,9 +47,7 @@
                     },
                     {
                       "type": "nth",
-                      "content": [
-                        "n"
-                      ],
+                      "content": "n",
                       "start": {
                         "line": 1,
                         "column": 29
