@@ -1,8 +1,6 @@
 {
   "type": "vhash",
-  "content": [
-    "100"
-  ],
+  "content": "100",
   "start": {
     "line": 1,
     "column": 1

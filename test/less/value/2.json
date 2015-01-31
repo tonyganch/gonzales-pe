@@ -49,9 +49,7 @@
         },
         {
           "type": "vhash",
-          "content": [
-            "111"
-          ],
+          "content": "111",
           "start": {
             "line": 1,
             "column": 15
