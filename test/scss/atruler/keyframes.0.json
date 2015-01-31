@@ -68,9 +68,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            "0"
-                          ],
+                          "content": "0",
                           "start": {
                             "line": 1,
                             "column": 29
@@ -146,9 +144,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            ".5"
-                          ],
+                          "content": ".5",
                           "start": {
                             "line": 1,
                             "column": 42
@@ -192,9 +188,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            "50"
-                          ],
+                          "content": "50",
                           "start": {
                             "line": 1,
                             "column": 45
@@ -270,9 +264,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            "1"
-                          ],
+                          "content": "1",
                           "start": {
                             "line": 1,
                             "column": 59
@@ -316,9 +308,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            "100"
-                          ],
+                          "content": "100",
                           "start": {
                             "line": 1,
                             "column": 61
@@ -394,9 +384,7 @@
                       "content": [
                         {
                           "type": "number",
-                          "content": [
-                            ".5"
-                          ],
+                          "content": ".5",
                           "start": {
                             "line": 1,
                             "column": 76

@@ -5,9 +5,7 @@
     ")",
     {
       "type": "number",
-      "content": [
-        "1"
-      ],
+      "content": "1",
       "start": {
         "line": 1,
         "column": 2

@@ -53,9 +53,7 @@
               "content": [
                 {
                   "type": "number",
-                  "content": [
-                    "30"
-                  ],
+                  "content": "30",
                   "start": {
                     "line": 1,
                     "column": 17
