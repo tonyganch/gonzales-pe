@@ -122,7 +122,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 1,
                     "column": 24

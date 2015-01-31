@@ -71,7 +71,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 2,
                     "column": 6
@@ -446,7 +446,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 2,
                 "column": 71
@@ -482,7 +482,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 3,
                     "column": 6
@@ -857,7 +857,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 3,
                 "column": 103
@@ -893,7 +893,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 4,
                     "column": 6
@@ -1268,7 +1268,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 4,
                 "column": 71
@@ -1304,7 +1304,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 5,
                     "column": 6
@@ -1489,7 +1489,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 5,
                 "column": 45
@@ -1525,7 +1525,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 6,
                     "column": 6
@@ -1914,7 +1914,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 6,
                 "column": 77
@@ -1950,7 +1950,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 7,
                     "column": 6
@@ -2237,7 +2237,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 7,
                 "column": 56
@@ -2273,7 +2273,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 8,
                     "column": 6
@@ -2648,7 +2648,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 8,
                 "column": 67
@@ -2684,7 +2684,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 9,
                     "column": 6
@@ -2778,7 +2778,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 9,
                 "column": 26

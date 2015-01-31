@@ -62,7 +62,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 2,
                     "column": 16
@@ -101,7 +101,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 2,
                 "column": 26
@@ -137,7 +137,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 3,
                     "column": 8
@@ -185,7 +185,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 3,
                 "column": 40
@@ -237,7 +237,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 4,
                     "column": 8
@@ -527,7 +527,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 4,
                 "column": 262
@@ -563,7 +563,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 5,
                     "column": 16
@@ -602,7 +602,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 5,
                 "column": 24
@@ -638,7 +638,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 6,
                     "column": 15
@@ -677,7 +677,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 6,
                 "column": 23

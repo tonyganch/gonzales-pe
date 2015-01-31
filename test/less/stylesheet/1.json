@@ -55,7 +55,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 1,
                     "column": 6
@@ -150,7 +150,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 1,
                     "column": 15
