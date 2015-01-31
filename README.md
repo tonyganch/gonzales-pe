@@ -102,13 +102,13 @@ Example:
     });
 ```
 
-### ast.find(type)
+### ast.first(type)
 
 Returns the first child node of given type.
 
 Parameters:
 
-* `{String} type`
+* `{String=} type`
 
 Returns:
 
@@ -116,9 +116,40 @@ Returns:
 
 Example:
 ```js
-    var node = ast.find('commentML');
+    var node = ast.first();
     node.content = 'panda';
 ```
+
+Example:
+```js
+    var node = ast.first('commentML');
+    node.content = 'panda';
+```
+
+### ast.last(type)
+
+Returns the last child node of given type.
+
+Parameters:
+
+* `{String=} type`
+
+Returns:
+
+* `{Node} node`
+
+Example:
+```js
+    var node = ast.last()
+    node.content = 'panda';
+```
+
+Example:
+```js
+    var node = ast.last('commentML');
+    node.content = 'panda';
+```
+
 
 ### ast.contains(type)
 
