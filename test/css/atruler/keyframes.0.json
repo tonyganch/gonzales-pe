@@ -125,7 +125,7 @@
                     },
                     {
                       "type": "propertyDelim",
-                      "content": "",
+                      "content": ":",
                       "start": {
                         "line": 1,
                         "column": 40
@@ -245,7 +245,7 @@
                     },
                     {
                       "type": "propertyDelim",
-                      "content": "",
+                      "content": ":",
                       "start": {
                         "line": 1,
                         "column": 57
@@ -365,7 +365,7 @@
                     },
                     {
                       "type": "propertyDelim",
-                      "content": "",
+                      "content": ":",
                       "start": {
                         "line": 1,
                         "column": 74
