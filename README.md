@@ -102,6 +102,10 @@ Example:
     });
 ```
 
+### ast.get(index)
+
+### ast.insert(index, node)
+
 ### ast.first(type)
 
 Returns the first child node of given type.
