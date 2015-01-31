@@ -101,9 +101,7 @@
                 },
                 {
                   "type": "number",
-                  "content": [
-                    "1"
-                  ],
+                  "content": "1",
                   "start": {
                     "line": 1,
                     "column": 52
@@ -135,9 +133,7 @@
                 },
                 {
                   "type": "number",
-                  "content": [
-                    "2"
-                  ],
+                  "content": "2",
                   "start": {
                     "line": 1,
                     "column": 70

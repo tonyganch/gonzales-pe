@@ -14,9 +14,7 @@
       "content": [
         {
           "type": "number",
-          "content": [
-            "90"
-          ],
+          "content": "90",
           "start": {
             "line": 1,
             "column": 3

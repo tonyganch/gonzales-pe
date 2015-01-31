@@ -21,9 +21,7 @@
     },
     {
       "type": "number",
-      "content": [
-        "0"
-      ],
+      "content": "0",
       "start": {
         "line": 1,
         "column": 7
