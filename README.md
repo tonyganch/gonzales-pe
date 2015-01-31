@@ -92,7 +92,7 @@ Calls the function for every child node of given type.
 
 Parameters:
 
-* `{String} type`
+* `{String=} type`
 * `{Function} function`
 
 Example:
