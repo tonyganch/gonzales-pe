@@ -11,9 +11,7 @@
     },
     {
       "type": "nth",
-      "content": [
-        "2n"
-      ],
+      "content": "2n",
       "start": {
         "line": 1,
         "column": 12
@@ -29,9 +27,7 @@
     },
     {
       "type": "nth",
-      "content": [
-        "1"
-      ],
+      "content": "1",
       "start": {
         "line": 1,
         "column": 15
