@@ -155,7 +155,7 @@
                     },
                     {
                       "type": "propertyDelim",
-                      "content": "",
+                      "content": ":",
                       "start": {
                         "line": 3,
                         "column": 6

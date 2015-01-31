@@ -85,7 +85,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": "\n",
               "start": {
                 "line": 2,
                 "column": 16
@@ -121,7 +121,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 3,
                     "column": 8
