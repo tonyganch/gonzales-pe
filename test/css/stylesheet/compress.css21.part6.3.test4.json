@@ -94,7 +94,7 @@
     },
     {
       "type": "declDelim",
-      "content": "",
+      "content": ";",
       "start": {
         "line": 1,
         "column": 41
