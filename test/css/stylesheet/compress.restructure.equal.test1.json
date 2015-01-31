@@ -71,7 +71,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 2,
                     "column": 6
@@ -110,7 +110,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 2,
                 "column": 9
@@ -214,7 +214,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 5,
                     "column": 6
@@ -253,7 +253,7 @@
             },
             {
               "type": "declDelim",
-              "content": "",
+              "content": ";",
               "start": {
                 "line": 5,
                 "column": 9

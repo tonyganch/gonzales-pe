@@ -70,7 +70,7 @@
     },
     {
       "type": "declDelim",
-      "content": "",
+      "content": ";",
       "start": {
         "line": 1,
         "column": 24
@@ -154,7 +154,7 @@
                 },
                 {
                   "type": "propertyDelim",
-                  "content": "",
+                  "content": ":",
                   "start": {
                     "line": 2,
                     "column": 6
