@@ -6,9 +6,7 @@
       "content": [
         {
           "type": "number",
-          "content": [
-            "2"
-          ],
+          "content": "2",
           "start": {
             "line": 1,
             "column": 1

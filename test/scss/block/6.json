@@ -72,9 +72,7 @@
                     },
                     {
                       "type": "number",
-                      "content": [
-                        "42"
-                      ],
+                      "content": "42",
                       "start": {
                         "line": 1,
                         "column": 24

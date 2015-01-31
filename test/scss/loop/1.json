@@ -69,9 +69,7 @@
     },
     {
       "type": "number",
-      "content": [
-        "1"
-      ],
+      "content": "1",
       "start": {
         "line": 1,
         "column": 14
@@ -103,9 +101,7 @@
     },
     {
       "type": "number",
-      "content": [
-        "3"
-      ],
+      "content": "3",
       "start": {
         "line": 1,
         "column": 24

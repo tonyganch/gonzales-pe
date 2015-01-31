@@ -54,9 +54,7 @@
               "content": [
                 {
                   "type": "number",
-                  "content": [
-                    "5"
-                  ],
+                  "content": "5",
                   "start": {
                     "line": 1,
                     "column": 6

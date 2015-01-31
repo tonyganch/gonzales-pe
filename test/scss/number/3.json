@@ -1,8 +1,6 @@
 {
   "type": "number",
-  "content": [
-    "0.1"
-  ],
+  "content": "0.1",
   "start": {
     "line": 1,
     "column": 1
