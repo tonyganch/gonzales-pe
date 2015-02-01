@@ -13,11 +13,3 @@ describe('Node#contains()', function() {
         assert.equal(ast.contains('nani'), false);
     });
 });
-
-describe('Node#find()', function() {
-    it('should return the first child node of given type', function() {
-        var ast = gonzales.parse('a{} b{}');
-        var node = ast.find('ruleset')
-        assert.equal(node.toCSS('css'), 'a{}')
-    });
-});
