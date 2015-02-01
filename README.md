@@ -51,6 +51,8 @@ Example:
     ast.content.push(node);
 ```
 
+### ast.length
+
 ### ast.toString()
 
 ### ast.toCSS(syntax)
@@ -70,41 +72,23 @@ Example:
     var css = ast.toCSS('css');
     var less = ast.toCSS('less');
 ```
+### ast.contains(type)
 
-### ast.map(function)
-
-Calls the function for every node in a tree. Modifies the tree!
-
-Parameters:
-
-* `{Function} function`
-
-Example:
-```js
-    ast.map(function(node) {
-        if (node.type === 'commentML') node.content = 'panda';
-    });
-```
-
-### ast.forEach(type, function)
-
-Calls the function for every child node of given type.
+Checks whether there is a child node of given type.
 
 Parameters:
 
-* `{String=} type`
-* `{Function} function`
+* `{String} type`
+
+Returns:
+
+* `{Boolean}`
 
 Example:
 ```js
-    ast.forEach('commentML', function(node) {
-        node.content = 'panda';
-    });
+    if (ast.contains('panda'))
+        doSomething();
 ```
-
-### ast.get(index)
-
-### ast.insert(index, node)
 
 ### ast.first(type)
 
@@ -128,6 +112,44 @@ Example:
 ```js
     var node = ast.first('commentML');
     node.content = 'panda';
+```
+
+### ast.forEach(type, function)
+
+Calls the function for every child node of given type.
+
+Parameters:
+
+* `{String=} type`
+* `{Function} function`
+
+Example:
+```js
+    ast.forEach('commentML', function(node) {
+        node.content = 'panda';
+    });
+```
+
+### ast.get(index)
+
+### ast.insert(index, node)
+
+### ast.is(type)
+
+Checks whether the node is of given type.
+
+Parameters:
+
+* `{String} type`
+
+Returns:
+
+* `{Boolean}`
+
+Example:
+```js
+    if (ast.is('s'))
+        ast.content = '';
 ```
 
 ### ast.last(type)
@@ -154,41 +176,19 @@ Example:
     node.content = 'panda';
 ```
 
+### ast.map(function)
 
-### ast.contains(type)
-
-Checks whether there is a child node of given type.
-
-Parameters:
-
-* `{String} type`
-
-Returns:
-
-* `{Boolean}`
-
-Example:
-```js
-    if (ast.contains('panda'))
-        doSomething();
-```
-
-### ast.is(type)
-
-Checks whether the node is of given type.
+Calls the function for every node in a tree. Modifies the tree!
 
 Parameters:
 
-* `{String} type`
-
-Returns:
-
-* `{Boolean}`
+* `{Function} function`
 
 Example:
 ```js
-    if (ast.is('s'))
-        ast.content = '';
+    ast.map(function(node) {
+        if (node.type === 'commentML') node.content = 'panda';
+    });
 ```
 
 
