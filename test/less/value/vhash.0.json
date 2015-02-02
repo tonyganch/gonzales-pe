@@ -2,7 +2,7 @@
   "type": "value",
   "content": [
     {
-      "type": "vhash",
+      "type": "color",
       "content": "ffffff",
       "start": {
         "line": 1,

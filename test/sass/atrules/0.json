@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,

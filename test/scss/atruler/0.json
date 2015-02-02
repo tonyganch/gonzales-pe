@@ -22,7 +22,7 @@
       "type": "atrulerq",
       "content": [
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -45,7 +45,7 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "simpleselector",
+                  "type": "simpleSelector",
                   "content": [
                     {
                       "type": "ident",
@@ -91,7 +91,7 @@
                       }
                     },
                     {
-                      "type": "propertyDelim",
+                      "type": "propertyDelimiter",
                       "content": ":",
                       "start": {
                         "line": 1,

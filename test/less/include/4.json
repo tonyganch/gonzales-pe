@@ -2,7 +2,7 @@
   "type": "include",
   "content": [
     {
-      "type": "shash",
+      "type": "id",
       "content": [
         "bundle"
       ],
@@ -12,7 +12,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -28,7 +28,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,

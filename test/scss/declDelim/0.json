@@ -1,5 +1,5 @@
 {
-  "type": "declDelim",
+  "type": "declarationDelimiter",
   "content": ";",
   "start": {
     "line": 1,

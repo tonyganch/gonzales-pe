@@ -24,7 +24,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -32,7 +32,7 @@
           }
         },
         {
-          "type": "unary",
+          "type": "unaryOperator",
           "content": "+",
           "start": {
             "line": 1,
@@ -40,7 +40,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -48,7 +48,7 @@
           }
         },
         {
-          "type": "vhash",
+          "type": "color",
           "content": "111",
           "start": {
             "line": 1,

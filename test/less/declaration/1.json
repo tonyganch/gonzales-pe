@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "propertyDelim",
+      "type": "propertyDelimiter",
       "content": ":",
       "start": {
         "line": 1,

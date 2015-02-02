@@ -1,5 +1,5 @@
 {
-  "type": "attrselector",
+  "type": "attributeSelector",
   "content": "=",
   "start": {
     "line": 1,

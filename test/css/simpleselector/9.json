@@ -1,8 +1,8 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
-      "type": "nthselector",
+      "type": "nthSelector",
       "content": [
         {
           "type": "ident",
@@ -13,7 +13,7 @@
           }
         },
         {
-          "type": "unary",
+          "type": "unaryOperator",
           "content": "+",
           "start": {
             "line": 1,
@@ -29,7 +29,7 @@
           }
         },
         {
-          "type": "unary",
+          "type": "unaryOperator",
           "content": "-",
           "start": {
             "line": 1,

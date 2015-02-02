@@ -1,5 +1,5 @@
 {
-  "type": "commentSL",
+  "type": "singlelineComment",
   "content": "   test",
   "start": {
     "line": 1,

@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -28,7 +28,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -51,7 +51,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 1,
@@ -79,7 +79,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 2,
@@ -87,7 +87,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 2,
@@ -118,7 +118,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 2,
@@ -126,7 +126,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 2,
@@ -154,7 +154,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 3,
@@ -162,7 +162,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 3,
@@ -193,7 +193,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 3,
@@ -201,7 +201,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 3,
@@ -229,7 +229,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 4,
@@ -237,7 +237,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 4,
@@ -268,7 +268,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 4,
@@ -276,7 +276,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 4,
@@ -304,7 +304,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 5,
@@ -312,7 +312,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 5,
@@ -343,7 +343,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 5,
@@ -351,7 +351,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 5,
@@ -371,7 +371,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 6,
@@ -385,7 +385,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -405,7 +405,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 7,
@@ -428,7 +428,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 7,
@@ -456,7 +456,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 8,
@@ -464,7 +464,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 8,
@@ -495,7 +495,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 8,
@@ -503,7 +503,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 8,
@@ -531,7 +531,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 9,
@@ -539,7 +539,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 9,
@@ -570,7 +570,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 9,
@@ -578,7 +578,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 9,
@@ -606,7 +606,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 10,
@@ -614,7 +614,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 10,
@@ -645,7 +645,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 10,
@@ -653,7 +653,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 10,
@@ -681,7 +681,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 11,
@@ -689,7 +689,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 11,
@@ -720,7 +720,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 11,
@@ -728,7 +728,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 11,
@@ -748,7 +748,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 12,
@@ -762,7 +762,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -782,7 +782,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 13,
@@ -805,7 +805,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 13,
@@ -833,7 +833,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 14,
@@ -841,7 +841,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 14,
@@ -872,7 +872,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 14,
@@ -880,7 +880,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 14,
@@ -908,7 +908,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 15,
@@ -916,7 +916,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 15,
@@ -947,7 +947,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 15,
@@ -955,7 +955,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 15,
@@ -983,7 +983,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 16,
@@ -991,7 +991,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 16,
@@ -1022,7 +1022,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 16,
@@ -1030,7 +1030,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 16,
@@ -1058,7 +1058,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 17,
@@ -1066,7 +1066,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 17,
@@ -1097,7 +1097,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 17,
@@ -1105,7 +1105,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 17,

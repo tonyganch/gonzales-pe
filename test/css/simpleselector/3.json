@@ -1,8 +1,8 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
-      "type": "attrib",
+      "type": "attribute",
       "content": [
         {
           "type": "ident",
@@ -13,7 +13,7 @@
           }
         },
         {
-          "type": "attrselector",
+          "type": "attributeSelector",
           "content": "=",
           "start": {
             "line": 1,

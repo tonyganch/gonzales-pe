@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -43,7 +43,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -59,7 +59,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -89,7 +89,7 @@
               }
             },
             {
-              "type": "unary",
+              "type": "unaryOperator",
               "content": "+",
               "start": {
                 "line": 1,
@@ -117,7 +117,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -148,7 +148,7 @@
               }
             },
             {
-              "type": "propertyDelim",
+              "type": "propertyDelimiter",
               "content": ":",
               "start": {
                 "line": 1,

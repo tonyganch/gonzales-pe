@@ -24,7 +24,7 @@
               }
             },
             {
-              "type": "delim",
+              "type": "delimiter",
               "content": ",",
               "start": {
                 "line": 1,
@@ -40,7 +40,7 @@
               }
             },
             {
-              "type": "delim",
+              "type": "delimiter",
               "content": ",",
               "start": {
                 "line": 1,

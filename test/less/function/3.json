@@ -21,7 +21,7 @@
           }
         },
         {
-          "type": "unary",
+          "type": "unaryOperator",
           "content": "+",
           "start": {
             "line": 1,

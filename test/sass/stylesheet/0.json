@@ -22,7 +22,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -30,7 +30,7 @@
           }
         },
         {
-          "type": "simpleselector",
+          "type": "simpleSelector",
           "content": [
             {
               "type": "ident",
