@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -19,7 +19,7 @@
                   }
                 },
                 {
-                  "type": "pseudoc",
+                  "type": "pseudoClass",
                   "content": [
                     {
                       "type": "function",
@@ -36,10 +36,10 @@
                           "type": "arguments",
                           "content": [
                             {
-                              "type": "simpleselector",
+                              "type": "simpleSelector",
                               "content": [
                                 {
-                                  "type": "attrib",
+                                  "type": "attribute",
                                   "content": [
                                     {
                                       "type": "ident",
@@ -50,7 +50,7 @@
                                       }
                                     },
                                     {
-                                      "type": "attrselector",
+                                      "type": "attributeSelector",
                                       "content": "|",
                                       "start": {
                                         "line": 1,
@@ -96,7 +96,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,

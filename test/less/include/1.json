@@ -2,7 +2,7 @@
   "type": "include",
   "content": [
     {
-      "type": "shash",
+      "type": "id",
       "content": [
         "nani"
       ],

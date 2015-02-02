@@ -25,7 +25,7 @@
           "type": "atrulerq",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 1,
@@ -41,7 +41,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 1,
@@ -58,7 +58,7 @@
           "type": "atrulers",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 1,
@@ -86,7 +86,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 2,
@@ -97,7 +97,7 @@
                   "type": "block",
                   "content": [
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n        ",
                       "start": {
                         "line": 2,
@@ -125,7 +125,7 @@
                           }
                         },
                         {
-                          "type": "propertyDelim",
+                          "type": "propertyDelimiter",
                           "content": ":",
                           "start": {
                             "line": 3,
@@ -133,7 +133,7 @@
                           }
                         },
                         {
-                          "type": "s",
+                          "type": "space",
                           "content": " ",
                           "start": {
                             "line": 3,
@@ -164,7 +164,7 @@
                       }
                     },
                     {
-                      "type": "declDelim",
+                      "type": "declarationDelimiter",
                       "content": ";",
                       "start": {
                         "line": 3,
@@ -172,7 +172,7 @@
                       }
                     },
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n    ",
                       "start": {
                         "line": 3,
@@ -192,7 +192,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 4,

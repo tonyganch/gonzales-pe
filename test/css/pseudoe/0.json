@@ -1,5 +1,5 @@
 {
-  "type": "pseudoe",
+  "type": "pseudoElement",
   "content": [
     {
       "type": "ident",

@@ -1,5 +1,5 @@
 {
-  "type": "nthselector",
+  "type": "nthSelector",
   "content": [
     {
       "type": "ident",
@@ -10,7 +10,7 @@
       }
     },
     {
-      "type": "unary",
+      "type": "unaryOperator",
       "content": "+",
       "start": {
         "line": 1,

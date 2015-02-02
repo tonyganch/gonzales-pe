@@ -1,5 +1,5 @@
 {
-  "type": "nthselector",
+  "type": "nthSelector",
   "content": [
     {
       "type": "ident",

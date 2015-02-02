@@ -1,8 +1,8 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
-      "type": "pseudoc",
+      "type": "pseudoClass",
       "content": [
         {
           "type": "function",
@@ -19,7 +19,7 @@
               "type": "arguments",
               "content": [
                 {
-                  "type": "simpleselector",
+                  "type": "simpleSelector",
                   "content": [
                     {
                       "type": "ident",

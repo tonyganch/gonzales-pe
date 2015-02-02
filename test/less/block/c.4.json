@@ -2,7 +2,7 @@
   "type": "block",
   "content": [
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,
@@ -30,7 +30,7 @@
           }
         },
         {
-          "type": "propertyDelim",
+          "type": "propertyDelimiter",
           "content": ":",
           "start": {
             "line": 1,
@@ -61,7 +61,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,
@@ -69,7 +69,7 @@
       }
     },
     {
-      "type": "declDelim",
+      "type": "declarationDelimiter",
       "content": ";",
       "start": {
         "line": 1,
@@ -77,7 +77,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,
@@ -105,7 +105,7 @@
           }
         },
         {
-          "type": "propertyDelim",
+          "type": "propertyDelimiter",
           "content": ":",
           "start": {
             "line": 1,
@@ -136,7 +136,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,

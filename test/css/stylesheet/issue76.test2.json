@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -63,7 +63,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 1,
@@ -106,7 +106,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 1,
@@ -120,7 +120,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -175,7 +175,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 2,
@@ -235,7 +235,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 2,
@@ -249,7 +249,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -304,7 +304,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 3,
@@ -347,7 +347,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 3,
@@ -361,7 +361,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -416,7 +416,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 4,
@@ -459,7 +459,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 4,
@@ -473,7 +473,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -528,7 +528,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 5,
@@ -571,7 +571,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 5,
@@ -585,7 +585,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -640,7 +640,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 6,

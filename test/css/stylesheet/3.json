@@ -28,7 +28,7 @@
       }
     },
     {
-      "type": "declDelim",
+      "type": "declarationDelimiter",
       "content": ";",
       "start": {
         "line": 1,
@@ -62,7 +62,7 @@
       }
     },
     {
-      "type": "declDelim",
+      "type": "declarationDelimiter",
       "content": ";",
       "start": {
         "line": 1,

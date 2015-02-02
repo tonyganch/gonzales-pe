@@ -1,5 +1,5 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
       "type": "ident",
@@ -10,7 +10,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,
@@ -26,7 +26,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,

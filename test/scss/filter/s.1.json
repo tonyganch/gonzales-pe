@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "filterv",
+      "type": "filterValue",
       "content": [
         {
           "type": "progid",
@@ -33,7 +33,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n       ",
               "start": {
                 "line": 1,

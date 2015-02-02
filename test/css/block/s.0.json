@@ -2,7 +2,7 @@
   "type": "block",
   "content": [
     {
-      "type": "s",
+      "type": "space",
       "content": "  ",
       "start": {
         "line": 1,

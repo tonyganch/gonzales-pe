@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test*/E:last-child/*test*/{/*test*/p/*test*/:/*test*/v/*test*/}/*test*/",
       "start": {
         "line": 1,

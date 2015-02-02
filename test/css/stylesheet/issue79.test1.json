@@ -22,7 +22,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -33,7 +33,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 1,
@@ -61,7 +61,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 2,
@@ -69,7 +69,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 2,
@@ -100,7 +100,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 2,
@@ -108,7 +108,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 2,
@@ -136,7 +136,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 3,
@@ -144,7 +144,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 3,
@@ -180,7 +180,7 @@
                       }
                     },
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n    ",
                       "start": {
                         "line": 3,
@@ -217,7 +217,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 4,
@@ -225,7 +225,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 4,
@@ -245,7 +245,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 5,
@@ -259,7 +259,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -279,7 +279,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 7,
@@ -302,7 +302,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 7,
@@ -330,7 +330,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 8,
@@ -338,7 +338,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 8,
@@ -369,7 +369,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 8,
@@ -377,7 +377,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 8,

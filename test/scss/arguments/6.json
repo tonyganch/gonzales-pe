@@ -33,7 +33,7 @@
               }
             },
             {
-              "type": "delim",
+              "type": "delimiter",
               "content": ",",
               "start": {
                 "line": 1,
@@ -41,7 +41,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 1,
@@ -78,7 +78,7 @@
       }
     },
     {
-      "type": "delim",
+      "type": "delimiter",
       "content": ",",
       "start": {
         "line": 1,
@@ -86,7 +86,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,

@@ -22,7 +22,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": "\n",
           "start": {
             "line": 1,

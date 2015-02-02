@@ -2,7 +2,7 @@
   "type": "block",
   "content": [
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -16,10 +16,10 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
-                  "type": "shash",
+                  "type": "id",
                   "content": [
                     "a"
                   ],
@@ -29,7 +29,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -63,7 +63,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
@@ -77,10 +77,10 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
-                  "type": "shash",
+                  "type": "id",
                   "content": [
                     "b"
                   ],
@@ -90,7 +90,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -124,7 +124,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": " ",
       "start": {
         "line": 1,
