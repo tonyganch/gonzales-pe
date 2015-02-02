@@ -1,5 +1,5 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
       "type": "ident",

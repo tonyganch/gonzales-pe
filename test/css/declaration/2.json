@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "propertyDelim",
+      "type": "propertyDelimiter",
       "content": ":",
       "start": {
         "line": 1,
@@ -30,7 +30,7 @@
       "type": "value",
       "content": [
         {
-          "type": "vhash",
+          "type": "color",
           "content": "595959",
           "start": {
             "line": 1,
@@ -38,7 +38,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -63,7 +63,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -79,7 +79,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,
@@ -104,7 +104,7 @@
           }
         },
         {
-          "type": "s",
+          "type": "space",
           "content": " ",
           "start": {
             "line": 1,

@@ -2,7 +2,7 @@
   "type": "selector",
   "content": [
     {
-      "type": "simpleselector",
+      "type": "simpleSelector",
       "content": [
         {
           "type": "ident",
@@ -35,7 +35,7 @@
       }
     },
     {
-      "type": "delim",
+      "type": "delimiter",
       "content": ",",
       "start": {
         "line": 1,
@@ -43,7 +43,7 @@
       }
     },
     {
-      "type": "simpleselector",
+      "type": "simpleSelector",
       "content": [
         {
           "type": "ident",

@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -19,7 +19,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -42,7 +42,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 1,
@@ -70,7 +70,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 2,
@@ -101,7 +101,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 2,
@@ -109,7 +109,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 2,
@@ -129,7 +129,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 3,
@@ -160,7 +160,7 @@
           "type": "atrulerq",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 5,
@@ -176,7 +176,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 5,
@@ -193,7 +193,7 @@
           "type": "atrulers",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 5,
@@ -207,7 +207,7 @@
                   "type": "selector",
                   "content": [
                     {
-                      "type": "simpleselector",
+                      "type": "simpleSelector",
                       "content": [
                         {
                           "type": "ident",
@@ -218,7 +218,7 @@
                           }
                         },
                         {
-                          "type": "s",
+                          "type": "space",
                           "content": " ",
                           "start": {
                             "line": 6,
@@ -241,7 +241,7 @@
                   "type": "block",
                   "content": [
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n        ",
                       "start": {
                         "line": 6,
@@ -269,7 +269,7 @@
                           }
                         },
                         {
-                          "type": "propertyDelim",
+                          "type": "propertyDelimiter",
                           "content": ":",
                           "start": {
                             "line": 7,
@@ -300,7 +300,7 @@
                       }
                     },
                     {
-                      "type": "declDelim",
+                      "type": "declarationDelimiter",
                       "content": ";",
                       "start": {
                         "line": 7,
@@ -308,7 +308,7 @@
                       }
                     },
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n    ",
                       "start": {
                         "line": 7,
@@ -328,7 +328,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n\n    ",
               "start": {
                 "line": 8,
@@ -336,7 +336,7 @@
               }
             },
             {
-              "type": "commentML",
+              "type": "multilineComment",
               "content": " comment ",
               "start": {
                 "line": 10,
@@ -344,7 +344,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n\n    ",
               "start": {
                 "line": 10,
@@ -372,7 +372,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 12,
@@ -383,7 +383,7 @@
                   "type": "block",
                   "content": [
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n        ",
                       "start": {
                         "line": 12,
@@ -411,7 +411,7 @@
                           }
                         },
                         {
-                          "type": "propertyDelim",
+                          "type": "propertyDelimiter",
                           "content": ":",
                           "start": {
                             "line": 13,
@@ -419,7 +419,7 @@
                           }
                         },
                         {
-                          "type": "s",
+                          "type": "space",
                           "content": " ",
                           "start": {
                             "line": 13,
@@ -450,7 +450,7 @@
                       }
                     },
                     {
-                      "type": "declDelim",
+                      "type": "declarationDelimiter",
                       "content": ";",
                       "start": {
                         "line": 13,
@@ -458,7 +458,7 @@
                       }
                     },
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n    ",
                       "start": {
                         "line": 13,
@@ -478,7 +478,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n\n    ",
               "start": {
                 "line": 14,
@@ -492,7 +492,7 @@
                   "type": "selector",
                   "content": [
                     {
-                      "type": "simpleselector",
+                      "type": "simpleSelector",
                       "content": [
                         {
                           "type": "ident",
@@ -503,7 +503,7 @@
                           }
                         },
                         {
-                          "type": "s",
+                          "type": "space",
                           "content": " ",
                           "start": {
                             "line": 16,
@@ -526,7 +526,7 @@
                   "type": "block",
                   "content": [
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n        ",
                       "start": {
                         "line": 16,
@@ -554,7 +554,7 @@
                           }
                         },
                         {
-                          "type": "propertyDelim",
+                          "type": "propertyDelimiter",
                           "content": ":",
                           "start": {
                             "line": 17,
@@ -585,7 +585,7 @@
                       }
                     },
                     {
-                      "type": "declDelim",
+                      "type": "declarationDelimiter",
                       "content": ";",
                       "start": {
                         "line": 17,
@@ -593,7 +593,7 @@
                       }
                     },
                     {
-                      "type": "s",
+                      "type": "space",
                       "content": "\n    ",
                       "start": {
                         "line": 17,
@@ -613,7 +613,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 18,
@@ -633,7 +633,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 19,
@@ -647,7 +647,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -658,7 +658,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 21,
@@ -681,7 +681,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 21,
@@ -709,7 +709,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 22,
@@ -740,7 +740,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 22,
@@ -748,7 +748,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 22,

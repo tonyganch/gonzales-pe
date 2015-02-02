@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "commentSL",
+      "type": "singlelineComment",
       "content": " /*",
       "start": {
         "line": 1,
@@ -10,7 +10,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 1,
@@ -18,7 +18,7 @@
       }
     },
     {
-      "type": "commentSL",
+      "type": "singlelineComment",
       "content": " .a { color: rgb(255, 255, 255) }",
       "start": {
         "line": 2,
@@ -26,7 +26,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 2,
@@ -40,7 +40,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -60,7 +60,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 4,
@@ -83,7 +83,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 4,
@@ -111,7 +111,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 4,
@@ -119,7 +119,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 4,
@@ -150,7 +150,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 4,
@@ -170,7 +170,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 4,
@@ -178,7 +178,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 6,
@@ -186,7 +186,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 6,
@@ -194,7 +194,7 @@
       }
     },
     {
-      "type": "commentSL",
+      "type": "singlelineComment",
       "content": " */",
       "start": {
         "line": 7,
@@ -202,7 +202,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 7,
@@ -210,7 +210,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 8,
@@ -218,7 +218,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 8,
@@ -232,7 +232,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -252,7 +252,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 10,
@@ -275,7 +275,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 10,
@@ -303,7 +303,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 10,
@@ -311,7 +311,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 10,
@@ -342,7 +342,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": " ",
               "start": {
                 "line": 10,
@@ -362,7 +362,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n\n",
       "start": {
         "line": 10,
@@ -370,7 +370,7 @@
       }
     },
     {
-      "type": "commentSL",
+      "type": "singlelineComment",
       "content": " something strange",
       "start": {
         "line": 12,

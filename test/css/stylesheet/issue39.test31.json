@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -25,7 +25,7 @@
               }
             },
             {
-              "type": "delim",
+              "type": "delimiter",
               "content": ",",
               "start": {
                 "line": 1,
@@ -33,10 +33,10 @@
               }
             },
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -44,7 +44,7 @@
                   }
                 },
                 {
-                  "type": "pseudoc",
+                  "type": "pseudoClass",
                   "content": [
                     {
                       "type": "ident",
@@ -61,7 +61,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 1,
@@ -84,7 +84,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 1,
@@ -112,7 +112,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 2,
@@ -120,7 +120,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 2,
@@ -168,7 +168,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 2,
@@ -176,7 +176,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 2,
@@ -204,7 +204,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 3,
@@ -212,7 +212,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 3,
@@ -260,7 +260,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 3,
@@ -268,7 +268,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 3,
@@ -288,7 +288,7 @@
       }
     },
     {
-      "type": "s",
+      "type": "space",
       "content": "\n",
       "start": {
         "line": 4,
@@ -302,7 +302,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -319,7 +319,7 @@
               }
             },
             {
-              "type": "delim",
+              "type": "delimiter",
               "content": ",",
               "start": {
                 "line": 5,
@@ -327,10 +327,10 @@
               }
             },
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 5,
@@ -338,7 +338,7 @@
                   }
                 },
                 {
-                  "type": "pseudoc",
+                  "type": "pseudoClass",
                   "content": [
                     {
                       "type": "ident",
@@ -355,7 +355,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 5,
@@ -378,7 +378,7 @@
           "type": "block",
           "content": [
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 5,
@@ -406,7 +406,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 6,
@@ -414,7 +414,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 6,
@@ -462,7 +462,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 6,
@@ -470,7 +470,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n    ",
               "start": {
                 "line": 6,
@@ -498,7 +498,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 7,
@@ -506,7 +506,7 @@
                   }
                 },
                 {
-                  "type": "s",
+                  "type": "space",
                   "content": " ",
                   "start": {
                     "line": 7,
@@ -554,7 +554,7 @@
               }
             },
             {
-              "type": "declDelim",
+              "type": "declarationDelimiter",
               "content": ";",
               "start": {
                 "line": 7,
@@ -562,7 +562,7 @@
               }
             },
             {
-              "type": "s",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 7,

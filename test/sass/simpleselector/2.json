@@ -1,8 +1,8 @@
 {
-  "type": "simpleselector",
+  "type": "simpleSelector",
   "content": [
     {
-      "type": "shash",
+      "type": "id",
       "content": [
         "test"
       ],

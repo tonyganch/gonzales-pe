@@ -1,5 +1,5 @@
 {
-  "type": "commentML",
+  "type": "multilineComment",
   "content": " Tomatos\n      are\n    red",
   "start": {
     "line": 1,

@@ -1,5 +1,5 @@
 {
-  "type": "commentML",
+  "type": "multilineComment",
   "content": "Nice\n  comment",
   "start": {
     "line": 1,

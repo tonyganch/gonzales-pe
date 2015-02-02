@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,
@@ -16,7 +16,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleselector",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "ident",
@@ -27,7 +27,7 @@
                   }
                 },
                 {
-                  "type": "pseudoc",
+                  "type": "pseudoClass",
                   "content": [
                     {
                       "type": "function",
@@ -44,7 +44,7 @@
                           "type": "arguments",
                           "content": [
                             {
-                              "type": "commentML",
+                              "type": "multilineComment",
                               "content": "test",
                               "start": {
                                 "line": 1,
@@ -60,7 +60,7 @@
                               }
                             },
                             {
-                              "type": "commentML",
+                              "type": "multilineComment",
                               "content": "test",
                               "start": {
                                 "line": 1,
@@ -86,7 +86,7 @@
                   }
                 },
                 {
-                  "type": "commentML",
+                  "type": "multilineComment",
                   "content": "test",
                   "start": {
                     "line": 1,
@@ -109,7 +109,7 @@
           "type": "block",
           "content": [
             {
-              "type": "commentML",
+              "type": "multilineComment",
               "content": "test",
               "start": {
                 "line": 1,
@@ -137,7 +137,7 @@
                   }
                 },
                 {
-                  "type": "commentML",
+                  "type": "multilineComment",
                   "content": "test",
                   "start": {
                     "line": 1,
@@ -145,7 +145,7 @@
                   }
                 },
                 {
-                  "type": "propertyDelim",
+                  "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
                     "line": 1,
@@ -153,7 +153,7 @@
                   }
                 },
                 {
-                  "type": "commentML",
+                  "type": "multilineComment",
                   "content": "test",
                   "start": {
                     "line": 1,
@@ -184,7 +184,7 @@
               }
             },
             {
-              "type": "commentML",
+              "type": "multilineComment",
               "content": "test",
               "start": {
                 "line": 1,
@@ -204,7 +204,7 @@
       }
     },
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,

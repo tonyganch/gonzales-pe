@@ -4,7 +4,7 @@
     "[",
     "]",
     {
-      "type": "commentML",
+      "type": "multilineComment",
       "content": "test",
       "start": {
         "line": 1,

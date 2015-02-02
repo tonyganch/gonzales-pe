@@ -19,7 +19,7 @@
       }
     },
     {
-      "type": "filterv",
+      "type": "filterValue",
       "content": [
         {
           "type": "progid",

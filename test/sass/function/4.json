@@ -21,7 +21,7 @@
           }
         },
         {
-          "type": "delim",
+          "type": "delimiter",
           "content": ",",
           "start": {
             "line": 1,
