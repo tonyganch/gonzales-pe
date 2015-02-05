@@ -14,6 +14,7 @@ describe 'sass/simpleselector >>', ->
   it '11', -> this.shouldBeOk()
   it '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
+  it '14', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
