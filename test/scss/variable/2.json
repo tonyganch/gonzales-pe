@@ -1,0 +1,17 @@
+{
+  "type": "variable",
+  "content": [
+    {
+      "type": "ident",
+      "content": "color_0",
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
