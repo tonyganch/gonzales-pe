@@ -7,3 +7,5 @@ describe 'less/ident >>', ->
   it '4', -> this.shouldBeOk()
   it '5', -> this.shouldBeOk()
   it '6', -> this.shouldBeOk()
+  it '7', -> this.shouldBeOk()
+  it '8', -> this.shouldBeOk()

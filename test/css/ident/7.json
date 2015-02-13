@@ -1,0 +1,9 @@
+{
+  "type": "ident",
+  "content": "color-foo",
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
+
