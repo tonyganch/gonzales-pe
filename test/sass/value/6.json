@@ -1,0 +1,42 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "unaryOperator",
+      "content": "-",
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": "100",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "ident",
+          "content": "px",
+          "start": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 2
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
