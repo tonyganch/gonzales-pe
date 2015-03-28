@@ -2496,13 +2496,18 @@ syntaxes.css = {
      * @param {string} css Unparsed part of CSS string
      */
     parseMLComment: function(css) {
-        var start = pos;
+        var start = pos,
+            c, // current character
+            cn; // next character
 
         // Read the string until we meet `*/`.
         // Since we already know first 2 characters (`/*`), start reading
-        // from `pos + 2`:
-        for (pos = pos + 2; pos < css.length; pos++) {
-            if (css.charAt(pos) === '*' && css.charAt(pos + 1) === '/') {
+        // from `pos + 2`:var start = pos, c, cn;
+        for (pos = pos + 2; pos &lt; css.length; pos++) {
+            c = css.charAt(pos);
+            cn = css.charAt(pos + 1);
+            if (c === '\n' || c === '\r') ln++;
+            if (c === '*' && cn === '/') {
                 pos++;
                 break;
             }
