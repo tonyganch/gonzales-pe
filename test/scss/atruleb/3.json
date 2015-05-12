@@ -1,0 +1,76 @@
+{
+  "type": "atruleb",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "media",
+          "start": {
+            "line": 1,
+            "column": 2
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "medium",
+              "start": {
+                "line": 1,
+                "column": 11
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "start": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "block",
+      "content": [],
+      "start": {
+        "line": 1,
+        "column": 19
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
