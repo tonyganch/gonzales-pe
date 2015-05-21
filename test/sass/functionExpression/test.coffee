@@ -1,4 +1,4 @@
-describe 'sass/functionExpression >>', ->
+describe.skip 'sass/functionExpression >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()

@@ -1,4 +1,4 @@
-describe 'scss/functionExpression >>', ->
+describe.skip 'scss/functionExpression >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()

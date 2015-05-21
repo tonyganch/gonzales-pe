@@ -13,18 +13,30 @@
               "start": {
                 "line": 1,
                 "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 3
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 3
           }
         },
         {
           "type": "space",
           "content": " ",
           "start": {
+            "line": 1,
+            "column": 4
+          },
+          "end": {
             "line": 1,
             "column": 4
           }
@@ -35,12 +47,20 @@
           "start": {
             "line": 1,
             "column": 5
+          },
+          "end": {
+            "line": 1,
+            "column": 5
           }
         },
         {
           "type": "space",
           "content": " ",
           "start": {
+            "line": 1,
+            "column": 6
+          },
+          "end": {
             "line": 1,
             "column": 6
           }
@@ -51,12 +71,20 @@
           "start": {
             "line": 1,
             "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 7
           }
         },
         {
           "type": "space",
           "content": " ",
           "start": {
+            "line": 1,
+            "column": 8
+          },
+          "end": {
             "line": 1,
             "column": 8
           }
@@ -67,18 +95,30 @@
           "start": {
             "line": 1,
             "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 9
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 9
       }
     },
     {
       "type": "space",
       "content": " ",
       "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
         "line": 1,
         "column": 10
       }
@@ -90,6 +130,10 @@
           "type": "space",
           "content": " ",
           "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
             "line": 1,
             "column": 12
           }
@@ -106,12 +150,20 @@
                   "start": {
                     "line": 1,
                     "column": 13
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 17
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 17
               }
             },
             {
@@ -120,12 +172,20 @@
               "start": {
                 "line": 1,
                 "column": 18
+              },
+              "end": {
+                "line": 1,
+                "column": 18
               }
             },
             {
               "type": "space",
               "content": " ",
               "start": {
+                "line": 1,
+                "column": 19
+              },
+              "end": {
                 "line": 1,
                 "column": 19
               }
@@ -139,24 +199,40 @@
                   "start": {
                     "line": 1,
                     "column": 20
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 25
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 20
+              },
+              "end": {
+                "line": 1,
+                "column": 25
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 13
+          },
+          "end": {
+            "line": 1,
+            "column": 25
           }
         },
         {
           "type": "declarationDelimiter",
           "content": ";",
           "start": {
+            "line": 1,
+            "column": 26
+          },
+          "end": {
             "line": 1,
             "column": 26
           }
@@ -167,17 +243,29 @@
           "start": {
             "line": 1,
             "column": 27
+          },
+          "end": {
+            "line": 1,
+            "column": 27
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 28
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 28
   }
 }

@@ -7,6 +7,10 @@
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 8
       }
     },
     {
@@ -24,6 +28,10 @@
                   "start": {
                     "line": 1,
                     "column": 9
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 9
                   }
                 },
                 {
@@ -35,6 +43,10 @@
                       "start": {
                         "line": 1,
                         "column": 11
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 18
                       }
                     },
                     {
@@ -43,6 +55,10 @@
                       "start": {
                         "line": 1,
                         "column": 19
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 21
                       }
                     },
                     {
@@ -51,12 +67,20 @@
                       "start": {
                         "line": 1,
                         "column": 22
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 29
                       }
                     },
                     {
                       "type": "attributeSelector",
                       "content": "=",
                       "start": {
+                        "line": 1,
+                        "column": 30
+                      },
+                      "end": {
                         "line": 1,
                         "column": 30
                       }
@@ -67,6 +91,10 @@
                       "start": {
                         "line": 1,
                         "column": 31
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 38
                       }
                     },
                     {
@@ -75,6 +103,10 @@
                       "start": {
                         "line": 1,
                         "column": 39
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 44
                       }
                     },
                     {
@@ -83,12 +115,20 @@
                       "start": {
                         "line": 1,
                         "column": 45
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 52
                       }
                     }
                   ],
                   "start": {
                     "line": 1,
                     "column": 10
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 53
                   }
                 },
                 {
@@ -97,18 +137,30 @@
                   "start": {
                     "line": 1,
                     "column": 54
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 61
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 61
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 61
           }
         },
         {
@@ -120,6 +172,10 @@
               "start": {
                 "line": 1,
                 "column": 63
+              },
+              "end": {
+                "line": 1,
+                "column": 70
               }
             },
             {
@@ -134,10 +190,18 @@
                       "start": {
                         "line": 1,
                         "column": 71
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 71
                       }
                     }
                   ],
                   "start": {
+                    "line": 1,
+                    "column": 71
+                  },
+                  "end": {
                     "line": 1,
                     "column": 71
                   }
@@ -148,12 +212,20 @@
                   "start": {
                     "line": 1,
                     "column": 72
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 79
                   }
                 },
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
                   "start": {
+                    "line": 1,
+                    "column": 80
+                  },
+                  "end": {
                     "line": 1,
                     "column": 80
                   }
@@ -164,6 +236,10 @@
                   "start": {
                     "line": 1,
                     "column": 81
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 88
                   }
                 },
                 {
@@ -175,10 +251,18 @@
                       "start": {
                         "line": 1,
                         "column": 89
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 89
                       }
                     }
                   ],
                   "start": {
+                    "line": 1,
+                    "column": 89
+                  },
+                  "end": {
                     "line": 1,
                     "column": 89
                   }
@@ -187,6 +271,10 @@
               "start": {
                 "line": 1,
                 "column": 71
+              },
+              "end": {
+                "line": 1,
+                "column": 89
               }
             },
             {
@@ -195,18 +283,30 @@
               "start": {
                 "line": 1,
                 "column": 90
+              },
+              "end": {
+                "line": 1,
+                "column": 97
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 62
+          },
+          "end": {
+            "line": 1,
+            "column": 98
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 98
       }
     },
     {
@@ -215,11 +315,19 @@
       "start": {
         "line": 1,
         "column": 99
+      },
+      "end": {
+        "line": 1,
+        "column": 106
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 106
   }
 }

@@ -7,12 +7,20 @@
       "start": {
         "line": 1,
         "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 3
       }
     },
     {
       "type": "declarationDelimiter",
       "content": ";",
       "start": {
+        "line": 1,
+        "column": 4
+      },
+      "end": {
         "line": 1,
         "column": 4
       }
@@ -23,11 +31,19 @@
       "start": {
         "line": 1,
         "column": 5
+      },
+      "end": {
+        "line": 1,
+        "column": 6
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 7
   }
 }

@@ -3,6 +3,10 @@
   "content": " Tomatos\n      are\n    red",
   "start": {
     "line": 1,
-    "column": 0
+    "column": 1
+  },
+  "end": {
+    "line": 3,
+    "column": 7
   }
 }

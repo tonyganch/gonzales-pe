@@ -10,6 +10,10 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 3
           }
         },
         {
@@ -21,12 +25,20 @@
               "start": {
                 "line": 1,
                 "column": 5
+              },
+              "end": {
+                "line": 1,
+                "column": 7
               }
             },
             {
               "type": "operator",
               "content": ",",
               "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
                 "line": 1,
                 "column": 8
               }
@@ -37,12 +49,20 @@
               "start": {
                 "line": 1,
                 "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 9
               }
             },
             {
               "type": "operator",
               "content": ",",
               "start": {
+                "line": 1,
+                "column": 10
+              },
+              "end": {
                 "line": 1,
                 "column": 10
               }
@@ -53,23 +73,39 @@
               "start": {
                 "line": 1,
                 "column": 11
+              },
+              "end": {
+                "line": 1,
+                "column": 11
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 4
+          },
+          "end": {
+            "line": 1,
+            "column": 12
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 12
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 12
   }
 }
