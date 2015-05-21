@@ -7,6 +7,10 @@
       "start": {
         "line": 1,
         "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 9
       }
     },
     {
@@ -21,10 +25,18 @@
               "start": {
                 "line": 1,
                 "column": 10
+              },
+              "end": {
+                "line": 1,
+                "column": 10
               }
             }
           ],
           "start": {
+            "line": 1,
+            "column": 10
+          },
+          "end": {
             "line": 1,
             "column": 10
           }
@@ -33,6 +45,10 @@
           "type": "propertyDelimiter",
           "content": ":",
           "start": {
+            "line": 1,
+            "column": 11
+          },
+          "end": {
             "line": 1,
             "column": 11
           }
@@ -46,10 +62,18 @@
               "start": {
                 "line": 1,
                 "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 12
               }
             }
           ],
           "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
             "line": 1,
             "column": 12
           }
@@ -58,6 +82,10 @@
       "start": {
         "line": 1,
         "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 12
       }
     },
     {
@@ -66,11 +94,19 @@
       "start": {
         "line": 1,
         "column": 13
+      },
+      "end": {
+        "line": 1,
+        "column": 20
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 21
   }
 }

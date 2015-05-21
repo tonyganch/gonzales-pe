@@ -13,6 +13,10 @@
               "start": {
                 "line": 1,
                 "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
               }
             },
             {
@@ -21,17 +25,29 @@
               "start": {
                 "line": 1,
                 "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 1
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 1
           }
         }
       ],
       "start": {
         "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 2,
         "column": 1
       }
     },
@@ -44,6 +60,10 @@
           "start": {
             "line": 2,
             "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 2
           }
         },
         {
@@ -58,10 +78,18 @@
                   "start": {
                     "line": 2,
                     "column": 3
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 3
                   }
                 }
               ],
               "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
                 "line": 2,
                 "column": 3
               }
@@ -70,6 +98,10 @@
               "type": "propertyDelimiter",
               "content": ":",
               "start": {
+                "line": 2,
+                "column": 4
+              },
+              "end": {
                 "line": 2,
                 "column": 4
               }
@@ -83,29 +115,49 @@
                   "start": {
                     "line": 2,
                     "column": 5
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 10
                   }
                 }
               ],
               "start": {
                 "line": 2,
                 "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 10
               }
             }
           ],
           "start": {
             "line": 2,
             "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 10
           }
         }
       ],
       "start": {
         "line": 2,
         "column": 1
+      },
+      "end": {
+        "line": 2,
+        "column": 10
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 2,
+    "column": 10
   }
 }

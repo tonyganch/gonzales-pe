@@ -7,6 +7,10 @@
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 9
       }
     },
     {
@@ -15,6 +19,10 @@
       "start": {
         "line": 1,
         "column": 12
+      },
+      "end": {
+        "line": 1,
+        "column": 19
       }
     },
     {
@@ -23,6 +31,10 @@
       "start": {
         "line": 1,
         "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 21
       }
     },
     {
@@ -31,12 +43,20 @@
       "start": {
         "line": 1,
         "column": 22
+      },
+      "end": {
+        "line": 1,
+        "column": 29
       }
     },
     {
       "type": "unaryOperator",
       "content": "+",
       "start": {
+        "line": 1,
+        "column": 30
+      },
+      "end": {
         "line": 1,
         "column": 30
       }
@@ -47,12 +67,20 @@
       "start": {
         "line": 1,
         "column": 31
+      },
+      "end": {
+        "line": 1,
+        "column": 38
       }
     },
     {
       "type": "nth",
       "content": "1",
       "start": {
+        "line": 1,
+        "column": 39
+      },
+      "end": {
         "line": 1,
         "column": 39
       }
@@ -63,11 +91,19 @@
       "start": {
         "line": 1,
         "column": 40
+      },
+      "end": {
+        "line": 1,
+        "column": 47
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 48
   }
 }

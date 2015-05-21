@@ -7,12 +7,20 @@
       "start": {
         "line": 1,
         "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 2
       }
     },
     {
       "type": "operator",
       "content": ",",
       "start": {
+        "line": 1,
+        "column": 3
+      },
+      "end": {
         "line": 1,
         "column": 3
       }
@@ -23,12 +31,20 @@
       "start": {
         "line": 1,
         "column": 4
+      },
+      "end": {
+        "line": 1,
+        "column": 4
       }
     },
     {
       "type": "number",
       "content": "2",
       "start": {
+        "line": 1,
+        "column": 5
+      },
+      "end": {
         "line": 1,
         "column": 5
       }
@@ -39,12 +55,20 @@
       "start": {
         "line": 1,
         "column": 6
+      },
+      "end": {
+        "line": 1,
+        "column": 6
       }
     },
     {
       "type": "space",
       "content": " ",
       "start": {
+        "line": 1,
+        "column": 7
+      },
+      "end": {
         "line": 1,
         "column": 7
       }
@@ -55,12 +79,20 @@
       "start": {
         "line": 1,
         "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 8
       }
     },
     {
       "type": "declarationDelimiter",
       "content": ";",
       "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
         "line": 1,
         "column": 9
       }
@@ -71,6 +103,10 @@
       "start": {
         "line": 1,
         "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 10
       }
     },
     {
@@ -79,12 +115,20 @@
       "start": {
         "line": 1,
         "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 19
       }
     },
     {
       "type": "operator",
       "content": ",",
       "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
         "line": 1,
         "column": 20
       }
@@ -95,6 +139,10 @@
       "start": {
         "line": 1,
         "column": 21
+      },
+      "end": {
+        "line": 1,
+        "column": 21
       }
     },
     {
@@ -103,11 +151,19 @@
       "start": {
         "line": 1,
         "column": 22
+      },
+      "end": {
+        "line": 1,
+        "column": 25
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 26
   }
 }

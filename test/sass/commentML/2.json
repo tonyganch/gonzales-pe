@@ -3,6 +3,10 @@
   "content": "Nice\n  comment",
   "start": {
     "line": 1,
-    "column": 0
+    "column": 1
+  },
+  "end": {
+    "line": 2,
+    "column": 9
   }
 }
