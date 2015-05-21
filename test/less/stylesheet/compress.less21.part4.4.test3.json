@@ -13,18 +13,30 @@
               "start": {
                 "line": 1,
                 "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 8
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 8
           }
         },
         {
           "type": "space",
           "content": " ",
           "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
             "line": 1,
             "column": 9
           }
@@ -35,18 +47,30 @@
           "start": {
             "line": 1,
             "column": 10
+          },
+          "end": {
+            "line": 1,
+            "column": 16
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 16
       }
     },
     {
       "type": "declarationDelimiter",
       "content": ";",
       "start": {
+        "line": 1,
+        "column": 17
+      },
+      "end": {
         "line": 1,
         "column": 17
       }
@@ -57,6 +81,10 @@
       "start": {
         "line": 1,
         "column": 18
+      },
+      "end": {
+        "line": 2,
+        "column": 17
       }
     },
     {
@@ -71,18 +99,30 @@
               "start": {
                 "line": 2,
                 "column": 2
+              },
+              "end": {
+                "line": 2,
+                "column": 8
               }
             }
           ],
           "start": {
             "line": 2,
             "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 8
           }
         },
         {
           "type": "space",
           "content": " ",
           "start": {
+            "line": 2,
+            "column": 9
+          },
+          "end": {
             "line": 2,
             "column": 9
           }
@@ -93,12 +133,20 @@
           "start": {
             "line": 2,
             "column": 10
+          },
+          "end": {
+            "line": 2,
+            "column": 16
           }
         }
       ],
       "start": {
         "line": 2,
         "column": 1
+      },
+      "end": {
+        "line": 2,
+        "column": 16
       }
     },
     {
@@ -107,11 +155,19 @@
       "start": {
         "line": 2,
         "column": 17
+      },
+      "end": {
+        "line": 2,
+        "column": 17
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 2,
+    "column": 17
   }
 }

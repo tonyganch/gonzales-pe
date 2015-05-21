@@ -1,0 +1,12 @@
+{
+  "type": "multilineComment",
+  "content": "*\n * test\n",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 3,
+    "column": 2
+  }
+}

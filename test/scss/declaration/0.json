@@ -10,10 +10,18 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
           }
         }
       ],
       "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
         "line": 1,
         "column": 1
       }
@@ -22,6 +30,10 @@
       "type": "propertyDelimiter",
       "content": ":",
       "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
         "line": 1,
         "column": 2
       }
@@ -35,10 +47,18 @@
           "start": {
             "line": 1,
             "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 3
           }
         }
       ],
       "start": {
+        "line": 1,
+        "column": 3
+      },
+      "end": {
         "line": 1,
         "column": 3
       }
@@ -47,5 +67,9 @@
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 3
   }
 }

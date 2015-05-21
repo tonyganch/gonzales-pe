@@ -64,13 +64,12 @@ function logAndThrow(e, message) {
     var expected = JSON.stringify(e.expected, false, 2);
     var actual = JSON.stringify(e.actual, false, 2);
 
-    message = '\n' + message + '\n\nExpected:\n' + expected +
-        '\n\nResult:\n' + actual;
+    e.message = message;
 
     fs.appendFile(expectedLogPath, expected + '\n\n\n', function(){});
     fs.appendFile(resultLogPath, actual + '\n\n\n', function(){});
 
-    throw { message: message };
+    throw e;
 }
 
 module.exports = function(mocha) {

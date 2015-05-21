@@ -16,24 +16,40 @@
                   "start": {
                     "line": 1,
                     "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 5
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 5
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 5
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 5
       }
     },
     {
@@ -51,12 +67,20 @@
                   "start": {
                     "line": 1,
                     "column": 7
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 12
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 12
               }
             },
             {
@@ -71,30 +95,50 @@
                       "start": {
                         "line": 1,
                         "column": 14
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 121
                       }
                     }
                   ],
                   "start": {
                     "line": 1,
                     "column": 14
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 121
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 14
+              },
+              "end": {
+                "line": 1,
+                "column": 121
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 121
           }
         },
         {
           "type": "declarationDelimiter",
           "content": ";",
           "start": {
+            "line": 1,
+            "column": 122
+          },
+          "end": {
             "line": 1,
             "column": 122
           }
@@ -111,18 +155,30 @@
                   "start": {
                     "line": 1,
                     "column": 123
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 127
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 123
+              },
+              "end": {
+                "line": 1,
+                "column": 127
               }
             },
             {
               "type": "propertyDelimiter",
               "content": ":",
               "start": {
+                "line": 1,
+                "column": 128
+              },
+              "end": {
                 "line": 1,
                 "column": 128
               }
@@ -136,29 +192,49 @@
                   "start": {
                     "line": 1,
                     "column": 129
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 131
                   }
                 }
               ],
               "start": {
                 "line": 1,
                 "column": 129
+              },
+              "end": {
+                "line": 1,
+                "column": 131
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 123
+          },
+          "end": {
+            "line": 1,
+            "column": 131
           }
         }
       ],
       "start": {
         "line": 1,
         "column": 6
+      },
+      "end": {
+        "line": 1,
+        "column": 132
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 132
   }
 }

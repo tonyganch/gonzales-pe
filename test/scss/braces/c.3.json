@@ -9,12 +9,20 @@
       "start": {
         "line": 1,
         "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 9
       }
     },
     {
       "type": "ident",
       "content": "x",
       "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
         "line": 1,
         "column": 10
       }
@@ -25,12 +33,20 @@
       "start": {
         "line": 1,
         "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 18
       }
     },
     {
       "type": "unaryOperator",
       "content": "+",
       "start": {
+        "line": 1,
+        "column": 19
+      },
+      "end": {
         "line": 1,
         "column": 19
       }
@@ -41,12 +57,20 @@
       "start": {
         "line": 1,
         "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 27
       }
     },
     {
       "type": "number",
       "content": "1",
       "start": {
+        "line": 1,
+        "column": 28
+      },
+      "end": {
         "line": 1,
         "column": 28
       }
@@ -57,11 +81,19 @@
       "start": {
         "line": 1,
         "column": 29
+      },
+      "end": {
+        "line": 1,
+        "column": 36
       }
     }
   ],
   "start": {
     "line": 1,
     "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 37
   }
 }
