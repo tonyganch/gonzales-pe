@@ -6,6 +6,7 @@ var path = require('path');
 require('coffee-script/register');
 
 var mocha = new Mocha();
+mocha.reporter('dot');
 var expectedLogPath, resultLogPath;
 
 function clearLogFiles() {
