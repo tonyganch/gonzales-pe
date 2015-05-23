@@ -1,5 +1,6 @@
 var Mocha = require('mocha');
 var mocha = new Mocha();
+mocha.reporter('dot');
 mocha.addFile('test/parsing-error');
 mocha.addFile('test/node');
 mocha.run(function(failures) {
