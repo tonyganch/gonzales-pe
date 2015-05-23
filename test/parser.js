@@ -1,12 +1,9 @@
 var gonzales = require('./..');
 var assert = require('assert');
 var fs = require('fs');
-var Mocha = require('mocha');
 var path = require('path');
 require('coffee-script/register');
 
-var mocha = new Mocha();
-mocha.reporter('dot');
 var expectedLogPath, resultLogPath;
 
 function clearLogFiles() {
@@ -18,7 +15,7 @@ function clearLogFiles() {
 }
 
 // Tell mocha which tests to run:
-function addTestFiles() {
+function addTestFiles(mocha) {
     var syntaxDirs = ['test/css', 'test/less', 'test/sass', 'test/scss'];
     syntaxDirs.forEach(function(syntaxDir) {
         fs.readdirSync(syntaxDir).forEach(function(testDir) {
@@ -76,19 +73,11 @@ function logAndThrow(e, message) {
     throw { message: message };
 }
 
-function runTests() {
-    mocha.run(function(failures) {
-        process.on('exit', function() {
-            process.exit(failures);
-        });
+module.exports = function(mocha) {
+    mocha.suite.beforeEach(function() {
+        this.shouldBeOk = shouldBeOk;
     });
-}
 
-mocha.suite.beforeEach(function() {
-    this.shouldBeOk = shouldBeOk;
-});
-
-clearLogFiles();
-addTestFiles();
-runTests();
-
+    clearLogFiles();
+    addTestFiles(mocha);
+};
