@@ -1,0 +1,52 @@
+{
+  "type": "interpolation",
+  "content": [
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "length",
+          "start": {
+            "line": 1,
+            "column": 3
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color-cycle",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  }
+                }
+              ],
+              "start": {
+                "line": 1,
+                "column": 10
+              }
+            }
+          ],
+          "start": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "start": {
+    "line": 1,
+    "column": 1
+  }
+}
