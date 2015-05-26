@@ -224,7 +224,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 2,
                         "column": 21
@@ -510,7 +510,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 5,
                         "column": 23

@@ -175,7 +175,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 2,
                         "column": 22
@@ -335,7 +335,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 3,
                         "column": 24
@@ -495,7 +495,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 4,
                         "column": 25
@@ -655,7 +655,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 5,
                         "column": 23
