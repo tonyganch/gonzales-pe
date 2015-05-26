@@ -125,10 +125,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -189,10 +187,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -253,10 +249,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -317,10 +311,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -381,10 +373,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -445,10 +435,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -509,10 +497,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -573,10 +559,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -724,10 +708,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -788,10 +770,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -852,10 +832,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -916,10 +894,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -980,10 +956,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1044,10 +1018,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1108,10 +1080,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1172,10 +1142,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1323,10 +1291,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1387,10 +1353,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1451,10 +1415,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1515,10 +1477,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1579,10 +1539,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1643,10 +1601,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1707,10 +1663,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1771,10 +1725,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -1922,10 +1874,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": "0.0",
@@ -1961,10 +1911,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": "0.",
@@ -2000,10 +1948,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": "0.0000",
@@ -2039,10 +1985,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": ".0",
@@ -2078,10 +2022,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": ".000",
@@ -2117,10 +2059,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": "000",
@@ -2243,10 +2183,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2307,10 +2245,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2371,10 +2307,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "percentage",
                           "content": [
@@ -2423,10 +2357,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "percentage",
                           "content": [
@@ -2475,10 +2407,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "percentage",
                           "content": [
@@ -2527,10 +2457,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2591,10 +2519,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2655,10 +2581,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2719,10 +2643,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2870,10 +2792,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2934,10 +2854,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -2998,10 +2916,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3062,10 +2978,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3126,10 +3040,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3190,10 +3102,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3341,10 +3251,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3405,10 +3313,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3469,10 +3375,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3533,10 +3437,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3597,10 +3499,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3661,10 +3561,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3725,10 +3623,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3789,10 +3685,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -3940,10 +3834,8 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "dimension",
                           "content": [
@@ -4004,10 +3896,8 @@
                       }
                     },
                     {
-                      "type": "braces",
+                      "type": "parentheses",
                       "content": [
-                        "(",
-                        ")",
                         {
                           "type": "number",
                           "content": "010.00",

@@ -50,10 +50,8 @@
       }
     },
     {
-      "type": "braces",
+      "type": "parentheses",
       "content": [
-        "(",
-        ")",
         {
           "type": "variable",
           "content": [
