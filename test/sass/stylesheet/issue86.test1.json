@@ -34,18 +34,6 @@
                     "line": 1,
                     "column": 8
                   }
-                },
-                {
-                  "type": "space",
-                  "content": "\n",
-                  "start": {
-                    "line": 1,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 9
-                  }
                 }
               ],
               "start": {
@@ -54,13 +42,25 @@
               },
               "end": {
                 "line": 1,
-                "column": 9
+                "column": 8
               }
             }
           ],
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "start": {
+            "line": 1,
+            "column": 9
           },
           "end": {
             "line": 1,
