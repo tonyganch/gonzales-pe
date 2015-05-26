@@ -163,7 +163,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 2,
                         "column": 29
@@ -399,7 +399,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 5,
                         "column": 22
@@ -635,7 +635,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 8,
                         "column": 24
@@ -871,7 +871,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 11,
                         "column": 24
@@ -1179,7 +1179,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 14,
                         "column": 48
