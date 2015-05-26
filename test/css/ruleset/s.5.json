@@ -179,7 +179,7 @@
           }
         },
         {
-          "type": "filter",
+          "type": "declaration",
           "content": [
             {
               "type": "property",
@@ -207,39 +207,38 @@
               }
             },
             {
-              "type": "filterValue",
+              "type": "propertyDelimiter",
+              "content": ":",
+              "start": {
+                "line": 3,
+                "column": 11
+              },
+              "end": {
+                "line": 3,
+                "column": 11
+              }
+            },
+            {
+              "type": "value",
               "content": [
                 {
                   "type": "progid",
-                  "content": [
-                    {
-                      "type": "raw",
-                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
-                      "start": {
-                        "line": 3,
-                        "column": 12
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 119
-                      }
-                    },
-                    {
-                      "type": "space",
-                      "content": "\n           ",
-                      "start": {
-                        "line": 3,
-                        "column": 120
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 130
-                      }
-                    }
-                  ],
+                  "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
                   "start": {
                     "line": 3,
                     "column": 12
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 119
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": "\n           ",
+                  "start": {
+                    "line": 3,
+                    "column": 120
                   },
                   "end": {
                     "line": 4,
@@ -248,38 +247,13 @@
                 },
                 {
                   "type": "progid",
-                  "content": [
-                    {
-                      "type": "raw",
-                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')",
-                      "start": {
-                        "line": 4,
-                        "column": 12
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 97
-                      }
-                    },
-                    {
-                      "type": "space",
-                      "content": "\n",
-                      "start": {
-                        "line": 4,
-                        "column": 98
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 97
-                      }
-                    }
-                  ],
+                  "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='test')",
                   "start": {
                     "line": 4,
                     "column": 12
                   },
                   "end": {
-                    "line": 5,
+                    "line": 4,
                     "column": 97
                   }
                 }
@@ -289,7 +263,7 @@
                 "column": 12
               },
               "end": {
-                "line": 5,
+                "line": 4,
                 "column": 97
               }
             }
@@ -297,6 +271,18 @@
           "start": {
             "line": 3,
             "column": 5
+          },
+          "end": {
+            "line": 4,
+            "column": 97
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "start": {
+            "line": 4,
+            "column": 98
           },
           "end": {
             "line": 5,
