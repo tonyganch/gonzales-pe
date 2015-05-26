@@ -1,4 +1,4 @@
-describe.skip 'css/filter >>', ->
+describe 'css/filter >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
