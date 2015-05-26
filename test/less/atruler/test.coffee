@@ -8,7 +8,7 @@ describe 'less/atruler >>', ->
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()
 
-  it.skip 'keyframes.0', -> this.shouldBeOk()
+  it 'keyframes.0', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
