@@ -1,14 +1,12 @@
 {
   "type": "functionExpression",
-  "content": [
-    "\n// )\n"
-  ],
+  "content": "\n// )\n",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
-    "line": 1,
+    "line": 3,
     "column": 1
   }
 }
