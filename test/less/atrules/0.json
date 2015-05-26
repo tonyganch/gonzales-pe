@@ -111,10 +111,8 @@
       }
     },
     {
-      "type": "braces",
+      "type": "parentheses",
       "content": [
-        "(",
-        ")",
         {
           "type": "ident",
           "content": "max-width",
