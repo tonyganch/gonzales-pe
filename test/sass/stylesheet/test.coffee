@@ -7,6 +7,7 @@ describe 'sass/stylesheet >>', ->
   it '4', -> this.shouldBeOk()
   it '5', -> this.shouldBeOk()
   it '6', -> this.shouldBeOk()
+  it '7', -> this.shouldBeOk()
 
   it 'c.0', -> this.shouldBeOk()
 
