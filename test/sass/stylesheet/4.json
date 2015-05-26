@@ -30,8 +30,8 @@
                     "column": 2
                   },
                   "end": {
-                    "line": 2,
-                    "column": 1
+                    "line": 1,
+                    "column": 2
                   }
                 }
               ],
@@ -40,8 +40,8 @@
                 "column": 1
               },
               "end": {
-                "line": 2,
-                "column": 1
+                "line": 1,
+                "column": 2
               }
             }
           ],
@@ -50,8 +50,8 @@
             "column": 1
           },
           "end": {
-            "line": 2,
-            "column": 1
+            "line": 1,
+            "column": 2
           }
         },
         {
@@ -152,8 +152,8 @@
                 "column": 6
               },
               "end": {
-                "line": 3,
-                "column": 5
+                "line": 2,
+                "column": 6
               }
             }
           ],
@@ -162,8 +162,8 @@
             "column": 1
           },
           "end": {
-            "line": 3,
-            "column": 5
+            "line": 2,
+            "column": 6
           }
         }
       ],
@@ -172,8 +172,8 @@
         "column": 1
       },
       "end": {
-        "line": 3,
-        "column": 5
+        "line": 2,
+        "column": 6
       }
     },
     {

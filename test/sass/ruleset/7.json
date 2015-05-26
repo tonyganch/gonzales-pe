@@ -49,8 +49,8 @@
             "column": 4
           },
           "end": {
-            "line": 2,
-            "column": 3
+            "line": 1,
+            "column": 4
           }
         },
         {
@@ -76,8 +76,8 @@
                 "column": 3
               },
               "end": {
-                "line": 3,
-                "column": 2
+                "line": 2,
+                "column": 3
               }
             }
           ],
@@ -86,8 +86,8 @@
             "column": 1
           },
           "end": {
-            "line": 3,
-            "column": 2
+            "line": 2,
+            "column": 3
           }
         }
       ],
@@ -96,8 +96,8 @@
         "column": 1
       },
       "end": {
-        "line": 3,
-        "column": 2
+        "line": 2,
+        "column": 3
       }
     },
     {
@@ -198,8 +198,8 @@
             "column": 8
           },
           "end": {
-            "line": 4,
-            "column": 7
+            "line": 3,
+            "column": 8
           }
         },
         {

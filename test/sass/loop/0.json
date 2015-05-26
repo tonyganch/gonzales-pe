@@ -106,8 +106,8 @@
         "column": 13
       },
       "end": {
-        "line": 2,
-        "column": 12
+        "line": 1,
+        "column": 13
       }
     },
     {
@@ -154,8 +154,8 @@
                         "column": 4
                       },
                       "end": {
-                        "line": 3,
-                        "column": 3
+                        "line": 2,
+                        "column": 4
                       }
                     }
                   ],
@@ -164,8 +164,8 @@
                     "column": 3
                   },
                   "end": {
-                    "line": 3,
-                    "column": 3
+                    "line": 2,
+                    "column": 4
                   }
                 }
               ],
@@ -174,8 +174,8 @@
                 "column": 3
               },
               "end": {
-                "line": 3,
-                "column": 3
+                "line": 2,
+                "column": 4
               }
             },
             {

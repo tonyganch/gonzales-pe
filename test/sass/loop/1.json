@@ -167,8 +167,8 @@
         "column": 25
       },
       "end": {
-        "line": 2,
-        "column": 24
+        "line": 1,
+        "column": 25
       }
     },
     {
@@ -215,8 +215,8 @@
                         "column": 4
                       },
                       "end": {
-                        "line": 3,
-                        "column": 3
+                        "line": 2,
+                        "column": 4
                       }
                     }
                   ],
@@ -225,8 +225,8 @@
                     "column": 3
                   },
                   "end": {
-                    "line": 3,
-                    "column": 3
+                    "line": 2,
+                    "column": 4
                   }
                 }
               ],
@@ -235,8 +235,8 @@
                 "column": 3
               },
               "end": {
-                "line": 3,
-                "column": 3
+                "line": 2,
+                "column": 4
               }
             },
             {
