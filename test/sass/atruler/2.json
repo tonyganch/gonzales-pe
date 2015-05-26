@@ -232,18 +232,6 @@
                         "line": 2,
                         "column": 3
                       }
-                    },
-                    {
-                      "type": "space",
-                      "content": "\n",
-                      "start": {
-                        "line": 2,
-                        "column": 4
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 4
-                      }
                     }
                   ],
                   "start": {
@@ -252,13 +240,25 @@
                   },
                   "end": {
                     "line": 2,
-                    "column": 4
+                    "column": 3
                   }
                 }
               ],
               "start": {
                 "line": 2,
                 "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "start": {
+                "line": 2,
+                "column": 4
               },
               "end": {
                 "line": 2,
