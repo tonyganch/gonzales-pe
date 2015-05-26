@@ -26,10 +26,8 @@
       }
     },
     {
-      "type": "braces",
+      "type": "parentheses",
       "content": [
-        "(",
-        ")",
         {
           "type": "function",
           "content": [
@@ -140,10 +138,8 @@
       }
     },
     {
-      "type": "braces",
+      "type": "parentheses",
       "content": [
-        "(",
-        ")",
         {
           "type": "variable",
           "content": [

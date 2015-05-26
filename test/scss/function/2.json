@@ -17,10 +17,8 @@
       "type": "arguments",
       "content": [
         {
-          "type": "braces",
+          "type": "parentheses",
           "content": [
-            "(",
-            ")",
             {
               "type": "number",
               "content": "5",
