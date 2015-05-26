@@ -1,7 +1,18 @@
 {
   "type": "id",
   "content": [
-    "100"
+    {
+      "type": "ident",
+      "content": "100",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 4
+      }
+    }
   ],
   "start": {
     "line": 1,
