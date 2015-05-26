@@ -30,8 +30,8 @@
                     "column": 2
                   },
                   "end": {
-                    "line": 2,
-                    "column": 1
+                    "line": 1,
+                    "column": 2
                   }
                 }
               ],
@@ -40,8 +40,8 @@
                 "column": 1
               },
               "end": {
-                "line": 2,
-                "column": 1
+                "line": 1,
+                "column": 2
               }
             }
           ],
@@ -50,8 +50,8 @@
             "column": 1
           },
           "end": {
-            "line": 2,
-            "column": 1
+            "line": 1,
+            "column": 2
           }
         },
         {
@@ -164,8 +164,8 @@
                 "column": 16
               },
               "end": {
-                "line": 3,
-                "column": 15
+                "line": 2,
+                "column": 16
               }
             },
             {
@@ -176,8 +176,8 @@
                 "column": 1
               },
               "end": {
-                "line": 4,
-                "column": 0
+                "line": 3,
+                "column": 1
               }
             },
             {
@@ -221,8 +221,8 @@
                             "column": 4
                           },
                           "end": {
-                            "line": 5,
-                            "column": 3
+                            "line": 4,
+                            "column": 4
                           }
                         }
                       ],
@@ -231,8 +231,8 @@
                         "column": 3
                       },
                       "end": {
-                        "line": 5,
-                        "column": 3
+                        "line": 4,
+                        "column": 4
                       }
                     }
                   ],
@@ -241,8 +241,8 @@
                     "column": 3
                   },
                   "end": {
-                    "line": 5,
-                    "column": 3
+                    "line": 4,
+                    "column": 4
                   }
                 },
                 {
