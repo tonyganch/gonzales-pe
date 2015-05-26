@@ -1,4 +1,4 @@
-describe.skip 'less/functionExpression >>', ->
+describe 'less/functionExpression >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
