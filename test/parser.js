@@ -29,6 +29,7 @@ function shouldBeOk() {
     var testDir = path.dirname(this.test.file);
     var rule = path.basename(testDir);
     var syntax = path.basename(path.dirname(testDir));
+    var testTitle = this.test.parent.title + ' ' + this.test.title;
 
     var input = readFile(testDir, filename + '.' + syntax);
     var expected = readFile(testDir, filename + '.json');
@@ -44,14 +45,14 @@ function shouldBeOk() {
         expected = JSON.parse(expected);
         assert.deepEqual(ast, expected);
     } catch (e) {
-        logAndThrow(e, 'Failed src -> ast');
+        logAndThrow(testTitle,  e, 'Failed src -> ast');
     }
 
     try {
         var compiledString = ast.toCSS(syntax);
         assert.equal(compiledString, input);
     } catch (e) {
-        logAndThrow(e, 'Failed ast -> src');
+        logAndThrow(testTitle, e, 'Failed ast -> src');
     }
 }
 
@@ -60,14 +61,14 @@ function readFile(dirname, filename) {
     return fs.readFileSync(filePath, 'utf8').trim();
 }
 
-function logAndThrow(e, message) {
+function logAndThrow(filename, e, message) {
     var expected = JSON.stringify(e.expected, false, 2);
     var actual = JSON.stringify(e.actual, false, 2);
 
     e.message = message;
 
-    fs.appendFile(expectedLogPath, expected + '\n\n\n', function(){});
-    fs.appendFile(resultLogPath, actual + '\n\n\n', function(){});
+    fs.appendFile(expectedLogPath, filename + '\n\n' + expected + '\n\n\n', function(){});
+    fs.appendFile(resultLogPath, filename + '\n\n' + actual + '\n\n\n', function(){});
 
     throw e;
 }
