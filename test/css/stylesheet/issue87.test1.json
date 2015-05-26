@@ -151,7 +151,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 3,
                         "column": 68

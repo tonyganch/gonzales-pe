@@ -150,7 +150,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 2,
                         "column": 12
@@ -595,7 +595,7 @@
                     },
                     {
                       "type": "important",
-                      "content": "",
+                      "content": [],
                       "start": {
                         "line": 8,
                         "column": 12
