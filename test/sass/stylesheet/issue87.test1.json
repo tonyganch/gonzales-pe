@@ -43,8 +43,8 @@
                     "column": 3
                   },
                   "end": {
-                    "line": 2,
-                    "column": 2
+                    "line": 1,
+                    "column": 3
                   }
                 }
               ],
@@ -53,8 +53,8 @@
                 "column": 1
               },
               "end": {
-                "line": 2,
-                "column": 2
+                "line": 1,
+                "column": 3
               }
             }
           ],
@@ -63,8 +63,8 @@
             "column": 1
           },
           "end": {
-            "line": 2,
-            "column": 2
+            "line": 1,
+            "column": 3
           }
         },
         {

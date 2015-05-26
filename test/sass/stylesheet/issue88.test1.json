@@ -43,8 +43,8 @@
                     "column": 5
                   },
                   "end": {
-                    "line": 2,
-                    "column": 4
+                    "line": 1,
+                    "column": 5
                   }
                 }
               ],
@@ -53,8 +53,8 @@
                 "column": 1
               },
               "end": {
-                "line": 2,
-                "column": 4
+                "line": 1,
+                "column": 5
               }
             }
           ],
@@ -63,8 +63,8 @@
             "column": 1
           },
           "end": {
-            "line": 2,
-            "column": 4
+            "line": 1,
+            "column": 5
           }
         },
         {
@@ -177,8 +177,8 @@
                 "column": 15
               },
               "end": {
-                "line": 3,
-                "column": 14
+                "line": 2,
+                "column": 15
               }
             },
             {
@@ -189,8 +189,8 @@
                 "column": 1
               },
               "end": {
-                "line": 4,
-                "column": 0
+                "line": 3,
+                "column": 1
               }
             }
           ],
@@ -199,8 +199,8 @@
             "column": 1
           },
           "end": {
-            "line": 4,
-            "column": 0
+            "line": 3,
+            "column": 1
           }
         }
       ],
@@ -209,8 +209,8 @@
         "column": 1
       },
       "end": {
-        "line": 4,
-        "column": 0
+        "line": 3,
+        "column": 1
       }
     },
     {
@@ -255,8 +255,8 @@
                     "column": 6
                   },
                   "end": {
-                    "line": 5,
-                    "column": 5
+                    "line": 4,
+                    "column": 6
                   }
                 }
               ],
@@ -265,8 +265,8 @@
                 "column": 1
               },
               "end": {
-                "line": 5,
-                "column": 5
+                "line": 4,
+                "column": 6
               }
             }
           ],
@@ -275,8 +275,8 @@
             "column": 1
           },
           "end": {
-            "line": 5,
-            "column": 5
+            "line": 4,
+            "column": 6
           }
         },
         {
