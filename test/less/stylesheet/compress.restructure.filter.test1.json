@@ -83,7 +83,7 @@
               }
             },
             {
-              "type": "filter",
+              "type": "declaration",
               "content": [
                 {
                   "type": "property",
@@ -111,36 +111,35 @@
                   }
                 },
                 {
-                  "type": "filterValue",
+                  "type": "propertyDelimiter",
+                  "content": ":",
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "start": {
+                    "line": 2,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "value",
                   "content": [
                     {
-                      "type": "space",
-                      "content": " ",
-                      "start": {
-                        "line": 2,
-                        "column": 12
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 12
-                      }
-                    },
-                    {
                       "type": "progid",
-                      "content": [
-                        {
-                          "type": "raw",
-                          "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='x', sizingMethod=\"y\")",
-                          "start": {
-                            "line": 2,
-                            "column": 13
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 89
-                          }
-                        }
-                      ],
+                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='x', sizingMethod=\"y\")",
                       "start": {
                         "line": 2,
                         "column": 13
@@ -153,7 +152,7 @@
                   ],
                   "start": {
                     "line": 2,
-                    "column": 12
+                    "column": 13
                   },
                   "end": {
                     "line": 2,
@@ -308,7 +307,7 @@
               }
             },
             {
-              "type": "filter",
+              "type": "declaration",
               "content": [
                 {
                   "type": "property",
@@ -336,36 +335,35 @@
                   }
                 },
                 {
-                  "type": "filterValue",
+                  "type": "propertyDelimiter",
+                  "content": ":",
+                  "start": {
+                    "line": 6,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "start": {
+                    "line": 6,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "value",
                   "content": [
                     {
-                      "type": "space",
-                      "content": " ",
-                      "start": {
-                        "line": 6,
-                        "column": 12
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 12
-                      }
-                    },
-                    {
                       "type": "progid",
-                      "content": [
-                        {
-                          "type": "raw",
-                          "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='y', sizingMethod=\"z\")",
-                          "start": {
-                            "line": 6,
-                            "column": 13
-                          },
-                          "end": {
-                            "line": 6,
-                            "column": 89
-                          }
-                        }
-                      ],
+                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='y', sizingMethod=\"z\")",
                       "start": {
                         "line": 6,
                         "column": 13
@@ -378,7 +376,7 @@
                   ],
                   "start": {
                     "line": 6,
-                    "column": 12
+                    "column": 13
                   },
                   "end": {
                     "line": 6,

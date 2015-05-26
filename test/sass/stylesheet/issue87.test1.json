@@ -83,7 +83,7 @@
               }
             },
             {
-              "type": "filter",
+              "type": "declaration",
               "content": [
                 {
                   "type": "property",
@@ -111,24 +111,23 @@
                   }
                 },
                 {
-                  "type": "filterValue",
+                  "type": "propertyDelimiter",
+                  "content": ":",
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "value",
                   "content": [
                     {
                       "type": "progid",
-                      "content": [
-                        {
-                          "type": "raw",
-                          "content": "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)",
-                          "start": {
-                            "line": 2,
-                            "column": 12
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 62
-                          }
-                        }
-                      ],
+                      "content": "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)",
                       "start": {
                         "line": 2,
                         "column": 12

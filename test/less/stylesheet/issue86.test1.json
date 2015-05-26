@@ -83,7 +83,7 @@
               }
             },
             {
-              "type": "filter",
+              "type": "declaration",
               "content": [
                 {
                   "type": "property",
@@ -111,36 +111,35 @@
                   }
                 },
                 {
-                  "type": "filterValue",
+                  "type": "propertyDelimiter",
+                  "content": ":",
+                  "start": {
+                    "line": 3,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "start": {
+                    "line": 3,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 12
+                  }
+                },
+                {
+                  "type": "value",
                   "content": [
                     {
-                      "type": "space",
-                      "content": " ",
-                      "start": {
-                        "line": 3,
-                        "column": 12
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 12
-                      }
-                    },
-                    {
                       "type": "progid",
-                      "content": [
-                        {
-                          "type": "raw",
-                          "content": "progid:DXImageTransform.Microsoft.gradient (startColorstr=#33CCCCCC, endColorstr=#33CCCCCC)",
-                          "start": {
-                            "line": 3,
-                            "column": 13
-                          },
-                          "end": {
-                            "line": 3,
-                            "column": 103
-                          }
-                        }
-                      ],
+                      "content": "progid:DXImageTransform.Microsoft.gradient (startColorstr=#33CCCCCC, endColorstr=#33CCCCCC)",
                       "start": {
                         "line": 3,
                         "column": 13
@@ -153,7 +152,7 @@
                   ],
                   "start": {
                     "line": 3,
-                    "column": 12
+                    "column": 13
                   },
                   "end": {
                     "line": 3,

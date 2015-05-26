@@ -80,7 +80,7 @@
           }
         },
         {
-          "type": "filter",
+          "type": "declaration",
           "content": [
             {
               "type": "property",
@@ -108,24 +108,23 @@
               }
             },
             {
-              "type": "filterValue",
+              "type": "propertyDelimiter",
+              "content": ":",
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 9
+              }
+            },
+            {
+              "type": "value",
               "content": [
                 {
                   "type": "progid",
-                  "content": [
-                    {
-                      "type": "raw",
-                      "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
-                      "start": {
-                        "line": 2,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 117
-                      }
-                    }
-                  ],
+                  "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
                   "start": {
                     "line": 2,
                     "column": 10
