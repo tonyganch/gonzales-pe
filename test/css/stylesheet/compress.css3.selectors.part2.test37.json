@@ -25,7 +25,18 @@
                 {
                   "type": "id",
                   "content": [
-                    "myid"
+                    {
+                      "type": "ident",
+                      "content": "myid",
+                      "start": {
+                        "line": 1,
+                        "column": 3
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 6
+                      }
+                    }
                   ],
                   "start": {
                     "line": 1,
@@ -33,7 +44,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 6
                   }
                 },
                 {
@@ -45,7 +56,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 7
                   }
                 }
               ],
@@ -55,7 +66,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 1
+                "column": 7
               }
             }
           ],
@@ -65,7 +76,7 @@
           },
           "end": {
             "line": 1,
-            "column": 1
+            "column": 7
           }
         },
         {
@@ -80,7 +91,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 1
+                "column": 9
               }
             },
             {
@@ -98,7 +109,7 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 1
+                        "column": 10
                       }
                     }
                   ],
@@ -108,7 +119,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 10
                   }
                 },
                 {
@@ -120,7 +131,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 11
                   }
                 },
                 {
@@ -132,7 +143,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 12
                   }
                 },
                 {
@@ -144,7 +155,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 13
                   }
                 },
                 {
@@ -159,7 +170,7 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 1
+                        "column": 14
                       }
                     }
                   ],
@@ -169,7 +180,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 1
+                    "column": 14
                   }
                 }
               ],
@@ -179,7 +190,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 1
+                "column": 14
               }
             },
             {
@@ -191,7 +202,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 1
+                "column": 15
               }
             }
           ],
@@ -201,7 +212,7 @@
           },
           "end": {
             "line": 1,
-            "column": 1
+            "column": 16
           }
         }
       ],
@@ -211,7 +222,7 @@
       },
       "end": {
         "line": 1,
-        "column": 1
+        "column": 16
       }
     }
   ],
@@ -221,6 +232,6 @@
   },
   "end": {
     "line": 1,
-    "column": 1
+    "column": 16
   }
 }

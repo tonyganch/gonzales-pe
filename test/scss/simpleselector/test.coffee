@@ -1,4 +1,4 @@
-describe.skip 'scss/simpleselector >>', ->
+describe 'scss/simpleselector >>', ->
 
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
