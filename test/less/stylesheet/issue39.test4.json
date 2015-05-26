@@ -91,7 +91,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 12
+                "column": 4
               }
             },
             {
@@ -202,7 +202,7 @@
               },
               "end": {
                 "line": 3,
-                "column": 19
+                "column": 4
               }
             },
             {
@@ -312,8 +312,8 @@
                 "column": 21
               },
               "end": {
-                "line": 4,
-                "column": 20
+                "line": 3,
+                "column": 21
               }
             }
           ],
@@ -322,7 +322,7 @@
             "column": 8
           },
           "end": {
-            "line": 5,
+            "line": 4,
             "column": 1
           }
         }
@@ -332,7 +332,7 @@
         "column": 1
       },
       "end": {
-        "line": 5,
+        "line": 4,
         "column": 1
       }
     },
@@ -344,8 +344,8 @@
         "column": 2
       },
       "end": {
-        "line": 5,
-        "column": 1
+        "line": 4,
+        "column": 2
       }
     },
     {
@@ -438,7 +438,7 @@
               },
               "end": {
                 "line": 6,
-                "column": 12
+                "column": 4
               }
             },
             {
@@ -536,8 +536,8 @@
                 "column": 20
               },
               "end": {
-                "line": 7,
-                "column": 19
+                "line": 6,
+                "column": 20
               }
             }
           ],
@@ -546,7 +546,7 @@
             "column": 8
           },
           "end": {
-            "line": 8,
+            "line": 7,
             "column": 1
           }
         }
@@ -556,7 +556,7 @@
         "column": 1
       },
       "end": {
-        "line": 8,
+        "line": 7,
         "column": 1
       }
     }
@@ -566,7 +566,7 @@
     "column": 1
   },
   "end": {
-    "line": 8,
+    "line": 7,
     "column": 1
   }
 }

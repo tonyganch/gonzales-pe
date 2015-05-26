@@ -66,7 +66,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 7
+                "column": 4
               }
             },
             {
@@ -301,7 +301,7 @@
               },
               "end": {
                 "line": 3,
-                "column": 42
+                "column": 4
               }
             },
             {
@@ -535,8 +535,8 @@
                 "column": 36
               },
               "end": {
-                "line": 4,
-                "column": 35
+                "line": 3,
+                "column": 36
               }
             }
           ],
@@ -545,7 +545,7 @@
             "column": 3
           },
           "end": {
-            "line": 5,
+            "line": 4,
             "column": 1
           }
         }
@@ -555,7 +555,7 @@
         "column": 1
       },
       "end": {
-        "line": 5,
+        "line": 4,
         "column": 1
       }
     },
@@ -567,8 +567,8 @@
         "column": 2
       },
       "end": {
-        "line": 5,
-        "column": 1
+        "line": 4,
+        "column": 2
       }
     },
     {
@@ -636,7 +636,7 @@
               },
               "end": {
                 "line": 6,
-                "column": 7
+                "column": 4
               }
             },
             {
@@ -871,7 +871,7 @@
               },
               "end": {
                 "line": 7,
-                "column": 42
+                "column": 4
               }
             },
             {
@@ -1105,8 +1105,8 @@
                 "column": 35
               },
               "end": {
-                "line": 8,
-                "column": 34
+                "line": 7,
+                "column": 35
               }
             }
           ],
@@ -1115,7 +1115,7 @@
             "column": 3
           },
           "end": {
-            "line": 9,
+            "line": 8,
             "column": 1
           }
         }
@@ -1125,7 +1125,7 @@
         "column": 1
       },
       "end": {
-        "line": 9,
+        "line": 8,
         "column": 1
       }
     }
@@ -1135,7 +1135,7 @@
     "column": 1
   },
   "end": {
-    "line": 9,
+    "line": 8,
     "column": 1
   }
 }

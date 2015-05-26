@@ -66,7 +66,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 7
+                "column": 4
               }
             },
             {
@@ -176,8 +176,8 @@
                 "column": 10
               },
               "end": {
-                "line": 3,
-                "column": 9
+                "line": 2,
+                "column": 10
               }
             }
           ],
@@ -186,7 +186,7 @@
             "column": 3
           },
           "end": {
-            "line": 4,
+            "line": 3,
             "column": 1
           }
         }
@@ -196,7 +196,7 @@
         "column": 1
       },
       "end": {
-        "line": 4,
+        "line": 3,
         "column": 1
       }
     },
@@ -208,8 +208,8 @@
         "column": 2
       },
       "end": {
-        "line": 4,
-        "column": 1
+        "line": 3,
+        "column": 2
       }
     },
     {
@@ -277,7 +277,7 @@
               },
               "end": {
                 "line": 5,
-                "column": 7
+                "column": 4
               }
             },
             {
@@ -387,8 +387,8 @@
                 "column": 10
               },
               "end": {
-                "line": 6,
-                "column": 9
+                "line": 5,
+                "column": 10
               }
             }
           ],
@@ -397,7 +397,7 @@
             "column": 3
           },
           "end": {
-            "line": 7,
+            "line": 6,
             "column": 1
           }
         }
@@ -407,7 +407,7 @@
         "column": 1
       },
       "end": {
-        "line": 7,
+        "line": 6,
         "column": 1
       }
     },
@@ -419,8 +419,8 @@
         "column": 2
       },
       "end": {
-        "line": 7,
-        "column": 1
+        "line": 6,
+        "column": 2
       }
     },
     {
@@ -488,7 +488,7 @@
               },
               "end": {
                 "line": 8,
-                "column": 7
+                "column": 4
               }
             },
             {
@@ -598,8 +598,8 @@
                 "column": 10
               },
               "end": {
-                "line": 9,
-                "column": 9
+                "line": 8,
+                "column": 10
               }
             }
           ],
@@ -608,7 +608,7 @@
             "column": 3
           },
           "end": {
-            "line": 10,
+            "line": 9,
             "column": 1
           }
         }
@@ -618,7 +618,7 @@
         "column": 1
       },
       "end": {
-        "line": 10,
+        "line": 9,
         "column": 1
       }
     }
@@ -628,7 +628,7 @@
     "column": 1
   },
   "end": {
-    "line": 10,
+    "line": 9,
     "column": 1
   }
 }
