@@ -365,7 +365,7 @@
               }
             },
             {
-              "type": "declarationDelimiter",
+              "type": "space",
               "content": "\n",
               "start": {
                 "line": 9,
