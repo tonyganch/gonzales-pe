@@ -10,6 +10,6 @@ describe('Empty input', function() {
 
     it('should return empty content', function() {
         var ast = gonzales.parse('');
-        assert.equal(ast.content, '');
+        assert.equal(ast.content.length, 0);
     });
 });
