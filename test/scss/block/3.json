@@ -14,7 +14,7 @@
       }
     },
     {
-      "type": "include",
+      "type": "extend",
       "content": [
         {
           "type": "atkeyword",

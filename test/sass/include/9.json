@@ -2,78 +2,177 @@
   "type": "include",
   "content": [
     {
-      "type": "atkeyword",
-      "content": [
-        {
-          "type": "ident",
-          "content": "extend",
-          "start": {
-            "line": 1,
-            "column": 2
-          },
-          "end": {
-            "line": 1,
-            "column": 7
-          }
-        }
-      ],
+      "type": "operator",
+      "content": "+",
       "start": {
         "line": 1,
         "column": 1
       },
       "end": {
         "line": 1,
-        "column": 7
-      }
-    },
-    {
-      "type": "space",
-      "content": " ",
-      "start": {
-        "line": 1,
-        "column": 8
-      },
-      "end": {
-        "line": 1,
-        "column": 8
+        "column": 1
       }
     },
     {
       "type": "simpleSelector",
       "content": [
         {
-          "type": "placeholder",
-          "content": [
-            {
-              "type": "ident",
-              "content": "nani",
-              "start": {
-                "line": 1,
-                "column": 10
-              },
-              "end": {
-                "line": 1,
-                "column": 13
-              }
-            }
-          ],
+          "type": "ident",
+          "content": "nani",
           "start": {
             "line": 1,
-            "column": 9
+            "column": 2
           },
           "end": {
             "line": 1,
-            "column": 13
+            "column": 5
           }
         }
       ],
       "start": {
         "line": 1,
-        "column": 9
+        "column": 2
       },
       "end": {
         "line": 1,
-        "column": 13
+        "column": 5
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "ident",
+          "content": "foo",
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "start": {
+        "line": 1,
+        "column": 6
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "space",
+          "content": "  ",
+          "start": {
+            "line": 2,
+            "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 3
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "propertyDelimiter",
+              "content": ":",
+              "start": {
+                "line": 2,
+                "column": 4
+              },
+              "end": {
+                "line": 2,
+                "column": 4
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 5
+                  }
+                }
+              ],
+              "start": {
+                "line": 2,
+                "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 5
+              }
+            }
+          ],
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 5
+          }
+        }
+      ],
+      "start": {
+        "line": 2,
+        "column": 1
+      },
+      "end": {
+        "line": 2,
+        "column": 5
       }
     }
   ],
@@ -82,7 +181,7 @@
     "column": 1
   },
   "end": {
-    "line": 1,
-    "column": 13
+    "line": 2,
+    "column": 5
   }
 }

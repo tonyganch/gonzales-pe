@@ -1,5 +1,5 @@
 {
-  "type": "include",
+  "type": "extend",
   "content": [
     {
       "type": "atkeyword",
@@ -42,18 +42,31 @@
       "type": "simpleSelector",
       "content": [
         {
-          "type": "placeholder",
+          "type": "interpolation",
           "content": [
             {
-              "type": "ident",
-              "content": "nani",
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "button-close-icon",
+                  "start": {
+                    "line": 1,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 28
+                  }
+                }
+              ],
               "start": {
                 "line": 1,
-                "column": 10
+                "column": 11
               },
               "end": {
                 "line": 1,
-                "column": 13
+                "column": 28
               }
             }
           ],
@@ -63,7 +76,7 @@
           },
           "end": {
             "line": 1,
-            "column": 13
+            "column": 29
           }
         }
       ],
@@ -73,7 +86,7 @@
       },
       "end": {
         "line": 1,
-        "column": 13
+        "column": 29
       }
     }
   ],
@@ -83,6 +96,6 @@
   },
   "end": {
     "line": 1,
-    "column": 13
+    "column": 29
   }
 }
