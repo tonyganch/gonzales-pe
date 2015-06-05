@@ -2,7 +2,7 @@
   "type": "block",
   "content": [
     {
-      "type": "include",
+      "type": "extend",
       "content": [
         {
           "type": "atkeyword",

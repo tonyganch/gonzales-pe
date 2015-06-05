@@ -11,4 +11,3 @@ describe 'sass/include >>', ->
   it '8', -> this.shouldBeOk()
   it '9', -> this.shouldBeOk()
   it '10', -> this.shouldBeOk()
-  it '11', -> this.shouldBeOk()
