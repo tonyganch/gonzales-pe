@@ -15,6 +15,7 @@ describe 'less/stylesheet >>', ->
   it 'issue90.test1', -> this.shouldBeOk()
   it 'issue90.test2', -> this.shouldBeOk()
   it 'issue111.test1', -> this.shouldBeOk()
+  it 'issue-15', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
