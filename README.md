@@ -1,5 +1,25 @@
 ## API
 
+### gonzales.createNode(options)
+
+Creates a new node.
+
+Parameters:
+
+* `{{type: String, content: String|Array}} options`
+
+Returns:
+
+* `{Object} node`
+
+Example:
+```js
+    var css = 'a {color: tomato}';
+    var ast = gonzales.parse(css);
+    var node = gonzales.createNode({ type: 'animal', content: 'panda' });
+    ast.content.push(node);
+```
+
 ### gonzales.parse(css, options)
 
 Parse CSS.
@@ -31,47 +51,6 @@ Example:
     var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 ```
 
-### gonzales.createNode(options)
-
-Creates a new node.
-
-Parameters:
-
-* `{{type: String, content: String|Array}} options`
-
-Returns:
-
-* `{Object} ast`
-
-Example:
-```js
-    var css = 'a {color: tomato}';
-    var ast = gonzales.parse(css);
-    var node = gonzales.createNode({ type: 'animal', content: 'panda' });
-    ast.content.push(node);
-```
-
-### ast.length
-
-### ast.toString()
-
-### ast.toCSS(syntax)
-
-Converts AST to code.
-
-Parameters:
-
-* `{String} syntax`
-
-Returns:
-
-* `{String} css`
-
-Example:
-```js
-    var css = ast.toCSS('css');
-    var less = ast.toCSS('less');
-```
 ### ast.contains(type)
 
 Checks whether there is a child node of given type.
@@ -89,6 +68,12 @@ Example:
     if (ast.contains('panda'))
         doSomething();
 ```
+
+### ast.content
+
+### ast.eachFor(type, callback)
+
+### ast.end
 
 ### ast.first(type)
 
@@ -131,6 +116,8 @@ Example:
 ```
 
 ### ast.get(index)
+
+### ast.indexHasChanged
 
 ### ast.insert(index, node)
 
@@ -176,7 +163,35 @@ Example:
     node.content = 'panda';
 ```
 
-### ast.map(function)
+### ast.length
+
+### ast.remove(index)
+
+### ast.start
+
+### ast.syntax
+
+### ast.toJson()
+
+### ast.toString()
+
+Converts AST to code.
+
+Parameters:
+
+* `{String} syntax`
+
+Returns:
+
+* `{String} css`
+
+Example:
+```js
+    var css = ast.toCSS('css');
+    var less = ast.toCSS('less');
+```
+
+### ast.traverse(function)
 
 Calls the function for every node in a tree. Modifies the tree!
 
@@ -190,6 +205,12 @@ Example:
         if (node.type === 'commentML') node.content = 'panda';
     });
 ```
+
+### ast.traverseByType(type, callback)
+
+### ast.traverseByTypes(types, callback)
+
+### ast.type
 
 
 ## Test
