@@ -22,16 +22,57 @@ Example:
 // AST:
 {
   type: 'atkeyword',
-  content: [
-    {
-      type: 'ident',
-      content: 'import'
-    }
-  ]
+  content: [{
+    type: 'ident',
+    content: 'import'
+  }]
 }
 ```
 
 ### atruleb
+
+@-rule that consists of @-keyword, optional selectors and a block.
+
+Used in syntaxes: css.
+
+Example:
+```js
+// String:
+@test{p:v}
+
+// AST:
+{
+  type: 'atruleb',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'test'
+    }]
+  }, {
+    type: 'block',
+    content: [{
+      type: 'declaration',
+      content: [{
+        type: 'property',
+        content: [{
+          type: 'ident',
+          content: 'p'
+        }]
+      }, {
+        type: 'propertyDelimiter',
+        content: ':'
+      }, {
+        type: 'value',
+        content: [{
+          type: 'ident',
+          content: 'v'
+        }]
+      }]
+    }]
+  }]
+}
+```
 
 ### atruler
 
