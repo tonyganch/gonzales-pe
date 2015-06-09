@@ -13,7 +13,7 @@ var css = 'a-23',
     console.log(css);
 
     console.log('\n== AST:');
-    console.log(ast.toString());
+    console.log(ast.toJson());
 
     console.log('\n== Translated string:');
-    console.log(ast.toCSS(syntax));
+    console.log(ast.toString());
