@@ -20,7 +20,7 @@ var css = fs.readFileSync(filename, 'utf-8');
 
 try {
     var ast = gonzales.parse(css, {syntax: syntax});
-    if (!silent) console.log(ast.toString());
+    if (!silent) console.log(ast.toJson());
 } catch (e) {
     if (!silent) throw e;
 }
