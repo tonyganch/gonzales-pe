@@ -16,9 +16,10 @@
         "url": "http://github.com/tonyganch/gonzales-pe.git"
     },
     "scripts": {
-        "build": "./node_modules/.bin/babel --loose all --compact true --comments false --blacklist spec.functionName src --out-dir lib",
-        "log": "(mkdir -p log && node ./test/mocha.js) | tee ./log/test.log",
-        "test": "node ./test/mocha.js"
+        "autofix-tests": "./scripts/build.sh && ./scripts/autofix-tests.sh",
+        "build": "./scripts/build.sh",
+        "log": "./scripts/log.sh",
+        "test": "./scripts/build.sh && ./scripts/test.sh"
     },
     "bin": {
         "gonzales": "./bin/gonzales.js"
