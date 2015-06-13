@@ -1,5 +1,6 @@
 var fs = require('fs');
 var ParsingError = require('./parsing-error');
+var RootNode = require('./node/root-node');
 
 var Defaults = {
     SYNTAX: 'css',
@@ -40,19 +41,7 @@ function parse(css, options) {
         throw new ParsingError(e, css);
     }
 
-    Object.defineProperty(ast, 'traverseByType', {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: traverseByType.bind(ast)
-    });
-    Object.defineProperty(ast, 'traverseByTypes', {
-        enumerable: false,
-        configurable: false,
-        writable: false,
-        value: traverseByTypes.bind(ast)
-    });
-    return ast;
+    return new RootNode(ast);
 }
 
 function buildIndex(ast, index, indexHasChanged) {
