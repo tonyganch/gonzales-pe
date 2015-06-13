@@ -1,4 +1,4 @@
-var Node = require('./node');
+var Node = require('./node/basic-node');
 var parse = require('./parse');
 
 module.exports = {
