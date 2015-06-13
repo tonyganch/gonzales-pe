@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "background",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -29,6 +31,7 @@
     {
       "type": "propertyDelimiter",
       "content": ":",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 11
@@ -44,6 +47,7 @@
         {
           "type": "color",
           "content": "595959",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 12
@@ -56,6 +60,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 19
@@ -71,6 +76,7 @@
             {
               "type": "string",
               "content": "\"//mailstatic.yandex.net/neo2/_/vRDi2SBIsYmRfliviPS16S_oodg.png\"",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 24
@@ -81,6 +87,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 20
@@ -93,6 +100,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 89
@@ -105,6 +113,7 @@
         {
           "type": "number",
           "content": "0",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 90
@@ -117,6 +126,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 91
@@ -132,6 +142,7 @@
             {
               "type": "number",
               "content": "50",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 92
@@ -142,6 +153,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 92
@@ -154,6 +166,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 95
@@ -166,6 +179,7 @@
         {
           "type": "ident",
           "content": "repeat-x",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 96
@@ -176,6 +190,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 12
@@ -186,6 +201,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

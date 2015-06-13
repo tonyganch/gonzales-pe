@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "t",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -38,6 +40,7 @@
                 {
                   "type": "space",
                   "content": "\n",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 3
@@ -48,6 +51,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 1
@@ -58,6 +62,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -73,6 +78,7 @@
             {
               "type": "space",
               "content": "\n        ",
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 2
@@ -91,6 +97,7 @@
                     {
                       "type": "ident",
                       "content": "filter",
+                      "syntax": "css",
                       "start": {
                         "line": 3,
                         "column": 9
@@ -101,6 +108,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 3,
                     "column": 9
@@ -113,6 +121,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 3,
                     "column": 15
@@ -128,6 +137,7 @@
                     {
                       "type": "progid",
                       "content": "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)",
+                      "syntax": "css",
                       "start": {
                         "line": 3,
                         "column": 16
@@ -140,6 +150,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 3,
                         "column": 67
@@ -152,6 +163,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 3,
                         "column": 68
@@ -162,6 +174,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 3,
                     "column": 16
@@ -172,6 +185,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 3,
                 "column": 9
@@ -184,6 +198,7 @@
             {
               "type": "declarationDelimiter",
               "content": ";",
+              "syntax": "css",
               "start": {
                 "line": 3,
                 "column": 78
@@ -196,6 +211,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 3,
                 "column": 79
@@ -206,6 +222,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 1
@@ -216,6 +233,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -226,6 +244,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "p",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 2
@@ -32,6 +34,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 3
@@ -47,6 +50,7 @@
             {
               "type": "ident",
               "content": "v",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 4
@@ -57,6 +61,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 4
@@ -67,6 +72,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 2
@@ -77,6 +83,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

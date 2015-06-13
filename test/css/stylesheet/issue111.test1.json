@@ -13,6 +13,7 @@
                 {
                   "type": "ident",
                   "content": "body",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -31,6 +32,7 @@
                         {
                           "type": "ident",
                           "content": "not",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 6
@@ -52,6 +54,7 @@
                                     {
                                       "type": "ident",
                                       "content": "x",
+                                      "syntax": "css",
                                       "start": {
                                         "line": 1,
                                         "column": 11
@@ -64,6 +67,7 @@
                                     {
                                       "type": "attributeSelector",
                                       "content": "|",
+                                      "syntax": "css",
                                       "start": {
                                         "line": 1,
                                         "column": 12
@@ -76,6 +80,7 @@
                                     {
                                       "type": "ident",
                                       "content": "x",
+                                      "syntax": "css",
                                       "start": {
                                         "line": 1,
                                         "column": 13
@@ -86,6 +91,7 @@
                                       }
                                     }
                                   ],
+                                  "syntax": "css",
                                   "start": {
                                     "line": 1,
                                     "column": 10
@@ -96,6 +102,7 @@
                                   }
                                 }
                               ],
+                              "syntax": "css",
                               "start": {
                                 "line": 1,
                                 "column": 10
@@ -106,6 +113,7 @@
                               }
                             }
                           ],
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 9
@@ -116,6 +124,7 @@
                           }
                         }
                       ],
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 6
@@ -126,6 +135,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 5
@@ -138,6 +148,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 16
@@ -148,6 +159,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 1
@@ -158,6 +170,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -170,6 +183,7 @@
         {
           "type": "block",
           "content": [],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 17
@@ -180,6 +194,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -190,6 +205,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

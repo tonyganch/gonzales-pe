@@ -1,6 +1,7 @@
 {
   "type": "multilineComment",
   "content": "*\n * test\n ",
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

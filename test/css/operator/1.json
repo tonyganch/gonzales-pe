@@ -1,6 +1,7 @@
 {
   "type": "operator",
   "content": ",",
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

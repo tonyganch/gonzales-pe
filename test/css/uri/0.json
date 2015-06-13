@@ -4,6 +4,7 @@
     {
       "type": "string",
       "content": "'http://test.com'",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 5
@@ -14,6 +15,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
