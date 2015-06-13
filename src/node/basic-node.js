@@ -5,52 +5,40 @@
  * @param {number} column
  * @constructor
  */
-function Node(options) {
-    this.type = options.type;
-    this.content = options.content;
-    this.syntax = options.syntax;
+class Node {
+    constructor(options) {
+        this.type = options.type;
+        this.content = options.content;
+        this.syntax = options.syntax;
 
-    if (options.start)
-        this.start = {
-            line: options.start[0],
-            column: options.start[1]
-        };
+        if (options.start)
+            this.start = {
+                line: options.start[0],
+                column: options.start[1]
+            };
 
-    if (options.end)
-        this.end = {
-            line: options.end[0],
-            column: options.end[1]
-        };
-}
-
-Node.prototype = {
-    content: null,
-
-    end: null,
-
-    indexHasChanged: null,
-
-    start: null,
-
-    syntax: null,
-
-    type: null,
+        if (options.end)
+            this.end = {
+                line: options.end[0],
+                column: options.end[1]
+            };
+    }
 
     /**
      * @param {String} type Node type
      * @return {Boolean} Whether there is a child node of given type
      */
-    contains: function(type) {
+    contains(type) {
         return this.content.some(function(node) {
             return node.type === type;
         });
-    },
+    }
 
     /**
      * @param {String} type Node type
      * @param {Function} callback Function to call for every found node
      */
-    eachFor: function(type, callback) {
+    eachFor(type, callback) {
         if (!Array.isArray(this.content)) return;
 
         if (typeof type !== 'string') callback = type, type = null;
@@ -67,13 +55,13 @@ Node.prototype = {
         }
 
         if (breakLoop === null) return null;
-    },
+    }
 
     /**
      * @param {String} type
      * @return {Node} First child node
      */
-    first: function(type) {
+    first(type) {
         if (!type || !Array.isArray(this.content)) return this.content[0];
 
         var i = 0;
@@ -82,13 +70,13 @@ Node.prototype = {
         for (; i < l; i++) {
             if (this.content[i].type === type) return this.content[i];
         }
-    },
+    }
 
     /**
      * @param {String} type Node type
      * @param {Function} callback Function to call for every found node
      */
-    forEach: function(type, callback) {
+    forEach(type, callback) {
         if (!Array.isArray(this.content)) return;
 
         if (typeof type !== 'string') callback = type, type = null;
@@ -105,40 +93,40 @@ Node.prototype = {
         }
 
         if (breakLoop === null) return null;
-    },
+    }
 
     /**
      * @param {Number} index
      * @return {Node}
      */
-    get: function(index) {
+    get(index) {
         return Array.isArray(this.content) && this.content[index];
-    },
+    }
 
     /**
      * @param {Number} index
      * @param {Node} node
      */
-    insert: function(index, node) {
+    insert(index, node) {
         if (!Array.isArray(this.content)) return;
 
         this.content.splice(index, 0, node);
         if (this.indexHasChanged) this.indexHasChanged[0] = 1;
-    },
+    }
 
     /**
      * @param {String} type
      * @return {Boolean} Whether the node is of given type
      */
-    is: function(type) {
+    is(type) {
         return this.type === type;
-    },
+    }
 
     /**
      * @param {String} type
      * @return {Node} Last child node
      */
-    last: function(type) {
+    last(type) {
         var i = this.content.length - 1;
 
         if (!type || !Array.isArray(this.content))
@@ -148,27 +136,27 @@ Node.prototype = {
         for (;;i--) {
             if (this.content[i].type === type) return this.content[i];
         }
-    },
+    }
 
     get length() {
         return this.content.length;
-    },
+    }
 
     /**
      * @param {Number} index
      */
-    remove: function(index) {
+    remove(index) {
         if (!Array.isArray(this.content)) return;
 
         this.content.splice(index, 1);
         if (this.indexHasChanged) this.indexHasChanged[0] = 1;
-    },
+    }
 
-    toJson: function() {
+    toJson() {
         return JSON.stringify(this, false, 2);
-    },
+    }
 
-    toString: function() {
+    toString() {
         try {
             stringify = require('./' + this.syntax + '/stringify');
         } catch (e) {
@@ -177,12 +165,12 @@ Node.prototype = {
         }
 
         return stringify(this);
-    },
+    }
 
     /**
      * @param {Function} callback
      */
-    traverse: function(callback, i, parent) {
+    traverse(callback, i, parent) {
         var breakLoop;
         var x;
 
