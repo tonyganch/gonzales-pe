@@ -1,5 +1,5 @@
-var Node = require('../node');
-var NodeType = require('../node-types');
+var Node = require('../node/basic-node');
+var NodeType = require('../node/node-types');
 var TokenType = require('../token-types');
 
 /**

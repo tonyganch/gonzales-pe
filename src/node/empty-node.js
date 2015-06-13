@@ -1,4 +1,4 @@
-var Node = require('./node');
+var Node = require('./basic-node');
 var NodeTypes = require('./node-types');
 
 module.exports = function() {
