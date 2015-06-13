@@ -1,6 +1,7 @@
 {
   "type": "string",
   "content": "'te\\'st'",
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

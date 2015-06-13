@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nth-child",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 2
@@ -16,6 +17,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 12
@@ -28,6 +30,7 @@
     {
       "type": "nth",
       "content": "2n",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 20
@@ -40,6 +43,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 22
@@ -52,6 +56,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 30
@@ -64,6 +69,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 31
@@ -76,6 +82,7 @@
     {
       "type": "nth",
       "content": "1",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 39
@@ -88,6 +95,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 40
@@ -98,6 +106,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

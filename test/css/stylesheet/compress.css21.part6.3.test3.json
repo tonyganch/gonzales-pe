@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "import",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 8
@@ -47,6 +50,7 @@
             {
               "type": "string",
               "content": "\"fineprint.css\"",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 13
@@ -57,6 +61,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 9
@@ -69,6 +74,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 29
@@ -81,6 +87,7 @@
         {
           "type": "ident",
           "content": "print",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 30
@@ -91,6 +98,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -103,6 +111,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 35
@@ -111,14 +120,28 @@
         "line": 1,
         "column": 35
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 36
+      },
+      "end": {
+        "line": 1,
+        "column": 36
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 1,
-    "column": 35
+    "column": 36
   }
 }

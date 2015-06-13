@@ -4,6 +4,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 2
@@ -22,6 +23,7 @@
             {
               "type": "ident",
               "content": "p0",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 10
@@ -32,6 +34,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 10
@@ -44,6 +47,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 12
@@ -59,6 +63,7 @@
             {
               "type": "ident",
               "content": "v0",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 13
@@ -69,6 +74,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 13
@@ -79,6 +85,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 10
@@ -91,6 +98,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 15
@@ -103,6 +111,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 23
@@ -115,6 +124,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 24
@@ -133,6 +143,7 @@
             {
               "type": "ident",
               "content": "p1",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 32
@@ -143,6 +154,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 32
@@ -155,6 +167,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 34
@@ -170,6 +183,7 @@
             {
               "type": "ident",
               "content": "v1",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 35
@@ -180,6 +194,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 35
@@ -190,6 +205,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 32
@@ -202,6 +218,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 37
@@ -212,6 +229,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

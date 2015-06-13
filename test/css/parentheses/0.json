@@ -1,6 +1,7 @@
 {
   "type": "parentheses",
   "content": [],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

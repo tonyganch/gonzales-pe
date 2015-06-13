@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "filter",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -29,6 +31,7 @@
     {
       "type": "propertyDelimiter",
       "content": ":",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 7
@@ -44,6 +47,7 @@
         {
           "type": "progid",
           "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 8
@@ -56,6 +60,7 @@
         {
           "type": "progid",
           "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='test.png',sizingMethod='something')",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 116
@@ -66,6 +71,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 8
@@ -76,6 +82,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

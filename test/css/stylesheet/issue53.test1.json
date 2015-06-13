@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "a",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -36,6 +38,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 1
@@ -46,6 +49,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -67,6 +71,7 @@
                     {
                       "type": "ident",
                       "content": "margin",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 4
@@ -77,6 +82,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 4
@@ -89,6 +95,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 10
@@ -104,6 +111,7 @@
                     {
                       "type": "number",
                       "content": "0",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 11
@@ -116,6 +124,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 12
@@ -128,6 +137,7 @@
                     {
                       "type": "unaryOperator",
                       "content": "-",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 13
@@ -143,6 +153,7 @@
                         {
                           "type": "number",
                           "content": "1",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 14
@@ -155,6 +166,7 @@
                         {
                           "type": "ident",
                           "content": "px",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 15
@@ -165,6 +177,7 @@
                           }
                         }
                       ],
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 14
@@ -177,6 +190,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 17
@@ -189,6 +203,7 @@
                     {
                       "type": "number",
                       "content": "0",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 18
@@ -201,6 +216,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 19
@@ -213,6 +229,7 @@
                     {
                       "type": "unaryOperator",
                       "content": "-",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 20
@@ -228,6 +245,7 @@
                         {
                           "type": "number",
                           "content": "2",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 21
@@ -240,6 +258,7 @@
                         {
                           "type": "ident",
                           "content": "px",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 22
@@ -250,6 +269,7 @@
                           }
                         }
                       ],
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 21
@@ -260,6 +280,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 11
@@ -270,6 +291,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 4
@@ -280,6 +302,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 3
@@ -290,6 +313,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -298,14 +322,28 @@
         "line": 1,
         "column": 24
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 25
+      },
+      "end": {
+        "line": 1,
+        "column": 25
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 1,
-    "column": 24
+    "column": 25
   }
 }

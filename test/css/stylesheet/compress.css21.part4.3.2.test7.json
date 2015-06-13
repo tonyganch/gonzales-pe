@@ -13,6 +13,7 @@
                 {
                   "type": "ident",
                   "content": "h4",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -25,6 +26,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 3
@@ -35,6 +37,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 1
@@ -45,6 +48,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -60,6 +64,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 5
@@ -78,6 +83,7 @@
                     {
                       "type": "ident",
                       "content": "font-size",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 6
@@ -88,6 +94,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 6
@@ -100,6 +107,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 15
@@ -112,6 +120,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 16
@@ -130,6 +139,7 @@
                         {
                           "type": "number",
                           "content": "12",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 17
@@ -142,6 +152,7 @@
                         {
                           "type": "ident",
                           "content": "pt",
+                          "syntax": "css",
                           "start": {
                             "line": 1,
                             "column": 19
@@ -152,6 +163,7 @@
                           }
                         }
                       ],
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 17
@@ -162,6 +174,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 17
@@ -172,6 +185,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 6
@@ -184,6 +198,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 21
@@ -194,6 +209,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 4
@@ -204,6 +220,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -212,14 +229,28 @@
         "line": 1,
         "column": 22
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 23
+      },
+      "end": {
+        "line": 1,
+        "column": 23
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 1,
-    "column": 22
+    "column": 23
   }
 }

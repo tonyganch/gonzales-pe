@@ -1,6 +1,7 @@
 {
   "type": "ident",
   "content": "-x-test",
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

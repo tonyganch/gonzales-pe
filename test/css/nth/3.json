@@ -1,6 +1,7 @@
 {
   "type": "nth",
   "content": "even",
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

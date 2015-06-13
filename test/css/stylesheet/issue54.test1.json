@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "a",
+                      "syntax": "css",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -38,6 +40,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 1,
                     "column": 3
@@ -48,6 +51,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 1
@@ -58,6 +62,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -73,6 +78,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 5
@@ -91,6 +97,7 @@
                     {
                       "type": "ident",
                       "content": "background",
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 5
@@ -101,6 +108,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 5
@@ -113,6 +121,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 15
@@ -125,6 +134,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 16
@@ -140,6 +150,7 @@
                     {
                       "type": "ident",
                       "content": "transparent",
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 17
@@ -152,6 +163,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 28
@@ -164,6 +176,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 29
@@ -174,6 +187,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 17
@@ -184,6 +198,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 5
@@ -196,6 +211,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 39
@@ -206,6 +222,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 4
@@ -216,6 +233,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -228,6 +246,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 3,
         "column": 2
@@ -252,6 +271,7 @@
                     {
                       "type": "ident",
                       "content": "b",
+                      "syntax": "css",
                       "start": {
                         "line": 4,
                         "column": 2
@@ -262,6 +282,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 1
@@ -274,6 +295,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 3
@@ -284,6 +306,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 1
@@ -294,6 +317,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 4,
             "column": 1
@@ -309,6 +333,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 5
@@ -327,6 +352,7 @@
                     {
                       "type": "ident",
                       "content": "background",
+                      "syntax": "css",
                       "start": {
                         "line": 5,
                         "column": 5
@@ -337,6 +363,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 5,
                     "column": 5
@@ -349,6 +376,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 5,
                     "column": 15
@@ -361,6 +389,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 5,
                     "column": 16
@@ -376,6 +405,7 @@
                     {
                       "type": "ident",
                       "content": "none",
+                      "syntax": "css",
                       "start": {
                         "line": 5,
                         "column": 17
@@ -388,6 +418,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 5,
                         "column": 21
@@ -400,6 +431,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 5,
                         "column": 22
@@ -410,6 +442,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 5,
                     "column": 17
@@ -420,6 +453,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 5,
                 "column": 5
@@ -432,6 +466,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 5,
                 "column": 32
@@ -442,6 +477,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 4,
             "column": 4
@@ -452,6 +488,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 4,
         "column": 1
@@ -464,6 +501,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 6,
         "column": 2
@@ -488,6 +526,7 @@
                     {
                       "type": "ident",
                       "content": "c",
+                      "syntax": "css",
                       "start": {
                         "line": 7,
                         "column": 2
@@ -498,6 +537,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 7,
                     "column": 1
@@ -510,6 +550,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 7,
                     "column": 3
@@ -520,6 +561,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 7,
                 "column": 1
@@ -530,6 +572,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 7,
             "column": 1
@@ -545,6 +588,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "css",
               "start": {
                 "line": 7,
                 "column": 5
@@ -563,6 +607,7 @@
                     {
                       "type": "ident",
                       "content": "background",
+                      "syntax": "css",
                       "start": {
                         "line": 8,
                         "column": 5
@@ -573,6 +618,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 8,
                     "column": 5
@@ -585,6 +631,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 8,
                     "column": 15
@@ -597,6 +644,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 8,
                     "column": 16
@@ -612,6 +660,7 @@
                     {
                       "type": "ident",
                       "content": "repeat",
+                      "syntax": "css",
                       "start": {
                         "line": 8,
                         "column": 17
@@ -624,6 +673,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 8,
                         "column": 23
@@ -636,6 +686,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 8,
                         "column": 24
@@ -646,6 +697,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 8,
                     "column": 17
@@ -656,6 +708,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 8,
                 "column": 5
@@ -668,6 +721,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 8,
                 "column": 34
@@ -678,6 +732,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 7,
             "column": 4
@@ -688,6 +743,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 7,
         "column": 1
@@ -700,6 +756,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 9,
         "column": 2
@@ -724,6 +781,7 @@
                     {
                       "type": "ident",
                       "content": "d",
+                      "syntax": "css",
                       "start": {
                         "line": 10,
                         "column": 2
@@ -734,6 +792,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 10,
                     "column": 1
@@ -746,6 +805,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 10,
                     "column": 3
@@ -756,6 +816,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 10,
                 "column": 1
@@ -766,6 +827,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 10,
             "column": 1
@@ -781,6 +843,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "css",
               "start": {
                 "line": 10,
                 "column": 5
@@ -799,6 +862,7 @@
                     {
                       "type": "ident",
                       "content": "background",
+                      "syntax": "css",
                       "start": {
                         "line": 11,
                         "column": 5
@@ -809,6 +873,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 11,
                     "column": 5
@@ -821,6 +886,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 11,
                     "column": 15
@@ -833,6 +899,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 11,
                     "column": 16
@@ -848,6 +915,7 @@
                     {
                       "type": "ident",
                       "content": "scroll",
+                      "syntax": "css",
                       "start": {
                         "line": 11,
                         "column": 17
@@ -860,6 +928,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 11,
                         "column": 23
@@ -872,6 +941,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 11,
                         "column": 24
@@ -882,6 +952,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 11,
                     "column": 17
@@ -892,6 +963,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 11,
                 "column": 5
@@ -904,6 +976,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 11,
                 "column": 34
@@ -914,6 +987,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 10,
             "column": 4
@@ -924,6 +998,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 10,
         "column": 1
@@ -936,6 +1011,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 12,
         "column": 2
@@ -960,6 +1036,7 @@
                     {
                       "type": "ident",
                       "content": "e",
+                      "syntax": "css",
                       "start": {
                         "line": 13,
                         "column": 2
@@ -970,6 +1047,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 13,
                     "column": 1
@@ -982,6 +1060,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 13,
                     "column": 3
@@ -992,6 +1071,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 13,
                 "column": 1
@@ -1002,6 +1082,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 13,
             "column": 1
@@ -1017,6 +1098,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "css",
               "start": {
                 "line": 13,
                 "column": 5
@@ -1035,6 +1117,7 @@
                     {
                       "type": "ident",
                       "content": "background",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 5
@@ -1045,6 +1128,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 14,
                     "column": 5
@@ -1057,6 +1141,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 14,
                     "column": 15
@@ -1069,6 +1154,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 14,
                     "column": 16
@@ -1084,6 +1170,7 @@
                     {
                       "type": "ident",
                       "content": "transparent",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 17
@@ -1096,6 +1183,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 28
@@ -1108,6 +1196,7 @@
                     {
                       "type": "ident",
                       "content": "none",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 29
@@ -1120,6 +1209,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 33
@@ -1132,6 +1222,7 @@
                     {
                       "type": "ident",
                       "content": "repeat",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 34
@@ -1144,6 +1235,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 40
@@ -1156,6 +1248,7 @@
                     {
                       "type": "ident",
                       "content": "scroll",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 41
@@ -1168,6 +1261,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 47
@@ -1180,6 +1274,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "css",
                       "start": {
                         "line": 14,
                         "column": 48
@@ -1190,6 +1285,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 14,
                     "column": 17
@@ -1200,6 +1296,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 14,
                 "column": 5
@@ -1212,6 +1309,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "css",
               "start": {
                 "line": 14,
                 "column": 58
@@ -1222,6 +1320,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 13,
             "column": 4
@@ -1232,6 +1331,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 13,
         "column": 1
@@ -1240,14 +1340,28 @@
         "line": 15,
         "column": 1
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 15,
+        "column": 2
+      },
+      "end": {
+        "line": 15,
+        "column": 2
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 15,
-    "column": 1
+    "column": 2
   }
 }

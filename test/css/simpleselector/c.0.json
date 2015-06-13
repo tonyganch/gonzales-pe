@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "a",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 2
@@ -28,6 +30,7 @@
     {
       "type": "ident",
       "content": "b",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 10
@@ -36,14 +39,28 @@
         "line": 1,
         "column": 10
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 1,
-    "column": 10
+    "column": 11
   }
 }

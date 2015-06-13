@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "charset",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 9
@@ -44,6 +47,7 @@
         {
           "type": "string",
           "content": "\"test0\"",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 10
@@ -54,6 +58,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -66,6 +71,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 17
@@ -78,6 +84,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 18
@@ -96,6 +103,7 @@
             {
               "type": "ident",
               "content": "charset",
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 2
@@ -106,6 +114,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 1
@@ -118,6 +127,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 9
@@ -130,6 +140,7 @@
         {
           "type": "string",
           "content": "\"test1\"",
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 10
@@ -140,6 +151,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 2,
         "column": 1
@@ -152,6 +164,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 2,
         "column": 17
@@ -160,14 +173,28 @@
         "line": 2,
         "column": 17
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 18
+      },
+      "end": {
+        "line": 2,
+        "column": 18
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 2,
-    "column": 17
+    "column": 18
   }
 }

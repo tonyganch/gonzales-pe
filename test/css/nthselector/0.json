@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nth-child",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 2
@@ -16,6 +17,7 @@
     {
       "type": "nth",
       "content": "2n",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 12
@@ -28,6 +30,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 14
@@ -40,6 +43,7 @@
     {
       "type": "nth",
       "content": "1",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 15
@@ -50,6 +54,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1

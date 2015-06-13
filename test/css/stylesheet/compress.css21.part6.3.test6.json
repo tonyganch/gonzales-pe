@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "import",
+              "syntax": "css",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 8
@@ -44,6 +47,7 @@
         {
           "type": "string",
           "content": "\"mystyle1.css\"",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 9
@@ -54,6 +58,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -66,6 +71,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 23
@@ -78,6 +84,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 24
@@ -99,6 +106,7 @@
                 {
                   "type": "ident",
                   "content": "a",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 1
@@ -111,6 +119,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 2
@@ -121,6 +130,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 1
@@ -131,6 +141,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 1
@@ -146,6 +157,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 4
@@ -164,6 +176,7 @@
                     {
                       "type": "ident",
                       "content": "p0",
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 5
@@ -174,6 +187,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 5
@@ -186,6 +200,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 7
@@ -198,6 +213,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 8
@@ -213,6 +229,7 @@
                     {
                       "type": "ident",
                       "content": "v",
+                      "syntax": "css",
                       "start": {
                         "line": 2,
                         "column": 9
@@ -223,6 +240,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 2,
                     "column": 9
@@ -233,6 +251,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 5
@@ -245,6 +264,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 2,
                 "column": 10
@@ -255,6 +275,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 2,
             "column": 3
@@ -265,6 +286,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 2,
         "column": 1
@@ -277,6 +299,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 2,
         "column": 12
@@ -295,6 +318,7 @@
             {
               "type": "ident",
               "content": "import",
+              "syntax": "css",
               "start": {
                 "line": 3,
                 "column": 2
@@ -305,6 +329,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 3,
             "column": 1
@@ -317,6 +342,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 3,
             "column": 8
@@ -329,6 +355,7 @@
         {
           "type": "string",
           "content": "\"mystyle2.css\"",
+          "syntax": "css",
           "start": {
             "line": 3,
             "column": 9
@@ -339,6 +366,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 3,
         "column": 1
@@ -351,6 +379,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 3,
         "column": 23
@@ -363,6 +392,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 3,
         "column": 24
@@ -384,6 +414,7 @@
                 {
                   "type": "ident",
                   "content": "b",
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 1
@@ -396,6 +427,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 2
@@ -406,6 +438,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 1
@@ -416,6 +449,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 4,
             "column": 1
@@ -431,6 +465,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 4
@@ -449,6 +484,7 @@
                     {
                       "type": "ident",
                       "content": "p1",
+                      "syntax": "css",
                       "start": {
                         "line": 4,
                         "column": 5
@@ -459,6 +495,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 5
@@ -471,6 +508,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 7
@@ -483,6 +521,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 8
@@ -498,6 +537,7 @@
                     {
                       "type": "ident",
                       "content": "v",
+                      "syntax": "css",
                       "start": {
                         "line": 4,
                         "column": 9
@@ -508,6 +548,7 @@
                       }
                     }
                   ],
+                  "syntax": "css",
                   "start": {
                     "line": 4,
                     "column": 9
@@ -518,6 +559,7 @@
                   }
                 }
               ],
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 5
@@ -530,6 +572,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "css",
               "start": {
                 "line": 4,
                 "column": 10
@@ -540,6 +583,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 4,
             "column": 3
@@ -550,6 +594,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 4,
         "column": 1
@@ -562,6 +607,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "css",
       "start": {
         "line": 4,
         "column": 12
@@ -580,6 +626,7 @@
             {
               "type": "ident",
               "content": "import",
+              "syntax": "css",
               "start": {
                 "line": 5,
                 "column": 2
@@ -590,6 +637,7 @@
               }
             }
           ],
+          "syntax": "css",
           "start": {
             "line": 5,
             "column": 1
@@ -602,6 +650,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "css",
           "start": {
             "line": 5,
             "column": 8
@@ -614,6 +663,7 @@
         {
           "type": "string",
           "content": "\"mystyle1.css\"",
+          "syntax": "css",
           "start": {
             "line": 5,
             "column": 9
@@ -624,6 +674,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 5,
         "column": 1
@@ -636,6 +687,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "css",
       "start": {
         "line": 5,
         "column": 23
@@ -644,14 +696,28 @@
         "line": 5,
         "column": 23
       }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "css",
+      "start": {
+        "line": 5,
+        "column": 24
+      },
+      "end": {
+        "line": 5,
+        "column": 24
+      }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
   },
   "end": {
     "line": 5,
-    "column": 23
+    "column": 24
   }
 }

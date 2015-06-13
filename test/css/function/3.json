@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "test",
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 1
@@ -19,6 +20,7 @@
         {
           "type": "ident",
           "content": "x",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 6
@@ -31,6 +33,7 @@
         {
           "type": "unaryOperator",
           "content": "+",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 7
@@ -43,6 +46,7 @@
         {
           "type": "ident",
           "content": "y",
+          "syntax": "css",
           "start": {
             "line": 1,
             "column": 8
@@ -53,6 +57,7 @@
           }
         }
       ],
+      "syntax": "css",
       "start": {
         "line": 1,
         "column": 5
@@ -63,6 +68,7 @@
       }
     }
   ],
+  "syntax": "css",
   "start": {
     "line": 1,
     "column": 1
