@@ -1,6 +1,5 @@
 var assert = require('assert');
-var gonzales = require('../');
-var Node = require('./../lib/node');
+var gonzales = require('../../');
 
 describe('Node#contains()', function() {
     it('should return true for existing child node', function() {
