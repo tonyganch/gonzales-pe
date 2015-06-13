@@ -18,7 +18,7 @@ function parse(css, options) {
     if (typeof css !== 'string')
         throw new Error('Please, pass a string to parse');
     else if (!css) 
-        return require('./empty')();
+        return require('./node/empty-node')();
 
     var syntax = options && options.syntax || Defaults.SYNTAX;
     var needInfo = options && options.needInfo || Defaults.NEED_INFO;
