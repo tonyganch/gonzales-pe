@@ -11,17 +11,8 @@ class Node {
         this.content = options.content;
         this.syntax = options.syntax;
 
-        if (options.start)
-            this.start = {
-                line: options.start[0],
-                column: options.start[1]
-            };
-
-        if (options.end)
-            this.end = {
-                line: options.end[0],
-                column: options.end[1]
-            };
+        if (options.start) this.start = options.start;
+        if (options.end) this.end = options.end;
     }
 
     /**

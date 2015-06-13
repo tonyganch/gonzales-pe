@@ -204,8 +204,14 @@ module.exports = (function() {
         return new Node({
             type: type,
             content: content,
-            start: [line, column],
-            end: end,
+            start: {
+                line: line,
+                column: column
+            },
+            end: {
+                line: end[0],
+                column: end[1]
+            },
             syntax: 'sass'
         });
     }
