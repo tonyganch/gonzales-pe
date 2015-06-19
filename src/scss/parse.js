@@ -1407,8 +1407,7 @@ module.exports = (function() {
         pos++;
 
         sc = getSC();
-        var offset = sc.length ? 7 : 8;
-        var end = getLastPosition(sc, line, column, offset);
+        var end = getLastPosition(sc, line, column, 7);
 
         // Skip `default`:
         pos++;
