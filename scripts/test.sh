@@ -16,5 +16,6 @@ if [ $# -eq 0 ]; then
     printf "Empty node tests"
     ./node_modules/.bin/mocha -R $REPORTER ./test/node/empty-node.js
 else
+    printf "Parser tests for syntax: $1"
     node ./test/parser.js $1
 fi
