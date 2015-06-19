@@ -364,9 +364,8 @@ module.exports = (function() {
      *      `@` (e.g. `import`, `include`)
      */
     function getAtkeyword() {
-        var startPos = pos,
-            token = tokens[pos++],
-            content = [getIdent()];
+        var token = tokens[pos++];
+        var content = [getIdent()];
 
         return newNode(NodeType.AtkeywordType, content, token.ln, token.col);
     }
@@ -707,7 +706,6 @@ module.exports = (function() {
      * @returns {Array} `['atrulers', x]`
      */
     function getAtrulers() {
-        var startPos = pos;
         var token = tokens[pos++];
         var line = token.ln;
         var column = token.col;
@@ -1003,9 +1001,7 @@ module.exports = (function() {
      * @returns {Node}
      */
     function getBrackets() {
-        var startPos = pos,
-            left = pos,
-            right = tokens[pos++].right;
+        var startPos = pos++;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1337,10 +1333,10 @@ module.exports = (function() {
      *      a dimension unit (e.g. `'px'`).
      */
     function getDimension() {
-        var startPos = pos,
-            x = [getNumber()],
-            token = tokens[pos];
-            ident = newNode(NodeType.IdentType, getNmName2(), token.ln, token.col);
+        var startPos = pos;
+        var x = [getNumber()];
+        var token = tokens[pos];
+        var ident = newNode(NodeType.IdentType, getNmName2(), token.ln, token.col);
 
         x.push(ident);
 
@@ -1478,11 +1474,10 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getFunction() {
-        var startPos = pos,
-            token = tokens[pos],
-            ident = getIdent(),
-            x = [ident],
-            body;
+        var token = tokens[pos];
+        var ident = getIdent();
+        var x = [ident];
+        var body;
 
         body = ident.content === 'not' ? getNotArguments() : getArguments();
 
@@ -1777,41 +1772,6 @@ module.exports = (function() {
 
         var token = tokens[startPos];
         return newNode(NodeType.IncludeType, x, token.ln, token.col);
-    }
-
-    /**
-     * @param {Number} i Token's index number
-     * @returns {Number}
-     */
-    function checkIncludeSelector(i) {
-        var start = i,
-            l;
-
-        while (i < tokensLength) {
-            if (l = checkSimpleSelector2(i)) i += l;
-            else break;
-        }
-
-        return i - start;
-    }
-
-    /**
-     * @returns {Array}
-     */
-    function getIncludeSelector() {
-        var startPos = pos,
-            x = [],
-            t;
-
-        while (pos < tokensLength && checkSimpleSelector2(pos)) {
-            t = getSimpleSelector2();
-
-            if (t.content === 'string') x.push(t);
-            else x = x.concat(t);
-        }
-
-        var token = tokens[startPos];
-        return newNode(NodeType.SimpleselectorType, x, token.ln, token.col);
     }
 
     /**
@@ -2198,10 +2158,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getNthselector() {
-        var startPos = pos,
-            token = tokens[pos],
-            nthf = newNode(NodeType.IdentType, getNthf(), token.ln, token.col),
-            x = [];
+        var token = tokens[pos];
+        var nthf = newNode(NodeType.IdentType, getNthf(), token.ln, token.col);
+        var x = [];
         var line = token.ln;
         var column = token.col;
 
@@ -2332,13 +2291,14 @@ module.exports = (function() {
      * @return {Node}
      */
     function getParentheses() {
-        var type = NodeType.ParenthesesType,
-            token = tokens[pos],
-            line = token.ln,
-            column = token.col,
-            left = pos,
-            right = tokens[pos++].right,
-            tsets = getTsets();
+        var type = NodeType.ParenthesesType;
+        var token = tokens[pos];
+        var line = token.ln;
+        var column = token.col;
+
+        pos++;
+
+        var tsets = getTsets();
 
         var end = getLastPosition(tsets, line, column, 1);
         pos++;
@@ -2640,8 +2600,7 @@ module.exports = (function() {
         if (i >= tokensLength) return 0;
 
         var l,
-            lsc = 0,
-            ln = tokens[i].ln;
+            lsc = 0;
 
         while (i < tokensLength) {
             if (!(l = checkS(i)) &&
@@ -2825,33 +2784,6 @@ module.exports = (function() {
     }
 
     /**
-     * @param {Number} i Token's index number
-     * @returns {Number}
-     */
-    function checkSimpleSelector2(i) {
-        return checkParentSelector(i) ||
-            checkNthselector(i) ||
-            checkAttrib(i) ||
-            checkPseudo(i) ||
-            checkShash(i) ||
-            checkIdent(i) ||
-            checkClass(i);
-    }
-
-    /**
-     * @returns {Array}
-     */
-    function getSimpleSelector2() {
-        if (checkParentSelector(pos)) return getParentSelector();
-        else if (checkNthselector(pos)) return getNthselector();
-        else if (checkAttrib(pos)) return getAttrib();
-        else if (checkPseudo(pos)) return getPseudo();
-        else if (checkShash(pos)) return getShash();
-        else if (checkIdent(pos)) return getIdent();
-        else if (checkClass(pos)) return getClass();
-    }
-
-    /**
      * Check if token is part of a string (text wrapped in quotes)
      * @param {Number} i Token's index number
      * @returns {Number} `1` if token is part of a string, `0` if not
@@ -3006,25 +2938,6 @@ module.exports = (function() {
     }
 
     /**
-     * @param {Number} i Token's index number
-     * @returns {Number}
-     */
-    function checkUnknown(i) {
-        return i < tokensLength && tokens[i].type === TokenType.CommentSL ? 1 : 0;
-    }
-
-    /**
-     * @returns {Array}
-     */
-    function getUnknown() {
-        var startPos = pos,
-            x = tokens[pos++].value;
-
-        var token = tokens[startPos];
-        return newNode(NodeType.UnknownType, x, token.ln, token.col);
-    }
-
-    /**
      * Check if token is part of URI (e.g. `url('/css/styles.css')`)
      * @param {Number} i Token's index number
      * @returns {Number} Length of URI
@@ -3066,8 +2979,8 @@ module.exports = (function() {
                 .concat([getString()])
                 .concat(getSC());
         } else {
-            uri = getSC(),
-            l = checkExcluding(uriExcluding, pos),
+            uri = getSC();
+            l = checkExcluding(uriExcluding, pos);
             token = tokens[pos];
             raw = newNode(NodeType.RawType, joinValues (pos, pos + l), token.ln, token.col);
 
