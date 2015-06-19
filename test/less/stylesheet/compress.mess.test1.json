@@ -4,6 +4,7 @@
     {
       "type": "multilineComment",
       "content": " test ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "space",
       "content": "\n\n",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 11
@@ -40,6 +42,7 @@
                     {
                       "type": "ident",
                       "content": "test",
+                      "syntax": "less",
                       "start": {
                         "line": 3,
                         "column": 2
@@ -50,6 +53,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 1
@@ -62,6 +66,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 6
@@ -74,6 +79,7 @@
                 {
                   "type": "multilineComment",
                   "content": " test ",
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 7
@@ -86,6 +92,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 17
@@ -96,6 +103,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 3,
                 "column": 1
@@ -106,6 +114,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 3,
             "column": 1
@@ -121,6 +130,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "less",
               "start": {
                 "line": 3,
                 "column": 19
@@ -133,6 +143,7 @@
             {
               "type": "multilineComment",
               "content": " test ",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 5
@@ -145,6 +156,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 15
@@ -163,6 +175,7 @@
                     {
                       "type": "ident",
                       "content": "color",
+                      "syntax": "less",
                       "start": {
                         "line": 4,
                         "column": 16
@@ -173,6 +186,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 16
@@ -185,6 +199,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 21
@@ -197,6 +212,7 @@
                 {
                   "type": "multilineComment",
                   "content": "test",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 22
@@ -209,6 +225,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 30
@@ -221,6 +238,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 31
@@ -233,6 +251,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 32
@@ -245,6 +264,7 @@
                 {
                   "type": "multilineComment",
                   "content": " test ",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 33
@@ -257,6 +277,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 43
@@ -275,6 +296,7 @@
                         {
                           "type": "number",
                           "content": "1",
+                          "syntax": "less",
                           "start": {
                             "line": 4,
                             "column": 44
@@ -287,6 +309,7 @@
                         {
                           "type": "ident",
                           "content": "em",
+                          "syntax": "less",
                           "start": {
                             "line": 4,
                             "column": 45
@@ -297,6 +320,7 @@
                           }
                         }
                       ],
+                      "syntax": "less",
                       "start": {
                         "line": 4,
                         "column": 44
@@ -307,6 +331,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 4,
                     "column": 44
@@ -317,6 +342,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 16
@@ -329,6 +355,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 47
@@ -341,6 +368,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 48
@@ -353,6 +381,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 56
@@ -365,6 +394,7 @@
             {
               "type": "declarationDelimiter",
               "content": ";",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 57
@@ -377,6 +407,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 58
@@ -389,6 +420,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 59
@@ -401,6 +433,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "less",
               "start": {
                 "line": 4,
                 "column": 67
@@ -411,6 +444,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 3,
             "column": 18
@@ -421,6 +455,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 3,
         "column": 1
@@ -433,6 +468,7 @@
     {
       "type": "space",
       "content": "\n\n ",
+      "syntax": "less",
       "start": {
         "line": 5,
         "column": 2
@@ -445,6 +481,7 @@
     {
       "type": "multilineComment",
       "content": " test ",
+      "syntax": "less",
       "start": {
         "line": 7,
         "column": 2
@@ -455,6 +492,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

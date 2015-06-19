@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "s0",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 1
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "delimiter",
           "content": ",",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 3
@@ -47,6 +50,7 @@
             {
               "type": "ident",
               "content": "s1",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 4
@@ -57,6 +61,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 4
@@ -67,6 +72,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -88,6 +94,7 @@
                 {
                   "type": "ident",
                   "content": "p0",
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 7
@@ -98,6 +105,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 7
@@ -110,6 +118,7 @@
             {
               "type": "propertyDelimiter",
               "content": ":",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 9
@@ -125,6 +134,7 @@
                 {
                   "type": "ident",
                   "content": "v0",
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 10
@@ -135,6 +145,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 10
@@ -145,6 +156,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 7
@@ -157,6 +169,7 @@
         {
           "type": "declarationDelimiter",
           "content": ";",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 12
@@ -175,6 +188,7 @@
                 {
                   "type": "ident",
                   "content": "p1",
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 13
@@ -185,6 +199,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 13
@@ -197,6 +212,7 @@
             {
               "type": "propertyDelimiter",
               "content": ":",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 15
@@ -212,6 +228,7 @@
                 {
                   "type": "ident",
                   "content": "v1",
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 16
@@ -222,6 +239,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 16
@@ -232,6 +250,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 13
@@ -242,6 +261,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 6
@@ -252,6 +272,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

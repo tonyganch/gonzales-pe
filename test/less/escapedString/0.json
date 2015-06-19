@@ -1,6 +1,7 @@
 {
   "type": "escapedString",
   "content": "\"nani\"",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

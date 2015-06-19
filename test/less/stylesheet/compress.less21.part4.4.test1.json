@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "charset",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 9
@@ -44,6 +47,7 @@
         {
           "type": "string",
           "content": "\"ISO-8859-1\"",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 10
@@ -54,6 +58,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -66,6 +71,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 22
@@ -76,6 +82,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

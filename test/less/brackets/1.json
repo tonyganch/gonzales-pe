@@ -4,6 +4,7 @@
     {
       "type": "number",
       "content": "1",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 2
@@ -14,6 +15,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "x",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -22,6 +23,7 @@
             {
               "type": "ident",
               "content": "not",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 3
@@ -43,6 +45,7 @@
                         {
                           "type": "ident",
                           "content": "ABC",
+                          "syntax": "less",
                           "start": {
                             "line": 1,
                             "column": 8
@@ -53,6 +56,7 @@
                           }
                         }
                       ],
+                      "syntax": "less",
                       "start": {
                         "line": 1,
                         "column": 7
@@ -63,6 +67,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 7
@@ -73,6 +78,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 6
@@ -83,6 +89,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 3
@@ -93,6 +100,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 2
@@ -103,6 +111,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

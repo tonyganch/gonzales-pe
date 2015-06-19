@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "import",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 8
@@ -47,6 +50,7 @@
             {
               "type": "string",
               "content": "\"fineprint.css\"",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 13
@@ -57,6 +61,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 9
@@ -69,6 +74,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 29
@@ -81,6 +87,7 @@
         {
           "type": "ident",
           "content": "print",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 30
@@ -91,6 +98,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -103,6 +111,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 35
@@ -113,6 +122,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

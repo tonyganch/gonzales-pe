@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "nani",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 2
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -35,6 +37,7 @@
             {
               "type": "number",
               "content": "2",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 7
@@ -47,6 +50,7 @@
             {
               "type": "ident",
               "content": "px",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 8
@@ -57,6 +61,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 7
@@ -67,6 +72,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 6
@@ -77,6 +83,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

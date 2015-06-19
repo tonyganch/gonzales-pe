@@ -1,6 +1,7 @@
 {
   "type": "expression",
   "content": "expression()",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

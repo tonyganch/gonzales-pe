@@ -1,6 +1,7 @@
 {
   "type": "singlelineComment",
   "content": "   test",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1
