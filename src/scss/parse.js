@@ -1227,6 +1227,8 @@ module.exports = (function() {
     function getCondition() {
         var startPos = pos,
             x = [];
+        var s;
+        var _pos;
 
         x.push(getAtkeyword());
 
@@ -1400,7 +1402,6 @@ module.exports = (function() {
      */
     function getDefault() {
         var startPos = pos,
-            x = [],
             sc;
         var token = tokens[startPos];
         var line = token.ln;
@@ -1410,14 +1411,13 @@ module.exports = (function() {
         pos++;
 
         sc = getSC();
-        if (!sc || !sc.length) content = '';
-        var offset = sc ? 7 : 8;
+        var offset = sc.length ? 7 : 8;
         var end = getLastPosition(sc, line, column, offset);
 
         // Skip `default`:
         pos++;
 
-        x = x.concat(sc);
+        var x = sc.length ? sc : [];
 
         return newNode(NodeType.DefaultType, x, token.ln, token.col, end);
     }
