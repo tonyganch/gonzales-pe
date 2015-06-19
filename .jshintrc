@@ -1,0 +1,7 @@
+{
+    "esnext": true,
+    "node": true,
+    "undef": true,
+    "unused": true,
+    "-W084": true
+}
