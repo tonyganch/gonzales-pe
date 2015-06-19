@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "rgb",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 1
@@ -22,6 +23,7 @@
             {
               "type": "number",
               "content": "10",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 5
@@ -34,6 +36,7 @@
             {
               "type": "delimiter",
               "content": ",",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 7
@@ -46,6 +49,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 8
@@ -58,6 +62,7 @@
             {
               "type": "number",
               "content": "10",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 9
@@ -70,6 +75,7 @@
             {
               "type": "delimiter",
               "content": ",",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 11
@@ -82,6 +88,7 @@
             {
               "type": "space",
               "content": " ",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 12
@@ -94,6 +101,7 @@
             {
               "type": "number",
               "content": "10",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 13
@@ -104,6 +112,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 4
@@ -114,6 +123,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -124,6 +134,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

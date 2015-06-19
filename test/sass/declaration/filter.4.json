@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "_filter",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 1
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -29,6 +31,7 @@
     {
       "type": "propertyDelimiter",
       "content": ":",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 8
@@ -44,6 +47,7 @@
         {
           "type": "progid",
           "content": "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='images/transparent-border.png',sizingMethod='scale')",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 9
@@ -54,6 +58,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 9
@@ -64,6 +69,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

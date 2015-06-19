@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nth-child",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 12
@@ -28,6 +30,7 @@
     {
       "type": "nth",
       "content": "2n",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 14
@@ -40,6 +43,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 16
@@ -52,6 +56,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 18
@@ -64,6 +69,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 19
@@ -76,6 +82,7 @@
     {
       "type": "nth",
       "content": "1",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 21
@@ -88,6 +95,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 22
@@ -98,6 +106,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

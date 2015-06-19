@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "t",
+                      "syntax": "sass",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -36,6 +38,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 1
@@ -46,6 +49,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 1
@@ -58,6 +62,7 @@
         {
           "type": "space",
           "content": "\n",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 3
@@ -73,6 +78,7 @@
             {
               "type": "space",
               "content": "    ",
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 1
@@ -91,6 +97,7 @@
                     {
                       "type": "ident",
                       "content": "filter",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 5
@@ -101,6 +108,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 5
@@ -113,6 +121,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 11
@@ -128,6 +137,7 @@
                     {
                       "type": "progid",
                       "content": "progid:DXImageTransform.Microsoft.Alpha(Opacity=40)",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 12
@@ -140,6 +150,7 @@
                     {
                       "type": "space",
                       "content": " ",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 63
@@ -152,6 +163,7 @@
                     {
                       "type": "important",
                       "content": [],
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 64
@@ -162,6 +174,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 12
@@ -172,6 +185,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 5
@@ -182,6 +196,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 1
@@ -192,6 +207,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -202,6 +218,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

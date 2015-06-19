@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "media",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 2
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -32,6 +34,7 @@
         {
           "type": "space",
           "content": "\n",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 7
@@ -42,6 +45,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 7
@@ -57,6 +61,7 @@
         {
           "type": "space",
           "content": "  ",
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 1
@@ -78,6 +83,7 @@
                     {
                       "type": "ident",
                       "content": "s",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 3
@@ -88,6 +94,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 3
@@ -98,6 +105,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 3
@@ -110,6 +118,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 4
@@ -125,6 +134,7 @@
                 {
                   "type": "space",
                   "content": "    ",
+                  "syntax": "sass",
                   "start": {
                     "line": 3,
                     "column": 1
@@ -143,6 +153,7 @@
                         {
                           "type": "ident",
                           "content": "p",
+                          "syntax": "sass",
                           "start": {
                             "line": 3,
                             "column": 5
@@ -153,6 +164,7 @@
                           }
                         }
                       ],
+                      "syntax": "sass",
                       "start": {
                         "line": 3,
                         "column": 5
@@ -165,6 +177,7 @@
                     {
                       "type": "propertyDelimiter",
                       "content": ":",
+                      "syntax": "sass",
                       "start": {
                         "line": 3,
                         "column": 6
@@ -180,6 +193,7 @@
                         {
                           "type": "ident",
                           "content": "v",
+                          "syntax": "sass",
                           "start": {
                             "line": 3,
                             "column": 7
@@ -190,6 +204,7 @@
                           }
                         }
                       ],
+                      "syntax": "sass",
                       "start": {
                         "line": 3,
                         "column": 7
@@ -200,6 +215,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 3,
                     "column": 5
@@ -210,6 +226,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 3,
                 "column": 1
@@ -220,6 +237,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 3
@@ -230,6 +248,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 2,
         "column": 1
@@ -240,6 +259,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

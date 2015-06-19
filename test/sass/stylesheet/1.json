@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "nani",
+                      "syntax": "sass",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -36,6 +38,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 1
@@ -46,6 +49,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 1
@@ -58,6 +62,7 @@
         {
           "type": "space",
           "content": "\n",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 6
@@ -73,6 +78,7 @@
             {
               "type": "space",
               "content": "  ",
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 1
@@ -91,6 +97,7 @@
                     {
                       "type": "ident",
                       "content": "a",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 3
@@ -101,6 +108,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 3
@@ -113,6 +121,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 4
@@ -128,6 +137,7 @@
                     {
                       "type": "ident",
                       "content": "b",
+                      "syntax": "sass",
                       "start": {
                         "line": 2,
                         "column": 5
@@ -138,6 +148,7 @@
                       }
                     }
                   ],
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 5
@@ -148,6 +159,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 3
@@ -160,6 +172,7 @@
             {
               "type": "declarationDelimiter",
               "content": "\n",
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 6
@@ -170,6 +183,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 1
@@ -180,6 +194,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -198,6 +213,7 @@
             {
               "type": "ident",
               "content": "extend",
+              "syntax": "sass",
               "start": {
                 "line": 3,
                 "column": 2
@@ -208,6 +224,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 3,
             "column": 1
@@ -220,6 +237,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "sass",
           "start": {
             "line": 3,
             "column": 8
@@ -238,6 +256,7 @@
                 {
                   "type": "ident",
                   "content": "nani",
+                  "syntax": "sass",
                   "start": {
                     "line": 3,
                     "column": 10
@@ -248,6 +267,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 3,
                 "column": 9
@@ -258,6 +278,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 3,
             "column": 9
@@ -268,6 +289,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 3,
         "column": 1
@@ -278,6 +300,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

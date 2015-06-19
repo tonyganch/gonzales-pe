@@ -13,6 +13,7 @@
                 {
                   "type": "ident",
                   "content": "mycolor",
+                  "syntax": "sass",
                   "start": {
                     "line": 1,
                     "column": 2
@@ -23,6 +24,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 1
@@ -33,6 +35,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 1
@@ -45,6 +48,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 9
@@ -57,6 +61,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 10
@@ -72,6 +77,7 @@
             {
               "type": "color",
               "content": "00ff00",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 11
@@ -82,6 +88,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 11
@@ -92,6 +99,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -104,6 +112,7 @@
     {
       "type": "declarationDelimiter",
       "content": "\n",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 18
@@ -125,6 +134,7 @@
                 {
                   "type": "ident",
                   "content": "mypadding",
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 2
@@ -135,6 +145,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 1
@@ -145,6 +156,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 1
@@ -157,6 +169,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 11
@@ -169,6 +182,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 12
@@ -187,6 +201,7 @@
                 {
                   "type": "number",
                   "content": "3",
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 13
@@ -199,6 +214,7 @@
                 {
                   "type": "ident",
                   "content": "px",
+                  "syntax": "sass",
                   "start": {
                     "line": 2,
                     "column": 14
@@ -209,6 +225,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 2,
                 "column": 13
@@ -219,6 +236,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 2,
             "column": 13
@@ -229,6 +247,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 2,
         "column": 1
@@ -239,6 +258,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1
