@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "filter",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 2
@@ -32,6 +34,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 8
@@ -44,6 +47,7 @@
         {
           "type": "space",
           "content": " ",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 9
@@ -62,6 +66,7 @@
                 {
                   "type": "ident",
                   "content": "alpha",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 10
@@ -77,6 +82,7 @@
                     {
                       "type": "ident",
                       "content": "opacity",
+                      "syntax": "scss",
                       "start": {
                         "line": 1,
                         "column": 16
@@ -89,6 +95,7 @@
                     {
                       "type": "operator",
                       "content": "=",
+                      "syntax": "scss",
                       "start": {
                         "line": 1,
                         "column": 23
@@ -101,6 +108,7 @@
                     {
                       "type": "number",
                       "content": "42",
+                      "syntax": "scss",
                       "start": {
                         "line": 1,
                         "column": 24
@@ -111,6 +119,7 @@
                       }
                     }
                   ],
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 15
@@ -121,6 +130,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 10
@@ -131,6 +141,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 10
@@ -141,6 +152,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 2
@@ -151,6 +163,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

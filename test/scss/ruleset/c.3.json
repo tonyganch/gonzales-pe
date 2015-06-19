@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "s0",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 1
@@ -22,6 +23,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 3
@@ -32,6 +34,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 1
@@ -44,6 +47,7 @@
         {
           "type": "delimiter",
           "content": ",",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 11
@@ -59,6 +63,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 12
@@ -71,6 +76,7 @@
             {
               "type": "ident",
               "content": "s1",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 20
@@ -83,6 +89,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 22
@@ -93,6 +100,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 12
@@ -103,6 +111,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 1
@@ -118,6 +127,7 @@
         {
           "type": "multilineComment",
           "content": "test",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 31
@@ -136,6 +146,7 @@
                 {
                   "type": "ident",
                   "content": "p0",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 39
@@ -146,6 +157,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 39
@@ -158,6 +170,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 41
@@ -170,6 +183,7 @@
             {
               "type": "propertyDelimiter",
               "content": ":",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 49
@@ -182,6 +196,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 50
@@ -197,6 +212,7 @@
                 {
                   "type": "ident",
                   "content": "v0",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 58
@@ -207,6 +223,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 58
@@ -217,6 +234,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 39
@@ -229,6 +247,7 @@
         {
           "type": "multilineComment",
           "content": "test",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 60
@@ -241,6 +260,7 @@
         {
           "type": "declarationDelimiter",
           "content": ";",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 68
@@ -253,6 +273,7 @@
         {
           "type": "multilineComment",
           "content": "test",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 69
@@ -271,6 +292,7 @@
                 {
                   "type": "ident",
                   "content": "p1",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 77
@@ -281,6 +303,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 77
@@ -293,6 +316,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 79
@@ -305,6 +329,7 @@
             {
               "type": "propertyDelimiter",
               "content": ":",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 87
@@ -317,6 +342,7 @@
             {
               "type": "multilineComment",
               "content": "test",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 88
@@ -332,6 +358,7 @@
                 {
                   "type": "ident",
                   "content": "v1",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 96
@@ -342,6 +369,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 96
@@ -352,6 +380,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 77
@@ -364,6 +393,7 @@
         {
           "type": "multilineComment",
           "content": "test",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 98
@@ -374,6 +404,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 30
@@ -384,6 +415,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

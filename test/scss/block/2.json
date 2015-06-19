@@ -4,6 +4,7 @@
     {
       "type": "space",
       "content": "\n  ",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 2
@@ -22,6 +23,7 @@
             {
               "type": "ident",
               "content": "p1",
+              "syntax": "scss",
               "start": {
                 "line": 2,
                 "column": 3
@@ -32,6 +34,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 2,
             "column": 3
@@ -44,6 +47,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "scss",
           "start": {
             "line": 2,
             "column": 5
@@ -59,6 +63,7 @@
             {
               "type": "ident",
               "content": "v1",
+              "syntax": "scss",
               "start": {
                 "line": 2,
                 "column": 6
@@ -69,6 +74,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 2,
             "column": 6
@@ -79,6 +85,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 2,
         "column": 3
@@ -91,6 +98,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "scss",
       "start": {
         "line": 2,
         "column": 8
@@ -103,6 +111,7 @@
     {
       "type": "space",
       "content": " ",
+      "syntax": "scss",
       "start": {
         "line": 2,
         "column": 9
@@ -115,6 +124,7 @@
     {
       "type": "singlelineComment",
       "content": " comment",
+      "syntax": "scss",
       "start": {
         "line": 2,
         "column": 10
@@ -127,6 +137,7 @@
     {
       "type": "space",
       "content": "\n  ",
+      "syntax": "scss",
       "start": {
         "line": 2,
         "column": 20
@@ -145,6 +156,7 @@
             {
               "type": "ident",
               "content": "p2",
+              "syntax": "scss",
               "start": {
                 "line": 3,
                 "column": 3
@@ -155,6 +167,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 3,
             "column": 3
@@ -167,6 +180,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "scss",
           "start": {
             "line": 3,
             "column": 5
@@ -182,6 +196,7 @@
             {
               "type": "ident",
               "content": "v2",
+              "syntax": "scss",
               "start": {
                 "line": 3,
                 "column": 6
@@ -192,6 +207,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 3,
             "column": 6
@@ -202,6 +218,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 3,
         "column": 3
@@ -214,6 +231,7 @@
     {
       "type": "space",
       "content": "\n",
+      "syntax": "scss",
       "start": {
         "line": 3,
         "column": 8
@@ -224,6 +242,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1
