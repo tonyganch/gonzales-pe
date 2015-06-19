@@ -77,4 +77,4 @@ module.exports = function stringify(tree) {
     };
 
     return _t(tree);
-}
+};

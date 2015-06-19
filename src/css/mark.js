@@ -6,10 +6,7 @@ var TokenType = require('../token-types');
  */
 function markSpacesAndComments(tokens) {
     var tokensLength = tokens.length;
-    var lastSpaceIndex = -1;
-    var lastSpaceOrCommentIndex = -1;
     var spaces = [-1, -1];
-    var token; // current token
     var type; // current token's type
 
     // For every token in the token list, mark spaces and line breaks
@@ -87,7 +84,7 @@ function markBrackets(tokens) {
     // left brackets), take a token of the last left bracket (take
     // the last index number from the array and find a token with
     // this index number) and save right bracket's index as a reference:
-    for (var i = 0; i < tokens.length; i++) {
+    for (var i = 0; i < tokensLength; i++) {
         t = tokens[i];
         var type = t.type;
 

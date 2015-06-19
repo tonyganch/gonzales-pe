@@ -18,7 +18,6 @@ var tokensLength;
 var pos;
 
 var rules = {
-    'arguments': function() { return checkArguments(pos) && getArguments(); },
     'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
     'atruleb': function() { return checkAtruleb(pos) && getAtruleb(); },
     'atruler': function() { return checkAtruler(pos) && getAtruler(); },
@@ -719,7 +718,6 @@ function getBlock() {
         token = tokens[pos],
         line = token.ln,
         column = token.col,
-        content = [],
         end = tokens[pos++].right,
         content = [];
 
@@ -919,11 +917,11 @@ function getBrackets() {
     var type = NodeType.BracketsType,
         token = tokens[pos],
         line = token.ln,
-        column = token.col,
-        left = pos,
-        right = tokens[pos++].right,
-        tsets = getTsets();
+        column = token.col;
 
+    pos++;
+
+    var tsets = getTsets();
     var end = getLastPosition(tsets, line, column, 1);
     pos++;
 
@@ -1326,8 +1324,7 @@ function getNotArguments() {
  */
 function checkIdent(i) {
     var start = i,
-        wasIdent,
-        l;
+        wasIdent;
 
     if (i >= tokensLength) return 0;
 
@@ -1812,11 +1809,11 @@ function getParentheses() {
     var type = NodeType.ParenthesesType,
         token = tokens[pos],
         line = token.ln,
-        column = token.col,
-        left = pos,
-        right = tokens[pos++].right,
-        tsets = getTsets();
+        column = token.col;
 
+    pos++;
+
+    var tsets = getTsets();
     var end = getLastPosition(tsets, line, column, 1);
     pos++;
 
@@ -2503,7 +2500,7 @@ function getUri() {
             .concat(getSC());
     } else {
         uri = checkSC(pos) ? getSC() : [];
-        l = checkExcluding(uriExcluding, pos),
+        l = checkExcluding(uriExcluding, pos);
         rawContent = joinValues(pos, pos + l);
         t = tokens[pos];
         raw = newNode(NodeType.RawType, rawContent, t.ln, t.col);
@@ -2572,8 +2569,7 @@ function checkValue(i) {
 function getValue() {
     var startPos = pos,
         end = tokens[pos].value_end,
-        x = [],
-        s, _pos;
+        x = [];
 
     while (pos < end) {
         if (tokens[pos].value_child) x.push(_getValue());
