@@ -1,0 +1,27 @@
+{
+  "type": "default",
+  "content": [
+    {
+      "type": "space",
+      "content": "   ",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 4
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 11
+  }
+}
