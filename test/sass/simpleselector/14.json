@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "classes",
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 4
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 3
@@ -30,6 +32,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 1
@@ -40,6 +43,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

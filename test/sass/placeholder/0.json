@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nani",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 2
@@ -14,6 +15,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

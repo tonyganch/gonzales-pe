@@ -1,6 +1,7 @@
 {
   "type": "number",
   "content": "12.34",
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

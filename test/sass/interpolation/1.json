@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "length",
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 3
@@ -25,6 +26,7 @@
                 {
                   "type": "ident",
                   "content": "color-cycle",
+                  "syntax": "sass",
                   "start": {
                     "line": 1,
                     "column": 11
@@ -35,6 +37,7 @@
                   }
                 }
               ],
+              "syntax": "sass",
               "start": {
                 "line": 1,
                 "column": 10
@@ -45,6 +48,7 @@
               }
             }
           ],
+          "syntax": "sass",
           "start": {
             "line": 1,
             "column": 9
@@ -55,6 +59,7 @@
           }
         }
       ],
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 3
@@ -65,6 +70,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

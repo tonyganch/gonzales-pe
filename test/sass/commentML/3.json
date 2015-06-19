@@ -1,6 +1,7 @@
 {
   "type": "multilineComment",
   "content": " Tomatos\n      are\n    red",
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

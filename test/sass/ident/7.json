@@ -1,6 +1,7 @@
 {
   "type": "ident",
   "content": "color-foo",
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

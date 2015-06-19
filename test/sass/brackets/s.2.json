@@ -4,6 +4,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 2
@@ -16,6 +17,7 @@
     {
       "type": "ident",
       "content": "x",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 4
@@ -28,6 +30,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 5
@@ -38,6 +41,7 @@
       }
     }
   ],
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1
