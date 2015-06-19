@@ -785,8 +785,6 @@ module.exports = (function() {
             end = tokens[pos].block_end,
             x = [];
         var token = tokens[startPos];
-        var line = token.ln;
-        var column = token.col;
 
         while (pos < end) {
             if (checkBlockdecl(pos)) x = x.concat(getBlockdecl());
@@ -972,34 +970,6 @@ module.exports = (function() {
      * @param {Number} i Token's index number
      * @returns {Number}
      */
-    function checkBlockdecl3(i) {
-        var start = i,
-            l;
-
-        if (l = checkSC(i)) i += l;
-
-        if (l = checkDeclDelim(i)) i += l;
-        else return 0;
-
-        if (l = checkSC(i)) i += l;
-
-        return i - start;
-    }
-
-    /**
-     * @returns {Array} `[s0, ['declDelim'], s1]` where `s0` and `s1` are
-     *      are optional whitespaces.
-     */
-    function getBlockdecl3() {
-        return getSC()
-            .concat([getDeclDelim()])
-            .concat(getSC());
-    }
-
-    /**
-     * @param {Number} i Token's index number
-     * @returns {Number}
-     */
     function checkBlockdecl4(i) {
         return checkSC(i);
     }
@@ -1028,9 +998,7 @@ module.exports = (function() {
      * @returns {Node}
      */
     function getBrackets() {
-        var startPos = pos,
-            left = pos,
-            right = tokens[pos].right;
+        var startPos = pos;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1220,8 +1188,8 @@ module.exports = (function() {
         while (pos < tokensLength) {
             if (checkBlock(pos)) break;
 
-            s = checkSC(pos);
-            _pos = pos + s;
+            var s = checkSC(pos);
+            var _pos = pos + s;
 
             if (!_checkCondition(_pos)) break;
 
@@ -1465,8 +1433,7 @@ module.exports = (function() {
         pos++;
 
         sc = getSC();
-        if (!sc || !sc.length) content = '';
-        var offset = sc ? 7 : 8;
+        var offset = sc.length ? 7 : 8;
         var end = getLastPosition(sc, line, column, offset);
 
         // Skip `default`:
@@ -2768,10 +2735,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getNthselector() {
-        var startPos = pos,
-            token = tokens[pos],
-            nthf = newNode(NodeType.IdentType, getNthf(), token.ln, token.col),
-            x = [];
+        var token = tokens[pos];
+        var nthf = newNode(NodeType.IdentType, getNthf(), token.ln, token.col);
+        var x = [];
         var line = token.ln;
         var column = token.col;
 
@@ -2908,11 +2874,11 @@ module.exports = (function() {
         var type = NodeType.ParenthesesType,
             token = tokens[pos],
             line = token.ln,
-            column = token.col,
-            left = pos,
-            right = tokens[pos++].right,
-            tsets = getTsets();
+            column = token.col;
 
+        pos++;
+
+        var tsets = getTsets();
         var end = getLastPosition(tsets, line, column, 1);
         pos++;
 
@@ -3337,8 +3303,8 @@ module.exports = (function() {
     function getSelector() {
         var startPos = pos,
             x = [],
-            selector_end = tokens[pos].selector_end,
-            ln = tokens[pos].ln;
+            selector_end = tokens[pos].selector_end;
+        var l;
 
         while (pos <= selector_end) {
             if ((l = checkDeclDelim(pos)) && checkBlock(pos + l)) x.push(getDeclDelim());
@@ -3661,25 +3627,6 @@ module.exports = (function() {
     }
 
     /**
-     * @param {Number} i Token's index number
-     * @returns {Number}
-     */
-    function checkUnknown(i) {
-        return i < tokensLength && tokens[i].type === TokenType.CommentSL ? 1 : 0;
-    }
-
-    /**
-     * @returns {Array}
-     */
-    function getUnknown() {
-        var startPos = pos,
-            x = tokens[pos++].value;
-
-        var token = tokens[startPos];
-        return newNode(NodeType.UnknownType, x, token.ln, token.col);
-    }
-
-    /**
      * Check if token is part of URI (e.g. `url('/css/styles.css')`)
      * @param {Number} i Token's index number
      * @returns {Number} Length of URI
@@ -3721,9 +3668,9 @@ module.exports = (function() {
                 .concat([getString()])
                 .concat(getSC());
         } else {
-            uri = [].concat(getSC()),
-            l = checkExcluding(uriExcluding, pos),
-            token = tokens[pos],
+            uri = [].concat(getSC());
+            l = checkExcluding(uriExcluding, pos);
+            token = tokens[pos];
             raw = newNode(NodeType.RawType, joinValues(pos, pos + l), token.ln, token.col);
 
             uri.push(raw);
@@ -3810,7 +3757,7 @@ module.exports = (function() {
     function getValue() {
         var startPos = pos,
             x = [],
-            t, _pos, s;
+            _pos, s;
 
         while (pos < tokensLength) {
             if (checkDeclDelim(pos)) break;
