@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "test",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 2
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 1
@@ -30,6 +32,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -42,6 +45,7 @@
     {
       "type": "declarationDelimiter",
       "content": ";",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 6
@@ -52,6 +56,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

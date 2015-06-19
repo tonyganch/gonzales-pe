@@ -1,6 +1,7 @@
 {
   "type": "ident",
   "content": "_0",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

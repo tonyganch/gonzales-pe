@@ -16,6 +16,7 @@
                     {
                       "type": "ident",
                       "content": "ie-test",
+                      "syntax": "less",
                       "start": {
                         "line": 1,
                         "column": 2
@@ -26,6 +27,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 1
@@ -38,6 +40,7 @@
                 {
                   "type": "space",
                   "content": "\n",
+                  "syntax": "less",
                   "start": {
                     "line": 1,
                     "column": 9
@@ -48,6 +51,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 1
@@ -58,6 +62,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 1
@@ -73,6 +78,7 @@
             {
               "type": "space",
               "content": "\n    ",
+              "syntax": "less",
               "start": {
                 "line": 2,
                 "column": 2
@@ -91,6 +97,7 @@
                     {
                       "type": "ident",
                       "content": "filter",
+                      "syntax": "less",
                       "start": {
                         "line": 3,
                         "column": 5
@@ -101,6 +108,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 5
@@ -113,6 +121,7 @@
                 {
                   "type": "propertyDelimiter",
                   "content": ":",
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 11
@@ -125,6 +134,7 @@
                 {
                   "type": "space",
                   "content": " ",
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 12
@@ -140,6 +150,7 @@
                     {
                       "type": "progid",
                       "content": "progid:DXImageTransform.Microsoft.gradient (startColorstr=#33CCCCCC, endColorstr=#33CCCCCC)",
+                      "syntax": "less",
                       "start": {
                         "line": 3,
                         "column": 13
@@ -150,6 +161,7 @@
                       }
                     }
                   ],
+                  "syntax": "less",
                   "start": {
                     "line": 3,
                     "column": 13
@@ -160,6 +172,7 @@
                   }
                 }
               ],
+              "syntax": "less",
               "start": {
                 "line": 3,
                 "column": 5
@@ -172,6 +185,7 @@
             {
               "type": "declarationDelimiter",
               "content": ";",
+              "syntax": "less",
               "start": {
                 "line": 3,
                 "column": 104
@@ -184,6 +198,7 @@
             {
               "type": "space",
               "content": "\n",
+              "syntax": "less",
               "start": {
                 "line": 3,
                 "column": 105
@@ -194,6 +209,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 2,
             "column": 1
@@ -204,6 +220,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -214,6 +231,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

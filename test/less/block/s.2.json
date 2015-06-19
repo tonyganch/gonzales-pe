@@ -4,6 +4,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 2
@@ -22,6 +23,7 @@
             {
               "type": "ident",
               "content": "p",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 4
@@ -32,6 +34,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 4
@@ -44,6 +47,7 @@
         {
           "type": "propertyDelimiter",
           "content": ":",
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 5
@@ -59,6 +63,7 @@
             {
               "type": "ident",
               "content": "v",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 6
@@ -69,6 +74,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 6
@@ -79,6 +85,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 4
@@ -91,6 +98,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 7
@@ -101,6 +109,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

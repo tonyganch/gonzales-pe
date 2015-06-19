@@ -10,6 +10,7 @@
             {
               "type": "ident",
               "content": "nani",
+              "syntax": "less",
               "start": {
                 "line": 1,
                 "column": 3
@@ -20,6 +21,7 @@
               }
             }
           ],
+          "syntax": "less",
           "start": {
             "line": 1,
             "column": 2
@@ -30,6 +32,7 @@
           }
         }
       ],
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 2
@@ -40,6 +43,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

@@ -1,6 +1,7 @@
 {
   "type": "attributeSelector",
   "content": "^=",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

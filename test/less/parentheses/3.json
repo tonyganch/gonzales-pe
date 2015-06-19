@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "x",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 2
@@ -16,6 +17,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 3
@@ -28,6 +30,7 @@
     {
       "type": "number",
       "content": "1",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 4
@@ -38,6 +41,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

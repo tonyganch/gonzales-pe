@@ -1,6 +1,7 @@
 {
   "type": "number",
   "content": "1.200000",
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

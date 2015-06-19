@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nth-last-child",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 17
@@ -28,6 +30,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 19
@@ -40,6 +43,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 20
@@ -52,6 +56,7 @@
     {
       "type": "nth",
       "content": "3n",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 22
@@ -64,6 +69,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 24
@@ -76,6 +82,7 @@
     {
       "type": "unaryOperator",
       "content": "-",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 26
@@ -88,6 +95,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 27
@@ -100,6 +108,7 @@
     {
       "type": "nth",
       "content": "2",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 29
@@ -112,6 +121,7 @@
     {
       "type": "space",
       "content": "  ",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 30
@@ -122,6 +132,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1

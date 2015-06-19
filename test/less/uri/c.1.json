@@ -4,6 +4,7 @@
     {
       "type": "multilineComment",
       "content": "test",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 5
@@ -16,6 +17,7 @@
     {
       "type": "raw",
       "content": "http://test.com/*test*/",
+      "syntax": "less",
       "start": {
         "line": 1,
         "column": 13
@@ -26,6 +28,7 @@
       }
     }
   ],
+  "syntax": "less",
   "start": {
     "line": 1,
     "column": 1
