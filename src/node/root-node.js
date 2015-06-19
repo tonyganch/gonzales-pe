@@ -14,7 +14,7 @@ class RootNode extends Node {
                 i: i
             });
 
-            buildIndex(node, index, indexHasChanged);
+            this.buildIndex(node, index, indexHasChanged);
         }
     }
 
@@ -22,7 +22,7 @@ class RootNode extends Node {
         if (!this.index) {
             this.index = {stylesheet: [this]};
             this.indexHasChanged = [0];
-            buildIndex(this, this.index, this.indexHasChanged);
+            this.buildIndex(this, this.index, this.indexHasChanged);
         }
 
         var nodes = this.index[type];
@@ -34,7 +34,7 @@ class RootNode extends Node {
             if (this.indexHasChanged[0]) {
                 this.index = {stylesheet: [this]};
                 this.indexHasChanged = [0];
-                buildIndex(this, this.index, this.indexHasChanged);
+                this.buildIndex(this, this.index, this.indexHasChanged);
                 nodes = this.index[type];
                 i += nodes.length - l;
                 l = nodes.length;
