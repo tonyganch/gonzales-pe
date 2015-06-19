@@ -159,7 +159,7 @@ module.exports = function(css) {
      * Parse equality sign
      * @param {string} sass Unparsed part of SASS string
      */
-    function parseEquality(css) {
+    function parseEquality() {
         pushToken(TokenType.EqualitySign, '==', col);
         pos++;
         col++;
@@ -169,7 +169,7 @@ module.exports = function(css) {
      * Parse inequality sign
      * @param {string} sass Unparsed part of SASS string
      */
-    function parseInequality(css) {
+    function parseInequality() {
         pushToken(TokenType.InequalitySign, '!=', col);
         pos++;
         col++;
