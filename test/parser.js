@@ -49,7 +49,7 @@ function shouldBeOk() {
     }
 
     try {
-        var compiledString = ast.toCSS(syntax);
+        var compiledString = ast.toString();
         assert.equal(compiledString, input);
     } catch (e) {
         logAndThrow(testTitle, e, 'Failed ast -> src');
