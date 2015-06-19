@@ -2358,7 +2358,7 @@ module.exports = (function() {
         var end = getLastPosition(x, line, column, 1);
         pos++;
 
-        return newNode(NodeType.PercentageType, x, line, column);
+        return newNode(NodeType.PercentageType, x, line, column, end);
     }
 
     /**
