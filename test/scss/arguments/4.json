@@ -1,6 +1,7 @@
 {
   "type": "arguments",
   "content": [],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

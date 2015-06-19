@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "nth-last-child",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "unaryOperator",
       "content": "+",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 17
@@ -28,6 +30,7 @@
     {
       "type": "nth",
       "content": "3n",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 18
@@ -46,6 +49,7 @@
             {
               "type": "ident",
               "content": "sign",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 23
@@ -56,6 +60,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 22
@@ -66,6 +71,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 20
@@ -78,6 +84,7 @@
     {
       "type": "nth",
       "content": "2",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 28
@@ -88,6 +95,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

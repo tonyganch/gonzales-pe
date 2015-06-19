@@ -1,6 +1,7 @@
 {
   "type": "ident",
   "content": "color-foo",
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

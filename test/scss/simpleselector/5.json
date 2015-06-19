@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "a",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 1
@@ -16,6 +17,7 @@
     {
       "type": "space",
       "content": " ",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 2
@@ -28,6 +30,7 @@
     {
       "type": "ident",
       "content": "b",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 3
@@ -38,6 +41,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

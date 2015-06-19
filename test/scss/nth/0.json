@@ -1,6 +1,7 @@
 {
   "type": "nth",
   "content": "10",
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

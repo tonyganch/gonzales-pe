@@ -1,6 +1,7 @@
 {
   "type": "string",
   "content": "'te\\'st'",
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

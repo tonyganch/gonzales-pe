@@ -7,6 +7,7 @@
         {
           "type": "ident",
           "content": "mixin",
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 2
@@ -17,6 +18,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 1
@@ -29,6 +31,7 @@
     {
       "type": "space",
       "content": " ",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 7
@@ -41,6 +44,7 @@
     {
       "type": "ident",
       "content": "nani",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 8
@@ -53,6 +57,7 @@
     {
       "type": "space",
       "content": " ",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 12
@@ -74,6 +79,7 @@
                 {
                   "type": "ident",
                   "content": "color",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 14
@@ -84,6 +90,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 14
@@ -96,6 +103,7 @@
             {
               "type": "propertyDelimiter",
               "content": ":",
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 19
@@ -111,6 +119,7 @@
                 {
                   "type": "ident",
                   "content": "tomato",
+                  "syntax": "scss",
                   "start": {
                     "line": 1,
                     "column": 20
@@ -121,6 +130,7 @@
                   }
                 }
               ],
+              "syntax": "scss",
               "start": {
                 "line": 1,
                 "column": 20
@@ -131,6 +141,7 @@
               }
             }
           ],
+          "syntax": "scss",
           "start": {
             "line": 1,
             "column": 14
@@ -141,6 +152,7 @@
           }
         }
       ],
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 13
@@ -151,6 +163,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

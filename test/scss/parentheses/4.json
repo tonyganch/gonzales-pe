@@ -4,6 +4,7 @@
     {
       "type": "ident",
       "content": "test",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 2
@@ -16,6 +17,7 @@
     {
       "type": "operator",
       "content": ":",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 6
@@ -28,6 +30,7 @@
     {
       "type": "number",
       "content": "0",
+      "syntax": "scss",
       "start": {
         "line": 1,
         "column": 7
@@ -38,6 +41,7 @@
       }
     }
   ],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1

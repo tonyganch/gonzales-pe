@@ -1,6 +1,7 @@
 {
   "type": "brackets",
   "content": [],
+  "syntax": "scss",
   "start": {
     "line": 1,
     "column": 1
