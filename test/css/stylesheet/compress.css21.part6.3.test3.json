@@ -120,19 +120,6 @@
         "line": 1,
         "column": 35
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 1,
-        "column": 36
-      },
-      "end": {
-        "line": 1,
-        "column": 36
-      }
     }
   ],
   "syntax": "css",
@@ -142,6 +129,6 @@
   },
   "end": {
     "line": 1,
-    "column": 36
+    "column": 35
   }
 }

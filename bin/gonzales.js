@@ -34,7 +34,7 @@ function processSTDIN() {
 function processFile(file) {
     if (!file) process.exit(0);
     if (!options.syntax) options.syntax = path.extname(file).substring(1);
-    var css = fs.readFileSync(file, 'utf-8');
+    var css = fs.readFileSync(file, 'utf-8').trim();
     processInputData(css);
 }
 

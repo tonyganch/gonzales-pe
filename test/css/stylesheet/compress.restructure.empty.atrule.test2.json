@@ -753,19 +753,6 @@
         "line": 7,
         "column": 11
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 7,
-        "column": 12
-      },
-      "end": {
-        "line": 7,
-        "column": 12
-      }
     }
   ],
   "syntax": "css",
@@ -775,6 +762,6 @@
   },
   "end": {
     "line": 7,
-    "column": 12
+    "column": 11
   }
 }

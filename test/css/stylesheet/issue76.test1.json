@@ -899,19 +899,6 @@
         "line": 5,
         "column": 22
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 5,
-        "column": 23
-      },
-      "end": {
-        "line": 5,
-        "column": 23
-      }
     }
   ],
   "syntax": "css",
@@ -921,6 +908,6 @@
   },
   "end": {
     "line": 5,
-    "column": 23
+    "column": 22
   }
 }

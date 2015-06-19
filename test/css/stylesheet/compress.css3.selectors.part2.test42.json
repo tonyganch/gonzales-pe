@@ -267,19 +267,6 @@
         "line": 1,
         "column": 15
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 1,
-        "column": 16
-      },
-      "end": {
-        "line": 1,
-        "column": 16
-      }
     }
   ],
   "syntax": "css",
@@ -289,6 +276,6 @@
   },
   "end": {
     "line": 1,
-    "column": 16
+    "column": 15
   }
 }
