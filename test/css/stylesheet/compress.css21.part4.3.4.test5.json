@@ -375,19 +375,6 @@
         "line": 2,
         "column": 24
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 2,
-        "column": 25
-      },
-      "end": {
-        "line": 2,
-        "column": 25
-      }
     }
   ],
   "syntax": "css",
@@ -397,6 +384,6 @@
   },
   "end": {
     "line": 2,
-    "column": 25
+    "column": 24
   }
 }

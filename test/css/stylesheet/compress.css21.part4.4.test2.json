@@ -2,19 +2,6 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "space",
-      "content": " ",
-      "syntax": "css",
-      "start": {
-        "line": 1,
-        "column": 1
-      },
-      "end": {
-        "line": 1,
-        "column": 1
-      }
-    },
-    {
       "type": "atrules",
       "content": [
         {
@@ -26,22 +13,22 @@
               "syntax": "css",
               "start": {
                 "line": 1,
-                "column": 3
+                "column": 2
               },
               "end": {
                 "line": 1,
-                "column": 9
+                "column": 8
               }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 1,
-            "column": 2
+            "column": 1
           },
           "end": {
             "line": 1,
-            "column": 9
+            "column": 8
           }
         },
         {
@@ -50,11 +37,11 @@
           "syntax": "css",
           "start": {
             "line": 1,
-            "column": 10
+            "column": 9
           },
           "end": {
             "line": 1,
-            "column": 10
+            "column": 9
           }
         },
         {
@@ -63,22 +50,22 @@
           "syntax": "css",
           "start": {
             "line": 1,
-            "column": 11
+            "column": 10
           },
           "end": {
             "line": 1,
-            "column": 16
+            "column": 15
           }
         }
       ],
       "syntax": "css",
       "start": {
         "line": 1,
-        "column": 2
+        "column": 1
       },
       "end": {
         "line": 1,
-        "column": 16
+        "column": 15
       }
     },
     {
@@ -87,11 +74,11 @@
       "syntax": "css",
       "start": {
         "line": 1,
-        "column": 17
+        "column": 16
       },
       "end": {
         "line": 1,
-        "column": 17
+        "column": 16
       }
     },
     {
@@ -100,11 +87,11 @@
       "syntax": "css",
       "start": {
         "line": 1,
-        "column": 18
+        "column": 17
       },
       "end": {
         "line": 1,
-        "column": 18
+        "column": 17
       }
     },
     {
@@ -308,19 +295,6 @@
         "line": 2,
         "column": 10
       }
-    },
-    {
-      "type": "space",
-      "content": "\n",
-      "syntax": "css",
-      "start": {
-        "line": 2,
-        "column": 11
-      },
-      "end": {
-        "line": 2,
-        "column": 11
-      }
     }
   ],
   "syntax": "css",
@@ -330,6 +304,6 @@
   },
   "end": {
     "line": 2,
-    "column": 11
+    "column": 10
   }
 }
