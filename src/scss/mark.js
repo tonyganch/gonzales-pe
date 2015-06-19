@@ -75,7 +75,7 @@ module.exports = (function() {
        // left brackets), take a token of the last left bracket (take
        // the last index number from the array and find a token with
        // this index number) and save right bracket's index as a reference:
-       for (var i = 0; i < tokens.length; i++) {
+       for (var i = 0; i < tokensLength; i++) {
            t = tokens[i];
            switch(t.type) {
                case TokenType.LeftParenthesis:
@@ -112,5 +112,5 @@ module.exports = (function() {
     return function(tokens) {
         markBrackets(tokens);
         markSC(tokens);
-    }
+    };
 })();
