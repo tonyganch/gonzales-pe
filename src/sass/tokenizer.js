@@ -159,7 +159,7 @@ module.exports = function(css) {
      * Parse equality sign
      * @param {string} sass Unparsed part of SASS string
      */
-    function parseEquality(css) {
+    function parseEquality() {
         pushToken(TokenType.EqualitySign, '==', col);
         pos++;
         col++;
@@ -169,7 +169,7 @@ module.exports = function(css) {
      * Parse inequality sign
      * @param {string} sass Unparsed part of SASS string
      */
-    function parseInequality(css) {
+    function parseInequality() {
         pushToken(TokenType.InequalitySign, '!=', col);
         pos++;
         col++;
@@ -185,7 +185,7 @@ module.exports = function(css) {
 
         // Get current indent level:
         var il = 0;
-        for (var _pos = pos - 1; _pos > -1; _pos--) {
+        for (let _pos = pos - 1; _pos > -1; _pos--) {
             // TODO: Can be tabs:
             if (css.charAt(_pos) === ' ') il++;
             else break;
@@ -193,9 +193,10 @@ module.exports = function(css) {
 
         for (pos += 2; pos < css.length; pos++) {
             if (css.charAt(pos) === '\n') {
+                let _pos;
                 // Get new line's indent level:
                 var _il = 0;
-                for (var _pos = pos + 1; _pos < css.length; _pos++) {
+                for (_pos = pos + 1; _pos < css.length; _pos++) {
                     if (css.charAt(_pos) === ' ') _il++;
                     else break;
                 }
@@ -230,12 +231,13 @@ module.exports = function(css) {
     function parseSLComment(css) {
         var start = pos;
         var col_ = col;
+        var _pos;
 
         // Check if comment is the only token on the line, and if so,
         // get current indent level:
         var il = 0;
         var onlyToken = false;
-        for (var _pos = pos - 1; _pos > -1; _pos--) {
+        for (_pos = pos - 1; _pos > -1; _pos--) {
             // TODO: Can be tabs:
             if (css.charAt(_pos) === ' ') il++;
             else if (css.charAt(_pos) === '\n') {
@@ -259,7 +261,7 @@ module.exports = function(css) {
                 if (css.charAt(pos) === '\n') {
                     // Get new line's indent level:
                     var _il = 0;
-                    for (var _pos = pos + 1; _pos < css.length; _pos++) {
+                    for (_pos = pos + 1; _pos < css.length; _pos++) {
                         if (css.charAt(_pos) === ' ') _il++;
                         else break;
                     }
