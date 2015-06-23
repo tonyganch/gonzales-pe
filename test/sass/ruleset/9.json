@@ -1,0 +1,457 @@
+{
+  "type": "ruleset",
+  "content": [
+    {
+      "type": "selector",
+      "content": [
+        {
+          "type": "simpleSelector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "block",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 6
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 6
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 6
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 7
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "space",
+          "content": "  ",
+          "syntax": "sass",
+          "start": {
+            "line": 2,
+            "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "type": "include",
+          "content": [
+            {
+              "type": "operator",
+              "content": "+",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 3
+              }
+            },
+            {
+              "type": "simpleSelector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "media",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 8
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 4
+              },
+              "end": {
+                "line": 2,
+                "column": 8
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "lap",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 12
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 9
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 14
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "space",
+                  "content": "    ",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 4
+                  }
+                },
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "color",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 5
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 9
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 9
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 10
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 11
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "green",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 16
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 16
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 16
+                  }
+                },
+                {
+                  "type": "declarationDelimiter",
+                  "content": "\n",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 17
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 17
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 17
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": "  ",
+          "syntax": "sass",
+          "start": {
+            "line": 5,
+            "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 2
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "color",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 7
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 3
+              },
+              "end": {
+                "line": 5,
+                "column": 7
+              }
+            },
+            {
+              "type": "propertyDelimiter",
+              "content": ":",
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 8
+              },
+              "end": {
+                "line": 5,
+                "column": 8
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 9
+              },
+              "end": {
+                "line": 5,
+                "column": 9
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "black",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 14
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 10
+              },
+              "end": {
+                "line": 5,
+                "column": 14
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 5,
+            "column": 3
+          },
+          "end": {
+            "line": 5,
+            "column": 14
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 2,
+        "column": 1
+      },
+      "end": {
+        "line": 5,
+        "column": 14
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 5,
+    "column": 14
+  }
+}

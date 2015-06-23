@@ -787,6 +787,7 @@ module.exports = (function() {
         var token = tokens[startPos];
 
         while (pos < end) {
+            checkBlockdecl(pos);
             if (checkBlockdecl(pos)) x = x.concat(getBlockdecl());
             else throwError();
         }
@@ -806,6 +807,7 @@ module.exports = (function() {
 
         if (l = checkBlockdecl1(i)) tokens[i].bd_type = 1;
         else if (l = checkBlockdecl2(i)) tokens[i].bd_type = 2;
+        else if (l = checkBlockdecl3(i)) tokens[i].bd_type = 3;
         else if (l = checkBlockdecl4(i)) tokens[i].bd_type = 4;
         else return 0;
 
@@ -819,6 +821,7 @@ module.exports = (function() {
         switch (tokens[pos].bd_type) {
             case 1: return getBlockdecl1();
             case 2: return getBlockdecl2();
+            case 3: return getBlockdecl3();
             case 4: return getBlockdecl4();
         }
     }
@@ -831,80 +834,67 @@ module.exports = (function() {
         var start = i,
             l;
 
-        if (l = checkSC(i)) i += l;
-
-        if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
-        else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
-        else if (l = checkExtend(i)) tokens[i].bd_kind = 4;
-        else if (l = checkLoop(i)) tokens[i].bd_kind = 3;
+        if (l = checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
         else if (l = checkAtrule(i)) tokens[i].bd_kind = 6;
-        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
         else return 0;
 
         i += l;
 
-        if (i >= tokensLength) return 0;
+        if (tokens[start].bd_kind === 2 &&
+            [2, 4, 6, 8].indexOf(tokens[start].include_type) === -1) return 0;
+
+        if (tokens[start].bd_kind === 6 &&
+            tokens[start].atrule_type !== 3) return 0;
 
         while (i < tokensLength) {
-            if (l = checkDeclDelim(i)) {
-                i += l;
-                while (i < tokensLength &&
-                    (l = checkS(i)) &&
-                    tokens[i].type === 'Newline') i += l;
-                break;
-            } else if (l = checkS(i)) i += l;
+            if (l = checkDeclDelim(i))
+                return i + l - start;
+
+            if (l = checkS(i)) i += l;
             else if (l = checkCommentSL(i)) i += l;
-            else return 0;
+            else break;
         }
 
-        return i - start;
+        return 0;
     }
 
     /**
      * @returns {Array}
      */
     function getBlockdecl1() {
-        var sc = getSC(),
-            x;
+        let x = [];
+        let _x = [];
+        let kind = tokens[pos].bd_kind;
 
-        switch (tokens[pos].bd_kind) {
-            case 1:
-                x = getConditionalStatement();
-                break;
+        switch (kind) {
             case 2:
-                x = getInclude();
-                break;
-            case 3:
-                x = getLoop();
-                break;
-            case 4:
-                x = getExtend();
+                x.push(getInclude());
                 break;
             case 5:
-                x = getDeclaration();
+                x.push(getDeclaration());
                 break;
             case 6:
-                x = getAtrule();
-                break;
-            case 7:
-                x = getRuleset();
+                x.push(getAtrule());
                 break;
         }
-
-        x = sc.concat([x]);
 
         while (pos < tokensLength) {
+            let _pos = pos;
             if (checkDeclDelim(pos)) {
-                x.push(getDeclDelim());
-                while (pos < tokensLength &&
-                    checkS(pos) &&
-                    tokens[pos].type === 'Newline') x.push(getS());
+                _x.push(getDeclDelim());
+                x = x.concat(_x);
                 break;
-            } else if (checkS(pos)) x.push(getS());
-            else if (checkCommentSL(pos)) x.push(getCommentSL());
-            else break;
+            }
+
+            if (checkS(pos)) _x.push(getS());
+            else if (checkCommentSL(pos)) _x.push(getCommentSL());
+            else {
+                pos = _pos;
+                break;
+            }
         }
+
         return x;
     }
 
@@ -916,7 +906,74 @@ module.exports = (function() {
         var start = i,
             l;
 
-        if (l = checkSC(i)) i += l;
+        if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
+        else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
+        else if (l = checkExtend(i)) tokens[i].bd_kind = 4;
+        else if (l = checkLoop(i)) tokens[i].bd_kind = 3;
+        else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
+        else if (l = checkAtrule(i)) tokens[i].bd_kind = 6;
+        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
+        else return 0;
+
+        i += l;
+
+        while (i < tokensLength) {
+            if (l = checkS(i)) i += l;
+            else if (l = checkCommentSL(i)) i += l;
+            else break;
+        }
+
+        return i - start;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getBlockdecl2() {
+        let x = [];
+
+        switch (tokens[pos].bd_kind) {
+            case 1:
+                x.push(getConditionalStatement());
+                break;
+            case 2:
+                x.push(getInclude());
+                break;
+            case 3:
+                x.push(getLoop());
+                break;
+            case 4:
+                x.push(getExtend());
+                break;
+            case 5:
+                x.push(getDeclaration());
+                break;
+            case 6:
+                x.push(getAtrule());
+                break;
+            case 7:
+                x.push(getRuleset());
+                break;
+        }
+
+        while (pos < tokensLength) {
+            if (checkS(pos)) x.push(getS());
+            else if (checkCommentSL(pos)) x.push(getCommentSL());
+            else break;
+        }
+
+        return x;
+    }
+
+
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkBlockdecl3(i) {
+        var start = i,
+            l;
 
         if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
@@ -935,9 +992,8 @@ module.exports = (function() {
     /**
      * @returns {Array}
      */
-    function getBlockdecl2() {
-        var sc = getSC(),
-            x;
+    function getBlockdecl3() {
+        let x;
 
         switch (tokens[pos].bd_kind) {
             case 1:
@@ -963,7 +1019,7 @@ module.exports = (function() {
                 break;
         }
 
-        return sc.concat([x]);
+        return [x];
     }
 
     /**
@@ -2052,8 +2108,6 @@ module.exports = (function() {
         if (l = checkBlock(i)) i += l;
         else return 0;
 
-        if (l = checkSC(i)) i += l;
-
         return i - start;
     }
 
@@ -2080,8 +2134,6 @@ module.exports = (function() {
 
         x.push(getBlock());
 
-        x = x.concat(getSC());
-
         var token = tokens[startPos];
         return newNode(NodeType.IncludeType, x, token.ln, token.col);
     }
@@ -2106,8 +2158,6 @@ module.exports = (function() {
         if (l = checkArguments(i)) i += l;
         else return 0;
 
-        if (l = checkSC(i)) i += l;
-
         return i - start;
     }
 
@@ -2129,8 +2179,6 @@ module.exports = (function() {
         x = x.concat(getSC());
 
         x.push(getArguments());
-
-        x = x.concat(getSC());
 
         var token = tokens[startPos];
         return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -2157,8 +2205,6 @@ module.exports = (function() {
         if (l = checkBlock(i)) i += l;
         else return 0;
 
-        if (l = checkSC(i)) i += l;
-
         return i - start;
     }
 
@@ -2178,8 +2224,6 @@ module.exports = (function() {
         x = x.concat(getSC());
 
         x.push(getBlock());
-
-        x = x.concat(getSC());
 
         var token = tokens[startPos];
         return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -3277,6 +3321,7 @@ module.exports = (function() {
             l, ln;
 
         if (i >= tokensLength) return 0;
+        if (checkSC(i)) return 0;
 
         if (!checkSimpleSelector(i) && !checkDelim(i)) return 0;
 

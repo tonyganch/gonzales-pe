@@ -180,19 +180,6 @@
                 "line": 2,
                 "column": 11
               }
-            },
-            {
-              "type": "space",
-              "content": "\n",
-              "syntax": "sass",
-              "start": {
-                "line": 3,
-                "column": 1
-              },
-              "end": {
-                "line": 3,
-                "column": 1
-              }
             }
           ],
           "syntax": "sass",
@@ -201,14 +188,27 @@
             "column": 1
           },
           "end": {
-            "line": 3,
-            "column": 1
+            "line": 2,
+            "column": 11
           }
         }
       ],
       "syntax": "sass",
       "start": {
         "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 2,
+        "column": 11
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "sass",
+      "start": {
+        "line": 3,
         "column": 1
       },
       "end": {
