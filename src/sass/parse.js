@@ -1886,8 +1886,7 @@ module.exports = (function() {
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
 
-        // TODO: Check if extends don't take any arguments
-        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return 0;
+        if (tokens[start + 1].value !== 'include') return 0;
 
         if (l = checkSC(i)) i += l;
         else return 0;
@@ -1950,8 +1949,7 @@ module.exports = (function() {
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
 
-        // TODO: Check if extends don't take any arguments
-        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return 0;
+        if (tokens[start + 1].value !== 'include') return 0;
 
         if (l = checkSC(i)) i += l;
         else return 0;
@@ -2005,7 +2003,7 @@ module.exports = (function() {
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
 
-        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return 0;
+        if (tokens[start + 1].value !== 'include') return 0;
 
         if (l = checkSC(i)) i += l;
         else return 0;
@@ -2055,7 +2053,7 @@ module.exports = (function() {
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
 
-        if (['include', 'extend'].indexOf(tokens[start + 1].value) < 0) return 0;
+        if (tokens[start + 1].value !== 'include') return 0;
 
         if (l = checkSC(i)) i += l;
         else return 0;
