@@ -787,7 +787,6 @@ module.exports = (function() {
         var token = tokens[startPos];
 
         while (pos < end) {
-            checkBlockdecl(pos);
             if (checkBlockdecl(pos)) x = x.concat(getBlockdecl());
             else throwError();
         }
