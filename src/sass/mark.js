@@ -125,7 +125,7 @@ module.exports = (function() {
     }
 
     function markBlocks(tokens) {
-        var blocks = [],
+        var blocks = {},
             currentIL = 0,
             i = 0,
             l = tokens.length,
@@ -196,7 +196,8 @@ module.exports = (function() {
                 // Look for line end
                 for (; i < l; i++) {
                     if (tokens[i].type !== TokenType.Newline) continue;
-                    return getBlockEnd(tokens, i + 1, indent, iw, maybeEnd);
+                    let end = getBlockEnd(tokens, i + 1, indent, iw, maybeEnd);
+                    return {end: end.end, indent: indent, iw: iw};
                 }
 
                 return {end: i - 1, indent: newIndent, iw: iw};
@@ -210,15 +211,16 @@ module.exports = (function() {
     }
 
     function markBlocksWithIndent(tokens, blocks, end) {
-        for (let b = end.indent + 1, bl = blocks.length; b < bl; b++) {
-            let bb = blocks[b];
-            if (!bb) continue;
+        for (let indent in blocks) {
+            if (indent < end.indent + 1) continue;
+            let block = blocks[indent];
+            if (!block) continue;
 
-            for (let x = 0; x < bb.length; x++) {
-                let y = bb[x];
+            for (let x = 0; x < block.length; x++) {
+                let y = block[x];
                 tokens[y].block_end = end.end;
             }
-            blocks[b] = null;
+            blocks[indent] = null;
         }
     }
 
