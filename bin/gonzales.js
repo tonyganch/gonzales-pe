@@ -47,7 +47,7 @@ function processInputData(input) {
         process.stdout.write(ast.toJson());
         process.exit(0);
     } catch (e) {
-        if (!options.silent) process.stderr.write(e.message);
-        process.exit(1);
+        if (!options.silent) process.stderr.write(e.toString());
+            process.exit(1);
     }
 }
