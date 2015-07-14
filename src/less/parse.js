@@ -312,6 +312,7 @@ module.exports = (function() {
         else if (l = checkIdent(i)) tokens[i].argument_child = 16;
         else if (l = checkVhash(i)) tokens[i].argument_child = 17;
         else if (l = checkBlock(i)) tokens[i].argument_child = 18;
+        else if (l = checkParentheses(i)) tokens[i].argument_child = 19;
 
         return l;
     }
@@ -340,6 +341,7 @@ module.exports = (function() {
         if (childType === 16) return getIdent();
         if (childType === 17) return getVhash();
         if (childType === 18) return getBlock();
+        if (childType === 19) return getParentheses();
     }
 
     /**
