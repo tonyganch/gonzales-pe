@@ -2753,8 +2753,10 @@ module.exports = (function() {
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkVariable(i) || checkIdent(i)) i += l;
-        else return 0;
+        while (i < tokensLength) {
+            if (l = checkInterpolation(i) || checkVariable(i) || checkIdent(i)) i += l;
+            else break;
+        }
 
         return i - start;
     }
@@ -2767,7 +2769,12 @@ module.exports = (function() {
         var startPos = pos,
             x = [];
 
-        x.push(checkVariable(pos) ? getVariable() : getIdent());
+        while (pos < tokensLength) {
+            if (checkInterpolation(pos)) x.push(getInterpolation());
+            else if (checkVariable(pos)) x.push(getVariable());
+            else if (checkIdent(pos)) x.push(getIdent());
+            else break;
+        }
 
         var token = tokens[startPos];
         return newNode(NodeType.PropertyType, x, token.ln, token.col);
