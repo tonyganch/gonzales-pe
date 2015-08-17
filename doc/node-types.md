@@ -122,6 +122,8 @@ Example:
 
 ### function
 
+### global
+
 ### ident
 
 ### important

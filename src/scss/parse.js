@@ -31,6 +31,7 @@ module.exports = (function() {
         'expression': function() { return checkExpression(pos) && getExpression(); },
         'extend': function() { return checkExtend(pos) && getExtend(); },
         'function': function() { return checkFunction(pos) && getFunction(); },
+        'global': function() { return checkGlobal(pos) && getGlobal(); },
         'ident': function() { return checkIdent(pos) && getIdent(); },
         'important': function() { return checkImportant(pos) && getImportant(); },
         'include': function() { return checkInclude(pos) && getInclude(); },
@@ -1776,6 +1777,48 @@ module.exports = (function() {
     }
 
     /**
+     * Check if token is part of `!global` word
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkGlobal(i) {
+        var start = i,
+            l;
+
+        if (i >= tokensLength ||
+            tokens[i++].type !== TokenType.ExclamationMark) return 0;
+
+        if (l = checkSC(i)) i += l;
+
+        return tokens[i].value === 'global' ? i - start + 1 : 0;
+    }
+
+    /**
+     * Get node with `!global` word
+     * @returns {Array} `['global', sc]` where `sc` is optional whitespace
+     */
+    function getGlobal() {
+        var startPos = pos,
+            sc;
+        var token = tokens[startPos];
+        var line = token.ln;
+        var column = token.col;
+
+        // Skip `!`:
+        pos++;
+
+        sc = getSC();
+        var end = getLastPosition(sc, line, column, 6);
+
+        // Skip `global`:
+        pos++;
+
+        var x = sc.length ? sc : [];
+
+        return newNode(NodeType.GlobalType, x, token.ln, token.col, end);
+    }
+
+    /**
      * Get node with included mixin
      * @returns {Array} `['include', x]`
      */
@@ -3395,6 +3438,7 @@ module.exports = (function() {
             checkAtkeyword(i) ||
             checkOperator(i) ||
             checkImportant(i) ||
+            checkGlobal(i) ||
             checkDefault(i) ||
             checkProgid(i) ||
             checkAny(i);
@@ -3437,6 +3481,7 @@ module.exports = (function() {
         else if (checkAtkeyword(pos)) return getAtkeyword();
         else if (checkOperator(pos)) return getOperator();
         else if (checkImportant(pos)) return getImportant();
+        else if (checkGlobal(pos)) return getGlobal();
         else if (checkDefault(pos)) return getDefault();
         else if (checkProgid(pos)) return getProgid();
         else if (checkAny(pos)) return getAny();
