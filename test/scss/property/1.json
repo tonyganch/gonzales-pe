@@ -1,0 +1,55 @@
+{
+  "type": "property",
+  "content": [
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": "test",
+              "end": {
+                "column": 7,
+                "line": 1
+              },
+              "start": {
+                "column": 4,
+                "line": 1
+              },
+              "syntax": "scss",
+              "type": "ident"
+            }
+          ],
+          "end": {
+            "column": 7,
+            "line": 1
+          },
+          "start": {
+            "column": 3,
+            "line": 1
+          },
+          "syntax": "scss",
+          "type": "variable"
+        }
+      ],
+      "end": {
+        "column": 8,
+        "line": 1
+      },
+      "start": {
+        "column": 1,
+        "line": 1
+      },
+      "syntax": "scss",
+      "type": "interpolation"
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 8
+  }
+}
