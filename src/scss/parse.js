@@ -243,6 +243,7 @@ module.exports = (function() {
             checkUri(i) ||
             checkExpression(i) ||
             checkFunction(i) ||
+            checkInterpolation(i) ||
             checkIdent(i) ||
             checkClass(i) ||
             checkUnary(i);
@@ -264,6 +265,7 @@ module.exports = (function() {
         else if (checkUri(pos)) return getUri();
         else if (checkExpression(pos)) return getExpression();
         else if (checkFunction(pos)) return getFunction();
+        else if (checkInterpolation(pos)) return getInterpolation();
         else if (checkIdent(pos)) return getIdent();
         else if (checkClass(pos)) return getClass();
         else if (checkUnary(pos)) return getUnary();
@@ -355,7 +357,7 @@ module.exports = (function() {
         if (i >= tokensLength ||
             tokens[i++].type !== TokenType.CommercialAt) return 0;
 
-        return (l = checkIdent(i)) ? l + 1 : 0;
+        return (l = checkIdentOrInterpolation(i)) ? l + 1 : 0;
     }
 
     /**
@@ -370,7 +372,7 @@ module.exports = (function() {
 
         pos++;
 
-        x = [getIdent()];
+        x = getIdentOrInterpolation();
 
         var token = tokens[startPos];
         return newNode(NodeType.AtkeywordType, x, token.ln, token.col);
@@ -414,7 +416,7 @@ module.exports = (function() {
 
         if (l = checkSC(i)) i += l;
 
-        if (l = checkIdent(i)) i += l;
+        if (l = checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         if (l = checkSC(i)) i += l;
@@ -424,7 +426,7 @@ module.exports = (function() {
 
         if (l = checkSC(i)) i += l;
 
-        if (l = checkIdent(i) || checkString(i)) i += l;
+        if (l = checkIdentOrInterpolation(i) || checkString(i)) i += l;
         else return 0;
 
         if (l = checkSC(i)) i += l;
@@ -449,12 +451,16 @@ module.exports = (function() {
 
         x = []
             .concat(getSC())
-            .concat([getIdent()])
+            .concat(getIdentOrInterpolation())
             .concat(getSC())
             .concat([getAttrselector()])
-            .concat(getSC())
-            .concat([checkString(pos)? getString() : getIdent()])
             .concat(getSC());
+        if (checkString(pos)) {
+            x.push(getString());
+        } else {
+            x = x.concat(getIdentOrInterpolation());
+        }
+        x = x.concat(getSC());
 
         var end = getLastPosition(x, line, column + 1, 1);
         pos++;
@@ -476,7 +482,7 @@ module.exports = (function() {
 
         if (l = checkSC(i)) i += l;
 
-        if (l = checkIdent(i)) i += l;
+        if (l = checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         if (l = checkSC(i)) i += l;
@@ -499,7 +505,7 @@ module.exports = (function() {
 
         x = []
             .concat(getSC())
-            .concat([getIdent()])
+            .concat(getIdentOrInterpolation())
             .concat(getSC());
 
         var end = getLastPosition(x, line, column + 1, 1);
@@ -1060,10 +1066,8 @@ module.exports = (function() {
 
         if (tokens[i++].type !== TokenType.FullStop) return 0;
 
-        while (i < tokensLength) {
-            if (l = checkInterpolation(i) || checkIdent(i)) i += l;
-            else break;
-        }
+        if (l = checkIdentOrInterpolation(i)) i += l;
+        else return 0;
 
         return i - start;
     }
@@ -1079,11 +1083,7 @@ module.exports = (function() {
 
         pos++;
 
-        while (pos < tokensLength) {
-            if (checkInterpolation(pos)) x.push(getInterpolation());
-            else if (checkIdent(pos)) x.push(getIdent());
-            else break;
-        }
+        x = x.concat(getIdentOrInterpolation());
 
         var token = tokens[startPos];
         return newNode(NodeType.ClassType, x, token.ln, token.col);
@@ -1216,6 +1216,7 @@ module.exports = (function() {
     function _checkCondition(i) {
         return checkVariable(i) ||
              checkNumber(i) ||
+             checkInterpolation(i) ||
              checkIdent(i) ||
              checkOperator(i) ||
              checkCombinator(i) ||
@@ -1253,6 +1254,7 @@ module.exports = (function() {
     function _getCondition() {
         if (checkVariable(pos)) return getVariable();
         if (checkNumber(pos)) return getNumber();
+        if (checkInterpolation(pos)) return getInterpolation();
         if (checkIdent(pos)) return getIdent();
         if (checkOperator(pos)) return getOperator();
         if (checkCombinator(pos)) return getCombinator();
@@ -1557,7 +1559,7 @@ module.exports = (function() {
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkIdent(i)) i += l;
+        if (l = checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         return i < tokensLength && tokens[i].type === TokenType.LeftParenthesis ?
@@ -1569,11 +1571,10 @@ module.exports = (function() {
      */
     function getFunction() {
         let startPos = pos;
-        let ident = getIdent();
-        let x = [ident];
+        let x = getIdentOrInterpolation();
         let body;
 
-        body = ident.content === 'not' ? getNotArguments() : getArguments();
+        body = x[0].content === 'not' ? getNotArguments() : getArguments();
 
         x.push(body);
 
@@ -1722,6 +1723,30 @@ module.exports = (function() {
 
         var token = tokens[startPos];
         return newNode(NodeType.IdentType, x, token.ln, token.col);
+    }
+
+    function checkIdentOrInterpolation(i) {
+        let start = i;
+        let l;
+
+        while (i < tokensLength) {
+            if (l = checkInterpolation(i) || checkIdent(i)) i += l;
+            else break;
+        }
+
+        return i - start;
+    }
+
+    function getIdentOrInterpolation() {
+        let x = [];
+
+        while (pos < tokensLength) {
+            if (checkInterpolation(pos)) x.push(getInterpolation());
+            else if (checkIdent(pos)) x.push(getIdent());
+            else break;
+        }
+
+        return x;
     }
 
     /**
@@ -2181,6 +2206,7 @@ module.exports = (function() {
                 break;
             } else if (l = checkVariable(i) ||
                        checkNumber(i) ||
+                       checkInterpolation(i) ||
                        checkIdent(i) ||
                        checkSC(i) ||
                        checkOperator(i) ||
@@ -2209,6 +2235,7 @@ module.exports = (function() {
             }
             else if (checkVariable(pos)) x.push(getVariable());
             else if (checkNumber(pos)) x.push(getNumber());
+            else if (checkInterpolation(pos)) x.push(getInterpolation());
             else if (checkIdent(pos)) x.push(getIdent());
             else if (checkOperator(pos)) x.push(getOperator());
             else if (checkCombinator(pos)) x.push(getCombinator());
@@ -2236,7 +2263,7 @@ module.exports = (function() {
 
         if (l = checkSC(i)) i += l;
 
-        if (l = checkIdent(i)) i += l;
+        if (l = checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         if (l = checkSC(i)) i += l;
@@ -2261,7 +2288,7 @@ module.exports = (function() {
 
         x = x.concat(getSC());
 
-        if (checkIdent(pos)) x.push(getIdent());
+        if (checkIdentOrInterpolation(pos)) x = x.concat(getIdentOrInterpolation());
 
         x = x.concat(getSC());
 
@@ -2728,7 +2755,7 @@ module.exports = (function() {
 
         if (tokens[i].placeholder_l) return tokens[i].placeholder_l;
 
-        if (tokens[i].type === TokenType.PercentSign && (l = checkIdent(i + 1))) {
+        if (tokens[i].type === TokenType.PercentSign && (l = checkIdentOrInterpolation(i + 1))) {
             tokens[i].placeholder_l = l + 1;
             return l + 1;
         } else return 0;
@@ -2741,11 +2768,10 @@ module.exports = (function() {
      */
     function getPlaceholder() {
         let startPos = pos;
-        let x = [];
 
         pos++;
 
-        x.push(getIdent());
+        let x = getIdentOrInterpolation();
 
         var token = tokens[startPos];
         return newNode(NodeType.PlaceholderType, x, token.ln, token.col);
@@ -2764,7 +2790,7 @@ module.exports = (function() {
         if (joinValues2(i, 6) === 'progid:DXImageTransform.Microsoft.') i += 6;
         else return 0;
 
-        if (l = checkIdent(i)) i += l;
+        if (l = checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         if (l = checkSC(i)) i += l;
@@ -2802,7 +2828,7 @@ module.exports = (function() {
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkVariable(i) || checkIdent(i)) i += l;
+        if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;
         else return 0;
 
         return i - start;
@@ -2816,7 +2842,11 @@ module.exports = (function() {
         let startPos = pos;
         let x = [];
 
-        x.push(checkVariable(pos) ? getVariable() : getIdent());
+        if (checkVariable(pos)) {
+            x.push(getVariable());
+        } else {
+            x = x.concat(getIdentOrInterpolation());
+        }
 
         var token = tokens[startPos];
         return newNode(NodeType.PropertyType, x, token.ln, token.col);
@@ -2871,7 +2901,7 @@ module.exports = (function() {
         if (i >= tokensLength || tokens[i++].type !== TokenType.Colon ||
             i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
 
-        return (l = checkInterpolation(i) || checkIdent(i)) ? l + 2 : 0;
+        return (l = checkIdentOrInterpolation(i)) ? l + 2 : 0;
     }
 
     /**
@@ -2879,11 +2909,10 @@ module.exports = (function() {
      */
     function getPseudoe() {
         let startPos = pos;
-        let x = [];
 
         pos += 2;
 
-        x.push(checkInterpolation(pos) ? getInterpolation() : getIdent());
+        let x = getIdentOrInterpolation();
 
         var token = tokens[startPos];
         return newNode(NodeType.PseudoeType, x, token.ln, token.col);
@@ -2898,7 +2927,7 @@ module.exports = (function() {
 
         if (i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
 
-        return (l = checkInterpolation(i) || checkFunction(i) || checkIdent(i)) ? l + 1 : 0;
+        return (l = checkFunction(i) || checkIdentOrInterpolation(i)) ? l + 1 : 0;
     }
 
     /**
@@ -2910,9 +2939,8 @@ module.exports = (function() {
 
         pos++;
 
-        if (checkInterpolation(pos)) x.push(getInterpolation());
-        else if (checkFunction(pos)) x.push(getFunction());
-        else x.push(getIdent());
+        if (checkFunction(pos)) x.push(getFunction());
+        else x = x.concat(getIdentOrInterpolation());
 
         var token = tokens[startPos];
         return newNode(NodeType.PseudocType, x, token.ln, token.col);
