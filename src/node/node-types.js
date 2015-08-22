@@ -40,6 +40,7 @@ module.exports = {
     NthselectorType: 'nthSelector',
     NumberType: 'number',
     OperatorType: 'operator',
+    OptionalType: 'optional',
     ParenthesesType: 'parentheses',
     ParentSelectorType: 'parentSelector',
     PercentageType: 'percentage',

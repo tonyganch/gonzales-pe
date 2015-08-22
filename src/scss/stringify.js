@@ -72,6 +72,9 @@ module.exports = function stringify(tree) {
         'nthSelector': function(t) {
             return ':' + _t(t.content[0]) + '(' + _composite(t.content.slice(1)) + ')';
         },
+        'optional': function(t) {
+            return '!' + _composite(t.content) + 'optional';
+        },
         'parentheses': function(t) {
             return '(' + _composite(t.content) + ')';
         },
