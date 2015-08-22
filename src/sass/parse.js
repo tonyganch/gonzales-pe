@@ -49,6 +49,7 @@ module.exports = (function() {
         'nthselector': function() { return checkNthselector(pos) && getNthselector(); },
         'number': function() { return checkNumber(pos) && getNumber(); },
         'operator': function() { return checkOperator(pos) && getOperator(); },
+        'optional': function() { return checkOptional(pos) && getOptional(); },
         'parentheses': function() { return checkParentheses(pos) && getParentheses(); },
         'parentselector': function() { return checkParentSelector(pos) && getParentSelector(); },
         'percentage': function() { return checkPercentage(pos) && getPercentage(); },
@@ -1591,6 +1592,75 @@ module.exports = (function() {
     }
 
     function checkExtend(i) {
+        let l = 0;
+
+        if (l = checkExtend1(i)) tokens[i].extend_child = 1;
+        else if (l = checkExtend2(i)) tokens[i].extend_child = 2;
+
+        return l;
+    }
+
+    function getExtend() {
+        let type = tokens[pos].extend_child;
+
+        if (type === 1) return getExtend1();
+        else if (type === 2) return getExtend2();
+    }
+
+    /**
+     * Checks if token is part of an extend with `!optional` flag.
+     * @param {Number} i
+     */
+    function checkExtend1(i) {
+        var start = i;
+        var l;
+
+        if (i >= tokensLength) return 0;
+
+        if (l = checkAtkeyword(i)) i += l;
+        else return 0;
+
+        if (tokens[start + 1].value !== 'extend') return 0;
+
+        if (l = checkSC(i)) i += l;
+        else return 0;
+
+        if (l = checkIncludeSelector(i)) i += l;
+        else return 0;
+
+        if (l = checkSC(i)) i += l;
+        else return 0;
+
+        if (l = checkOptional(i)) i += l;
+        else return 0;
+
+        return i - start;
+    }
+
+    function getExtend1() {
+        let startPos = pos;
+        let x = [];
+
+        x.push(getAtkeyword());
+
+        x = x.concat(getSC());
+
+        // `@include` and `@extend` have the same type of valid selectors.
+        x.push(getIncludeSelector());
+
+        x = x.concat(getSC());
+
+        x.push(getOptional());
+
+        var token = tokens[startPos];
+        return newNode(NodeType.ExtendType, x, token.ln, token.col);
+    }
+
+    /**
+     * Checks if token is part of an extend without `!optional` flag.
+     * @param {Number} i
+     */
+    function checkExtend2(i) {
         var start = i;
         var l;
 
@@ -1610,7 +1680,7 @@ module.exports = (function() {
         return i - start;
     }
 
-    function getExtend() {
+    function getExtend2() {
         let startPos = pos;
         let x = [];
 
@@ -2922,6 +2992,43 @@ module.exports = (function() {
 
         var token = tokens[startPos];
         return newNode(NodeType.OperatorType, x, token.ln, token.col);
+    }
+
+    /**
+     * Check if token is part of `!optional` word
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkOptional(i) {
+        let start = i;
+        let l;
+
+        if (i >= tokensLength ||
+            tokens[i++].type !== TokenType.ExclamationMark) return 0;
+
+        if (l = checkSC(i)) i += l;
+
+        return tokens[i].value === 'optional' ? i - start + 1 : 0;
+    }
+
+    /**
+     * Get node with `!optional` word
+     */
+    function getOptional() {
+        let startPos = pos;
+        let x = [];
+        var token = tokens[startPos];
+        var line = token.ln;
+        var column = token.col;
+
+        pos++;
+
+        x = x.concat(getSC());
+        var end = getLastPosition(x, line, column, 8);
+
+        pos++;
+
+        return newNode(NodeType.OptionalType, x, token.ln, token.col, end);
     }
 
     /**
