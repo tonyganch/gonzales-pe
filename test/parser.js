@@ -69,11 +69,10 @@ function logAndThrow(filename, e, message) {
     var expected = JSON.stringify(e.expected, false, 2);
     var actual = JSON.stringify(e.actual, false, 2);
 
-    e.message = message;
-
     fs.appendFile(expectedLogPath, filename + '\n\n' + expected + '\n\n\n', function(){});
     fs.appendFile(resultLogPath, filename + '\n\n' + actual + '\n\n\n', function(){});
 
+    e.message = message + ': ' + e.message;
     throw e;
 }
 
