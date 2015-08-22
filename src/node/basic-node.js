@@ -170,16 +170,18 @@ class Node {
     /**
      * @param {Function} callback
      */
-    traverse(callback, index, parent) {
+    traverse(callback, index, level = 0, parent = null) {
         var breakLoop;
         var x;
 
-        callback(this, index, parent);
+        level++;
+
+        callback(this, index, level, parent);
 
         if (!Array.isArray(this.content)) return;
 
         for (let i = 0, l = this.content.length; i < l; i++) {
-            breakLoop = this.content[i].traverse(callback, i, this);
+            breakLoop = this.content[i].traverse(callback, i, level, this);
             if (breakLoop === null) break;
 
             // If some nodes were removed or added:
