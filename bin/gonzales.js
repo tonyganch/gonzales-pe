@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 var parseArgs = require('minimist');
 var gonzales = require('..');
 var fs = require('fs');
@@ -10,7 +12,7 @@ process.stdin.isTTY ? processFile(options._[0]) : processSTDIN();
 
 function getOptions() {
     var parserOptions = {
-        boolean: ['silent'],
+        boolean: ['silent', 'simple'],
         alias: {
             syntax: 's',
             context: 'c'
@@ -44,10 +46,23 @@ function processInputData(input) {
             syntax: options.syntax,
             rule: options.context
         });
-        process.stdout.write(ast.toJson());
+        printTree(ast);
         process.exit(0);
     } catch (e) {
         if (!options.silent) process.stderr.write(e.toString());
         process.exit(1);
+    }
+}
+
+function printTree(ast) {
+    if (!options.simple) {
+        var tree = ast.toJson();
+        process.stdout.write(tree);
+    } else {
+        ast.traverse(function(node, index, level) {
+            var type = node.type;
+            var spaces = new Array(level).join(' |');
+            console.log(spaces, '->', type);
+        });
     }
 }
