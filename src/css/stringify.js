@@ -1,3 +1,7 @@
+// jscs:disable maximumLineLength
+
+'use strict';
+
 module.exports = function stringify(tree) {
     // TODO: Better error message
     if (!tree) throw new Error('We need tree to translate');
@@ -47,7 +51,7 @@ module.exports = function stringify(tree) {
         'expression': function(t) {
             return 'expression(' + t.content + ')';
         },
-        'id': function (t) {
+        'id': function(t) {
             return '#' + _composite(t.content);
         },
         'important': function(t) {

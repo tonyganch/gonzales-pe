@@ -1,9 +1,16 @@
+// jscs:disable maximumLineLength
+
+'use strict';
+
 var Node = require('../node/basic-node');
 var NodeType = require('../node/node-types');
 var TokenType = require('../token-types');
 
 module.exports = (function() {
-    var tokens, tokensLength, pos, needInfo;
+    let tokens;
+    let tokensLength;
+    let pos;
+    let needInfo;
 
     var rules = {
         'arguments': function() { return checkArguments(pos) && getArguments(); },
@@ -61,8 +68,8 @@ module.exports = (function() {
         'unary': function() { return checkUnary(pos) && getUnary(); },
         'uri': function() { return checkUri(pos) && getUri(); },
         'value': function() { return checkValue(pos) && getValue(); },
-        'variable': function () { return checkVariable(pos) && getVariable(); },
-        'variableslist': function () { return checkVariablesList(pos) && getVariablesList(); },
+        'variable': function() { return checkVariable(pos) && getVariable(); },
+        'variableslist': function() { return checkVariablesList(pos) && getVariablesList(); },
         'vhash': function() { return checkVhash(pos) && getVhash(); }
     };
 
@@ -84,7 +91,7 @@ module.exports = (function() {
     function checkExcluding(exclude, i) {
         var start = i;
 
-        while(i < tokensLength) {
+        while (i < tokensLength) {
             if (exclude[tokens[i++].type]) break;
         }
 
@@ -217,10 +224,6 @@ module.exports = (function() {
     }
 
 
-/////////////////////////////////////
-/////////////////////////////////////
-/////////////////////////////////////
-
 
     /**
      * @param {Number} i Token's index number
@@ -277,8 +280,8 @@ module.exports = (function() {
      * @returns {Number} Length of arguments
      */
     function checkArguments(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength ||
             tokens[i].type !== TokenType.LeftParenthesis) return 0;
@@ -286,7 +289,7 @@ module.exports = (function() {
         i++;
 
         while (i < tokens[start].right) {
-            if (l = checkArgument(i)) i +=l;
+            if (l = checkArgument(i)) i += l;
             else return 0;
         }
 
@@ -295,7 +298,7 @@ module.exports = (function() {
 
     /**
      * Check if token is valid to be part of arguments list
-     * @param i Token's index number
+     * @param {Number} i Token's index number
      * @returns {Number} Length of argument
      */
     function checkArgument(i) {
@@ -373,8 +376,8 @@ module.exports = (function() {
      *      `@` (e.g. `import`, `include`)
      */
     function getAtkeyword() {
-        var startPos = pos++,
-            x = [getIdent()];
+        let startPos = pos++;
+        let x = [getIdent()];
 
         var token = tokens[startPos];
         return newNode(NodeType.AtkeywordType, x, token.ln, token.col);
@@ -411,8 +414,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkAttrib1(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i++ >= tokensLength) return 0;
 
@@ -443,8 +446,8 @@ module.exports = (function() {
      *      value
      */
     function getAttrib1() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -460,7 +463,7 @@ module.exports = (function() {
             .concat([checkString(pos)? getString() : getIdent()])
             .concat(getSC());
 
-        var end = getLastPosition(x, line, column+1, 1);
+        var end = getLastPosition(x, line, column + 1, 1);
         pos++;
 
         return newNode(NodeType.AttribType, x, token.ln, token.col, end);
@@ -473,8 +476,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkAttrib2(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i++ >= tokensLength) return 0;
 
@@ -493,8 +496,8 @@ module.exports = (function() {
      * @returns {Array} `['attrib', ['ident', x]]` where `x` is attribute's name
      */
     function getAttrib2() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -506,7 +509,7 @@ module.exports = (function() {
             .concat([getIdent()])
             .concat(getSC());
 
-        var end = getLastPosition(x, line, column+1, 1);
+        var end = getLastPosition(x, line, column + 1, 1);
         pos++;
 
         return newNode(NodeType.AttribType, x, token.ln, token.col, end);
@@ -531,7 +534,7 @@ module.exports = (function() {
 
         if (!tokens[i + 1] || tokens[i + 1].type !== TokenType.EqualsSign) return 0;
 
-        switch(tokens[i].type) {
+        switch (tokens[i].type) {
             case TokenType.Tilde:
             case TokenType.CircumflexAccent:
             case TokenType.DollarSign:
@@ -549,8 +552,8 @@ module.exports = (function() {
      * @returns {Array} `['attrselector', x]` where `x` is an operator.
      */
     function getAttrselector() {
-        var startPos = pos,
-            s = tokens[pos++].value;
+        let startPos = pos;
+        let s = tokens[pos++].value;
 
         if (tokens[pos] && tokens[pos].type === TokenType.EqualsSign)
             s += tokens[pos++].value;
@@ -575,8 +578,8 @@ module.exports = (function() {
 
         // If token is part of an @-rule, save the rule's type to token:
         if (l = checkAtruler(i)) tokens[i].atrule_type = 1; // @-rule with ruleset
-        else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2; // block @-rule
-        else if (l = checkAtrules(i)) tokens[i].atrule_type = 3; // single-line @-rule
+        else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2; // Block @-rule
+        else if (l = checkAtrules(i)) tokens[i].atrule_type = 3; // Single-line @-rule
         else return 0;
 
         // If token is part of an @-rule, save the rule's length to token:
@@ -592,8 +595,8 @@ module.exports = (function() {
     function getAtrule() {
         switch (tokens[pos].atrule_type) {
             case 1: return getAtruler(); // @-rule with ruleset
-            case 2: return getAtruleb(); // block @-rule
-            case 3: return getAtrules(); // single-line @-rule
+            case 2: return getAtruleb(); // Block @-rule
+            case 3: return getAtrules(); // Single-line @-rule
         }
     }
 
@@ -603,8 +606,8 @@ module.exports = (function() {
      * @returns {Number} Length of the @-rule
      */
     function checkAtruleb(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -624,8 +627,8 @@ module.exports = (function() {
      * @returns {Array} `['atruleb', ['atkeyword', x], y, ['block', z]]`
      */
     function getAtruleb() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
 
         x = [getAtkeyword()]
             .concat(getTsets())
@@ -641,8 +644,8 @@ module.exports = (function() {
      * @returns {Number} Length of the @-rule
      */
     function checkAtruler(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -662,8 +665,8 @@ module.exports = (function() {
      * @returns {Array} ['atruler', ['atkeyword', x], y, z]
      */
     function getAtruler() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
 
         x = [getAtkeyword(), getAtrulerq()];
 
@@ -685,8 +688,8 @@ module.exports = (function() {
      * @returns {Array} `['atrulerq', x]`
      */
     function getAtrulerq() {
-        var startPos = pos,
-            x = getTsets();
+        let startPos = pos;
+        let x = getTsets();
 
         var token = tokens[startPos];
         return newNode(NodeType.AtrulerqType, x, token.ln, token.col);
@@ -697,8 +700,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkAtrulers(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
         if (!tokens[i].block_end) return 0;
@@ -740,8 +743,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkAtrules(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -757,8 +760,8 @@ module.exports = (function() {
      * @returns {Array} `['atrules', ['atkeyword', x], y]`
      */
     function getAtrules() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
 
         x = [getAtkeyword()].concat(getTsets());
 
@@ -781,9 +784,9 @@ module.exports = (function() {
      * @returns {Array} `['block', x]`
      */
     function getBlock() {
-        var startPos = pos,
-            end = tokens[pos].block_end,
-            x = [];
+        let startPos = pos;
+        let end = tokens[pos].block_end;
+        let x = [];
         var token = tokens[startPos];
 
         while (pos < end) {
@@ -830,8 +833,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkBlockdecl1(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (l = checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
@@ -902,8 +905,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkBlockdecl2(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
@@ -971,8 +974,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkBlockdecl3(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
         else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
@@ -1074,8 +1077,8 @@ module.exports = (function() {
      * @returns {Number} Length of the class selector
      */
     function checkClass(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -1097,8 +1100,8 @@ module.exports = (function() {
      *      identifier (without `.`, e.g. `abc`).
      */
     function getClass() {
-        var startPos = pos++,
-            x = [];
+        let startPos = pos++;
+        let x = [];
 
         while (pos < tokensLength) {
             if (checkInterpolation(pos)) x.push(getInterpolation());
@@ -1134,8 +1137,8 @@ module.exports = (function() {
      *      converted to string.
      */
     function getCombinator() {
-        var startPos = pos,
-            x = tokens[pos++].value;
+        let startPos = pos;
+        let x = tokens[pos++].value;
 
         var token = tokens[startPos];
         return newNode(NodeType.CombinatorType, x, token.ln, token.col);
@@ -1156,13 +1159,13 @@ module.exports = (function() {
      *      is the comment's text (without `/*` and `* /`).
      */
     function getCommentML() {
-        var startPos = pos,
-            x = tokens[pos].value.substring(2);
+        let startPos = pos;
+        let x = tokens[pos].value.substring(2);
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
 
-        var end = getLastPosition(x, line, column+2);
+        var end = getLastPosition(x, line, column + 2);
         pos++;
 
         return newNode(NodeType.CommentMLType, x, token.ln, token.col, end);
@@ -1188,7 +1191,7 @@ module.exports = (function() {
         var line = token.ln;
         var column = token.col;
         var x = tokens[pos++].value.substring(2);
-        var end = !x ? [line, column+1] : getLastPosition(x, line, column+2);
+        var end = !x ? [line, column + 1] : getLastPosition(x, line, column + 2);
 
         return newNode(NodeType.CommentSLType, x, token.ln, token.col, end);
     }
@@ -1200,8 +1203,10 @@ module.exports = (function() {
      * @returns {Number} Length of the condition
      */
     function checkCondition(i) {
-        var start = i,
-            l, _i, s;
+        let start = i;
+        let l;
+        let _i;
+        let s;
 
         if (i >= tokensLength) return 0;
 
@@ -1237,8 +1242,8 @@ module.exports = (function() {
      * @returns {Array} `['condition', x]`
      */
     function getCondition() {
-        var startPos = pos,
-            x = [getAtkeyword()];
+        let startPos = pos;
+        let x = [getAtkeyword()];
 
         while (pos < tokensLength) {
             if (checkBlock(pos)) break;
@@ -1272,8 +1277,8 @@ module.exports = (function() {
      * @returns {Number} Length of the condition
      */
     function checkConditionalStatement(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -1293,8 +1298,8 @@ module.exports = (function() {
      * @returns {Array} `['condition', x]`
      */
     function getConditionalStatement() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getCondition());
         x = x.concat(getSC());
@@ -1328,8 +1333,8 @@ module.exports = (function() {
      * @returns {Number} Length of the declaration
      */
     function checkDeclaration1(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -1357,8 +1362,8 @@ module.exports = (function() {
      *       ['value', y]]`
      */
     function getDeclaration1() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getProperty());
         if (checkS(pos)) x.push(getS());
@@ -1376,8 +1381,8 @@ module.exports = (function() {
      * @returns {Number} Length of the declaration
      */
     function checkDeclaration2(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -1403,8 +1408,8 @@ module.exports = (function() {
      *       ['value', y]]`
      */
     function getDeclaration2() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getPropertyDelim());
         x.push(getProperty());
@@ -1461,8 +1466,8 @@ module.exports = (function() {
      * @returns {Number} Length of the `!default` word
      */
     function checkDefault(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength ||
             tokens[i++].type !== TokenType.ExclamationMark) return 0;
@@ -1477,9 +1482,9 @@ module.exports = (function() {
      * @returns {Array} `['default', sc]` where `sc` is optional whitespace
      */
     function getDefault() {
-        var startPos = pos,
-            x = [],
-            sc;
+        let startPos = pos;
+        let x = [];
+        let sc;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1524,8 +1529,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkDimension(i) {
-        var ln = checkNumber(i),
-            li;
+        let ln = checkNumber(i);
+        let li;
 
         if (i >= tokensLength ||
             !ln ||
@@ -1541,10 +1546,10 @@ module.exports = (function() {
      *      a dimension unit (e.g. `'px'`).
      */
     function getDimension() {
-        var startPos = pos,
-            x = [getNumber()],
-            token = tokens[pos],
-            ident = newNode(NodeType.IdentType, getNmName2(), token.ln, token.col);
+        let startPos = pos;
+        let x = [getNumber()];
+        let token = tokens[pos];
+        let ident = newNode(NodeType.IdentType, getNmName2(), token.ln, token.col);
 
         x.push(ident);
 
@@ -1569,8 +1574,8 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getExpression() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1606,8 +1611,8 @@ module.exports = (function() {
     }
 
     function getExtend() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -1625,12 +1630,12 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkFunction(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkIdent(i)) i +=l;
+        if (l = checkIdent(i)) i += l;
         else return 0;
 
         return i < tokensLength && tokens[i].type === TokenType.LeftParenthesis ?
@@ -1641,10 +1646,10 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getFunction() {
-        var startPos = pos,
-            ident = getIdent(),
-            x = [ident],
-            body;
+        let startPos = pos;
+        let ident = getIdent();
+        let x = [ident];
+        let body;
 
         body = ident.content === 'not' ? getNotArguments() : getArguments();
 
@@ -1658,9 +1663,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getArguments() {
-        var startPos = pos,
-            x = [],
-            body;
+        let startPos = pos;
+        let x = [];
+        let body;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1687,8 +1692,8 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getNotArguments() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -1713,10 +1718,10 @@ module.exports = (function() {
      * @returns {Number} Length of the identifier
      */
     function checkIdent(i) {
-        var start = i,
-            wasIdent,
-            wasInt = false,
-            l;
+        let start = i;
+        let wasIdent;
+        let wasInt = false;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -1787,8 +1792,8 @@ module.exports = (function() {
      * @returns {Array} `['ident', x]` where `x` is identifier's name
      */
     function getIdent() {
-        var startPos = pos,
-            x = joinValues(pos, tokens[pos].ident_last);
+        let startPos = pos;
+        let x = joinValues(pos, tokens[pos].ident_last);
 
         pos = tokens[pos].ident_last + 1;
 
@@ -1802,8 +1807,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkImportant(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength ||
             tokens[i++].type !== TokenType.ExclamationMark) return 0;
@@ -1879,8 +1884,8 @@ module.exports = (function() {
      * @returns {Number} Length of the include
      */
     function checkInclude1(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
@@ -1915,8 +1920,8 @@ module.exports = (function() {
      *      are optional whitespaces
      */
     function getInclude1() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -1942,8 +1947,8 @@ module.exports = (function() {
      * @returns {Number} Length of the include
      */
     function checkInclude2(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
@@ -1972,8 +1977,8 @@ module.exports = (function() {
      *      mixin and `sc` are optional whitespaces
      */
     function getInclude2() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -1996,8 +2001,8 @@ module.exports = (function() {
      * @returns {Number} Length of the mixin
      */
     function checkInclude3(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
@@ -2024,8 +2029,8 @@ module.exports = (function() {
      * @returns {Array} `['include', x]`
      */
     function getInclude3() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -2046,8 +2051,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkInclude4(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (l = checkAtkeyword(i)) i += l;
         else return 0;
@@ -2067,8 +2072,8 @@ module.exports = (function() {
      * @returns {Array} `['include', x]`
      */
     function getInclude4() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -2086,8 +2091,8 @@ module.exports = (function() {
      * @returns {Number} Length of the include
      */
     function checkInclude5(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (tokens[i].type === TokenType.PlusSign) i++;
         else return 0;
@@ -2116,8 +2121,8 @@ module.exports = (function() {
      *      mixin, `z` is block passed to mixin and `sc` are optional whitespaces
      */
     function getInclude5() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getOperator());
 
@@ -2141,8 +2146,8 @@ module.exports = (function() {
      * @returns {Number} Length of the include
      */
     function checkInclude6(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (tokens[i].type === TokenType.PlusSign) i++;
         else return 0;
@@ -2166,8 +2171,8 @@ module.exports = (function() {
      *      mixin and `sc` are optional whitespaces
      */
     function getInclude6() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getOperator());
 
@@ -2188,8 +2193,8 @@ module.exports = (function() {
      * @returns {Number} Length of the mixin
      */
     function checkInclude7(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (tokens[i].type === TokenType.PlusSign) i++;
         else return 0;
@@ -2211,8 +2216,8 @@ module.exports = (function() {
      * @returns {Array} `['include', x]`
      */
     function getInclude7() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getOperator());
 
@@ -2231,8 +2236,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkInclude8(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (tokens[i].type === TokenType.PlusSign) i++;
         else return 0;
@@ -2247,8 +2252,8 @@ module.exports = (function() {
      * @returns {Array} `['include', x]`
      */
     function getInclude8() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getOperator());
 
@@ -2263,8 +2268,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkIncludeSelector(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         while (i < tokensLength) {
             if (l = checkSimpleSelector2(i)) i += l;
@@ -2278,9 +2283,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getIncludeSelector() {
-        var startPos = pos,
-            x = [],
-            t;
+        let startPos = pos;
+        let x = [];
+        let t;
 
         while (pos < tokensLength && checkSimpleSelector2(pos)) {
             t = getSimpleSelector2();
@@ -2299,8 +2304,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkInterpolation(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -2324,8 +2329,8 @@ module.exports = (function() {
      * @returns {Array} `['interpolation', x]`
      */
     function getInterpolation() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -2350,8 +2355,8 @@ module.exports = (function() {
      * @returns {Number} Length of the loop
      */
     function checkLoop(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -2382,8 +2387,8 @@ module.exports = (function() {
      * @returns {Array} `['loop', x]`
      */
     function getLoop() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getAtkeyword());
 
@@ -2428,8 +2433,8 @@ module.exports = (function() {
      * @returns {Number} Length of the mixin
      */
     function checkMixin1(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -2461,8 +2466,8 @@ module.exports = (function() {
      * @returns {Array} `['mixin', x]`
      */
     function getMixin1() {
-        var startPos = pos,
-            x = [getAtkeyword()];
+        let startPos = pos;
+        let x = [getAtkeyword()];
 
         x = x.concat(getSC());
 
@@ -2489,8 +2494,8 @@ module.exports = (function() {
      * @returns {Number} Length of the mixin
      */
     function checkMixin2(i) {
-        var start = i,
-        l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -2522,8 +2527,8 @@ module.exports = (function() {
     * @returns {Array} `['mixin', x]`
     */
     function getMixin2() {
-        var startPos = pos,
-            x = [getOperator()];
+        let startPos = pos;
+        let x = [getOperator()];
 
         x = x.concat(getSC());
 
@@ -2573,7 +2578,7 @@ module.exports = (function() {
 
         if (i >= tokensLength) return 0;
 
-        // start char / word
+        // Start char / word
         if (tokens[i].type === TokenType.HyphenMinus ||
             tokens[i].type === TokenType.LowLine ||
             tokens[i].type === TokenType.Identifier ||
@@ -2664,8 +2669,8 @@ module.exports = (function() {
      * @returns {Array} `['nth', x]` where `x` is identifier's text
      */
     function getNth() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
 
         if (tokens[pos].nth_last) {
             x = joinValues(pos, tokens[pos].nth_last);
@@ -2692,8 +2697,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkNthf(i) {
-        var start = i,
-            l = 0;
+        let start = i;
+        let l = 0;
 
         if (tokens[i++].type !== TokenType.Colon) return 0;
 
@@ -2746,8 +2751,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkNthselector(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -2843,9 +2848,9 @@ module.exports = (function() {
      *      to string.
      */
     function getNumber() {
-        var s = '',
-            startPos = pos,
-            l = tokens[pos].number_l;
+        let s = '';
+        let startPos = pos;
+        let l = tokens[pos].number_l;
 
         for (var j = 0; j < l; j++) {
             s += tokens[pos + j].value;
@@ -2865,7 +2870,7 @@ module.exports = (function() {
     function checkOperator(i) {
         if (i >= tokensLength) return 0;
 
-        switch(tokens[i].type) {
+        switch (tokens[i].type) {
             case TokenType.Solidus:
             case TokenType.Comma:
             case TokenType.Colon:
@@ -2887,8 +2892,8 @@ module.exports = (function() {
      *      to string.
      */
     function getOperator() {
-        var startPos = pos,
-            x = tokens[pos++].value;
+        let startPos = pos;
+        let x = tokens[pos++].value;
 
         var token = tokens[startPos];
         return newNode(NodeType.OperatorType, x, token.ln, token.col);
@@ -2911,10 +2916,10 @@ module.exports = (function() {
      * @return {Node}
      */
     function getParentheses() {
-        var type = NodeType.ParenthesesType,
-            token = tokens[pos],
-            line = token.ln,
-            column = token.col;
+        let type = NodeType.ParenthesesType;
+        let token = tokens[pos];
+        let line = token.ln;
+        let column = token.col;
 
         pos++;
 
@@ -2968,8 +2973,8 @@ module.exports = (function() {
      *      (without percent sign) converted to string.
      */
     function getPercentage() {
-        var startPos = pos,
-            x = [getNumber()];
+        let startPos = pos;
+        let x = [getNumber()];
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -3004,8 +3009,8 @@ module.exports = (function() {
      *      identifier (without `%`, e.g. `abc`).
      */
     function getPlaceholder() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         pos++;
 
@@ -3020,8 +3025,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkProgid(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -3045,9 +3050,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getProgid() {
-        var startPos = pos,
-            progid_end = tokens[pos].progid_end,
-            x = joinValues(pos, progid_end);
+        let startPos = pos;
+        let progid_end = tokens[pos].progid_end;
+        let x = joinValues(pos, progid_end);
 
         pos = progid_end + 1;
 
@@ -3061,8 +3066,8 @@ module.exports = (function() {
      * @returns {Number} Length of the property
      */
     function checkProperty(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -3077,8 +3082,8 @@ module.exports = (function() {
      * @returns {Array} `['property', x]`
      */
     function getProperty() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(checkVariable(pos) ? getVariable() : getIdent());
 
@@ -3140,8 +3145,8 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getPseudoe() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         pos += 2;
 
@@ -3167,10 +3172,10 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getPseudoc() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
-        pos ++;
+        pos++;
 
         if (checkInterpolation(pos)) x.push(getInterpolation());
         else if (checkFunction(pos)) x.push(getFunction());
@@ -3185,8 +3190,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkRuleset(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -3196,7 +3201,10 @@ module.exports = (function() {
         else return 0;
 
         while (i < tokensLength) {
-            if (l = checkBlock(i)) {i += l; break;}
+            if (l = checkBlock(i)) {
+                i += l;
+                break;
+            }
             else if (l = checkSelector(i)) i += l;
             else if (l = checkSC(i)) i += l;
             else return 0;
@@ -3211,13 +3219,16 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getRuleset() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         x.push(getSelector());
 
         while (pos < tokensLength) {
-            if (checkBlock(pos)) {x.push(getBlock()); break;}
+            if (checkBlock(pos)) {
+                x.push(getBlock());
+                break;
+            }
             else if (checkSelector(pos)) x.push(getSelector());
             else if (checkSC(pos)) x = x.concat(getSC());
             else break;
@@ -3230,7 +3241,7 @@ module.exports = (function() {
     /**
      * Check if token is marked as a space (if it's a space or a tab
      *      or a line break).
-     * @param i
+     * @param {Number} i
      * @returns {Number} Number of spaces in a row starting with the given token.
      */
     function checkS(i) {
@@ -3242,8 +3253,8 @@ module.exports = (function() {
      * @returns {Array} `['s', x]` where `x` is a string containing spaces
      */
     function getS() {
-        var startPos = pos,
-            x = joinValues(pos, tokens[pos].ws_last);
+        let startPos = pos;
+        let x = joinValues(pos, tokens[pos].ws_last);
 
         pos = tokens[pos].ws_last + 1;
 
@@ -3260,9 +3271,9 @@ module.exports = (function() {
     function checkSC(i) {
         if (!tokens[i]) return 0;
 
-        var l,
-            lsc = 0,
-            ln = tokens[i].ln;
+        let l;
+        let lsc = 0;
+        let ln = tokens[i].ln;
 
         while (i < tokensLength) {
             if (tokens[i].ln !== ln) break;
@@ -3288,8 +3299,8 @@ module.exports = (function() {
      *      and `y` is a comment's text (without `/*` and `* /`).
      */
     function getSC() {
-        var sc = [],
-            ln;
+        let sc = [];
+        let ln;
 
         if (pos >= tokensLength) return sc;
 
@@ -3314,8 +3325,9 @@ module.exports = (function() {
      * @returns {Number} Length of the selector
      */
     function checkSelector(i) {
-        var start = i,
-            l, ln;
+        let start = i;
+        let l;
+        let ln;
 
         if (i >= tokensLength) return 0;
         if (checkSC(i)) return 0;
@@ -3329,7 +3341,7 @@ module.exports = (function() {
             var b_ = l_ ? checkBlock(i + l_) : 0;
 
             if (b_) break;
-            else if (l = checkSC(i) || checkSimpleSelector(i) || checkDelim(i))  i += l;
+            else if (l = checkSC(i) || checkSimpleSelector(i) || checkDelim(i)) i += l;
             else break;
         }
 
@@ -3342,9 +3354,9 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getSelector() {
-        var startPos = pos,
-            x = [],
-            selector_end = tokens[pos].selector_end;
+        let startPos = pos;
+        let x = [];
+        let selector_end = tokens[pos].selector_end;
         var l;
 
         while (pos <= selector_end) {
@@ -3379,8 +3391,8 @@ module.exports = (function() {
      *      converted to string (without `#`, e.g. `fff`)
      */
     function getShash() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         pos++;
 
@@ -3400,9 +3412,9 @@ module.exports = (function() {
     function checkSimpleSelector(i) {
         if (i >= tokensLength) return 0;
 
-        var start = i,
-            l,
-            ln = tokens[i].ln;
+        let start = i;
+        let l;
+        let ln = tokens[i].ln;
 
         while (i < tokensLength) {
             if (tokens[i].ln !== ln ||
@@ -3419,10 +3431,10 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getSimpleSelector() {
-        var startPos = pos,
-            x = [],
-            t,
-            ln = tokens[pos].ln;
+        let startPos = pos;
+        let x = [];
+        let t;
+        let ln = tokens[pos].ln;
 
         while (pos < tokensLength) {
             if (tokens[pos].ln !== ln ||
@@ -3523,8 +3535,8 @@ module.exports = (function() {
      *      quotes).
      */
     function getString() {
-        var startPos = pos,
-            x = tokens[pos++].value;
+        let startPos = pos;
+        let x = tokens[pos++].value;
 
         var token = tokens[startPos];
         return newNode(NodeType.StringType, x, token.ln, token.col);
@@ -3538,8 +3550,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkStylesheet(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         while (i < tokensLength) {
             if (l = checkSC(i) ||
@@ -3563,8 +3575,8 @@ module.exports = (function() {
      *      nodes.
      */
     function getStylesheet() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
         var node;
         var wasDeclaration = false;
 
@@ -3616,8 +3628,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkTsets(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -3633,8 +3645,8 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getTsets() {
-        var x = [],
-            t;
+        let x = [];
+        let t;
 
         while (tokens[pos - 1].type !== TokenType.Newline &&
               (t = getTset())) {
@@ -3660,8 +3672,8 @@ module.exports = (function() {
      *      converted to string.
      */
     function getUnary() {
-        var startPos = pos,
-            x = tokens[pos++].value;
+        let startPos = pos;
+        let x = tokens[pos++].value;
 
         var token = tokens[startPos];
         return newNode(NodeType.UnaryType, x, token.ln, token.col);
@@ -3688,12 +3700,12 @@ module.exports = (function() {
      *      and braces, e.g. `['string', ''/css/styles.css'']`).
      */
     function getUri() {
-        var startPos = pos,
-            uriExcluding = {},
-            uri,
-            token,
-            l,
-            raw;
+        let startPos = pos;
+        let uriExcluding = {};
+        let uri;
+        let token;
+        let l;
+        let raw;
 
         pos += 2;
 
@@ -3735,8 +3747,8 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkUri1(i) {
-        var start = i,
-            l;
+        let start = i;
+        let l;
 
         if (i >= tokensLength) return 0;
 
@@ -3757,8 +3769,10 @@ module.exports = (function() {
      * @returns {Number} Length of the value
      */
     function checkValue(i) {
-        var start = i,
-            l, s, _i;
+        let start = i;
+        let l;
+        let s;
+        let _i;
 
         while (i < tokensLength) {
             if (checkDeclDelim(i)) break;
@@ -3796,9 +3810,10 @@ module.exports = (function() {
      * @returns {Array}
      */
     function getValue() {
-        var startPos = pos,
-            x = [],
-            _pos, s;
+        let startPos = pos;
+        let x = [];
+        let _pos;
+        let s;
 
         while (pos < tokensLength) {
             if (checkDeclDelim(pos)) break;
@@ -3857,8 +3872,8 @@ module.exports = (function() {
      *      a variable name.
      */
     function getVariable() {
-        var startPos = pos,
-            x = [];
+        let startPos = pos;
+        let x = [];
 
         pos++;
 
@@ -3874,12 +3889,12 @@ module.exports = (function() {
      * @returns {Number}
      */
     function checkVariablesList(i) {
-        var d = 0, // number of dots
-            l;
+        var d = 0; // Number of dots
+        let l;
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkVariable(i)) i+= l;
+        if (l = checkVariable(i)) i += l;
         else return 0;
 
         while (i < tokensLength && tokens[i].type === TokenType.FullStop) {
@@ -3896,8 +3911,8 @@ module.exports = (function() {
      *      `x` is a variable name.
      */
     function getVariablesList() {
-        var startPos = pos,
-            x = [getVariable()];
+        let startPos = pos;
+        let x = [getVariable()];
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -3928,8 +3943,8 @@ module.exports = (function() {
      *      converted to string (without `#`, e.g. `'fff'`).
      */
     function getVhash() {
-        var startPos = pos,
-            x;
+        let startPos = pos;
+        let x;
         var token = tokens[startPos];
         var line = token.ln;
         var column = token.col;
@@ -3937,7 +3952,7 @@ module.exports = (function() {
         pos++;
 
         x = getNmName2();
-        var end = getLastPosition(x, line, column+1);
+        var end = getLastPosition(x, line, column + 1);
         return newNode(NodeType.VhashType, x, token.ln, token.col, end);
     }
 
@@ -3948,5 +3963,5 @@ module.exports = (function() {
         pos = 0;
 
         return rules[rule]();
-   };
+    };
 })();

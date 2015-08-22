@@ -1,15 +1,17 @@
+'use strict';
+
 module.exports = function(css) {
     var TokenType = require('../token-types');
 
-    var tokens = [],
-        urlMode = false,
-        blockMode = 0,
-        c, // current character
-        cn, // next character
-        pos = 0,
-        tn = 0,
-        ln = 1,
-        col = 1;
+    let tokens = [];
+    let urlMode = false;
+    let blockMode = 0;
+    let c; // Current character
+    let cn; // Next character
+    let pos = 0;
+    let tn = 0;
+    let ln = 1;
+    let col = 1;
 
     var Punctuation = {
         ' ': TokenType.Space,
@@ -107,7 +109,8 @@ module.exports = function(css) {
         }
 
         // Add the string (including quotes) to tokens:
-        pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ, css.substring(start, pos + 1), col);
+        let type = q === '"' ? TokenType.StringDQ : TokenType.StringSQ;
+        pushToken(type, css.substring(start, pos + 1), col);
         col += pos - start;
     }
 
@@ -157,7 +160,6 @@ module.exports = function(css) {
 
     /**
      * Parse equality sign
-     * @param {string} sass Unparsed part of SASS string
      */
     function parseEquality() {
         pushToken(TokenType.EqualitySign, '==', col);
@@ -167,7 +169,6 @@ module.exports = function(css) {
 
     /**
      * Parse inequality sign
-     * @param {string} sass Unparsed part of SASS string
      */
     function parseInequality() {
         pushToken(TokenType.InequalitySign, '!=', col);
@@ -215,13 +216,13 @@ module.exports = function(css) {
         var comment = css.substring(start, pos + 1);
         pushToken(TokenType.CommentML, comment, col_);
 
-       var newlines = comment.split('\n');
-       if (newlines.length > 1) {
-           ln += newlines.length - 1;
-           col = newlines[newlines.length - 1].length;
-       } else {
-           col += (pos - start);
-       }
+        var newlines = comment.split('\n');
+        if (newlines.length > 1) {
+            ln += newlines.length - 1;
+            col = newlines[newlines.length - 1].length;
+        } else {
+            col += (pos - start);
+        }
     }
 
     /**
@@ -257,7 +258,7 @@ module.exports = function(css) {
                 }
             }
         } else {
-            for (pos+=2; pos < css.length; pos++) {
+            for (pos += 2; pos < css.length; pos++) {
                 if (css.charAt(pos) === '\n') {
                     // Get new line's indent level:
                     var _il = 0;
@@ -344,9 +345,9 @@ module.exports = function(css) {
                     ln++;
                     col = 0;
                 } // Go to next line
-                if (c === ')') urlMode = false; // exit url mode
-                if (c === '{') blockMode++; // enter a block
-                if (c === '}') blockMode--; // exit a block
+                if (c === ')') urlMode = false; // Exit url mode
+                if (c === '{') blockMode++; // Enter a block
+                if (c === '}') blockMode--; // Exit a block
             }
 
             // If current character is a decimal digit:

@@ -1,3 +1,5 @@
+'use strict';
+
 var Node = require('./basic-node');
 
 class RootNode extends Node {
@@ -51,6 +53,6 @@ class RootNode extends Node {
             this.traverseByType(types[i], callback);
         }
     }
-};
+}
 
 module.exports = RootNode;

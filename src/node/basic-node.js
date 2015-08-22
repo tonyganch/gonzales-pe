@@ -1,3 +1,5 @@
+'use strict';
+
 /**
  * @param {string} type
  * @param {array|string} content
@@ -32,13 +34,15 @@ class Node {
     eachFor(type, callback) {
         if (!Array.isArray(this.content)) return;
 
-        if (typeof type !== 'string') callback = type, type = null;
+        if (typeof type !== 'string') {
+            callback = type;
+            type = null;
+        }
 
         var l = this.content.length;
-        var i = l;
         var breakLoop;
 
-        for (var i = l; i--;) {
+        for (let i = l; i--;) {
             if (breakLoop === null) break;
 
             if (!type || this.content[i] && this.content[i].type === type)
@@ -70,7 +74,10 @@ class Node {
     forEach(type, callback) {
         if (!Array.isArray(this.content)) return;
 
-        if (typeof type !== 'string') callback = type, type = null;
+        if (typeof type !== 'string') {
+            callback = type;
+            type = null;
+        }
 
         var i = 0;
         var l = this.content.length;
@@ -124,7 +131,7 @@ class Node {
             return this.content[i];
 
 
-        for (;;i--) {
+        for (;; i--) {
             if (this.content[i].type === type) return this.content[i];
         }
     }
@@ -148,10 +155,12 @@ class Node {
     }
 
     toString() {
+        let stringify;
+
         try {
-            var stringify = require('../' + this.syntax + '/stringify');
+            stringify = require('../' + this.syntax + '/stringify');
         } catch (e) {
-            var message = 'Syntax "' + this.syntax + '" is not supported yet, sorry';
+            var message = `Syntax "${this.syntax}" is not supported yet, sorry`;
             return console.error(message);
         }
 
@@ -161,15 +170,15 @@ class Node {
     /**
      * @param {Function} callback
      */
-    traverse(callback, i, parent) {
+    traverse(callback, index, parent) {
         var breakLoop;
         var x;
 
-        callback(this, i, parent);
+        callback(this, index, parent);
 
         if (!Array.isArray(this.content)) return;
 
-        for (var i = 0, l = this.content.length; i < l; i++) {
+        for (let i = 0, l = this.content.length; i < l; i++) {
             breakLoop = this.content[i].traverse(callback, i, this);
             if (breakLoop === null) break;
 
@@ -182,6 +191,6 @@ class Node {
 
         if (breakLoop === null) return null;
     }
-};
+}
 
 module.exports = Node;

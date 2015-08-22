@@ -1,15 +1,17 @@
+'use strict';
+
 module.exports = function(css) {
     var TokenType = require('../token-types');
 
-    var tokens = [],
-        urlMode = false,
-        blockMode = 0,
-        c, // current character
-        cn, // next character
-        pos = 0,
-        tn = 0,
-        ln = 1,
-        col = 1;
+    let tokens = [];
+    let urlMode = false;
+    let blockMode = 0;
+    let c; // Current character
+    let cn; // Next character
+    let pos = 0;
+    let tn = 0;
+    let ln = 1;
+    let col = 1;
 
     var Punctuation = {
         ' ': TokenType.Space,
@@ -105,7 +107,8 @@ module.exports = function(css) {
         }
 
         // Add the string (including quotes) to tokens:
-        pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ, css.substring(start, pos + 1), col);
+        let type = q === '"' ? TokenType.StringDQ : TokenType.StringSQ;
+        pushToken(type, css.substring(start, pos + 1), col);
         col += (pos - start);
     }
 
@@ -158,29 +161,29 @@ module.exports = function(css) {
     * @param {string} css Unparsed part of CSS string
     */
     function parseMLComment(css) {
-       var start = pos;
+        var start = pos;
 
-       // Read the string until we meet `*/`.
-       // Since we already know first 2 characters (`/*`), start reading
-       // from `pos + 2`:
-       for (pos = pos + 2; pos < css.length; pos++) {
-           if (css.charAt(pos) === '*' && css.charAt(pos + 1) === '/') {
-               pos++;
-               break;
-           }
-       }
+        // Read the string until we meet `*/`.
+        // Since we already know first 2 characters (`/*`), start reading
+        // from `pos + 2`:
+        for (pos = pos + 2; pos < css.length; pos++) {
+            if (css.charAt(pos) === '*' && css.charAt(pos + 1) === '/') {
+                pos++;
+                break;
+            }
+        }
 
-       // Add full comment (including `/*` and `*/`) to the list of tokens:
-       var comment = css.substring(start, pos + 1);
-       pushToken(TokenType.CommentML, comment, col);
+        // Add full comment (including `/*` and `*/`) to the list of tokens:
+        var comment = css.substring(start, pos + 1);
+        pushToken(TokenType.CommentML, comment, col);
 
-       var newlines = comment.split('\n');
-       if (newlines.length > 1) {
-           ln += newlines.length - 1;
-           col = newlines[newlines.length - 1].length;
-       } else {
-           col += (pos - start);
-       }
+        var newlines = comment.split('\n');
+        if (newlines.length > 1) {
+            ln += newlines.length - 1;
+            col = newlines[newlines.length - 1].length;
+        } else {
+            col += (pos - start);
+        }
     }
 
     /**
@@ -188,20 +191,20 @@ module.exports = function(css) {
     * @param {string} css Unparsed part of CSS string
     */
     function parseSLComment(css) {
-       var start = pos;
+        var start = pos;
 
-       // Read the string until we meet line break.
-       // Since we already know first 2 characters (`//`), start reading
-       // from `pos + 2`:
-       for (pos+=2; pos < css.length; pos++) {
-           if (css.charAt(pos) === '\n' || css.charAt(pos) === '\r') {
-               break;
-           }
-       }
+        // Read the string until we meet line break.
+        // Since we already know first 2 characters (`//`), start reading
+        // from `pos + 2`:
+        for (pos += 2; pos < css.length; pos++) {
+            if (css.charAt(pos) === '\n' || css.charAt(pos) === '\r') {
+                break;
+            }
+        }
 
-       // Add comment (including `//` and line break) to the list of tokens:
-       pushToken(TokenType.CommentSL, css.substring(start, pos--), col);
-       col += pos - start;
+        // Add comment (including `//` and line break) to the list of tokens:
+        pushToken(TokenType.CommentSL, css.substring(start, pos--), col);
+        col += pos - start;
     }
 
     /**
@@ -249,9 +252,9 @@ module.exports = function(css) {
                     ln++;
                     col = 0;
                 } // Go to next line
-                if (c === ')') urlMode = false; // exit url mode
-                if (c === '{') blockMode++; // enter a block
-                if (c === '}') blockMode--; // exit a block
+                if (c === ')') urlMode = false; // Exit url mode
+                if (c === '{') blockMode++; // Enter a block
+                if (c === '}') blockMode--; // Exit a block
             }
 
             // If current character is a decimal digit:

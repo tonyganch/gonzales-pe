@@ -1,3 +1,7 @@
+// jscs:disable
+
+'use strict';
+
 module.exports = {
     StringSQ: 'StringSQ',
     StringDQ: 'StringDQ',

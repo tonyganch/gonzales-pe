@@ -1,3 +1,5 @@
+'use strict';
+
 var parserPackage = require('../package.json');
 
 /**

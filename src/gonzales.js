@@ -1,3 +1,5 @@
+'use strict';
+
 var Node = require('./node/basic-node');
 var parse = require('./parse');
 
@@ -6,4 +8,4 @@ module.exports = {
         return new Node(options);
     },
     parse: parse
-}
+};

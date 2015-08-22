@@ -1,0 +1,65 @@
+{
+    "disallowMultipleSpaces": true,
+    "disallowMultipleVarDecl": true,
+    "disallowNewlineBeforeBlockStatements": true,
+    "disallowPaddingNewlinesInBlocks": true,
+    "disallowSpaceBeforePostfixUnaryOperators": true,
+    "disallowSpacesInCallExpression": true,
+    "disallowSpacesInFunction": {
+        "beforeOpeningRoundBrace": true
+    },
+    "disallowSpacesInsideArrayBrackets": true,
+    "disallowSpacesInsideObjectBrackets": true,
+    "disallowSpacesInsideParentheses": true,
+    "disallowTrailingComma": true,
+    "disallowTrailingWhitespace": true,
+    "esnext": true,
+    "maximumLineLength": 80,
+    "requireBlocksOnNewline": 1,
+    "requireCapitalizedComments": true,
+    "requireCapitalizedConstructors": true,
+    "requireCommaBeforeLineBreak": true,
+    "requireDotNotation": true,
+    "requireLineBreakAfterVariableAssignment": true,
+    "requireSemicolons": true,
+    "requireSpaceAfterBinaryOperators": true,
+    "requireSpaceAfterKeywords": [
+        "do",
+        "for",
+        "if",
+        "else",
+        "switch",
+        "case",
+        "try",
+        "catch",
+        "while",
+        "return",
+        "typeof"
+    ],
+    "requireSpaceAfterLineComment": true,
+    "requireSpaceBeforeBinaryOperators": true,
+    "requireSpaceBeforeBlockStatements": true,
+    "requireSpaceBeforeKeywords": [
+        "else",
+        "while",
+        "catch"
+    ],
+    "requireSpaceBetweenArguments": true,
+    "requireSpacesInForStatement": true,
+    "validateIndentation": 4,
+    "validateQuoteMarks": {
+        "mark": "'",
+        "escape": true
+    },
+    "jsDoc": {
+        "checkAnnotations": "closurecompiler",
+        "checkParamNames": true,
+        "checkRedundantParams": true,
+        "checkRedundantReturns": true,
+        "checkReturnTypes": true,
+        "checkTypes": true,
+        "disallowNewlineAfterDescription": true,
+        "requireParamTypes": true,
+        "requireReturnTypes": true
+    }
+}

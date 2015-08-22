@@ -1,3 +1,5 @@
+'use strict';
+
 var TokenType = require('../token-types');
 
 /**
@@ -7,16 +9,16 @@ var TokenType = require('../token-types');
 function markSpacesAndComments(tokens) {
     var tokensLength = tokens.length;
     var spaces = [-1, -1];
-    var type; // current token's type
+    var type; // Current token's type
 
     // For every token in the token list, mark spaces and line breaks
     // as spaces (set both `ws` and `sc` flags). Mark multiline comments
     // with `sc` flag.
     // If there are several spaces or tabs or line breaks or multiline
     // comments in a row, group them: take the last one's index number
-    // and save it to the first token in the group as a reference
-    // (e.g., `ws_last = 7` for a group of whitespaces or `sc_last = 9`
-    // for a group of whitespaces and comments):
+    // and save it to the first token in the group as a reference:
+    // e.g., `ws_last = 7` for a group of whitespaces or `sc_last = 9`
+    // for a group of whitespaces and comments.
     for (var i = 0; i < tokensLength; i++) {
         type = tokens[i].type;
 
@@ -71,11 +73,11 @@ function markEndOfSpacesAndComments(tokens, i, spaces) {
  * @param {Array} tokens
  */
 function markBrackets(tokens) {
-    var tokensLength = tokens.length;
-    var ps = [], // parenthesis
-        sbs = [], // square brackets
-        cbs = [], // curly brackets
-        t; // current token
+    let tokensLength = tokens.length;
+    let ps = []; // Parentheses
+    let sbs = []; // Square brackets
+    let cbs = []; // Curly brackets
+    let t; // Current token
 
     // For every token in the token list, if we meet an opening (left)
     // bracket, push its index number to a corresponding array.
