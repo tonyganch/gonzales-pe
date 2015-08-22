@@ -814,7 +814,10 @@ module.exports = (function() {
 
         if (i >= tokensLength) return 0;
 
-        if (l = checkBlockdecl1(i)) tokens[i].bd_type = 1;
+        if (l = checkBlockdecl7(i)) tokens[i].bd_type = 7;
+        else if (l = checkBlockdecl5(i)) tokens[i].bd_type = 5;
+        else if (l = checkBlockdecl6(i)) tokens[i].bd_type = 6;
+        else if (l = checkBlockdecl1(i)) tokens[i].bd_type = 1;
         else if (l = checkBlockdecl2(i)) tokens[i].bd_type = 2;
         else if (l = checkBlockdecl3(i)) tokens[i].bd_type = 3;
         else if (l = checkBlockdecl4(i)) tokens[i].bd_type = 4;
@@ -832,6 +835,9 @@ module.exports = (function() {
             case 2: return getBlockdecl2();
             case 3: return getBlockdecl3();
             case 4: return getBlockdecl4();
+            case 5: return getBlockdecl5();
+            case 6: return getBlockdecl6();
+            case 7: return getBlockdecl7();
         }
     }
 
@@ -919,9 +925,9 @@ module.exports = (function() {
         else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = checkExtend(i)) tokens[i].bd_kind = 4;
         else if (l = checkLoop(i)) tokens[i].bd_kind = 3;
+        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
         else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
         else if (l = checkAtrule(i)) tokens[i].bd_kind = 6;
-        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
         else return 0;
 
         i += l;
@@ -988,9 +994,9 @@ module.exports = (function() {
         else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
         else if (l = checkExtend(i)) tokens[i].bd_kind = 4;
         else if (l = checkLoop(i)) tokens[i].bd_kind = 3;
+        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
         else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
         else if (l = checkAtrule(i)) tokens[i].bd_kind = 6;
-        else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
         else return 0;
 
         i += l;
@@ -1045,6 +1051,126 @@ module.exports = (function() {
     function getBlockdecl4() {
         return getSC();
     }
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkBlockdecl5(i) {
+        let start = i;
+        let l;
+
+        if (l = checkInclude(i)) i += l;
+        else if (l = checkRuleset(i)) i += l;
+        else return 0;
+
+        while (i < tokensLength) {
+            if (l = checkS(i)) i += l;
+            else if (l = checkCommentSL(i)) i += l;
+            else break;
+        }
+
+        return i - start;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getBlockdecl5() {
+        let x = [];
+
+        if (checkInclude(pos)) x.push(getInclude());
+        else x.push(getRuleset());
+
+        while (pos < tokensLength) {
+            if (checkS(pos)) x.push(getS());
+            else if (checkCommentSL(pos)) x.push(getCommentSL());
+            else break;
+        }
+
+        return x;
+    }
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkBlockdecl6(i) {
+        let start = i;
+        let l;
+
+        if (l = checkInclude(i)) i += l;
+        else if (l = checkRuleset(i)) i += l;
+        else return 0;
+
+        return i - start;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getBlockdecl6() {
+        let x;
+
+        if (checkInclude(pos)) x = getInclude();
+        else x = getRuleset();
+
+        return [x];
+    }
+
+    /**
+     * @param {Number} i Token's index number
+     * @returns {Number}
+     */
+    function checkBlockdecl7(i) {
+        let start = i;
+        let l;
+
+        if (l = checkInclude(i)) i += l;
+        else return 0;
+
+        if ([2, 4, 6, 8].indexOf(tokens[start].include_type) === -1) return 0;
+
+        while (i < tokensLength) {
+            if (l = checkDeclDelim(i))
+                return i + l - start;
+
+            if (l = checkS(i)) i += l;
+            else if (l = checkCommentSL(i)) i += l;
+            else break;
+        }
+
+        return 0;
+    }
+
+    /**
+     * @returns {Array}
+     */
+    function getBlockdecl7() {
+        let x = [];
+        let _x = [];
+
+        x.push(getInclude());
+
+        while (pos < tokensLength) {
+            let _pos = pos;
+            if (checkDeclDelim(pos)) {
+                _x.push(getDeclDelim());
+                x = x.concat(_x);
+                break;
+            }
+
+            if (checkS(pos)) _x.push(getS());
+            else if (checkCommentSL(pos)) _x.push(getCommentSL());
+            else {
+                pos = _pos;
+                break;
+            }
+        }
+
+        return x;
+    }
+
 
     /**
      * Check if token is part of text inside square brackets, e.g. `[1]`
@@ -3333,15 +3459,19 @@ module.exports = (function() {
         if (l = checkSelector(i)) i += l;
         else return 0;
 
+        let hasBlock = false;
         while (i < tokensLength) {
             if (l = checkBlock(i)) {
                 i += l;
+                hasBlock = true;
                 break;
             }
             else if (l = checkSelector(i)) i += l;
             else if (l = checkSC(i)) i += l;
             else return 0;
         }
+
+        if (!hasBlock) return 0;
 
         tokens[start].ruleset_l = i - start;
 
