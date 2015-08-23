@@ -3566,7 +3566,7 @@ module.exports = (function() {
         while (i < tokensLength) {
             if (checkDeclDelim(i)) break;
 
-            s = checkS(i);
+            s = checkSC(i);
             _i = i + s;
 
             if (l = _checkValue(_i)) i += l + s;
@@ -3604,14 +3604,14 @@ module.exports = (function() {
         let s;
 
         while (pos < tokensLength) {
-            s = checkS(pos);
+            s = checkSC(pos);
             _pos = pos + s;
 
             if (checkDeclDelim(_pos)) break;
 
             if (!_checkValue(_pos)) break;
 
-            if (s) x.push(getS());
+            if (s) x = x.concat(getSC());
             x.push(_getValue());
 
             if (checkBlock(_pos)) break;
