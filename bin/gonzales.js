@@ -59,10 +59,22 @@ function printTree(ast) {
         var tree = ast.toJson();
         process.stdout.write(tree);
     } else {
-        ast.traverse(function(node, index, level) {
+        var lastLevel;
+
+        ast.traverse(function(node, params) {
+            lastLevel = params.nestingLevel;
             var type = node.type;
-            var spaces = new Array(level).join(' |');
-            console.log(spaces, '->', type);
+            var spaces = new Array(lastLevel).join(' |');
+            if (typeof node.content === 'string') {
+                var content = JSON.stringify(node.content);
+                console.log(spaces, '->', type);
+                console.log(spaces, '  ', content);
+            } else {
+                console.log(spaces, '->', type);
+            }
         });
+
+        var spaces = new Array(lastLevel).join(' -');
+        console.log(spaces);
     }
 }

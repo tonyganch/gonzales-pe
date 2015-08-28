@@ -176,7 +176,7 @@ class Node {
 
         level++;
 
-        callback(this, index, level, parent);
+        callback(this, {index: index, nestingLevel: level, parent: parent});
 
         if (!Array.isArray(this.content)) return;
 
