@@ -46,7 +46,7 @@
     ],
     "requireSpaceBetweenArguments": true,
     "requireSpacesInForStatement": true,
-    "validateIndentation": 4,
+    "validateIndentation": 2,
     "validateQuoteMarks": {
         "mark": "'",
         "escape": true
