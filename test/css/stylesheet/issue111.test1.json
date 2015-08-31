@@ -27,78 +27,64 @@
                   "type": "pseudoClass",
                   "content": [
                     {
-                      "type": "function",
+                      "type": "ident",
+                      "content": "not",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 8
+                      }
+                    },
+                    {
+                      "type": "arguments",
                       "content": [
                         {
-                          "type": "ident",
-                          "content": "not",
-                          "syntax": "css",
-                          "start": {
-                            "line": 1,
-                            "column": 6
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 8
-                          }
-                        },
-                        {
-                          "type": "arguments",
+                          "type": "simpleSelector",
                           "content": [
                             {
-                              "type": "simpleSelector",
+                              "type": "attribute",
                               "content": [
                                 {
-                                  "type": "attribute",
-                                  "content": [
-                                    {
-                                      "type": "ident",
-                                      "content": "x",
-                                      "syntax": "css",
-                                      "start": {
-                                        "line": 1,
-                                        "column": 11
-                                      },
-                                      "end": {
-                                        "line": 1,
-                                        "column": 11
-                                      }
-                                    },
-                                    {
-                                      "type": "attributeSelector",
-                                      "content": "|",
-                                      "syntax": "css",
-                                      "start": {
-                                        "line": 1,
-                                        "column": 12
-                                      },
-                                      "end": {
-                                        "line": 1,
-                                        "column": 12
-                                      }
-                                    },
-                                    {
-                                      "type": "ident",
-                                      "content": "x",
-                                      "syntax": "css",
-                                      "start": {
-                                        "line": 1,
-                                        "column": 13
-                                      },
-                                      "end": {
-                                        "line": 1,
-                                        "column": 13
-                                      }
-                                    }
-                                  ],
+                                  "type": "ident",
+                                  "content": "x",
                                   "syntax": "css",
                                   "start": {
                                     "line": 1,
-                                    "column": 10
+                                    "column": 11
                                   },
                                   "end": {
                                     "line": 1,
-                                    "column": 14
+                                    "column": 11
+                                  }
+                                },
+                                {
+                                  "type": "attributeSelector",
+                                  "content": "|",
+                                  "syntax": "css",
+                                  "start": {
+                                    "line": 1,
+                                    "column": 12
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 12
+                                  }
+                                },
+                                {
+                                  "type": "ident",
+                                  "content": "x",
+                                  "syntax": "css",
+                                  "start": {
+                                    "line": 1,
+                                    "column": 13
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 13
                                   }
                                 }
                               ],
@@ -116,18 +102,18 @@
                           "syntax": "css",
                           "start": {
                             "line": 1,
-                            "column": 9
+                            "column": 10
                           },
                           "end": {
                             "line": 1,
-                            "column": 15
+                            "column": 14
                           }
                         }
                       ],
                       "syntax": "css",
                       "start": {
                         "line": 1,
-                        "column": 6
+                        "column": 9
                       },
                       "end": {
                         "line": 1,

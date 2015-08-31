@@ -44,8 +44,6 @@ var rules = {
   'ident': function() { return checkIdent(pos) && getIdent(); },
   'important': function() { return checkImportant(pos) && getImportant(); },
   'namespace': function() { return checkNamespace(pos) && getNamespace(); },
-  'nth': function() { return checkNth(pos) && getNth(); },
-  'nthselector': function() { return checkNthselector(pos) && getNthselector(); },
   'number': function() { return checkNumber(pos) && getNumber(); },
   'operator': function() { return checkOperator(pos) && getOperator(); },
   'parentheses': function() { return checkParentheses(pos) && getParentheses(); },
@@ -1232,7 +1230,7 @@ function getFunction() {
   let ident = getIdent();
   let content = [ident];
 
-  content.push(ident.content === 'not' ? getNotArguments() : getArguments());
+  content.push(getArguments());
 
   return newNode(type, content, line, column);
 }
@@ -1290,30 +1288,6 @@ function getArgument() {
   else if (childType === 2) return getAny();
   else if (childType === 3) return getSC();
   else if (childType === 4) return getOperator();
-}
-
-/**
- * @return {Node}
- */
-function getNotArguments() {
-  let type = NodeType.ArgumentsType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
-
-  pos++;
-
-  while (pos < tokensLength && tokens[pos].type !== TokenType.RightParenthesis) {
-    // TODO: Remove these checks
-    if (checkSimpleSelector(pos)) content.push(getSimpleSelector());
-    else throwError(pos);
-  }
-
-  var end = getLastPosition(content, line, column, 1);
-  pos++;
-
-  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -1517,180 +1491,6 @@ function getNmName2() {
       tokens[pos].type === TokenType.Identifier) s += tokens[pos++].value;
 
   return s;
-}
-
-/**
- * Check if token is part of an nth-selector's identifier (e.g. `2n+1`)
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkNth(i) {
-  if (i >= tokensLength) return 0;
-
-  return checkNth1(i) || checkNth2(i);
-}
-
-/**
- * Check if token is part of an nth-selector's identifier in the form of
- *      sequence of decimals and n-s (e.g. `3`, `n`, `2n+1`)
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkNth1(i) {
-  var start = i;
-
-  for (; i < tokensLength; i++) {
-    if (tokens[i].type !== TokenType.DecimalNumber &&
-        tokens[i].value !== 'n') break;
-  }
-
-  if (i !== start) tokens[start].nth_last = i - 1;
-
-  return i - start;
-}
-
-/**
- * Get node for nth-selector's identifier (e.g. `2n+1`)
- * @return {Node}
- */
-function getNth() {
-  let type = NodeType.NthType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content;
-
-  if (token.nth_last) {
-    content = joinValues(pos, token.nth_last);
-    pos = token.nth_last + 1;
-  } else {
-    content = token.value;
-    pos++;
-  }
-
-  return newNode(type, content, line, column);
-}
-
-/**
- * Check if token is part of `even` or `odd` nth-selector's identifier
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkNth2(i) {
-  return tokens[i].value === 'even' || tokens[i].value === 'odd' ? 1 : 0;
-}
-
-/**
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkNthf(i) {
-  let start = i;
-  let l = 0;
-
-  if (tokens[i++].type !== TokenType.Colon) return 0;
-
-  // There was `:`:
-  l++;
-
-  if (tokens[i++].value !== 'nth' || tokens[i++].value !== '-') return 0;
-
-  // There was either `nth-` or `last-`:
-  l += 2;
-
-  if ('child' === tokens[i].value) {
-    l += 1;
-  } else if ('last-child' === tokens[i].value +
-      tokens[i + 1].value +
-      tokens[i + 2].value) {
-    l += 3;
-  } else if ('of-type' === tokens[i].value +
-      tokens[i + 1].value +
-      tokens[i + 2].value) {
-    l += 3;
-  } else if ('last-of-type' === tokens[i].value +
-      tokens[i + 1].value +
-      tokens[i + 2].value +
-      tokens[i + 3].value +
-      tokens[i + 4].value) {
-    l += 5;
-  } else return 0;
-
-  tokens[start + 1].nthf_last = start + l - 1;
-
-  return l;
-}
-
-/**
- * @return {String}
- */
-function getNthf() {
-  pos++;
-
-  var s = joinValues(pos, tokens[pos].nthf_last);
-
-  pos = tokens[pos].nthf_last + 1;
-
-  return s;
-}
-
-/**
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkNthselector(i) {
-  let start = i;
-  let l;
-
-  if (i >= tokensLength) return 0;
-
-  if (l = checkNthf(i)) i += l;
-  else return 0;
-
-  if (tokens[i].type !== TokenType.LeftParenthesis || !tokens[i].right) return 0;
-
-  l++;
-
-  var rp = tokens[i++].right;
-
-  while (i < rp) {
-    if (l = checkSC(i)) tokens[i].nthselector_child = 1;
-    else if (l = checkUnary(i)) tokens[i].nthselector_child = 2;
-    else if (l = checkNth(i)) tokens[i].nthselector_child = 3;
-    else return 0;
-    i += l;
-  }
-
-  return rp - start + 1;
-}
-
-/**
- * @return {Node}
- */
-function getNthselector() {
-  let type = NodeType.NthselectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
-
-
-  var nthf = newNode(NodeType.IdentType, getNthf(), line, column + 1);
-  content.push(nthf);
-
-  pos++;
-
-  while (tokens[pos].type !== TokenType.RightParenthesis) {
-    var childType = tokens[pos].nthselector_child;
-    if (childType === 1) content = content.concat(getSC());
-    else if (childType === 2) content.push(getUnary());
-    else if (childType === 3) content.push(getNth());
-  }
-
-  var end = getLastPosition(content, line, column, 1);
-  pos++;
-
-  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -2003,28 +1803,454 @@ function getPseudoe() {
 function checkPseudoc(i) {
   var l;
 
-  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+  if (i >= tokensLength || tokens[i].type !== TokenType.Colon) return 0;
 
-  if (l = checkFunction(i)) tokens[i].pseudoc_child = 1;
-  else if (l = checkIdent(i)) tokens[i].pseudoc_child = 2;
+  if (l = checkPseudoClass1(i)) tokens[i].pseudoClassType = 1;
+  else if (l = checkPseudoClass2(i)) tokens[i].pseudoClassType = 2;
+  else if (l = checkPseudoClass3(i)) tokens[i].pseudoClassType = 3;
+  else if (l = checkPseudoClass4(i)) tokens[i].pseudoClassType = 4;
+  else if (l = checkPseudoClass5(i)) tokens[i].pseudoClassType = 5;
+  else if (l = checkPseudoClass6(i)) tokens[i].pseudoClassType = 6;
   else return 0;
 
-  return l + 1;
+  return l;
 }
 
 /**
  * @return {Node}
  */
 function getPseudoc() {
+  var childType = tokens[pos].pseudoClassType;
+  if (childType === 1) return getPseudoClass1();
+  if (childType === 2) return getPseudoClass2();
+  if (childType === 3) return getPseudoClass3();
+  if (childType === 4) return getPseudoClass4();
+  if (childType === 5) return getPseudoClass5();
+  if (childType === 6) return getPseudoClass6();
+}
+
+/**
+ * (-) `:not(panda)`
+ */
+function checkPseudoClass1(i) {
+  let start = i;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength ||
+      tokens[i].value !== 'not') return 0;
+
+  // Skip `not`.
+  i++;
+  if (i >= tokensLength ||
+      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  let right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  while (i < right) {
+    let l = checkSimpleSelector(i);
+    if (!l) return 0;
+    i += l;
+  }
+
+  return right - start + 1;
+}
+
+/**
+ * (-) `:not(panda)`
+ */
+function getPseudoClass1() {
   let type = NodeType.PseudocType;
-  let token = tokens[pos++];
+  let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
   let content = [];
 
-  var childType = tokens[pos].pseudoc_child;
-  if (childType === 1) content.push(getFunction());
-  else content.push(getIdent());
+  // Skip `:`.
+  pos++;
+
+  if (checkIdent(pos)) content.push(getIdent());
+
+  let args = getNotArguments();
+  content.push(args);
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * @return {Node}
+ */
+function getNotArguments() {
+  let type = NodeType.ArgumentsType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  let right = tokens[pos].right;
+  // Skip `(`.
+  pos++;
+
+  while (pos < right) {
+    if (checkSimpleSelector(pos)) content.push(getSimpleSelector());
+    else throwError(pos);
+  }
+
+  var end = getLastPosition(content, line, column, 1);
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
+/**
+ * (1) `:nth-child(odd)`
+ * (2) `:nth-child(even)`
+ * (3) `:lang(de-DE)`
+ */
+function checkPseudoClass2(i) {
+  let start = i;
+  let l = 0;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength ||
+      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  let right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i !== right) return 0;
+
+  return i - start + 1;
+}
+
+function getPseudoClass2() {
+  let type = NodeType.PseudocType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `:`.
+  pos++;
+
+  let ident = getIdent();
+  content.push(ident);
+
+  // Skip `(`.
+  pos++;
+
+  let l = tokens[pos].ln;
+  let c = tokens[pos].col;
+  let value = [];
+
+  value = value.concat(getSC());
+  value.push(getIdent());
+  value = value.concat(getSC());
+
+  let end = getLastPosition(value, l, c, 1);
+  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  content.push(args);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (-) `:nth-child(-3n + 2)`
+ */
+function checkPseudoClass3(i) {
+  let start = i;
+  let l = 0;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength ||
+      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  let right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkUnary(i)) i += l;
+  if (i >= tokensLength) return 0;
+  if (tokens[i].type === TokenType.DecimalNumber) i++;
+
+  if (i >= tokensLength) return 0;
+  if (tokens[i].value === 'n') i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i >= tokensLength) return 0;
+  if (tokens[i].value === '+' ||
+      tokens[i].value === '-') i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (tokens[i].type === TokenType.DecimalNumber) i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i !== right) return 0;
+
+  return i - start + 1;
+}
+
+function getPseudoClass3() {
+  let type = NodeType.PseudocType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `:`.
+  pos++;
+
+  let ident = getIdent();
+  content.push(ident);
+
+  let l = tokens[pos].ln;
+  let c = tokens[pos].col;
+  let value = [];
+
+  // Skip `(`.
+  pos++;
+
+  if (checkUnary(pos)) value.push(getUnary());
+  if (checkNumber(pos)) value.push(getNumber());
+
+  {
+    let l = tokens[pos].ln;
+    let c = tokens[pos].col;
+    let content = tokens[pos].value;
+    let ident = newNode(NodeType.IdentType, content, l, c);
+    value.push(ident);
+    pos++;
+  }
+
+  value = value.concat(getSC());
+  if (checkUnary(pos)) value.push(getUnary());
+  value = value.concat(getSC());
+  if (checkNumber(pos)) value.push(getNumber());
+  value = value.concat(getSC());
+
+  let end = getLastPosition(value, l, c, 1);
+  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  content.push(args);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (-) `:nth-child(-3n)`
+ */
+function checkPseudoClass4(i) {
+  let start = i;
+  let l = 0;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength) return 0;
+  if (tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  let right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkUnary(i)) i += l;
+  if (tokens[i].type === TokenType.DecimalNumber) i++;
+
+  if (tokens[i].value === 'n') i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i !== right) return 0;
+
+  return i - start + 1;
+}
+
+function getPseudoClass4() {
+  let type = NodeType.PseudocType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `:`.
+  pos++;
+
+  let ident = getIdent();
+  content.push(ident);
+
+  // Skip `(`.
+  pos++;
+
+  let l = tokens[pos].ln;
+  let c = tokens[pos].col;
+  let value = [];
+
+  if (checkUnary(pos)) value.push(getUnary());
+  if (checkNumber(pos)) value.push(getNumber());
+  if (checkIdent(pos)) value.push(getIdent());
+  value = value.concat(getSC());
+
+  let end = getLastPosition(value, l, c, 1);
+  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  content.push(args);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (-) `:nth-child(+8)`
+ */
+function checkPseudoClass5(i) {
+  let start = i;
+  let l = 0;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength) return 0;
+  if (tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  let right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkUnary(i)) i += l;
+  if (tokens[i].type === TokenType.DecimalNumber) i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i !== right) return 0;
+
+  return i - start + 1;
+}
+
+function getPseudoClass5() {
+  let type = NodeType.PseudocType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `:`.
+  pos++;
+
+  let ident = getIdent();
+  content.push(ident);
+
+  // Skip `(`.
+  pos++;
+
+  let l = tokens[pos].ln;
+  let c = tokens[pos].col;
+  let value = [];
+
+  if (checkUnary(pos)) value.push(getUnary());
+  if (checkNumber(pos)) value.push(getNumber());
+  value = value.concat(getSC());
+
+  let end = getLastPosition(value, l, c, 1);
+  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  content.push(args);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (-) `:checked`
+ */
+function checkPseudoClass6(i) {
+  let start = i;
+  let l = 0;
+
+  // Skip `:`.
+  i++;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getPseudoClass6() {
+  let type = NodeType.PseudocType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `:`.
+  pos++;
+
+  let ident = getIdent();
+  content.push(ident);
 
   return newNode(type, content, line, column);
 }
@@ -2269,8 +2495,7 @@ function getSimpleSelector() {
 function checkSimpleSelector1(i) {
   var l;
 
-  if (l = checkNthselector(i)) tokens[i].simpleselector1_child = 1;
-  else if (l = checkCombinator(i)) tokens[i].simpleselector1_child = 2;
+  if (l = checkCombinator(i)) tokens[i].simpleselector1_child = 2;
   else if (l = checkAttrib(i)) tokens[i].simpleselector1_child = 3;
   else if (l = checkPseudo(i)) tokens[i].simpleselector1_child = 4;
   else if (l = checkShash(i)) tokens[i].simpleselector1_child = 5;
@@ -2287,8 +2512,7 @@ function checkSimpleSelector1(i) {
  */
 function getSimpleSelector1() {
   var childType = tokens[pos].simpleselector1_child;
-  if (childType === 1) return getNthselector();
-  else if (childType === 2) return getCombinator();
+  if (childType === 2) return getCombinator();
   else if (childType === 3) return getAttrib();
   else if (childType === 4) return getPseudo();
   else if (childType === 5) return getShash();
