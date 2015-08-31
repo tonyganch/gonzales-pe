@@ -44,41 +44,27 @@
       "type": "pseudoClass",
       "content": [
         {
-          "type": "function",
+          "type": "ident",
+          "content": "not",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 5
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "arguments",
           "content": [
             {
-              "type": "ident",
-              "content": "not",
-              "syntax": "less",
-              "start": {
-                "line": 1,
-                "column": 5
-              },
-              "end": {
-                "line": 1,
-                "column": 7
-              }
-            },
-            {
-              "type": "arguments",
+              "type": "simpleSelector",
               "content": [
                 {
-                  "type": "simpleSelector",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "*",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 9
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 9
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "*",
                   "syntax": "less",
                   "start": {
                     "line": 1,
@@ -93,18 +79,18 @@
               "syntax": "less",
               "start": {
                 "line": 1,
-                "column": 8
+                "column": 9
               },
               "end": {
                 "line": 1,
-                "column": 10
+                "column": 9
               }
             }
           ],
           "syntax": "less",
           "start": {
             "line": 1,
-            "column": 5
+            "column": 8
           },
           "end": {
             "line": 1,

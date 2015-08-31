@@ -18,23 +18,23 @@
       "type": "pseudoClass",
       "content": [
         {
-          "type": "function",
+          "type": "ident",
+          "content": "extend",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "arguments",
           "content": [
             {
-              "type": "ident",
-              "content": "extend",
-              "syntax": "less",
-              "start": {
-                "line": 1,
-                "column": 3
-              },
-              "end": {
-                "line": 1,
-                "column": 8
-              }
-            },
-            {
-              "type": "arguments",
+              "type": "simpleSelector",
               "content": [
                 {
                   "type": "class",
@@ -93,18 +93,18 @@
               "syntax": "less",
               "start": {
                 "line": 1,
-                "column": 9
+                "column": 10
               },
               "end": {
                 "line": 1,
-                "column": 21
+                "column": 20
               }
             }
           ],
           "syntax": "less",
           "start": {
             "line": 1,
-            "column": 3
+            "column": 9
           },
           "end": {
             "line": 1,

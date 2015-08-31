@@ -114,23 +114,23 @@
                           "type": "pseudoClass",
                           "content": [
                             {
-                              "type": "function",
+                              "type": "ident",
+                              "content": "extend",
+                              "syntax": "less",
+                              "start": {
+                                "line": 2,
+                                "column": 7
+                              },
+                              "end": {
+                                "line": 2,
+                                "column": 12
+                              }
+                            },
+                            {
+                              "type": "arguments",
                               "content": [
                                 {
-                                  "type": "ident",
-                                  "content": "extend",
-                                  "syntax": "less",
-                                  "start": {
-                                    "line": 2,
-                                    "column": 7
-                                  },
-                                  "end": {
-                                    "line": 2,
-                                    "column": 12
-                                  }
-                                },
-                                {
-                                  "type": "arguments",
+                                  "type": "simpleSelector",
                                   "content": [
                                     {
                                       "type": "class",
@@ -163,18 +163,18 @@
                                   "syntax": "less",
                                   "start": {
                                     "line": 2,
-                                    "column": 13
+                                    "column": 14
                                   },
                                   "end": {
                                     "line": 2,
-                                    "column": 18
+                                    "column": 17
                                   }
                                 }
                               ],
                               "syntax": "less",
                               "start": {
                                 "line": 2,
-                                "column": 7
+                                "column": 13
                               },
                               "end": {
                                 "line": 2,
