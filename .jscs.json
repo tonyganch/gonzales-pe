@@ -1,7 +1,6 @@
 {
     "disallowMultipleSpaces": true,
     "disallowMultipleVarDecl": true,
-    "disallowNewlineBeforeBlockStatements": true,
     "disallowPaddingNewlinesInBlocks": true,
     "disallowSpaceBeforePostfixUnaryOperators": true,
     "disallowSpacesInCallExpression": true,
