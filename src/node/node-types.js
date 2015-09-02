@@ -36,8 +36,6 @@ module.exports = {
   LoopType: 'loop',
   MixinType: 'mixin',
   NamespaceType: 'namespace',
-  NthType: 'nth',
-  NthselectorType: 'nthSelector',
   NumberType: 'number',
   OperatorType: 'operator',
   OptionalType: 'optional',
