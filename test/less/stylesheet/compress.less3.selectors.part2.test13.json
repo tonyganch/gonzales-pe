@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,23 +22,37 @@
                     "line": 1,
                     "column": 1
                   }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "nth-of-type",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 13
+                  }
                 },
                 {
-                  "type": "nthSelector",
+                  "type": "arguments",
                   "content": [
-                    {
-                      "type": "ident",
-                      "content": "nth-of-type",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 12
-                      }
-                    },
                     {
                       "type": "space",
                       "content": " ",
@@ -53,7 +67,7 @@
                       }
                     },
                     {
-                      "type": "nth",
+                      "type": "ident",
                       "content": "n",
                       "syntax": "less",
                       "start": {
@@ -82,35 +96,22 @@
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 2
+                    "column": 15
                   },
                   "end": {
                     "line": 1,
                     "column": 18
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 19
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 19
                   }
                 }
               ],
               "syntax": "less",
               "start": {
                 "line": 1,
-                "column": 1
+                "column": 2
               },
               "end": {
                 "line": 1,
-                "column": 19
+                "column": 18
               }
             }
           ],
@@ -118,6 +119,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 18
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 19
           },
           "end": {
             "line": 1,

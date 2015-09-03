@@ -48,7 +48,7 @@
           "type": "arguments",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "selector",
               "content": [
                 {
                   "type": "class",

@@ -21,7 +21,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -35,23 +35,37 @@
                     "line": 1,
                     "column": 9
                   }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 9
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "nth-last-of-type",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 26
+                  }
                 },
                 {
-                  "type": "nthSelector",
+                  "type": "arguments",
                   "content": [
-                    {
-                      "type": "ident",
-                      "content": "nth-last-of-type",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 25
-                      }
-                    },
                     {
                       "type": "multilineComment",
                       "content": "test",
@@ -66,7 +80,7 @@
                       }
                     },
                     {
-                      "type": "nth",
+                      "type": "ident",
                       "content": "n",
                       "syntax": "less",
                       "start": {
@@ -95,35 +109,22 @@
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 10
+                    "column": 28
                   },
                   "end": {
                     "line": 1,
                     "column": 45
-                  }
-                },
-                {
-                  "type": "multilineComment",
-                  "content": "test",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 46
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 53
                   }
                 }
               ],
               "syntax": "less",
               "start": {
                 "line": 1,
-                "column": 9
+                "column": 10
               },
               "end": {
                 "line": 1,
-                "column": 53
+                "column": 45
               }
             }
           ],
@@ -131,6 +132,19 @@
           "start": {
             "line": 1,
             "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 45
+          }
+        },
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 46
           },
           "end": {
             "line": 1,

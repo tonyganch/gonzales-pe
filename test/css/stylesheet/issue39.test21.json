@@ -8,29 +8,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "pseudoClass",
               "content": [
                 {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test0",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test0",
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
@@ -47,92 +33,92 @@
                 "line": 1,
                 "column": 6
               }
-            },
-            {
-              "type": "delimiter",
-              "content": ",",
-              "syntax": "css",
-              "start": {
-                "line": 1,
-                "column": 7
-              },
-              "end": {
-                "line": 1,
-                "column": 7
-              }
-            },
-            {
-              "type": "simpleSelector",
-              "content": [
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 8
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 8
-                  }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test1",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 14
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 14
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 15
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 15
-                  }
-                }
-              ],
-              "syntax": "css",
-              "start": {
-                "line": 1,
-                "column": 8
-              },
-              "end": {
-                "line": 1,
-                "column": 15
-              }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "delimiter",
+          "content": ",",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 8
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "test1",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 14
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 14
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 15
           },
           "end": {
             "line": 1,

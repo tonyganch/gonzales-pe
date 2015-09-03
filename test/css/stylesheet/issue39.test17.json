@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,46 +22,6 @@
                     "line": 1,
                     "column": 1
                   }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "before",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 3
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 8
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 8
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 9
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 9
-                  }
                 }
               ],
               "syntax": "css",
@@ -71,7 +31,34 @@
               },
               "end": {
                 "line": 1,
-                "column": 9
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "before",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 8
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 8
               }
             }
           ],
@@ -79,6 +66,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 9
           },
           "end": {
             "line": 1,
@@ -250,7 +250,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -264,46 +264,6 @@
                     "line": 4,
                     "column": 1
                   }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "after",
-                      "syntax": "css",
-                      "start": {
-                        "line": 4,
-                        "column": 3
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 7
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 4,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 7
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 4,
-                    "column": 8
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 8
-                  }
                 }
               ],
               "syntax": "css",
@@ -313,7 +273,34 @@
               },
               "end": {
                 "line": 4,
-                "column": 8
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "after",
+                  "syntax": "css",
+                  "start": {
+                    "line": 4,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 7
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 4,
+                "column": 7
               }
             }
           ],
@@ -321,6 +308,19 @@
           "start": {
             "line": 4,
             "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 7
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 4,
+            "column": 8
           },
           "end": {
             "line": 4,

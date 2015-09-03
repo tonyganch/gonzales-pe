@@ -8,29 +8,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test1",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test1",
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
@@ -185,29 +171,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test2",
-                      "syntax": "css",
-                      "start": {
-                        "line": 2,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test2",
                   "syntax": "css",
                   "start": {
                     "line": 2,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 2,
@@ -389,29 +361,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test1",
-                      "syntax": "css",
-                      "start": {
-                        "line": 3,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test1",
                   "syntax": "css",
                   "start": {
                     "line": 3,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 3,
@@ -566,29 +524,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test1",
-                      "syntax": "css",
-                      "start": {
-                        "line": 4,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test1",
                   "syntax": "css",
                   "start": {
                     "line": 4,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 4,
@@ -743,29 +687,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test1",
-                      "syntax": "css",
-                      "start": {
-                        "line": 5,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "test1",
                   "syntax": "css",
                   "start": {
                     "line": 5,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 5,

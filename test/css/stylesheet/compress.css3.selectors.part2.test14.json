@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,23 +22,37 @@
                     "line": 1,
                     "column": 1
                   }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "nth-last-of-type",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 18
+                  }
                 },
                 {
-                  "type": "nthSelector",
+                  "type": "arguments",
                   "content": [
-                    {
-                      "type": "ident",
-                      "content": "nth-last-of-type",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 3
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 18
-                      }
-                    },
                     {
                       "type": "space",
                       "content": " ",
@@ -53,7 +67,7 @@
                       }
                     },
                     {
-                      "type": "nth",
+                      "type": "ident",
                       "content": "n",
                       "syntax": "css",
                       "start": {
@@ -82,35 +96,22 @@
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 2
+                    "column": 20
                   },
                   "end": {
                     "line": 1,
                     "column": 23
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 24
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 24
                   }
                 }
               ],
               "syntax": "css",
               "start": {
                 "line": 1,
-                "column": 1
+                "column": 2
               },
               "end": {
                 "line": 1,
-                "column": 24
+                "column": 23
               }
             }
           ],
@@ -118,6 +119,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 23
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 24
           },
           "end": {
             "line": 1,

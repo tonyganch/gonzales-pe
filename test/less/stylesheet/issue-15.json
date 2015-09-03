@@ -8,46 +8,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "foo",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 4
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "foo",
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
                     "column": 4
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 5
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 5
                   }
                 }
               ],
@@ -58,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 5
+                "column": 4
               }
             }
           ],
@@ -66,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 4
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 5
           },
           "end": {
             "line": 1,
@@ -89,81 +75,53 @@
               }
             },
             {
-              "type": "ruleset",
+              "type": "extend",
               "content": [
                 {
-                  "type": "selector",
+                  "type": "parentSelector",
+                  "content": "&",
+                  "syntax": "less",
+                  "start": {
+                    "line": 2,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 5
+                  }
+                },
+                {
+                  "type": "pseudoClass",
                   "content": [
                     {
-                      "type": "simpleSelector",
+                      "type": "ident",
+                      "content": "extend",
+                      "syntax": "less",
+                      "start": {
+                        "line": 2,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "arguments",
                       "content": [
                         {
-                          "type": "parentSelector",
-                          "content": "&",
-                          "syntax": "less",
-                          "start": {
-                            "line": 2,
-                            "column": 5
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 5
-                          }
-                        },
-                        {
-                          "type": "pseudoClass",
+                          "type": "selector",
                           "content": [
                             {
-                              "type": "ident",
-                              "content": "extend",
-                              "syntax": "less",
-                              "start": {
-                                "line": 2,
-                                "column": 7
-                              },
-                              "end": {
-                                "line": 2,
-                                "column": 12
-                              }
-                            },
-                            {
-                              "type": "arguments",
+                              "type": "class",
                               "content": [
                                 {
-                                  "type": "simpleSelector",
-                                  "content": [
-                                    {
-                                      "type": "class",
-                                      "content": [
-                                        {
-                                          "type": "ident",
-                                          "content": "bar",
-                                          "syntax": "less",
-                                          "start": {
-                                            "line": 2,
-                                            "column": 15
-                                          },
-                                          "end": {
-                                            "line": 2,
-                                            "column": 17
-                                          }
-                                        }
-                                      ],
-                                      "syntax": "less",
-                                      "start": {
-                                        "line": 2,
-                                        "column": 14
-                                      },
-                                      "end": {
-                                        "line": 2,
-                                        "column": 17
-                                      }
-                                    }
-                                  ],
+                                  "type": "ident",
+                                  "content": "bar",
                                   "syntax": "less",
                                   "start": {
                                     "line": 2,
-                                    "column": 14
+                                    "column": 15
                                   },
                                   "end": {
                                     "line": 2,
@@ -174,53 +132,53 @@
                               "syntax": "less",
                               "start": {
                                 "line": 2,
-                                "column": 13
+                                "column": 14
                               },
                               "end": {
                                 "line": 2,
-                                "column": 18
+                                "column": 17
                               }
                             }
                           ],
                           "syntax": "less",
                           "start": {
                             "line": 2,
-                            "column": 6
+                            "column": 14
                           },
                           "end": {
                             "line": 2,
-                            "column": 18
-                          }
-                        },
-                        {
-                          "type": "space",
-                          "content": " ",
-                          "syntax": "less",
-                          "start": {
-                            "line": 2,
-                            "column": 19
-                          },
-                          "end": {
-                            "line": 2,
-                            "column": 19
+                            "column": 17
                           }
                         }
                       ],
                       "syntax": "less",
                       "start": {
                         "line": 2,
-                        "column": 5
+                        "column": 13
                       },
                       "end": {
                         "line": 2,
-                        "column": 19
+                        "column": 18
                       }
                     }
                   ],
                   "syntax": "less",
                   "start": {
                     "line": 2,
-                    "column": 5
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 18
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "less",
+                  "start": {
+                    "line": 2,
+                    "column": 19
                   },
                   "end": {
                     "line": 2,

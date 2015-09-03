@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -91,22 +91,8 @@
                   }
                 },
                 {
-                  "type": "simpleSelector",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "inline-block",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 2,
-                        "column": 4
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 15
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "inline-block",
                   "syntax": "sass",
                   "start": {
                     "line": 2,

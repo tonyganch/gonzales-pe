@@ -21,7 +21,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -35,23 +35,37 @@
                     "line": 1,
                     "column": 9
                   }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 9
+              }
+            },
+            {
+              "type": "attributeSelector",
+              "content": [
+                {
+                  "type": "multilineComment",
+                  "content": "test",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 18
+                  }
                 },
                 {
-                  "type": "attribute",
+                  "type": "attributeName",
                   "content": [
-                    {
-                      "type": "multilineComment",
-                      "content": "test",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 11
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 18
-                      }
-                    },
                     {
                       "type": "ident",
                       "content": "foo",
@@ -64,29 +78,16 @@
                         "line": 1,
                         "column": 21
                       }
-                    },
-                    {
-                      "type": "multilineComment",
-                      "content": "test",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 22
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 29
-                      }
                     }
                   ],
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 10
+                    "column": 19
                   },
                   "end": {
                     "line": 1,
-                    "column": 30
+                    "column": 21
                   }
                 },
                 {
@@ -95,22 +96,22 @@
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 31
+                    "column": 22
                   },
                   "end": {
                     "line": 1,
-                    "column": 38
+                    "column": 29
                   }
                 }
               ],
               "syntax": "css",
               "start": {
                 "line": 1,
-                "column": 9
+                "column": 10
               },
               "end": {
                 "line": 1,
-                "column": 38
+                "column": 30
               }
             }
           ],
@@ -118,6 +119,19 @@
           "start": {
             "line": 1,
             "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 30
+          }
+        },
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 31
           },
           "end": {
             "line": 1,

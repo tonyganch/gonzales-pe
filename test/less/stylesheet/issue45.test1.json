@@ -8,29 +8,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "a",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "a",
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
@@ -185,29 +171,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "a",
-                      "syntax": "less",
-                      "start": {
-                        "line": 2,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "a",
                   "syntax": "less",
                   "start": {
                     "line": 2,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 2,

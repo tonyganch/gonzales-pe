@@ -165,22 +165,8 @@
           }
         },
         {
-          "type": "simpleSelector",
-          "content": [
-            {
-              "type": "ident",
-              "content": "nani",
-              "syntax": "scss",
-              "start": {
-                "line": 3,
-                "column": 14
-              },
-              "end": {
-                "line": 3,
-                "column": 17
-              }
-            }
-          ],
+          "type": "ident",
+          "content": "nani",
           "syntax": "scss",
           "start": {
             "line": 3,

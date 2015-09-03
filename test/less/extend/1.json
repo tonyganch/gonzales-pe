@@ -34,7 +34,7 @@
           "type": "arguments",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "selector",
               "content": [
                 {
                   "type": "class",
@@ -77,8 +77,22 @@
                   }
                 },
                 {
-                  "type": "ident",
-                  "content": "all",
+                  "type": "typeSelector",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "all",
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 18
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 20
+                      }
+                    }
+                  ],
                   "syntax": "less",
                   "start": {
                     "line": 1,

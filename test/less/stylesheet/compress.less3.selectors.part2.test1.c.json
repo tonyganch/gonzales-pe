@@ -21,7 +21,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -35,19 +35,6 @@
                     "line": 1,
                     "column": 9
                   }
-                },
-                {
-                  "type": "multilineComment",
-                  "content": "test",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 10
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 17
-                  }
                 }
               ],
               "syntax": "less",
@@ -57,7 +44,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 17
+                "column": 9
               }
             }
           ],
@@ -65,6 +52,19 @@
           "start": {
             "line": 1,
             "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 9
+          }
+        },
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 10
           },
           "end": {
             "line": 1,

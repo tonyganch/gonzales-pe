@@ -4,4 +4,4 @@ describe 'sass/atruler >>', ->
   it '1', -> this.shouldBeOk()
   it '2', -> this.shouldBeOk()
 
-  it 'keyframes.0', -> this.shouldBeOk()
+  it.skip 'keyframes.0', -> this.shouldBeOk()

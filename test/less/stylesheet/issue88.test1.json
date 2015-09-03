@@ -8,46 +8,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "t-1",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 4
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "t-1",
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
                     "column": 4
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 5
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 5
                   }
                 }
               ],
@@ -58,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 5
+                "column": 4
               }
             }
           ],
@@ -66,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 4
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 5
           },
           "end": {
             "line": 1,
@@ -250,46 +236,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "t-01",
-                      "syntax": "less",
-                      "start": {
-                        "line": 5,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 5
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "t-01",
                   "syntax": "less",
                   "start": {
                     "line": 5,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 5,
                     "column": 5
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 5,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 6
                   }
                 }
               ],
@@ -300,7 +259,7 @@
               },
               "end": {
                 "line": 5,
-                "column": 6
+                "column": 5
               }
             }
           ],
@@ -308,6 +267,19 @@
           "start": {
             "line": 5,
             "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 5
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 5,
+            "column": 6
           },
           "end": {
             "line": 5,

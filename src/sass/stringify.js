@@ -33,7 +33,7 @@ module.exports = function stringify(tree) {
     'atruler': function(t) {
       return _composite(t.content);
     },
-    'attribute': function(t) {
+    'attributeSelector': function(t) {
       return '[' + _composite(t.content) + ']';
     },
     'block': function(t) {

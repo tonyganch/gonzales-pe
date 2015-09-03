@@ -1,0 +1,81 @@
+{
+  "type": "selector",
+  "content": [
+    {
+      "type": "typeSelector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "a",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "combinator",
+      "content": ">",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "typeSelector",
+      "content": [
+        {
+          "type": "ident",
+          "content": "b",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 3
+      },
+      "end": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 3
+  }
+}

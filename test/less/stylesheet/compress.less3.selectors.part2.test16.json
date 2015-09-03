@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,46 +22,6 @@
                     "line": 1,
                     "column": 1
                   }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "last-child",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 3
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 12
-                      }
-                    }
-                  ],
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 12
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 13
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 13
-                  }
                 }
               ],
               "syntax": "less",
@@ -71,7 +31,34 @@
               },
               "end": {
                 "line": 1,
-                "column": 13
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "last-child",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 12
+                  }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 2
+              },
+              "end": {
+                "line": 1,
+                "column": 12
               }
             }
           ],
@@ -79,6 +66,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 13
           },
           "end": {
             "line": 1,

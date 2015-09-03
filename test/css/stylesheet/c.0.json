@@ -34,7 +34,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -48,19 +48,6 @@
                     "line": 2,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 2,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "css",
@@ -70,7 +57,7 @@
               },
               "end": {
                 "line": 2,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -78,6 +65,19 @@
           "start": {
             "line": 2,
             "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 2
           },
           "end": {
             "line": 2,

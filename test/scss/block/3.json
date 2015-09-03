@@ -58,29 +58,15 @@
           }
         },
         {
-          "type": "simpleSelector",
+          "type": "class",
           "content": [
             {
-              "type": "class",
-              "content": [
-                {
-                  "type": "ident",
-                  "content": "nani",
-                  "syntax": "scss",
-                  "start": {
-                    "line": 2,
-                    "column": 14
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 17
-                  }
-                }
-              ],
+              "type": "ident",
+              "content": "nani",
               "syntax": "scss",
               "start": {
                 "line": 2,
-                "column": 13
+                "column": 14
               },
               "end": {
                 "line": 2,

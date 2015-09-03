@@ -8,46 +8,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "empty",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 6
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "empty",
                   "syntax": "css",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
                     "column": 6
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 7
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 7
                   }
                 }
               ],
@@ -58,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 7
+                "column": 6
               }
             }
           ],
@@ -66,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 6
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 7
           },
           "end": {
             "line": 1,
@@ -116,29 +102,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "a",
-                      "syntax": "css",
-                      "start": {
-                        "line": 2,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "a",
                   "syntax": "css",
                   "start": {
                     "line": 2,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 2,
@@ -155,92 +127,92 @@
                 "line": 2,
                 "column": 2
               }
-            },
-            {
-              "type": "delimiter",
-              "content": ",",
-              "syntax": "css",
-              "start": {
-                "line": 2,
-                "column": 3
-              },
-              "end": {
-                "line": 2,
-                "column": 3
-              }
-            },
-            {
-              "type": "simpleSelector",
-              "content": [
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 2,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 4
-                  }
-                },
-                {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "a",
-                      "syntax": "css",
-                      "start": {
-                        "line": 2,
-                        "column": 6
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 6
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 2,
-                    "column": 5
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 6
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 2,
-                    "column": 7
-                  },
-                  "end": {
-                    "line": 2,
-                    "column": 7
-                  }
-                }
-              ],
-              "syntax": "css",
-              "start": {
-                "line": 2,
-                "column": 4
-              },
-              "end": {
-                "line": 2,
-                "column": 7
-              }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 2,
             "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "type": "delimiter",
+          "content": ",",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 3
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 4
+          },
+          "end": {
+            "line": 2,
+            "column": 4
+          }
+        },
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "a",
+                  "syntax": "css",
+                  "start": {
+                    "line": 2,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 6
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 6
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 5
+          },
+          "end": {
+            "line": 2,
+            "column": 6
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 7
           },
           "end": {
             "line": 2,
@@ -679,46 +651,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "b",
-                      "syntax": "css",
-                      "start": {
-                        "line": 7,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 7,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "b",
                   "syntax": "css",
                   "start": {
                     "line": 7,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 7,
                     "column": 2
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 7,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 7,
-                    "column": 3
                   }
                 }
               ],
@@ -729,7 +674,7 @@
               },
               "end": {
                 "line": 7,
-                "column": 3
+                "column": 2
               }
             }
           ],
@@ -737,6 +682,19 @@
           "start": {
             "line": 7,
             "column": 1
+          },
+          "end": {
+            "line": 7,
+            "column": 2
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 7,
+            "column": 3
           },
           "end": {
             "line": 7,
@@ -1202,46 +1160,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "b",
-                      "syntax": "css",
-                      "start": {
-                        "line": 12,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 12,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "b",
                   "syntax": "css",
                   "start": {
                     "line": 12,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 12,
                     "column": 2
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 12,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 12,
-                    "column": 3
                   }
                 }
               ],
@@ -1252,7 +1183,7 @@
               },
               "end": {
                 "line": 12,
-                "column": 3
+                "column": 2
               }
             }
           ],
@@ -1260,6 +1191,19 @@
           "start": {
             "line": 12,
             "column": 1
+          },
+          "end": {
+            "line": 12,
+            "column": 2
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 12,
+            "column": 3
           },
           "end": {
             "line": 12,
@@ -1458,46 +1402,19 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "c",
-                      "syntax": "css",
-                      "start": {
-                        "line": 15,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 15,
-                        "column": 2
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "c",
                   "syntax": "css",
                   "start": {
                     "line": 15,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 15,
                     "column": 2
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 15,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 15,
-                    "column": 3
                   }
                 }
               ],
@@ -1508,7 +1425,7 @@
               },
               "end": {
                 "line": 15,
-                "column": 3
+                "column": 2
               }
             }
           ],
@@ -1516,6 +1433,19 @@
           "start": {
             "line": 15,
             "column": 1
+          },
+          "end": {
+            "line": 15,
+            "column": 2
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 15,
+            "column": 3
           },
           "end": {
             "line": 15,

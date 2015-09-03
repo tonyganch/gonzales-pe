@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -33,22 +33,36 @@
                 "line": 1,
                 "column": 1
               }
-            },
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "delimiter",
+          "content": ",",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "selector",
+          "content": [
             {
-              "type": "delimiter",
-              "content": ",",
-              "syntax": "css",
-              "start": {
-                "line": 1,
-                "column": 2
-              },
-              "end": {
-                "line": 1,
-                "column": 2
-              }
-            },
-            {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -62,19 +76,6 @@
                     "line": 1,
                     "column": 3
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 4
-                  }
                 }
               ],
               "syntax": "css",
@@ -84,14 +85,27 @@
               },
               "end": {
                 "line": 1,
-                "column": 4
+                "column": 3
               }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 1,
-            "column": 1
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 3
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 4
           },
           "end": {
             "line": 1,
@@ -396,7 +410,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -410,19 +424,6 @@
                     "line": 5,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 5,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "css",
@@ -432,7 +433,7 @@
               },
               "end": {
                 "line": 5,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -440,6 +441,19 @@
           "start": {
             "line": 5,
             "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 2
           },
           "end": {
             "line": 5,

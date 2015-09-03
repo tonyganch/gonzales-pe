@@ -223,7 +223,7 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "simpleSelector",
+                  "type": "typeSelector",
                   "content": [
                     {
                       "type": "ident",

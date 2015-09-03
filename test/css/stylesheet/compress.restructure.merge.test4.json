@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,19 +22,6 @@
                     "line": 1,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "css",
@@ -44,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -52,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 2
           },
           "end": {
             "line": 1,
@@ -236,7 +236,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -250,19 +250,6 @@
                     "line": 4,
                     "column": 33
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 4,
-                    "column": 34
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 34
-                  }
                 }
               ],
               "syntax": "css",
@@ -272,7 +259,7 @@
               },
               "end": {
                 "line": 4,
-                "column": 34
+                "column": 33
               }
             }
           ],
@@ -280,6 +267,19 @@
           "start": {
             "line": 4,
             "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 33
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 4,
+            "column": 34
           },
           "end": {
             "line": 4,
@@ -584,7 +584,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -598,19 +598,6 @@
                     "line": 8,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 8,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 8,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "css",
@@ -620,7 +607,7 @@
               },
               "end": {
                 "line": 8,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -628,6 +615,19 @@
           "start": {
             "line": 8,
             "column": 1
+          },
+          "end": {
+            "line": 8,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 8,
+            "column": 2
           },
           "end": {
             "line": 8,

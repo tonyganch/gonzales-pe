@@ -128,7 +128,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -142,46 +142,6 @@
                     "line": 3,
                     "column": 5
                   }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "hover",
-                      "syntax": "scss",
-                      "start": {
-                        "line": 3,
-                        "column": 7
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 11
-                      }
-                    }
-                  ],
-                  "syntax": "scss",
-                  "start": {
-                    "line": 3,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 11
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "scss",
-                  "start": {
-                    "line": 3,
-                    "column": 12
-                  },
-                  "end": {
-                    "line": 3,
-                    "column": 12
-                  }
                 }
               ],
               "syntax": "scss",
@@ -191,7 +151,34 @@
               },
               "end": {
                 "line": 3,
-                "column": 12
+                "column": 5
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "hover",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 11
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "line": 3,
+                "column": 11
               }
             }
           ],
@@ -199,6 +186,19 @@
           "start": {
             "line": 3,
             "column": 5
+          },
+          "end": {
+            "line": 3,
+            "column": 11
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "scss",
+          "start": {
+            "line": 3,
+            "column": 12
           },
           "end": {
             "line": 3,

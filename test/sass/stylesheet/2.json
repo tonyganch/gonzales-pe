@@ -60,29 +60,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "nani",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 5,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 5
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "nani",
                   "syntax": "sass",
                   "start": {
                     "line": 5,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 5,

@@ -8,166 +8,73 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
-                  "type": "ident",
-                  "content": "*",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 1
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 1
-                  }
-                },
-                {
-                  "type": "namespace",
-                  "content": "|",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 2
-                  }
-                },
-                {
-                  "type": "ident",
-                  "content": "*",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 3
-                  }
-                },
-                {
-                  "type": "pseudoClass",
+                  "type": "namePrefix",
                   "content": [
                     {
-                      "type": "function",
+                      "type": "namespacePrefix",
                       "content": [
                         {
                           "type": "ident",
-                          "content": "not",
+                          "content": "*",
                           "syntax": "less",
                           "start": {
                             "line": 1,
-                            "column": 5
+                            "column": 1
                           },
                           "end": {
                             "line": 1,
-                            "column": 7
-                          }
-                        },
-                        {
-                          "type": "arguments",
-                          "content": [
-                            {
-                              "type": "simpleSelector",
-                              "content": [
-                                {
-                                  "type": "space",
-                                  "content": " ",
-                                  "syntax": "less",
-                                  "start": {
-                                    "line": 1,
-                                    "column": 9
-                                  },
-                                  "end": {
-                                    "line": 1,
-                                    "column": 9
-                                  }
-                                },
-                                {
-                                  "type": "ident",
-                                  "content": "*",
-                                  "syntax": "less",
-                                  "start": {
-                                    "line": 1,
-                                    "column": 10
-                                  },
-                                  "end": {
-                                    "line": 1,
-                                    "column": 10
-                                  }
-                                },
-                                {
-                                  "type": "space",
-                                  "content": " ",
-                                  "syntax": "less",
-                                  "start": {
-                                    "line": 1,
-                                    "column": 11
-                                  },
-                                  "end": {
-                                    "line": 1,
-                                    "column": 11
-                                  }
-                                }
-                              ],
-                              "syntax": "less",
-                              "start": {
-                                "line": 1,
-                                "column": 9
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 11
-                              }
-                            }
-                          ],
-                          "syntax": "less",
-                          "start": {
-                            "line": 1,
-                            "column": 8
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 12
+                            "column": 1
                           }
                         }
                       ],
                       "syntax": "less",
                       "start": {
                         "line": 1,
-                        "column": 5
+                        "column": 1
                       },
                       "end": {
                         "line": 1,
-                        "column": 12
+                        "column": 1
+                      }
+                    },
+                    {
+                      "type": "namespaceSeparator",
+                      "content": "|",
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 2
                       }
                     }
                   ],
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 4
+                    "column": 1
                   },
                   "end": {
                     "line": 1,
-                    "column": 12
+                    "column": 2
                   }
                 },
                 {
-                  "type": "space",
-                  "content": " ",
+                  "type": "ident",
+                  "content": "*",
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 13
+                    "column": 3
                   },
                   "end": {
                     "line": 1,
-                    "column": 13
+                    "column": 3
                   }
                 }
               ],
@@ -178,7 +85,87 @@
               },
               "end": {
                 "line": 1,
-                "column": 13
+                "column": 3
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "not",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 7
+                  }
+                },
+                {
+                  "type": "arguments",
+                  "content": [
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 9
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "*",
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 10
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 11
+                      }
+                    }
+                  ],
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 12
+                  }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 4
+              },
+              "end": {
+                "line": 1,
+                "column": 12
               }
             }
           ],
@@ -186,6 +173,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 13
           },
           "end": {
             "line": 1,

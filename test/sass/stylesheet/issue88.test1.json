@@ -8,29 +8,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "t-1",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 1,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 4
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "t-1",
                   "syntax": "sass",
                   "start": {
                     "line": 1,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 1,
@@ -237,29 +223,15 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "class",
               "content": [
                 {
-                  "type": "class",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "t-01",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 4,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 5
-                      }
-                    }
-                  ],
+                  "type": "ident",
+                  "content": "t-01",
                   "syntax": "sass",
                   "start": {
                     "line": 4,
-                    "column": 1
+                    "column": 2
                   },
                   "end": {
                     "line": 4,

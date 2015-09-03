@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,52 +22,94 @@
                     "line": 1,
                     "column": 4
                   }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 4
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "not",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 6
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 8
+                  }
                 },
                 {
-                  "type": "pseudoClass",
+                  "type": "arguments",
                   "content": [
                     {
-                      "type": "ident",
-                      "content": "not",
-                      "syntax": "less",
-                      "start": {
-                        "line": 1,
-                        "column": 6
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 8
-                      }
-                    },
-                    {
-                      "type": "arguments",
+                      "type": "selector",
                       "content": [
                         {
-                          "type": "simpleSelector",
+                          "type": "attributeSelector",
                           "content": [
                             {
-                              "type": "attribute",
+                              "type": "attributeName",
                               "content": [
                                 {
-                                  "type": "ident",
-                                  "content": "x",
+                                  "type": "namePrefix",
+                                  "content": [
+                                    {
+                                      "type": "namespacePrefix",
+                                      "content": [
+                                        {
+                                          "type": "ident",
+                                          "content": "x",
+                                          "syntax": "less",
+                                          "start": {
+                                            "line": 1,
+                                            "column": 11
+                                          },
+                                          "end": {
+                                            "line": 1,
+                                            "column": 11
+                                          }
+                                        }
+                                      ],
+                                      "syntax": "less",
+                                      "start": {
+                                        "line": 1,
+                                        "column": 11
+                                      },
+                                      "end": {
+                                        "line": 1,
+                                        "column": 11
+                                      }
+                                    },
+                                    {
+                                      "type": "namespaceSeparator",
+                                      "content": "|",
+                                      "syntax": "less",
+                                      "start": {
+                                        "line": 1,
+                                        "column": 12
+                                      },
+                                      "end": {
+                                        "line": 1,
+                                        "column": 12
+                                      }
+                                    }
+                                  ],
                                   "syntax": "less",
                                   "start": {
                                     "line": 1,
                                     "column": 11
-                                  },
-                                  "end": {
-                                    "line": 1,
-                                    "column": 11
-                                  }
-                                },
-                                {
-                                  "type": "attributeSelector",
-                                  "content": "|",
-                                  "syntax": "less",
-                                  "start": {
-                                    "line": 1,
-                                    "column": 12
                                   },
                                   "end": {
                                     "line": 1,
@@ -91,11 +133,11 @@
                               "syntax": "less",
                               "start": {
                                 "line": 1,
-                                "column": 10
+                                "column": 11
                               },
                               "end": {
                                 "line": 1,
-                                "column": 14
+                                "column": 13
                               }
                             }
                           ],
@@ -113,46 +155,33 @@
                       "syntax": "less",
                       "start": {
                         "line": 1,
-                        "column": 9
+                        "column": 10
                       },
                       "end": {
                         "line": 1,
-                        "column": 15
+                        "column": 14
                       }
                     }
                   ],
                   "syntax": "less",
                   "start": {
                     "line": 1,
-                    "column": 5
+                    "column": 9
                   },
                   "end": {
                     "line": 1,
                     "column": 15
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 16
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 16
                   }
                 }
               ],
               "syntax": "less",
               "start": {
                 "line": 1,
-                "column": 1
+                "column": 5
               },
               "end": {
                 "line": 1,
-                "column": 16
+                "column": 15
               }
             }
           ],
@@ -160,6 +189,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 16
           },
           "end": {
             "line": 1,

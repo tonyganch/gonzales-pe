@@ -370,177 +370,6 @@ function getAtkeyword() {
 }
 
 /**
- * Check if token is part of an attribute selector (e.g. `[attr]`,
- *      `[attr='panda']`)
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkAttrib(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftSquareBracket ||
-      !tokens[i].right) return 0;
-
-  return tokens[i].right - i + 1;
-}
-
-/**
-* Get node with an attribute selector
-* @returns {Array} `['attrib', ['ident', x], ['attrselector', y]*, [z]*]`
-*      where `x` is attribute's name, `y` is operator (if there is any)
-*      and `z` is attribute's value (if there is any)
-*/
-function getAttrib() {
-  if (checkAttrib1(pos)) return getAttrib1();
-  if (checkAttrib2(pos)) return getAttrib2();
-}
-
-/**
- * Check if token is part of an attribute selector of the form `[attr='value']`
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkAttrib1(i) {
-  let start = i;
-  let l;
-
-  if (i++ >= tokensLength) return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkIdent(i)) i += l;
-  else return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkAttrselector(i)) i += l;
-  else return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkIdent(i) || checkString(i)) i += l;
-  else return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  return tokens[i].type === TokenType.RightSquareBracket ? i - start : 0;
-}
-
-/**
- * Get node with an attribute selector of the form `[attr='value']`
- * @returns {Array} `['attrib', ['ident', x], ['attrselector', y], [z]]`
- *      where `x` is attribute's name, `y` is operator and `z` is attribute's
- *      value
- */
-function getAttrib1() {
-  var startPos = pos++;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  var content = []
-      .concat(getSC())
-      .concat([getIdent()])
-      .concat(getSC())
-      .concat([getAttrselector()])
-      .concat(getSC())
-      .concat([checkString(pos)? getString() : getIdent()])
-      .concat(getSC());
-
-  var end = getLastPosition(content, line, column + 1, 1);
-  pos++;
-
-  return newNode(NodeType.AttribType, content, line, column, end);
-}
-
-/**
- * Check if token is part of an attribute selector of the form `[attr]`
- * Attribute can not be empty, e.g. `[]`.
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkAttrib2(i) {
-  let start = i;
-  let l;
-
-  if (i++ >= tokensLength) return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkIdent(i)) i += l;
-  else return 0;
-
-  if (l = checkSC(i)) i += l;
-
-  return tokens[i].type === TokenType.RightSquareBracket ? i - start : 0;
-}
-
-/**
- * Get node with an attribute selector of the form `[attr]`
- * @returns {Array} `['attrib', ['ident', x]]` where `x` is attribute's name
- */
-function getAttrib2() {
-  var startPos = pos++;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  var content = []
-      .concat(getSC())
-      .concat([getIdent()])
-      .concat(getSC());
-
-  var end = getLastPosition(content, line, column + 1, 1);
-  pos++;
-
-  return newNode(NodeType.AttribType, content, line, column, end);
-}
-
-/**
- * Check if token is part of an attribute selector operator (`=`, `~=`,
- *      `^=`, `$=`, `*=` or `|=`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of operator (`0` if token is not part of an
- *       operator, `1` or `2` if it is).
- */
-function checkAttrselector(i) {
-  if (i >= tokensLength) return 0;
-
-  if (tokens[i].type === TokenType.EqualsSign) return 1;
-
-  // TODO: Add example or remove
-  if (tokens[i].type === TokenType.VerticalLine &&
-      (!tokens[i + 1] || tokens[i + 1].type !== TokenType.EqualsSign))
-      return 1;
-
-  if (!tokens[i + 1] || tokens[i + 1].type !== TokenType.EqualsSign) return 0;
-
-  switch (tokens[i].type) {
-    case TokenType.Tilde:
-    case TokenType.CircumflexAccent:
-    case TokenType.DollarSign:
-    case TokenType.Asterisk:
-    case TokenType.VerticalLine:
-      return 2;
-  }
-
-  return 0;
-}
-
-/**
- * Get node with an attribute selector operator (`=`, `~=`, `^=`, `$=`,
- *      `*=` or `|=`)
- * @returns {Array} `['attrselector', x]` where `x` is an operator.
- */
-function getAttrselector() {
-  let startPos = pos;
-  let content = tokens[pos++].value;
-
-  if (tokens[pos] && tokens[pos].type === TokenType.EqualsSign)
-      content += tokens[pos++].value;
-
-  var token = tokens[startPos];
-  return newNode(NodeType.AttrselectorType, content, token.ln, token.col);
-}
-
-/**
  * Check if token is a part of an @-rule
  * @param {Number} i Token's index number
  * @returns {Number} Length of @-rule
@@ -1052,35 +881,101 @@ function getClass() {
   return newNode(NodeType.ClassType, content, token.ln, token.col);
 }
 
-/**
- * Check if token is a combinator (`+`, `>` or `~`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the combinator
- */
 function checkCombinator(i) {
   if (i >= tokensLength) return 0;
 
-  switch (tokens[i].type) {
-    case TokenType.PlusSign:
-    case TokenType.GreaterThanSign:
-    case TokenType.Tilde:
-      return 1;
-  }
+  let l;
+  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;
+  else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;
+  else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
 
-  return 0;
+  return l;
+}
+
+function getCombinator() {
+  let type = tokens[pos].combinatorType;
+  if (type === 1) return getCombinator1();
+  if (type === 2) return getCombinator2();
+  if (type === 3) return getCombinator3();
+}
+/**
+ * (1) `||`
+ */
+function checkCombinator1(i) {
+  if (tokens[i].type === TokenType.VerticalLine &&
+      tokens[i + 1].type === TokenType.VerticalLine) return 2;
+  else return 0;
+}
+
+function getCombinator1() {
+  let type = NodeType.CombinatorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = '||';
+
+  pos += 2;
+  return newNode(type, content, line, column);
 }
 
 /**
- * Get node with a combinator (`+`, `>` or `~`)
- * @returns {Array} `['combinator', x]` where `x` is a combinator
- *      converted to string.
+ * (1) `>`
+ * (2) `+`
+ * (3) `~`
  */
-function getCombinator() {
-  let startPos = pos;
+function checkCombinator2(i) {
+  let type = tokens[i].type;
+  if (type === TokenType.PlusSign ||
+      type === TokenType.GreaterThanSign ||
+      type === TokenType.Tilde) return 1;
+  else return 0;
+}
+
+function getCombinator2() {
+  let type = NodeType.CombinatorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
   let content = tokens[pos++].value;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.CombinatorType, content, token.ln, token.col);
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (1) `/panda/`
+ */
+function checkCombinator3(i) {
+  let start = i;
+
+  if (tokens[i].type === TokenType.Solidus) i++;
+  else return 0;
+
+  let l;
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (tokens[i].type === TokenType.Solidus) i++;
+  else return 0;
+
+  return i - start;
+}
+
+function getCombinator3() {
+  let type = NodeType.CombinatorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+
+  // Skip `/`.
+  pos++;
+  let ident = getIdent();
+
+  // Skip `/`.
+  pos++;
+
+  let content = '/' + ident.content + '/';
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1271,23 +1166,6 @@ function getDeclDelim() {
   return newNode(NodeType.DeclDelimType, ';', token.ln, token.col);
 }
 
-function checkDeepSelector(i) {
-  if (tokens[i + 2] &&
-      tokens[i].value + tokens[i + 1].value + tokens[i + 2].value === '/deep/') {
-    return 3;
-  }
-}
-
-function getDeepSelector() {
-  var _pos = pos++;
-  var ident = getIdent();
-  ident.content = '/deep/';
-  ident.start.column -= 1;
-  ident.end.column += 5;
-  pos = _pos + 3;
-  return ident;
-}
-
 /**
  * Check if token is a comma
  * @param {Number} i Token's index number
@@ -1406,6 +1284,26 @@ function getExpression() {
 }
 
 function checkExtend(i) {
+  if (i >= tokensLength) return 0;
+
+  var l;
+  if (l = checkExtend1(i)) tokens[i].extendType = 1;
+  else if (l = checkExtend2(i)) tokens[i].extendType = 2;
+  else return 0;
+
+  return l;
+}
+
+function getExtend() {
+  var childType = tokens[pos].extendType;
+  if (childType === 1) return getExtend1();
+  if (childType === 2) return getExtend2();
+}
+
+/**
+ * (1) `selector:extend(selector) {...}`
+ */
+function checkExtend1(i) {
   var start = i;
   var l;
 
@@ -1414,13 +1312,53 @@ function checkExtend(i) {
   if (l = checkExtendSelector(i)) i += l;
   else return 0;
 
-  if (l = checkPseudoc(i)) i += l;
+  if (tokens[i + 1] &&
+      tokens[i + 1].value === 'extend' &&
+      (l = checkPseudoc(i))) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkBlock(i)) i += l;
   else return 0;
 
   return i - start;
 }
 
-function getExtend() {
+function getExtend1() {
+  let startPos = pos;
+  let x = [];
+
+  x.push(getExtendSelector());
+  x.push(getPseudoc());
+  x = x.concat(getSC());
+  x.push(getBlock());
+
+  var token = tokens[startPos];
+  return newNode(NodeType.ExtendType, x, token.ln, token.col);
+}
+
+/**
+ * (1) `selector:extend(selector)`
+ */
+function checkExtend2(i) {
+  var start = i;
+  var l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkExtendSelector(i)) i += l;
+  else return 0;
+
+  if (tokens[i + 1] &&
+      tokens[i + 1].value === 'extend' &&
+      (l = checkPseudoc(i))) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getExtend2() {
   let startPos = pos;
   let x = [];
 
@@ -2327,9 +2265,6 @@ function checkPseudoc(i) {
   return l;
 }
 
-/**
- * @returns {Array}
- */
 function getPseudoc() {
   var childType = tokens[pos].pseudoClassType;
   if (childType === 1) return getPseudoClass1();
@@ -2341,8 +2276,8 @@ function getPseudoc() {
 }
 
 /**
- * (1) `:not(panda)`
- * (2) `:extend(.panda)`
+ * (1) `:not(selector)`
+ * (2) `:extend(selector, selector)`
  */
 function checkPseudoClass1(i) {
   let start = i;
@@ -2350,13 +2285,10 @@ function checkPseudoClass1(i) {
   // Skip `:`.
   i++;
 
-  if (i >= tokensLength) return 0;
+  let l;
+  if (l = checkIdent(i)) i += l;
+  else return 0;
 
-  if (tokens[i].value !== 'not' &&
-      tokens[i].value !== 'extend') return 0;
-
-  // Skip `not`.
-  i++;
   if (i >= tokensLength ||
       tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
@@ -2365,11 +2297,10 @@ function checkPseudoClass1(i) {
   // Skip `(`.
   i++;
 
-  while (i < right) {
-    let l = checkSimpleSelector(i);
-    if (!l) return 0;
-    i += l;
-  }
+  if (l = checkSelectorsGroup(i)) i += l;
+  else return 0;
+
+  if (i !== right) return 0;
 
   return right - start + 1;
 }
@@ -2387,41 +2318,27 @@ function getPseudoClass1() {
   // Skip `:`.
   pos++;
 
-  if (checkIdent(pos)) content.push(getIdent());
+  content.push(getIdent());
 
-  let args = getNotArguments();
-  content.push(args);
+  {
+    let type = NodeType.ArgumentsType;
+    let token = tokens[pos];
+    let line = token.ln;
+    let column = token.col;
 
-  return newNode(type, content, line, column);
-}
+    // Skip `(`.
+    pos++;
 
-/**
- * @return {Node}
- */
-function getNotArguments() {
-  let type = NodeType.ArgumentsType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
+    let selectors = getSelectorsGroup();
+    let end = getLastPosition(selectors, line, column, 1);
+    let args = newNode(type, selectors, line, column, end);
+    content.push(args);
 
-  let right = tokens[pos].right;
-  // Skip `(`.
-  pos++;
-
-  while (pos < right) {
-    if (tokens[pos].value === 'all') {
-      content.push(getIdent());
-    } else if (checkSimpleSelector(pos)) {
-      content.push(getSimpleSelector());
-    }
+    // Skip `)`.
+    pos++;
   }
 
-  var end = getLastPosition(content, line, column, 1);
-  // Skip `)`.
-  pos++;
-
-  return newNode(type, content, line, column, end);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2474,23 +2391,25 @@ function getPseudoClass2() {
   let ident = getIdent();
   content.push(ident);
 
-  // Skip `(`.
-  pos++;
+  {
+    // Skip `(`.
+    pos++;
 
-  let l = tokens[pos].ln;
-  let c = tokens[pos].col;
-  let value = [];
+    let l = tokens[pos].ln;
+    let c = tokens[pos].col;
+    let value = [];
 
-  value = value.concat(getSC());
-  value.push(getIdent());
-  value = value.concat(getSC());
+    value = value.concat(getSC());
+    value.push(getIdent());
+    value = value.concat(getSC());
 
-  let end = getLastPosition(value, l, c, 1);
-  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
-  content.push(args);
+    let end = getLastPosition(value, l, c, 1);
+    let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+    content.push(args);
 
-  // Skip `)`.
-  pos++;
+    // Skip `)`.
+    pos++;
+  }
 
   return newNode(type, content, line, column);
 }
@@ -2784,40 +2703,29 @@ function checkRuleset(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (tokens[start].ruleset_l) return tokens[start].ruleset_l;
+  if (l = checkSelectorsGroup(i)) i += l;
+  else return 0;
 
-  while (i < tokensLength) {
-    if (l = checkBlock(i)) {
-      i += l;
-      break;
-    }
-    else if (l = checkSelector(i)) i += l;
-    else return 0;
-  }
+  if (l = checkSC(i)) i += l;
 
-  tokens[start].ruleset_l = i - start;
+  if (l = checkBlock(i)) i += l;
+  else return 0;
 
   return i - start;
 }
 
-/**
- * @returns {Array}
- */
 function getRuleset() {
-  let startPos = pos;
-  let x = [];
+  let type = NodeType.RulesetType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
 
-  while (pos < tokensLength) {
-    if (checkBlock(pos)) {
-      x.push(getBlock());
-      break;
-    }
-    else if (checkSelector(pos)) x.push(getSelector());
-    else break;
-  }
+  content = content.concat(getSelectorsGroup());
+  content = content.concat(getSC());
+  content.push(getBlock());
 
-  var token = tokens[startPos];
-  return newNode(NodeType.RulesetType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2893,41 +2801,6 @@ function getSC() {
 }
 
 /**
- * Check if token is part of a selector
- * @param {Number} i Token's index number
- * @returns {Number} Length of the selector
- */
-function checkSelector(i) {
-  let start = i;
-  let l;
-
-  while (i < tokensLength) {
-    if (l = checkSimpleSelector(i) || checkDelim(i)) i += l;
-    else break;
-  }
-
-  if (i !== start) tokens[start].selector_end = i - 1;
-
-  return i - start;
-}
-
-/**
- * @returns {Array}
- */
-function getSelector() {
-  let startPos = pos;
-  let x = [];
-  let selector_end = tokens[pos].selector_end;
-
-  while (pos <= selector_end) {
-    x.push(checkDelim(pos) ? getDelim() : getSimpleSelector());
-  }
-
-  var token = tokens[startPos];
-  return newNode(NodeType.SelectorType, x, token.ln, token.col);
-}
-
-/**
  * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
  *      a simple selector
  * @param {Number} i Token's index number
@@ -2960,79 +2833,6 @@ function getShash() {
 
   var token = tokens[startPos];
   return newNode(NodeType.ShashType, x, token.ln, token.col);
-}
-
-/**
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkSimpleSelector(i) {
-  let start = i;
-  let l;
-
-  while (i < tokensLength) {
-    if (l = checkSimpleSelector1(i)) i += l;
-    else break;
-  }
-
-  tokens[start].simpleselector_end = i;
-  return i - start;
-}
-
-/**
- * @returns {Array}
- */
-function getSimpleSelector() {
-  let startPos = pos;
-  let x = [];
-  let t;
-  var token = tokens[startPos];
-  var end = token.simpleselector_end;
-
-  while (pos < end) {
-    t = getSimpleSelector1();
-
-    if (typeof t.content === 'string') x.push(t);
-    else x = x.concat(t);
-  }
-
-  return newNode(NodeType.SimpleselectorType, x, token.ln, token.col);
-}
-
-/**
-* @param {Number} i Token's index number
-* @returns {Number}
-*/
-function checkSimpleSelector1(i) {
-  var l;
-
-  if (l = checkParentSelector(i)) tokens[i].simpleselector1_child = 1;
-  else if (l = checkCombinator(i)) tokens[i].simpleselector1_child = 3;
-  else if (l = checkAttrib(i)) tokens[i].simpleselector1_child = 4;
-  else if (l = checkPseudo(i)) tokens[i].simpleselector1_child = 5;
-  else if (l = checkShash(i)) tokens[i].simpleselector1_child = 6;
-  else if (l = checkAny(i)) tokens[i].simpleselector1_child = 7;
-  else if (l = checkSC(i)) tokens[i].simpleselector1_child = 8;
-  else if (l = checkNamespace(i)) tokens[i].simpleselector1_child = 9;
-  else if (l = checkDeepSelector(i)) tokens[i].simpleselector1_child = 10;
-
-  return l;
-}
-
-/**
- * @returns {Array}
- */
-function getSimpleSelector1() {
-  var childType = tokens[pos].simpleselector1_child;
-  if (childType === 1) return getParentSelector();
-  else if (childType === 3) return getCombinator();
-  else if (childType === 4) return getAttrib();
-  else if (childType === 5) return getPseudo();
-  else if (childType === 6) return getShash();
-  else if (childType === 7) return getAny();
-  else if (childType === 8) return getSC();
-  else if (childType === 9) return getNamespace();
-  else if (childType === 10) return getDeepSelector();
 }
 
 /**
@@ -3071,13 +2871,11 @@ function checkStylesheet(i) {
   // Check every token:
   while (i < tokensLength) {
     if (l = checkSC(i) ||
-        checkDeclaration(i) ||
-        checkDeclDelim(i) ||
-        checkInclude(i) ||
-        checkExtend(i) ||
-        checkMixin(i) ||
         checkAtrule(i) ||
-        checkRuleset(i)) i += l;
+        checkRuleset(i) ||
+        checkMixin(i) ||
+        checkDeclaration(i) ||
+        checkDeclDelim(i)) i += l;
     else throwError(i);
   }
 
@@ -3096,8 +2894,6 @@ function getStylesheet() {
     if (checkSC(pos)) x = x.concat(getSC());
     else if (checkAtrule(pos)) x.push(getAtrule());
     else if (checkRuleset(pos)) x.push(getRuleset());
-    else if (checkInclude(pos)) x.push(getInclude());
-    else if (checkExtend(pos)) x.push(getExtend());
     else if (checkMixin(pos)) x.push(getMixin());
     else if (checkDeclaration(pos)) x.push(getDeclaration());
     else if (checkDeclDelim(pos)) x.push(getDeclDelim());
@@ -3467,3 +3263,558 @@ module.exports = function(_tokens, rule, _needInfo) {
 
   return rules[rule]();
 };
+
+function checkSelectorsGroup(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkSelector(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    let sb = checkSC(i);
+    let c = checkDelim(i + sb);
+    if (!c) break;
+    let sa = checkSC(i + sb + c);
+    if (l = checkSelector(i + sb + c + sa)) i += sb + c + sa + l;
+    else break;
+  }
+
+  tokens[start].selectorsGroupEnd = i;
+  return i - start;
+}
+
+function getSelectorsGroup() {
+  let selectorsGroup = [];
+  let selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+
+  selectorsGroup.push(getSelector());
+
+  while (pos < selectorsGroupEnd) {
+    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup.push(getDelim());
+    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup.push(getSelector());
+  }
+
+  return selectorsGroup;
+}
+
+function checkSelector(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkCompoundSelector(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    let sb = checkSC(i);
+    let c = checkCombinator(i + sb);
+    if (!sb && !c) break;
+    let sa = checkSC(i + sb + c);
+    if (l = checkCompoundSelector(i + sb + c + sa)) i += sb + c + sa + l;
+    else break;
+  }
+
+  tokens[start].selectorEnd = i;
+  return i - start;
+}
+
+function getSelector() {
+  let type = NodeType.SelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let selectorEnd = token.selectorEnd;
+  let content;
+
+  content = getCompoundSelector();
+
+  while (pos < selectorEnd) {
+    content = content.concat(getSC());
+    if (checkCombinator(pos)) content.push(getCombinator());
+    content = content.concat(getSC());
+    content = content.concat(getCompoundSelector());
+  }
+
+  return newNode(type, content, line, column);
+}
+
+function checkCompoundSelector(i) {
+  let l;
+
+  if (l = checkCompoundSelector1(i)) {
+    tokens[i].compoundSelectorType = 1;
+  } else if (l = checkCompoundSelector2(i)) {
+    tokens[i].compoundSelectorType = 2;
+  }
+
+  return l;
+}
+
+function getCompoundSelector() {
+  let type = tokens[pos].compoundSelectorType;
+  if (type === 1) return getCompoundSelector1();
+  if (type === 2) return getCompoundSelector2();
+}
+
+function checkCompoundSelector1(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+
+  let l;
+  if (l = checkTypeSelector(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    let l = checkShash(i) ||
+        checkClass(i) ||
+        checkAttributeSelector(i) ||
+        checkPseudo(i);
+    if (l) i += l;
+    else break;
+  }
+
+  tokens[start].compoundSelectorEnd = i;
+
+  return i - start;
+}
+
+function getCompoundSelector1() {
+  let sequence = [];
+  let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
+
+  sequence.push(getTypeSelector());
+
+  while (pos < compoundSelectorEnd) {
+    if (checkShash(pos)) sequence.push(getShash());
+    else if (checkClass(pos)) sequence.push(getClass());
+    else if (checkAttributeSelector(pos)) sequence.push(getAttributeSelector());
+    else if (checkPseudo(pos)) sequence.push(getPseudo());
+  }
+
+  return sequence;
+}
+
+function checkCompoundSelector2(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+
+  while (i < tokensLength) {
+    let l = checkShash(i) ||
+        checkClass(i) ||
+        checkAttributeSelector(i) ||
+        checkPseudo(i);
+    if (l) i += l;
+    else break;
+  }
+
+  tokens[start].compoundSelectorEnd = i;
+
+  return i - start;
+}
+
+function getCompoundSelector2() {
+  let sequence = [];
+  let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
+
+  while (pos < compoundSelectorEnd) {
+    if (checkShash(pos)) sequence.push(getShash());
+    else if (checkClass(pos)) sequence.push(getClass());
+    else if (checkAttributeSelector(pos)) sequence.push(getAttributeSelector());
+    else if (checkPseudo(pos)) sequence.push(getPseudo());
+  }
+
+  return sequence;
+}
+
+function checkTypeSelector(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkNamePrefix(i)) i += l;
+
+  if (tokens[i].type === TokenType.Asterisk) i++;
+  else if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getTypeSelector() {
+  let type = NodeType.TypeSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  if (checkNamePrefix(pos)) content.push(getNamePrefix());
+  if (checkIdent(pos)) content.push(getIdent());
+
+  return newNode(type, content, line, column);
+}
+
+function checkAttributeSelector(i) {
+  let l;
+  if (l = checkAttributeSelector1(i)) tokens[i].attributeSelectorType = 1;
+  else if (l = checkAttributeSelector2(i)) tokens[i].attributeSelectorType = 2;
+
+  return l;
+}
+
+function getAttributeSelector() {
+  let type = tokens[pos].attributeSelectorType;
+  if (type === 1) return getAttributeSelector1();
+  else return getAttributeSelector2();
+}
+
+/**
+ * (1) `[panda=nani]`
+ * (2) `[panda='nani']`
+ * (3) `[panda='nani' i]`
+ *
+ */
+function checkAttributeSelector1(i) {
+  let start = i;
+
+  if (tokens[i].type === TokenType.LeftSquareBracket) i++;
+  else return 0;
+
+  let l;
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkAttributeName(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkAttributeMatch(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkAttributeValue(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkAttributeFlags(i)) {
+    i += l;
+    if (l = checkSC(i)) i += l;
+  }
+
+  if (tokens[i].type === TokenType.RightSquareBracket) i++;
+  else return 0;
+
+  return i - start;
+}
+
+function getAttributeSelector1() {
+  let type = NodeType.AttributeSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `[`.
+  pos++;
+
+  content = content.concat(getSC());
+  content.push(getAttributeName());
+  content = content.concat(getSC());
+  content.push(getAttributeMatch());
+  content = content.concat(getSC());
+  content.push(getAttributeValue());
+  content = content.concat(getSC());
+
+  if (checkAttributeFlags(pos)) {
+    content.push(getAttributeFlags());
+    content = content.concat(getSC());
+  }
+
+  // Skip `]`.
+  pos++;
+
+  let end = getLastPosition(content, line, column, 1);
+  return newNode(type, content, line, column, end);
+}
+
+/**
+ * (1) `[panda]`
+ */
+function checkAttributeSelector2(i) {
+  let start = i;
+
+  if (tokens[i].type === TokenType.LeftSquareBracket) i++;
+  else return 0;
+
+  let l;
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkAttributeName(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (tokens[i].type === TokenType.RightSquareBracket) i++;
+  else return 0;
+
+  return i - start;
+}
+
+function getAttributeSelector2() {
+  let type = NodeType.AttributeSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  // Skip `[`.
+  pos++;
+
+  content = content.concat(getSC());
+  content.push(getAttributeName());
+  content = content.concat(getSC());
+
+  // Skip `]`.
+  pos++;
+
+  let end = getLastPosition(content, line, column, 1);
+  return newNode(type, content, line, column, end);
+}
+
+function checkAttributeName(i) {
+  let start = i;
+  let l;
+
+  if (l = checkNamePrefix(i)) i += l;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getAttributeName() {
+  let type = NodeType.AttributeNameType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  if (checkNamePrefix(pos)) content.push(getNamePrefix());
+  content.push(getIdent());
+
+  return newNode(type, content, line, column);
+}
+
+function checkAttributeMatch(i) {
+  let l;
+  if (l = checkAttributeMatch1(i)) tokens[i].attributeMatchType = 1;
+  else if (l = checkAttributeMatch2(i)) tokens[i].attributeMatchType = 2;
+
+  return l;
+}
+
+function getAttributeMatch() {
+  let type = tokens[pos].attributeMatchType;
+  if (type === 1) return getAttributeMatch1();
+  else return getAttributeMatch2();
+}
+
+function checkAttributeMatch1(i) {
+  let start = i;
+
+  let type = tokens[i].type;
+  if (type === TokenType.Tilde ||
+      type === TokenType.VerticalLine ||
+      type === TokenType.CircumflexAccent ||
+      type === TokenType.DollarSign ||
+      type === TokenType.Asterisk) i++;
+  else return 0;
+
+  if (tokens[i].type === TokenType.EqualsSign) i++;
+  else return 0;
+
+  return i - start;
+}
+
+function getAttributeMatch1() {
+  let type = NodeType.AttributeMatchType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = tokens[pos].value + tokens[pos + 1].value;
+  pos += 2;
+
+  return newNode(type, content, line, column);
+}
+
+function checkAttributeMatch2(i) {
+  if (tokens[i].type === TokenType.EqualsSign) return 1;
+  else return 0;
+}
+
+function getAttributeMatch2() {
+  let type = NodeType.AttributeMatchType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = '=';
+
+  pos++;
+  return newNode(type, content, line, column);
+}
+
+function checkAttributeValue(i) {
+  return checkString(i) || checkIdent(i);
+}
+
+function getAttributeValue() {
+  let type = NodeType.AttributeValueType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  if (checkString(pos)) content.push(getString());
+  else content.push(getIdent());
+
+  return newNode(type, content, line, column);
+}
+
+function checkAttributeFlags(i) {
+  return checkIdent(i);
+}
+
+function getAttributeFlags() {
+  let type = NodeType.AttributeFlagsType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [getIdent()];
+
+  return newNode(type, content, line, column);
+}
+
+function checkNamePrefix(i) {
+  if (i >= tokensLength) return 0;
+
+  let l;
+  if (l = checkNamePrefix1(i)) tokens[i].namePrefixType = 1;
+  else if (l = checkNamePrefix2(i)) tokens[i].namePrefixType = 2;
+
+  return l;
+}
+
+function getNamePrefix() {
+  let type = tokens[pos].namePrefixType;
+  if (type === 1) return getNamePrefix1();
+  else return getNamePrefix2();
+}
+
+/**
+ * (1) `panda|`
+ * (2) `panda<comment>|`
+ */
+function checkNamePrefix1(i) {
+  let start = i;
+  let l;
+
+  if (l = checkNamespacePrefix(i)) i += l;
+  else return 0;
+
+  if (l = checkCommentML(i)) i += l;
+
+  if (l = checkNamespaceSeparator(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getNamePrefix1() {
+  let type = NodeType.NamePrefixType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  content.push(getNamespacePrefix());
+
+  if (checkCommentML(pos)) content.push(getCommentML());
+
+  content.push(getNamespaceSeparator());
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (1) `|`
+ */
+function checkNamePrefix2(i) {
+  return checkNamespaceSeparator(i);
+}
+
+function getNamePrefix2() {
+  let type = NodeType.NamePrefixType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [getNamespaceSeparator()];
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (1) `*`
+ * (2) `panda`
+ */
+function checkNamespacePrefix(i) {
+  if (i >= tokensLength) return 0;
+
+  let l;
+
+  if (tokens[i].type === TokenType.Asterisk) return 1;
+  else if (l = checkIdent(i)) return l;
+  else return 0;
+}
+
+function getNamespacePrefix() {
+  let type = NodeType.NamespacePrefixType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  if (checkIdent(pos)) content.push(getIdent());
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * (1) `|`
+ */
+function checkNamespaceSeparator(i) {
+  if (i >= tokensLength) return 0;
+
+  if (tokens[i].type === TokenType.VerticalLine) return 1;
+  else return 0;
+}
+
+function getNamespaceSeparator() {
+  let type = NodeType.NamespaceSeparatorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = '|';
+
+  pos++;
+  return newNode(type, content, line, column);
+}

@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -33,92 +33,92 @@
                 "line": 1,
                 "column": 1
               }
-            },
-            {
-              "type": "delimiter",
-              "content": ",",
-              "syntax": "css",
-              "start": {
-                "line": 1,
-                "column": 2
-              },
-              "end": {
-                "line": 1,
-                "column": 2
-              }
-            },
-            {
-              "type": "simpleSelector",
-              "content": [
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 3
-                  }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "b",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 5
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 5
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 5
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 1,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 6
-                  }
-                }
-              ],
-              "syntax": "css",
-              "start": {
-                "line": 1,
-                "column": 3
-              },
-              "end": {
-                "line": 1,
-                "column": 6
-              }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "delimiter",
+          "content": ",",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 3
+          }
+        },
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "b",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 5
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 4
+              },
+              "end": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 4
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 6
           },
           "end": {
             "line": 1,
@@ -477,7 +477,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -502,92 +502,92 @@
                 "line": 5,
                 "column": 1
               }
-            },
-            {
-              "type": "delimiter",
-              "content": ",",
-              "syntax": "css",
-              "start": {
-                "line": 5,
-                "column": 2
-              },
-              "end": {
-                "line": 5,
-                "column": 2
-              }
-            },
-            {
-              "type": "simpleSelector",
-              "content": [
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 5,
-                    "column": 3
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 3
-                  }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "b",
-                      "syntax": "css",
-                      "start": {
-                        "line": 5,
-                        "column": 5
-                      },
-                      "end": {
-                        "line": 5,
-                        "column": 5
-                      }
-                    }
-                  ],
-                  "syntax": "css",
-                  "start": {
-                    "line": 5,
-                    "column": 4
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 5
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "css",
-                  "start": {
-                    "line": 5,
-                    "column": 6
-                  },
-                  "end": {
-                    "line": 5,
-                    "column": 6
-                  }
-                }
-              ],
-              "syntax": "css",
-              "start": {
-                "line": 5,
-                "column": 3
-              },
-              "end": {
-                "line": 5,
-                "column": 6
-              }
             }
           ],
           "syntax": "css",
           "start": {
             "line": 5,
             "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 1
+          }
+        },
+        {
+          "type": "delimiter",
+          "content": ",",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 2
+          },
+          "end": {
+            "line": 5,
+            "column": 2
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 3
+          },
+          "end": {
+            "line": 5,
+            "column": 3
+          }
+        },
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "b",
+                  "syntax": "css",
+                  "start": {
+                    "line": 5,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 5
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 5,
+                "column": 4
+              },
+              "end": {
+                "line": 5,
+                "column": 5
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 4
+          },
+          "end": {
+            "line": 5,
+            "column": 5
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 6
           },
           "end": {
             "line": 5,

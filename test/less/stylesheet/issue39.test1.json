@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,19 +22,6 @@
                     "line": 1,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "less",
@@ -44,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -52,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 2
           },
           "end": {
             "line": 1,
@@ -210,7 +210,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -224,46 +224,6 @@
                     "line": 4,
                     "column": 1
                   }
-                },
-                {
-                  "type": "pseudoClass",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "test",
-                      "syntax": "less",
-                      "start": {
-                        "line": 4,
-                        "column": 3
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 6
-                      }
-                    }
-                  ],
-                  "syntax": "less",
-                  "start": {
-                    "line": 4,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 6
-                  }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 4,
-                    "column": 7
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 7
-                  }
                 }
               ],
               "syntax": "less",
@@ -273,7 +233,34 @@
               },
               "end": {
                 "line": 4,
-                "column": 7
+                "column": 1
+              }
+            },
+            {
+              "type": "pseudoClass",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "test",
+                  "syntax": "less",
+                  "start": {
+                    "line": 4,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 6
+                  }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 4,
+                "column": 2
+              },
+              "end": {
+                "line": 4,
+                "column": 6
               }
             }
           ],
@@ -281,6 +268,19 @@
           "start": {
             "line": 4,
             "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 6
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 4,
+            "column": 7
           },
           "end": {
             "line": 4,

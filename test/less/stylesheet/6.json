@@ -8,7 +8,7 @@
           "type": "selector",
           "content": [
             {
-              "type": "simpleSelector",
+              "type": "typeSelector",
               "content": [
                 {
                   "type": "ident",
@@ -22,19 +22,6 @@
                     "line": 1,
                     "column": 1
                   }
-                },
-                {
-                  "type": "space",
-                  "content": " ",
-                  "syntax": "less",
-                  "start": {
-                    "line": 1,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 2
-                  }
                 }
               ],
               "syntax": "less",
@@ -44,7 +31,7 @@
               },
               "end": {
                 "line": 1,
-                "column": 2
+                "column": 1
               }
             }
           ],
@@ -52,6 +39,19 @@
           "start": {
             "line": 1,
             "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 1
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 2
           },
           "end": {
             "line": 1,
@@ -201,7 +201,7 @@
                   "type": "selector",
                   "content": [
                     {
-                      "type": "simpleSelector",
+                      "type": "typeSelector",
                       "content": [
                         {
                           "type": "ident",
@@ -215,46 +215,6 @@
                             "line": 1,
                             "column": 23
                           }
-                        },
-                        {
-                          "type": "pseudoClass",
-                          "content": [
-                            {
-                              "type": "ident",
-                              "content": "first-child",
-                              "syntax": "less",
-                              "start": {
-                                "line": 1,
-                                "column": 25
-                              },
-                              "end": {
-                                "line": 1,
-                                "column": 35
-                              }
-                            }
-                          ],
-                          "syntax": "less",
-                          "start": {
-                            "line": 1,
-                            "column": 24
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 35
-                          }
-                        },
-                        {
-                          "type": "space",
-                          "content": " ",
-                          "syntax": "less",
-                          "start": {
-                            "line": 1,
-                            "column": 36
-                          },
-                          "end": {
-                            "line": 1,
-                            "column": 36
-                          }
                         }
                       ],
                       "syntax": "less",
@@ -264,7 +224,34 @@
                       },
                       "end": {
                         "line": 1,
-                        "column": 36
+                        "column": 23
+                      }
+                    },
+                    {
+                      "type": "pseudoClass",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "first-child",
+                          "syntax": "less",
+                          "start": {
+                            "line": 1,
+                            "column": 25
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35
+                          }
+                        }
+                      ],
+                      "syntax": "less",
+                      "start": {
+                        "line": 1,
+                        "column": 24
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 35
                       }
                     }
                   ],
@@ -272,6 +259,19 @@
                   "start": {
                     "line": 1,
                     "column": 20
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 35
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 36
                   },
                   "end": {
                     "line": 1,
