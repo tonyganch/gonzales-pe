@@ -43,6 +43,7 @@ function parser(css, options) {
   try {
     ast = parse(tokens, rule, needInfo);
   } catch (e) {
+    if (!e.syntax) throw e;
     throw new ParsingError(e, css);
   }
 
