@@ -7,13 +7,13 @@
 printf "\n\
 ------------------\n\
  Generating tests\n\
-------------------\n\n"
+------------------"
 
 syntaxes=${@:-css less sass scss}
 failed_tests=()
 
 for syntax in $syntaxes; do
-    printf "Syntax: $syntax\n"
+    printf "\n\nSyntax: $syntax\n"
     files=$(find ./test/$syntax -name "*.$syntax")
     for file in $files; do
         context=${file#*/*/*/}
