@@ -14,7 +14,6 @@ describe 'less/selector >>', ->
   it '11', -> this.shouldBeOk()
   it '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
-  it '14', -> this.shouldBeOk()
 
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
