@@ -161,7 +161,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 2,
@@ -402,7 +402,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 5,
@@ -643,7 +643,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 8,
@@ -884,7 +884,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 11,
@@ -1203,7 +1203,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 14,

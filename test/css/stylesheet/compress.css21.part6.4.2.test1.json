@@ -161,7 +161,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 1,

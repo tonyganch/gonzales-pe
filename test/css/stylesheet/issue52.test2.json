@@ -227,7 +227,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 2,
@@ -522,7 +522,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 5,

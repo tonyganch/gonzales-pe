@@ -54,9 +54,6 @@ module.exports = function stringify(tree) {
     'id': function(t) {
       return '#' + _composite(t.content);
     },
-    'important': function(t) {
-      return '!' + _composite(t.content) + 'important';
-    },
     'multilineComment': function(t) {
       return '/*' + t.content + '*/';
     },

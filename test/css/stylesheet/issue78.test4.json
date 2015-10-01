@@ -161,7 +161,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 2,
@@ -307,7 +307,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 3,
@@ -561,7 +561,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 6,
@@ -707,7 +707,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "css",
                       "start": {
                         "line": 7,
