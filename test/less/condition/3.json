@@ -216,7 +216,7 @@
           }
         },
         {
-          "type": "unaryOperator",
+          "type": "operator",
           "content": "-",
           "syntax": "less",
           "start": {

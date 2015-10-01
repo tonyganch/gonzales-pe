@@ -61,7 +61,6 @@ module.exports = {
   StringType: 'string',
   StylesheetType: 'stylesheet',
   TypeSelectorType: 'typeSelector',
-  UnaryType: 'unaryOperator',
   UriType: 'uri',
   ValueType: 'value',
   VariableType: 'variable',

@@ -2,7 +2,7 @@
   "type": "value",
   "content": [
     {
-      "type": "unaryOperator",
+      "type": "operator",
       "content": "-",
       "syntax": "scss",
       "start": {

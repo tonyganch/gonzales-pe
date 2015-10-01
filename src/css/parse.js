@@ -2400,7 +2400,7 @@ function checkUnary(i) {
  *      converted to string.
  */
 function getUnary() {
-  let type = NodeType.UnaryType;
+  let type = NodeType.OperatorType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;

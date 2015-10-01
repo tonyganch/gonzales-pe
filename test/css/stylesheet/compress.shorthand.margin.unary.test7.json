@@ -134,7 +134,7 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {
@@ -267,7 +267,7 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {
@@ -400,7 +400,7 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {
@@ -560,7 +560,7 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {

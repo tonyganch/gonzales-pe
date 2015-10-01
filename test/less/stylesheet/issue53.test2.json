@@ -95,7 +95,7 @@
                   "type": "value",
                   "content": [
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "less",
                       "start": {
@@ -161,7 +161,7 @@
                       }
                     },
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "less",
                       "start": {
@@ -227,7 +227,7 @@
                       }
                     },
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "less",
                       "start": {
@@ -293,7 +293,7 @@
                       }
                     },
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "less",
                       "start": {

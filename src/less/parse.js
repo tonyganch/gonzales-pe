@@ -2985,7 +2985,7 @@ function getUnary() {
   let x = tokens[pos++].value;
 
   var token = tokens[startPos];
-  return newNode(NodeType.UnaryType, x, token.ln, token.col);
+  return newNode(NodeType.OperatorType, x, token.ln, token.col);
 }
 
 /**

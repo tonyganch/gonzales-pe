@@ -142,7 +142,7 @@
                   }
                 },
                 {
-                  "type": "unaryOperator",
+                  "type": "operator",
                   "content": "+",
                   "syntax": "sass",
                   "start": {

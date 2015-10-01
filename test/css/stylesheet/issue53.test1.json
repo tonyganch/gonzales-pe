@@ -121,7 +121,7 @@
                       }
                     },
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {
@@ -213,7 +213,7 @@
                       }
                     },
                     {
-                      "type": "unaryOperator",
+                      "type": "operator",
                       "content": "-",
                       "syntax": "css",
                       "start": {
