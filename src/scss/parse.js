@@ -1718,32 +1718,26 @@ function checkGlobal(i) {
 
   if (l = checkSC(i)) i += l;
 
-  return tokens[i].value === 'global' ? i - start + 1 : 0;
+  if (tokens[i].value === 'global') {
+    tokens[start].globalEnd = i;
+    return i - start + 1;
+  } else {
+    return 0;
+  }
 }
 
 /**
  * Get node with `!global` word
- * @returns {Array} `['global', sc]` where `sc` is optional whitespace
  */
 function getGlobal() {
-  let startPos = pos;
-  let sc;
-  var token = tokens[startPos];
+  var token = tokens[pos];
   var line = token.ln;
   var column = token.col;
+  let content = joinValues(pos, token.globalEnd);
 
-  // Skip `!`:
-  pos++;
+  pos = token.globalEnd + 1;
 
-  sc = getSC();
-  var end = getLastPosition(sc, line, column, 6);
-
-  // Skip `global`:
-  pos++;
-
-  var x = sc.length ? sc : [];
-
-  return newNode(NodeType.GlobalType, x, token.ln, token.col, end);
+  return newNode(NodeType.GlobalType, content, line, column);
 }
 
 /**

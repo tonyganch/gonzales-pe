@@ -54,9 +54,6 @@ module.exports = function stringify(tree) {
     'expression': function(t) {
       return 'expression(' + t.content + ')';
     },
-    'global': function(t) {
-      return '!' + _composite(t.content) + 'global';
-    },
     'id': function(t) {
       return '#' + _composite(t.content);
     },
