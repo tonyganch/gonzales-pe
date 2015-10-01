@@ -1,6 +1,6 @@
 {
   "type": "optional",
-  "content": [],
+  "content": "!optional",
   "syntax": "sass",
   "start": {
     "line": 1,

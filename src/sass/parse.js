@@ -2758,27 +2758,26 @@ function checkOptional(i) {
 
   if (l = checkSC(i)) i += l;
 
-  return tokens[i].value === 'optional' ? i - start + 1 : 0;
+  if (tokens[i].value === 'optional') {
+    tokens[start].optionalEnd = i;
+    return i - start + 1;
+  } else {
+    return 0;
+  }
 }
 
 /**
  * Get node with `!optional` word
  */
 function getOptional() {
-  let startPos = pos;
-  let x = [];
-  var token = tokens[startPos];
+  var token = tokens[pos];
   var line = token.ln;
   var column = token.col;
+  let content = joinValues(pos, token.optionalEnd);
 
-  pos++;
+  pos = token.optionalEnd + 1;
 
-  x = x.concat(getSC());
-  var end = getLastPosition(x, line, column, 8);
-
-  pos++;
-
-  return newNode(NodeType.OptionalType, x, token.ln, token.col, end);
+  return newNode(NodeType.OptionalType, content, line, column);
 }
 
 /**
