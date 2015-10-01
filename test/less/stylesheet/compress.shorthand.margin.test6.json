@@ -188,7 +188,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "less",
                       "start": {
                         "line": 2,
@@ -361,7 +361,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "less",
                       "start": {
                         "line": 3,
@@ -534,7 +534,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "less",
                       "start": {
                         "line": 4,
@@ -707,7 +707,7 @@
                     },
                     {
                       "type": "important",
-                      "content": [],
+                      "content": "!important",
                       "syntax": "less",
                       "start": {
                         "line": 5,

@@ -97,7 +97,7 @@
     },
     {
       "type": "important",
-      "content": [],
+      "content": "!important",
       "syntax": "less",
       "start": {
         "line": 1,
