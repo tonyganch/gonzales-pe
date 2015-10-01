@@ -1,6 +1,6 @@
 {
   "type": "important",
-  "content": [],
+  "content": "!important",
   "syntax": "sass",
   "start": {
     "line": 1,

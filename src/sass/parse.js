@@ -1862,7 +1862,12 @@ function checkImportant(i) {
 
   if (l = checkSC(i)) i += l;
 
-  return tokens[i].value === 'important' ? i - start + 1 : 0;
+  if (tokens[i].value === 'important') {
+    tokens[start].importantEnd = i;
+    return i - start + 1;
+  } else {
+    return 0;
+  }
 }
 
 /**
@@ -1870,19 +1875,14 @@ function checkImportant(i) {
  * @returns {Array} `['important', sc]` where `sc` is optional whitespace
  */
 function getImportant() {
-  var startPos = pos;
-  var token = tokens[startPos];
+  var token = tokens[pos];
   var line = token.ln;
   var column = token.col;
+  let content = joinValues(pos, token.importantEnd);
 
-  pos++;
+  pos = token.importantEnd + 1;
 
-  var x = getSC();
-  var end = getLastPosition(x, line, column, 9);
-
-  pos++;
-
-  return newNode(NodeType.ImportantType, x, token.ln, token.col, end);
+  return newNode(NodeType.ImportantType, content, line, column);
 }
 
 /**
