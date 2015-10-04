@@ -29,62 +29,17 @@ Example:
 }
 ```
 
-### atruleb
+### atrule
 
-@-rule that consists of @-keyword, optional selectors and a block.
+### attributeFlags
 
-Used in syntaxes: css.
+### attributeMatch
 
-Example:
-```js
-// String:
-@test{p:v}
-
-// AST:
-{
-  type: 'atruleb',
-  content: [{
-    type: 'atkeyword',
-    content: [{
-      type: 'ident',
-      content: 'test'
-    }]
-  }, {
-    type: 'block',
-    content: [{
-      type: 'declaration',
-      content: [{
-        type: 'property',
-        content: [{
-          type: 'ident',
-          content: 'p'
-        }]
-      }, {
-        type: 'propertyDelimiter',
-        content: ':'
-      }, {
-        type: 'value',
-        content: [{
-          type: 'ident',
-          content: 'v'
-        }]
-      }]
-    }]
-  }]
-}
-```
-
-### atruler
-
-### atrulerq
-
-### atrulers
-
-### atrules
-
-### attribute
+### attributeName
 
 ### attributeSelector
+
+### attributeValue
 
 ### block
 
@@ -95,10 +50,6 @@ Example:
 ### color
 
 ### combinator
-
-### id
-
-### multilineComment
 
 ### condition
 
@@ -124,6 +75,8 @@ Example:
 
 ### global
 
+### id
+
 ### ident
 
 ### important
@@ -138,11 +91,13 @@ Example:
 
 ### mixin
 
-### namespace
+### multilineComment
 
-### nth
+### namePrefix
 
-### nthSelector
+### namespacePrefix
+
+### namespaceSeparator
 
 ### number
 
@@ -174,15 +129,13 @@ Example:
 
 ### selector
 
-### simpleSelector
-
 ### singlelineComment
 
 ### string
 
 ### stylesheet
 
-### unaryOperator
+### typeSelector
 
 ### uri
 
