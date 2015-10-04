@@ -14,11 +14,7 @@ let needInfo;
 var rules = {
   'arguments': function() { return checkArguments(pos) && getArguments(); },
   'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
-  'atruleb': function() { return checkAtruleb(pos) && getAtruleb(); },
-  'atruler': function() { return checkAtruler(pos) && getAtruler(); },
-  'atrulerq': function() { return checkAtrulerq(pos) && getAtrulerq(); },
-  'atrulers': function() { return checkAtrulers(pos) && getAtrulers(); },
-  'atrules': function() { return checkAtrules(pos) && getAtrules(); },
+  'atrule': function() { return checkAtrule(pos) && getAtrule(); },
   'block': function() { return checkBlock(pos) && getBlock(); },
   'brackets': function() { return checkBrackets(pos) && getBrackets(); },
   'class': function() { return checkClass(pos) && getClass(); },
@@ -453,7 +449,7 @@ function getAtruleb() {
       .concat([getBlock()]);
 
   var token = tokens[startPos];
-  return newNode(NodeType.AtrulebType, x, token.ln, token.col);
+  return newNode(NodeType.AtruleType, x, token.ln, token.col);
 }
 
 /**
@@ -470,7 +466,7 @@ function checkAtruler(i) {
   if (l = checkAtkeyword(i)) i += l;
   else return 0;
 
-  if (l = checkAtrulerq(i)) i += l;
+  if (l = checkTsets(i)) i += l;
 
   if (l = checkAtrulers(i)) i += l;
   else return 0;
@@ -486,31 +482,12 @@ function getAtruler() {
   let startPos = pos;
   let x;
 
-  x = [getAtkeyword(), getAtrulerq()];
+  x = [getAtkeyword()].concat(getTsets());
 
   x.push(getAtrulers());
 
   var token = tokens[startPos];
-  return newNode(NodeType.AtrulerType, x, token.ln, token.col);
-}
-
-/**
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkAtrulerq(i) {
-  return checkTsets(i);
-}
-
-/**
- * @returns {Array} `['atrulerq', x]`
- */
-function getAtrulerq() {
-  let startPos = pos;
-  let x = getTsets();
-
-  var token = tokens[startPos];
-  return newNode(NodeType.AtrulerqType, x, token.ln, token.col);
+  return newNode(NodeType.AtruleType, x, token.ln, token.col);
 }
 
 /**
@@ -524,7 +501,8 @@ function checkAtrulers(i) {
   if (i >= tokensLength) return 0;
   if (!tokens[i].block_end) return 0;
 
-  if (l = checkSC(i)) i += l;
+  if (l = checkRuleset(i) || checkAtrule(i)) i += l;
+  else return 0;
 
   while (l = checkRuleset(i) || checkAtrule(i) || checkSC(i)) {
     i += l;
@@ -553,7 +531,7 @@ function getAtrulers() {
 
   var end = getLastPosition(x, line, column);
 
-  return newNode(NodeType.AtrulersType, x, token.ln, token.col, end);
+  return newNode(NodeType.BlockType, x, token.ln, token.col, end);
 }
 
 /**
@@ -584,7 +562,7 @@ function getAtrules() {
   x = [getAtkeyword()].concat(getTsets());
 
   var token = tokens[startPos];
-  return newNode(NodeType.AtrulesType, x, token.ln, token.col);
+  return newNode(NodeType.AtruleType, x, token.ln, token.col);
 }
 
 /**

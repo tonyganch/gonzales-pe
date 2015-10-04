@@ -217,7 +217,7 @@
       }
     },
     {
-      "type": "atruler",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",
@@ -247,74 +247,8 @@
           }
         },
         {
-          "type": "atrulerq",
-          "content": [
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "less",
-              "start": {
-                "line": 2,
-                "column": 6
-              },
-              "end": {
-                "line": 2,
-                "column": 6
-              }
-            },
-            {
-              "type": "ident",
-              "content": "x",
-              "syntax": "less",
-              "start": {
-                "line": 2,
-                "column": 7
-              },
-              "end": {
-                "line": 2,
-                "column": 7
-              }
-            },
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "less",
-              "start": {
-                "line": 2,
-                "column": 8
-              },
-              "end": {
-                "line": 2,
-                "column": 8
-              }
-            },
-            {
-              "type": "ident",
-              "content": "y",
-              "syntax": "less",
-              "start": {
-                "line": 2,
-                "column": 9
-              },
-              "end": {
-                "line": 2,
-                "column": 9
-              }
-            },
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "less",
-              "start": {
-                "line": 2,
-                "column": 10
-              },
-              "end": {
-                "line": 2,
-                "column": 10
-              }
-            }
-          ],
+          "type": "space",
+          "content": " ",
           "syntax": "less",
           "start": {
             "line": 2,
@@ -322,11 +256,63 @@
           },
           "end": {
             "line": 2,
+            "column": 6
+          }
+        },
+        {
+          "type": "ident",
+          "content": "x",
+          "syntax": "less",
+          "start": {
+            "line": 2,
+            "column": 7
+          },
+          "end": {
+            "line": 2,
+            "column": 7
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 2,
+            "column": 8
+          },
+          "end": {
+            "line": 2,
+            "column": 8
+          }
+        },
+        {
+          "type": "ident",
+          "content": "y",
+          "syntax": "less",
+          "start": {
+            "line": 2,
+            "column": 9
+          },
+          "end": {
+            "line": 2,
+            "column": 9
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "less",
+          "start": {
+            "line": 2,
+            "column": 10
+          },
+          "end": {
+            "line": 2,
             "column": 10
           }
         },
         {
-          "type": "atrulers",
+          "type": "block",
           "content": [
             {
               "type": "space",

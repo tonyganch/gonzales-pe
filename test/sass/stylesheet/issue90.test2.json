@@ -204,7 +204,7 @@
       }
     },
     {
-      "type": "atruler",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",
@@ -234,48 +234,8 @@
           }
         },
         {
-          "type": "atrulerq",
-          "content": [
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "sass",
-              "start": {
-                "line": 4,
-                "column": 7
-              },
-              "end": {
-                "line": 4,
-                "column": 7
-              }
-            },
-            {
-              "type": "ident",
-              "content": "test",
-              "syntax": "sass",
-              "start": {
-                "line": 4,
-                "column": 8
-              },
-              "end": {
-                "line": 4,
-                "column": 11
-              }
-            },
-            {
-              "type": "space",
-              "content": "\n",
-              "syntax": "sass",
-              "start": {
-                "line": 4,
-                "column": 12
-              },
-              "end": {
-                "line": 4,
-                "column": 12
-              }
-            }
-          ],
+          "type": "space",
+          "content": " ",
           "syntax": "sass",
           "start": {
             "line": 4,
@@ -283,11 +243,37 @@
           },
           "end": {
             "line": 4,
+            "column": 7
+          }
+        },
+        {
+          "type": "ident",
+          "content": "test",
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 8
+          },
+          "end": {
+            "line": 4,
+            "column": 11
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 12
+          },
+          "end": {
+            "line": 4,
             "column": 12
           }
         },
         {
-          "type": "atrulers",
+          "type": "block",
           "content": [
             {
               "type": "space",
@@ -570,7 +556,7 @@
               }
             },
             {
-              "type": "atruler",
+              "type": "atrule",
               "content": [
                 {
                   "type": "atkeyword",
@@ -600,22 +586,8 @@
                   }
                 },
                 {
-                  "type": "atrulerq",
-                  "content": [
-                    {
-                      "type": "space",
-                      "content": "\n",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 10,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 10
-                      }
-                    }
-                  ],
+                  "type": "space",
+                  "content": "\n",
                   "syntax": "sass",
                   "start": {
                     "line": 10,
@@ -627,7 +599,7 @@
                   }
                 },
                 {
-                  "type": "atrulers",
+                  "type": "block",
                   "content": [
                     {
                       "type": "space",

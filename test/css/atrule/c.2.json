@@ -1,0 +1,424 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test\n     test",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 6
+      },
+      "end": {
+        "line": 2,
+        "column": 11
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 12
+      },
+      "end": {
+        "line": 2,
+        "column": 12
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 13
+      },
+      "end": {
+        "line": 2,
+        "column": 20
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 21
+      },
+      "end": {
+        "line": 2,
+        "column": 21
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 22
+      },
+      "end": {
+        "line": 2,
+        "column": 29
+      }
+    },
+    {
+      "type": "ident",
+      "content": "y",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 30
+      },
+      "end": {
+        "line": 2,
+        "column": 30
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 31
+      },
+      "end": {
+        "line": 2,
+        "column": 38
+      }
+    },
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "x",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 39
+          },
+          "end": {
+            "line": 2,
+            "column": 39
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 41
+              },
+              "end": {
+                "line": 2,
+                "column": 48
+              }
+            },
+            {
+              "type": "number",
+              "content": "1",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 49
+              },
+              "end": {
+                "line": 2,
+                "column": 49
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 50
+              },
+              "end": {
+                "line": 2,
+                "column": 57
+              }
+            },
+            {
+              "type": "operator",
+              "content": "+",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 58
+              },
+              "end": {
+                "line": 2,
+                "column": 58
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 59
+              },
+              "end": {
+                "line": 2,
+                "column": 66
+              }
+            },
+            {
+              "type": "number",
+              "content": "2",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 67
+              },
+              "end": {
+                "line": 2,
+                "column": 67
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 68
+              },
+              "end": {
+                "line": 2,
+                "column": 75
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 40
+          },
+          "end": {
+            "line": 2,
+            "column": 76
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 39
+      },
+      "end": {
+        "line": 2,
+        "column": 76
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 77
+      },
+      "end": {
+        "line": 2,
+        "column": 84
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 86
+          },
+          "end": {
+            "line": 2,
+            "column": 93
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "syntax": "css",
+                  "start": {
+                    "line": 2,
+                    "column": 94
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 94
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 94
+              },
+              "end": {
+                "line": 2,
+                "column": 94
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 95
+              },
+              "end": {
+                "line": 2,
+                "column": 102
+              }
+            },
+            {
+              "type": "propertyDelimiter",
+              "content": ":",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 103
+              },
+              "end": {
+                "line": 2,
+                "column": 103
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 104
+              },
+              "end": {
+                "line": 2,
+                "column": 111
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "syntax": "css",
+                  "start": {
+                    "line": 2,
+                    "column": 112
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 112
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 2,
+                "column": 112
+              },
+              "end": {
+                "line": 2,
+                "column": 112
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 94
+          },
+          "end": {
+            "line": 2,
+            "column": 112
+          }
+        },
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "css",
+          "start": {
+            "line": 2,
+            "column": 113
+          },
+          "end": {
+            "line": 2,
+            "column": 120
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 2,
+        "column": 85
+      },
+      "end": {
+        "line": 2,
+        "column": 121
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 2,
+    "column": 121
+  }
+}

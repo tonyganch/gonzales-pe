@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "atrules",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",
@@ -69,7 +69,7 @@
       }
     },
     {
-      "type": "atrules",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",

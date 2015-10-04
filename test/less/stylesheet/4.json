@@ -152,7 +152,7 @@
       }
     },
     {
-      "type": "atrules",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",

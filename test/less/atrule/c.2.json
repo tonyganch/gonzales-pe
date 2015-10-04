@@ -1,0 +1,424 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "test",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 6
+      },
+      "end": {
+        "line": 1,
+        "column": 13
+      }
+    },
+    {
+      "type": "ident",
+      "content": "x",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 14
+      },
+      "end": {
+        "line": 1,
+        "column": 14
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 15
+      },
+      "end": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 23
+      },
+      "end": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 24
+      },
+      "end": {
+        "line": 1,
+        "column": 31
+      }
+    },
+    {
+      "type": "ident",
+      "content": "y",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 32
+      },
+      "end": {
+        "line": 1,
+        "column": 32
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 33
+      },
+      "end": {
+        "line": 1,
+        "column": 40
+      }
+    },
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "x",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 41
+          },
+          "end": {
+            "line": 1,
+            "column": 41
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 43
+              },
+              "end": {
+                "line": 1,
+                "column": 50
+              }
+            },
+            {
+              "type": "number",
+              "content": "1",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 51
+              },
+              "end": {
+                "line": 1,
+                "column": 51
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 52
+              },
+              "end": {
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "type": "operator",
+              "content": "+",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 60
+              },
+              "end": {
+                "line": 1,
+                "column": 60
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 61
+              },
+              "end": {
+                "line": 1,
+                "column": 68
+              }
+            },
+            {
+              "type": "number",
+              "content": "2",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 69
+              },
+              "end": {
+                "line": 1,
+                "column": 69
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 70
+              },
+              "end": {
+                "line": 1,
+                "column": 77
+              }
+            }
+          ],
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 42
+          },
+          "end": {
+            "line": 1,
+            "column": 78
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 41
+      },
+      "end": {
+        "line": 1,
+        "column": 78
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 79
+      },
+      "end": {
+        "line": 1,
+        "column": 86
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 88
+          },
+          "end": {
+            "line": 1,
+            "column": 95
+          }
+        },
+        {
+          "type": "declaration",
+          "content": [
+            {
+              "type": "property",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "p",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 96
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 96
+                  }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 96
+              },
+              "end": {
+                "line": 1,
+                "column": 96
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 97
+              },
+              "end": {
+                "line": 1,
+                "column": 104
+              }
+            },
+            {
+              "type": "propertyDelimiter",
+              "content": ":",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 105
+              },
+              "end": {
+                "line": 1,
+                "column": 105
+              }
+            },
+            {
+              "type": "multilineComment",
+              "content": "test",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 106
+              },
+              "end": {
+                "line": 1,
+                "column": 113
+              }
+            },
+            {
+              "type": "value",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "v",
+                  "syntax": "less",
+                  "start": {
+                    "line": 1,
+                    "column": 114
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 114
+                  }
+                }
+              ],
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 114
+              },
+              "end": {
+                "line": 1,
+                "column": 114
+              }
+            }
+          ],
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 96
+          },
+          "end": {
+            "line": 1,
+            "column": 114
+          }
+        },
+        {
+          "type": "multilineComment",
+          "content": "test",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 115
+          },
+          "end": {
+            "line": 1,
+            "column": 122
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 87
+      },
+      "end": {
+        "line": 1,
+        "column": 123
+      }
+    }
+  ],
+  "syntax": "less",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 123
+  }
+}

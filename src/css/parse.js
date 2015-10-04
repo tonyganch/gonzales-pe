@@ -23,11 +23,7 @@ var pos;
 
 var rules = {
   'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
-  'atruleb': function() { return checkAtruleb(pos) && getAtruleb(); },
-  'atruler': function() { return checkAtruler(pos) && getAtruler(); },
-  'atrulerq': function() { return checkAtrulerq(pos) && getAtrulerq(); },
-  'atrulers': function() { return checkAtrulers(pos) && getAtrulers(); },
-  'atrules': function() { return checkAtrules(pos) && getAtrules(); },
+  'atrule': function() { return checkAtrule(pos) && getAtrule(); },
   'block': function() { return checkBlock(pos) && getBlock(); },
   'brackets': function() { return checkBrackets(pos) && getBrackets(); },
   'class': function() { return checkClass(pos) && getClass(); },
@@ -355,7 +351,7 @@ function checkAtruleb(i) {
  * @return {Node}
  */
 function getAtruleb() {
-  let type = NodeType.AtrulebType;
+  let type = NodeType.AtruleType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
@@ -380,7 +376,7 @@ function checkAtruler(i) {
   if (l = checkAtkeyword(i)) i += l;
   else return 0;
 
-  if (l = checkAtrulerq(i)) i += l;
+  if (l = checkTsets(i)) i += l;
 
   if (i < tokensLength && tokens[i].type === TokenType.LeftCurlyBracket) i++;
   else return 0;
@@ -398,34 +394,15 @@ function checkAtruler(i) {
  * @return {Node}
  */
 function getAtruler() {
-  let type = NodeType.AtrulerType;
+  let type = NodeType.AtruleType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
-  let content = [getAtkeyword(), getAtrulerq()];
+  let content = [getAtkeyword()];
+
+  content = content.concat(getTsets());
 
   content.push(getAtrulers());
-
-  return newNode(type, content, line, column);
-}
-
-/**
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkAtrulerq(i) {
-  return checkTsets(i);
-}
-
-/**
- * @return {Node}
- */
-function getAtrulerq() {
-  let type = NodeType.AtrulerqType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = getTsets();
 
   return newNode(type, content, line, column);
 }
@@ -461,7 +438,7 @@ function checkAtrulers(i) {
  * @return {Node}
  */
 function getAtrulers() {
-  let type = NodeType.AtrulersType;
+  let type = NodeType.BlockType;
   let token = tokens[pos++];
   let line = token.ln;
   let column = token.col;
@@ -504,7 +481,7 @@ function checkAtrules(i) {
  * @return {Node}
  */
 function getAtrules() {
-  let type = NodeType.AtrulesType;
+  let type = NodeType.AtruleType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;

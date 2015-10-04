@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "atruleb",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",

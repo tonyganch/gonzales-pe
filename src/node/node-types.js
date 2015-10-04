@@ -3,11 +3,7 @@
 module.exports = {
   ArgumentsType: 'arguments',
   AtkeywordType: 'atkeyword',
-  AtrulebType: 'atruleb',
-  AtrulerType: 'atruler',
-  AtrulerqType: 'atrulerq',
-  AtrulersType: 'atrulers',
-  AtrulesType: 'atrules',
+  AtruleType: 'atrule',
   AttributeSelectorType: 'attributeSelector',
   AttributeNameType: 'attributeName',
   AttributeFlagsType: 'attributeFlags',

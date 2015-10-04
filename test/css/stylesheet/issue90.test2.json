@@ -217,7 +217,7 @@
       }
     },
     {
-      "type": "atruler",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",
@@ -247,48 +247,8 @@
           }
         },
         {
-          "type": "atrulerq",
-          "content": [
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "css",
-              "start": {
-                "line": 5,
-                "column": 7
-              },
-              "end": {
-                "line": 5,
-                "column": 7
-              }
-            },
-            {
-              "type": "ident",
-              "content": "test",
-              "syntax": "css",
-              "start": {
-                "line": 5,
-                "column": 8
-              },
-              "end": {
-                "line": 5,
-                "column": 11
-              }
-            },
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "css",
-              "start": {
-                "line": 5,
-                "column": 12
-              },
-              "end": {
-                "line": 5,
-                "column": 12
-              }
-            }
-          ],
+          "type": "space",
+          "content": " ",
           "syntax": "css",
           "start": {
             "line": 5,
@@ -296,11 +256,37 @@
           },
           "end": {
             "line": 5,
+            "column": 7
+          }
+        },
+        {
+          "type": "ident",
+          "content": "test",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 8
+          },
+          "end": {
+            "line": 5,
+            "column": 11
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 5,
+            "column": 12
+          },
+          "end": {
+            "line": 5,
             "column": 12
           }
         },
         {
-          "type": "atrulers",
+          "type": "block",
           "content": [
             {
               "type": "space",
@@ -557,7 +543,7 @@
               }
             },
             {
-              "type": "atruleb",
+              "type": "atrule",
               "content": [
                 {
                   "type": "atkeyword",

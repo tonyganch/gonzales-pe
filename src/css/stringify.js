@@ -30,9 +30,6 @@ module.exports = function stringify(tree) {
     'atkeyword': function(t) {
       return '@' + _composite(t.content);
     },
-    'atruler': function(t) {
-      return _t(t.content[0]) + _t(t.content[1]) + '{' + _t(t.content[2]) + '}';
-    },
     'attributeSelector': function(t) {
       return '[' + _composite(t.content) + ']';
     },

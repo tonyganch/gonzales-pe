@@ -2,7 +2,7 @@
   "type": "stylesheet",
   "content": [
     {
-      "type": "atruler",
+      "type": "atrule",
       "content": [
         {
           "type": "atkeyword",
@@ -32,48 +32,8 @@
           }
         },
         {
-          "type": "atrulerq",
-          "content": [
-            {
-              "type": "space",
-              "content": " ",
-              "syntax": "sass",
-              "start": {
-                "line": 1,
-                "column": 7
-              },
-              "end": {
-                "line": 1,
-                "column": 7
-              }
-            },
-            {
-              "type": "ident",
-              "content": "test",
-              "syntax": "sass",
-              "start": {
-                "line": 1,
-                "column": 8
-              },
-              "end": {
-                "line": 1,
-                "column": 11
-              }
-            },
-            {
-              "type": "space",
-              "content": "\n",
-              "syntax": "sass",
-              "start": {
-                "line": 1,
-                "column": 12
-              },
-              "end": {
-                "line": 1,
-                "column": 12
-              }
-            }
-          ],
+          "type": "space",
+          "content": " ",
           "syntax": "sass",
           "start": {
             "line": 1,
@@ -81,11 +41,37 @@
           },
           "end": {
             "line": 1,
+            "column": 7
+          }
+        },
+        {
+          "type": "ident",
+          "content": "test",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 8
+          },
+          "end": {
+            "line": 1,
+            "column": 11
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
             "column": 12
           }
         },
         {
-          "type": "atrulers",
+          "type": "block",
           "content": [
             {
               "type": "space",
@@ -101,7 +87,7 @@
               }
             },
             {
-              "type": "atruler",
+              "type": "atrule",
               "content": [
                 {
                   "type": "atkeyword",
@@ -131,22 +117,8 @@
                   }
                 },
                 {
-                  "type": "atrulerq",
-                  "content": [
-                    {
-                      "type": "space",
-                      "content": "\n",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 2,
-                        "column": 10
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 10
-                      }
-                    }
-                  ],
+                  "type": "space",
+                  "content": "\n",
                   "syntax": "sass",
                   "start": {
                     "line": 2,
@@ -158,7 +130,7 @@
                   }
                 },
                 {
-                  "type": "atrulers",
+                  "type": "block",
                   "content": [
                     {
                       "type": "space",
@@ -172,6 +144,100 @@
                         "line": 3,
                         "column": 8
                       }
+                    },
+                    {
+                      "type": "declaration",
+                      "content": [
+                        {
+                          "type": "property",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "p",
+                              "syntax": "sass",
+                              "start": {
+                                "line": 3,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 9
+                              }
+                            }
+                          ],
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 9
+                          }
+                        },
+                        {
+                          "type": "propertyDelimiter",
+                          "content": ":",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 10
+                          }
+                        },
+                        {
+                          "type": "space",
+                          "content": " ",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 11
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 11
+                          }
+                        },
+                        {
+                          "type": "value",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "v",
+                              "syntax": "sass",
+                              "start": {
+                                "line": 3,
+                                "column": 12
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 12
+                              }
+                            }
+                          ],
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 12
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 12
+                      }
                     }
                   ],
                   "syntax": "sass",
@@ -181,7 +247,7 @@
                   },
                   "end": {
                     "line": 3,
-                    "column": 8
+                    "column": 12
                   }
                 }
               ],
@@ -192,7 +258,7 @@
               },
               "end": {
                 "line": 3,
-                "column": 8
+                "column": 12
               }
             }
           ],
@@ -203,7 +269,7 @@
           },
           "end": {
             "line": 3,
-            "column": 8
+            "column": 12
           }
         }
       ],
@@ -211,100 +277,6 @@
       "start": {
         "line": 1,
         "column": 1
-      },
-      "end": {
-        "line": 3,
-        "column": 8
-      }
-    },
-    {
-      "type": "declaration",
-      "content": [
-        {
-          "type": "property",
-          "content": [
-            {
-              "type": "ident",
-              "content": "p",
-              "syntax": "sass",
-              "start": {
-                "line": 3,
-                "column": 9
-              },
-              "end": {
-                "line": 3,
-                "column": 9
-              }
-            }
-          ],
-          "syntax": "sass",
-          "start": {
-            "line": 3,
-            "column": 9
-          },
-          "end": {
-            "line": 3,
-            "column": 9
-          }
-        },
-        {
-          "type": "propertyDelimiter",
-          "content": ":",
-          "syntax": "sass",
-          "start": {
-            "line": 3,
-            "column": 10
-          },
-          "end": {
-            "line": 3,
-            "column": 10
-          }
-        },
-        {
-          "type": "space",
-          "content": " ",
-          "syntax": "sass",
-          "start": {
-            "line": 3,
-            "column": 11
-          },
-          "end": {
-            "line": 3,
-            "column": 11
-          }
-        },
-        {
-          "type": "value",
-          "content": [
-            {
-              "type": "ident",
-              "content": "v",
-              "syntax": "sass",
-              "start": {
-                "line": 3,
-                "column": 12
-              },
-              "end": {
-                "line": 3,
-                "column": 12
-              }
-            }
-          ],
-          "syntax": "sass",
-          "start": {
-            "line": 3,
-            "column": 12
-          },
-          "end": {
-            "line": 3,
-            "column": 12
-          }
-        }
-      ],
-      "syntax": "sass",
-      "start": {
-        "line": 3,
-        "column": 9
       },
       "end": {
         "line": 3,
