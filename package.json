@@ -26,9 +26,7 @@
   },
   "files": [
     "bin",
-    "lib",
-    "scripts",
-    "src"
+    "lib"
   ],
   "dependencies": {
     "minimist": "1.1.x"
