@@ -11,8 +11,6 @@ describe 'sass/ruleset >>', ->
   it '8', -> this.shouldBeOk()
   it '9', -> this.shouldBeOk()
 
-  it 'c.0', -> this.shouldBeOk()
-
   it 'color.ident.0', -> this.shouldBeOk()
   it 'color.ident.1', -> this.shouldBeOk()
 

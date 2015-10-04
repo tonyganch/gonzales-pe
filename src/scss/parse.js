@@ -1379,7 +1379,7 @@ function checkExtend1(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkCompoundSelector(i)) i += l;
+  if (l = checkCompoundSelector(i) || checkPlaceholder(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1397,7 +1397,12 @@ function getExtend1() {
 
   x.push(getAtkeyword());
   x = x.concat(getSC());
-  x = x.concat(getCompoundSelector());
+
+  if (checkCompoundSelector(pos))
+    x = x.concat(getCompoundSelector());
+  else
+    x.push(getPlaceholder());
+
   x = x.concat(getSC());
   x.push(getOptional());
 
@@ -1423,7 +1428,7 @@ function checkExtend2(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkCompoundSelector(i)) i += l;
+  if (l = checkCompoundSelector(i) || checkPlaceholder(i)) i += l;
   else return 0;
 
   return i - start;
@@ -1435,7 +1440,11 @@ function getExtend2() {
 
   x.push(getAtkeyword());
   x = x.concat(getSC());
-  x = x.concat(getCompoundSelector());
+
+  if (checkCompoundSelector(pos))
+    x = x.concat(getCompoundSelector());
+  else
+    x.push(getPlaceholder());
 
   var token = tokens[startPos];
   return newNode(NodeType.ExtendType, x, token.ln, token.col);
@@ -1741,7 +1750,7 @@ function checkInclude1(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1767,21 +1776,15 @@ function checkInclude1(i) {
  */
 function getInclude1() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-
-  x = x.concat(getSC());
-
-  x.push(getIdent());
-
-  x = x.concat(getSC());
-
-  x.push(getArguments());
-
-  x = x.concat(getSC());
-
-  x.push(getBlock());
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getArguments(),
+      getSC(),
+      getBlock()
+  );
 
   var token = tokens[startPos];
   return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -1804,7 +1807,7 @@ function checkInclude2(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1824,17 +1827,13 @@ function checkInclude2(i) {
  */
 function getInclude2() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-
-  x = x.concat(getSC());
-
-  x.push(getIdent());
-
-  x = x.concat(getSC());
-
-  x.push(getArguments());
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getArguments()
+  );
 
   var token = tokens[startPos];
   return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -1858,7 +1857,7 @@ function checkInclude3(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1876,17 +1875,13 @@ function checkInclude3(i) {
  */
 function getInclude3() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-
-  x = x.concat(getSC());
-
-  x.push(getIdent());
-
-  x = x.concat(getSC());
-
-  x.push(getBlock());
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getBlock()
+  );
 
   var token = tokens[startPos];
   return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -1908,7 +1903,7 @@ function checkInclude4(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   return i - start;
@@ -1919,13 +1914,11 @@ function checkInclude4(i) {
  */
 function getInclude4() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-
-  x = x.concat(getSC());
-
-  x.push(getIdent());
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation()
+  );
 
   var token = tokens[startPos];
   return newNode(NodeType.IncludeType, x, token.ln, token.col);
@@ -2906,6 +2899,8 @@ function getPseudoClass4() {
   // Skip `(`.
   pos++;
 
+  value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
   if (checkNumber(pos)) value.push(getNumber());
   if (checkIdent(pos)) value.push(getIdent());
@@ -3775,7 +3770,7 @@ function checkTypeSelector(i) {
   if (l = checkNamePrefix(i)) i += l;
 
   if (tokens[i].type === TokenType.Asterisk) i++;
-  else if (l = checkIdent(i)) i += l;
+  else if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3789,7 +3784,8 @@ function getTypeSelector() {
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
-  if (checkIdent(pos)) content.push(getIdent());
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
 }
@@ -3929,7 +3925,7 @@ function checkAttributeName(i) {
 
   if (l = checkNamePrefix(i)) i += l;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3943,7 +3939,7 @@ function getAttributeName() {
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
-  content.push(getIdent());
+  content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
 }
@@ -4007,7 +4003,7 @@ function getAttributeMatch2() {
 }
 
 function checkAttributeValue(i) {
-  return checkString(i) || checkIdent(i);
+  return checkString(i) || checkIdentOrInterpolation(i);
 }
 
 function getAttributeValue() {
@@ -4018,13 +4014,13 @@ function getAttributeValue() {
   let content = [];
 
   if (checkString(pos)) content.push(getString());
-  else content.push(getIdent());
+  else content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
 }
 
 function checkAttributeFlags(i) {
-  return checkIdent(i);
+  return checkIdentOrInterpolation(i);
 }
 
 function getAttributeFlags() {
@@ -4032,7 +4028,7 @@ function getAttributeFlags() {
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
-  let content = [getIdent()];
+  let content = getIdentOrInterpolation();
 
   return newNode(type, content, line, column);
 }
@@ -4115,7 +4111,7 @@ function checkNamespacePrefix(i) {
   let l;
 
   if (tokens[i].type === TokenType.Asterisk) return 1;
-  else if (l = checkIdent(i)) return l;
+  else if (l = checkIdentOrInterpolation(i)) return l;
   else return 0;
 }
 
@@ -4125,7 +4121,8 @@ function getNamespacePrefix() {
   let line = token.ln;
   let column = token.col;
   let content = [];
-  if (checkIdent(pos)) content.push(getIdent());
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
 }

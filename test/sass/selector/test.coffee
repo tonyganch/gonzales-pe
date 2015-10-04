@@ -15,7 +15,6 @@ describe 'sass/selector >>', ->
   it '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
   it '14', -> this.shouldBeOk()
-  it '15', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
