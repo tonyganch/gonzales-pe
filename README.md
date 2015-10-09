@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/tonyganch/gonzales-pe.svg)]
+(https://travis-ci.org/tonyganch/gonzales-pe)
+
 ## API
 
 ### gonzales.createNode(options)
