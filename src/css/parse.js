@@ -1278,45 +1278,6 @@ function getNamespace() {
  * @param {Number} i Token's index number
  * @return {Number}
  */
-function checkNmName(i) {
-  var start = i;
-
-  if (i >= tokensLength) return 0;
-
-  // Start char / word
-  if (tokens[i].type === TokenType.HyphenMinus ||
-      tokens[i].type === TokenType.LowLine ||
-      tokens[i].type === TokenType.Identifier ||
-      tokens[i].type === TokenType.DecimalNumber) i++;
-  else return 0;
-
-  for (; i < tokensLength; i++) {
-    if (tokens[i].type !== TokenType.HyphenMinus &&
-        tokens[i].type !== TokenType.LowLine &&
-        tokens[i].type !== TokenType.Identifier &&
-        tokens[i].type !== TokenType.DecimalNumber) break;
-  }
-
-  tokens[start].nm_name_last = i - 1;
-
-  return i - start;
-}
-
-/**
- * @return {String}
- */
-function getNmName() {
-  var s = joinValues(pos, tokens[pos].nm_name_last);
-
-  pos = tokens[pos].nm_name_last + 1;
-
-  return s;
-}
-
-/**
- * @param {Number} i Token's index number
- * @return {Number}
- */
 function checkNmName2(i) {
   if (tokens[i].type === TokenType.Identifier) return 1;
   else if (tokens[i].type !== TokenType.DecimalNumber) return 0;
@@ -2204,7 +2165,7 @@ function checkShash(i) {
 
   if (i >= tokensLength || tokens[i].type !== TokenType.NumberSign) return 0;
 
-  return (l = checkNmName(i + 1)) ? l + 1 : 0;
+  return (l = checkIdent(i + 1)) ? l + 1 : 0;
 }
 
 /**
@@ -2221,9 +2182,7 @@ function getShash() {
 
   pos++;
 
-  var ln = tokens[pos].ln;
-  var col = tokens[pos].col;
-  var ident = newNode(NodeType.IdentType, getNmName(), ln, col);
+  var ident = getIdent();
   content.push(ident);
 
   return newNode(type, content, line, column);
