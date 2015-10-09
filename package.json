@@ -18,6 +18,7 @@
   "scripts": {
     "autofix-tests": "./scripts/build.sh && ./scripts/autofix-tests.sh",
     "build": "./scripts/build.sh",
+    "init": "./scripts/init.sh",
     "log": "./scripts/log.sh",
     "test": "./scripts/build.sh && ./scripts/test.sh"
   },
