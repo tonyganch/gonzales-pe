@@ -1228,7 +1228,12 @@ function checkDefault(i) {
 
   if (l = checkSC(i)) i += l;
 
-  return tokens[i].value === 'default' ? i - start + 1 : 0;
+  if (tokens[i].value === 'default') {
+    tokens[start].defaultEnd = i;
+    return i - start + 1;
+  } else {
+    return 0;
+  }
 }
 
 /**
@@ -1236,24 +1241,14 @@ function checkDefault(i) {
  * @returns {Array} `['default', sc]` where `sc` is optional whitespace
  */
 function getDefault() {
-  let startPos = pos;
-  let sc;
-  var token = tokens[startPos];
+  var token = tokens[pos];
   var line = token.ln;
   var column = token.col;
+  let content = joinValues(pos, token.defaultEnd);
 
-  // Skip `!`:
-  pos++;
+  pos = token.defaultEnd + 1;
 
-  sc = getSC();
-  var end = getLastPosition(sc, line, column, 7);
-
-  // Skip `default`:
-  pos++;
-
-  var x = sc.length ? sc : [];
-
-  return newNode(NodeType.DefaultType, x, token.ln, token.col, end);
+  return newNode(NodeType.DefaultType, content, line, column);
 }
 
 /**

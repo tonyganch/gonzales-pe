@@ -45,9 +45,6 @@ module.exports = function stringify(tree) {
     'color': function(t) {
       return '#' + t.content;
     },
-    'default': function(t) {
-      return '!' + _composite(t.content) + 'default';
-    },
     'expression': function(t) {
       return 'expression(' + t.content + ')';
     },
