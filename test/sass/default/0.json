@@ -1,6 +1,6 @@
 {
   "type": "default",
-  "content": [],
+  "content": "!default",
   "syntax": "sass",
   "start": {
     "line": 1,
