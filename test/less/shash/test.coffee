@@ -1,4 +1,5 @@
 describe 'less/shash >>', ->
 
-  it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
+
+  it 'issue-103', -> this.shouldBeOk()
