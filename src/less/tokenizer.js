@@ -149,7 +149,9 @@ module.exports = function(css) {
     var ident = css.substring(start, pos--);
 
     // Enter url mode if parsed substring is `url`:
-    urlMode = urlMode || ident === 'url';
+    if (!urlMode && ident === 'url' && css.charAt(pos + 1) === '(') {
+      urlMode = true;
+    }
 
     // Add identifier to tokens:
     pushToken(TokenType.Identifier, ident, col);
