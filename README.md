@@ -8,19 +8,19 @@ Currently those are supported: SCSS, Sass, LESS.
 
 ## Install
 
-To install command-line tool globally:
+(1) To install command-line tool globally:
 
 ```bash
 npm install -g git://github.com/tonyganch/gonzales-pe.git#dev
 ```
 
-To install parser as a project dependency:
+(2) To install parser as a project dependency:
 
 ```bash
 npm install --save git://github.com/tonyganch/gonzales-pe.git#dev
 ```
 
-If for some reason you want to build files yourself:
+(3) If for some reason you want to build files yourself:
 
 ```bash
 # Clone the repo.
@@ -35,217 +35,718 @@ npm run init
 
 ## API
 
+Basically there are a few things you can do:
+
+1. parse css string and get a parse tree in return;
+2. modify tree nodes;
+3. remove tree nodes;
+4. add new nodes to the tree;
+5. convert modified tree back to a string.
+
+In examples below I assume that `gonzales` is a parser module and `parseTree`
+is some parsed css:
+
+```js
+let gonzales = require('gonzales-pe');
+let parseTree = gonzales.parse(css);
+```
+
 ### gonzales.createNode(options)
 
-Creates a new node.
+##### Description
 
-Parameters:
+Creates a new node. Useful when you need to add something to a tree.
 
-* `{{type: String, content: String|Array}} options`
+##### Parameters
 
-Returns:
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>options</td>
+    <td>Options to pass to a `Node` constructor.</td>
+  </tr>
+  <tr>
+</table>
 
-* `{Object} node`
+##### Returns
 
-Example:
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>A new node.</td>
+  </tr>
+</table>
+
+##### Examples
+
 ```js
-    var css = 'a {color: tomato}';
-    var parseTree = gonzales.parse(css);
-    var node = gonzales.createNode({ type: 'animal', content: 'panda' });
-    parseTree.content.push(node);
+let css = 'a {color: tomato}';
+let parseTree = gonzales.parse(css);
+let node = gonzales.createNode({ type: 'animal', content: 'panda' });
+parseTree.content.push(node);
 ```
 
-### gonzales.parse(css, options)
 
-Parse CSS.
+### gonzales.parse(css[, options])
 
-Parameters:
+##### Description
 
-* `{String} css`
-* `{{syntax: String, rule: String}} options`
+Parses a css string.
 
-Returns:
+##### Parameters
 
-* `{Object} parseTree`.
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>css</td>
+    <td>A string to parse.</td>
+  </tr>
+  <tr>
+    <td><i>{Object=}</i></td>
+    <td>options</td>
+    <td>Optional. Additional options:
+      <ul>
+        <li>
+          <code>{string} syntax</code> — any of the following: <code>css</code>,
+          <code>less</code>, <code>sass</code>, <code>scss</code>.
+          Default one is <code>css</code>.
+        </li>
+        <li>
+          <code>{string} rule</code> — root node's type. For a list of available
+          values see <a href="doc/node-types.md">"Node types"</a>. Default
+          one is <code>stylesheet</code>.
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-Example:
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>Parse tree.</td>
+  </tr>
+</table>
+
+##### Examples
+
 ```js
-    var css = 'a {color: tomato}';
-    var parseTree = gonzales.parse(css);
+let css = 'a {color: tomato}';
+let parseTree = gonzales.parse(css);
 ```
 
-Example:
 ```js
-    var less = 'a {$color: tomato}';
-    var parseTree = gonzales.parse(less, {syntax: 'less'});
+let less = 'a {$color: tomato}';
+let parseTree = gonzales.parse(less, {syntax: 'less'});
 ```
 
-Example:
 ```js
-    var less = '$color: tomato';
-    var parseTree = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
+let less = '$color: tomato';
+let parseTree = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 ```
 
 ### parseTree.contains(type)
 
+##### Description
+
 Checks whether there is a child node of given type.
 
-Parameters:
+##### Parameters
 
-* `{String} type`
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>type</td>
+    <td>
+      Node type we're looking for. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+</table>
 
-Returns:
+##### Returns
 
-* `{Boolean}`
+<table>
+  <tr>
+    <td><i>{boolean}</i></td>
+    <td>
+      <code>true</code> if a tree contains a child node of a given type,
+      <code>false</code> otherwise.
+    </td>
+  </tr>
+</table>
 
-Example:
+##### Examples
+
 ```js
-    if (parseTree.contains('panda'))
-        doSomething();
+if (parseTree.contains('space')) {
+  doSomething();
+}
 ```
 
 ### parseTree.content
 
-### parseTree.eachFor(type, callback)
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{string|Array}</i></td>
+    <td>Node's content (child nodes or a string).</td>
+  </tr>
+</table>
+
+### parseTree.eachFor([type, ]callback)
+
+##### Description
+
+Calls a function for every child node in tree. If `type` parameter is passed,
+calls a function only for child nodes of a given type. The main difference from
+`parseTree.forEach()` is that this method loops through node list from the end
+to beginning.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{string=}</i></td>
+    <td>type</td>
+    <td>
+      Optional. A node type by which to filter child nodes before applying
+      a callback function. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+  <tr>
+    <td><i>{Function}</i></td>
+    <td>callback</td>
+    <td>
+      Function to call for every child node. Accepts following parameters:
+      <ul>
+        <li><code>{Object}</code> — a child node;</li>
+        <li><code>{number}</code> — index of the child node in node list;</li>
+        <li>
+          <code>{Object}</code> — parent node (equals to <code>parseTree</code>).
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+##### Examples
+
+```js
+parseTree.eachFor(function(childNode) {
+  doSomething(childNode);
+});
+```
+
+```js
+// Remove all child spaces.
+parseTree.eachFor('space', function(spaceNode, i) {
+  parseTree.remove(i);
+});
+```
 
 ### parseTree.end
 
-### parseTree.first(type)
+##### Returns
 
-Returns the first child node of given type.
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>
+      End position of the node. Contains following info:
+      <ul>
+        <li>
+          <code>{number} line</code> — last symbol's line number
+          (1-based index);
+        </li>
+        <li>
+          <code>{number} column</code> — last symbol's column number
+          (1-based index).
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
 
-Parameters:
+### parseTree.first([type])
 
-* `{String=} type`
+##### Description
 
-Returns:
+Gets the first child node. If `type` parameter is passed, gets the fisrt child
+node of a given type.
 
-* `{Node} node`
+##### Parameters
 
-Example:
+<table>
+  <tr>
+    <td><i>{string=}</i></td>
+    <td>type</td>
+    <td>
+      Optional. Node type to look for. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+</table>
+
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>A node.</td>
+  </tr>
+</table>
+
+##### Examples
+
 ```js
-    var node = parseTree.first();
-    node.content = 'panda';
+let node = parseTree.first();
+node.content = 'panda';
 ```
 
-Example:
 ```js
-    var node = parseTree.first('commentML');
-    node.content = 'panda';
+let node = parseTree.first('multilineComment');
+node.content = 'panda';
 ```
 
-### parseTree.forEach(type, function)
+### parseTree.forEach([type, ]callback)
 
-Calls the function for every child node of given type.
+##### Description
 
-Parameters:
+Calls a function for every child node in tree. If `type` parameter is passed,
+calls a function only for child nodes of a given type. The main difference from
+`parseTree.eachFor()` is that this method loops through node list from the
+beginnig to end.
 
-* `{String=} type`
-* `{Function} function`
+##### Parameters
 
-Example:
+<table>
+  <tr>
+    <td><i>{string=}</i></td>
+    <td>type</td>
+    <td>
+      Optional. A node type by which to filter child nodes before applying
+      a callback function. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+  <tr>
+    <td><i>{Function}</i></td>
+    <td>callback</td>
+    <td>
+      Function to call for every child node. Accepts following parameters:
+      <ul>
+        <li><code>{Object}</code> — a child node;</li>
+        <li><code>{number}</code> — index of the child node in node list;</li>
+        <li>
+          <code>{Object}</code> — parent node (equals to <code>parseTree</code>).
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+##### Examples
+
 ```js
-    parseTree.forEach('commentML', function(node) {
-        node.content = 'panda';
-    });
+parseTree.forEach(function(childNode) {
+  doSomething();
+});
+```
+
+```js
+parseTree.forEach('space', function(spaceNode) {
+  doSomething();
+});
 ```
 
 ### parseTree.get(index)
 
-### parseTree.indexHasChanged
+##### Description
+
+Gets *nth* child of the `parseTree`.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{number}</i></td>
+    <td>index</td>
+    <td>Index number of node which we're looking for.</td>
+  </tr>
+</table>
+
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>A node.</td>
+  </tr>
+</table>
+
+##### Examples
+
+```js
+var node = parseTree.get(2);
+doSomething(node);
+```
 
 ### parseTree.insert(index, node)
 
+##### Description
+
+Inserts a node to a given position in `parseTree`.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{number}</i></td>
+    <td>index</td>
+    <td>Index of position where to insert the node.</td>
+  </tr>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>node</td>
+    <td>A node to insert.</td>
+  </tr>
+</table>
+
+##### Examples
+
+```js
+let node = gonzales.createNode({type: 'animal', content: 'panda'});
+parseTree.insert(2, node);
+```
+
 ### parseTree.is(type)
+
+##### Description
 
 Checks whether the node is of given type.
 
-Parameters:
+##### Parameters
 
-* `{String} type`
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>type</td>
+    <td>
+      A node type against which to check type of <code>parseTree</code>.
+      For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+</table>
 
-Returns:
+##### Returns
 
-* `{Boolean}`
+<table>
+  <tr>
+    <td><i>{boolean}</i></td>
+    <td>
+      <code>true</code> if types are equal, <code>false</code> otherwise.
+    </td>
+  </tr>
+</table>
 
-Example:
+##### Examples
+
 ```js
-    if (parseTree.is('s'))
-        parseTree.content = '';
+if (node.is('space')) {
+  node.content = '';
+}
 ```
 
 ### parseTree.last(type)
 
-Returns the last child node of given type.
+Gets the last child node. If `type` parameter is passed, gets the last child
+node of a given type.
 
-Parameters:
+##### Parameters
 
-* `{String=} type`
+<table>
+  <tr>
+    <td><i>{string=}</i></td>
+    <td>type</td>
+    <td>
+      Optional. Node type to look for. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+</table>
 
-Returns:
+##### Returns
 
-* `{Node} node`
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>A node.</td>
+  </tr>
+</table>
 
-Example:
+##### Examples
+
 ```js
-    var node = parseTree.last()
-    node.content = 'panda';
+let node = parseTree.last();
+node.content = 'panda';
 ```
 
-Example:
 ```js
-    var node = parseTree.last('commentML');
-    node.content = 'panda';
+let node = parseTree.last('multilineComment');
+node.content = 'panda';
 ```
 
 ### parseTree.length
 
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{number}</i></td>
+    <td>Number of child nodes.</td>
+  </tr>
+</table>
+
 ### parseTree.remove(index)
+
+##### Description
+
+Removes a child node at a given position.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{number}</i></td>
+    <td>index</td>
+    <td>Index of a child node we need to remove.</td>
+  </tr>
+</table>
 
 ### parseTree.start
 
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>
+      Start position of the node. Contains following info:
+      <ul>
+        <li>
+          <code>{number} line</code> — first symbol's line number
+          (1-based index);
+        </li>
+        <li>
+          <code>{number} column</code> — first symbol's column number
+          (1-based index).
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+
 ### parseTree.syntax
+
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>Syntax of original parsed string.</td>
+  </tr>
+</table>
 
 ### parseTree.toJson()
 
+##### Description
+
+Converts parse tree to JSON. Useful for printing.
+
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>Parse tree in JSON</td>
+  </tr>
+</table>
+
 ### parseTree.toString()
 
-Converts parse tree to code.
+##### Description
 
-Parameters:
+Converts parse tree back to string according to original syntax.
 
-* `{String} syntax`
+##### Returns
 
-Returns:
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>A compiled string.</td>
+  </tr>
+</table>
 
-* `{String} css`
+##### Examples
 
-Example:
 ```js
-    var css = parseTree.toCSS('css');
-    var less = parseTree.toCSS('less');
+let css = parseTree.toString();
 ```
 
-### parseTree.traverse(function)
+### parseTree.traverse(callback)
 
-Calls the function for every node in a tree. Modifies the tree!
+##### Description
 
-Parameters:
+Calls the function for every node in a tree including `parseTree` itself.
 
-* `{Function} function`
+##### Parameters
 
-Example:
+<table>
+  <tr>
+    <td><i>{Function}</i></td>
+    <td>callback</td>
+    <td>
+      Function to apply to every node. Accepts following parameters:
+      <ul>
+        <li><code>{Object}</code> — a node to which we apply callback;</li>
+        <li>
+          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
+          additional info, where <code>index</code> is node's index number
+          inside its parent, <code>nestingLevel</code> is node's nesting level
+          inside the root node and <code>parent</code> is node's parent.
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+##### Examples
+
 ```js
-    parseTree.map(function(node) {
-        if (node.type === 'commentML') node.content = 'panda';
-    });
+parseTree.traverse(function(node, nodeData) {
+  if (node.is('multilineComment')) {
+    nodeData.parent.remove(nodeData.index);
+  } else if (node.is('space')) {
+    node.content = ' ';
+  }
+});
 ```
 
 ### parseTree.traverseByType(type, callback)
 
+##### Description
+
+This method is available only for a root node.    
+Calls the function for every node of a given type. This means not just child
+nodes, but grandchilds and so on.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>type</td>
+    <td>
+      Node type. For a list of available values please see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+  <tr>
+    <td><i>{Function}</i></td>
+    <td>callback</td>
+    <td>
+      Function to apply to every node of a given type.
+      Accepts following parameters:
+      <ul>
+        <li><code>{Object}</code> — a node to which we apply callback;</li>
+        <li>
+          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
+          additional info, where <code>index</code> is node's index number
+          inside its parent, <code>nestingLevel</code> is node's nesting level
+          inside the root node and <code>parent</code> is node's parent.
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+##### Examples
+
+```js
+// Remove all comments.
+parseTree.traverseByType('multilineComment', function(node, nodeData) {
+  nodeData.parent.remove(nodeData.index);
+});
+```
+
 ### parseTree.traverseByTypes(types, callback)
 
+##### Description
+
+This method is available only for a root node.    
+Calls the function for every node of given types. This means not just child
+nodes, but grandchilds and so on.
+
+##### Parameters
+
+<table>
+  <tr>
+    <td><i>{Array.string}</i></td>
+    <td>types</td>
+    <td>
+      List of node types. For a list of available values please see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+  <tr>
+    <td><i>{Function}</i></td>
+    <td>callback</td>
+    <td>
+      Function to apply to every node of given types.
+      Accepts following parameters:
+      <ul>
+        <li><code>{Object}</code> — a node to which we apply callback;</li>
+        <li>
+          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
+          additional info, where <code>index</code> is node's index number
+          inside its parent, <code>nestingLevel</code> is node's nesting level
+          inside the root node and <code>parent</code> is node's parent.
+        </li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+##### Examples
+
+```js
+// Remove all comments and spaces.
+let types = ['multilineComment', 'space'];
+parseTree.traverseByTypes(types, function(node, nodeData) {
+  nodeData.parent.remove(nodeData.index);
+});
+```
+
 ### parseTree.type
+
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{string}</i></td>
+    <td>
+      Node type. For a list of available values see
+      <a href="doc/node-types.md">"Node types"</a>.
+    </td>
+  </tr>
+</table>
 
 
 ## Test
