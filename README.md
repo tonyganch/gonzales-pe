@@ -1,37 +1,32 @@
-Gonzales is a fast CSS parser.    
-Gonzales PE is a rework with support of preprocessors.    
+# Gonzales PE @2.0.2
 
-Currently those are supported: SCSS, Sass, LESS.
-
-For a plan of future work see [issue #4](https://github.com/tonyganch/gonzales-pe/issues/4).
+Gonzales PE is a CSS parser which plays nicely with preprocessors.    
+Currently those are supported: SCSS, Sass, LESS.    
 
 ## Install
 
-To install globally:
+To install command-line tool globally:
 
-    npm install gonzales-pe@2.0.2 -g
+```bash
+npm install -g gonzales-pe@2.0.2
+```
 
-To install as a project dependency:
+To install parser as a project dependency:
 
-    npm install gonzales-pe@2.0.2
+```bash
+npm install --save gonzales-pe@2.0.2
+```
 
-To install dev branch:
+If for some reason you want to build files yourself:
 
-    npm install git://github.com/tonyganch/gonzales-pe.git#dev
-
-To clone from github:
-
-    git clone git@github.com:tonyganch/gonzales-pe.git
-
-## Build
-
-If you installed/cloned the repo from GitHub, make sure to build library files
-first.    
-It can be done by running `make` in the module's root directory.    
-`make` will build both Node.js and web versions (all files are comments-free
-but not compressed).    
-If you need a minified version for production, feel free to use uglifier of
-your choice.
+```bash
+# Clone the repo.
+git clone git@github.com:tonyganch/gonzales-pe.git
+# Go to `2.0` branch.
+git checkout 2.0
+# Build files.
+make
+```
 
 ## Use
 
