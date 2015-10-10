@@ -13,6 +13,7 @@
 # [api] - for commits that change API
 # [cli] - for commits that change CLI
 # [css] - for commits that change anything in css syntax
+# [docs] - for commits that change documentation
 # [less] - for commits that change anything in less syntax
 # [sass] - for commits that change anything in sass syntax
 # [scss] - for commits that change anything in scss syntax
