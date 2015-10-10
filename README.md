@@ -50,9 +50,9 @@ Returns:
 Example:
 ```js
     var css = 'a {color: tomato}';
-    var ast = gonzales.parse(css);
+    var parseTree = gonzales.parse(css);
     var node = gonzales.createNode({ type: 'animal', content: 'panda' });
-    ast.content.push(node);
+    parseTree.content.push(node);
 ```
 
 ### gonzales.parse(css, options)
@@ -66,27 +66,27 @@ Parameters:
 
 Returns:
 
-* `{Object} ast`.
+* `{Object} parseTree`.
 
 Example:
 ```js
     var css = 'a {color: tomato}';
-    var ast = gonzales.parse(css);
+    var parseTree = gonzales.parse(css);
 ```
 
 Example:
 ```js
     var less = 'a {$color: tomato}';
-    var ast = gonzales.parse(less, {syntax: 'less'});
+    var parseTree = gonzales.parse(less, {syntax: 'less'});
 ```
 
 Example:
 ```js
     var less = '$color: tomato';
-    var ast = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
+    var parseTree = gonzales.parse(less, {syntax: 'less', rule: 'declaration'});
 ```
 
-### ast.contains(type)
+### parseTree.contains(type)
 
 Checks whether there is a child node of given type.
 
@@ -100,17 +100,17 @@ Returns:
 
 Example:
 ```js
-    if (ast.contains('panda'))
+    if (parseTree.contains('panda'))
         doSomething();
 ```
 
-### ast.content
+### parseTree.content
 
-### ast.eachFor(type, callback)
+### parseTree.eachFor(type, callback)
 
-### ast.end
+### parseTree.end
 
-### ast.first(type)
+### parseTree.first(type)
 
 Returns the first child node of given type.
 
@@ -124,17 +124,17 @@ Returns:
 
 Example:
 ```js
-    var node = ast.first();
+    var node = parseTree.first();
     node.content = 'panda';
 ```
 
 Example:
 ```js
-    var node = ast.first('commentML');
+    var node = parseTree.first('commentML');
     node.content = 'panda';
 ```
 
-### ast.forEach(type, function)
+### parseTree.forEach(type, function)
 
 Calls the function for every child node of given type.
 
@@ -145,18 +145,18 @@ Parameters:
 
 Example:
 ```js
-    ast.forEach('commentML', function(node) {
+    parseTree.forEach('commentML', function(node) {
         node.content = 'panda';
     });
 ```
 
-### ast.get(index)
+### parseTree.get(index)
 
-### ast.indexHasChanged
+### parseTree.indexHasChanged
 
-### ast.insert(index, node)
+### parseTree.insert(index, node)
 
-### ast.is(type)
+### parseTree.is(type)
 
 Checks whether the node is of given type.
 
@@ -170,11 +170,11 @@ Returns:
 
 Example:
 ```js
-    if (ast.is('s'))
-        ast.content = '';
+    if (parseTree.is('s'))
+        parseTree.content = '';
 ```
 
-### ast.last(type)
+### parseTree.last(type)
 
 Returns the last child node of given type.
 
@@ -188,29 +188,29 @@ Returns:
 
 Example:
 ```js
-    var node = ast.last()
+    var node = parseTree.last()
     node.content = 'panda';
 ```
 
 Example:
 ```js
-    var node = ast.last('commentML');
+    var node = parseTree.last('commentML');
     node.content = 'panda';
 ```
 
-### ast.length
+### parseTree.length
 
-### ast.remove(index)
+### parseTree.remove(index)
 
-### ast.start
+### parseTree.start
 
-### ast.syntax
+### parseTree.syntax
 
-### ast.toJson()
+### parseTree.toJson()
 
-### ast.toString()
+### parseTree.toString()
 
-Converts AST to code.
+Converts parse tree to code.
 
 Parameters:
 
@@ -222,11 +222,11 @@ Returns:
 
 Example:
 ```js
-    var css = ast.toCSS('css');
-    var less = ast.toCSS('less');
+    var css = parseTree.toCSS('css');
+    var less = parseTree.toCSS('less');
 ```
 
-### ast.traverse(function)
+### parseTree.traverse(function)
 
 Calls the function for every node in a tree. Modifies the tree!
 
@@ -236,16 +236,16 @@ Parameters:
 
 Example:
 ```js
-    ast.map(function(node) {
+    parseTree.map(function(node) {
         if (node.type === 'commentML') node.content = 'panda';
     });
 ```
 
-### ast.traverseByType(type, callback)
+### parseTree.traverseByType(type, callback)
 
-### ast.traverseByTypes(types, callback)
+### parseTree.traverseByTypes(types, callback)
 
-### ast.type
+### parseTree.type
 
 
 ## Test
@@ -257,8 +257,8 @@ To run tests:
 This command will build library files from sources and run tests on all files
 in syntax directories.
 
-Every test has 3 files: source stylesheet, expected AST and expected string
-compiled back from AST to css.
+Every test has 3 files: source stylesheet, expected parse tree and expected
+string compiled back from parse tree to css.
 
 If some tests fail, you can find information in test logs:
 
