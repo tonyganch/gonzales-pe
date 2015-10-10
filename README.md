@@ -1,6 +1,36 @@
 [![Build Status](https://travis-ci.org/tonyganch/gonzales-pe.svg)]
 (https://travis-ci.org/tonyganch/gonzales-pe)
 
+Gonzales PE is a CSS parser which plays nicely with preprocessors.    
+Currently those are supported: SCSS, Sass, LESS.
+
+## Install
+
+To install command-line tool globally:
+
+```bash
+npm install -g git://github.com/tonyganch/gonzales-pe.git#dev
+```
+
+To install parser as a project dependency:
+
+```bash
+npm install --save git://github.com/tonyganch/gonzales-pe.git#dev
+```
+
+If for some reason you want to build files yourself:
+
+```bash
+# Clone the repo.
+git clone git@github.com:tonyganch/gonzales-pe.git
+# Go to dev branch.
+git checkout dev
+# Install project dependencies.
+npm install
+# Install git hooks and build files.
+npm run init
+```
+
 ## API
 
 ### gonzales.createNode(options)
