@@ -529,10 +529,20 @@ Removes a child node at a given position.
   </tr>
 </table>
 
+##### Returns
+
+<table>
+  <tr>
+    <td><i>{Object}</i></td>
+    <td>Removed node.</td>
+  </tr>
+</table>
 ##### Examples
 
 ```js
-parseTree.removeChild(2);
+// Swap nodes.
+var node = parseTree.removeChild(1);
+parseTree.insert(0, node);
 ```
 
 ### parseTree.start

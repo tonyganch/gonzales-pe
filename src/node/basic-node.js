@@ -142,12 +142,16 @@ class Node {
 
     /**
      * @param {Number} index
+     * @return {Node}
      */
     removeChild(index) {
       if (!Array.isArray(this.content)) return;
 
-      this.content.splice(index, 1);
-      if (this.indexHasChanged) this.indexHasChanged[0] = 1;
+      let removedChild = this.content.splice(index, 1);
+
+      if (removedChild) this.indexHasChanged[0] = 1;
+
+      return removedChild;
     }
 
     toJson() {
