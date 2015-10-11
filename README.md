@@ -636,7 +636,7 @@ Calls the function for every node in a tree including `parseTree` itself.
           <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
           additional info, where <code>index</code> is node's index number
           inside its parent, <code>nestingLevel</code> is node's nesting level
-          inside the root node and <code>parent</code> is node's parent.
+          relative to its parent and <code>parent</code> is node's parent.
         </li>
       </ul>
     </td>
@@ -682,12 +682,8 @@ nodes, but grandchilds and so on.
       Accepts following parameters:
       <ul>
         <li><code>{Object}</code> — a node to which we apply callback;</li>
-        <li>
-          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
-          additional info, where <code>index</code> is node's index number
-          inside its parent, <code>nestingLevel</code> is node's nesting level
-          inside the root node and <code>parent</code> is node's parent.
-        </li>
+        <li><code>{number}</code> — node's index number inside its parent;</li>
+        <li><code>{Object}</code> — a node's parent.</li>
       </ul>
     </td>
   </tr>
@@ -698,7 +694,7 @@ nodes, but grandchilds and so on.
 ```js
 // Remove all comments.
 parseTree.traverseByType('multilineComment', function(node, nodeData) {
-  nodeData.parent.removeChild(nodeData.index);
+  parent.removeChild(index);
 });
 ```
 
@@ -729,12 +725,8 @@ nodes, but grandchilds and so on.
       Accepts following parameters:
       <ul>
         <li><code>{Object}</code> — a node to which we apply callback;</li>
-        <li>
-          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
-          additional info, where <code>index</code> is node's index number
-          inside its parent, <code>nestingLevel</code> is node's nesting level
-          inside the root node and <code>parent</code> is node's parent.
-        </li>
+        <li><code>{number}</code> — node's index number inside its parent;</li>
+        <li><code>{Object}</code> — a node's parent.</li>
       </ul>
     </td>
   </tr>
@@ -745,8 +737,8 @@ nodes, but grandchilds and so on.
 ```js
 // Remove all comments and spaces.
 let types = ['multilineComment', 'space'];
-parseTree.traverseByTypes(types, function(node, nodeData) {
-  nodeData.parent.removeChild(nodeData.index);
+parseTree.traverseByTypes(types, function(node, index, parent) {
+  parent.removeChild(index);
 });
 ```
 
