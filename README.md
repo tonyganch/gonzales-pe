@@ -113,7 +113,7 @@ Parses a css string.
         </li>
         <li>
           <code>{string} rule</code> — root node's type. For a list of available
-          values see <a href="doc/node-types.md">"Node types"</a>. Default
+          values see <a href="docs/node-types.md">"Node types"</a>. Default
           one is <code>stylesheet</code>.
         </li>
       </ul>
@@ -161,7 +161,7 @@ Checks whether there is a child node of given type.
     <td>type</td>
     <td>
       Node type we're looking for. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
 </table>
@@ -215,7 +215,7 @@ to beginning.
     <td>
       Optional. A node type by which to filter child nodes before applying
       a callback function. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
   <tr>
@@ -287,7 +287,7 @@ node of a given type.
     <td>type</td>
     <td>
       Optional. Node type to look for. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
 </table>
@@ -331,7 +331,7 @@ beginnig to end.
     <td>
       Optional. A node type by which to filter child nodes before applying
       a callback function. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
   <tr>
@@ -439,7 +439,7 @@ Checks whether the node is of given type.
     <td>
       A node type against which to check type of <code>parseTree</code>.
       For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
 </table>
@@ -476,7 +476,7 @@ node of a given type.
     <td>type</td>
     <td>
       Optional. Node type to look for. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
 </table>
@@ -655,7 +655,7 @@ nodes, but grandchilds and so on.
     <td>type</td>
     <td>
       Node type. For a list of available values please see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
   <tr>
@@ -702,7 +702,7 @@ nodes, but grandchilds and so on.
     <td>types</td>
     <td>
       List of node types. For a list of available values please see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
   <tr>
@@ -743,7 +743,7 @@ parseTree.traverseByTypes(types, function(node, nodeData) {
     <td><i>{string}</i></td>
     <td>
       Node type. For a list of available values see
-      <a href="doc/node-types.md">"Node types"</a>.
+      <a href="docs/node-types.md">"Node types"</a>.
     </td>
   </tr>
 </table>
