@@ -143,7 +143,7 @@ class Node {
     /**
      * @param {Number} index
      */
-    remove(index) {
+    removeChild(index) {
       if (!Array.isArray(this.content)) return;
 
       this.content.splice(index, 1);

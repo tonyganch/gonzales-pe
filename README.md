@@ -245,7 +245,7 @@ parseTree.eachFor(function(childNode) {
 ```js
 // Remove all child spaces.
 parseTree.eachFor('space', function(spaceNode, i) {
-  parseTree.remove(i);
+  parseTree.removeChild(i);
 });
 ```
 
@@ -513,7 +513,7 @@ node.content = 'panda';
   </tr>
 </table>
 
-### parseTree.remove(index)
+### parseTree.removeChild(index)
 
 ##### Description
 
@@ -528,6 +528,12 @@ Removes a child node at a given position.
     <td>Index of a child node we need to remove.</td>
   </tr>
 </table>
+
+##### Examples
+
+```js
+parseTree.removeChild(2);
+```
 
 ### parseTree.start
 
@@ -632,7 +638,7 @@ Calls the function for every node in a tree including `parseTree` itself.
 ```js
 parseTree.traverse(function(node, nodeData) {
   if (node.is('multilineComment')) {
-    nodeData.parent.remove(nodeData.index);
+    nodeData.parent.removeChild(nodeData.index);
   } else if (node.is('space')) {
     node.content = ' ';
   }
@@ -682,7 +688,7 @@ nodes, but grandchilds and so on.
 ```js
 // Remove all comments.
 parseTree.traverseByType('multilineComment', function(node, nodeData) {
-  nodeData.parent.remove(nodeData.index);
+  nodeData.parent.removeChild(nodeData.index);
 });
 ```
 
@@ -730,7 +736,7 @@ nodes, but grandchilds and so on.
 // Remove all comments and spaces.
 let types = ['multilineComment', 'space'];
 parseTree.traverseByTypes(types, function(node, nodeData) {
-  nodeData.parent.remove(nodeData.index);
+  nodeData.parent.removeChild(nodeData.index);
 });
 ```
 
