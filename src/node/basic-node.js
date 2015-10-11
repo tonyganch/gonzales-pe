@@ -180,7 +180,7 @@ class Node {
 
       level++;
 
-      callback(this, {index: index, nestingLevel: level, parent: parent});
+      callback(this, index, parent, level);
 
       if (!Array.isArray(this.content)) return;
 

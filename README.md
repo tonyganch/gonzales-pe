@@ -632,11 +632,10 @@ Calls the function for every node in a tree including `parseTree` itself.
       Function to apply to every node. Accepts following parameters:
       <ul>
         <li><code>{Object}</code> — a node to which we apply callback;</li>
+        <li><code>{number}</code> — node's index number inside its parent;</li>
+        <li><code>{Object}</code> — a node's parent;</li>
         <li>
-          <code>{{index: number, nestingLevel: number, parent: Object}}</code> —
-          additional info, where <code>index</code> is node's index number
-          inside its parent, <code>nestingLevel</code> is node's nesting level
-          relative to its parent and <code>parent</code> is node's parent.
+          <code>{number}</code> — node's nesting level relative to its parent.
         </li>
       </ul>
     </td>
@@ -646,9 +645,9 @@ Calls the function for every node in a tree including `parseTree` itself.
 ##### Examples
 
 ```js
-parseTree.traverse(function(node, nodeData) {
+parseTree.traverse(function(node, index, parent) {
   if (node.is('multilineComment')) {
-    nodeData.parent.removeChild(nodeData.index);
+    parent.removeChild(index);
   } else if (node.is('space')) {
     node.content = ' ';
   }
