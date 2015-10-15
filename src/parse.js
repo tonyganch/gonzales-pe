@@ -21,7 +21,6 @@ function parser(css, options) {
       return require('./node/empty-node')();
 
   var syntax = options && options.syntax || Defaults.SYNTAX;
-  var needInfo = options && options.needInfo || Defaults.NEED_INFO;
   var rule = options && options.rule || Defaults.CSS_RULE;
 
   if (!fs.existsSync(__dirname + '/' + syntax)) {
@@ -38,7 +37,7 @@ function parser(css, options) {
 
   var ast;
   try {
-    ast = parse(tokens, rule, needInfo);
+    ast = parse(tokens, rule);
   } catch (e) {
     if (!e.syntax) throw e;
     throw new ParsingError(e, css);

@@ -40,8 +40,7 @@ function shouldBeOk() {
 
     var options = {
         rule: rule,
-        syntax: syntax,
-        needInfo: true
+        syntax: syntax
     };
 
     try {

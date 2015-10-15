@@ -9,7 +9,6 @@ var TokenType = require('../token-types');
 let tokens;
 let tokensLength;
 let pos;
-let needInfo;
 
 var rules = {
   'arguments': function() { return checkArguments(pos) && getArguments(); },
@@ -3195,9 +3194,8 @@ function getVhash() {
   return newNode(NodeType.VhashType, x, line, column, end);
 }
 
-module.exports = function(_tokens, rule, _needInfo) {
+module.exports = function(_tokens, rule) {
   tokens = _tokens;
-  needInfo = _needInfo;
   tokensLength = tokens.length;
   pos = 0;
 
