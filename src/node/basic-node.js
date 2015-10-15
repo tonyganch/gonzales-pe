@@ -54,10 +54,12 @@ class Node {
 
     /**
      * @param {String} type
-     * @return {Node} First child node
+     * @return {?Node} First child node or `null` if nothing's been found.
      */
     first(type) {
-      if (!type || !Array.isArray(this.content)) return this.content[0];
+      if (!Array.isArray(this.content)) return null;
+
+      if (!type) return this.content[0];
 
       var i = 0;
       var l = this.content.length;
@@ -65,6 +67,8 @@ class Node {
       for (; i < l; i++) {
         if (this.content[i].type === type) return this.content[i];
       }
+
+      return null;
     }
 
     /**

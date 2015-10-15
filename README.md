@@ -277,7 +277,7 @@ parseTree.eachFor('space', function(spaceNode, i) {
 ##### Description
 
 Gets the first child node. If `type` parameter is passed, gets the fisrt child
-node of a given type.
+node of a given type. If no node has been found, returns `null`.
 
 ##### Parameters
 
@@ -296,7 +296,7 @@ node of a given type.
 
 <table>
   <tr>
-    <td><i>{Object}</i></td>
+    <td><i>{?Object}</i></td>
     <td>A node.</td>
   </tr>
 </table>
