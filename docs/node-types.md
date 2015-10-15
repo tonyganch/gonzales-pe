@@ -410,9 +410,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+#fff
 
 // Parse tree
 {
+  type: 'color',
+  content: 'fff'
 }
 ```
 
@@ -427,9 +430,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+~
 
 // Parse tree
 {
+  type: 'combinator',
+  content: '~'
 }
 ```
 
@@ -444,9 +450,36 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+@if 1 > 2
 
 // Parse tree
 {
+  type: 'condition',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'if'
+    }],
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'number',
+    content: '1'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'operator',
+    content: '>'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'number',
+    content: '2'
+  }],
 }
 ```
 
@@ -461,9 +494,75 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+@if 1 > 2 { color: tomato; }
 
 // Parse tree
 {
+  type: 'conditionalStatement',
+  content: [{
+    type: 'condition',
+    content: [{
+      type: 'atkeyword',
+      content: [{
+        type: 'ident',
+        content: 'if'
+      }],
+    }, {
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'number',
+      content: '1'
+    }, {
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'operator',
+      content: '>'
+    }, {
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'number',
+      content: '2'
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'block',
+    content: [{
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'declaration',
+      content: [{
+        type: 'property',
+        content: [{
+          type: 'ident',
+          content: 'color'
+        }]
+      }, {
+        type: 'propertyDelimiter',
+        content: ':'
+      }, {
+        type: 'space',
+        content: ' '
+      }, {
+        type: 'value',
+        content: [{
+          type: 'ident',
+          content: 'tomato'
+        }]
+      }]
+    }, {
+      type: 'declarationDelimiter',
+      content: ';'
+    }, {
+      type: 'space',
+      content: ' '
+    }]
+  }]
 }
 ```
 
@@ -478,9 +577,27 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+a:b
 
 // Parse tree
 {
+  type: 'declaration',
+  content: [{
+    type: 'property',
+    content: [{
+      type: 'ident',
+      content: 'a'
+    }]
+  }, {
+    type: 'propertyDelimiter',
+    content: ':'
+  }, {
+    type: 'value',
+    content: [{
+      type: 'ident',
+      content: 'b'
+    }]
+  }]
 }
 ```
 
@@ -495,9 +612,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+;
 
 // Parse tree
 {
+  type: 'declarationDelimiter',
+  content: ';'
 }
 ```
 
@@ -512,9 +632,12 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+!default
 
 // Parse tree
 {
+  type: 'default',
+  content: '!default'
 }
 ```
 
@@ -529,9 +652,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+,
 
 // Parse tree
 {
+  type: 'delimiter',
+  content: ','
 }
 ```
 
@@ -546,9 +672,18 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+10px
 
 // Parse tree
 {
+  type: 'dimension',
+  content: [{
+    type: 'number',
+    content: '10'
+  }, {
+    type: 'ident',
+    content: 'px'
+  }]
 }
 ```
 
@@ -563,26 +698,12 @@ Used in syntaxes: less.
 
 ```js
 // String
+~"nani"
 
 // Parse tree
 {
-}
-```
-
-
-### extend
-
-##### Description
-
-Used in syntaxes: less, sass, scss.
-
-##### Examples
-
-```js
-// String
-
-// Parse tree
-{
+  type: 'escapedString',
+  content: '"nani"'
 }
 ```
 
@@ -597,9 +718,47 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+expression()
 
 // Parse tree
 {
+  type: 'expression',
+  content: ''
+}
+```
+
+
+### extend
+
+##### Description
+
+Used in syntaxes: less, sass, scss.
+
+##### Examples
+
+```js
+// String
+@extend .nani
+
+// Parse tree
+{
+  type: 'extend',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'extend'
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'class',
+    content: [{
+      type: 'ident',
+      content: 'nani'
+    }]
+  }]
 }
 ```
 
@@ -614,9 +773,21 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+f(5)
 
 // Parse tree
 {
+  type: 'function',
+  content: [{
+    type: 'ident',
+    content: 'f'
+  }, {
+    type: 'arguments',
+    content: [{
+      type: 'number',
+      content: '5'
+    }]
+  }]
 }
 ```
 
@@ -631,9 +802,12 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+!global
 
 // Parse tree
 {
+  type: 'global',
+  content: '!global'
 }
 ```
 
@@ -648,9 +822,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+#id
 
 // Parse tree
 {
+  type: 'id',
+  content: [{
+    type: 'ident',
+    content: 'id'
+  }]
 }
 ```
 
@@ -665,9 +845,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+panda
 
 // Parse tree
 {
+  type: 'ident',
+  content: 'panda'
 }
 ```
 
@@ -682,9 +865,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+!important
 
 // Parse tree
 {
+  type: 'important',
+  content: '!important'
 }
 ```
 
@@ -699,9 +885,24 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+@include nani
 
 // Parse tree
 {
+  type: 'include',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'include'
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'ident',
+    content: 'nani'
+  }]
 }
 ```
 
@@ -716,9 +917,15 @@ Used in syntaxes: less.
 
 ```js
 // String
+@{nani}
 
 // Parse tree
 {
+  type: 'interpolatedVariable',
+  content: [{
+    type: 'ident',
+    content: 'nani'
+  }]
 }
 ```
 
@@ -733,9 +940,18 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+#{$nani}
 
 // Parse tree
 {
+  type: 'interpolation',
+  content: [{
+    type: 'variable',
+    content: [{
+      type: 'ident',
+      content: 'nani'
+    }]
+  }]
 }
 ```
 
@@ -750,9 +966,75 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+@while 1 > 2 {a{p:v}}
 
 // Parse tree
 {
+  type: 'loop',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'while'
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'number',
+    content: '1'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'operator',
+    content: '>'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'number',
+    content: '2'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'block',
+    content: [{
+      type: 'ruleset',
+      content: [{
+        type: 'selector',
+        content: [{
+          type: 'typeSelector',
+          content: [{
+            type: 'ident',
+            content: "a"
+          }]
+        }]
+      }, {
+        type: 'block',
+        content: [{
+          type: 'declaration',
+          content: [{
+            type: 'property',
+            content: [{
+              type: 'ident',
+              content: 'p'
+            }]
+          }, {
+            type: 'propertyDelimiter',
+            content: ':'
+          }, {
+            type: 'value',
+            content: [{
+              type: 'ident',
+              content: 'v'
+            }]
+          }]
+        }]
+      }]
+    }]
+  }]
 }
 ```
 
@@ -767,9 +1049,48 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+@mixin nani {color:tomato}
 
 // Parse tree
 {
+  type: 'mixin',
+  content: [{
+    type: 'atkeyword',
+    content: [{
+      type: 'ident',
+      content: 'mixin'
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'ident',
+    content: 'nani'
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'block',
+    content: [{
+      type: 'declaration',
+      content: [{
+        type: 'property',
+        content: [{
+          type: 'ident',
+          content: 'color'
+        }]
+      }, {
+        type: 'propertyDelimiter',
+        content: ':'
+      }, {
+        type: 'value',
+        content: [{
+          type: 'ident',
+          content: 'tomato'
+        }]
+      }]
+    }]
+  }]
 }
 ```
 
@@ -784,9 +1105,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+/*test*/
 
 // Parse tree
 {
+  type: 'multilineComment',
+  content: 'test'
 }
 ```
 
@@ -801,9 +1125,21 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+panda|
 
 // Parse tree
 {
+  type: 'namePrefix',
+  content: [{
+    type: 'namespacePrefix',
+    content: [{
+      type: 'ident',
+      content: 'panda'
+    }]
+  }, {
+    type: 'namespaceSeparator',
+    content: '|'
+  }]
 }
 ```
 
@@ -818,9 +1154,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+panda
 
 // Parse tree
 {
+  type: 'namespacePrefix',
+  content: [{
+    type: 'ident',
+    content: 'panda'
+  }]
 }
 ```
 
@@ -835,9 +1177,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+|
 
 // Parse tree
 {
+  type: 'namespaceSeparator',
+  content: '|'
 }
 ```
 
@@ -852,9 +1197,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+10
 
 // Parse tree
 {
+  type: 'number',
+  content: '10'
 }
 ```
 
@@ -869,9 +1217,32 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+/
 
 // Parse tree
 {
+  type: 'operator',
+  content: '/'
+}
+```
+
+
+### optional
+
+##### Description
+
+Used in syntaxes: sass, scss.
+
+##### Examples
+
+```js
+// String
+!optional
+
+// Parse tree
+{
+  type: 'optional',
+  content: '!optional'
 }
 ```
 
@@ -886,9 +1257,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+(1)
 
 // Parse tree
 {
+  type: 'parentheses',
+  content: [{
+    type: 'number',
+    content: '1'
+  }]
 }
 ```
 
@@ -903,9 +1280,12 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+&
 
 // Parse tree
 {
+  type: 'parentSelector',
+  content: '&'
 }
 ```
 
@@ -920,9 +1300,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+10%
 
 // Parse tree
 {
+  type: 'percentage',
+  content: [{
+    type: 'number',
+    content: '10'
+  }]
 }
 ```
 
@@ -937,26 +1323,15 @@ Used in syntaxes: sass, scss.
 
 ```js
 // String
+%nani
 
 // Parse tree
 {
-}
-```
-
-
-### progid
-
-##### Description
-
-Used in syntaxes: css, less, sass, scss.
-
-##### Examples
-
-```js
-// String
-
-// Parse tree
-{
+  type: 'placeholder',
+  content: [{
+    type: 'ident',
+    content: 'nani'
+  }]
 }
 ```
 
@@ -971,9 +1346,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+color
 
 // Parse tree
 {
+  type: 'property',
+  content: [{
+    type: 'ident',
+    content: 'color'
+  }]
 }
 ```
 
@@ -988,9 +1369,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+:
 
 // Parse tree
 {
+  type: 'propertyDelimiter',
+  content: ':'
 }
 ```
 
@@ -1005,9 +1389,30 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+:nth-child(2n+1)
 
 // Parse tree
 {
+  type: 'pseudoClass',
+  content: [{
+    type: 'ident',
+    content: 'nth-child'
+  }, {
+    type: 'arguments',
+    content: [{
+      type: 'number',
+      content: '2'
+    }, {
+      type: 'ident',
+      content: 'n'
+    }, {
+      type: 'operator',
+      content: '+'
+    }, {
+      type: 'number',
+      content: '1'
+    }]
+  }]
 }
 ```
 
@@ -1022,26 +1427,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+::after
 
 // Parse tree
 {
-}
-```
-
-
-### raw
-
-##### Description
-
-Used in syntaxes: css, less, sass, scss.
-
-##### Examples
-
-```js
-// String
-
-// Parse tree
-{
+  type: 'pseudoElement',
+  content: [{
+    type: 'ident',
+    content: 'after'
+  }]
 }
 ```
 
@@ -1056,9 +1450,42 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+a{color:tomato}
 
 // Parse tree
 {
+  type: 'ruleset',
+  content: [{
+    type: 'selector',
+    content: [{
+      type: 'typeSelector',
+      content: [{
+        type: 'ident',
+        content: 'a'
+      }]
+    }]
+  }, {
+    type: 'block',
+    content: [{
+      type: 'declaration',
+      content: [{
+        type: 'property',
+        content: [{
+          type: 'ident',
+          content: 'color'
+        }]
+      }, {
+        type: 'propertyDelimiter',
+        content: ':'
+      }, {
+        type: 'value',
+        content: [{
+          type: 'ident',
+          content: 'tomato'
+        }]
+      }]
+    }]
+  }]
 }
 ```
 
@@ -1073,9 +1500,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+  
 
 // Parse tree
 {
+  type: 'space',
+  content: '  '
 }
 ```
 
@@ -1090,9 +1520,18 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+.panda
 
 // Parse tree
 {
+  type: 'selector',
+  content: [{
+    type: 'class',
+    content: [{
+      type: 'ident',
+      content: 'panda'
+    }]
+  }]
 }
 ```
 
@@ -1107,9 +1546,12 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+//panda
 
 // Parse tree
 {
+  type: 'singlelineComment',
+  content: 'panda'
 }
 ```
 
@@ -1124,9 +1566,12 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+"test"
 
 // Parse tree
 {
+  type: 'string',
+  content: '"test"',
 }
 ```
 
@@ -1141,9 +1586,93 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+a {color: tomato} div {color: potato}
 
 // Parse tree
 {
+  type: 'stylesheet',
+  content: [{
+    type: 'ruleset',
+    content: [{
+      type: 'selector',
+      content: [{
+        type: 'typeSelector',
+        content: [{
+          type: 'ident',
+          content: 'a'
+        }]
+      }]
+    }, {
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'block',
+      content: [{
+        type: 'declaration',
+        content: [{
+          type: 'property',
+          content: [{
+            type: 'ident',
+            content: 'color'
+          }]
+        }, {
+          type: 'propertyDelimiter',
+          content: ':'
+        }, {
+          type: 'space',
+          content: ' '
+        }, {
+          type: 'value',
+          content: [{
+            type: 'ident',
+            content: 'tomato'
+          }]
+        }]
+      }]
+    }]
+  }, {
+    type: 'space',
+    content: ' '
+  }, {
+    type: 'ruleset',
+    content: [{
+      type: 'selector',
+      content: [{
+        type: 'typeSelector',
+        content: [{
+          type: 'ident',
+          content: 'div'
+        }]
+      }]
+    }, {
+      type: 'space',
+      content: ' '
+    }, {
+      type: 'block',
+      content: [{
+        type: 'declaration',
+        content: [{
+          type: 'property',
+          content: [{
+            type: 'ident',
+            content: 'color'
+          }]
+        }, {
+          type: 'propertyDelimiter',
+          content: ':'
+        }, {
+          type: 'space',
+          content: ' '
+        }, {
+          type: 'value',
+          content: [{
+            type: 'ident',
+            content: 'potato'
+          }]
+        }]
+      }]
+    }]
+  }]
 }
 ```
 
@@ -1158,9 +1687,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+div
 
 // Parse tree
 {
+  type: 'typeSelector',
+  content: [{
+    type: 'ident',
+    content: 'div'
+  }]
 }
 ```
 
@@ -1175,9 +1710,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+url("http://test.com")
 
 // Parse tree
 {
+  type: 'uri',
+  content: [{
+    type: 'string',
+    content: '"http://test.com"'
+  }]
 }
 ```
 
@@ -1192,9 +1733,15 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
+tomato
 
 // Parse tree
 {
+  type: 'value',
+  content: [{
+    type: 'ident',
+    content: 'tomato'
+  }]
 }
 ```
 
@@ -1209,9 +1756,15 @@ Used in syntaxes: less, sass, scss.
 
 ```js
 // String
+$panda
 
 // Parse tree
 {
+  type: 'variable',
+  content: [{
+    type: 'ident',
+    content: 'panda'
+  }]
 }
 ```
 
@@ -1226,9 +1779,18 @@ Used in syntaxes: less.
 
 ```js
 // String
+$colors...
 
 // Parse tree
 {
+  type: 'variablesList',
+  content: [{
+    type: 'variable',
+    content: [{
+      type: 'ident',
+      content: 'colors'
+    }]
+  }]
 }
 ```
 
