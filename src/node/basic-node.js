@@ -210,6 +210,19 @@ class Node {
 
       if (breakLoop === null) return null;
     }
+
+    traverseByType(type, callback) {
+      this.traverse(function(node) {
+        if (node.type === type) callback.apply(node, arguments);
+      });
+    }
+
+    traverseByTypes(types, callback) {
+      this.traverse(function(node) {
+        if (types.indexOf(node.type) !== -1) callback.apply(node, arguments);
+      });
+    }
+
 }
 
 module.exports = Node;

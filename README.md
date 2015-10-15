@@ -658,7 +658,8 @@ parseTree.traverse(function(node, index, parent) {
 
 ##### Description
 
-This method is available only for a root node.    
+This method should be called for a root node, because calling it for a child
+will be more time consuming.    
 Calls the function for every node of a given type. This means not just child
 nodes, but grandchilds and so on.
 
@@ -701,7 +702,8 @@ parseTree.traverseByType('multilineComment', function(node, nodeData) {
 
 ##### Description
 
-This method is available only for a root node.    
+This method should be called for a root node, because calling it for a child
+will be more time consuming.    
 Calls the function for every node of given types. This means not just child
 nodes, but grandchilds and so on.
 
