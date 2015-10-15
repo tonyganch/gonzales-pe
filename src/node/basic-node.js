@@ -99,10 +99,13 @@ class Node {
 
     /**
      * @param {Number} index
-     * @return {Node}
+     * @return {?Node}
      */
     get(index) {
-      return Array.isArray(this.content) && this.content[index];
+      if (!Array.isArray(this.content)) return null;
+
+      let node = this.content[index];
+      return node ? node : null;
     }
 
     /**

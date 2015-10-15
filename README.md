@@ -368,7 +368,7 @@ parseTree.forEach('space', function(spaceNode) {
 
 ##### Description
 
-Gets *nth* child of the `parseTree`.
+Gets *nth* child of the `parseTree`. If no node has been found, returns `null`.
 
 ##### Parameters
 
@@ -384,7 +384,7 @@ Gets *nth* child of the `parseTree`.
 
 <table>
   <tr>
-    <td><i>{Object}</i></td>
+    <td><i>{?Object}</i></td>
     <td>A node.</td>
   </tr>
 </table>
