@@ -126,18 +126,19 @@ class Node {
 
     /**
      * @param {String} type
-     * @return {Node} Last child node
+     * @return {?Node} Last child node or `null` if nothing's been found.
      */
     last(type) {
+      if (!Array.isArray(this.content)) return null;
+
       var i = this.content.length - 1;
-
-      if (!type || !Array.isArray(this.content))
-          return this.content[i];
-
+      if (!type) return this.content[i];
 
       for (;; i--) {
         if (this.content[i].type === type) return this.content[i];
       }
+
+      return null;
     }
 
     get length() {

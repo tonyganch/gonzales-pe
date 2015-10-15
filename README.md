@@ -466,7 +466,7 @@ if (node.is('space')) {
 ### parseTree.last(type)
 
 Gets the last child node. If `type` parameter is passed, gets the last child
-node of a given type.
+node of a given type. If no node has been found, returns `null`.
 
 ##### Parameters
 
@@ -485,7 +485,7 @@ node of a given type.
 
 <table>
   <tr>
-    <td><i>{Object}</i></td>
+    <td><i>{?Object}</i></td>
     <td>A node.</td>
   </tr>
 </table>
