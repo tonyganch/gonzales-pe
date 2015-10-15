@@ -3,9 +3,25 @@
 var Node = require('./node/basic-node');
 var parse = require('./parse');
 
-module.exports = {
+global.registeredSyntaxes = {};
+
+var exports = {
   createNode: function(options) {
     return new Node(options);
   },
-  parse: parse
+  registerSyntax : function(objects, type) {
+    global.registeredSyntaxes[type] = objects;
+    return objects;
+  },
+  getSyntax: function(type) {
+    if (global.registeredSyntaxes[type] !== undefined) {
+      return global.registeredSyntaxes[type];
+    } else {
+      return null;
+    }
+  }
 };
+
+exports.parse = parse.bind(null, exports);
+
+module.exports = exports;

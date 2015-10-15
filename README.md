@@ -33,6 +33,24 @@ npm install
 npm run init
 ```
 
+### Client-side Javascript (UMD modules)
+
+Running :
+
+```npm run web-build```
+
+will generate multiple files in a ```dist``` folder. They are UMD modules 
+that can be loaded in a client-side script. However, to reduce file sizes for 
+those who just need a specific syntax for the parser, there is one file per syntax.
+
+To add a syntax to the parser (ie. less) your script should start with : 
+
+```
+var gonzales = require("gonzales-core");
+
+require("gonzales-less")(gonzales);
+```
+
 ## API
 
 Basically there are a few things you can do:

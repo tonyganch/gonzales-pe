@@ -162,7 +162,7 @@ class Node {
       let stringify;
 
       try {
-        stringify = require('../' + this.syntax + '/stringify');
+        stringify = global.registeredSyntaxes[this.syntax].stringify;
       } catch (e) {
         var message = `Syntax "${this.syntax}" is not supported yet, sorry`;
         return console.error(message);

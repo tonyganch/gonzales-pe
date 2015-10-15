@@ -20,7 +20,8 @@
     "build": "./scripts/build.sh",
     "init": "./scripts/init.sh",
     "log": "./scripts/log.sh",
-    "test": "./scripts/build.sh && ./scripts/test.sh"
+    "test": "./scripts/build.sh && ./scripts/test.sh",
+    "web-build": "./scripts/web-build.sh"
   },
   "bin": {
     "gonzales": "./bin/gonzales.js"
@@ -37,7 +38,10 @@
     "coffee-script": "~1.7.1",
     "jscs": "2.1.0",
     "jshint": "2.8.0",
-    "mocha": "2.2.x"
+    "json-loader": "^0.5.3",
+    "mocha": "2.2.x",
+    "null-loader": "^0.1.1",
+    "webpack": "^1.12.2"
   },
   "engines": {
     "node": ">=0.6.0"

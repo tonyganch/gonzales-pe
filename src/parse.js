@@ -1,8 +1,8 @@
 'use strict';
 
-var fs = require('fs');
 var ParsingError = require('./parsing-error');
 var RootNode = require('./node/root-node');
+var getSyntax = require('./get-syntax.node.js');
 
 var Defaults = {
   SYNTAX: 'css',
@@ -11,12 +11,14 @@ var Defaults = {
   JS_RULE: 'program'
 };
 
+
 /**
+ * @param {Object} gonzalesInstance
  * @param {String} css
  * @param {Object} options
  * @return {Object} AST
  */
-function parser(css, options) {
+function parser(gonzalesInstance, css, options) {
   if (typeof css !== 'string')
       throw new Error('Please, pass a string to parse');
   else if (!css)
@@ -27,14 +29,25 @@ function parser(css, options) {
   var rule = options && options.rule ||
       (syntax === 'js' ? Defaults.JS_RULE : Defaults.CSS_RULE);
 
-  if (!fs.existsSync(__dirname + '/' + syntax)) {
-    let message = 'Syntax "' + syntax + '" is not supported yet, sorry';
-    return console.error(message);
+  var syntaxModule = gonzalesInstance.getSyntax(syntax);
+
+  if (syntaxModule === null) {
+    if (process.env.IS_WEBPACK === true) {
+      let message = 'Syntax \'' + syntax + '\' is not loaded';
+      return console.error(message);
+    } else {
+      try {
+        syntaxModule = getSyntax(syntax, gonzalesInstance);
+      } catch (e) {
+        let message = 'Syntax \'' + syntax + '\' is not loaded';
+        return console.error(message);
+      }
+    }
   }
 
-  var getTokens = require('./' + syntax + '/tokenizer');
-  var mark = require('./' + syntax + '/mark');
-  var parse = require('./' + syntax + '/parse');
+  var getTokens = syntaxModule.tokenizer;
+  var mark = syntaxModule.mark;
+  var parse = syntaxModule.parse;
 
   var tokens = getTokens(css);
   mark(tokens);
