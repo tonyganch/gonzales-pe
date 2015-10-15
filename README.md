@@ -112,7 +112,7 @@ Parses a css string.
           Default one is <code>css</code>.
         </li>
         <li>
-          <code>{string} rule</code> — root node's type. For a list of available
+          <code>{string} context</code> — root node's type. For a list of available
           values see <a href="docs/node-types.md">"Node types"</a>. Default
           one is <code>stylesheet</code>.
         </li>

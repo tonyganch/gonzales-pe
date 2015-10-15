@@ -10,7 +10,7 @@ let tokens;
 let tokensLength;
 let pos;
 
-var rules = {
+var contexts = {
   'arguments': function() { return checkArguments(pos) && getArguments(); },
   'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
   'atrule': function() { return checkAtrule(pos) && getAtrule(); },
@@ -3194,12 +3194,12 @@ function getVhash() {
   return newNode(NodeType.VhashType, x, line, column, end);
 }
 
-module.exports = function(_tokens, rule) {
+module.exports = function(_tokens, context) {
   tokens = _tokens;
   tokensLength = tokens.length;
   pos = 0;
 
-  return rules[rule]();
+  return contexts[context]();
 };
 
 function checkSelectorsGroup(i) {

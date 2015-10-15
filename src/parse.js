@@ -3,12 +3,6 @@
 var fs = require('fs');
 var ParsingError = require('./parsing-error');
 
-var Defaults = {
-  SYNTAX: 'css',
-  NEED_INFO: false,
-  CSS_RULE: 'stylesheet'
-};
-
 /**
  * @param {String} css
  * @param {Object} options
@@ -20,8 +14,8 @@ function parser(css, options) {
   else if (!css)
       return require('./node/empty-node')();
 
-  var syntax = options && options.syntax || Defaults.SYNTAX;
-  var rule = options && options.rule || Defaults.CSS_RULE;
+  var syntax = options && options.syntax || 'css';
+  var context = options && options.context || 'stylesheet';
 
   if (!fs.existsSync(__dirname + '/' + syntax)) {
     let message = 'Syntax "' + syntax + '" is not supported yet, sorry';
@@ -37,7 +31,7 @@ function parser(css, options) {
 
   var ast;
   try {
-    ast = parse(tokens, rule);
+    ast = parse(tokens, context);
   } catch (e) {
     if (!e.syntax) throw e;
     throw new ParsingError(e, css);

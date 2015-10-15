@@ -21,7 +21,7 @@ var tokensLength;
  */
 var pos;
 
-var rules = {
+var contexts = {
   'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
   'atrule': function() { return checkAtrule(pos) && getAtrule(); },
   'block': function() { return checkBlock(pos) && getBlock(); },
@@ -2536,12 +2536,12 @@ function getVhash() {
   return newNode(type, content, line, column, end);
 }
 
-module.exports = function(_tokens, rule) {
+module.exports = function(_tokens, context) {
   tokens = _tokens;
   tokensLength = tokens.length;
   pos = 0;
 
-  return rules[rule]();
+  return contexts[context]();
 };
 
 function checkSelectorsGroup(i) {

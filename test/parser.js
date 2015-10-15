@@ -31,7 +31,7 @@ function addTestFiles(mocha) {
 function shouldBeOk() {
     var filename = this.test.title;
     var testDir = path.dirname(this.test.file);
-    var rule = path.basename(testDir);
+    var context = path.basename(testDir);
     var syntax = path.basename(path.dirname(testDir));
     var testTitle = this.test.parent.title + ' ' + this.test.title;
 
@@ -39,7 +39,7 @@ function shouldBeOk() {
     var expected = readFile(testDir, filename + '.json');
 
     var options = {
-        rule: rule,
+        context: context,
         syntax: syntax
     };
 
