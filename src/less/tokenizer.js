@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function(css) {
+module.exports = function(css, tabSize) {
   var TokenType = require('../token-types');
 
   let tokens = [];
@@ -257,6 +257,7 @@ module.exports = function(css) {
         if (c === ')') urlMode = false; // Exit url mode
         if (c === '{') blockMode++; // Enter a block
         if (c === '}') blockMode--; // Exit a block
+        else if (c === '\t' && tabSize > 1) col += (tabSize - 1);
       }
 
       // If current character is a decimal digit:

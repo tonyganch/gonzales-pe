@@ -150,6 +150,7 @@ module.exports = (function() {
 
         for (let z = end.end + 1; z < l; z++) {
           if (tokens[z].type === TokenType.Space ||
+              tokens[z].type === TokenType.Tab ||
               tokens[z].type === TokenType.CommentSL ||
               tokens[z].type === TokenType.CommentML) continue;
           if (tokens[z].type === TokenType.Newline) i = z;
@@ -173,6 +174,7 @@ module.exports = (function() {
 
     for (let l = tokens.length; i < l; i++) {
       if (tokens[i].type === TokenType.Space ||
+          tokens[i].type === TokenType.Tab ||
           tokens[i].type === TokenType.CommentML ||
           tokens[i].type === TokenType.CommentSL ||
           tokens[i].type === TokenType.Newline) {

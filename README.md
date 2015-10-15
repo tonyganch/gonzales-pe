@@ -116,6 +116,10 @@ Parses a css string.
           values see <a href="docs/node-types.md">"Node types"</a>. Default
           one is <code>stylesheet</code>.
         </li>
+        <li>
+          <code>{number} tabSize</code> — size of a tab character in spaces.
+          Default one is 1.
+        </li>
       </ul>
     </td>
   </tr>
