@@ -2,7 +2,6 @@
 
 var fs = require('fs');
 var ParsingError = require('./parsing-error');
-var RootNode = require('./node/root-node');
 
 var Defaults = {
   SYNTAX: 'css',
@@ -47,7 +46,7 @@ function parser(css, options) {
     throw new ParsingError(e, css);
   }
 
-  return new RootNode(ast);
+  return ast;
 }
 
 module.exports = parser;
