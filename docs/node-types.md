@@ -4,7 +4,7 @@ Here is a list of all node types that you can meet in a parse tree.
 Some of them, for example variable and mixins, are used only with specific
 syntaxes.
 Example nodes show only node's type and content, though additional properties and
-methods may be available. Please see [README](README.md) for API reference.
+methods may be available. Please see [README](../README.md) for API reference.
 
 - [arguments](#arguments)
 - [atkeyword](#atkeyword)
@@ -506,7 +506,7 @@ Used in syntaxes: sass, scss.
       content: [{
         type: 'ident',
         content: 'if'
-      }],
+      }]
     }, {
       type: 'space',
       content: ' '
