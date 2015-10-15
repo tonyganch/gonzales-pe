@@ -144,7 +144,12 @@ class Node {
       return null;
     }
 
+    /**
+     * Number of child nodes.
+     * @type {number}
+     */
     get length() {
+      if (!Array.isArray(this.content)) return 0;
       return this.content.length;
     }
 
