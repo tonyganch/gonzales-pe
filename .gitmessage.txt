@@ -18,5 +18,6 @@
 # [sass] - for commits that change anything in sass syntax
 # [scss] - for commits that change anything in scss syntax
 # [node] - for commits that change internal logic of nodes
+# [refactor] - for commits that make code better without changing api
 # [tests] - for commits that change test files only
 # [tools] - for commits that change how dev environment works
