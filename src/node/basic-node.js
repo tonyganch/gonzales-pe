@@ -116,7 +116,6 @@ class Node {
       if (!Array.isArray(this.content)) return;
 
       this.content.splice(index, 0, node);
-      if (this.indexHasChanged) this.indexHasChanged[0] = 1;
     }
 
     /**
@@ -161,8 +160,6 @@ class Node {
       if (!Array.isArray(this.content)) return;
 
       let removedChild = this.content.splice(index, 1);
-
-      if (removedChild) this.indexHasChanged[0] = 1;
 
       return removedChild;
     }
