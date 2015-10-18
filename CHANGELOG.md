@@ -9,6 +9,10 @@ worked before.
 
 ## 18.10.2015, Version 3.0.0
 
+#### CLI
+:japanese_ogre: Made cli process stdin only if `-` argument is passed.  
+:star: Added help message.  
+
 #### API
 
 :japanese_ogre: Renamed `parseTree.remove` to `parseTree.removeChild()`.  
