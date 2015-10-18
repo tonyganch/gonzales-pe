@@ -7,6 +7,13 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.10.2015, Version 3.0.2
+
+#### Parsing rules
+
+:green_apple: Fixed the issue when operators were parsed as idents inside
+parentheses in Sass and SCSS.  
+
 ## 18.10.2015, Version 3.0.1
 
 #### Parsing rules
