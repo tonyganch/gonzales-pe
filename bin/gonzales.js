@@ -75,8 +75,7 @@ function printTree(ast) {
     } else {
         var lastLevel;
 
-        ast.traverse(function(node, params) {
-            lastLevel = params.nestingLevel;
+        ast.traverse(function(node, i, parent, lastLevel) {
             var type = node.type;
             var spaces = new Array(lastLevel).join(' |');
             if (typeof node.content === 'string') {
