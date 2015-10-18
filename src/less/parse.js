@@ -634,11 +634,11 @@ function checkBlockdecl1(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkCondition(i)) tokens[i].bd_kind = 1;
+  else if (l = checkExtend(i)) tokens[i].bd_kind = 6;
   else if (l = checkRuleset(i)) tokens[i].bd_kind = 2;
   else if (l = checkDeclaration(i)) tokens[i].bd_kind = 3;
   else if (l = checkAtrule(i)) tokens[i].bd_kind = 4;
   else if (l = checkInclude(i)) tokens[i].bd_kind = 5;
-  else if (l = checkExtend(i)) tokens[i].bd_kind = 6;
   else return 0;
 
   i += l;
@@ -697,11 +697,11 @@ function checkBlockdecl2(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkCondition(i)) tokens[i].bd_kind = 1;
+  else if (l = checkExtend(i)) tokens[i].bd_kind = 3;
   else if (l = checkRuleset(i)) tokens[i].bd_kind = 6;
   else if (l = checkDeclaration(i)) tokens[i].bd_kind = 4;
   else if (l = checkAtrule(i)) tokens[i].bd_kind = 5;
   else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
-  else if (l = checkExtend(i)) tokens[i].bd_kind = 3;
   else return 0;
 
   i += l;
@@ -3306,7 +3306,8 @@ function checkCompoundSelector1(i) {
   let start = i;
 
   let l;
-  if (l = checkTypeSelector(i)) i += l;
+  if (l = checkTypeSelector(i) ||
+      checkParentSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
@@ -3327,7 +3328,8 @@ function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
-  sequence.push(getTypeSelector());
+  if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
+  else if (checkParentSelector(pos)) sequence.push(getParentSelector());
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
