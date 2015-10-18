@@ -90,7 +90,7 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "simpleSelector",
+                  "type": "keyframesSelector",
                   "content": [
                     {
                       "type": "percentage",
@@ -118,19 +118,6 @@
                         "line": 2,
                         "column": 6
                       }
-                    },
-                    {
-                      "type": "space",
-                      "content": " ",
-                      "syntax": "less",
-                      "start": {
-                        "line": 2,
-                        "column": 7
-                      },
-                      "end": {
-                        "line": 2,
-                        "column": 7
-                      }
                     }
                   ],
                   "syntax": "less",
@@ -140,7 +127,7 @@
                   },
                   "end": {
                     "line": 2,
-                    "column": 7
+                    "column": 6
                   }
                 }
               ],
@@ -148,6 +135,19 @@
               "start": {
                 "line": 2,
                 "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 6
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "less",
+              "start": {
+                "line": 2,
+                "column": 7
               },
               "end": {
                 "line": 2,
@@ -293,7 +293,7 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "simpleSelector",
+                  "type": "keyframesSelector",
                   "content": [
                     {
                       "type": "percentage",
@@ -321,19 +321,6 @@
                         "line": 3,
                         "column": 7
                       }
-                    },
-                    {
-                      "type": "space",
-                      "content": " ",
-                      "syntax": "less",
-                      "start": {
-                        "line": 3,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 8
-                      }
                     }
                   ],
                   "syntax": "less",
@@ -343,7 +330,7 @@
                   },
                   "end": {
                     "line": 3,
-                    "column": 8
+                    "column": 7
                   }
                 }
               ],
@@ -351,6 +338,19 @@
               "start": {
                 "line": 3,
                 "column": 5
+              },
+              "end": {
+                "line": 3,
+                "column": 7
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "less",
+              "start": {
+                "line": 3,
+                "column": 8
               },
               "end": {
                 "line": 3,
@@ -496,7 +496,7 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "simpleSelector",
+                  "type": "keyframesSelector",
                   "content": [
                     {
                       "type": "percentage",
@@ -524,19 +524,6 @@
                         "line": 4,
                         "column": 8
                       }
-                    },
-                    {
-                      "type": "space",
-                      "content": " ",
-                      "syntax": "less",
-                      "start": {
-                        "line": 4,
-                        "column": 9
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 9
-                      }
                     }
                   ],
                   "syntax": "less",
@@ -546,7 +533,7 @@
                   },
                   "end": {
                     "line": 4,
-                    "column": 9
+                    "column": 8
                   }
                 }
               ],
@@ -554,6 +541,19 @@
               "start": {
                 "line": 4,
                 "column": 5
+              },
+              "end": {
+                "line": 4,
+                "column": 8
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "less",
+              "start": {
+                "line": 4,
+                "column": 9
               },
               "end": {
                 "line": 4,
