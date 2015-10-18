@@ -3645,7 +3645,9 @@ function checkCompoundSelector1(i) {
   let start = i;
 
   let l;
-  if (l = checkTypeSelector(i)) i += l;
+  if (l = checkTypeSelector(i) ||
+      checkPlaceholder(i) ||
+      checkParentSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
@@ -3667,7 +3669,9 @@ function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
-  sequence.push(getTypeSelector());
+  if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
+  else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
+  else if (checkParentSelector(pos)) sequence.push(getParentSelector());
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
