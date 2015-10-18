@@ -8,7 +8,12 @@ var fs = require('fs');
 var path = require('path');
 
 var options = getOptions();
-process.stdin.isTTY ? processFile(options._[0]) : processSTDIN();
+
+if (isSTDIN()) {
+  processSTDIN();
+} else {
+  processFile(options._[0]);
+}
 
 function getOptions() {
     var parserOptions = {
@@ -19,6 +24,10 @@ function getOptions() {
         }
     };
     return parseArgs(process.argv.slice(2), parserOptions);
+}
+
+function isSTDIN() {
+  return options._.indexOf('-') !== -1;
 }
 
 function processSTDIN() {
