@@ -1,0 +1,255 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "url-overflow",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 13
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 13
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 14
+          },
+          "end": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "space",
+              "content": "\n  ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 16
+              },
+              "end": {
+                "line": 2,
+                "column": 2
+              }
+            },
+            {
+              "type": "singlelineComment",
+              "content": " this is a comment",
+              "syntax": "scss",
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 22
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n  ",
+              "syntax": "scss",
+              "start": {
+                "line": 2,
+                "column": 23
+              },
+              "end": {
+                "line": 3,
+                "column": 2
+              }
+            },
+            {
+              "type": "declaration",
+              "content": [
+                {
+                  "type": "property",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "content",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 3,
+                        "column": 3
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "propertyDelimiter",
+                  "content": ":",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 11
+                  }
+                },
+                {
+                  "type": "value",
+                  "content": [
+                    {
+                      "type": "string",
+                      "content": "''",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 3,
+                        "column": 12
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 13
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 13
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 3
+              },
+              "end": {
+                "line": 3,
+                "column": 13
+              }
+            },
+            {
+              "type": "declarationDelimiter",
+              "content": ";",
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 14
+              },
+              "end": {
+                "line": 3,
+                "column": 14
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 15
+              },
+              "end": {
+                "line": 3,
+                "column": 15
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 4,
+            "column": 1
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 4,
+        "column": 1
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 4,
+    "column": 1
+  }
+}
