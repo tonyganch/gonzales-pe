@@ -7,9 +7,16 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.10.2015, Version 3.0.1
+
+#### Parsing rules
+:green_apple: Fixed parsing of parent selectors in SCSS and Less.  
+:green_apple: Fixed parsing of placeholders inside selectors in SCSS.  
+
 ## 18.10.2015, Version 3.0.0
 
 #### CLI
+
 :japanese_ogre: Made cli process stdin only if `-` argument is passed.  
 :star: Added help message.  
 
