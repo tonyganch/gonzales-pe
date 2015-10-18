@@ -58,7 +58,7 @@ function processInputData(input) {
     try {
         var ast = gonzales.parse(input, {
             syntax: options.syntax,
-            rule: options.context
+            context: options.context
         });
         printTree(ast);
         process.exit(0);
