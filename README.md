@@ -1,4 +1,4 @@
-# Gonzales PE @3.0.1
+# Gonzales PE @3.0.2
 
 [![Build Status](https://travis-ci.org/tonyganch/gonzales-pe.svg?branch=3.0)]
 (https://travis-ci.org/tonyganch/gonzales-pe)
@@ -11,13 +11,13 @@ Currently those are supported: SCSS, Sass, LESS.
 (1) To install command-line tool globally:
 
 ```bash
-npm install -g gonzales-pe@3.0.1
+npm install -g gonzales-pe@3.0.2
 ```
 
 (2) To install parser as a project dependency:
 
 ```bash
-npm install --save gonzales-pe@3.0.1
+npm install --save gonzales-pe@3.0.2
 ```
 
 (3) If for some reason you want to build files yourself:
