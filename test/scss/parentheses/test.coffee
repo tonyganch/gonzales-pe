@@ -15,3 +15,5 @@ describe 'scss/parentheses >>', ->
   it 's.1', -> this.shouldBeOk()
   it 's.2', -> this.shouldBeOk()
   it 's.3', -> this.shouldBeOk()
+
+  it 'issue-107', -> this.shouldBeOk()

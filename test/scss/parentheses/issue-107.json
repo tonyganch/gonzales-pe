@@ -1,0 +1,55 @@
+{
+  "type": "parentheses",
+  "content": [
+    {
+      "type": "number",
+      "content": "2",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "operator",
+      "content": "*",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 3
+      },
+      "end": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "number",
+      "content": "1",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 4
+      },
+      "end": {
+        "line": 1,
+        "column": 4
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 5
+  }
+}
+
+

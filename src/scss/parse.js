@@ -3189,9 +3189,9 @@ function getStylesheet() {
  */
 function checkTset(i) {
   return checkVhash(i) ||
+      checkOperator(i) ||
       checkAny(i) ||
       checkSC(i) ||
-      checkOperator(i) ||
       checkInterpolation(i);
 }
 
@@ -3200,9 +3200,9 @@ function checkTset(i) {
  */
 function getTset() {
   if (checkVhash(pos)) return getVhash();
+  else if (checkOperator(pos)) return getOperator();
   else if (checkAny(pos)) return getAny();
   else if (checkSC(pos)) return getSC();
-  else if (checkOperator(pos)) return getOperator();
   else if (checkInterpolation(pos)) return getInterpolation();
 }
 
