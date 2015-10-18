@@ -7,6 +7,18 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.10.2015, Version 3.1.0
+
+#### CLI
+
+:green_apple: Fixed passing a `--context` argument.  
+:green_apple: Fixed printing of a simplified tree.  
+
+#### Parsing rules
+
+:star: Added new node type: `keyframesSelector`.  
+:green_apple: Fixed parsing of keyframes in all syntaxes.  
+
 ## 18.10.2015, Version 3.0.3
 
 #### Parsing rules
