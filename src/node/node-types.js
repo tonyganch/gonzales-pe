@@ -32,6 +32,7 @@ module.exports = {
   IncludeType: 'include',
   InterpolationType: 'interpolation',
   InterpolatedVariableType: 'interpolatedVariable',
+  KeyframesSelectorType: 'keyframesSelector',
   LoopType: 'loop',
   MixinType: 'mixin',
   NamePrefixType: 'namePrefix',
