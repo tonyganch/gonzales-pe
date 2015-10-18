@@ -390,7 +390,8 @@ function checkAtrule(i) {
   if (tokens[i].atrule_l !== undefined) return tokens[i].atrule_l;
 
   // If token is part of an @-rule, save the rule's type to token:
-  if (l = checkAtruler(i)) tokens[i].atrule_type = 1; // @-rule with ruleset
+  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4;
+  else if (l = checkAtruler(i)) tokens[i].atrule_type = 1; // @-rule with ruleset
   else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2; // Block @-rule
   else if (l = checkAtrules(i)) tokens[i].atrule_type = 3; // Single-line @-rule
   else return 0;
@@ -410,6 +411,7 @@ function getAtrule() {
     case 1: return getAtruler(); // @-rule with ruleset
     case 2: return getAtruleb(); // Block @-rule
     case 3: return getAtrules(); // Single-line @-rule
+    case 4: return getKeyframesRule();
   }
 }
 
@@ -2313,6 +2315,156 @@ function getInterpolation() {
 
   return newNode(NodeType.InterpolationType, x, token.ln, token.col, end);
 }
+
+function checkKeyframesBlock(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkKeyframesSelector(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkBlock(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getKeyframesBlock() {
+  let type = NodeType.RulesetType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [].concat(
+      [getKeyframesSelector()],
+      getSC(),
+      [getBlock()]
+      );
+
+  return newNode(type, content, line, column);
+}
+
+function checkKeyframesBlocks(i) {
+  return i < tokensLength && tokens[i].block_end ?
+      tokens[i].block_end - i + 1 : 0;
+}
+
+function getKeyframesBlocks() {
+  let type = NodeType.BlockType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let keyframesBlocksEnd = token.block_end;
+
+  while (pos < keyframesBlocksEnd) {
+    if (checkSC(pos)) content = content.concat(getSC());
+    else if (checkKeyframesBlock(pos)) content.push(getKeyframesBlock());
+  }
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a @keyframes rule.
+ * @param {Number} i Token's index number
+ * @return {Number} Length of the @keyframes rule
+ */
+function checkKeyframesRule(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkAtkeyword(i)) i += l;
+  else return 0;
+
+  var atruleName = joinValues2(i - l, l);
+  if (atruleName.indexOf('keyframes') === -1) return 0;
+
+  if (l = checkSC(i)) i += l;
+  else return 0;
+
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkKeyframesBlocks(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * @return {Node}
+ */
+function getKeyframesRule() {
+  let type = NodeType.AtruleType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [].concat(
+      [getAtkeyword()],
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      [getKeyframesBlocks()]
+      );
+
+  return newNode(type, content, line, column);
+}
+
+function checkKeyframesSelector(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) {
+    // Valid selectors are only `from` and `to`.
+    var selector = joinValues2(i, l);
+    if (selector !== 'from' && selector !== 'to') return 0;
+
+    i += l;
+    tokens[start].keyframesSelectorType = 1;
+  } else if (l = checkPercentage(i)) {
+    i += l;
+    tokens[start].keyframesSelectorType = 2;
+  } else if (l = checkInterpolation(i)) {
+    i += l;
+    tokens[start].keyframesSelectorType = 3;
+  } else {
+    return 0;
+  }
+
+  return i - start;
+}
+
+function getKeyframesSelector() {
+  let keyframesSelectorType = NodeType.KeyframesSelectorType;
+  let selectorType = NodeType.SelectorType;
+
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  if (token.keyframesSelectorType === 1) {
+    content.push(getIdent());
+  } else if (token.keyframesSelectorType === 2) {
+    content.push(getPercentage());
+  } else {
+    content.push(getInterpolation());
+  }
+
+  let keyframesSelector = newNode(keyframesSelectorType, content, line, column);
+  return newNode(selectorType, [keyframesSelector], line, column);
+}
+
 
 /**
  * Check if token is part of a loop.
