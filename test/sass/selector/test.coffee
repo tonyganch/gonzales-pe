@@ -22,4 +22,5 @@ describe 'sass/selector >>', ->
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
 
+  it 'issue-102', -> this.shouldBeOk()
   it 'issue-110', -> this.shouldBeOk()
