@@ -2367,11 +2367,11 @@ function checkPseudoc(i) {
 
   if (i >= tokensLength || tokens[i].type !== TokenType.Colon) return 0;
 
-  if (l = checkPseudoClass1(i)) tokens[i].pseudoClassType = 1;
-  else if (l = checkPseudoClass2(i)) tokens[i].pseudoClassType = 2;
-  else if (l = checkPseudoClass3(i)) tokens[i].pseudoClassType = 3;
+  if (l = checkPseudoClass3(i)) tokens[i].pseudoClassType = 3;
   else if (l = checkPseudoClass4(i)) tokens[i].pseudoClassType = 4;
   else if (l = checkPseudoClass5(i)) tokens[i].pseudoClassType = 5;
+  else if (l = checkPseudoClass1(i)) tokens[i].pseudoClassType = 1;
+  else if (l = checkPseudoClass2(i)) tokens[i].pseudoClassType = 2;
   else if (l = checkPseudoClass6(i)) tokens[i].pseudoClassType = 6;
   else return 0;
 
@@ -3420,10 +3420,10 @@ function checkSelector(i) {
   let l;
 
   if (l = checkCompoundSelector(i)) i += l;
-  else return 0;
 
   while (i < tokensLength) {
     let sb = checkSC(i);
+    if (!l && sb) break;
     let c = checkCombinator(i + sb);
     if (!sb && !c) break;
     let sa = checkSC(i + sb + c);
@@ -3441,9 +3441,10 @@ function getSelector() {
   let line = token.ln;
   let column = token.col;
   let selectorEnd = token.selectorEnd;
-  let content;
+  let content = [];
 
-  content = getCompoundSelector();
+  if (checkCompoundSelector(pos))
+    content = getCompoundSelector();
 
   while (pos < selectorEnd) {
     content = content.concat(getSC());
