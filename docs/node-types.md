@@ -962,7 +962,7 @@ Used in syntaxes: sass, scss.
 ##### Description
 
 Selector used in keyframes animations.
-Maybe one of the following: `from`, `to` or any percentage.
+May be one of the following: `from`, `to` or any percentage.
 
 Used in syntaxes: css, less, sass, scss.
 
