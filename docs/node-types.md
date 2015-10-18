@@ -37,6 +37,7 @@ methods may be available. Please see [README](../README.md) for API reference.
 - [include](#include)
 - [interpolatedVariable](#interpolatedvariable)
 - [interpolation](#interpolation)
+- [keyframesSelector](#keyframesselector)
 - [loop](#loop)
 - [mixin](#mixin)
 - [multilineComment](#multilinecomment)
@@ -954,6 +955,36 @@ Used in syntaxes: sass, scss.
   }]
 }
 ```
+
+
+### keyframesSelector
+
+##### Description
+
+Selector used in keyframes animations.
+Maybe one of the following: `from`, `to` or any percentage.
+
+Used in syntaxes: css, less, sass, scss.
+
+##### Examples
+
+```js
+// String
+from
+
+// Parse tree
+{
+  type: 'keyframesSelector',
+  content: [{
+    type: 'ident',
+    content: 'from'
+  }]
+}
+```
+
+##### References
+
+[Keyframes spec](http://www.w3.org/TR/css3-animations/#keyframes)
 
 
 ### loop
