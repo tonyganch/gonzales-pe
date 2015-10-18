@@ -9,6 +9,10 @@ var path = require('path');
 
 var options = getOptions();
 
+if (options.help) {
+  return displayHelp();
+}
+
 if (isSTDIN()) {
   processSTDIN();
 } else {
@@ -19,6 +23,7 @@ function getOptions() {
     var parserOptions = {
         boolean: ['silent', 'simple'],
         alias: {
+            help: 'h',
             syntax: 's',
             context: 'c'
         }
@@ -86,4 +91,26 @@ function printTree(ast) {
         var spaces = new Array(lastLevel).join(' -');
         console.log(spaces);
     }
+}
+
+function displayHelp() {
+  var help = [
+      'NAME',
+      '    gonzlaes-pe — Parse a css file and print its parse tree in JSON',
+      '',
+      'SYNOPSIS',
+      '    gonzales-pe [options] file.js',
+      '    cat file.js | gonzales-pe [options] -',
+      '',
+      'OPTIONS',
+      '    -s, --syntax',
+      '        Syntax name: css, less, sass or scss.',
+      '    -c, --context',
+      '        Context of code part. See docs on node types for more info.',
+      '    --simple',
+      '        Print a simplified parse tree structure instead of JSON.',
+      '    --silent',
+      '        Don\'t print any error messages.'
+  ];
+  console.log(help.join('\n'));
 }
