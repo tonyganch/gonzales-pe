@@ -234,15 +234,29 @@
           }
         },
         {
-          "type": "class",
+          "type": "selector",
           "content": [
             {
-              "type": "ident",
-              "content": "nani",
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "nani",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 13
+                  }
+                }
+              ],
               "syntax": "sass",
               "start": {
                 "line": 3,
-                "column": 10
+                "column": 9
               },
               "end": {
                 "line": 3,
