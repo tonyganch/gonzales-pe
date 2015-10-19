@@ -58,15 +58,29 @@
           }
         },
         {
-          "type": "class",
+          "type": "selector",
           "content": [
             {
-              "type": "ident",
-              "content": "nani",
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "nani",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 2,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 17
+                  }
+                }
+              ],
               "syntax": "scss",
               "start": {
                 "line": 2,
-                "column": 14
+                "column": 13
               },
               "end": {
                 "line": 2,
