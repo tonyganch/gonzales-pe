@@ -21,9 +21,12 @@ in Less, Sass and SCSS.
 :green_apple: Fixed passing a `--context` argument.  
 :green_apple: Fixed printing of a simplified tree.  
 
-#### Parsing rules
+#### Node types
 
 :star: Added new node type: `keyframesSelector`.  
+
+#### Parsing rules
+
 :green_apple: Fixed parsing of keyframes in all syntaxes.  
 
 ## 18.10.2015, Version 3.0.3
