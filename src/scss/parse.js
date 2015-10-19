@@ -3767,20 +3767,42 @@ function getSelectorsGroup() {
 }
 
 function checkSelector(i) {
+  var l;
+
+  if (l = checkSelector1(i)) tokens[i].selectorType = 1;
+  else if (l = checkSelector2(i)) tokens[i].selectorType = 2;
+
+  return l;
+}
+
+function getSelector() {
+  let selectorType = tokens[pos].selectorType;
+  if (selectorType === 1) return getSelector1();
+  else return getSelector2();
+}
+
+/**
+ * Checks for selector which starts with a compound selector.
+ */
+function checkSelector1(i) {
   if (i >= tokensLength) return 0;
 
   let start = i;
   let l;
 
   if (l = checkCompoundSelector(i)) i += l;
+  else return 0;
 
   while (i < tokensLength) {
-    let sb = checkSC(i);
-    if (!l && sb) break;
-    let c = checkCombinator(i + sb);
-    if (!sb && !c) break;
-    let sa = checkSC(i + sb + c);
-    if (l = checkCompoundSelector(i + sb + c + sa)) i += sb + c + sa + l;
+    let s = checkSC(i);
+    let c = checkCombinator(i + s);
+    if (!s && !c) break;
+    if (c) {
+      i += s + c;
+      s = checkSC(i);
+    }
+
+    if (l = checkCompoundSelector(i + s)) i += s + l;
     else break;
   }
 
@@ -3788,22 +3810,67 @@ function checkSelector(i) {
   return i - start;
 }
 
-function getSelector() {
+function getSelector1() {
   let type = NodeType.SelectorType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
   let selectorEnd = token.selectorEnd;
-  let content = [];
-
-  if (checkCompoundSelector(pos))
-    content = getCompoundSelector();
+  let content = getCompoundSelector();
 
   while (pos < selectorEnd) {
-    content = content.concat(getSC());
-    if (checkCombinator(pos)) content.push(getCombinator());
-    content = content.concat(getSC());
-    content = content.concat(getCompoundSelector());
+    if (checkSC(pos))
+      content = content.concat(getSC());
+    else if (checkCombinator(pos))
+      content.push(getCombinator());
+    else if (checkCompoundSelector(pos))
+      content = content.concat(getCompoundSelector());
+  }
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Checks for a selector that starts with a combinator.
+ */
+function checkSelector2(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkCombinator(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    let sb = checkSC(i);
+    if (l = checkCompoundSelector(i + sb)) i += sb + l;
+    else break;
+
+    let sa = checkSC(i);
+    if (l = checkCombinator(i)) i += sa + l;
+    else break;
+  }
+
+  tokens[start].selectorEnd = i;
+  return i - start;
+}
+
+function getSelector2() {
+  let type = NodeType.SelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let selectorEnd = token.selectorEnd;
+  let content = [getCombinator()];
+
+  while (pos < selectorEnd) {
+    if (checkSC(pos))
+      content = content.concat(getSC());
+    else if (checkCombinator(pos))
+      content.push(getCombinator());
+    else if (checkCompoundSelector(pos))
+      content = content.concat(getCompoundSelector());
   }
 
   return newNode(type, content, line, column);
