@@ -7,6 +7,13 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 19.10.2015, Version 3.1.1
+
+#### Parsing rules
+
+:green_apple: Fixed parsing of selectors starting or ending with a combinator
+in Less, Sass and SCSS.
+
 ## 18.10.2015, Version 3.1.0
 
 #### CLI
