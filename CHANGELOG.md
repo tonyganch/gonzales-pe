@@ -7,6 +7,14 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 19.10.2015, Version 3.2.1
+
+#### Parsing rules
+
+:green_apple: Fixed the issue when selectors inside extends were not wrapped in
+`selector` nodes in Sass and SCSS.  
+:green_apple: Fixed parsing of multiple selectors in extends in Sass and SCSS.
+
 ## 19.10.2015, Version 3.2.0
 
 #### Node types
