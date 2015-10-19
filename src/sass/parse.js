@@ -1586,7 +1586,7 @@ function checkExtend1(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkCompoundSelector(i)) i += l;
+  if (l = checkSelectorsGroup(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1600,13 +1600,13 @@ function checkExtend1(i) {
 
 function getExtend1() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-  x = x.concat(getSC());
-  x = x.concat(getCompoundSelector());
-  x = x.concat(getSC());
-  x.push(getOptional());
+  let x = [].concat(
+      [getAtkeyword()],
+      getSC(),
+      getSelectorsGroup(),
+      getSC(),
+      getOptional()
+      );
 
   var token = tokens[startPos];
   return newNode(NodeType.ExtendType, x, token.ln, token.col);
@@ -1630,7 +1630,7 @@ function checkExtend2(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkCompoundSelector(i)) i += l;
+  if (l = checkSelectorsGroup(i)) i += l;
   else return 0;
 
   return i - start;
@@ -1638,11 +1638,11 @@ function checkExtend2(i) {
 
 function getExtend2() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getAtkeyword());
-  x = x.concat(getSC());
-  x = x.concat(getCompoundSelector());
+  let x = [].concat(
+      [getAtkeyword()],
+      getSC(),
+      getSelectorsGroup()
+      );
 
   var token = tokens[startPos];
   return newNode(NodeType.ExtendType, x, token.ln, token.col);
