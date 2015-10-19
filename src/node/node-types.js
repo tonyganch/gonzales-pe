@@ -43,6 +43,7 @@ module.exports = {
   OptionalType: 'optional',
   ParenthesesType: 'parentheses',
   ParentSelectorType: 'parentSelector',
+  ParentSelectorExtensionType: 'parentSelectorExtension',
   PercentageType: 'percentage',
   PlaceholderType: 'placeholder',
   ProgidType: 'progid',
