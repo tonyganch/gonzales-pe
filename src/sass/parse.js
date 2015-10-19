@@ -2897,6 +2897,59 @@ function getParentSelector() {
   return newNode(NodeType.ParentSelectorType, '&', token.ln, token.col);
 }
 
+function checkParentSelectorExtension(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  while (i < tokensLength) {
+    if (l = checkNumber(i) || checkIdent(i)) i += l;
+    else break;
+  }
+
+  return i - start;
+}
+
+function getParentSelectorExtension() {
+  let type = NodeType.ParentSelectorExtensionType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  while (pos < tokensLength) {
+    if (checkNumber(pos)) content.push(getNumber());
+    else if (checkIdent(pos)) content.push(getIdent());
+    else break;
+  }
+
+  return newNode(type, content, line, column);
+}
+
+function checkParentSelectorWithExtension(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkParentSelector(i)) i += l;
+  else return 0;
+
+  if (l = checkParentSelectorExtension(i)) i += l;
+
+  return i - start;
+}
+
+function getParentSelectorWithExtension() {
+  let content = [getParentSelector()];
+
+  if (checkParentSelectorExtension(pos))
+    content.push(getParentSelectorExtension());
+
+  return content;
+}
+
 /**
  * Check if token is part of a number with percent sign (e.g. `10%`)
  * @param {Number} i Token's index number
@@ -4322,7 +4375,7 @@ function checkCompoundSelector1(i) {
   let l;
   if (l = checkTypeSelector(i) ||
       checkPlaceholder(i) ||
-      checkParentSelector(i)) i += l;
+      checkParentSelectorWithExtension(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
@@ -4346,7 +4399,8 @@ function getCompoundSelector1() {
 
   if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
   else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
-  else if (checkParentSelector(pos)) sequence.push(getParentSelector());
+  else if (checkParentSelectorWithExtension(pos))
+    sequence = sequence.concat(getParentSelectorWithExtension());
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
