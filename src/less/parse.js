@@ -1305,12 +1305,12 @@ function checkExtend1(i) {
 
 function getExtend1() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getExtendSelector());
-  x.push(getPseudoc());
-  x = x.concat(getSC());
-  x.push(getBlock());
+  let x = [].concat(
+      getExtendSelector(),
+      [getPseudoc()],
+      getSC(),
+      [getBlock()]
+      );
 
   var token = tokens[startPos];
   return newNode(NodeType.ExtendType, x, token.ln, token.col);
@@ -1338,10 +1338,10 @@ function checkExtend2(i) {
 
 function getExtend2() {
   let startPos = pos;
-  let x = [];
-
-  x.push(getExtendSelector());
-  x.push(getPseudoc());
+  let x = [].concat(
+      getExtendSelector(),
+      [getPseudoc()]
+      );
 
   var token = tokens[startPos];
   return newNode(NodeType.ExtendType, x, token.ln, token.col);
@@ -1350,7 +1350,7 @@ function getExtend2() {
 function checkExtendSelector(i) {
   var l;
 
-  if (l = checkParentSelector(i)) tokens[i].extend_type = 1;
+  if (l = checkParentSelectorWithExtension(i)) tokens[i].extend_type = 1;
   else if (l = checkIdent(i)) tokens[i].extend_type = 2;
   else if (l = checkClass(i)) tokens[i].extend_type = 3;
   else if (l = checkShash(i)) tokens[i].extend_type = 4;
@@ -1361,10 +1361,10 @@ function checkExtendSelector(i) {
 function getExtendSelector() {
   var childType = tokens[pos].extend_type;
 
-  if (childType === 1) return getParentSelector();
-  if (childType === 2) return getIdent();
-  if (childType === 3) return getClass();
-  if (childType === 4) return getShash();
+  if (childType === 1) return getParentSelectorWithExtension();
+  if (childType === 2) return [getIdent()];
+  if (childType === 3) return [getClass()];
+  if (childType === 4) return [getShash()];
 }
 
 /**
@@ -2185,6 +2185,59 @@ function getParentSelector() {
 
   var token = tokens[startPos];
   return newNode(NodeType.ParentSelectorType, '&', token.ln, token.col);
+}
+
+function checkParentSelectorExtension(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  while (i < tokensLength) {
+    if (l = checkNumber(i) || checkIdent(i)) i += l;
+    else break;
+  }
+
+  return i - start;
+}
+
+function getParentSelectorExtension() {
+  let type = NodeType.ParentSelectorExtensionType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+
+  while (pos < tokensLength) {
+    if (checkNumber(pos)) content.push(getNumber());
+    else if (checkIdent(pos)) content.push(getIdent());
+    else break;
+  }
+
+  return newNode(type, content, line, column);
+}
+
+function checkParentSelectorWithExtension(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkParentSelector(i)) i += l;
+  else return 0;
+
+  if (l = checkParentSelectorExtension(i)) i += l;
+
+  return i - start;
+}
+
+function getParentSelectorWithExtension() {
+  let content = [getParentSelector()];
+
+  if (checkParentSelectorExtension(pos))
+    content.push(getParentSelectorExtension());
+
+  return content;
 }
 
 /**
@@ -3548,7 +3601,7 @@ function checkCompoundSelector1(i) {
 
   let l;
   if (l = checkTypeSelector(i) ||
-      checkParentSelector(i)) i += l;
+      checkParentSelectorWithExtension(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
@@ -3570,7 +3623,8 @@ function getCompoundSelector1() {
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
   if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
-  else if (checkParentSelector(pos)) sequence.push(getParentSelector());
+  else if (checkParentSelectorWithExtension(pos))
+    sequence = sequence.concat(getParentSelectorWithExtension());
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
