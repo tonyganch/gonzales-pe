@@ -48,6 +48,7 @@ methods may be available. Please see [README](../README.md) for API reference.
 - [operator](#operator)
 - [parentheses](#parentheses)
 - [parentSelector](#parentselector)
+- [parentSelectorExtension](#parentselectorextension)
 - [percentage](#percentage)
 - [placeholder](#placeholder)
 - [progid](#progid)
@@ -1317,6 +1318,41 @@ Used in syntaxes: less, sass, scss.
 {
   type: 'parentSelector',
   content: '&'
+}
+```
+
+
+### parentSelectorExtension
+
+##### Description
+
+Part that comes immediately after `&` but does not get compiled to a separate
+selector. Consists of any combination of `ident` or `number`.
+
+Used in syntaxes: less, sass, scss.
+
+##### Examples
+
+```js
+// String
+&2-panda
+
+// Parse tree
+{
+  type: 'selector',
+  content: [{
+    type: 'parentSelector',
+    content: '&'
+  }, {
+    type: 'parentSelectorExtension',
+    content: [{
+      type: 'number',
+      content: '2'
+    }, {
+      type: 'ident',
+      content: '-panda'
+    }]
+  }]
 }
 ```
 
