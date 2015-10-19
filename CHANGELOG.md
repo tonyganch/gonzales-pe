@@ -7,6 +7,17 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 19.10.2015, Version 3.2.0
+
+#### Node types
+
+:star: Added new node type: `parentSelectorExtension`.
+
+#### Parsing rules
+
+:green_apple: Fixed parsing of parent selectors with extensions, like
+`&__element` or `&--modifier`.
+
 ## 19.10.2015, Version 3.1.1
 
 #### Parsing rules
