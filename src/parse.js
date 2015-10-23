@@ -1,7 +1,8 @@
 'use strict';
 
-var fs = require('fs');
 var ParsingError = require('./parsing-error');
+var syntaxes = require('syntaxes');
+
 var isInteger = Number.isInteger || function(value) {
   return typeof value === 'number' && Math.floor(value) === value;
 };
@@ -22,14 +23,21 @@ function parser(css, options) {
   var tabSize = options && options.tabSize;
   if (!isInteger(tabSize) || tabSize < 1) tabSize = 1;
 
-  if (!fs.existsSync(__dirname + '/' + syntax)) {
+  let syntaxParser;
+  if (syntaxes[syntax]) {
+    syntaxParser = syntaxes[syntax];
+  } else {
+    syntaxParser = syntaxes;
+  }
+
+  if (!syntaxParser) {
     let message = 'Syntax "' + syntax + '" is not supported yet, sorry';
     return console.error(message);
   }
 
-  var getTokens = require('./' + syntax + '/tokenizer');
-  var mark = require('./' + syntax + '/mark');
-  var parse = require('./' + syntax + '/parse');
+  var getTokens = syntaxParser.tokenizer;
+  var mark = syntaxParser.mark;
+  var parse = syntaxParser.parse;
 
   var tokens = getTokens(css, tabSize);
   mark(tokens);

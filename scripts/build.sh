@@ -1,7 +1,20 @@
 #!/bin/bash
 
+rm -rf lib
+mkdir -p lib
+
 printf "\n\
------------------------\n\
- Building source files\n\
------------------------\n\n"
-./node_modules/.bin/babel --loose all --compact true --comments false --blacklist spec.functionName src --out-dir lib
+----------------------------\n\
+ Generating webpack modules\n\
+----------------------------\n\n"
+
+if [ $# -eq 0 ]; then
+  ./node_modules/.bin/webpack --module-bind "json=json"
+else
+  ./node_modules/.bin/webpack --module-bind "json=json"
+
+  syntaxes=$@
+  for syntax in $syntaxes; do
+    SYNTAX="$syntax" ./node_modules/.bin/webpack --module-bind "json=json"
+  done
+fi
