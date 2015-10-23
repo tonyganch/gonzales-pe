@@ -22,7 +22,8 @@
     "log": "./scripts/log.sh",
     "prepublish": "./scripts/prepublish.sh",
     "postpublish": "./scripts/postpublish.sh",
-    "test": "./scripts/build.sh && ./scripts/test.sh"
+    "test": "./scripts/build.sh && ./scripts/test.sh",
+    "watch": "./scripts/watch.sh"
   },
   "bin": {
     "gonzales": "./bin/gonzales.js"
@@ -31,11 +32,13 @@
     "minimist": "1.1.x"
   },
   "devDependencies": {
-    "babel": "^5.5.3",
+    "babel-loader": "^5.3.2",
     "coffee-script": "~1.7.1",
     "jscs": "2.1.0",
     "jshint": "2.8.0",
-    "mocha": "2.2.x"
+    "json-loader": "^0.5.3",
+    "mocha": "2.2.x",
+    "webpack": "^1.12.2"
   },
   "engines": {
     "node": ">=0.6.0"
