@@ -1,80 +1,90 @@
 'use strict';
 
-module.exports = function(css, tabSize) {
-  var TokenType = require('../token-types');
+let Node = require('../node/basic-node');
+let NodeType = require('../node/node-types');
 
-  let tokens = [];
-  let urlMode = false;
-  let blockMode = 0;
-  let c; // Current character
-  let cn; // Next character
-  let pos = 0;
-  let tn = 0;
-  let ln = 1;
-  let col = 1;
+let Space = {
+  ' ': NodeType.SPACE,
+  '\n': NodeType.SPACE,
+  '\r': NodeType.SPACE,
+  '\t': NodeType.SPACE
+};
 
-  var Punctuation = {
-    ' ': TokenType.Space,
-    '\n': TokenType.Newline,
-    '\r': TokenType.Newline,
-    '\t': TokenType.Tab,
-    '!': TokenType.ExclamationMark,
-    '"': TokenType.QuotationMark,
-    '#': TokenType.NumberSign,
-    '$': TokenType.DollarSign,
-    '%': TokenType.PercentSign,
-    '&': TokenType.Ampersand,
-    '\'': TokenType.Apostrophe,
-    '(': TokenType.LeftParenthesis,
-    ')': TokenType.RightParenthesis,
-    '*': TokenType.Asterisk,
-    '+': TokenType.PlusSign,
-    ',': TokenType.Comma,
-    '-': TokenType.HyphenMinus,
-    '.': TokenType.FullStop,
-    '/': TokenType.Solidus,
-    ':': TokenType.Colon,
-    ';': TokenType.Semicolon,
-    '<': TokenType.LessThanSign,
-    '=': TokenType.EqualsSign,
-    '==': TokenType.EqualitySign,
-    '!=': TokenType.InequalitySign,
-    '>': TokenType.GreaterThanSign,
-    '?': TokenType.QuestionMark,
-    '@': TokenType.CommercialAt,
-    '[': TokenType.LeftSquareBracket,
-    ']': TokenType.RightSquareBracket,
-    '^': TokenType.CircumflexAccent,
-    '_': TokenType.LowLine,
-    '{': TokenType.LeftCurlyBracket,
-    '|': TokenType.VerticalLine,
-    '}': TokenType.RightCurlyBracket,
-    '~': TokenType.Tilde
-  };
+let Punctuation = {
+  '!': NodeType.EXCLAMATION_MARK,
+  '"': NodeType.QUOTATION_MARK,
+  '#': NodeType.NUMBER_SIGN,
+  '$': NodeType.DOLLAR_SIGN,
+  '%': NodeType.PERCENT_SIGN,
+  '&': NodeType.AMPERSAND,
+  '\'': NodeType.APOSTROPHE,
+  '(': NodeType.LEFT_PARENTHESIS,
+  ')': NodeType.RIGHT_PARENTHESIS,
+  '*': NodeType.ASTERISK,
+  '+': NodeType.PLUS_SIGN,
+  ',': NodeType.COMMA,
+  '-': NodeType.HYPHEN_MINUS,
+  '.': NodeType.FULL_STOP,
+  '/': NodeType.SOLIDUS,
+  ':': NodeType.COLON,
+  ';': NodeType.SEMICOLON,
+  '<': NodeType.LESS_THAN_SIGN,
+  '=': NodeType.EQUALS_SIGN,
+  '>': NodeType.GREATER_THAN_SIGN,
+  '?': NodeType.QUESTION_MARK,
+  '@': NodeType.COMMERCIAL_AT,
+  '[': NodeType.LEFT_SQUARE_BRACKET,
+  ']': NodeType.RIGHT_SQUARE_BRACKET,
+  '^': NodeType.CIRCUMFLEX_ACCENT,
+  '_': NodeType.LOW_LINE,
+  '{': NodeType.LEFT_CURLY_BRACKET,
+  '}': NodeType.RIGHT_CURLY_BRACKET,
+  '|': NodeType.VERTICAL_LINE,
+  '~': NodeType.TILDE
+};
 
-  /**
-   * Add a token to the token list
-   * @param {string} type
-   * @param {string} value
-   */
-  function pushToken(type, value, column) {
-    tokens.push({
-      tn: tn++,
-      ln: ln,
-      col: column,
-      type: type,
-      value: value
-    });
-  }
+let tokens = [];
+let urlMode = false;
+let blockMode = 0;
+let pos = 0;
+let tn = 0;
+let ln = 1;
+let col = 1;
+let cssLength = 0;
+let syntax = 'scss';
 
-  /**
-   * Check if a character is a decimal digit
-   * @param {string} c Character
-   * @returns {boolean}
-   */
-  function isDecimalDigit(c) {
-    return '0123456789'.indexOf(c) >= 0;
-  }
+function addNode(type, value, column, line = ln) {
+  let node = new Node({
+    type: type,
+    content: value,
+    syntax: syntax,
+    start: {
+      line: line,
+      column: column
+    },
+    // TODO: Calculate real end position.
+    end: {
+      line: ln,
+      column: col
+    }
+  });
+
+  tokens.push(node);
+}
+
+function isDecimalDigit(c) {
+  return '0123456789'.indexOf(c) >= 0;
+}
+
+function buildPrimitiveNodes(css, tabSize) {
+  tokens = [];
+  urlMode = false;
+  blockMode = 0;
+  pos = 0;
+  tn = 0;
+  ln = 1;
+  col = 1;
+  cssLength = 0;
 
   /**
    * Parse spaces
@@ -82,14 +92,21 @@ module.exports = function(css, tabSize) {
    */
   function parseSpaces(css) {
     var start = pos;
+    var startCol = col;
+    var startLn = ln;
 
     // Read the string until we meet a non-space character:
-    for (; pos < css.length; pos++) {
-      if (css.charAt(pos) !== ' ') break;
+    for (; pos < cssLength; pos++) {
+      let char = css.charAt(pos);
+      if (!Space[char]) break;
+      if (char === '\n' || char === '\r') {
+        ln++;
+        col = 0;
+      }
     }
 
     // Add a substring containing only spaces to tokens:
-    pushToken(TokenType.Space, css.substring(start, pos--), col);
+    addNode(NodeType.SPACE, css.substring(start, pos--), startCol, startLn);
     col += pos - start;
   }
 
@@ -109,8 +126,7 @@ module.exports = function(css, tabSize) {
     }
 
     // Add the string (including quotes) to tokens:
-    let type = q === '"' ? TokenType.StringDQ : TokenType.StringSQ;
-    pushToken(type, css.substring(start, pos + 1), col);
+    addNode(NodeType.STRING, css.substring(start, pos + 1), col);
     col += pos - start;
   }
 
@@ -127,7 +143,7 @@ module.exports = function(css, tabSize) {
     }
 
     // Add the number to tokens:
-    pushToken(TokenType.DecimalNumber, css.substring(start, pos--), col);
+    addNode(NodeType.DIGIT, css.substring(start, pos--), col);
     col += pos - start;
   }
 
@@ -145,7 +161,8 @@ module.exports = function(css, tabSize) {
     for (; pos < css.length; pos++) {
       // Skip all '\':
       if (css.charAt(pos) === '\\') pos++;
-      else if (css.charAt(pos) in Punctuation) break;
+      else if (css.charAt(pos) in Punctuation ||
+          css.charAt(pos) in Space) break;
     }
 
     var ident = css.substring(start, pos--);
@@ -156,28 +173,9 @@ module.exports = function(css, tabSize) {
     }
 
     // Add identifier to tokens:
-    pushToken(TokenType.Identifier, ident, col);
+    addNode(NodeType.CHARACTER, ident, col);
     col += pos - start;
   }
-
-  /**
-   * Parse equality sign
-   */
-  function parseEquality() {
-    pushToken(TokenType.EqualitySign, '==', col);
-    pos++;
-    col++;
-  }
-
-  /**
-   * Parse inequality sign
-   */
-  function parseInequality() {
-    pushToken(TokenType.InequalitySign, '!=', col);
-    pos++;
-    col++;
-  }
-
 
   /**
   * Parse a multiline comment
@@ -198,7 +196,7 @@ module.exports = function(css, tabSize) {
 
     // Add full comment (including `/*` and `*/`) to the list of tokens:
     var comment = css.substring(start, pos + 1);
-    pushToken(TokenType.CommentML, comment, col);
+    addNode(NodeType.MULTILINE_COMMENT, comment, col);
 
     var newlines = comment.split('\n');
     if (newlines.length > 1) {
@@ -226,7 +224,7 @@ module.exports = function(css, tabSize) {
     }
 
     // Add comment (including `//` and line break) to the list of tokens:
-    pushToken(TokenType.CommentSL, css.substring(start, pos--), col);
+    addNode(NodeType.SINGLELINE_COMMENT, css.substring(start, pos--), col);
     col += pos - start;
   }
 
@@ -237,6 +235,11 @@ module.exports = function(css, tabSize) {
    * @private
    */
   function getTokens(css) {
+    var c; // Current character
+    var cn; // Next character
+
+    cssLength = css.length;
+
     // Parse string, character by character:
     for (pos = 0; pos < css.length; col++, pos++) {
       c = css.charAt(pos);
@@ -263,18 +266,8 @@ module.exports = function(css, tabSize) {
       }
 
       // If current character is a space:
-      else if (c === ' ') {
+      else if (Space[c]) {
         parseSpaces(css);
-      }
-
-      // If current character is `=`, it must be combined with next `=`
-      else if (c === '=' && cn === '=') {
-        parseEquality(css);
-      }
-
-      // If we meet `!=`, this must be inequality
-      else if (c === '!' && cn === '=') {
-        parseInequality(css);
       }
 
       // If current character is a punctuation mark:
@@ -286,23 +279,23 @@ module.exports = function(css, tabSize) {
           // skip the next character so as not to double count newlines or
           // columns etc
           if (c === '\r') {
-            pushToken(TokenType.Newline, '\r\n', col);
+            addNode(TokenType.Newline, '\r\n', col);
             pos++; // If CRLF skip the next character and push crlf token
           } else if (c === '\n') {
             // If just a LF newline and not part of CRLF newline we can just
             // push punctuation as usual
-            pushToken(Punctuation[c], c, col);
+            addNode(Punctuation[c], c, col);
           }
 
           ln++; // Go to next line
           col = 0; // Reset the column count
         } else if (c !== '\r' && c !== '\n') {
           // Handle all other punctuation and add to list of tokens
-          pushToken(Punctuation[c], c, col);
+          addNode(Punctuation[c], c, col);
         }// Go to next line
         if (c === ')') urlMode = false; // Exit url mode
-        if (c === '{') blockMode++; // Enter a block
-        if (c === '}') blockMode--; // Exit a block
+        else if (c === '{') blockMode++; // Enter a block
+        else if (c === '}') blockMode--; // Exit a block
         else if (c === '\t' && tabSize > 1) col += (tabSize - 1);
       }
 
@@ -321,4 +314,6 @@ module.exports = function(css, tabSize) {
   }
 
   return getTokens(css);
-};
+}
+
+module.exports = buildPrimitiveNodes;

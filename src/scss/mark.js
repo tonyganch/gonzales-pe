@@ -1,6 +1,6 @@
 'use strict';
 
-var TokenType = require('../token-types');
+var NodeType = require('../node/node-types');
 
 module.exports = (function() {
   /**
@@ -23,9 +23,8 @@ module.exports = (function() {
     for (var i = 0; i < tokensLength; i++) {
       t = tokens[i];
       switch (t.type) {
-        case TokenType.Space:
-        case TokenType.Tab:
-        case TokenType.Newline:
+        case NodeType.SPACE:
+        case NodeType.NEWLINE:
           t.ws = true;
           t.sc = true;
 
@@ -33,8 +32,8 @@ module.exports = (function() {
           if (sc === -1) sc = i;
 
           break;
-        case TokenType.CommentML:
-        case TokenType.CommentSL:
+        case NodeType.MULTILINE_COMMENT:
+        case NodeType.SINGLELINE_COMMENT:
           if (ws !== -1) {
             tokens[ws].ws_last = i - 1;
             ws = -1;
@@ -80,28 +79,28 @@ module.exports = (function() {
     for (var i = 0; i < tokensLength; i++) {
       t = tokens[i];
       switch (t.type) {
-        case TokenType.LeftParenthesis:
+        case NodeType.LEFT_PARENTHESIS:
           ps.push(i);
           break;
-        case TokenType.RightParenthesis:
+        case NodeType.RIGHT_PARENTHESIS:
           if (ps.length) {
             t.left = ps.pop();
             tokens[t.left].right = i;
           }
           break;
-        case TokenType.LeftSquareBracket:
+        case NodeType.LEFT_SQUARE_BRACKET:
           sbs.push(i);
           break;
-        case TokenType.RightSquareBracket:
+        case NodeType.RIGHT_SQUARE_BRACKET:
           if (sbs.length) {
             t.left = sbs.pop();
             tokens[t.left].right = i;
           }
           break;
-        case TokenType.LeftCurlyBracket:
+        case NodeType.LEFT_CURLY_BRACKET:
           cbs.push(i);
           break;
-        case TokenType.RightCurlyBracket:
+        case NodeType.RIGHT_CURLY_BRACKET:
           if (cbs.length) {
             t.left = cbs.pop();
             tokens[t.left].right = i;

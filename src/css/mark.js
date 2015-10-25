@@ -1,6 +1,6 @@
 'use strict';
 
-var TokenType = require('../token-types');
+var NodeType = require('../node/node-types');
 
 /**
  * Mark whitespaces and comments
@@ -22,11 +22,9 @@ function markSpacesAndComments(tokens) {
   for (var i = 0; i < tokensLength; i++) {
     type = tokens[i].type;
 
-    if (type === TokenType.Space ||
-        type === TokenType.Tab ||
-        type === TokenType.Newline) {
+    if (type === NodeType.SPACE) {
       markSpace(tokens, i, spaces);
-    } else if (type === TokenType.CommentML) {
+    } else if (type === NodeType.MULTILINE_COMMENT) {
       markComment(tokens, i, spaces);
     } else {
       markEndOfSpacesAndComments(tokens, i, spaces);
@@ -90,23 +88,23 @@ function markBrackets(tokens) {
     t = tokens[i];
     var type = t.type;
 
-    if (type === TokenType.LeftParenthesis) {
+    if (type === NodeType.LEFT_PARENTHESIS) {
       ps.push(i);
-    } else if (type === TokenType.RightParenthesis) {
+    } else if (type === NodeType.RIGHT_PARENTHESIS) {
       if (ps.length) {
         t.left = ps.pop();
         tokens[t.left].right = i;
       }
-    } else if (type === TokenType.LeftSquareBracket) {
+    } else if (type === NodeType.LEFT_SQUARE_BRACKET) {
       sbs.push(i);
-    } else if (type === TokenType.RightSquareBracket) {
+    } else if (type === NodeType.RIGHT_SQUARE_BRACKET) {
       if (sbs.length) {
         t.left = sbs.pop();
         tokens[t.left].right = i;
       }
-    } else if (type === TokenType.LeftCurlyBracket) {
+    } else if (type === NodeType.LEFT_CURLY_BRACKET) {
       cbs.push(i);
-    } else if (type === TokenType.RightCurlyBracket) {
+    } else if (type === NodeType.RIGHT_CURLY_BRACKET) {
       if (cbs.length) {
         t.left = cbs.pop();
         tokens[t.left].right = i;
