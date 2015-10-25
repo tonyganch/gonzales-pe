@@ -1,0 +1,21 @@
+html, body, textarea {
+  font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  max-width: 800px;
+  margin: 0 auto;
+  }
+
+h1 {
+  font-weight: normal;
+  text-align: center;
+  }
+
+.half {
+  float: left;
+  width: 48%;
+  margin: 0 1%;
+  }
+
+textarea {
+  height: 400px;
+  width: 100%;
+  }
