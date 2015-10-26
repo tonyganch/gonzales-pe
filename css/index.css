@@ -1,6 +1,6 @@
 html, body, textarea {
   font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
-  max-width: 800px;
+  max-width: 1000px;
   margin: 0 auto;
   }
 
@@ -9,13 +9,34 @@ h1 {
   text-align: center;
   }
 
+.playground {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 10px;
+  }
+
+.settings {
+  width: 200px;
+  }
+
+.settings div {
+  padding: 0 20px 10px 20px;
+  border: 1px solid #ddd;
+  font-size: 0.8em;
+  }
+
+.settings label {
+  display: block;
+  }
+
 .half {
-  float: left;
-  width: 48%;
+  width: calc(48% - 100px);
   margin: 0 1%;
   }
 
 textarea {
   height: 400px;
   width: 100%;
+  border: 1px solid #ddd;
+  font-size: 0.8em;
   }

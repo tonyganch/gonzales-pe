@@ -7,13 +7,48 @@
   </head>
   <body>
     <h1>Gonzales PE playground</h1>
-    <div class="half">
-      <p>Put your SCSS here:</p>
-      <textarea id="input"></textarea>
-    </div>
-    <div class="half">
-      <p>The parse tree will appear here:</p>
-      <textarea readonly id="output"></textarea>
+    <div class="playground">
+      <div class="settings">
+        <p> (1) Settings:
+      </div>
+      <div class="half">
+        <p>(2) Put your SCSS here:</p>
+      </div>
+      <div class="half">
+        <p>(3) The parse tree will appear here:</p>
+      </div>
+      <div class="settings" id="settings">
+        <div>
+          <p>Parser version:</p>
+          <label>
+            <input type="radio" name="version" value="dev" checked="true">
+            current dev
+          </label>
+          <p>Syntax:</p>
+          <label>
+            <input type="radio" name="syntax" value="css" checked="true">
+            CSS
+          </label>
+          <label>
+            <input type="radio" name="syntax" value="less">
+            Less
+          </label>
+          <label>
+            <input type="radio" name="syntax" value="sass">
+            Sass
+          </label>
+          <label>
+            <input type="radio" name="syntax" value="scss">
+            SCSS
+          </label>
+        </div>
+      </div>
+      <div class="half">
+        <textarea id="input"></textarea>
+      </div>
+      <div class="half">
+        <textarea readonly id="output"></textarea>
+      </div>
     </div>
     <script src="js/index.js"></script>
     <script src="js/gonzales.js"></script>
