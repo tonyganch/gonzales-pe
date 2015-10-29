@@ -1,0 +1,81 @@
+{
+  "type": "declaration",
+  "content": [
+    {
+      "type": "property",
+      "content": [
+        {
+          "type": "ident",
+          "content": "@{prop}",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "propertyDelimiter",
+      "content": ":",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "value",
+      "content": [
+        {
+          "type": "ident",
+          "content": "value",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 13
+      }
+    }
+  ],
+  "syntax": "less",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 13
+  }
+}
