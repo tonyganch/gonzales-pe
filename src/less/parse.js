@@ -900,12 +900,14 @@ function getCombinator1() {
  * (1) `>`
  * (2) `+`
  * (3) `~`
+ * (4) `&` : trailing parent selector. eg; input[type=button]&
  */
 function checkCombinator2(i) {
   let type = tokens[i].type;
   if (type === TokenType.PlusSign ||
       type === TokenType.GreaterThanSign ||
-      type === TokenType.Tilde) return 1;
+      type === TokenType.Tilde ||
+      type === TokenType.Ampersand) return 1;
   else return 0;
 }
 
