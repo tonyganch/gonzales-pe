@@ -182,11 +182,15 @@ function getLastPositionForArray(content, line, column, colOffset) {
 
   if (!colOffset) return position;
 
-  if (tokens[pos - 1].type !== 'Newline') {
-    position[1] += colOffset;
+  if (tokens[pos - 1]) {
+    if (tokens[pos - 1].type !== 'Newline') {
+      position[1] += colOffset;
+    } else {
+      position[0]++;
+      position[1] = 1;
+    }
   } else {
-    position[0]++;
-    position[1] = 1;
+    position[1] = colOffset;
   }
 
   return position;
@@ -3359,7 +3363,6 @@ function checkVariablesList(i) {
   if (i >= tokensLength) return 0;
 
   if (l = checkVariable(i)) i += l;
-  else return 0;
 
   while (tokens[i] && tokens[i].type === TokenType.FullStop) {
     d++;
@@ -3376,12 +3379,12 @@ function checkVariablesList(i) {
  */
 function getVariablesList() {
   let startPos = pos;
-  let x = [getVariable()];
   var token = tokens[startPos];
+  let x = token.type === TokenType.FullStop ? [] : [getVariable()];
   var line = token.ln;
   var column = token.col;
-
   var end = getLastPosition(x, line, column, 3);
+
   pos += 3;
 
   return newNode(NodeType.VariablesListType, x, line, column, end);
