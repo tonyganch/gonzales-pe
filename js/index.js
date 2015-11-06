@@ -4,13 +4,14 @@
   var settings = document.getElementById('settings');
 
   var syntax = 'css';
-  var format = 'full';
+  var format = 'short';
+  var parser = 'gonzales';
 
   function handleInput() {
     var css = input.value;
     var parseTree = {};
     try {
-      parseTree = gonzales.parse(css, {syntax: syntax});
+      parseTree = window[parser].parse(css, {syntax: syntax});
     } catch(e) {
     }
     printTree(parseTree);
@@ -20,15 +21,15 @@
     var target = event.target;
     var name = target.name;
 
-    if (name === 'syntax') {
+    if (name === 'version') {
+      parser = target.value;
+    } else if (name === 'syntax') {
       syntax = target.value;
-      handleInput();
+    } else if (name === 'format') {
+      format = target.value;
     }
 
-    if (name === 'format') {
-      format = target.value;
-      handleInput();
-    }
+    handleInput();
   }
 
   function printTree(parseTree) {

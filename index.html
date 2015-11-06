@@ -21,8 +21,12 @@
         <div>
           <p>Parser version:</p>
           <label>
-            <input type="radio" name="version" value="dev" checked="true">
+            <input type="radio" name="version" value="gonzales" checked="true">
             current dev
+          </label>
+          <label>
+            <input type="radio" name="version" value="gonzales-primitives">
+            fallback to primitives
           </label>
 
           <p>Syntax:</p>
@@ -45,11 +49,11 @@
 
           <p>Tree format:</p>
           <label>
-            <input type="radio" name="format" value="full" checked="true">
+            <input type="radio" name="format" value="full">
             full json
           </label>
           <label>
-            <input type="radio" name="format" value="short">
+            <input type="radio" name="format" value="short" checked="true">
             short json
           </label>
           <label>
@@ -67,5 +71,6 @@
     </div>
     <script src="js/index.js"></script>
     <script src="js/gonzales.js"></script>
+    <script src="js/gonzales-primitives.js"></script>
   </body>
 </html>
