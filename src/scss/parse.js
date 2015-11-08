@@ -1665,6 +1665,7 @@ function checkInclude(i) {
   else if (l = checkInclude2(i)) tokens[i].include_type = 2;
   else if (l = checkInclude3(i)) tokens[i].include_type = 3;
   else if (l = checkInclude4(i)) tokens[i].include_type = 4;
+  else if (l = checkInclude5(i)) tokens[i].include_type = 5;
 
   return l;
 }
@@ -1715,7 +1716,68 @@ function getInclude() {
     case 2: return getInclude2();
     case 3: return getInclude3();
     case 4: return getInclude4();
+    case 5: return getInclude5();
   }
+}
+
+/**
+ * Get node with included mixin with keyfames selector like
+ * `@include nani(foo) { 0% {}}`
+ * @param {Number} i Token's index number
+ * @returns {Number} Length of the include
+ */
+function checkInclude1(i) {
+  let start = i;
+  let l;
+
+  if (l = checkAtkeyword(i)) i += l;
+  else return 0;
+
+  if (tokens[start + 1].value !== 'include') return 0;
+
+  if (l = checkSC(i)) i += l;
+  else return 0;
+
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkArguments(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkKeyframesBlocks(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with included mixin with keyfames selector like
+ * `@include nani(foo) { 0% {}}`
+ * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
+ *      ['arguments', z], sc, ['block', q], sc` where `x` is `include` or
+ *      `extend`, `y` is mixin's identifier (selector), `z` are arguments
+ *      passed to the mixin, `q` is block passed to the mixin containing a
+ *      ruleset > selector > keyframesSelector, and `sc` are optional
+ *      whitespaces
+ */
+function getInclude1() {
+  let startPos = pos;
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getArguments(),
+      getSC(),
+      getKeyframesBlocks()
+  );
+
+  var token = tokens[startPos];
+  return newNode(NodeType.IncludeType, x, token.ln, token.col);
 }
 
 /**
@@ -1723,7 +1785,7 @@ function getInclude() {
  * @param {Number} i Token's index number
  * @returns {Number} Length of the include
  */
-function checkInclude1(i) {
+function checkInclude2(i) {
   let start = i;
   let l;
 
@@ -1759,7 +1821,7 @@ function checkInclude1(i) {
  *      passed to the mixin, `q` is block passed to the mixin and `sc`
  *      are optional whitespaces
  */
-function getInclude1() {
+function getInclude2() {
   let startPos = pos;
   let x = [].concat(
       getAtkeyword(),
@@ -1780,7 +1842,7 @@ function getInclude1() {
  * @param {Number} i Token's index number
  * @returns {Number} Length of the include
  */
-function checkInclude2(i) {
+function checkInclude3(i) {
   let start = i;
   let l;
 
@@ -1810,7 +1872,7 @@ function checkInclude2(i) {
  *      mixin's identifier (selector), `z` are arguments passed to the
  *      mixin and `sc` are optional whitespaces
  */
-function getInclude2() {
+function getInclude3() {
   let startPos = pos;
   let x = [].concat(
       getAtkeyword(),
@@ -1830,7 +1892,7 @@ function getInclude2() {
  * @param {Number} i Token's index number
  * @returns {Number} Length of the mixin
  */
-function checkInclude3(i) {
+function checkInclude4(i) {
   let start = i;
   let l;
 
@@ -1858,7 +1920,7 @@ function checkInclude3(i) {
  *      as an argument (e.g. `@include nani {...}`)
  * @returns {Array} `['include', x]`
  */
-function getInclude3() {
+function getInclude4() {
   let startPos = pos;
   let x = [].concat(
       getAtkeyword(),
@@ -1876,7 +1938,7 @@ function getInclude3() {
  * @param {Number} i Token's index number
  * @returns {Number}
  */
-function checkInclude4(i) {
+function checkInclude5(i) {
   let start = i;
   let l;
 
@@ -1897,7 +1959,7 @@ function checkInclude4(i) {
 /**
  * @returns {Array} `['include', x]`
  */
-function getInclude4() {
+function getInclude5() {
   let startPos = pos;
   let x = [].concat(
       getAtkeyword(),
