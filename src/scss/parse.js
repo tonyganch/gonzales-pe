@@ -2565,7 +2565,7 @@ function checkParentSelectorExtension(i) {
   let l;
 
   while (i < tokensLength) {
-    if (l = checkNumber(i) || checkIdent(i)) i += l;
+    if (l = checkNumber(i) || checkIdent(i) || checkTypeSelector(i)) i += l;
     else break;
   }
 
@@ -2582,6 +2582,7 @@ function getParentSelectorExtension() {
   while (pos < tokensLength) {
     if (checkNumber(pos)) content.push(getNumber());
     else if (checkIdent(pos)) content.push(getIdent());
+    else if (checkTypeSelector(pos)) content.push(getTypeSelector());
     else break;
   }
 
