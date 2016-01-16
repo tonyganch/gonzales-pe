@@ -14,6 +14,12 @@ function ParsingError(e, css) {
 
 ParsingError.prototype = {
   /**
+   * @type {String}
+   * @private
+   */
+  customMessage_: '',
+
+  /**
    * @type {Number}
    */
   line: null,
@@ -60,10 +66,18 @@ ParsingError.prototype = {
    * @type {String}
    */
   get message() {
-    var message = 'Please check validity of the block';
-    if (typeof this.line === 'number')
-        message += ' starting from line #' + this.line;
-    return message;
+    if (this.customMessage_) {
+      return this.customMessage_;
+    } else {
+      var message = 'Please check validity of the block';
+      if (typeof this.line === 'number')
+          message += ' starting from line #' + this.line;
+      return message;
+    }
+  },
+
+  set message(message) {
+    this.customMessage_ = message;
   },
 
   /**
