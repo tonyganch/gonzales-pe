@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 17.01.2016, Version 3.2.2
+
+:green_apple: Made `ParsingError#message` property writeable.
+
 ## 19.10.2015, Version 3.2.1
 
 #### Parsing rules
