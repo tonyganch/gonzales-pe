@@ -5,3 +5,5 @@ describe 'less/mixin >>', ->
   it '2', -> this.shouldBeOk()
   it '3', -> this.shouldBeOk()
   it '4', -> this.shouldBeOk()
+
+  it 'guard', -> this.shouldBeOk()

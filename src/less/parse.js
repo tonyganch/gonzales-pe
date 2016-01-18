@@ -1057,6 +1057,8 @@ function getCondition() {
   let startPos = pos;
   let x = [];
 
+  if (!checkCondition(pos)) return x;
+
   x.push(getIdent());
 
   while (pos < tokensLength) {
@@ -1928,6 +1930,8 @@ function checkMixin1(i) {
 
   if (l = checkSC(i)) i += l;
 
+  if (l = checkCondition(i)) i += l;
+
   if (l = checkBlock(i)) i += l;
   else return 0;
 
@@ -1949,6 +1953,8 @@ function getMixin1() {
   if (checkArguments(pos)) x.push(getArguments());
 
   x = x.concat(getSC());
+
+  if (checkCondition(pos)) x.push(getCondition());
 
   if (checkBlock(pos)) x.push(getBlock());
 
@@ -2874,6 +2880,8 @@ function checkRuleset(i) {
 
   if (l = checkSC(i)) i += l;
 
+  if (l = checkCondition(i)) i += l;
+
   if (l = checkBlock(i)) i += l;
   else return 0;
 
@@ -2889,6 +2897,7 @@ function getRuleset() {
 
   content = content.concat(getSelectorsGroup());
   content = content.concat(getSC());
+  content = content.concat(getCondition());
   content.push(getBlock());
 
   return newNode(type, content, line, column);
@@ -3672,6 +3681,8 @@ function getCompoundSelector2() {
 function checkTypeSelector(i) {
   if (i >= tokensLength) return 0;
 
+  if (checkIdent(i) && tokens[i].value === 'when') return 0;
+
   let start = i;
   let l;
 
@@ -3692,7 +3703,7 @@ function getTypeSelector() {
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
-  if (checkIdent(pos)) content.push(getIdent());
+  if (checkIdent(pos) && tokens[pos] !== 'when') content.push(getIdent());
 
   return newNode(type, content, line, column);
 }

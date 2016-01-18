@@ -21,3 +21,5 @@ describe 'less/ruleset >>', ->
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
+
+  it 'guard', -> this.shouldBeOk()
