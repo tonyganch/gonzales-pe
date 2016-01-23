@@ -3,8 +3,8 @@
  * Just change the first line (`var css`) and run `node test/ast.js`.
  * Make sure to change `syntax` variable too, if needed.
  */
-var css = 'a-23',
-    syntax = 'css',
+var css = '@include keyframes(foo) { 0% {}}',
+    syntax = 'scss',
     rule = 'ident',
     gonzales = require('./..'),
     ast = gonzales.parse(css, {syntax: syntax, rule: rule});
