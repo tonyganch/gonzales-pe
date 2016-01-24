@@ -3045,11 +3045,11 @@ function checkStylesheet(i) {
   // Check every token:
   while (i < tokensLength) {
     if (l = checkSC(i) ||
-        checkAtrule(i) ||
         checkRuleset(i) ||
-        checkMixin(i) ||
         checkDeclaration(i) ||
-        checkDeclDelim(i)) i += l;
+        checkDeclDelim(i) ||
+        checkAtrule(i) ||
+        checkMixin(i)) i += l;
     else throwError(i);
   }
 
@@ -3066,11 +3066,11 @@ function getStylesheet() {
 
   while (pos < tokensLength) {
     if (checkSC(pos)) x = x.concat(getSC());
-    else if (checkAtrule(pos)) x.push(getAtrule());
     else if (checkRuleset(pos)) x.push(getRuleset());
-    else if (checkMixin(pos)) x.push(getMixin());
     else if (checkDeclaration(pos)) x.push(getDeclaration());
     else if (checkDeclDelim(pos)) x.push(getDeclDelim());
+    else if (checkAtrule(pos)) x.push(getAtrule());
+    else if (checkMixin(pos)) x.push(getMixin());
     else throwError(pos);
   }
 
