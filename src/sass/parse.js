@@ -4250,7 +4250,8 @@ function checkSelectorsGroup(i) {
     let c = checkDelim(i + sb);
     if (!c) break;
     let sa = checkSC(i + sb + c);
-    if (l = checkSelector(i + sb + c + sa)) i += sb + c + sa + l;
+    let saa = sa ? checkSC(i + sb + c + sa) : 0;
+    if (l = checkSelector(i + sb + c + sa + saa)) i += sb + c + sa + saa + l;
     else break;
   }
 
@@ -4267,6 +4268,7 @@ function getSelectorsGroup() {
   while (pos < selectorsGroupEnd) {
     selectorsGroup = selectorsGroup.concat(getSC());
     selectorsGroup.push(getDelim());
+    selectorsGroup = selectorsGroup.concat(getSC());
     selectorsGroup = selectorsGroup.concat(getSC());
     selectorsGroup.push(getSelector());
   }
