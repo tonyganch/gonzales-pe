@@ -1988,15 +1988,10 @@ function checkInterpolation(i) {
 
   i += 2;
 
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkVariable(i)) tokens[i].interpolation_child = 1;
-  else if (l = checkFunction(i)) tokens[i].interpolation_child = 2;
-  else return 0;
-
-  i += l;
-
-  if (l = checkSC(i)) i += l;
+  while (tokens[i].type !== TokenType.RightCurlyBracket) {
+    if (l = checkArgument(i)) i += l;
+    else return 0;
+  }
 
   return tokens[i].type === TokenType.RightCurlyBracket ? i - start + 1 : 0;
 }
@@ -2015,13 +2010,11 @@ function getInterpolation() {
   // Skip `#{`:
   pos += 2;
 
-  x = x.concat(getSC());
-
-  var childType = tokens[pos].interpolation_child;
-  if (childType === 1) x.push(getVariable());
-  else if (childType === 2) x.push(getFunction());
-
-  x = x.concat(getSC());
+  while (pos < tokensLength && tokens[pos].type !== TokenType.RightCurlyBracket) {
+    let body = getArgument();
+    if (typeof body.content === 'string') x.push(body);
+    else x = x.concat(body);
+  }
 
   var end = getLastPosition(x, line, column, 1);
 
