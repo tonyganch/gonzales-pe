@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 07.02.2016, Version 3.2.5
+
+:green_apple: Fixed parsing of nested multiline selectors group.  
+
 ## 07.02.2016, Version 3.2.4
 
 :star: Added support for `!global` in Sass.  
