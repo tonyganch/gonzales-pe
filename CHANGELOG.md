@@ -7,6 +7,17 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 07.02.2016, Version 3.2.3
+
+:star: Modified `npm test` to remove `.DS_Store` files before running tests.  
+:star: Updated Travis config to use Node@5.0.  
+:star: Updated Travis config to include compiler info.  
+:star: Made it possible to build files if module is installed from github.  
+:green_apple: Fixed parsing of interpolation content in Sass and SCSS.  
+:green_apple: Fixed parsing of interpolation as part of parent selector
+extension in Sass and SCSS.  
+:green_apple: Fixed issue with keyframeSelector in includes in SCSS.  
+
 ## 17.01.2016, Version 3.2.2
 
 :green_apple: Made `ParsingError#message` property writeable.
