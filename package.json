@@ -21,7 +21,7 @@
     "init": "./scripts/init.sh",
     "log": "./scripts/log.sh",
     "prepublish": "./scripts/prepublish.sh",
-    "postinstall": "./scripts/postinstall.sh",
+    "postinstall": "if [ -e ./scripts/postinstall.sh ]; then ./scripts/postinstall.sh; fi",
     "postpublish": "./scripts/postpublish.sh",
     "test": "./scripts/build.sh && ./scripts/test.sh"
   },
