@@ -2010,7 +2010,8 @@ function getInterpolation() {
   // Skip `#{`:
   pos += 2;
 
-  while (pos < tokensLength && tokens[pos].type !== TokenType.RightCurlyBracket) {
+  while (pos < tokensLength &&
+      tokens[pos].type !== TokenType.RightCurlyBracket) {
     let body = getArgument();
     if (typeof body.content === 'string') x.push(body);
     else x = x.concat(body);
