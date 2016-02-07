@@ -30,6 +30,7 @@ var contexts = {
   'expression': function() { return checkExpression(pos) && getExpression(); },
   'extend': function() { return checkExtend(pos) && getExtend(); },
   'function': function() { return checkFunction(pos) && getFunction(); },
+  'global': function() { return checkGlobal(pos) && getGlobal(); },
   'ident': function() { return checkIdent(pos) && getIdent(); },
   'important': function() { return checkImportant(pos) && getImportant(); },
   'include': function() { return checkInclude(pos) && getInclude(); },
@@ -1708,6 +1709,42 @@ function getArguments() {
   pos++;
 
   return newNode(NodeType.ArgumentsType, x, token.ln, token.col, end);
+}
+
+/**
+ * Check if token is part of `!global` word
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkGlobal(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength ||
+      tokens[i++].type !== TokenType.ExclamationMark) return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (tokens[i].value === 'global') {
+    tokens[start].globalEnd = i;
+    return i - start + 1;
+  } else {
+    return 0;
+  }
+}
+
+/**
+ * Get node with `!global` word
+ */
+function getGlobal() {
+  var token = tokens[pos];
+  var line = token.ln;
+  var column = token.col;
+  let content = joinValues(pos, token.globalEnd);
+
+  pos = token.globalEnd + 1;
+
+  return newNode(NodeType.GlobalType, content, line, column);
 }
 
 /**
@@ -4032,6 +4069,7 @@ function _checkValue(i) {
   return checkVhash(i) ||
       checkOperator(i) ||
       checkImportant(i) ||
+      checkGlobal(i) ||
       checkDefault(i) ||
       checkProgid(i) ||
       checkAny(i) ||
@@ -4079,6 +4117,7 @@ function _getValue() {
   if (checkVhash(pos)) return getVhash();
   if (checkOperator(pos)) return getOperator();
   if (checkImportant(pos)) return getImportant();
+  if (checkGlobal(pos)) return getGlobal();
   if (checkDefault(pos)) return getDefault();
   if (checkProgid(pos)) return getProgid();
   if (checkAny(pos)) return getAny();
