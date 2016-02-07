@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 07.02.2016, Version 3.2.4
+
+:star: Added support for `!global` in Sass.  
+
 ## 07.02.2016, Version 3.2.3
 
 :star: Modified `npm test` to remove `.DS_Store` files before running tests.  
