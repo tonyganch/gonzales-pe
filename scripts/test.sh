@@ -30,6 +30,8 @@ printf "\n\
 ---------------\n\n"
     REPORTER="dot"
 
+    find ./ -name .DS_Store | xargs rm
+
     printf "Parser tests"
     test node ./test/parser.js
     printf "Parsing error tests"
