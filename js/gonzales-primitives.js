@@ -798,6 +798,12 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	ParsingError.prototype = Object.defineProperties({
 	  /**
+	   * @type {String}
+	   * @private
+	   */
+	  customMessage_: '',
+
+	  /**
 	   * @type {Number}
 	   */
 	  line: null,
@@ -857,9 +863,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	     */
 
 	    get: function () {
-	      var message = 'Please check validity of the block';
-	      if (typeof this.line === 'number') message += ' starting from line #' + this.line;
-	      return message;
+	      if (this.customMessage_) {
+	        return this.customMessage_;
+	      } else {
+	        var message = 'Please check validity of the block';
+	        if (typeof this.line === 'number') message += ' starting from line #' + this.line;
+	        return message;
+	      }
+	    },
+	    set: function (message) {
+	      this.customMessage_ = message;
 	    },
 	    configurable: true,
 	    enumerable: true
@@ -875,7 +888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 		"name": "gonzales-pe",
 		"description": "Gonzales Preprocessor Edition (fast CSS parser)",
-		"version": "3.2.1",
+		"version": "3.2.4",
 		"homepage": "http://github.com/tonyganch/gonzales-pe",
 		"bugs": "http://github.com/tonyganch/gonzales-pe/issues",
 		"license": "MIT",
@@ -894,16 +907,15 @@ return /******/ (function(modules) { // webpackBootstrap
 			"build": "./scripts/build.sh",
 			"init": "./scripts/init.sh",
 			"log": "./scripts/log.sh",
+			"prepublish": "./scripts/prepublish.sh",
+			"postinstall": "./scripts/postinstall.sh",
+			"postpublish": "./scripts/postpublish.sh",
 			"test": "./scripts/build.sh && ./scripts/test.sh",
 			"watch": "./scripts/watch.sh"
 		},
 		"bin": {
 			"gonzales": "./bin/gonzales.js"
 		},
-		"files": [
-			"bin",
-			"lib"
-		],
 		"dependencies": {
 			"minimist": "1.1.x"
 		},
@@ -2617,16 +2629,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (tokens[i].number_l) return tokens[i].number_l;
 
 	  // `10`:
-	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== NodeType.FULL_STOP)) return (tokens[i].number_l = 1, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== NodeType.FULL_STOP)) return tokens[i].number_l = 1, tokens[i].number_l;
 
 	  // `10.`:
-	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && (!tokens[i + 2] || tokens[i + 2].type !== NodeType.DIGIT)) return (tokens[i].number_l = 2, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && (!tokens[i + 2] || tokens[i + 2].type !== NodeType.DIGIT)) return tokens[i].number_l = 2, tokens[i].number_l;
 
 	  // `.10`:
-	  if (i < tokensLength && tokens[i].type === NodeType.FULL_STOP && tokens[i + 1].type === NodeType.DIGIT) return (tokens[i].number_l = 2, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === NodeType.FULL_STOP && tokens[i + 1].type === NodeType.DIGIT) return tokens[i].number_l = 2, tokens[i].number_l;
 
 	  // `10.10`:
-	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && tokens[i + 2] && tokens[i + 2].type === NodeType.DIGIT) return (tokens[i].number_l = 3, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && tokens[i + 2] && tokens[i + 2].type === NodeType.DIGIT) return tokens[i].number_l = 3, tokens[i].number_l;
 
 	  return 0;
 	}
@@ -6714,16 +6726,16 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (tokens[i].number_l) return tokens[i].number_l;
 
 	  // `10`:
-	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop)) return (tokens[i].number_l = 1, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop)) return tokens[i].number_l = 1, tokens[i].number_l;
 
 	  // `10.`:
-	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && (!tokens[i + 2] || tokens[i + 2].type !== TokenType.DecimalNumber)) return (tokens[i].number_l = 2, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && (!tokens[i + 2] || tokens[i + 2].type !== TokenType.DecimalNumber)) return tokens[i].number_l = 2, tokens[i].number_l;
 
 	  // `.10`:
-	  if (i < tokensLength && tokens[i].type === TokenType.FullStop && tokens[i + 1].type === TokenType.DecimalNumber) return (tokens[i].number_l = 2, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === TokenType.FullStop && tokens[i + 1].type === TokenType.DecimalNumber) return tokens[i].number_l = 2, tokens[i].number_l;
 
 	  // `10.10`:
-	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber) return (tokens[i].number_l = 3, tokens[i].number_l);
+	  if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber) return tokens[i].number_l = 3, tokens[i].number_l;
 
 	  return 0;
 	}
@@ -9076,7 +9088,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /***/ function(module, exports, __webpack_require__) {
 
 	// jscs:disable maximumLineLength
-	'use strict';var Node=__webpack_require__(1);var NodeType=__webpack_require__(13);var TokenType=__webpack_require__(18);var tokens=undefined;var tokensLength=undefined;var pos=undefined;var contexts={'arguments':function(){return checkArguments(pos) && getArguments();},'atkeyword':function(){return checkAtkeyword(pos) && getAtkeyword();},'atrule':function(){return checkAtrule(pos) && getAtrule();},'block':function(){return checkBlock(pos) && getBlock();},'brackets':function(){return checkBrackets(pos) && getBrackets();},'class':function(){return checkClass(pos) && getClass();},'combinator':function(){return checkCombinator(pos) && getCombinator();},'commentML':function(){return checkCommentML(pos) && getCommentML();},'commentSL':function(){return checkCommentSL(pos) && getCommentSL();},'condition':function(){return checkCondition(pos) && getCondition();},'conditionalStatement':function(){return checkConditionalStatement(pos) && getConditionalStatement();},'declaration':function(){return checkDeclaration(pos) && getDeclaration();},'declDelim':function(){return checkDeclDelim(pos) && getDeclDelim();},'default':function(){return checkDefault(pos) && getDefault();},'delim':function(){return checkDelim(pos) && getDelim();},'dimension':function(){return checkDimension(pos) && getDimension();},'expression':function(){return checkExpression(pos) && getExpression();},'extend':function(){return checkExtend(pos) && getExtend();},'function':function(){return checkFunction(pos) && getFunction();},'ident':function(){return checkIdent(pos) && getIdent();},'important':function(){return checkImportant(pos) && getImportant();},'include':function(){return checkInclude(pos) && getInclude();},'interpolation':function(){return checkInterpolation(pos) && getInterpolation();},'loop':function(){return checkLoop(pos) && getLoop();},'mixin':function(){return checkMixin(pos) && getMixin();},'namespace':function(){return checkNamespace(pos) && getNamespace();},'number':function(){return checkNumber(pos) && getNumber();},'operator':function(){return checkOperator(pos) && getOperator();},'optional':function(){return checkOptional(pos) && getOptional();},'parentheses':function(){return checkParentheses(pos) && getParentheses();},'parentselector':function(){return checkParentSelector(pos) && getParentSelector();},'percentage':function(){return checkPercentage(pos) && getPercentage();},'placeholder':function(){return checkPlaceholder(pos) && getPlaceholder();},'progid':function(){return checkProgid(pos) && getProgid();},'property':function(){return checkProperty(pos) && getProperty();},'propertyDelim':function(){return checkPropertyDelim(pos) && getPropertyDelim();},'pseudoc':function(){return checkPseudoc(pos) && getPseudoc();},'pseudoe':function(){return checkPseudoe(pos) && getPseudoe();},'ruleset':function(){return checkRuleset(pos) && getRuleset();},'s':function(){return checkS(pos) && getS();},'selector':function(){return checkSelector(pos) && getSelector();},'shash':function(){return checkShash(pos) && getShash();},'string':function(){return checkString(pos) && getString();},'stylesheet':function(){return checkStylesheet(pos) && getStylesheet();},'unary':function(){return checkUnary(pos) && getUnary();},'uri':function(){return checkUri(pos) && getUri();},'value':function(){return checkValue(pos) && getValue();},'variable':function(){return checkVariable(pos) && getVariable();},'variableslist':function(){return checkVariablesList(pos) && getVariablesList();},'vhash':function(){return checkVhash(pos) && getVhash();}}; /**
+	'use strict';var Node=__webpack_require__(1);var NodeType=__webpack_require__(13);var TokenType=__webpack_require__(18);var tokens=undefined;var tokensLength=undefined;var pos=undefined;var contexts={'arguments':function(){return checkArguments(pos) && getArguments();},'atkeyword':function(){return checkAtkeyword(pos) && getAtkeyword();},'atrule':function(){return checkAtrule(pos) && getAtrule();},'block':function(){return checkBlock(pos) && getBlock();},'brackets':function(){return checkBrackets(pos) && getBrackets();},'class':function(){return checkClass(pos) && getClass();},'combinator':function(){return checkCombinator(pos) && getCombinator();},'commentML':function(){return checkCommentML(pos) && getCommentML();},'commentSL':function(){return checkCommentSL(pos) && getCommentSL();},'condition':function(){return checkCondition(pos) && getCondition();},'conditionalStatement':function(){return checkConditionalStatement(pos) && getConditionalStatement();},'declaration':function(){return checkDeclaration(pos) && getDeclaration();},'declDelim':function(){return checkDeclDelim(pos) && getDeclDelim();},'default':function(){return checkDefault(pos) && getDefault();},'delim':function(){return checkDelim(pos) && getDelim();},'dimension':function(){return checkDimension(pos) && getDimension();},'expression':function(){return checkExpression(pos) && getExpression();},'extend':function(){return checkExtend(pos) && getExtend();},'function':function(){return checkFunction(pos) && getFunction();},'global':function(){return checkGlobal(pos) && getGlobal();},'ident':function(){return checkIdent(pos) && getIdent();},'important':function(){return checkImportant(pos) && getImportant();},'include':function(){return checkInclude(pos) && getInclude();},'interpolation':function(){return checkInterpolation(pos) && getInterpolation();},'loop':function(){return checkLoop(pos) && getLoop();},'mixin':function(){return checkMixin(pos) && getMixin();},'namespace':function(){return checkNamespace(pos) && getNamespace();},'number':function(){return checkNumber(pos) && getNumber();},'operator':function(){return checkOperator(pos) && getOperator();},'optional':function(){return checkOptional(pos) && getOptional();},'parentheses':function(){return checkParentheses(pos) && getParentheses();},'parentselector':function(){return checkParentSelector(pos) && getParentSelector();},'percentage':function(){return checkPercentage(pos) && getPercentage();},'placeholder':function(){return checkPlaceholder(pos) && getPlaceholder();},'progid':function(){return checkProgid(pos) && getProgid();},'property':function(){return checkProperty(pos) && getProperty();},'propertyDelim':function(){return checkPropertyDelim(pos) && getPropertyDelim();},'pseudoc':function(){return checkPseudoc(pos) && getPseudoc();},'pseudoe':function(){return checkPseudoe(pos) && getPseudoe();},'ruleset':function(){return checkRuleset(pos) && getRuleset();},'s':function(){return checkS(pos) && getS();},'selector':function(){return checkSelector(pos) && getSelector();},'shash':function(){return checkShash(pos) && getShash();},'string':function(){return checkString(pos) && getString();},'stylesheet':function(){return checkStylesheet(pos) && getStylesheet();},'unary':function(){return checkUnary(pos) && getUnary();},'uri':function(){return checkUri(pos) && getUri();},'value':function(){return checkValue(pos) && getValue();},'variable':function(){return checkVariable(pos) && getVariable();},'variableslist':function(){return checkVariablesList(pos) && getVariablesList();},'vhash':function(){return checkVhash(pos) && getVhash();}}; /**
 	 * Stop parsing and display error
 	 * @param {Number=} i Token's index number
 	 */function throwError(i){var ln=i?tokens[i].ln:tokens[pos].ln;throw {line:ln,syntax:'sass'};} /**
@@ -9337,6 +9349,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function getFunction(){var startPos=pos;var x=getIdentOrInterpolation();var body=undefined;body = getArguments();x.push(body);var token=tokens[startPos];return newNode(NodeType.FunctionType,x,token.ln,token.col);} /**
 	 * @returns {Array}
 	 */function getArguments(){var startPos=pos;var x=[];var body=undefined;var token=tokens[startPos];var line=token.ln;var column=token.col;pos++;while(pos < tokensLength && tokens[pos].type !== TokenType.RightParenthesis) {if(checkDeclaration(pos))x.push(getDeclaration());else if(checkArgument(pos)){body = getArgument();if(typeof body.content === 'string')x.push(body);else x = x.concat(body);}else if(checkClass(pos))x.push(getClass());else throwError();}var end=getLastPosition(x,line,column,1);pos++;return newNode(NodeType.ArgumentsType,x,token.ln,token.col,end);} /**
+	 * Check if token is part of `!global` word
+	 * @param {Number} i Token's index number
+	 * @returns {Number}
+	 */function checkGlobal(i){var start=i;var l=undefined;if(i >= tokensLength || tokens[i++].type !== TokenType.ExclamationMark)return 0;if(l = checkSC(i))i += l;if(tokens[i].value === 'global'){tokens[start].globalEnd = i;return i - start + 1;}else {return 0;}} /**
+	 * Get node with `!global` word
+	 */function getGlobal(){var token=tokens[pos];var line=token.ln;var column=token.col;var content=joinValues(pos,token.globalEnd);pos = token.globalEnd + 1;return newNode(NodeType.GlobalType,content,line,column);} /**
 	 * Check if token is part of an identifier
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the identifier
@@ -9439,11 +9457,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function checkInterpolation(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(tokens[i].type !== TokenType.NumberSign || !tokens[i + 1] || tokens[i + 1].type !== TokenType.LeftCurlyBracket)return 0;i += 2;if(l = checkSC(i))i += l;if(l = checkVariable(i))tokens[i].interpolation_child = 1;else if(l = checkFunction(i))tokens[i].interpolation_child = 2;else return 0;i += l;if(l = checkSC(i))i += l;return tokens[i].type === TokenType.RightCurlyBracket?i - start + 1:0;} /**
+	 */function checkInterpolation(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(tokens[i].type !== TokenType.NumberSign || !tokens[i + 1] || tokens[i + 1].type !== TokenType.LeftCurlyBracket)return 0;i += 2;while(tokens[i].type !== TokenType.RightCurlyBracket) {if(l = checkArgument(i))i += l;else return 0;}return tokens[i].type === TokenType.RightCurlyBracket?i - start + 1:0;} /**
 	 * Get node with an interpolated variable
 	 * @returns {Array} `['interpolation', x]`
 	 */function getInterpolation(){var startPos=pos;var x=[];var token=tokens[startPos];var line=token.ln;var column=token.col; // Skip `#{`:
-	pos += 2;x = x.concat(getSC());var childType=tokens[pos].interpolation_child;if(childType === 1)x.push(getVariable());else if(childType === 2)x.push(getFunction());x = x.concat(getSC());var end=getLastPosition(x,line,column,1); // Skip `}`:
+	pos += 2;while(pos < tokensLength && tokens[pos].type !== TokenType.RightCurlyBracket) {var body=getArgument();if(typeof body.content === 'string')x.push(body);else x = x.concat(body);}var end=getLastPosition(x,line,column,1); // Skip `}`:
 	pos++;return newNode(NodeType.InterpolationType,x,token.ln,token.col,end);}function checkKeyframesBlock(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkKeyframesSelector(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;}function getKeyframesBlock(){var type=NodeType.RulesetType;var token=tokens[pos];var line=token.ln;var column=token.col;var content=[].concat([getKeyframesSelector()],getSC(),[getBlock()]);return newNode(type,content,line,column);}function checkKeyframesBlocks(i){return i < tokensLength && tokens[i].block_end?tokens[i].block_end - i + 1:0;}function getKeyframesBlocks(){var type=NodeType.BlockType;var token=tokens[pos];var line=token.ln;var column=token.col;var content=[];var keyframesBlocksEnd=token.block_end;while(pos < keyframesBlocksEnd) {if(checkSC(pos))content = content.concat(getSC());else if(checkKeyframesBlock(pos))content.push(getKeyframesBlock());}return newNode(type,content,line,column);} /**
 	 * Check if token is part of a @keyframes rule.
 	 * @param {Number} i Token's index number
@@ -9496,10 +9514,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of number
 	 */function checkNumber(i){if(i >= tokensLength)return 0;if(tokens[i].number_l)return tokens[i].number_l; // `10`:
-	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop))return (tokens[i].number_l = 1,tokens[i].number_l); // `10.`:
-	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && (!tokens[i + 2] || tokens[i + 2].type !== TokenType.DecimalNumber))return (tokens[i].number_l = 2,tokens[i].number_l); // `.10`:
-	if(i < tokensLength && tokens[i].type === TokenType.FullStop && tokens[i + 1].type === TokenType.DecimalNumber)return (tokens[i].number_l = 2,tokens[i].number_l); // `10.10`:
-	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber)return (tokens[i].number_l = 3,tokens[i].number_l);return 0;} /**
+	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop))return tokens[i].number_l = 1,tokens[i].number_l; // `10.`:
+	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && (!tokens[i + 2] || tokens[i + 2].type !== TokenType.DecimalNumber))return tokens[i].number_l = 2,tokens[i].number_l; // `.10`:
+	if(i < tokensLength && tokens[i].type === TokenType.FullStop && tokens[i + 1].type === TokenType.DecimalNumber)return tokens[i].number_l = 2,tokens[i].number_l; // `10.10`:
+	if(i < tokensLength && tokens[i].type === TokenType.DecimalNumber && tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop && tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber)return tokens[i].number_l = 3,tokens[i].number_l;return 0;} /**
 	 * Get node with number
 	 * @returns {Array} `['number', x]` where `x` is a number converted
 	 *      to string.
@@ -9531,7 +9549,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function checkParentSelector(i){return i < tokensLength && tokens[i].type === TokenType.Ampersand?1:0;} /**
 	 * Get node with a parent selector
 	 * @returns {Array} `['parentSelector']`
-	 */function getParentSelector(){var startPos=pos++;var token=tokens[startPos];return newNode(NodeType.ParentSelectorType,'&',token.ln,token.col);}function checkParentSelectorExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;while(i < tokensLength) {if(l = checkNumber(i) || checkIdent(i))i += l;else break;}return i - start;}function getParentSelectorExtension(){var type=NodeType.ParentSelectorExtensionType;var token=tokens[pos];var line=token.ln;var column=token.col;var content=[];while(pos < tokensLength) {if(checkNumber(pos))content.push(getNumber());else if(checkIdent(pos))content.push(getIdent());else break;}return newNode(type,content,line,column);}function checkParentSelectorWithExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;if(l = checkParentSelector(i))i += l;else return 0;if(l = checkParentSelectorExtension(i))i += l;return i - start;}function getParentSelectorWithExtension(){var content=[getParentSelector()];if(checkParentSelectorExtension(pos))content.push(getParentSelectorExtension());return content;} /**
+	 */function getParentSelector(){var startPos=pos++;var token=tokens[startPos];return newNode(NodeType.ParentSelectorType,'&',token.ln,token.col);}function checkParentSelectorExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;while(i < tokensLength) {if(l = checkNumber(i) || checkIdentOrInterpolation(i))i += l;else break;}return i - start;}function getParentSelectorExtension(){var type=NodeType.ParentSelectorExtensionType;var token=tokens[pos];var line=token.ln;var column=token.col;var content=[];while(pos < tokensLength) {if(checkNumber(pos))content.push(getNumber());else if(checkIdentOrInterpolation(pos))content = content.concat(getIdentOrInterpolation());else break;}return newNode(type,content,line,column);}function checkParentSelectorWithExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;if(l = checkParentSelector(i))i += l;else return 0;if(l = checkParentSelectorExtension(i))i += l;return i - start;}function getParentSelectorWithExtension(){var content=[getParentSelector()];if(checkParentSelectorExtension(pos))content.push(getParentSelectorExtension());return content;} /**
 	 * Check if token is part of a number with percent sign (e.g. `10%`)
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
@@ -9709,11 +9727,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function checkValue(i){var start=i;var l=undefined;var s=undefined;var _i=undefined;while(i < tokensLength) {if(checkDeclDelim(i))break;if(l = checkBlock(i)){i += l;break;}s = checkS(i);_i = i + s;if(l = _checkValue(_i))i += l + s;if(!l || checkBlock(i - l))break;}return i - start;} /**
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function _checkValue(i){return checkVhash(i) || checkOperator(i) || checkImportant(i) || checkDefault(i) || checkProgid(i) || checkAny(i) || checkInterpolation(i);} /**
+	 */function _checkValue(i){return checkVhash(i) || checkOperator(i) || checkImportant(i) || checkGlobal(i) || checkDefault(i) || checkProgid(i) || checkAny(i) || checkInterpolation(i);} /**
 	 * @returns {Array}
 	 */function getValue(){var startPos=pos;var x=[];var _pos=undefined;var s=undefined;while(pos < tokensLength) {if(checkDeclDelim(pos))break;s = checkS(pos);_pos = pos + s;if(checkDeclDelim(_pos))break;if(checkBlock(pos)){x.push(getBlock());break;}if(!_checkValue(_pos))break;if(s)x.push(getS());x.push(_getValue());if(checkBlock(_pos))break;}var token=tokens[startPos];return newNode(NodeType.ValueType,x,token.ln,token.col);} /**
 	 * @returns {Array}
-	 */function _getValue(){if(checkVhash(pos))return getVhash();if(checkOperator(pos))return getOperator();if(checkImportant(pos))return getImportant();if(checkDefault(pos))return getDefault();if(checkProgid(pos))return getProgid();if(checkAny(pos))return getAny();if(checkInterpolation(pos))return getInterpolation();} /**
+	 */function _getValue(){if(checkVhash(pos))return getVhash();if(checkOperator(pos))return getOperator();if(checkImportant(pos))return getImportant();if(checkGlobal(pos))return getGlobal();if(checkDefault(pos))return getDefault();if(checkProgid(pos))return getProgid();if(checkAny(pos))return getAny();if(checkInterpolation(pos))return getInterpolation();} /**
 	 * Check if token is part of a variable
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the variable
@@ -10535,7 +10553,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 *      directive).
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the included mixin
-	 */function checkInclude(i){var l;if(i >= tokensLength)return 0;if(l = checkInclude1(i))tokens[i].include_type = 1;else if(l = checkInclude2(i))tokens[i].include_type = 2;else if(l = checkInclude3(i))tokens[i].include_type = 3;else if(l = checkInclude4(i))tokens[i].include_type = 4;return l;} /**
+	 */function checkInclude(i){var l;if(i >= tokensLength)return 0;if(l = checkInclude1(i))tokens[i].include_type = 1;else if(l = checkInclude2(i))tokens[i].include_type = 2;else if(l = checkInclude3(i))tokens[i].include_type = 3;else if(l = checkInclude4(i))tokens[i].include_type = 4;else if(l = checkInclude5(i))tokens[i].include_type = 5;return l;} /**
 	 * Check if token is part of `!global` word
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
@@ -10544,50 +10562,64 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function getGlobal(){var token=tokens[pos];var line=token.start.line;var column=token.start.column;var content=joinValues(pos,token.globalEnd);pos = token.globalEnd + 1;return newNode(NodeType.GLOBAL,content,line,column);} /**
 	 * Get node with included mixin
 	 * @returns {Array} `['include', x]`
-	 */function getInclude(){switch(tokens[pos].include_type){case 1:return getInclude1();case 2:return getInclude2();case 3:return getInclude3();case 4:return getInclude4();}} /**
+	 */function getInclude(){switch(tokens[pos].include_type){case 1:return getInclude1();case 2:return getInclude2();case 3:return getInclude3();case 4:return getInclude4();case 5:return getInclude5();}} /**
+	 * Get node with included mixin with keyfames selector like
+	 * `@include nani(foo) { 0% {}}`
+	 * @param {Number} i Token's index number
+	 * @returns {Number} Length of the include
+	 */function checkInclude1(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkArguments(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkKeyframesBlocks(i))i += l;else return 0;return i - start;} /**
+	 * Get node with included mixin with keyfames selector like
+	 * `@include nani(foo) { 0% {}}`
+	 * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
+	 *      ['arguments', z], sc, ['block', q], sc` where `x` is `include` or
+	 *      `extend`, `y` is mixin's identifier (selector), `z` are arguments
+	 *      passed to the mixin, `q` is block passed to the mixin containing a
+	 *      ruleset > selector > keyframesSelector, and `sc` are optional
+	 *      whitespaces
+	 */function getInclude1(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getArguments(),getSC(),getKeyframesBlocks());var token=tokens[startPos];return newNode(NodeType.IncludeType,x,token.ln,token.col);} /**
 	 * Check if token is part of an included mixin like `@include nani(foo) {...}`
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the include
-	 */function checkInclude1(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkArguments(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;} /**
+	 */function checkInclude2(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].value !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkArguments(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;} /**
 	 * Get node with included mixin like `@include nani(foo) {...}`
 	 * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
 	 *      ['arguments', z], sc, ['block', q], sc` where `x` is `include` or
 	 *      `extend`, `y` is mixin's identifier (selector), `z` are arguments
 	 *      passed to the mixin, `q` is block passed to the mixin and `sc`
 	 *      are optional whitespaces
-	 */function getInclude1(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getArguments(),getSC(),getBlock());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
+	 */function getInclude2(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getArguments(),getSC(),getBlock());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
 	 * Check if token is part of an included mixin like `@include nani(foo)`
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the include
-	 */function checkInclude2(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkArguments(i))i += l;else return 0;return i - start;} /**
+	 */function checkInclude3(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkArguments(i))i += l;else return 0;return i - start;} /**
 	 * Get node with included mixin like `@include nani(foo)`
 	 * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
 	 *      ['arguments', z], sc]` where `x` is `include` or `extend`, `y` is
 	 *      mixin's identifier (selector), `z` are arguments passed to the
 	 *      mixin and `sc` are optional whitespaces
-	 */function getInclude2(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getArguments());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
+	 */function getInclude3(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getArguments());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
 	 * Check if token is part of an included mixin with a content block passed
 	 *      as an argument (e.g. `@include nani {...}`)
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the mixin
-	 */function checkInclude3(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;} /**
+	 */function checkInclude4(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;} /**
 	 * Get node with an included mixin with a content block passed
 	 *      as an argument (e.g. `@include nani {...}`)
 	 * @returns {Array} `['include', x]`
-	 */function getInclude3(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getBlock());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
+	 */function getInclude4(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation(),getSC(),getBlock());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function checkInclude4(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;return i - start;} /**
+	 */function checkInclude5(i){var start=i;var l=undefined;if(l = checkAtkeyword(i))i += l;else return 0;if(tokens[start + 1].toString() !== 'include')return 0;if(l = checkSC(i))i += l;else return 0;if(l = checkIdentOrInterpolation(i))i += l;else return 0;return i - start;} /**
 	 * @returns {Array} `['include', x]`
-	 */function getInclude4(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
+	 */function getInclude5(){var startPos=pos;var x=[].concat(getAtkeyword(),getSC(),getIdentOrInterpolation());var token=tokens[startPos];return newNode(NodeType.INCLUDE,x,token.start.line,token.start.column);} /**
 	 * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function checkInterpolation(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(tokens[i].type !== NodeType.NUMBER_SIGN || !tokens[i + 1] || tokens[i + 1].type !== NodeType.LEFT_CURLY_BRACKET)return 0;i += 2;if(l = checkSC(i))i += l;if(l = checkVariable(i))tokens[i].interpolation_child = 1;else if(l = checkFunction(i))tokens[i].interpolation_child = 2;else return 0;i += l;if(l = checkSC(i))i += l;return tokens[i].type === NodeType.RIGHT_CURLY_BRACKET?i - start + 1:0;} /**
+	 */function checkInterpolation(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(tokens[i].type !== NodeType.NUMBER_SIGN || !tokens[i + 1] || tokens[i + 1].type !== NodeType.LEFT_CURLY_BRACKET)return 0;i += 2;while(tokens[i].type !== TokenType.RightCurlyBracket) {if(l = checkArgument(i))i += l;else return 0;}return tokens[i].type === NodeType.RIGHT_CURLY_BRACKET?i - start + 1:0;} /**
 	 * Get node with an interpolated variable
 	 * @returns {Array} `['interpolation', x]`
 	 */function getInterpolation(){var startPos=pos;var x=[];var token=tokens[startPos];var line=token.start.line;var column=token.start.column; // Skip `#{`:
-	pos += 2;x = x.concat(getSC());var childType=tokens[pos].interpolation_child;if(childType === 1)x.push(getVariable());else if(childType === 2)x.push(getFunction());x = x.concat(getSC());var end=getLastPosition(x,line,column,1); // Skip `}`:
+	pos += 2;while(pos < tokensLength && tokens[pos].type !== TokenType.RightCurlyBracket) {var body=getArgument();if(typeof body.content === 'string')x.push(body);else x = x.concat(body);}var end=getLastPosition(x,line,column,1); // Skip `}`:
 	pos++;return newNode(NodeType.INTERPOLATION,x,token.start.line,token.start.column,end);}function checkKeyframesBlock(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkKeyframesSelector(i))i += l;else return 0;if(l = checkSC(i))i += l;if(l = checkBlock(i))i += l;else return 0;return i - start;}function getKeyframesBlock(){var type=NodeType.RULESET;var token=tokens[pos];var line=token.start.line;var column=token.start.column;var content=[].concat([getKeyframesSelector()],getSC(),[getBlock()]);return newNode(type,content,line,column);}function checkKeyframesBlocks(i){var start=i;var l=undefined;if(i < tokensLength && tokens[i].type === NodeType.LEFT_CURLY_BRACKET)i++;else return 0;if(l = checkSC(i))i += l;if(l = checkKeyframesBlock(i))i += l;else return 0;while(tokens[i].type !== NodeType.RIGHT_CURLY_BRACKET) {if(l = checkSC(i))i += l;else if(l = checkKeyframesBlock(i))i += l;else break;}if(i < tokensLength && tokens[i].type === NodeType.RIGHT_CURLY_BRACKET)i++;else return 0;return i - start;}function getKeyframesBlocks(){var type=NodeType.BLOCK;var token=tokens[pos];var line=token.start.line;var column=token.start.column;var content=[];var keyframesBlocksEnd=token.right; // Skip `{`.
 	pos++;while(pos < keyframesBlocksEnd) {if(checkSC(pos))content = content.concat(getSC());else if(checkKeyframesBlock(pos))content.push(getKeyframesBlock());}var end=getLastPosition(content,line,column,1); // Skip `}`.
 	pos++;return newNode(type,content,line,column,end);} /**
@@ -10628,10 +10660,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of number
 	 */function checkNumber(i){if(i >= tokensLength)return 0;if(tokens[i].number_l)return tokens[i].number_l; // `10`:
-	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== NodeType.FULL_STOP))return (tokens[i].number_l = 1,tokens[i].number_l); // `10.`:
-	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && (!tokens[i + 2] || tokens[i + 2].type !== NodeType.DIGIT))return (tokens[i].number_l = 2,tokens[i].number_l); // `.10`:
-	if(i < tokensLength && tokens[i].type === NodeType.FULL_STOP && tokens[i + 1].type === NodeType.DIGIT)return (tokens[i].number_l = 2,tokens[i].number_l); // `10.10`:
-	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && tokens[i + 2] && tokens[i + 2].type === NodeType.DIGIT)return (tokens[i].number_l = 3,tokens[i].number_l);return 0;} /**
+	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && (!tokens[i + 1] || tokens[i + 1] && tokens[i + 1].type !== NodeType.FULL_STOP))return tokens[i].number_l = 1,tokens[i].number_l; // `10.`:
+	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && (!tokens[i + 2] || tokens[i + 2].type !== NodeType.DIGIT))return tokens[i].number_l = 2,tokens[i].number_l; // `.10`:
+	if(i < tokensLength && tokens[i].type === NodeType.FULL_STOP && tokens[i + 1].type === NodeType.DIGIT)return tokens[i].number_l = 2,tokens[i].number_l; // `10.10`:
+	if(i < tokensLength && tokens[i].type === NodeType.DIGIT && tokens[i + 1] && tokens[i + 1].type === NodeType.FULL_STOP && tokens[i + 2] && tokens[i + 2].type === NodeType.DIGIT)return tokens[i].number_l = 3,tokens[i].number_l;return 0;} /**
 	 * Get node with number
 	 * @returns {Array} `['number', x]` where `x` is a number converted
 	 *      to string.
@@ -10662,7 +10694,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @returns {Number}
 	 */function checkParentSelector(i){return i < tokensLength && tokens[i].type === NodeType.AMPERSAND?1:0;} /**
 	 * Get node with a parent selector
-	 */function getParentSelector(){var startPos=pos;pos++;var token=tokens[startPos];return newNode(NodeType.PARENT_SELECTOR,'&',token.start.line,token.start.column);}function checkParentSelectorExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;while(i < tokensLength) {if(l = checkNumber(i) || checkIdent(i))i += l;else break;}return i - start;}function getParentSelectorExtension(){var type=NodeType.PARENT_SELECTOR_EXTENSION;var token=tokens[pos];var line=token.start.line;var column=token.start.column;var content=[];while(pos < tokensLength) {if(checkNumber(pos))content.push(getNumber());else if(checkIdent(pos))content.push(getIdent());else break;}return newNode(type,content,line,column);}function checkParentSelectorWithExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;if(l = checkParentSelector(i))i += l;else return 0;if(l = checkParentSelectorExtension(i))i += l;return i - start;}function getParentSelectorWithExtension(){var content=[getParentSelector()];if(checkParentSelectorExtension(pos))content.push(getParentSelectorExtension());return content;} /**
+	 */function getParentSelector(){var startPos=pos;pos++;var token=tokens[startPos];return newNode(NodeType.PARENT_SELECTOR,'&',token.start.line,token.start.column);}function checkParentSelectorExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;while(i < tokensLength) {if(l = checkNumber(i) || checkIdentOrInterpolation(i))i += l;else break;}return i - start;}function getParentSelectorExtension(){var type=NodeType.PARENT_SELECTOR_EXTENSION;var token=tokens[pos];var line=token.start.line;var column=token.start.column;var content=[];while(pos < tokensLength) {if(checkNumber(pos))content.push(getNumber());else if(checkIdentOrInterpolation(pos))content = content.concat(getIdentOrInterpolation());else break;}return newNode(type,content,line,column);}function checkParentSelectorWithExtension(i){if(i >= tokensLength)return 0;var start=i;var l=undefined;if(l = checkParentSelector(i))i += l;else return 0;if(l = checkParentSelectorExtension(i))i += l;return i - start;}function getParentSelectorWithExtension(){var content=[getParentSelector()];if(checkParentSelectorExtension(pos))content.push(getParentSelectorExtension());return content;} /**
 	 * Check if token is part of a number with percent sign (e.g. `10%`)
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
