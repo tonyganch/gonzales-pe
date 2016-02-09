@@ -697,7 +697,7 @@ nodes, but grandchilds and so on.
 
 ```js
 // Remove all comments.
-parseTree.traverseByType('multilineComment', function(node, nodeData) {
+parseTree.traverseByType('multilineComment', function(node, index, parent) {
   parent.removeChild(index);
 });
 ```
