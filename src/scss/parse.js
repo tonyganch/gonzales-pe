@@ -4152,7 +4152,7 @@ function checkValue(i) {
   let _i;
 
   while (i < tokensLength) {
-    if (checkDeclDelim(i)) break;
+    if (checkDeclDelim(i) || checkDelim(i)) break;
 
     s = checkSC(i);
     _i = i + s;
@@ -4196,7 +4196,7 @@ function getValue() {
     s = checkSC(pos);
     _pos = pos + s;
 
-    if (checkDeclDelim(_pos)) break;
+    if (checkDeclDelim(_pos) || checkDelim(_pos)) break;
 
     if (!_checkValue(_pos)) break;
 
