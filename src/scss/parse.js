@@ -3581,10 +3581,10 @@ function getUri() {
   uriExcluding[TokenType.LeftParenthesis] = 1;
   uriExcluding[TokenType.RightParenthesis] = 1;
 
-  if (checkUri1(pos)) {
+  if (checkUriContent(pos)) {
     uri = []
         .concat(getSC())
-        .concat([getString()])
+        .concat(getUriContent())
         .concat(getSC());
   } else {
     uri = [].concat(getSC());
@@ -3606,6 +3606,23 @@ function getUri() {
   pos++;
 
   return newNode(NodeType.UriType, uri, token.ln, token.col, end);
+}
+
+/**
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkUriContent(i) {
+  return checkUri1(i) ||
+      checkFunction(i);
+}
+
+/**
+ * @returns {Array}
+ */
+function getUriContent() {
+  if (checkUri1(pos)) return getString();
+  else if (checkFunction(pos)) return getFunction();
 }
 
 /**
