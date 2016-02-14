@@ -1756,30 +1756,29 @@ function checkIdent(i) {
   let start = i;
   let wasIdent;
   let wasInt = false;
-  let l;
 
   if (i >= tokensLength) return 0;
 
   // Check if token is part of an identifier starting with `_`:
   if (tokens[i].type === TokenType.LowLine) return checkIdentLowLine(i);
 
-  if (tokens[i].type === TokenType.HyphenMinus &&
-      tokens[i + 1].type === TokenType.DecimalNumber) return 0;
-
   // If token is a character, `-`, `$` or `*`, skip it & continue:
-  if (l = _checkIdent(i)) i += l;
+  if (tokens[i].type === TokenType.HyphenMinus ||
+      tokens[i].type === TokenType.Identifier ||
+      tokens[i].type === TokenType.DollarSign ||
+      tokens[i].type === TokenType.Asterisk) i++;
   else return 0;
 
   // Remember if previous token's type was identifier:
   wasIdent = tokens[i - 1].type === TokenType.Identifier;
 
-  while (i < tokensLength) {
-    l = _checkIdent(i);
-
-    if (!l) break;
-
-    wasIdent = true;
-    i += l;
+  for (; i < tokensLength; i++) {
+    if (tokens[i].type !== TokenType.HyphenMinus &&
+        tokens[i].type !== TokenType.LowLine) {
+      if (tokens[i].type !== TokenType.Identifier &&
+          (tokens[i].type !== TokenType.DecimalNumber || !wasIdent)) break;
+      else wasIdent = true;
+    }
   }
 
   if (!wasIdent && !wasInt && tokens[start].type !== TokenType.Asterisk) return 0;
@@ -1787,16 +1786,6 @@ function checkIdent(i) {
   tokens[start].ident_last = i - 1;
 
   return i - start;
-}
-
-function _checkIdent(i) {
-  if (tokens[i].type === TokenType.HyphenMinus ||
-      tokens[i].type === TokenType.Identifier ||
-      tokens[i].type === TokenType.DollarSign ||
-      tokens[i].type === TokenType.LowLine ||
-      tokens[i].type === TokenType.DecimalNumber ||
-      tokens[i].type === TokenType.Asterisk) return 1;
-  return 0;
 }
 
 /**
