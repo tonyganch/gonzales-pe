@@ -7,3 +7,5 @@ describe 'scss/block >>', ->
   it '4', -> this.shouldBeOk()
   it '5', -> this.shouldBeOk()
   it '6', -> this.shouldBeOk()
+
+  it 'nested.mixin', -> this.shouldBeOk()
