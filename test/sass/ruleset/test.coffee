@@ -14,6 +14,9 @@ describe 'sass/ruleset >>', ->
   it 'color.ident.0', -> this.shouldBeOk()
   it 'color.ident.1', -> this.shouldBeOk()
 
+  it 'nested.mixin.0', -> this.shouldBeOk()
+  it 'nested.mixin.1', -> this.shouldBeOk()
+
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
   it 's.2', -> this.shouldBeOk()
