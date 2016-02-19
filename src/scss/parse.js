@@ -3946,8 +3946,11 @@ function checkSelector2(i) {
     else break;
 
     let sa = checkSC(i);
-    if (l = checkCombinator(i)) i += sa + l;
-    else break;
+    let c = checkCombinator(i + sa);
+    if (!sa && !c) break;
+    if (c) {
+      i += sa + c;
+    }
   }
 
   tokens[start].selectorEnd = i;
