@@ -279,12 +279,31 @@ module.exports = function(css, tabSize) {
 
       // If current character is a punctuation mark:
       else if (c in Punctuation) {
-        // Add it to the list of tokens:
-        pushToken(Punctuation[c], c, col);
-        if (c === '\n' || c === '\r') {
-          ln++;
-          col = 0;
-        } // Go to next line
+        // Check for CRLF here or just LF
+        if (c === '\r' && cn === '\n' || c === '\n') {
+          /*
+           * If \r we know the next character is \n due to statement above
+           * so we push a CRLF token type to the token list and importantly
+           * skip the next character so as not to double count newlines or
+           * columns etc
+           */
+          if (c === '\r') {
+            pushToken(TokenType.Newline, '\r\n', col);
+            pos++; // If crlf skip the next character and push crlf token
+          } else if (c === '\n') {
+            /*
+             * If just a Lf newline and not part of CRLF newline we can just
+             * push punctuation as usual
+             */
+            pushToken(Punctuation[c], c, col);
+          }
+
+          ln++; // Go to next line
+          col = 0; // Reset the column count
+        } else if (c !== '\r' && c !== '\n') {
+          // Handle all other punctuation and add to list of tokens
+          pushToken(Punctuation[c], c, col);
+        }// Go to next line
         if (c === ')') urlMode = false; // Exit url mode
         if (c === '{') blockMode++; // Enter a block
         if (c === '}') blockMode--; // Exit a block
