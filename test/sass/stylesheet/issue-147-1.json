@@ -1,0 +1,420 @@
+{
+  "type": "stylesheet",
+  "content": [
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "foo",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 1,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 4
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 4
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 4
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 5
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "space",
+              "content": "  ",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 1
+              },
+              "end": {
+                "line": 2,
+                "column": 2
+              }
+            },
+            {
+              "type": "extend",
+              "content": [
+                {
+                  "type": "atkeyword",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "extend",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 2,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "selector",
+                  "content": [
+                    {
+                      "type": "placeholder",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "foo",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 2,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 2,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 14
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "syntax": "sass",
+              "end": {
+                "line": 2,
+                "column": 15
+              },
+              "start": {
+                "column": 15,
+                "line": 2
+              }
+            },
+            {
+              "type": "space",
+              "syntax": "sass",
+              "content": "\n",
+              "start": {
+                "column": 1,
+                "line": 3
+              },
+              "end": {
+                "column": 1,
+                "line": 3
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 2,
+            "column": 1
+          },
+          "end": {
+            "line": 3,
+            "column": 1
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 3,
+        "column": 1
+      }
+    },
+    {
+      "type": "ruleset",
+      "content": [
+        {
+          "type": "selector",
+          "content": [
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "bar",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 4,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 4
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 4,
+                "column": 1
+              },
+              "end": {
+                "line": 4,
+                "column": 4
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 4
+          }
+        },
+        {
+          "type": "space",
+          "content": "\n",
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 5
+          },
+          "end": {
+            "line": 4,
+            "column": 5
+          }
+        },
+        {
+          "type": "block",
+          "content": [
+            {
+              "type": "space",
+              "content": "  ",
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 2
+              }
+            },
+            {
+              "type": "extend",
+              "content": [
+                {
+                  "type": "atkeyword",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "extend",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 5,
+                        "column": 4
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 9
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 9
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 10
+                  }
+                },
+                {
+                  "type": "selector",
+                  "content": [
+                    {
+                      "type": "placeholder",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "bar",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 5,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 14
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 5,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 14
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 14
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 3
+              },
+              "end": {
+                "line": 5,
+                "column": 14
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 5,
+            "column": 1
+          },
+          "end": {
+            "line": 5,
+            "column": 14
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 4,
+        "column": 1
+      },
+      "end": {
+        "line": 5,
+        "column": 14
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 5,
+    "column": 14
+  }
+}
