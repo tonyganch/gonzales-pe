@@ -653,7 +653,7 @@ function checkBlockdecl1(i) {
       [2, 4, 6, 8].indexOf(tokens[start].include_type) === -1) return 0;
 
   if (tokens[start].bd_kind === 6 &&
-      tokens[start].atrule_type !== 3) return 0;
+      tokens[start].atrule_type === 3) return 0;
 
   while (i < tokensLength) {
     if (l = checkDeclDelim(i))
