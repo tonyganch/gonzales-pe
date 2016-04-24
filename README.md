@@ -280,7 +280,7 @@ parseTree.eachFor('space', function(spaceNode, i) {
 
 ##### Description
 
-Gets the first child node. If `type` parameter is passed, gets the fisrt child
+Gets the first child node. If `type` parameter is passed, gets the first child
 node of a given type. If no node has been found, returns `null`.
 
 ##### Parameters
