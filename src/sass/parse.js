@@ -717,6 +717,7 @@ function checkBlockdecl2(i) {
   if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
   else if (l = checkInclude(i)) tokens[i].bd_kind = 2;
   else if (l = checkExtend(i)) tokens[i].bd_kind = 4;
+  else if (l = checkMixin(i)) tokens[i].bd_kind = 8;
   else if (l = checkLoop(i)) tokens[i].bd_kind = 3;
   else if (l = checkRuleset(i)) tokens[i].bd_kind = 7;
   else if (l = checkDeclaration(i)) tokens[i].bd_kind = 5;
@@ -761,6 +762,9 @@ function getBlockdecl2() {
       break;
     case 7:
       x.push(getRuleset());
+      break;
+    case 8:
+      x.push(getMixin());
       break;
   }
 
