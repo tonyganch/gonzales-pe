@@ -6,7 +6,7 @@ module.exports = {
   },
   output: {
     filename: syntax ? 'gonzales-' + syntax + '.js' : 'gonzales.js',
-    library: syntax ? 'gonzales-' + syntax : 'gonzales',
+    library: 'gonzales',
     libraryTarget: 'umd',
     path: __dirname + '/lib'
   },
