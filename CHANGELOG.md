@@ -7,6 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 29.04.2016, Version 3.3.1
+
+:star: Added config for AppVeyor to run automated tests on Windows.  
+:green_apple: Fix installation for Windows.  
+
 ## 28.04.2016, Version 3.3.0
 
 :star: Added browser support. `build.sh` now build a script that can be used in
