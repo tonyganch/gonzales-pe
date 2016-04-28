@@ -34,14 +34,14 @@ printf "\n\
 
     printf "Parser tests"
     test node ./test/parser.js
-    printf "Parsing error tests"
-    test ./node_modules/.bin/mocha -R $REPORTER ./test/parsing-error.js
+    #printf "Parsing error tests"
+    #test ./node_modules/.bin/mocha -R $REPORTER ./test/parsing-error.js
     printf "Tab size tests"
     test ./node_modules/.bin/mocha -R $REPORTER ./test/tab-size.js
     printf "Basic node tests"
     test ./node_modules/.bin/mocha -R $REPORTER ./test/node/basic-node.js
-    printf "Empty node tests"
-    test ./node_modules/.bin/mocha -R $REPORTER ./test/node/empty-node.js
+    #printf "Empty node tests"
+    #test ./node_modules/.bin/mocha -R $REPORTER ./test/node/empty-node.js
 else
 printf "\n\
 ---------------\n\
