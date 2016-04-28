@@ -7,6 +7,16 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 28.04.2016, Version 3.2.7
+
+:green_apple: Fixed typos and example in documentation.  
+:green_apple: Fixed parsing of functions inside urls in SCSS.  
+:green_apple: Fixed parsing of selectors starting with combinators in Sass, SCSS
+and Less.  
+:green_apple: Fixed incorrect CRLF line numbers.  
+:green_apple: Fixed parsing of extends that sometimes were incorrectly parsed
+as atrules.  
+
 ## 07.02.2016, Version 3.2.6
 
 :green_apple: Fixed the issue with installation of the package with npm@3.  
