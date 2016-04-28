@@ -7,6 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 28.04.2016, Version 3.3.0
+
+:star: Added browser support. `build.sh` now build a script that can be used in
+browsers.
+
 ## 28.04.2016, Version 3.2.7
 
 :green_apple: Fixed typos and example in documentation.  
