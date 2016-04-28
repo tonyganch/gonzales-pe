@@ -16,14 +16,14 @@
     "url": "http://github.com/tonyganch/gonzales-pe.git"
   },
   "scripts": {
-    "autofix-tests": "./scripts/build.sh && ./scripts/autofix-tests.sh",
-    "build": "./scripts/build.sh",
-    "init": "./scripts/init.sh",
-    "log": "./scripts/log.sh",
-    "prepublish": "./scripts/prepublish.sh",
-    "postpublish": "./scripts/postpublish.sh",
-    "test": "./scripts/build.sh && ./scripts/test.sh",
-    "watch": "./scripts/watch.sh"
+    "autofix-tests": "bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh",
+    "build": "bash ./scripts/build.sh",
+    "init": "bash ./scripts/init.sh",
+    "log": "bash ./scripts/log.sh",
+    "prepublish": "bash ./scripts/prepublish.sh",
+    "postpublish": "bash ./scripts/postpublish.sh",
+    "test": "bash ./scripts/build.sh && bash ./scripts/test.sh",
+    "watch": "bash ./scripts/watch.sh"
   },
   "bin": {
     "gonzales": "./bin/gonzales.js"
