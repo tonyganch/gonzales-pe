@@ -9,7 +9,7 @@ function test {
     fi
 }
 
-if [ $# -eq 0 ]; then
+function run_linters {
 # Run linters
 printf "\n\
 ----------------\n\
@@ -22,12 +22,15 @@ printf "\n\
  Running JSCS\n\
 --------------\n\n"
     test ./node_modules/.bin/jscs ./src
+}
 
+function run_all_tests {
+./scripts/build.sh
 
 printf "\n\
----------------\n\
- Running Mocha\n\
----------------\n\n"
+---------------------\n\
+ Running Mocha (all)\n\
+---------------------\n\n"
     REPORTER="dot"
 
     find ./ -name .DS_Store | xargs rm
@@ -42,14 +45,30 @@ printf "\n\
     test ./node_modules/.bin/mocha -R $REPORTER ./test/node/basic-node.js
     #printf "Empty node tests"
     #test ./node_modules/.bin/mocha -R $REPORTER ./test/node/empty-node.js
-else
+}
+
+function run_syntax_tests {
+./scripts/build.sh "$1"
+
 printf "\n\
----------------\n\
- Running Mocha\n\
----------------\n\n"
+----------------------\n\
+ Running Mocha ("$1")\n\
+----------------------\n\n"
     printf "Parser tests for syntax: $1"
     test node ./test/parser.js $1
+}
+
+if [ $# -eq 0 ]; then
+  run_linters
+  run_all_tests
+  syntaxes="css less sass scss"
+else
+  syntaxes=$@
 fi
+
+for syntax in $syntaxes; do
+  run_syntax_tests "$syntax"
+done
 
 if [ $EXIT_CODE -ne 0 ]; then
 printf "\n\

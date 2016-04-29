@@ -13,6 +13,7 @@
     "disallowTrailingComma": true,
     "disallowTrailingWhitespace": true,
     "esnext": true,
+    "excludeFiles": ["src/syntaxes.js"],
     "maximumLineLength": 80,
     "requireBlocksOnNewline": 1,
     "requireCapitalizedComments": true,

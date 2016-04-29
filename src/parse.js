@@ -1,7 +1,7 @@
 'use strict';
 
 var ParsingError = require('./parsing-error');
-var syntaxes = require('syntaxes');
+var syntaxes = require('./syntaxes');
 
 var isInteger = Number.isInteger || function(value) {
   return typeof value === 'number' && Math.floor(value) === value;
@@ -23,12 +23,7 @@ function parser(css, options) {
   var tabSize = options && options.tabSize;
   if (!isInteger(tabSize) || tabSize < 1) tabSize = 1;
 
-  let syntaxParser;
-  if (syntaxes[syntax]) {
-    syntaxParser = syntaxes[syntax];
-  } else {
-    syntaxParser = syntaxes;
-  }
+  let syntaxParser = syntaxes[syntax];
 
   if (!syntaxParser) {
     let message = 'Syntax "' + syntax + '" is not supported yet, sorry';
