@@ -22,7 +22,7 @@
     "log": "bash ./scripts/log.sh",
     "prepublish": "bash ./scripts/prepublish.sh",
     "postpublish": "bash ./scripts/postpublish.sh",
-    "test": "bash ./scripts/build.sh && bash ./scripts/test.sh",
+    "test": "bash ./scripts/test.sh",
     "watch": "bash ./scripts/watch.sh"
   },
   "bin": {

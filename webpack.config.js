@@ -1,12 +1,10 @@
-var syntax = process.env.SYNTAX && process.env.SYNTAX.toLowerCase();
-
 module.exports = {
   entry: {
     gonzales: './src/gonzales'
   },
   output: {
-    filename: syntax ? 'gonzales-' + syntax + '.js' : 'gonzales.js',
-    library: syntax ? 'gonzales-' + syntax : 'gonzales',
+    filename: 'gonzales.js',
+    library: 'gonzales',
     libraryTarget: 'umd',
     path: __dirname + '/lib'
   },
@@ -22,13 +20,5 @@ module.exports = {
         }
       }
     ]
-  },
-  resolve: {
-    modulesDirectories: ['src'],
-    alias: {
-      syntaxes: syntax ?
-          __dirname + '/src/' + syntax :
-          __dirname + '/src/syntaxes'
-    }
   }
 };
