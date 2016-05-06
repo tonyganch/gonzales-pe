@@ -1449,10 +1449,11 @@ function checkIdent(i) {
       tokens[i].type === TokenType.Identifier ||
       tokens[i].type === TokenType.DollarSign ||
       tokens[i].type === TokenType.Asterisk) i++;
-  else return 0;
+  else if (tokens[i].type !== TokenType.CommercialAt)
+    return 0;
 
   // Remember if previous token's type was identifier:
-  wasIdent = tokens[i - 1].type === TokenType.Identifier;
+  wasIdent = tokens[i - 1] && tokens[i - 1].type === TokenType.Identifier;
 
   for (; i < tokensLength; i++) {
     if (l = checkInterpolatedVariable(i)) i += l;
@@ -1467,7 +1468,9 @@ function checkIdent(i) {
     }
   }
 
-  if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
+  if (!wasIdent &&
+      tokens[start].type !== TokenType.Asterisk &&
+      tokens[start].type !== TokenType.CommercialAt) return 0;
 
   tokens[start].ident_last = i - 1;
 
