@@ -301,7 +301,7 @@ function checkAtrule(i) {
   if (tokens[i].atrule_l !== undefined) return tokens[i].atrule_l;
 
   // If token is part of an @-rule, save the rule's type to token:
-  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4;
+  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4; // @keyframes
   else if (l = checkAtruler(i)) tokens[i].atrule_type = 1; // @-rule with ruleset
   else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2; // Block @-rule
   else if (l = checkAtrules(i)) tokens[i].atrule_type = 3; // Single-line @-rule
@@ -1253,13 +1253,18 @@ function getImportant() {
   return newNode(type, content, line, column);
 }
 
+/**
+ * Check a single keyframe block - `5% {}`
+ * @param {Number} i
+ * @returns {Number}
+ */
 function checkKeyframesBlock(i) {
   let start = i;
   let l;
 
   if (i >= tokensLength) return 0;
 
-  if (l = checkKeyframesSelector(i)) i += l;
+  if (l = checkKeyframesSelectorsGroup(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -1270,13 +1275,17 @@ function checkKeyframesBlock(i) {
   return i - start;
 }
 
+/**
+ * Get a single keyframe block - `5% {}`
+ * @returns {Node}
+ */
 function getKeyframesBlock() {
   let type = NodeType.RulesetType;
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
   let content = [].concat(
-      [getKeyframesSelector()],
+      getKeyframesSelectorsGroup(),
       getSC(),
       [getBlock()]
       );
@@ -1284,6 +1293,11 @@ function getKeyframesBlock() {
   return newNode(type, content, line, column);
 }
 
+/**
+ * Check all keyframe blocks - `5% {} 100% {}`
+ * @param {Number} i
+ * @returns {Number}
+ */
 function checkKeyframesBlocks(i) {
   let start = i;
   let l;
@@ -1308,6 +1322,10 @@ function checkKeyframesBlocks(i) {
   return i - start;
 }
 
+/**
+ * Get all keyframe blocks - `5% {} 100% {}`
+ * @returns {Node}
+ */
 function getKeyframesBlocks() {
   let type = NodeType.BlockType;
   let token = tokens[pos];
@@ -1382,6 +1400,11 @@ function getKeyframesRule() {
   return newNode(type, content, line, column);
 }
 
+/**
+ * Check a single keyframe selector - `5%`, `from` etc
+ * @param {Number} i
+ * @returns {Number}
+ */
 function checkKeyframesSelector(i) {
   let start = i;
   let l;
@@ -1405,6 +1428,11 @@ function checkKeyframesSelector(i) {
   return i - start;
 }
 
+
+/**
+ * Get a single keyframe selector
+ * @returns {node}
+ */
 function getKeyframesSelector() {
   let keyframesSelectorType = NodeType.KeyframesSelectorType;
   let selectorType = NodeType.SelectorType;
@@ -1422,6 +1450,52 @@ function getKeyframesSelector() {
 
   let keyframesSelector = newNode(keyframesSelectorType, content, line, column);
   return newNode(selectorType, [keyframesSelector], line, column);
+}
+
+/**
+ * Check the keyframe's selector groups
+ * @param {number} i
+ * @returns {number}
+ */
+function checkKeyframesSelectorsGroup(i) {
+  let start = i;
+  let l;
+
+  if (l = checkKeyframesSelector(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    let sb = checkSC(i);
+    let c = checkDelim(i + sb);
+    if (!c) break;
+    let sa = checkSC(i + sb + c);
+    if (l = checkKeyframesSelector(i + sb + c + sa)) i += sb + c + sa + l;
+    else break;
+  }
+
+  tokens[start].selectorsGroupEnd = i;
+
+  return i - start;
+}
+
+/**
+ * Get the keyframe's selector groups
+ * @returns {Array} An array of keyframe selectors
+ */
+function getKeyframesSelectorsGroup() {
+  let selectorsGroup = [];
+  let selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+
+  selectorsGroup.push(getKeyframesSelector());
+
+  while (pos < selectorsGroupEnd) {
+    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup.push(getDelim());
+    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup.push(getKeyframesSelector());
+  }
+
+  return selectorsGroup;
 }
 
 /**
