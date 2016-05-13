@@ -1,0 +1,474 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "keyframes",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "ident",
+      "content": "pulsate",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 12
+      },
+      "end": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 19
+      },
+      "end": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "0",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 21
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 22
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 22
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 22
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 23
+              },
+              "end": {
+                "line": 1,
+                "column": 23
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 25
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 31
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 32
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 32
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 33
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 33
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": ".5",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 34
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 34
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 35
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 25
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 35
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 24
+              },
+              "end": {
+                "line": 1,
+                "column": 36
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 21
+          },
+          "end": {
+            "line": 1,
+            "column": 36
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "100",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 37
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 39
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 37
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 40
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 37
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 40
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 37
+              },
+              "end": {
+                "line": 1,
+                "column": 40
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 41
+              },
+              "end": {
+                "line": 1,
+                "column": 41
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 43
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 43
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 50
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 50
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 51
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 51
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "1",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 52
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 52
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 52
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 52
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 43
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 52
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 42
+              },
+              "end": {
+                "line": 1,
+                "column": 53
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 37
+          },
+          "end": {
+            "line": 1,
+            "column": 53
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 54
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 54
+  }
+}
