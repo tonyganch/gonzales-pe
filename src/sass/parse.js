@@ -2506,7 +2506,7 @@ function checkKeyframesSelector(i) {
 
 /**
  * Get a single keyframe selector
- * @returns {node}
+ * @returns {Node}
  */
 function getKeyframesSelector() {
   let keyframesSelectorType = NodeType.KeyframesSelectorType;
@@ -2531,8 +2531,8 @@ function getKeyframesSelector() {
 
 /**
  * Check the keyframe's selector groups
- * @param {number} i
- * @returns {number}
+ * @param {Number} i
+ * @returns {Number}
  */
 function checkKeyframesSelectorsGroup(i) {
   let start = i;
