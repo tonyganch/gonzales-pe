@@ -20,8 +20,6 @@ describe 'scss/atrule >>', ->
   it 'c.6', -> this.shouldBeOk()
   it 'c.7', -> this.shouldBeOk()
 
-  it 'keyframes.0', -> this.shouldBeOk()
-
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
   it 's.2', -> this.shouldBeOk()
@@ -29,3 +27,8 @@ describe 'scss/atrule >>', ->
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
   it 's.6', -> this.shouldBeOk()
+
+  it 'keyframes.0', -> this.shouldBeOk()
+  it 'keyframes.1', -> this.shouldBeOk()
+  it 'keyframes.2', -> this.shouldBeOk()
+  it 'keyframes.3', -> this.shouldBeOk()
