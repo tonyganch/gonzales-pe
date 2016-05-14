@@ -3467,6 +3467,9 @@ function checkPseudoClass3(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkUnary(i)) i += l;
+
+  if (l = checkInterpolation(i)) i += l;
+
   if (i >= tokensLength) return 0;
   if (tokens[i].type === TokenType.DecimalNumber) i++;
 
@@ -3477,14 +3480,18 @@ function checkPseudoClass3(i) {
   if (l = checkSC(i)) i += l;
 
   if (i >= tokensLength) return 0;
-  if (tokens[i].value === '+' ||
-      tokens[i].value === '-') i++;
+
+  if (tokens[i].type === TokenType.PlusSign ||
+      tokens[i].type === TokenType.HyphenMinus) i++;
   else return 0;
 
   if (l = checkSC(i)) i += l;
 
+  if (l = checkInterpolation(i)) i += l;
+
   if (tokens[i].type === TokenType.DecimalNumber) i++;
-  else return 0;
+
+  if (l = checkInterpolation(i)) i += l;
 
   if (l = checkSC(i)) i += l;
 
@@ -3512,6 +3519,7 @@ function getPseudoClass3() {
   pos++;
 
   if (checkUnary(pos)) value.push(getUnary());
+  if (checkInterpolation(pos)) value.push(getInterpolation());
   if (checkNumber(pos)) value.push(getNumber());
 
   {
@@ -3525,8 +3533,10 @@ function getPseudoClass3() {
 
   value = value.concat(getSC());
   if (checkUnary(pos)) value.push(getUnary());
+  if (checkInterpolation(pos)) value.push(getInterpolation());
   value = value.concat(getSC());
   if (checkNumber(pos)) value.push(getNumber());
+  if (checkInterpolation(pos)) value.push(getInterpolation());
   value = value.concat(getSC());
 
   let end = getLastPosition(value, l, c, 1);
@@ -3565,6 +3575,9 @@ function checkPseudoClass4(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkUnary(i)) i += l;
+
+  if (l = checkInterpolation(i)) i += l;
+
   if (tokens[i].type === TokenType.DecimalNumber) i++;
 
   if (tokens[i].value === 'n') i++;
@@ -3596,6 +3609,7 @@ function getPseudoClass4() {
   pos++;
 
   if (checkUnary(pos)) value.push(getUnary());
+  if (checkInterpolation(pos)) value.push(getInterpolation());
   if (checkNumber(pos)) value.push(getNumber());
   if (checkIdent(pos)) value.push(getIdent());
   value = value.concat(getSC());
