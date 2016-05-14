@@ -18,40 +18,38 @@
       "type": "arguments",
       "content": [
         {
-          "type": "selector",
-          "content": [
-            {
-              "type": "typeSelector",
-              "content": [
-                {
-                  "type": "ident",
-                  "content": "odd",
-                  "syntax": "sass",
-                  "start": {
-                    "line": 1,
-                    "column": 12
-                  },
-                  "end": {
-                    "line": 1,
-                    "column": 14
-                  }
-                }
-              ],
-              "syntax": "sass",
-              "start": {
-                "line": 1,
-                "column": 12
-              },
-              "end": {
-                "line": 1,
-                "column": 14
-              }
-            }
-          ],
+          "type": "operator",
+          "content": "-",
           "syntax": "sass",
           "start": {
             "line": 1,
             "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "number",
+          "content": "2",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 13
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "ident",
+          "content": "n",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 14
           },
           "end": {
             "line": 1,

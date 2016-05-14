@@ -1,0 +1,55 @@
+{
+  "type": "pseudoClass",
+  "content": [
+    {
+      "type": "interpolation",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "a",
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 5
+              },
+              "end": {
+                "line": 1,
+                "column": 5
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 4
+          },
+          "end": {
+            "line": 1,
+            "column": 5
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 6
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 6
+  }
+}

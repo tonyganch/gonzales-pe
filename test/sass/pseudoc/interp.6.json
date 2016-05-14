@@ -18,33 +18,33 @@
       "type": "arguments",
       "content": [
         {
-          "type": "selector",
+          "type": "interpolation",
           "content": [
             {
-              "type": "typeSelector",
+              "type": "variable",
               "content": [
                 {
                   "type": "ident",
-                  "content": "odd",
+                  "content": "i",
                   "syntax": "sass",
                   "start": {
                     "line": 1,
-                    "column": 12
+                    "column": 15
                   },
                   "end": {
                     "line": 1,
-                    "column": 14
+                    "column": 15
                   }
                 }
               ],
               "syntax": "sass",
               "start": {
                 "line": 1,
-                "column": 12
+                "column": 14
               },
               "end": {
                 "line": 1,
-                "column": 14
+                "column": 15
               }
             }
           ],
@@ -55,7 +55,46 @@
           },
           "end": {
             "line": 1,
-            "column": 14
+            "column": 16
+          }
+        },
+        {
+          "type": "ident",
+          "content": "n",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 17
+          },
+          "end": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "type": "operator",
+          "content": "-",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 18
+          },
+          "end": {
+            "line": 1,
+            "column": 18
+          }
+        },
+        {
+          "type": "number",
+          "content": "1",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 19
+          },
+          "end": {
+            "line": 1,
+            "column": 19
           }
         }
       ],
@@ -66,7 +105,7 @@
       },
       "end": {
         "line": 1,
-        "column": 15
+        "column": 20
       }
     }
   ],
@@ -77,6 +116,6 @@
   },
   "end": {
     "line": 1,
-    "column": 15
+    "column": 20
   }
 }
