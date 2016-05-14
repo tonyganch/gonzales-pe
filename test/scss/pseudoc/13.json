@@ -25,7 +25,7 @@
               "content": [
                 {
                   "type": "ident",
-                  "content": "*",
+                  "content": "h1",
                   "syntax": "scss",
                   "start": {
                     "line": 1,
@@ -33,7 +33,7 @@
                   },
                   "end": {
                     "line": 1,
-                    "column": 6
+                    "column": 7
                   }
                 }
               ],
@@ -44,7 +44,74 @@
               },
               "end": {
                 "line": 1,
-                "column": 6
+                "column": 7
+              }
+            },
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "foo",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 9
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 11
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 11
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            },
+            {
+              "type": "class",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "bar",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 14
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 16
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 16
               }
             }
           ],
@@ -55,7 +122,7 @@
           },
           "end": {
             "line": 1,
-            "column": 6
+            "column": 16
           }
         }
       ],
@@ -66,7 +133,7 @@
       },
       "end": {
         "line": 1,
-        "column": 7
+        "column": 17
       }
     }
   ],
@@ -77,6 +144,6 @@
   },
   "end": {
     "line": 1,
-    "column": 7
+    "column": 17
   }
 }

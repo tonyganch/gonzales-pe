@@ -28,7 +28,7 @@ describe 'scss/pseudoc >>', ->
   it 'interp.9.2', -> this.shouldBeOk()
 
   # :not
+  it '10', -> this.shouldBeOk()
   it '11', -> this.shouldBeOk()
   it '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
-  it '14', -> this.shouldBeOk()
