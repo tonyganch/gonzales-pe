@@ -1,0 +1,748 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "-webkit-keyframes",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 18
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 19
+      },
+      "end": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "ident",
+      "content": "pulsate",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 26
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 27
+      },
+      "end": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "interpolation",
+                          "content": [
+                            {
+                              "type": "variable",
+                              "content": [
+                                {
+                                  "type": "ident",
+                                  "content": "foo",
+                                  "syntax": "scss",
+                                  "start": {
+                                    "line": 1,
+                                    "column": 32
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 34
+                                  }
+                                }
+                              ],
+                              "syntax": "scss",
+                              "start": {
+                                "line": 1,
+                                "column": 31
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 34
+                              }
+                            }
+                          ],
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 35
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 29
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 36
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 29
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 36
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 29
+              },
+              "end": {
+                "line": 1,
+                "column": 36
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 37
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 39
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 45
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 39
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 45
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 46
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 46
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 47
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": ".5",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 48
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 49
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 48
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 49
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 39
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 49
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 38
+              },
+              "end": {
+                "line": 1,
+                "column": 50
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 29
+          },
+          "end": {
+            "line": 1,
+            "column": 50
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "interpolation",
+                          "content": [
+                            {
+                              "type": "variable",
+                              "content": [
+                                {
+                                  "type": "ident",
+                                  "content": "bar",
+                                  "syntax": "scss",
+                                  "start": {
+                                    "line": 1,
+                                    "column": 54
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 56
+                                  }
+                                }
+                              ],
+                              "syntax": "scss",
+                              "start": {
+                                "line": 1,
+                                "column": 53
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 56
+                              }
+                            }
+                          ],
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 51
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 57
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 51
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 58
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 51
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 58
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 51
+              },
+              "end": {
+                "line": 1,
+                "column": 58
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 59
+              },
+              "end": {
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 61
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 67
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 61
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 67
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 68
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 68
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 69
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 69
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "1",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 70
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 70
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 70
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 70
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 61
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 70
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 60
+              },
+              "end": {
+                "line": 1,
+                "column": 71
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 51
+          },
+          "end": {
+            "line": 1,
+            "column": 71
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "interpolation",
+                          "content": [
+                            {
+                              "type": "variable",
+                              "content": [
+                                {
+                                  "type": "ident",
+                                  "content": "baz",
+                                  "syntax": "scss",
+                                  "start": {
+                                    "line": 1,
+                                    "column": 75
+                                  },
+                                  "end": {
+                                    "line": 1,
+                                    "column": 77
+                                  }
+                                }
+                              ],
+                              "syntax": "scss",
+                              "start": {
+                                "line": 1,
+                                "column": 74
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 77
+                              }
+                            }
+                          ],
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 72
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 78
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 72
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 79
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 72
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 79
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 72
+              },
+              "end": {
+                "line": 1,
+                "column": 79
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 80
+              },
+              "end": {
+                "line": 1,
+                "column": 80
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 82
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 88
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 82
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 88
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 89
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 89
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 90
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 90
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": ".5",
+                          "syntax": "scss",
+                          "start": {
+                            "line": 1,
+                            "column": 91
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 92
+                          }
+                        }
+                      ],
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 91
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 92
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 82
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 92
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 81
+              },
+              "end": {
+                "line": 1,
+                "column": 93
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 72
+          },
+          "end": {
+            "line": 1,
+            "column": 93
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 28
+      },
+      "end": {
+        "line": 1,
+        "column": 94
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 94
+  }
+}
