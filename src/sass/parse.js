@@ -316,6 +316,7 @@ function checkArgument(i) {
   else if (l = checkVhash(i)) tokens[i].argument_child = 17;
   else if (l = checkOperator(i)) tokens[i].argument_child = 18;
   else if (l = checkUnary(i)) tokens[i].argument_child = 19;
+  else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;
 
   return l;
 }
@@ -345,6 +346,7 @@ function getArgument() {
   else if (childType === 17) return getVhash();
   else if (childType === 18) return getOperator();
   else if (childType === 19) return getUnary();
+  else if (childType === 20) return getParentSelector();
 }
 
 /**
