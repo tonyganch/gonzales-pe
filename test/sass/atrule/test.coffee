@@ -10,10 +10,11 @@ describe 'sass/atrule >>', ->
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
 
+  it 's.0', -> this.shouldBeOk()
+
   it 'keyframes.0', -> this.shouldBeOk()
   it 'keyframes.1', -> this.shouldBeOk()
   it 'keyframes.2', -> this.shouldBeOk()
   it 'keyframes.3', -> this.shouldBeOk()
   it 'keyframes.4', -> this.shouldBeOk()
-
-  it 's.0', -> this.shouldBeOk()
+  it 'keyframes.5', -> this.shouldBeOk()
