@@ -33,3 +33,4 @@ describe 'scss/atrule >>', ->
   it 'keyframes.2', -> this.shouldBeOk()
   it 'keyframes.3', -> this.shouldBeOk()
   it 'keyframes.4', -> this.shouldBeOk()
+  it 'keyframes.5', -> this.shouldBeOk()
