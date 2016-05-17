@@ -307,7 +307,8 @@ function checkArgument(i) {
       checkIdent(i) ||
       checkVhash(i) ||
       checkOperator(i) ||
-      checkUnary(i);
+      checkUnary(i) ||
+      checkParentSelector(i);
 }
 
 /**
@@ -333,6 +334,7 @@ function getArgument() {
   else if (checkVhash(pos)) return getVhash();
   else if (checkOperator(pos)) return getOperator();
   else if (checkUnary(pos)) return getUnary();
+  else if (checkParentSelector(pos)) return getParentSelector();
 }
 
 /**
