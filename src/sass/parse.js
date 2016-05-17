@@ -2490,7 +2490,7 @@ function checkKeyframesSelector(i) {
 
   if (l = checkIdent(i)) {
     // Valid selectors are only `from` and `to`.
-    var selector = joinValues2(i, l);
+    let selector = joinValues2(i, l);
     if (selector !== 'from' && selector !== 'to') return 0;
 
     i += l;
@@ -2498,6 +2498,9 @@ function checkKeyframesSelector(i) {
   } else if (l = checkPercentage(i)) {
     i += l;
     tokens[start].keyframesSelectorType = 2;
+  } else if (l = checkInterpolatedPercentage(i)) {
+    i += l;
+    tokens[start].keyframesSelectorType = 4;
   } else if (l = checkInterpolation(i)) {
     i += l;
     tokens[start].keyframesSelectorType = 3;
@@ -2523,6 +2526,8 @@ function getKeyframesSelector() {
 
   if (token.keyframesSelectorType === 1) {
     content.push(getIdent());
+  } else if (token.keyframesSelectorType === 4) {
+    content.push(getInterpolatedPercentage());
   } else if (token.keyframesSelectorType === 2) {
     content.push(getPercentage());
   } else {
@@ -3130,6 +3135,43 @@ function getNumberOrInterpolation() {
   }
 
   return content;
+}
+
+/**
+ * Check if token is part of an interpolation with percent sign (e.g. `#{$num}%`)
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkInterpolatedPercentage(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkInterpolation(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength) return 0;
+
+  return tokens[i].type === TokenType.PercentSign ? i - start + 1 : 0;
+}
+
+/**
+ * Get node of interpolation with percent sign
+ * @returns {Array} `['percentage', ['interpolation', x]]` where `x` is an
+ *      interpolation (without percent sign)
+ */
+function getInterpolatedPercentage() {
+  let startPos = pos;
+  let x = [getInterpolation()];
+  var token = tokens[startPos];
+  var line = token.ln;
+  var column = token.col;
+
+  var end = getLastPosition(x, line, column, 1);
+  pos++;
+
+  return newNode(NodeType.PercentageType, x, token.ln, token.col, end);
 }
 
 /**
