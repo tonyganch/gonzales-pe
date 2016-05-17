@@ -1,0 +1,892 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "keyframes",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "ident",
+      "content": "pulsate",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 12
+      },
+      "end": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 19
+      },
+      "end": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "0",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 21
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 21
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 21
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 22
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 22
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 22
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 23
+              },
+              "end": {
+                "line": 1,
+                "column": 23
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 24
+              },
+              "end": {
+                "line": 1,
+                "column": 24
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "10",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 25
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 26
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 25
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 27
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 25
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 27
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 25
+              },
+              "end": {
+                "line": 1,
+                "column": 27
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 28
+              },
+              "end": {
+                "line": 1,
+                "column": 28
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 29
+              },
+              "end": {
+                "line": 1,
+                "column": 29
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "20",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 30
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 31
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 30
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 32
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 30
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 32
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 30
+              },
+              "end": {
+                "line": 1,
+                "column": 32
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 33
+              },
+              "end": {
+                "line": 1,
+                "column": 33
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 34
+              },
+              "end": {
+                "line": 1,
+                "column": 34
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "30",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 35
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 36
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 35
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 37
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 35
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 37
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 35
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 38
+              },
+              "end": {
+                "line": 1,
+                "column": 38
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 40
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 46
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 40
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 46
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 47
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 48
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 48
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": ".5",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 49
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 50
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 49
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 50
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 40
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 50
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 39
+              },
+              "end": {
+                "line": 1,
+                "column": 51
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 21
+          },
+          "end": {
+            "line": 1,
+            "column": 51
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 52
+          },
+          "end": {
+            "line": 1,
+            "column": 52
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "5",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 53
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 53
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 53
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 54
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 53
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 54
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 53
+              },
+              "end": {
+                "line": 1,
+                "column": 54
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 55
+              },
+              "end": {
+                "line": 1,
+                "column": 55
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 56
+              },
+              "end": {
+                "line": 1,
+                "column": 56
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "15",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 57
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 58
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 57
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 59
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 57
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 59
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 57
+              },
+              "end": {
+                "line": 1,
+                "column": 59
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 60
+              },
+              "end": {
+                "line": 1,
+                "column": 60
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 61
+              },
+              "end": {
+                "line": 1,
+                "column": 61
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "25",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 62
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 63
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 62
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 64
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 62
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 64
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 62
+              },
+              "end": {
+                "line": 1,
+                "column": 64
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 65
+              },
+              "end": {
+                "line": 1,
+                "column": 65
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "declaration",
+                  "content": [
+                    {
+                      "type": "property",
+                      "content": [
+                        {
+                          "type": "ident",
+                          "content": "opacity",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 67
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 73
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 67
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 73
+                      }
+                    },
+                    {
+                      "type": "propertyDelimiter",
+                      "content": ":",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 74
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 74
+                      }
+                    },
+                    {
+                      "type": "space",
+                      "content": " ",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 75
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 75
+                      }
+                    },
+                    {
+                      "type": "value",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "1",
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 76
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 76
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 76
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 76
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 67
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 76
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 66
+              },
+              "end": {
+                "line": 1,
+                "column": 77
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 53
+          },
+          "end": {
+            "line": 1,
+            "column": 77
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 78
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 78
+  }
+}
