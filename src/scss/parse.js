@@ -2804,7 +2804,7 @@ function checkProperty(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (l = checkVariable(i) || checkIdentOrInterpolation(i) || checkParentSelector(i)) i += l;
+  if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   return i - start;
@@ -2820,8 +2820,6 @@ function getProperty() {
 
   if (checkVariable(pos)) {
     x.push(getVariable());
-  } else if (checkParentSelector(pos)) {
-    x.push(getParentSelector());
   } else {
     x = x.concat(getIdentOrInterpolation());
   }
