@@ -883,7 +883,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	module.exports = {
 		"name": "gonzales-pe",
 		"description": "Gonzales Preprocessor Edition (fast CSS parser)",
-		"version": "3.3.3",
+		"version": "3.3.4",
 		"homepage": "http://github.com/tonyganch/gonzales-pe",
 		"bugs": "http://github.com/tonyganch/gonzales-pe/issues",
 		"license": "MIT",
@@ -9621,10 +9621,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Check if token is part of a property
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the property
-	 */function checkProperty(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkVariable(i) || checkIdentOrInterpolation(i) || checkParentSelector(i))i += l;else return 0;return i - start;} /**
+	 */function checkProperty(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkVariable(i) || checkIdentOrInterpolation(i))i += l;else return 0;return i - start;} /**
 	 * Get node with a property
 	 * @returns {Array} `['property', x]`
-	 */function getProperty(){var startPos=pos;var x=[];if(checkVariable(pos)){x.push(getVariable());}else if(checkParentSelector(pos)){x.push(getParentSelector());}else {x = x.concat(getIdentOrInterpolation());}var token=tokens[startPos];return newNode(NodeType.PropertyType,x,token.ln,token.col);} /**
+	 */function getProperty(){var startPos=pos;var x=[];if(checkVariable(pos)){x.push(getVariable());}else {x = x.concat(getIdentOrInterpolation());}var token=tokens[startPos];return newNode(NodeType.PropertyType,x,token.ln,token.col);} /**
 	 * Check if token is a colon
 	 * @param {Number} i Token's index number
 	 * @returns {Number} `1` if token is a colon, otherwise `0`
@@ -9779,11 +9779,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function checkValue(i){var start=i;var l=undefined;var s=undefined;var _i=undefined;while(i < tokensLength) {if(checkDeclDelim(i))break;if(l = checkBlock(i)){i += l;break;}s = checkS(i);_i = i + s;if(l = _checkValue(_i))i += l + s;if(!l || checkBlock(i - l))break;}return i - start;} /**
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function _checkValue(i){return checkVhash(i) || checkOperator(i) || checkImportant(i) || checkGlobal(i) || checkDefault(i) || checkProgid(i) || checkAny(i) || checkInterpolation(i);} /**
+	 */function _checkValue(i){return checkVhash(i) || checkOperator(i) || checkImportant(i) || checkGlobal(i) || checkDefault(i) || checkProgid(i) || checkAny(i) || checkInterpolation(i) || checkParentSelector(i);} /**
 	 * @returns {Array}
 	 */function getValue(){var startPos=pos;var x=[];var _pos=undefined;var s=undefined;while(pos < tokensLength) {if(checkDeclDelim(pos))break;s = checkS(pos);_pos = pos + s;if(checkDeclDelim(_pos))break;if(checkBlock(pos)){x.push(getBlock());break;}if(!_checkValue(_pos))break;if(s)x.push(getS());x.push(_getValue());if(checkBlock(_pos))break;}var token=tokens[startPos];return newNode(NodeType.ValueType,x,token.ln,token.col);} /**
 	 * @returns {Array}
-	 */function _getValue(){if(checkVhash(pos))return getVhash();if(checkOperator(pos))return getOperator();if(checkImportant(pos))return getImportant();if(checkGlobal(pos))return getGlobal();if(checkDefault(pos))return getDefault();if(checkProgid(pos))return getProgid();if(checkAny(pos))return getAny();if(checkInterpolation(pos))return getInterpolation();} /**
+	 */function _getValue(){if(checkVhash(pos))return getVhash();if(checkOperator(pos))return getOperator();if(checkImportant(pos))return getImportant();if(checkGlobal(pos))return getGlobal();if(checkDefault(pos))return getDefault();if(checkProgid(pos))return getProgid();if(checkAny(pos))return getAny();if(checkInterpolation(pos))return getInterpolation();if(checkParentSelector(pos))return getParentSelector();} /**
 	 * Check if token is part of a variable
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the variable
@@ -10816,10 +10816,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Check if token is part of a property
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the property
-	 */function checkProperty(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkVariable(i) || checkIdentOrInterpolation(i) || checkParentSelector(i))i += l;else return 0;return i - start;} /**
+	 */function checkProperty(i){var start=i;var l=undefined;if(i >= tokensLength)return 0;if(l = checkVariable(i) || checkIdentOrInterpolation(i))i += l;else return 0;return i - start;} /**
 	 * Get node with a property
 	 * @returns {Array} `['property', x]`
-	 */function getProperty(){var startPos=pos;var x=[];if(checkVariable(pos)){x.push(getVariable());}else if(checkParentSelector(pos)){x.push(getParentSelector());}else {x = x.concat(getIdentOrInterpolation());}var token=tokens[startPos];return newNode(NodeType.PropertyType,x,token.ln,token.col);} /**
+	 */function getProperty(){var startPos=pos;var x=[];if(checkVariable(pos)){x.push(getVariable());}else {x = x.concat(getIdentOrInterpolation());}var token=tokens[startPos];return newNode(NodeType.PropertyType,x,token.ln,token.col);} /**
 	 * Check if token is a colon
 	 * @param {Number} i Token's index number
 	 * @returns {Number} `1` if token is a colon, otherwise `0`
@@ -10974,11 +10974,11 @@ return /******/ (function(modules) { // webpackBootstrap
 	 */function checkValue(i){var start=i;var l=undefined;var s=undefined;var _i=undefined;while(i < tokensLength) {if(checkDeclDelim(i))break;s = checkSC(i);_i = i + s;if(l = _checkValue(_i))i += l + s;if(!l || checkBlock(i - l))break;}return i - start;} /**
 	 * @param {Number} i Token's index number
 	 * @returns {Number}
-	 */function _checkValue(i){return checkInterpolation(i) || checkVariable(i) || checkVhash(i) || checkBlock(i) || checkAtkeyword(i) || checkOperator(i) || checkImportant(i) || checkGlobal(i) || checkDefault(i) || checkProgid(i) || checkAny(i);} /**
+	 */function _checkValue(i){return checkInterpolation(i) || checkVariable(i) || checkVhash(i) || checkBlock(i) || checkAtkeyword(i) || checkOperator(i) || checkImportant(i) || checkGlobal(i) || checkDefault(i) || checkProgid(i) || checkAny(i) || checkParentSelector(i);} /**
 	 * @returns {Array}
 	 */function getValue(){var startPos=pos;var x=[];var _pos=undefined;var s=undefined;while(pos < tokensLength) {s = checkSC(pos);_pos = pos + s;if(checkDeclDelim(_pos))break;if(!_checkValue(_pos))break;if(s)x = x.concat(getSC());x.push(_getValue());if(checkBlock(_pos))break;}var token=tokens[startPos];return newNode(NodeType.ValueType,x,token.ln,token.col);} /**
 	 * @returns {Array}
-	 */function _getValue(){if(checkInterpolation(pos))return getInterpolation();else if(checkVariable(pos))return getVariable();else if(checkVhash(pos))return getVhash();else if(checkBlock(pos))return getBlock();else if(checkAtkeyword(pos))return getAtkeyword();else if(checkOperator(pos))return getOperator();else if(checkImportant(pos))return getImportant();else if(checkGlobal(pos))return getGlobal();else if(checkDefault(pos))return getDefault();else if(checkProgid(pos))return getProgid();else if(checkAny(pos))return getAny();} /**
+	 */function _getValue(){if(checkInterpolation(pos))return getInterpolation();else if(checkVariable(pos))return getVariable();else if(checkVhash(pos))return getVhash();else if(checkBlock(pos))return getBlock();else if(checkAtkeyword(pos))return getAtkeyword();else if(checkOperator(pos))return getOperator();else if(checkImportant(pos))return getImportant();else if(checkGlobal(pos))return getGlobal();else if(checkDefault(pos))return getDefault();else if(checkProgid(pos))return getProgid();else if(checkAny(pos))return getAny();else if(checkParentSelector(pos))return getParentSelector();} /**
 	 * Check if token is part of a variable
 	 * @param {Number} i Token's index number
 	 * @returns {Number} Length of the variable
