@@ -3,6 +3,7 @@ describe 'sass/declaration >>', ->
   it '0', -> this.shouldBeOk()
   it '1', -> this.shouldBeOk()
   it '2', -> this.shouldBeOk()
+  it '3', -> this.shouldBeOk()
 
   it 'filter.0', -> this.shouldBeOk()
   it 'filter.1', -> this.shouldBeOk()

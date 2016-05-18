@@ -4170,7 +4170,8 @@ function _checkValue(i) {
       checkDefault(i) ||
       checkProgid(i) ||
       checkAny(i) ||
-      checkInterpolation(i);
+      checkInterpolation(i) ||
+      checkParentSelector(i);
 }
 
 /**
@@ -4219,6 +4220,7 @@ function _getValue() {
   if (checkProgid(pos)) return getProgid();
   if (checkAny(pos)) return getAny();
   if (checkInterpolation(pos)) return getInterpolation();
+  if (checkParentSelector(pos)) return getParentSelector();
 }
 
 /**
