@@ -7,6 +7,15 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.05.2016, Version 3.3.2
+
+:star: Added AppVeyor badge.  
+:green_apple: Fixed build file to glue multiple syntaxes into one file.  
+:green_apple: Fixed parsing of functions inside urls in Sass.  
+:green_apple: Fixed parsing of mulitple keyframe selectors in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of parent selector as property in Sass and SCSS.  
+:green_apple: Fixed parsing of parent selector inside interpolations in Sass and SCSS.  
+
 ## 29.04.2016, Version 3.3.1
 
 :star: Added config for AppVeyor to run automated tests on Windows.  
