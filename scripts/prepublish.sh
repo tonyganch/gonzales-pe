@@ -14,3 +14,5 @@ EOIGNORE
 }
 
 print_npmignore > .npmignore
+
+./scripts/build.sh
