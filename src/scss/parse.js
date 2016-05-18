@@ -3766,7 +3766,8 @@ function _checkValue(i) {
       checkGlobal(i) ||
       checkDefault(i) ||
       checkProgid(i) ||
-      checkAny(i);
+      checkAny(i) ||
+      checkParentSelector(i);
 }
 
 /**
@@ -3811,6 +3812,7 @@ function _getValue() {
   else if (checkDefault(pos)) return getDefault();
   else if (checkProgid(pos)) return getProgid();
   else if (checkAny(pos)) return getAny();
+  else if (checkParentSelector(pos)) return getParentSelector();
 }
 
 /**
