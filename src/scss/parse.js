@@ -417,6 +417,9 @@ function checkArgument(i) {
       checkOperator(i) ||
       checkUnary(i) ||
       checkImportant(i) ||
+      checkGlobal(i) ||
+      checkDefault(i) ||
+      checkOptional(i) ||
       checkParentSelector(i);
 }
 
@@ -444,6 +447,9 @@ function getArgument() {
   else if (checkOperator(pos)) return getOperator();
   else if (checkUnary(pos)) return getUnary();
   else if (checkImportant(pos)) return getImportant();
+  else if (checkGlobal(pos)) return getGlobal();
+  else if (checkDefault(pos)) return getDefault();
+  else if (checkOptional(pos)) return getOptional();
   else if (checkParentSelector(pos)) return getParentSelector();
 }
 

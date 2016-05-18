@@ -9,3 +9,8 @@ describe 'scss/arguments >>', ->
   it '6', -> this.shouldBeOk()
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
+
+  it 'flag.1', -> this.shouldBeOk()
+  it 'flag.2', -> this.shouldBeOk()
+  it 'flag.3', -> this.shouldBeOk()
+  it 'flag.4', -> this.shouldBeOk()
