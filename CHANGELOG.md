@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.05.2016, Version 3.3.3
+
+:green_apple: Fixed prepublish script to build lib.  
+
 ## 18.05.2016, Version 3.3.2
 
 :star: Added AppVeyor badge.  
