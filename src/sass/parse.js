@@ -454,6 +454,9 @@ function checkArgument(i) {
   else if (l = checkUnary(i)) tokens[i].argument_child = 19;
   else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;
   else if (l = checkImportant(i)) tokens[i].argument_child = 21;
+  else if (l = checkGlobal(i)) tokens[i].argument_child = 22;
+  else if (l = checkDefault(i)) tokens[i].argument_child = 23;
+  else if (l = checkOptional(i)) tokens[i].argument_child = 24;
 
   return l;
 }
@@ -485,6 +488,9 @@ function getArgument() {
   else if (childType === 19) return getUnary();
   else if (childType === 20) return getParentSelector();
   else if (childType === 21) return getImportant();
+  else if (childType === 22) return getGlobal();
+  else if (childType === 23) return getDefault();
+  else if (childType === 24) return getOptional();
 }
 
 /**
