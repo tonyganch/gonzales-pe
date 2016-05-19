@@ -2420,6 +2420,8 @@ function getKeyframesBlocks() {
   while (pos < keyframesBlocksEnd) {
     if (checkSC(pos)) content = content.concat(getSC());
     else if (checkKeyframesBlock(pos)) content.push(getKeyframesBlock());
+    else if (checkAtrule(pos)) content.push(getAtrule()); // @content
+    else break;
   }
 
   return newNode(type, content, line, column);
