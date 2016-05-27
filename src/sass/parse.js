@@ -2498,9 +2498,6 @@ function checkKeyframesSelector(i) {
   } else if (l = checkPercentage(i)) {
     i += l;
     tokens[start].keyframesSelectorType = 2;
-  } else if (l = checkInterpolatedPercentage(i)) {
-    i += l;
-    tokens[start].keyframesSelectorType = 4;
   } else if (l = checkInterpolation(i)) {
     i += l;
     tokens[start].keyframesSelectorType = 3;
@@ -2526,11 +2523,9 @@ function getKeyframesSelector() {
 
   if (token.keyframesSelectorType === 1) {
     content.push(getIdent());
-  } else if (token.keyframesSelectorType === 4) {
-    content.push(getInterpolatedPercentage());
   } else if (token.keyframesSelectorType === 2) {
     content.push(getPercentage());
-  } else {
+  } else if (token.keyframesSelectorType === 3) {
     content.push(getInterpolation());
   }
 
@@ -3070,38 +3065,42 @@ function getParentSelectorWithExtension() {
 }
 
 /**
- * Check if token is part of a number with percent sign (e.g. `10%`)
+ * Check if token is part of a number or an interpolation with a percent sign (e.g. `10%`)
  * @param {Number} i Token's index number
  * @returns {Number}
  */
 function checkPercentage(i) {
-  var x;
+  let start = i;
+  let l;
 
   if (i >= tokensLength) return 0;
 
-  x = checkNumber(i);
+  if (l = checkNumberOrInterpolation(i)) i += l;
+  else return 0;
 
-  if (!x || i + x >= tokensLength) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i + x].type === TokenType.PercentSign ? x + 1 : 0;
+  if (tokens[i].type !== TokenType.PercentSign) return 0;
+
+  return i - start + 1;
 }
 
 /**
- * Get node of number with percent sign
- * @returns {Array} `['percentage', ['number', x]]` where `x` is a number
- *      (without percent sign) converted to string.
+ * Get a percentage node that contains either a number or an interpolation
+ * @returns {Object} The percentage node
  */
 function getPercentage() {
   let startPos = pos;
-  let x = [getNumber()];
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  let token = tokens[startPos];
+  let line = token.ln;
+  let column = token.col;
+  let content = getNumberOrInterpolation();
+  let end = getLastPosition(content, line, column, 1);
 
-  var end = getLastPosition(x, line, column, 1);
+  // Skip %
   pos++;
 
-  return newNode(NodeType.PercentageType, x, token.ln, token.col, end);
+  return newNode(NodeType.PercentageType, content, token.ln, token.col, end);
 }
 
 /**
@@ -3135,43 +3134,6 @@ function getNumberOrInterpolation() {
   }
 
   return content;
-}
-
-/**
- * Check if token is part of an interpolation with percent sign (e.g. `#{$num}%`)
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkInterpolatedPercentage(i) {
-  let start = i;
-  let l;
-
-  if (i >= tokensLength) return 0;
-
-  if (l = checkInterpolation(i)) i += l;
-  else return 0;
-
-  if (i >= tokensLength) return 0;
-
-  return tokens[i].type === TokenType.PercentSign ? i - start + 1 : 0;
-}
-
-/**
- * Get node of interpolation with percent sign
- * @returns {Array} `['percentage', ['interpolation', x]]` where `x` is an
- *      interpolation (without percent sign)
- */
-function getInterpolatedPercentage() {
-  let startPos = pos;
-  let x = [getInterpolation()];
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-
-  var end = getLastPosition(x, line, column, 1);
-  pos++;
-
-  return newNode(NodeType.PercentageType, x, token.ln, token.col, end);
 }
 
 /**
