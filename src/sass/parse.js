@@ -2887,7 +2887,7 @@ function getNumber() {
 }
 
 /**
- * Check if token is an operator (`/`, `,`, `:` or `=`).
+ * Check if token is an operator (`/`, `%`, `,`, `:` or `=`).
  * @param {Number} i Token's index number
  * @returns {Number} `1` if token is an operator, otherwise `0`
  */
@@ -2896,6 +2896,7 @@ function checkOperator(i) {
 
   switch (tokens[i].type) {
     case TokenType.Solidus:
+    case TokenType.PercentSign:
     case TokenType.Comma:
     case TokenType.Colon:
     case TokenType.EqualsSign:
