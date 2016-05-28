@@ -4548,8 +4548,12 @@ function getNamespacePrefix() {
 function checkNamespaceSeparator(i) {
   if (i >= tokensLength) return 0;
 
-  if (tokens[i].type === TokenType.VerticalLine) return 1;
-  else return 0;
+  if (tokens[i].type !== TokenType.VerticalLine) return 0;
+
+  // Return false if `|=` - [attr|=value]
+  if (tokens[i + 1] && tokens[i + 1].type === TokenType.EqualsSign) return 0;
+
+  return 1;
 }
 
 function getNamespaceSeparator() {
