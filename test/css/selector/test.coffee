@@ -14,6 +14,11 @@ describe 'css/selector >>', ->
   it '11', -> this.shouldBeOk()
   it '12', -> this.shouldBeOk()
   it '13', -> this.shouldBeOk()
+  it '14', -> this.shouldBeOk()
+  it '15', -> this.shouldBeOk()
+  it '16', -> this.shouldBeOk()
+  it '17', -> this.shouldBeOk()
+  it '18', -> this.shouldBeOk()
 
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()
