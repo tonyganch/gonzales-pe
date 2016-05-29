@@ -1,0 +1,92 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "ident",
+      "content": "U",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "operator",
+      "content": "+",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 2
+      }
+    },
+    {
+      "type": "number",
+      "content": "0025",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 3
+      },
+      "end": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "operator",
+      "content": "-",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 7
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "number",
+      "content": "00",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "ident",
+      "content": "FF",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 11
+  }
+}
