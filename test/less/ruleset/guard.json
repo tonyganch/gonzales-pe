@@ -1,0 +1,133 @@
+{
+  "type": "ruleset",
+  "content": [{
+    "type": "selector",
+    "content": [{
+      "type": "typeSelector",
+      "content": [{
+        "type": "ident",
+        "content": "div",
+        "syntax": "less",
+        "start": {
+          "line": 1,
+          "column": 1
+        },
+        "end": {
+          "line": 1,
+          "column": 3
+        }
+      }],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 3
+      }
+    }],
+    "syntax": "less",
+    "start": {
+      "line": 1,
+      "column": 1
+    },
+    "end": {
+      "line": 1,
+      "column": 3
+    }
+  }, {
+    "type": "space",
+    "content": " ",
+    "syntax": "less",
+    "start": {
+      "line": 1,
+      "column": 4
+    },
+    "end": {
+      "line": 1,
+      "column": 4
+    }
+  }, {
+    "type": "condition",
+    "content": [{
+      "type": "ident",
+      "content": "when",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 5
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    }, {
+      "type": "parentheses",
+      "content": [{
+        "type": "variable",
+        "content": [{
+          "type": "ident",
+          "content": "a",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 11
+          },
+          "end": {
+            "line": 1,
+            "column": 11
+          }
+        }],
+        "syntax": "less",
+        "start": {
+          "line": 1,
+          "column": 10
+        },
+        "end": {
+          "line": 1,
+          "column": 11
+        }
+      }],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 12
+      }
+    }],
+    "syntax": "less",
+    "start": {
+      "line": 1,
+      "column": 5
+    },
+    "end": {
+      "line": 1,
+      "column": 12
+    }
+  }, {
+    "type": "block",
+    "content": [],
+    "syntax": "less",
+    "start": {
+      "line": 1,
+      "column": 13
+    },
+    "end": {
+      "line": 1,
+      "column": 14
+    }
+  }],
+  "syntax": "less",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 14
+  }
+}
