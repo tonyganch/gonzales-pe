@@ -7,6 +7,17 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 21.06.2016, Version 3.3.5
+
+:green_apple: Fixed issue with content at-rule and keyframes in Sass and SCSS.  
+:green_apple: Fixed namespace attribute selector in CSS, Sass and SCSS.  
+:green_apple: Fixed issue with modulo operator in values in Sass.  
+:green_apple: Fixed usage of @content with keyframes in Sass and SCSS.  
+:green_apple: Fixed namespace attribute selector issue in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of interpolations in pseudo-classes in Sass and SCSS.  
+:green_apple: Fixed interpolated percentage keyframe selector issue in Sass and SCSS.  
+:green_apple: Updated Travis config to not include environment variables.  
+
 ## 18.05.2016, Version 3.3.4
 
 :green_apple: Fixed mistake from `@3.3.2` version when parent selector was
