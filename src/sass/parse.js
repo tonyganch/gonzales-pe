@@ -3099,6 +3099,39 @@ function getPercentage() {
 }
 
 /**
+ * Check if token is a number or an interpolation
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkNumberOrInterpolation(i) {
+  let start = i;
+  let l;
+
+  while (i < tokensLength) {
+    if (l = checkInterpolation(i) || checkNumber(i)) i += l;
+    else break;
+  }
+
+  return i - start;
+}
+
+/**
+ * Get a number and/or interpolation node
+ * @returns {Array} An array containing a single or multiple nodes
+ */
+function getNumberOrInterpolation() {
+  let content = [];
+
+  while (pos < tokensLength) {
+    if (checkInterpolation(pos)) content.push(getInterpolation());
+    else if (checkNumber(pos)) content.push(getNumber());
+    else break;
+  }
+
+  return content;
+}
+
+/**
  * Check if token is part of a placeholder selector (e.g. `%abc`).
  * @param {Number} i Token's index number
  * @returns {Number} Length of the selector
@@ -3467,8 +3500,9 @@ function checkPseudoClass3(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkUnary(i)) i += l;
-  if (i >= tokensLength) return 0;
-  if (tokens[i].type === TokenType.DecimalNumber) i++;
+
+  if (l = checkNumberOrInterpolation(i)) i += l;
+  else return 0;
 
   if (i >= tokensLength) return 0;
   if (tokens[i].value === 'n') i++;
@@ -3477,13 +3511,14 @@ function checkPseudoClass3(i) {
   if (l = checkSC(i)) i += l;
 
   if (i >= tokensLength) return 0;
-  if (tokens[i].value === '+' ||
-      tokens[i].value === '-') i++;
+
+  if (tokens[i].type === TokenType.PlusSign ||
+      tokens[i].type === TokenType.HyphenMinus) i++;
   else return 0;
 
   if (l = checkSC(i)) i += l;
 
-  if (tokens[i].type === TokenType.DecimalNumber) i++;
+  if (l = checkNumberOrInterpolation(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -3512,7 +3547,7 @@ function getPseudoClass3() {
   pos++;
 
   if (checkUnary(pos)) value.push(getUnary());
-  if (checkNumber(pos)) value.push(getNumber());
+  if (checkNumberOrInterpolation(pos)) value = value.concat(getNumberOrInterpolation());
 
   {
     let l = tokens[pos].ln;
@@ -3526,7 +3561,7 @@ function getPseudoClass3() {
   value = value.concat(getSC());
   if (checkUnary(pos)) value.push(getUnary());
   value = value.concat(getSC());
-  if (checkNumber(pos)) value.push(getNumber());
+  if (checkNumberOrInterpolation(pos)) value = value.concat(getNumberOrInterpolation());
   value = value.concat(getSC());
 
   let end = getLastPosition(value, l, c, 1);
@@ -3565,6 +3600,9 @@ function checkPseudoClass4(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkUnary(i)) i += l;
+
+  if (l = checkInterpolation(i)) i += l;
+
   if (tokens[i].type === TokenType.DecimalNumber) i++;
 
   if (tokens[i].value === 'n') i++;
@@ -3596,6 +3634,7 @@ function getPseudoClass4() {
   pos++;
 
   if (checkUnary(pos)) value.push(getUnary());
+  if (checkInterpolation(pos)) value.push(getInterpolation());
   if (checkNumber(pos)) value.push(getNumber());
   if (checkIdent(pos)) value.push(getIdent());
   value = value.concat(getSC());

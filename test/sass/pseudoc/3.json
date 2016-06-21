@@ -3,7 +3,7 @@
   "content": [
     {
       "type": "ident",
-      "content": "nth-last-child",
+      "content": "nth-child",
       "syntax": "sass",
       "start": {
         "line": 1,
@@ -11,86 +11,62 @@
       },
       "end": {
         "line": 1,
-        "column": 15
+        "column": 10
       }
     },
     {
       "type": "arguments",
       "content": [
         {
-          "type": "operator",
-          "content": "+",
+          "type": "selector",
+          "content": [
+            {
+              "type": "typeSelector",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "odd",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 1,
+                    "column": 12
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 14
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 12
+              },
+              "end": {
+                "line": 1,
+                "column": 14
+              }
+            }
+          ],
           "syntax": "sass",
           "start": {
             "line": 1,
-            "column": 17
+            "column": 12
           },
           "end": {
             "line": 1,
-            "column": 17
-          }
-        },
-        {
-          "type": "number",
-          "content": "3",
-          "syntax": "sass",
-          "start": {
-            "line": 1,
-            "column": 18
-          },
-          "end": {
-            "line": 1,
-            "column": 18
-          }
-        },
-        {
-          "type": "ident",
-          "content": "n",
-          "syntax": "sass",
-          "start": {
-            "line": 1,
-            "column": 19
-          },
-          "end": {
-            "line": 1,
-            "column": 19
-          }
-        },
-        {
-          "type": "operator",
-          "content": "-",
-          "syntax": "sass",
-          "start": {
-            "line": 1,
-            "column": 20
-          },
-          "end": {
-            "line": 1,
-            "column": 20
-          }
-        },
-        {
-          "type": "number",
-          "content": "2",
-          "syntax": "sass",
-          "start": {
-            "line": 1,
-            "column": 21
-          },
-          "end": {
-            "line": 1,
-            "column": 21
+            "column": 14
           }
         }
       ],
       "syntax": "sass",
       "start": {
         "line": 1,
-        "column": 16
+        "column": 11
       },
       "end": {
         "line": 1,
-        "column": 22
+        "column": 15
       }
     }
   ],
@@ -101,6 +77,6 @@
   },
   "end": {
     "line": 1,
-    "column": 22
+    "column": 15
   }
 }
