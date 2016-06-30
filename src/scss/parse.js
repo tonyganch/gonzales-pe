@@ -3131,7 +3131,6 @@ function checkPseudoClass3(i) {
   if (l = checkUnary(i)) i += l;
 
   if (l = checkNumberOrInterpolation(i)) i += l;
-  else return 0;
 
   if (i >= tokensLength) return 0;
   if (tokens[i].value === 'n') i++;
