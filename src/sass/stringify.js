@@ -1,5 +1,3 @@
-// jscs:disable maximumLineLength
-
 'use strict';
 
 module.exports = function stringify(tree) {
@@ -58,7 +56,8 @@ module.exports = function stringify(tree) {
       return '/*' + t.content;
     },
     'nthSelector': function(t) {
-      return ':' + _t(t.content[0]) + '(' + _composite(t.content.slice(1)) + ')';
+      return ':' + _t(t.content[0]) +
+        '(' + _composite(t.content.slice(1)) + ')';
     },
     'parentheses': function(t) {
       return '(' + _composite(t.content) + ')';

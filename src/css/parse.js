@@ -1,5 +1,3 @@
-// jscs:disable maximumLineLength
-
 'use strict';
 
 var Node = require('../node/basic-node');
@@ -22,41 +20,111 @@ var tokensLength;
 var pos;
 
 var contexts = {
-  'atkeyword': function() { return checkAtkeyword(pos) && getAtkeyword(); },
-  'atrule': function() { return checkAtrule(pos) && getAtrule(); },
-  'block': function() { return checkBlock(pos) && getBlock(); },
-  'brackets': function() { return checkBrackets(pos) && getBrackets(); },
-  'class': function() { return checkClass(pos) && getClass(); },
-  'combinator': function() { return checkCombinator(pos) && getCombinator(); },
-  'commentML': function() { return checkCommentML(pos) && getCommentML(); },
-  'declaration': function() { return checkDeclaration(pos) && getDeclaration(); },
-  'declDelim': function() { return checkDeclDelim(pos) && getDeclDelim(); },
-  'delim': function() { return checkDelim(pos) && getDelim(); },
-  'dimension': function() { return checkDimension(pos) && getDimension(); },
-  'expression': function() { return checkExpression(pos) && getExpression(); },
-  'function': function() { return checkFunction(pos) && getFunction(); },
-  'ident': function() { return checkIdent(pos) && getIdent(); },
-  'important': function() { return checkImportant(pos) && getImportant(); },
-  'namespace': function() { return checkNamespace(pos) && getNamespace(); },
-  'number': function() { return checkNumber(pos) && getNumber(); },
-  'operator': function() { return checkOperator(pos) && getOperator(); },
-  'parentheses': function() { return checkParentheses(pos) && getParentheses(); },
-  'percentage': function() { return checkPercentage(pos) && getPercentage(); },
-  'progid': function() { return checkProgid(pos) && getProgid(); },
-  'property': function() { return checkProperty(pos) && getProperty(); },
-  'propertyDelim': function() { return checkPropertyDelim(pos) && getPropertyDelim(); },
-  'pseudoc': function() { return checkPseudoc(pos) && getPseudoc(); },
-  'pseudoe': function() { return checkPseudoe(pos) && getPseudoe(); },
-  'ruleset': function() { return checkRuleset(pos) && getRuleset(); },
-  's': function() { return checkS(pos) && getS(); },
-  'selector': function() { return checkSelector(pos) && getSelector(); },
-  'shash': function() { return checkShash(pos) && getShash(); },
-  'string': function() { return checkString(pos) && getString(); },
-  'stylesheet': function() { return checkStylesheet(pos) && getStylesheet(); },
-  'unary': function() { return checkUnary(pos) && getUnary(); },
-  'uri': function() { return checkUri(pos) && getUri(); },
-  'value': function() { return checkValue(pos) && getValue(); },
-  'vhash': function() { return checkVhash(pos) && getVhash(); }
+  'atkeyword': () => {
+    return checkAtkeyword(pos) && getAtkeyword();
+  },
+  'atrule': () => {
+    return checkAtrule(pos) && getAtrule();
+  },
+  'block': () => {
+    return checkBlock(pos) && getBlock();
+  },
+  'brackets': () => {
+    return checkBrackets(pos) && getBrackets();
+  },
+  'class': () => {
+    return checkClass(pos) && getClass();
+  },
+  'combinator': () => {
+    return checkCombinator(pos) && getCombinator();
+  },
+  'commentML': () => {
+    return checkCommentML(pos) && getCommentML();
+  },
+  'declaration': () => {
+    return checkDeclaration(pos) && getDeclaration();
+  },
+  'declDelim': () => {
+    return checkDeclDelim(pos) && getDeclDelim();
+  },
+  'delim': () => {
+    return checkDelim(pos) && getDelim();
+  },
+  'dimension': () => {
+    return checkDimension(pos) && getDimension();
+  },
+  'expression': () => {
+    return checkExpression(pos) && getExpression();
+  },
+  'function': () => {
+    return checkFunction(pos) && getFunction();
+  },
+  'ident': () => {
+    return checkIdent(pos) && getIdent();
+  },
+  'important': () => {
+    return checkImportant(pos) && getImportant();
+  },
+  'namespace': () => {
+    return checkNamespace(pos) && getNamespace();
+  },
+  'number': () => {
+    return checkNumber(pos) && getNumber();
+  },
+  'operator': () => {
+    return checkOperator(pos) && getOperator();
+  },
+  'parentheses': () => {
+    return checkParentheses(pos) && getParentheses();
+  },
+  'percentage': () => {
+    return checkPercentage(pos) && getPercentage();
+  },
+  'progid': () => {
+    return checkProgid(pos) && getProgid();
+  },
+  'property': () => {
+    return checkProperty(pos) && getProperty();
+  },
+  'propertyDelim': () => {
+    return checkPropertyDelim(pos) && getPropertyDelim();
+  },
+  'pseudoc': () => {
+    return checkPseudoc(pos) && getPseudoc();
+  },
+  'pseudoe': () => {
+    return checkPseudoe(pos) && getPseudoe();
+  },
+  'ruleset': () => {
+    return checkRuleset(pos) && getRuleset();
+  },
+  's': () => {
+    return checkS(pos) && getS();
+  },
+  'selector': () => {
+    return checkSelector(pos) && getSelector();
+  },
+  'shash': () => {
+    return checkShash(pos) && getShash();
+  },
+  'string': () => {
+    return checkString(pos) && getString();
+  },
+  'stylesheet': () => {
+    return checkStylesheet(pos) && getStylesheet();
+  },
+  'unary': () => {
+    return checkUnary(pos) && getUnary();
+  },
+  'uri': () => {
+    return checkUri(pos) && getUri();
+  },
+  'value': () => {
+    return checkValue(pos) && getValue();
+  },
+  'vhash': () => {
+    return checkVhash(pos) && getVhash();
+  }
 };
 
 /**
@@ -300,11 +368,15 @@ function checkAtrule(i) {
   // return the @-rule's length:
   if (tokens[i].atrule_l !== undefined) return tokens[i].atrule_l;
 
-  // If token is part of an @-rule, save the rule's type to token:
-  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4; // @keyframes
-  else if (l = checkAtruler(i)) tokens[i].atrule_type = 1; // @-rule with ruleset
-  else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2; // Block @-rule
-  else if (l = checkAtrules(i)) tokens[i].atrule_type = 3; // Single-line @-rule
+  // If token is part of an @-rule, save the rule's type to token.
+  // @keyframes:
+  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4;
+  // @-rule with ruleset:
+  else if (l = checkAtruler(i)) tokens[i].atrule_type = 1;
+  // Block @-rule:
+  else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2;
+  // Single-line @-rule:
+  else if (l = checkAtrules(i)) tokens[i].atrule_type = 3;
   else return 0;
 
   // If token is part of an @-rule, save the rule's length to token:
@@ -1022,7 +1094,9 @@ function checkExpression(i) {
   var start = i;
 
   if (i >= tokensLength || tokens[i++].value !== 'expression' ||
-      i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) return 0;
+      i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) {
+    return 0;
+  }
 
   return tokens[i].right - start + 1;
 }
@@ -1092,7 +1166,8 @@ function getArguments() {
 
   pos++;
 
-  while (pos < tokensLength && tokens[pos].type !== TokenType.RightParenthesis) {
+  while (pos < tokensLength &&
+      tokens[pos].type !== TokenType.RightParenthesis) {
     if (checkDeclaration(pos)) content.push(getDeclaration());
     else if (checkArgument(pos)) {
       body = getArgument();
@@ -2441,7 +2516,17 @@ function getShash() {
  * @return {Number} `1` if token is part of a string, `0` if not
  */
 function checkString(i) {
-  return i < tokensLength && (tokens[i].type === TokenType.StringSQ || tokens[i].type === TokenType.StringDQ) ? 1 : 0;
+  if (i >= tokensLength) {
+    return 0;
+  }
+
+  if (tokens[i].type === TokenType.StringSQ ||
+      tokens[i].type === TokenType.StringDQ) {
+    return 1;
+  }
+
+
+  return 0;
 }
 
 /**
@@ -2574,7 +2659,16 @@ function getTsets() {
  * @return {Number} `1` if token is an unary sign, `0` if not
  */
 function checkUnary(i) {
-  return i < tokensLength && (tokens[i].type === TokenType.HyphenMinus || tokens[i].type === TokenType.PlusSign) ? 1 : 0;
+  if (i >= tokensLength) {
+    return 0;
+  }
+
+  if (tokens[i].type === TokenType.HyphenMinus ||
+      tokens[i].type === TokenType.PlusSign) {
+    return 1;
+  }
+
+  return 0;
 }
 
 /**
@@ -2673,7 +2767,8 @@ function checkUri1(i) {
 
   if (l = checkSC(i)) i += l;
 
-  if (tokens[i].type !== TokenType.StringDQ && tokens[i].type !== TokenType.StringSQ) return 0;
+  if (tokens[i].type !== TokenType.StringDQ &&
+      tokens[i].type !== TokenType.StringSQ) return 0;
 
   i++;
 
