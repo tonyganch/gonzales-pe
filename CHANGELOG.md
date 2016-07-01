@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 01.07.2016, Version 3.3.6
+
+:green_apple: Fixed parsing of nth selector without numbers before `n`.  
+
 ## 21.06.2016, Version 3.3.5
 
 :green_apple: Fixed issue with content at-rule and keyframes in Sass and SCSS.  
