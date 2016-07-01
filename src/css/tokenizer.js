@@ -1,5 +1,3 @@
-// jscs:disable maximumLineLength
-
 'use strict';
 
 module.exports = function(css, tabSize) {
@@ -108,7 +106,8 @@ module.exports = function(css, tabSize) {
     }
 
     // Add the string (including quotes) to tokens:
-    pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ, css.substring(start, pos + 1), col);
+    pushToken(q === '"' ? TokenType.StringDQ : TokenType.StringSQ,
+        css.substring(start, pos + 1), col);
     col += (pos - start);
   }
 
