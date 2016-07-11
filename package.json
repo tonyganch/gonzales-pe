@@ -38,7 +38,8 @@
     "jshint": "2.8.0",
     "json-loader": "^0.5.3",
     "mocha": "2.2.x",
-    "webpack": "^1.12.2"
+    "webpack": "^1.12.2",
+    "webpack-closure-compiler": "^2.0.2"
   },
   "engines": {
     "node": ">=0.6.0"
