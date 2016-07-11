@@ -1,14 +1,14 @@
 'use strict';
 
-var Node = require('../node/basic-node');
-var NodeType = require('../node/node-types');
-var TokenType = require('../token-types');
+const Node = require('../node/basic-node');
+const NodeType = require('../node/node-types');
+const TokenType = require('../token-types');
 
 let tokens;
 let tokensLength;
 let pos;
 
-var contexts = {
+const contexts = {
   'arguments': () => {
     return checkArguments(pos) && getArguments();
   },
@@ -165,19 +165,20 @@ var contexts = {
 };
 
 /**
- * Stop parsing and display error
- * @param {Number=} i Token's index number
+ * Stops parsing and display error.
+ *
+ * @param {number=} opt_i Token's index number
  */
-function throwError(i) {
-  var ln = i ? tokens[i].ln : tokens[pos].ln;
+function throwError(opt_i) {
+  var ln = opt_i ? tokens[opt_i].ln : tokens[pos].ln;
 
   throw {line: ln, syntax: 'sass'};
 }
 
 /**
- * @param {Object} exclude
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {!Object} exclude
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkExcluding(exclude, i) {
   var start = i;
@@ -190,9 +191,9 @@ function checkExcluding(exclude, i) {
 }
 
 /**
- * @param {Number} start
- * @param {Number} finish
- * @returns {String}
+ * @param {number} start
+ * @param {number} finish
+ * @return {string}
  */
 function joinValues(start, finish) {
   var s = '';
@@ -205,9 +206,9 @@ function joinValues(start, finish) {
 }
 
 /**
- * @param {Number} start
- * @param {Number} num
- * @returns {String}
+ * @param {number} start
+ * @param {number} num
+ * @return {string}
  */
 function joinValues2(start, num) {
   if (start + num - 1 >= tokensLength) return;
@@ -221,12 +222,24 @@ function joinValues2(start, num) {
   return s;
 }
 
+/**
+ * @param {string|!Array} content
+ * @param {number} line
+ * @param {number} column
+ * @param {number} colOffset
+ */
 function getLastPosition(content, line, column, colOffset) {
   return typeof content === 'string' ?
       getLastPositionForString(content, line, column, colOffset) :
       getLastPositionForArray(content, line, column, colOffset);
 }
 
+/**
+ * @param {string} content
+ * @param {number} line
+ * @param {number} column
+ * @param {number} colOffset
+ */
 function getLastPositionForString(content, line, column, colOffset) {
   var position = [];
 
@@ -271,6 +284,12 @@ function getLastPositionForString(content, line, column, colOffset) {
   return position;
 }
 
+/**
+ * @param {!Array} content
+ * @param {number} line
+ * @param {number} column
+ * @param {number} colOffset
+ */
 function getLastPositionForArray(content, line, column, colOffset) {
   var position;
 
@@ -297,6 +316,13 @@ function getLastPositionForArray(content, line, column, colOffset) {
   return position;
 }
 
+/**
+ * @param {string} type
+ * @param {string|!Array} content
+ * @param {number} line
+ * @param {number} column
+ * @param {!Array} end
+ */
 function newNode(type, content, line, column, end) {
   if (!end) end = getLastPosition(content, line, column);
   return new Node({
@@ -317,8 +343,8 @@ function newNode(type, content, line, column, end) {
 
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkAny(i) {
   var l;
@@ -344,7 +370,7 @@ function checkAny(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Node}
  */
 function getAny() {
   var childType = tokens[pos].any_child;
@@ -368,9 +394,10 @@ function getAny() {
 }
 
 /**
- * Check if token is part of mixin's arguments.
- * @param {Number} i Token's index number
- * @returns {Number} Length of arguments
+ * Checks if token is part of mixin's arguments.
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of arguments
  */
 function checkArguments(i) {
   let start = i;
@@ -390,9 +417,10 @@ function checkArguments(i) {
 }
 
 /**
- * Check if token is valid to be part of arguments list
- * @param {Number} i Token's index number
- * @returns {Number} Length of argument
+ * Checks if token is valid to be part of arguments list
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of argument
  */
 function checkArgument(i) {
   var l;
@@ -422,7 +450,7 @@ function checkArgument(i) {
 }
 
 /**
- * @returns {Array} Node that is part of arguments list
+ * @return {!Node}
  */
 function getArgument() {
   var childType = tokens[pos].argument_child;
@@ -450,9 +478,10 @@ function getArgument() {
 }
 
 /**
- * Check if token is part of an @-word (e.g. `@import`, `@include`)
- * @param {Number} i Token's index number
- * @returns {Number}
+ * Checks if token is part of an @-word (e.g. `@import`, `@include`).
+ *
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkAtkeyword(i) {
   var l;
@@ -465,10 +494,9 @@ function checkAtkeyword(i) {
 }
 
 /**
- * Get node with @-word
- * @returns {Array} `['atkeyword', ['ident', x]]` where `x` is
- *      an identifier without
- *      `@` (e.g. `import`, `include`)
+ * Gets node with @-word.
+ *
+ * @return {!Node}
  */
 function getAtkeyword() {
   let startPos = pos++;
@@ -479,9 +507,10 @@ function getAtkeyword() {
 }
 
 /**
- * Check if token is a part of an @-rule
- * @param {Number} i Token's index number
- * @returns {Number} Length of @-rule
+ * Checks if token is a part of an @-rule.
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of @-rule
  */
 function checkAtrule(i) {
   var l;
@@ -510,8 +539,9 @@ function checkAtrule(i) {
 }
 
 /**
- * Get node with @-rule
- * @returns {Array}
+ * Gets node with @-rule.
+ *
+ * @return {!Node}
  */
 function getAtrule() {
   switch (tokens[pos].atrule_type) {
@@ -523,9 +553,10 @@ function getAtrule() {
 }
 
 /**
- * Check if token is part of a block @-rule
- * @param {Number} i Token's index number
- * @returns {Number} Length of the @-rule
+ * Checks if token is part of a block @-rule.
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the @-rule
  */
 function checkAtruleb(i) {
   let start = i;
@@ -545,8 +576,9 @@ function checkAtruleb(i) {
 }
 
 /**
- * Get node with a block @-rule
- * @returns {Array} `['atruleb', ['atkeyword', x], y, ['block', z]]`
+ * Gets node with a block @-rule.
+ *
+ * @return {!Node}
  */
 function getAtruleb() {
   let startPos = pos;
@@ -561,9 +593,10 @@ function getAtruleb() {
 }
 
 /**
- * Check if token is part of an @-rule with ruleset
- * @param {Number} i Token's index number
- * @returns {Number} Length of the @-rule
+ * Checks if token is part of an @-rule with ruleset.
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the @-rule
  */
 function checkAtruler(i) {
   let start = i;
@@ -583,8 +616,9 @@ function checkAtruler(i) {
 }
 
 /**
- * Get node with an @-rule with ruleset
- * @returns {Array} ['atruler', ['atkeyword', x], y, z]
+ * Gets node with an @-rule with ruleset.
+ *
+ * @return {!Node}
  */
 function getAtruler() {
   let startPos = pos;
@@ -599,8 +633,8 @@ function getAtruler() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkAtrulers(i) {
   let start = i;
@@ -624,7 +658,7 @@ function checkAtrulers(i) {
 }
 
 /**
- * @returns {Array} `['atrulers', x]`
+ * @return {!Node}
  */
 function getAtrulers() {
   var startPos = pos;
@@ -645,8 +679,8 @@ function getAtrulers() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkAtrules(i) {
   let start = i;
@@ -663,7 +697,7 @@ function checkAtrules(i) {
 }
 
 /**
- * @returns {Array} `['atrules', ['atkeyword', x], y]`
+ * @return {!Node}
  */
 function getAtrules() {
   let startPos = pos;
@@ -676,9 +710,10 @@ function getAtrules() {
 }
 
 /**
- * Check if token is part of a block (e.g. `{...}`).
- * @param {Number} i Token's index number
- * @returns {Number} Length of the block
+ * Checks if token is part of a block (e.g. `{...}`).
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the block
  */
 function checkBlock(i) {
   return i < tokensLength && tokens[i].block_end ?
@@ -686,8 +721,9 @@ function checkBlock(i) {
 }
 
 /**
- * Get node with a block
- * @returns {Array} `['block', x]`
+ * Gets node with a block.
+ *
+ * @return {!Node}
  */
 function getBlock() {
   let startPos = pos;
@@ -704,9 +740,10 @@ function getBlock() {
 }
 
 /**
- * Check if token is part of a declaration (property-value pair)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the declaration
+ * Checks if token is part of a declaration (property-value pair).
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the declaration
  */
 function checkBlockdecl(i) {
   var l;
@@ -726,7 +763,7 @@ function checkBlockdecl(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl() {
   switch (tokens[pos].bd_type) {
@@ -741,8 +778,8 @@ function getBlockdecl() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl1(i) {
   let start = i;
@@ -774,7 +811,7 @@ function checkBlockdecl1(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl1() {
   let x = [];
@@ -813,8 +850,8 @@ function getBlockdecl1() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl2(i) {
   let start = i;
@@ -842,7 +879,7 @@ function checkBlockdecl2(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl2() {
   let x = [];
@@ -886,8 +923,8 @@ function getBlockdecl2() {
 
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl3(i) {
   let start = i;
@@ -908,7 +945,7 @@ function checkBlockdecl3(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl3() {
   let x;
@@ -941,23 +978,23 @@ function getBlockdecl3() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl4(i) {
   return checkSC(i);
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl4() {
   return getSC();
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl5(i) {
   let start = i;
@@ -977,7 +1014,7 @@ function checkBlockdecl5(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl5() {
   let x = [];
@@ -995,8 +1032,8 @@ function getBlockdecl5() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl6(i) {
   let start = i;
@@ -1010,7 +1047,7 @@ function checkBlockdecl6(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl6() {
   let x;
@@ -1022,8 +1059,8 @@ function getBlockdecl6() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBlockdecl7(i) {
   let start = i;
@@ -1047,7 +1084,7 @@ function checkBlockdecl7(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {!Array}
  */
 function getBlockdecl7() {
   let x = [];
@@ -1076,9 +1113,10 @@ function getBlockdecl7() {
 
 
 /**
- * Check if token is part of text inside square brackets, e.g. `[1]`
- * @param {Number} i Token's index number
- * @returns {Number}
+ * Checks if token is part of text inside square brackets, e.g. `[1]`.
+ *
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkBrackets(i) {
   if (i >= tokensLength ||
@@ -1088,8 +1126,9 @@ function checkBrackets(i) {
 }
 
 /**
- * Get node with text inside square brackets, e.g. `[1]`
- * @returns {Node}
+ * Gets node with text inside square brackets, e.g. `[1]`.
+ *
+ * @return {!Node}
  */
 function getBrackets() {
   var startPos = pos;
@@ -1108,9 +1147,10 @@ function getBrackets() {
 }
 
 /**
- * Check if token is part of a class selector (e.g. `.abc`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the class selector
+ * Checks if token is part of a class selector (e.g. `.abc`).
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the class selector
  */
 function checkClass(i) {
   let start = i;
@@ -1129,9 +1169,9 @@ function checkClass(i) {
 }
 
 /**
- * Get node with a class selector
- * @returns {Array} `['class', ['ident', x]]` where x is a class's
- *      identifier (without `.`, e.g. `abc`).
+ * Gets node with a class selector.
+ *
+ * @return {!Node}
  */
 function getClass() {
   let startPos = pos++;
@@ -1141,6 +1181,10 @@ function getClass() {
   return newNode(NodeType.ClassType, x, token.ln, token.col);
 }
 
+/**
+ * @param {number} i
+ * @return {number}
+ */
 function checkCombinator(i) {
   if (i >= tokensLength) return 0;
 
@@ -1152,14 +1196,21 @@ function checkCombinator(i) {
   return l;
 }
 
+/**
+ * @return {!Node}
+ */
 function getCombinator() {
   let type = tokens[pos].combinatorType;
   if (type === 1) return getCombinator1();
   if (type === 2) return getCombinator2();
   if (type === 3) return getCombinator3();
 }
+
 /**
  * (1) `||`
+ *
+ * @param {number} i
+ * @return {number}
  */
 function checkCombinator1(i) {
   if (tokens[i].type === TokenType.VerticalLine &&
@@ -1167,6 +1218,9 @@ function checkCombinator1(i) {
   else return 0;
 }
 
+/**
+ * @return {!Node}
+ */
 function getCombinator1() {
   let type = NodeType.CombinatorType;
   let token = tokens[pos];
@@ -1182,6 +1236,9 @@ function getCombinator1() {
  * (1) `>`
  * (2) `+`
  * (3) `~`
+ *
+ * @param {number} i
+ * @return {number}
  */
 function checkCombinator2(i) {
   let type = tokens[i].type;
@@ -1240,8 +1297,8 @@ function getCombinator3() {
 
 /**
  * Check if token is a multiline comment.
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is a multiline comment, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is a multiline comment, otherwise `0`
  */
 function checkCommentML(i) {
   return i < tokensLength && tokens[i].type === TokenType.CommentML ? 1 : 0;
@@ -1249,7 +1306,7 @@ function checkCommentML(i) {
 
 /**
  * Get node with a multiline comment
- * @returns {Array} `['commentML', x]` where `x`
+ * @return {Array} `['commentML', x]` where `x`
  *      is the comment's text (without `/*` and `* /`).
  */
 function getCommentML() {
@@ -1267,8 +1324,8 @@ function getCommentML() {
 
 /**
  * Check if token is part of a single-line comment.
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is a single-line comment, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is a single-line comment, otherwise `0`
  */
 function checkCommentSL(i) {
   return i < tokensLength && tokens[i].type === TokenType.CommentSL ? 1 : 0;
@@ -1276,7 +1333,7 @@ function checkCommentSL(i) {
 
 /**
  * Get node with a single-line comment.
- * @returns {Array} `['commentSL', x]` where `x` is comment's message
+ * @return {Array} `['commentSL', x]` where `x` is comment's message
  *      (without `//`)
  */
 function getCommentSL() {
@@ -1293,8 +1350,8 @@ function getCommentSL() {
 /**
  * Check if token is part of a condition
  * (e.g. `@if ...`, `@else if ...` or `@else ...`).
- * @param {Number} i Token's index number
- * @returns {Number} Length of the condition
+ * @param {number} i Token's index number
+ * @return {number} Length of the condition
  */
 function checkCondition(i) {
   let start = i;
@@ -1334,7 +1391,7 @@ function _checkCondition(i) {
 
 /**
  * Get node with a condition.
- * @returns {Array} `['condition', x]`
+ * @return {Array} `['condition', x]`
  */
 function getCondition() {
   let startPos = pos;
@@ -1369,8 +1426,8 @@ function _getCondition() {
 /**
  * Check if token is part of a conditional statement
  * (e.g. `@if ... {} @else if ... {} @else ... {}`).
- * @param {Number} i Token's index number
- * @returns {Number} Length of the condition
+ * @param {number} i Token's index number
+ * @return {number} Length of the condition
  */
 function checkConditionalStatement(i) {
   let start = i;
@@ -1391,7 +1448,7 @@ function checkConditionalStatement(i) {
 
 /**
  * Get node with a condition.
- * @returns {Array} `['condition', x]`
+ * @return {Array} `['condition', x]`
  */
 function getConditionalStatement() {
   let startPos = pos;
@@ -1407,8 +1464,8 @@ function getConditionalStatement() {
 
 /**
  * Check if token is part of a declaration (property-value pair)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the declaration
+ * @param {number} i Token's index number
+ * @return {number} Length of the declaration
  */
 function checkDeclaration(i) {
   return checkDeclaration1(i) || checkDeclaration2(i);
@@ -1416,7 +1473,7 @@ function checkDeclaration(i) {
 
 /**
  * Get node with a declaration
- * @returns {Array} `['declaration', ['property', x], ['propertyDelim'],
+ * @return {Array} `['declaration', ['property', x], ['propertyDelim'],
  *       ['value', y]]`
  */
 function getDeclaration() {
@@ -1425,8 +1482,8 @@ function getDeclaration() {
 
 /**
  * Check if token is part of a declaration (property-value pair)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the declaration
+ * @param {number} i Token's index number
+ * @return {number} Length of the declaration
  */
 function checkDeclaration1(i) {
   let start = i;
@@ -1454,7 +1511,7 @@ function checkDeclaration1(i) {
 
 /**
  * Get node with a declaration
- * @returns {Array} `['declaration', ['property', x], ['propertyDelim'],
+ * @return {Array} `['declaration', ['property', x], ['propertyDelim'],
  *       ['value', y]]`
  */
 function getDeclaration1() {
@@ -1473,8 +1530,8 @@ function getDeclaration1() {
 
 /**
  * Check if token is part of a declaration (property-value pair)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the declaration
+ * @param {number} i Token's index number
+ * @return {number} Length of the declaration
  */
 function checkDeclaration2(i) {
   let start = i;
@@ -1500,7 +1557,7 @@ function checkDeclaration2(i) {
 
 /**
  * Get node with a declaration
- * @returns {Array} `['declaration', ['propertyDelim'], ['property', x],
+ * @return {Array} `['declaration', ['propertyDelim'], ['property', x],
  *       ['value', y]]`
  */
 function getDeclaration2() {
@@ -1518,8 +1575,8 @@ function getDeclaration2() {
 
 /**
  * Check if token is a semicolon
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is a semicolon, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is a semicolon, otherwise `0`
  */
 function checkDeclDelim(i) {
   if (i >= tokensLength) return 0;
@@ -1530,7 +1587,7 @@ function checkDeclDelim(i) {
 
 /**
  * Get node with a semicolon
- * @returns {Array} `['declDelim']`
+ * @return {Array} `['declDelim']`
  */
 function getDeclDelim() {
   var startPos = pos++;
@@ -1541,8 +1598,8 @@ function getDeclDelim() {
 
 /**
  * Check if token if part of `!default` word.
- * @param {Number} i Token's index number
- * @returns {Number} Length of the `!default` word
+ * @param {number} i Token's index number
+ * @return {number} Length of the `!default` word
  */
 function checkDefault(i) {
   let start = i;
@@ -1563,7 +1620,7 @@ function checkDefault(i) {
 
 /**
  * Get node with a `!default` word
- * @returns {Array} `['default', sc]` where `sc` is optional whitespace
+ * @return {Array} `['default', sc]` where `sc` is optional whitespace
  */
 function getDefault() {
   var token = tokens[pos];
@@ -1578,8 +1635,8 @@ function getDefault() {
 
 /**
  * Check if token is a comma
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is a comma, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is a comma, otherwise `0`
  */
 function checkDelim(i) {
   return i < tokensLength && tokens[i].type === TokenType.Comma ? 1 : 0;
@@ -1587,7 +1644,7 @@ function checkDelim(i) {
 
 /**
  * Get node with a comma
- * @returns {Array} `['delim']`
+ * @return {Array} `['delim']`
  */
 function getDelim() {
   var startPos = pos++;
@@ -1598,8 +1655,8 @@ function getDelim() {
 
 /**
  * Check if token is part of a number with dimension unit (e.g. `10px`)
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkDimension(i) {
   let ln = checkNumber(i);
@@ -1614,7 +1671,7 @@ function checkDimension(i) {
 
 /**
  * Get node of a number with dimension unit
- * @returns {Array} `['dimension', ['number', x], ['ident', y]]` where
+ * @return {Array} `['dimension', ['number', x], ['ident', y]]` where
  *      `x` is a number converted to string (e.g. `'10'`) and `y` is
  *      a dimension unit (e.g. `'px'`).
  */
@@ -1631,8 +1688,8 @@ function getDimension() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkExpression(i) {
   var start = i;
@@ -1646,7 +1703,7 @@ function checkExpression(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getExpression() {
   let startPos = pos;
@@ -1683,7 +1740,7 @@ function getExtend() {
 
 /**
  * Checks if token is part of an extend with `!optional` flag.
- * @param {Number} i
+ * @param {number} i
  */
 function checkExtend1(i) {
   var start = i;
@@ -1727,7 +1784,7 @@ function getExtend1() {
 
 /**
  * Checks if token is part of an extend without `!optional` flag.
- * @param {Number} i
+ * @param {number} i
  */
 function checkExtend2(i) {
   var start = i;
@@ -1762,8 +1819,8 @@ function getExtend2() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkFunction(i) {
   let start = i;
@@ -1779,7 +1836,7 @@ function checkFunction(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getFunction() {
   let startPos = pos;
@@ -1795,7 +1852,7 @@ function getFunction() {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getArguments() {
   let startPos = pos;
@@ -1826,8 +1883,8 @@ function getArguments() {
 
 /**
  * Check if token is part of `!global` word
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkGlobal(i) {
   let start = i;
@@ -1862,8 +1919,8 @@ function getGlobal() {
 
 /**
  * Check if token is part of an identifier
- * @param {Number} i Token's index number
- * @returns {Number} Length of the identifier
+ * @param {number} i Token's index number
+ * @return {number} Length of the identifier
  */
 function checkIdent(i) {
   let start = i;
@@ -1915,8 +1972,8 @@ function _checkIdent(i) {
 
 /**
  * Check if token is part of an identifier starting with `_`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the identifier
+ * @param {number} i Token's index number
+ * @return {number} Length of the identifier
  */
 function checkIdentLowLine(i) {
   var start = i;
@@ -1938,7 +1995,7 @@ function checkIdentLowLine(i) {
 
 /**
  * Get node with an identifier
- * @returns {Array} `['ident', x]` where `x` is identifier's name
+ * @return {Array} `['ident', x]` where `x` is identifier's name
  */
 function getIdent() {
   let startPos = pos;
@@ -1976,8 +2033,8 @@ function getIdentOrInterpolation() {
 
 /**
  * Check if token is part of `!important` word
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkImportant(i) {
   let start = i;
@@ -1998,7 +2055,7 @@ function checkImportant(i) {
 
 /**
  * Get node with `!important` word
- * @returns {Array} `['important', sc]` where `sc` is optional whitespace
+ * @return {Array} `['important', sc]` where `sc` is optional whitespace
  */
 function getImportant() {
   var token = tokens[pos];
@@ -2014,8 +2071,8 @@ function getImportant() {
 /**
  * Check if token is part of an included mixin (`@include` or `@extend`
  *      directive).
- * @param {Number} i Token's index number
- * @returns {Number} Length of the included mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the included mixin
  */
 function checkInclude(i) {
   var l;
@@ -2036,7 +2093,7 @@ function checkInclude(i) {
 
 /**
  * Get node with included mixin
- * @returns {Array} `['include', x]`
+ * @return {Array} `['include', x]`
  */
 function getInclude() {
   switch (tokens[pos].include_type) {
@@ -2053,8 +2110,8 @@ function getInclude() {
 
 /**
  * Check if token is part of an included mixin like `@include nani(foo) {...}`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the include
+ * @param {number} i Token's index number
+ * @return {number} Length of the include
  */
 function checkInclude1(i) {
   let start = i;
@@ -2086,7 +2143,7 @@ function checkInclude1(i) {
 
 /**
  * Get node with included mixin like `@include nani(foo) {...}`
- * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
+ * @return {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
  *      ['arguments', z], sc, ['block', q], sc` where `x` is `include` or
  *      `extend`, `y` is mixin's identifier (selector), `z` are arguments
  *      passed to the mixin, `q` is block passed to the mixin and `sc`
@@ -2110,8 +2167,8 @@ function getInclude1() {
 
 /**
  * Check if token is part of an included mixin like `@include nani(foo)`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the include
+ * @param {number} i Token's index number
+ * @return {number} Length of the include
  */
 function checkInclude2(i) {
   let start = i;
@@ -2138,7 +2195,7 @@ function checkInclude2(i) {
 
 /**
  * Get node with included mixin like `@include nani(foo)`
- * @returns {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
+ * @return {Array} `['include', ['atkeyword', x], sc, ['selector', y], sc,
  *      ['arguments', z], sc]` where `x` is `include` or `extend`, `y` is
  *      mixin's identifier (selector), `z` are arguments passed to the
  *      mixin and `sc` are optional whitespaces
@@ -2160,8 +2217,8 @@ function getInclude2() {
 /**
  * Check if token is part of an included mixin with a content block passed
  *      as an argument (e.g. `@include nani {...}`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the mixin
  */
 function checkInclude3(i) {
   let start = i;
@@ -2189,7 +2246,7 @@ function checkInclude3(i) {
 /**
  * Get node with an included mixin with a content block passed
  *      as an argument (e.g. `@include nani {...}`)
- * @returns {Array} `['include', x]`
+ * @return {Array} `['include', x]`
  */
 function getInclude3() {
   let startPos = pos;
@@ -2206,8 +2263,8 @@ function getInclude3() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkInclude4(i) {
   let start = i;
@@ -2228,7 +2285,7 @@ function checkInclude4(i) {
 }
 
 /**
- * @returns {Array} `['include', x]`
+ * @return {Array} `['include', x]`
  */
 function getInclude4() {
   let startPos = pos;
@@ -2244,8 +2301,8 @@ function getInclude4() {
 
 /**
  * Check if token is part of an included mixin like `+nani(foo) {...}`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the include
+ * @param {number} i Token's index number
+ * @return {number} Length of the include
  */
 function checkInclude5(i) {
   let start = i;
@@ -2272,7 +2329,7 @@ function checkInclude5(i) {
 
 /**
  * Get node with included mixin like `+nani(foo) {...}`
- * @returns {Array} `['include', ['operator', '+'], ['selector', x], sc,
+ * @return {Array} `['include', ['operator', '+'], ['selector', x], sc,
  *      ['arguments', y], sc, ['block', z], sc` where `x` is
  *      mixin's identifier (selector), `y` are arguments passed to the
  *      mixin, `z` is block passed to mixin and `sc` are optional whitespaces
@@ -2294,8 +2351,8 @@ function getInclude5() {
 
 /**
  * Check if token is part of an included mixin like `+nani(foo)`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the include
+ * @param {number} i Token's index number
+ * @return {number} Length of the include
  */
 function checkInclude6(i) {
   let start = i;
@@ -2317,7 +2374,7 @@ function checkInclude6(i) {
 
 /**
  * Get node with included mixin like `+nani(foo)`
- * @returns {Array} `['include', ['operator', '+'], ['selector', y], sc,
+ * @return {Array} `['include', ['operator', '+'], ['selector', y], sc,
  *      ['arguments', z], sc]` where `y` is
  *      mixin's identifier (selector), `z` are arguments passed to the
  *      mixin and `sc` are optional whitespaces
@@ -2338,8 +2395,8 @@ function getInclude6() {
 /**
  * Check if token is part of an included mixin with a content block passed
  *      as an argument (e.g. `+nani {...}`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of the mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the mixin
  */
 function checkInclude7(i) {
   let start = i;
@@ -2362,7 +2419,7 @@ function checkInclude7(i) {
 /**
  * Get node with an included mixin with a content block passed
  *      as an argument (e.g. `+nani {...}`)
- * @returns {Array} `['include', x]`
+ * @return {Array} `['include', x]`
  */
 function getInclude7() {
   let startPos = pos;
@@ -2378,8 +2435,8 @@ function getInclude7() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkInclude8(i) {
   let start = i;
@@ -2395,7 +2452,7 @@ function checkInclude8(i) {
 }
 
 /**
- * @returns {Array} `['include', x]`
+ * @return {Array} `['include', x]`
  */
 function getInclude8() {
   let startPos = pos;
@@ -2410,8 +2467,8 @@ function getInclude8() {
 
 /**
  * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkInterpolation(i) {
   let start = i;
@@ -2436,7 +2493,7 @@ function checkInterpolation(i) {
 
 /**
  * Get node with an interpolated variable
- * @returns {Array} `['interpolation', x]`
+ * @return {Array} `['interpolation', x]`
  */
 function getInterpolation() {
   let startPos = pos;
@@ -2465,8 +2522,8 @@ function getInterpolation() {
 
 /**
  * Check a single keyframe block - `5% {}`
- * @param {Number} i
- * @returns {Number}
+ * @param {number} i
+ * @return {number}
  */
 function checkKeyframesBlock(i) {
   let start = i;
@@ -2487,7 +2544,7 @@ function checkKeyframesBlock(i) {
 
 /**
  * Get a single keyframe block - `5% {}`
- * @returns {Node}
+ * @return {Node}
  */
 function getKeyframesBlock() {
   let type = NodeType.RulesetType;
@@ -2505,8 +2562,8 @@ function getKeyframesBlock() {
 
 /**
  * Check all keyframe blocks - `5% {} 100% {}`
- * @param {Number} i
- * @returns {Number}
+ * @param {number} i
+ * @return {number}
  */
 function checkKeyframesBlocks(i) {
   return i < tokensLength && tokens[i].block_end ?
@@ -2515,7 +2572,7 @@ function checkKeyframesBlocks(i) {
 
 /**
  * Get all keyframe blocks - `5% {} 100% {}`
- * @returns {Node}
+ * @return {Node}
  */
 function getKeyframesBlocks() {
   let type = NodeType.BlockType;
@@ -2537,8 +2594,8 @@ function getKeyframesBlocks() {
 
 /**
  * Check if token is part of a @keyframes rule.
- * @param {Number} i Token's index number
- * @return {Number} Length of the @keyframes rule
+ * @param {number} i Token's index number
+ * @return {number} Length of the @keyframes rule
  */
 function checkKeyframesRule(i) {
   let start = i;
@@ -2587,8 +2644,8 @@ function getKeyframesRule() {
 
 /**
  * Check a single keyframe selector - `5%`, `from` etc
- * @param {Number} i
- * @returns {Number}
+ * @param {number} i
+ * @return {number}
  */
 function checkKeyframesSelector(i) {
   let start = i;
@@ -2618,7 +2675,7 @@ function checkKeyframesSelector(i) {
 
 /**
  * Get a single keyframe selector
- * @returns {Node}
+ * @return {Node}
  */
 function getKeyframesSelector() {
   let keyframesSelectorType = NodeType.KeyframesSelectorType;
@@ -2643,8 +2700,8 @@ function getKeyframesSelector() {
 
 /**
  * Check the keyframe's selector groups
- * @param {Number} i
- * @returns {Number}
+ * @param {number} i
+ * @return {number}
  */
 function checkKeyframesSelectorsGroup(i) {
   let start = i;
@@ -2669,7 +2726,7 @@ function checkKeyframesSelectorsGroup(i) {
 
 /**
  * Get the keyframe's selector groups
- * @returns {Array} An array of keyframe selectors
+ * @return {Array} An array of keyframe selectors
  */
 function getKeyframesSelectorsGroup() {
   let selectorsGroup = [];
@@ -2689,8 +2746,8 @@ function getKeyframesSelectorsGroup() {
 
 /**
  * Check if token is part of a loop.
- * @param {Number} i Token's index number
- * @returns {Number} Length of the loop
+ * @param {number} i Token's index number
+ * @return {number} Length of the loop
  */
 function checkLoop(i) {
   let start = i;
@@ -2723,7 +2780,7 @@ function checkLoop(i) {
 
 /**
  * Get node with a loop.
- * @returns {Array} `['loop', x]`
+ * @return {Array} `['loop', x]`
  */
 function getLoop() {
   let startPos = pos;
@@ -2752,8 +2809,8 @@ function getLoop() {
 
 /**
  * Check if token is part of a mixin
- * @param {Number} i Token's index number
- * @returns {Number} Length of the mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the mixin
  */
 function checkMixin(i) {
   return checkMixin1(i) || checkMixin2(i);
@@ -2761,7 +2818,7 @@ function checkMixin(i) {
 
 /**
  * Get node with a mixin
- * @returns {Array} `['mixin', x]`
+ * @return {Array} `['mixin', x]`
  */
 function getMixin() {
   return checkMixin1(pos) ? getMixin1() : getMixin2();
@@ -2769,8 +2826,8 @@ function getMixin() {
 
 /**
  * Check if token is part of a mixin
- * @param {Number} i Token's index number
- * @returns {Number} Length of the mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the mixin
  */
 function checkMixin1(i) {
   let start = i;
@@ -2803,7 +2860,7 @@ function checkMixin1(i) {
 
 /**
  * Get node with a mixin
- * @returns {Array} `['mixin', x]`
+ * @return {Array} `['mixin', x]`
  */
 function getMixin1() {
   let startPos = pos;
@@ -2830,8 +2887,8 @@ function getMixin1() {
 
 /**
  * Check if token is part of a mixin
- * @param {Number} i Token's index number
- * @returns {Number} Length of the mixin
+ * @param {number} i Token's index number
+ * @return {number} Length of the mixin
  */
 function checkMixin2(i) {
   let start = i;
@@ -2864,7 +2921,7 @@ function checkMixin2(i) {
 
 /**
 * Get node with a mixin
-* @returns {Array} `['mixin', x]`
+* @return {Array} `['mixin', x]`
 */
 function getMixin2() {
   let startPos = pos;
@@ -2891,8 +2948,8 @@ function getMixin2() {
 
 /**
  * Check if token is a namespace sign (`|`)
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is `|`, `0` if not
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is `|`, `0` if not
  */
 function checkNamespace(i) {
   return i < tokensLength && tokens[i].type === TokenType.VerticalLine ? 1 : 0;
@@ -2900,7 +2957,7 @@ function checkNamespace(i) {
 
 /**
  * Get node with a namespace sign
- * @returns {Array} `['namespace']`
+ * @return {Array} `['namespace']`
  */
 function getNamespace() {
   var startPos = pos++;
@@ -2910,8 +2967,8 @@ function getNamespace() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkNmName2(i) {
   if (tokens[i].type === TokenType.Identifier) return 1;
@@ -2923,7 +2980,7 @@ function checkNmName2(i) {
 }
 
 /**
- * @returns {String}
+ * @return {string}
  */
 function getNmName2() {
   var s = tokens[pos].value;
@@ -2937,8 +2994,8 @@ function getNmName2() {
 
 /**
  * Check if token is part of a number
- * @param {Number} i Token's index number
- * @returns {Number} Length of number
+ * @param {number} i Token's index number
+ * @return {number} Length of number
  */
 function checkNumber(i) {
   if (i >= tokensLength) return 0;
@@ -2976,7 +3033,7 @@ function checkNumber(i) {
 
 /**
  * Get node with number
- * @returns {Array} `['number', x]` where `x` is a number converted
+ * @return {Array} `['number', x]` where `x` is a number converted
  *      to string.
  */
 function getNumber() {
@@ -2996,8 +3053,8 @@ function getNumber() {
 
 /**
  * Check if token is an operator (`/`, `%`, `,`, `:` or `=`).
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is an operator, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is an operator, otherwise `0`
  */
 function checkOperator(i) {
   if (i >= tokensLength) return 0;
@@ -3021,7 +3078,7 @@ function checkOperator(i) {
 
 /**
  * Get node with an operator
- * @returns {Array} `['operator', x]` where `x` is an operator converted
+ * @return {Array} `['operator', x]` where `x` is an operator converted
  *      to string.
  */
 function getOperator() {
@@ -3034,8 +3091,8 @@ function getOperator() {
 
 /**
  * Check if token is part of `!optional` word
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkOptional(i) {
   let start = i;
@@ -3070,8 +3127,8 @@ function getOptional() {
 
 /**
  * Check if token is part of text inside parentheses, e.g. `(1)`
- * @param {Number} i Token's index number
- * @return {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkParentheses(i) {
   if (i >= tokensLength ||
@@ -3101,8 +3158,8 @@ function getParentheses() {
 
 /**
  * Check if token is a parent selector (`&`).
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkParentSelector(i) {
   return i < tokensLength && tokens[i].type === TokenType.Ampersand ? 1 : 0;
@@ -3110,7 +3167,7 @@ function checkParentSelector(i) {
 
 /**
  * Get node with a parent selector
- * @returns {Array} `['parentSelector']`
+ * @return {Array} `['parentSelector']`
  */
 function getParentSelector() {
   var startPos = pos++;
@@ -3179,8 +3236,8 @@ function getParentSelectorWithExtension() {
 /**
  * Check if token is part of a number or an interpolation with a percent sign
  * (e.g. `10%`).
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkPercentage(i) {
   let start = i;
@@ -3200,7 +3257,7 @@ function checkPercentage(i) {
 
 /**
  * Get a percentage node that contains either a number or an interpolation
- * @returns {Object} The percentage node
+ * @return {Object} The percentage node
  */
 function getPercentage() {
   let startPos = pos;
@@ -3218,8 +3275,8 @@ function getPercentage() {
 
 /**
  * Check if token is a number or an interpolation
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkNumberOrInterpolation(i) {
   let start = i;
@@ -3235,7 +3292,7 @@ function checkNumberOrInterpolation(i) {
 
 /**
  * Get a number and/or interpolation node
- * @returns {Array} An array containing a single or multiple nodes
+ * @return {Array} An array containing a single or multiple nodes
  */
 function getNumberOrInterpolation() {
   let content = [];
@@ -3251,8 +3308,8 @@ function getNumberOrInterpolation() {
 
 /**
  * Check if token is part of a placeholder selector (e.g. `%abc`).
- * @param {Number} i Token's index number
- * @returns {Number} Length of the selector
+ * @param {number} i Token's index number
+ * @return {number} Length of the selector
  */
 function checkPlaceholder(i) {
   var l;
@@ -3275,7 +3332,7 @@ function checkPlaceholder(i) {
 
 /**
  * Get node with a placeholder selector
- * @returns {Array} `['placeholder', ['ident', x]]` where x is a placeholder's
+ * @return {Array} `['placeholder', ['ident', x]]` where x is a placeholder's
  *      identifier (without `%`, e.g. `abc`).
  */
 function getPlaceholder() {
@@ -3290,8 +3347,8 @@ function getPlaceholder() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkProgid(i) {
   let start = i;
@@ -3316,7 +3373,7 @@ function checkProgid(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getProgid() {
   let startPos = pos;
@@ -3331,8 +3388,8 @@ function getProgid() {
 
 /**
  * Check if token is part of a property
- * @param {Number} i Token's index number
- * @returns {Number} Length of the property
+ * @param {number} i Token's index number
+ * @return {number} Length of the property
  */
 function checkProperty(i) {
   let start = i;
@@ -3348,7 +3405,7 @@ function checkProperty(i) {
 
 /**
  * Get node with a property
- * @returns {Array} `['property', x]`
+ * @return {Array} `['property', x]`
  */
 function getProperty() {
   let startPos = pos;
@@ -3366,8 +3423,8 @@ function getProperty() {
 
 /**
  * Check if token is a colon
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is a colon, otherwise `0`
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is a colon, otherwise `0`
  */
 function checkPropertyDelim(i) {
   return i < tokensLength && tokens[i].type === TokenType.Colon ? 1 : 0;
@@ -3375,7 +3432,7 @@ function checkPropertyDelim(i) {
 
 /**
  * Get node with a colon
- * @returns {Array} `['propertyDelim']`
+ * @return {Array} `['propertyDelim']`
  */
 function getPropertyDelim() {
   var startPos = pos++;
@@ -3385,8 +3442,8 @@ function getPropertyDelim() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkPseudo(i) {
   return checkPseudoe(i) ||
@@ -3394,7 +3451,7 @@ function checkPseudo(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getPseudo() {
   if (checkPseudoe(pos)) return getPseudoe();
@@ -3402,8 +3459,8 @@ function getPseudo() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkPseudoe(i) {
   var l;
@@ -3415,7 +3472,7 @@ function checkPseudoe(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getPseudoe() {
   let startPos = pos;
@@ -3429,8 +3486,8 @@ function getPseudoe() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkPseudoc(i) {
   var l;
@@ -3449,7 +3506,7 @@ function checkPseudoc(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getPseudoc() {
   var childType = tokens[pos].pseudoClassType;
@@ -3875,8 +3932,8 @@ function getPseudoClass6() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkRuleset(i) {
   let start = i;
@@ -3922,8 +3979,8 @@ function getRuleset() {
 /**
  * Check if token is marked as a space (if it's a space or a tab
  *      or a line break).
- * @param {Number} i
- * @returns {Number} Number of spaces in a row starting with the given token.
+ * @param {number} i
+ * @return {number} Number of spaces in a row starting with the given token.
  */
 function checkS(i) {
   return i < tokensLength && tokens[i].ws ? tokens[i].ws_last - i + 1 : 0;
@@ -3931,7 +3988,7 @@ function checkS(i) {
 
 /**
  * Get node with spaces
- * @returns {Array} `['s', x]` where `x` is a string containing spaces
+ * @return {Array} `['s', x]` where `x` is a string containing spaces
  */
 function getS() {
   let startPos = pos;
@@ -3945,8 +4002,8 @@ function getS() {
 
 /**
  * Check if token is a space or a comment.
- * @param {Number} i Token's index number
- * @returns {Number} Number of similar (space or comment) tokens
+ * @param {number} i Token's index number
+ * @return {number} Number of similar (space or comment) tokens
  *      in a row starting with the given token.
  */
 function checkSC(i) {
@@ -3974,7 +4031,7 @@ function checkSC(i) {
 
 /**
  * Get node with spaces and comments
- * @returns {Array} Array containing nodes with spaces (if there are any)
+ * @return {Array} Array containing nodes with spaces (if there are any)
  *      and nodes with comments (if there are any):
  *      `[['s', x]*, ['comment', y]*]` where `x` is a string of spaces
  *      and `y` is a comment's text (without `/*` and `* /`).
@@ -4003,8 +4060,8 @@ function getSC() {
 /**
  * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
  *      a simple selector
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkShash(i) {
   var l;
@@ -4017,7 +4074,7 @@ function checkShash(i) {
 /**
  * Get node with a hexadecimal number (e.g. `#fff`) inside a simple
  *      selector
- * @returns {Array} `['shash', x]` where `x` is a hexadecimal number
+ * @return {Array} `['shash', x]` where `x` is a hexadecimal number
  *      converted to string (without `#`, e.g. `fff`)
  */
 function getShash() {
@@ -4033,8 +4090,8 @@ function getShash() {
 
 /**
  * Check if token is part of a string (text wrapped in quotes)
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is part of a string, `0` if not
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is part of a string, `0` if not
  */
 function checkString(i) {
   if (i >= tokensLength) {
@@ -4051,7 +4108,7 @@ function checkString(i) {
 
 /**
  * Get string's node
- * @returns {Array} `['string', x]` where `x` is a string (including
+ * @return {Array} `['string', x]` where `x` is a string (including
  *      quotes).
  */
 function getString() {
@@ -4066,8 +4123,8 @@ function getString() {
  * Validate stylesheet: it should consist of any number (0 or more) of
  * rulesets (sets of rules with selectors), @-rules, whitespaces or
  * comments.
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkStylesheet(i) {
   let start = i;
@@ -4091,7 +4148,7 @@ function checkStylesheet(i) {
 }
 
 /**
- * @returns {Array} `['stylesheet', x]` where `x` is all stylesheet's
+ * @return {Array} `['stylesheet', x]` where `x` is all stylesheet's
  *      nodes.
  */
 function getStylesheet() {
@@ -4123,8 +4180,8 @@ function getStylesheet() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkTset(i) {
   return checkVhash(i) ||
@@ -4135,7 +4192,7 @@ function checkTset(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getTset() {
   if (checkVhash(pos)) return getVhash();
@@ -4146,8 +4203,8 @@ function getTset() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkTsets(i) {
   let start = i;
@@ -4164,7 +4221,7 @@ function checkTsets(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getTsets() {
   let x = [];
@@ -4181,8 +4238,8 @@ function getTsets() {
 
 /**
  * Check if token is an unary (arithmetical) sign (`+` or `-`)
- * @param {Number} i Token's index number
- * @returns {Number} `1` if token is an unary sign, `0` if not
+ * @param {number} i Token's index number
+ * @return {number} `1` if token is an unary sign, `0` if not
  */
 function checkUnary(i) {
   if (i >= tokensLength) {
@@ -4199,7 +4256,7 @@ function checkUnary(i) {
 
 /**
  * Get node with an unary (arithmetical) sign (`+` or `-`)
- * @returns {Array} `['unary', x]` where `x` is an unary sign
+ * @return {Array} `['unary', x]` where `x` is an unary sign
  *      converted to string.
  */
 function getUnary() {
@@ -4212,8 +4269,8 @@ function getUnary() {
 
 /**
  * Check if token is part of URI (e.g. `url('/css/styles.css')`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of URI
+ * @param {number} i Token's index number
+ * @return {number} Length of URI
  */
 function checkUri(i) {
   var start = i;
@@ -4227,7 +4284,7 @@ function checkUri(i) {
 
 /**
  * Get node with URI
- * @returns {Array} `['uri', x]` where `x` is URI's nodes (without `url`
+ * @return {Array} `['uri', x]` where `x` is URI's nodes (without `url`
  *      and braces, e.g. `['string', ''/css/styles.css'']`).
  */
 function getUri() {
@@ -4275,8 +4332,8 @@ function getUri() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkUriContent(i) {
   return checkUri1(i) ||
@@ -4284,7 +4341,7 @@ function checkUriContent(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getUriContent() {
   if (checkUri1(pos)) return getString();
@@ -4292,8 +4349,8 @@ function getUriContent() {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkUri1(i) {
   let start = i;
@@ -4315,8 +4372,8 @@ function checkUri1(i) {
 
 /**
  * Check if token is part of a value
- * @param {Number} i Token's index number
- * @returns {Number} Length of the value
+ * @param {number} i Token's index number
+ * @return {number} Length of the value
  */
 function checkValue(i) {
   let start = i;
@@ -4343,8 +4400,8 @@ function checkValue(i) {
 }
 
 /**
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function _checkValue(i) {
   return checkVhash(i) ||
@@ -4359,7 +4416,7 @@ function _checkValue(i) {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function getValue() {
   let startPos = pos;
@@ -4393,7 +4450,7 @@ function getValue() {
 }
 
 /**
- * @returns {Array}
+ * @return {Array}
  */
 function _getValue() {
   if (checkVhash(pos)) return getVhash();
@@ -4409,8 +4466,8 @@ function _getValue() {
 
 /**
  * Check if token is part of a variable
- * @param {Number} i Token's index number
- * @returns {Number} Length of the variable
+ * @param {number} i Token's index number
+ * @return {number} Length of the variable
  */
 function checkVariable(i) {
   var l;
@@ -4422,7 +4479,7 @@ function checkVariable(i) {
 
 /**
  * Get node with a variable
- * @returns {Array} `['variable', ['ident', x]]` where `x` is
+ * @return {Array} `['variable', ['ident', x]]` where `x` is
  *      a variable name.
  */
 function getVariable() {
@@ -4439,8 +4496,8 @@ function getVariable() {
 
 /**
  * Check if token is part of a variables list (e.g. `$values...`).
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkVariablesList(i) {
   var d = 0; // Number of dots
@@ -4461,7 +4518,7 @@ function checkVariablesList(i) {
 
 /**
  * Get node with a variables list
- * @returns {Array} `['variableslist', ['variable', ['ident', x]]]` where
+ * @return {Array} `['variableslist', ['variable', ['ident', x]]]` where
  *      `x` is a variable name.
  */
 function getVariablesList() {
@@ -4480,8 +4537,8 @@ function getVariablesList() {
 /**
  * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
  *      some value
- * @param {Number} i Token's index number
- * @returns {Number}
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkVhash(i) {
   var l;
@@ -4493,7 +4550,7 @@ function checkVhash(i) {
 
 /**
  * Get node with a hexadecimal number (e.g. `#fff`) inside some value
- * @returns {Array} `['vhash', x]` where `x` is a hexadecimal number
+ * @return {Array} `['vhash', x]` where `x` is a hexadecimal number
  *      converted to string (without `#`, e.g. `'fff'`).
  */
 function getVhash() {
