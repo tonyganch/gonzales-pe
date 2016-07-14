@@ -4819,12 +4819,22 @@ function getCompoundSelector() {
   if (type === 2) return getCompoundSelector2();
 }
 
+/**
+ * Check for compound selectors that start with either a type selector,
+ * placeholder or parent selector with extension
+ * (1) `foo.bar`
+ * (2) `foo[attr=val]`
+ * (3) `foo:first-of-type`
+ * (4) `foo%bar`
+ * @param {number} i Token's index
+ * @return {number} Compound selector's length
+ */
 function checkCompoundSelector1(i) {
   if (i >= tokensLength) return 0;
 
   let start = i;
-
   let l;
+
   if (l = checkTypeSelector(i) ||
       checkPlaceholder(i) ||
       checkParentSelectorWithExtension(i)) i += l;
@@ -4836,15 +4846,19 @@ function checkCompoundSelector1(i) {
         checkAttributeSelector(i) ||
         checkPseudo(i) ||
         checkPlaceholder(i);
+
     if (l) i += l;
     else break;
   }
 
-  tokens[start].compoundSelectorEnd = i;
+  if (i !== start) tokens[start].compoundSelectorEnd = i;
 
   return i - start;
 }
 
+/**
+ * @return {Array} An array of nodes that make up the compound selector
+ */
 function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
@@ -4860,11 +4874,22 @@ function getCompoundSelector1() {
     else if (checkAttributeSelector(pos)) sequence.push(getAttributeSelector());
     else if (checkPseudo(pos)) sequence.push(getPseudo());
     else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
+    else break;
   }
 
   return sequence;
 }
 
+/**
+ * Check for all other compound selectors
+ * (1) `.foo.bar`
+ * (2) `.foo[attr=val]`
+ * (3) `.foo:first-of-type`
+ * (4) `.foo%bar`
+ * (5) `.foo#{$bar}`
+ * @param {number} i Token's index
+ * @return {number} Compound selector's length
+ */
 function checkCompoundSelector2(i) {
   if (i >= tokensLength) return 0;
 
@@ -4875,7 +4900,9 @@ function checkCompoundSelector2(i) {
         checkClass(i) ||
         checkAttributeSelector(i) ||
         checkPseudo(i) ||
-        checkPlaceholder(i);
+        checkPlaceholder(i) ||
+        checkInterpolation(i);
+
     if (l) i += l;
     else break;
   }
@@ -4885,6 +4912,9 @@ function checkCompoundSelector2(i) {
   return i - start;
 }
 
+/**
+ * @return {Array} An array of nodes that make up the compound selector
+ */
 function getCompoundSelector2() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
@@ -4895,6 +4925,8 @@ function getCompoundSelector2() {
     else if (checkAttributeSelector(pos)) sequence.push(getAttributeSelector());
     else if (checkPseudo(pos)) sequence.push(getPseudo());
     else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
+    else if (checkInterpolation(pos)) sequence.push(getInterpolation());
+    else break;
   }
 
   return sequence;
