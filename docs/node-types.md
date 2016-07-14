@@ -64,6 +64,8 @@ methods may be available. Please see [README](../README.md) for API reference.
 - [string](#string)
 - [stylesheet](#stylesheet)
 - [typeSelector](#typeselector)
+- [unicodeRange](#unicoderange)
+- [urange](#urange)
 - [uri](#uri)
 - [value](#value)
 - [variable](#variable)
@@ -1567,7 +1569,7 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
-  
+ 
 
 // Parse tree
 {
@@ -1767,6 +1769,61 @@ div
 ```
 
 
+### unicodeRange
+
+##### Description
+
+Used in syntaxes: css, sass, scss.
+
+##### Examples
+
+```js
+// String
+U+A5, U+4E00-9FFF
+
+// Parse tree
+{
+  type: 'unicodeRange',
+  content: [{
+    type: 'urange',
+    content: 'U+A5',
+  },
+  {
+    type: 'delimiter',
+    content: ','
+  },
+  {
+    type: 'space',
+    content: ' '
+  },
+  {
+    type: 'urange',
+    content: 'U+4E00-9FFF',
+  }]
+}
+```
+
+
+### urange
+
+##### Description
+
+Used in syntaxes: css, sass, scss.
+
+##### Examples
+
+```js
+// String
+U+A5
+
+// Parse tree
+{
+  type: 'urange',
+  content: 'U+A5',
+}
+```
+
+
 ### uri
 
 ##### Description
@@ -1860,4 +1917,3 @@ $colors...
   }]
 }
 ```
-
