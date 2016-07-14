@@ -1687,10 +1687,11 @@ function getDelim() {
   return newNode(NodeType.DelimType, ',', token.ln, token.col);
 }
 
+
 /**
  * Check if token is part of a number with dimension unit (e.g. `10px`)
- * @param {number} i Token's index number
- * @return {number}
+ * @param {Number} i Token's index number
+ * @return {Number}
  */
 function checkDimension(i) {
   let ln = checkNumber(i);
@@ -1700,25 +1701,59 @@ function checkDimension(i) {
       !ln ||
       i + ln >= tokensLength) return 0;
 
-  return (li = checkNmName2(i + ln)) ? ln + li : 0;
+  return (li = checkUnit(i + ln)) ? ln + li : 0;
 }
 
 /**
  * Get node of a number with dimension unit
- * @return {Array} `['dimension', ['number', x], ['ident', y]]` where
- *      `x` is a number converted to string (e.g. `'10'`) and `y` is
- *      a dimension unit (e.g. `'px'`).
+ * @return {Node}
  */
 function getDimension() {
-  let startPos = pos;
-  let x = [getNumber()];
+  let type = NodeType.DimensionType;
   let token = tokens[pos];
-  let ident = newNode(NodeType.IdentType, getNmName2(), token.ln, token.col);
+  let line = token.ln;
+  let column = token.col;
+  let content = [
+      getNumber(),
+      getUnit()
+    ];
 
-  x.push(ident);
+  return newNode(type, content, line, column);
+}
 
-  token = tokens[startPos];
-  return newNode(NodeType.DimensionType, x, token.ln, token.col);
+/**
+ * Check if token is unit
+ * @param {Number} i Token's index number
+ * @return {Number}
+ */
+function checkUnit(i) {
+  let units = [
+    'em', 'ex', 'ch', 'rem',
+    'vh', 'vw', 'vmin', 'vmax',
+    'px', 'mm', 'q', 'cm', 'in', 'pt', 'pc',
+    'deg', 'grad', 'rad', 'turn',
+    's', 'ms',
+    'Hz', 'kHz',
+    'dpi', 'dpcm', 'dppx'
+  ];
+
+  return units.indexOf(tokens[i].value) !== -1 ? 1 : 0;
+}
+
+/**
+ * Get unit node of type ident
+ * @return {Node} An ident node containing the unit value
+ */
+function getUnit() {
+  let type = NodeType.IdentType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = token.value;
+
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
