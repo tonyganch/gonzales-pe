@@ -18,12 +18,19 @@ describe 'sass/selector >>', ->
   it '15', -> this.shouldBeOk()
   it '16', -> this.shouldBeOk()
   it '17', -> this.shouldBeOk()
+  it '18', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
   it 's.2', -> this.shouldBeOk()
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
+
+  it 'interp.0', -> this.shouldBeOk()
+  it 'interp.1', -> this.shouldBeOk()
+  it 'interp.2', -> this.shouldBeOk()
+  it 'interp.3', -> this.shouldBeOk()
+  it 'interp.4', -> this.shouldBeOk()
 
   it 'issue-102', -> this.shouldBeOk()
   it 'issue-102-2', -> this.shouldBeOk()
@@ -35,7 +42,6 @@ describe 'sass/selector >>', ->
   it 'issue-130', -> this.shouldBeOk()
   it 'issue-130-2', -> this.shouldBeOk()
   it 'issue-136', -> this.shouldBeOk()
-
   it 'issue-171', -> this.shouldBeOk()
   it 'issue-171-2', -> this.shouldBeOk()
   it 'issue-171-3', -> this.shouldBeOk()
