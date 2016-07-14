@@ -1162,8 +1162,19 @@ function checkClass(i) {
 
   if (tokens[i++].type !== TokenType.FullStop) return 0;
 
+  // Check for `-` at beginning
+  if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
+
+  while (i < tokensLength) {
+    if (l = checkIdentOrInterpolation(i)) i += l;
+    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+    else break;
+  }
+
+  tokens[start].classEnd = i;
 
   return i - start;
 }
@@ -1174,11 +1185,34 @@ function checkClass(i) {
  * @return {!Node}
  */
 function getClass() {
-  let startPos = pos++;
-  let x = getIdentOrInterpolation();
+  let startPos = pos;
+  let type = NodeType.ClassType;
+  let token = tokens[startPos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let end = token.classEnd;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ClassType, x, token.ln, token.col);
+  // Skip `.`
+  pos++;
+
+  while (pos < end) {
+    if (checkIdentOrInterpolation(pos)) {
+      content = content.concat(getIdentOrInterpolation());
+    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+      content.push(
+        newNode(
+          NodeType.IdentType,
+          tokens[pos].value,
+          tokens[pos].ln,
+          tokens[pos].col
+        )
+      );
+      pos++;
+    } else break;
+  }
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1925,7 +1959,6 @@ function getGlobal() {
 function checkIdent(i) {
   let start = i;
   let wasIdent;
-  let wasInt = false;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1952,14 +1985,18 @@ function checkIdent(i) {
     i += l;
   }
 
-  if (!wasIdent && !wasInt && tokens[start].type !== TokenType.Asterisk)
-    return 0;
+  if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
 
   tokens[start].ident_last = i - 1;
 
   return i - start;
 }
 
+/**
+ * Check if the token type can be considered an ident
+ * @param {number} i Token's index number
+ * @returns {number} 1 or 0 based on whether we have a match
+ */
 function _checkIdent(i) {
   if (tokens[i].type === TokenType.HyphenMinus ||
       tokens[i].type === TokenType.Identifier ||
