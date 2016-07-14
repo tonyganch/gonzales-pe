@@ -961,8 +961,19 @@ function checkClass(i) {
 
   if (tokens[i++].type !== TokenType.FullStop) return 0;
 
+  // Check for `-` at beginning.
+  if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
+
+  while (i < tokensLength) {
+    if (l = checkIdentOrInterpolation(i)) i += l;
+    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+    else break;
+  }
+
+  tokens[start].classEnd = i;
 
   return i - start;
 }
@@ -974,14 +985,33 @@ function checkClass(i) {
  */
 function getClass() {
   let startPos = pos;
-  let x = [];
+  let type = NodeType.ClassType;
+  let token = tokens[startPos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let end = token.classEnd;
 
+  // Skip `.`
   pos++;
 
-  x = x.concat(getIdentOrInterpolation());
+  while (pos < end) {
+    if (checkIdentOrInterpolation(pos)) {
+      content = content.concat(getIdentOrInterpolation());
+    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+      content.push(
+        newNode(
+          NodeType.IdentType,
+          tokens[pos].value,
+          tokens[pos].ln,
+          tokens[pos].col
+        )
+      );
+      pos++;
+    } else break;
+  }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ClassType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 function checkCombinator(i) {
@@ -1617,9 +1647,7 @@ function getArguments() {
  */
 function checkIdent(i) {
   let start = i;
-  let interpolations = [];
   let wasIdent;
-  let wasInt = false;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1627,6 +1655,7 @@ function checkIdent(i) {
   // Check if token is part of an identifier starting with `_`:
   if (tokens[i].type === TokenType.LowLine) return checkIdentLowLine(i);
 
+  // Check if token is part of a negative number
   if (tokens[i].type === TokenType.HyphenMinus &&
       tokens[i + 1].type === TokenType.DecimalNumber) return 0;
 
@@ -1646,15 +1675,18 @@ function checkIdent(i) {
     i += l;
   }
 
-  if (!wasIdent && !wasInt && tokens[start].type !== TokenType.Asterisk)
-    return 0;
+  if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
 
   tokens[start].ident_last = i - 1;
-  if (interpolations.length) tokens[start].interpolations = interpolations;
 
   return i - start;
 }
 
+/**
+ * Check if the token type can be considered an ident
+ * @param {number} i Token's index number
+ * @returns {number} 1 or 0 based on whether we have a match
+ */
 function _checkIdent(i) {
   if (tokens[i].type === TokenType.HyphenMinus ||
       tokens[i].type === TokenType.Identifier ||

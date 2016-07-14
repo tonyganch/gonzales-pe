@@ -42,3 +42,8 @@ describe 'scss/selector >>', ->
   it 'issue-130', -> this.shouldBeOk()
   it 'issue-130-2', -> this.shouldBeOk()
   it 'issue-136', -> this.shouldBeOk()
+
+  it 'issue-171', -> this.shouldBeOk()
+  it 'issue-171-2', -> this.shouldBeOk()
+  it 'issue-171-3', -> this.shouldBeOk()
+  it 'issue-171-4', -> this.shouldBeOk()
