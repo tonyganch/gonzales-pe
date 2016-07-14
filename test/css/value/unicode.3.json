@@ -6,7 +6,7 @@
       "content": [
         {
           "type": "urange",
-          "content": "U+0-7F",
+          "content": "U+4??",
           "syntax": "css",
           "start": {
             "line": 1,
@@ -14,7 +14,7 @@
           },
           "end": {
             "line": 1,
-            "column": 6
+            "column": 5
           }
         }
       ],
@@ -25,7 +25,7 @@
       },
       "end": {
         "line": 1,
-        "column": 6
+        "column": 5
       }
     }
   ],
@@ -36,6 +36,6 @@
   },
   "end": {
     "line": 1,
-    "column": 6
+    "column": 5
   }
 }
