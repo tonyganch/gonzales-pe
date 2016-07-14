@@ -1,0 +1,54 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "dimension",
+      "content": [
+        {
+          "type": "number",
+          "content": "0000.000",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "ident",
+          "content": "px",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 10
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 10
+  }
+}
