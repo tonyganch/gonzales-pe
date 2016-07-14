@@ -58,7 +58,6 @@
         "checkRedundantReturns": true,
         "checkReturnTypes": true,
         "checkTypes": true,
-        "disallowNewlineAfterDescription": true,
         "requireParamTypes": true,
         "requireReturnTypes": true
     }
