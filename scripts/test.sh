@@ -9,27 +9,6 @@ function test {
     fi
 }
 
-function run_linters {
-# Run linters
-printf "\n\
-----------------\n\
- Running JSHint\n\
-----------------\n\n"
-    test ./node_modules/.bin/jshint ./src
-
-printf "\n\
-----------------\n\
- Running ESLint\n\
-----------------\n\n"
-    test ./node_modules/.bin/eslint ./src
-
-printf "\n\
---------------\n\
- Running JSCS\n\
---------------\n\n"
-    test ./node_modules/.bin/jscs ./src
-}
-
 function run_all_tests {
 ./scripts/build.sh
 
@@ -65,7 +44,7 @@ printf "\n\
 }
 
 if [ $# -eq 0 ]; then
-  run_linters
+  ./scripts/lint.sh
   run_all_tests
   syntaxes="css less sass scss"
 else

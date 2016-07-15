@@ -19,6 +19,7 @@
     "autofix-tests": "bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh",
     "build": "bash ./scripts/build.sh",
     "init": "bash ./scripts/init.sh",
+    "lint": "bash ./scripts/lint.sh",
     "log": "bash ./scripts/log.sh",
     "prepublish": "bash ./scripts/prepublish.sh",
     "postpublish": "bash ./scripts/postpublish.sh",
