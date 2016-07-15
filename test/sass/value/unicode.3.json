@@ -6,7 +6,7 @@
       "content": [
         {
           "type": "urange",
-          "content": "U+416",
+          "content": "U+4??",
           "syntax": "sass",
           "start": {
             "line": 1,

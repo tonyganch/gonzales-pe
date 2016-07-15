@@ -147,6 +147,12 @@ const contexts = {
   'unary': () => {
     return checkUnary(pos) && getUnary();
   },
+  'unicodeRange': () => {
+    return checkUnicodeRange(pos) && getUnicodeRange();
+  },
+  'urange': () => {
+    return checkUrange(pos) && getUrange();
+  },
   'uri': () => {
     return checkUri(pos) && getUri();
   },
@@ -357,6 +363,7 @@ function checkAny(i) {
   else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;
   else if (l = checkPercentage(i)) tokens[i].any_child = 7;
   else if (l = checkDimension(i)) tokens[i].any_child = 8;
+  else if (l = checkUnicodeRange(i)) tokens[i].any_child = 17;
   else if (l = checkNumber(i)) tokens[i].any_child = 9;
   else if (l = checkUri(i)) tokens[i].any_child = 10;
   else if (l = checkExpression(i)) tokens[i].any_child = 11;
@@ -383,6 +390,7 @@ function getAny() {
   else if (childType === 6) return getPlaceholder();
   else if (childType === 7) return getPercentage();
   else if (childType === 8) return getDimension();
+  else if (childType === 17) return getUnicodeRange();
   else if (childType === 9) return getNumber();
   else if (childType === 10) return getUri();
   else if (childType === 11) return getExpression();
@@ -4337,6 +4345,129 @@ function getUnary() {
 
   var token = tokens[startPos];
   return newNode(NodeType.OperatorType, x, token.ln, token.col);
+}
+
+
+/**
+ * Check if token is a unicode range (single or multiple <urange> nodes)
+ * @param {number} i Token's index
+ * @return {number} Unicode range node's length
+ */
+function checkUnicodeRange(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkUrange(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength) {
+    const spaceBefore = checkSC(i);
+    const comma = checkDelim(i + spaceBefore);
+    if (!comma) break;
+
+    const spaceAfter = checkSC(i + spaceBefore + comma);
+    if (l = checkUrange(i + spaceBefore + comma + spaceAfter)) {
+      i += spaceBefore + comma + spaceAfter + l;
+    } else break;
+  }
+
+  return i - start;
+}
+
+/**
+ * Get a unicode range node
+ * @return {Node}
+ */
+function getUnicodeRange() {
+  const type = NodeType.UnicodeRangeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+
+  while (pos < tokensLength) {
+    if (checkSC(pos)) content = content.concat(getSC());
+    else if (checkDelim(pos)) content.push(getDelim());
+    else if (checkUrange(pos)) content.push(getUrange());
+    else break;
+  }
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is a u-range (part of a unicode-range)
+ * (1) `U+416`
+ * (2) `U+400-4ff`
+ * (3) `U+4??`
+ * @param {number} i Token's index
+ * @return {number} Urange node's length
+ */
+function checkUrange(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  // Check for unicode prefix (u+ or U+)
+  if (tokens[i].value === 'U' || tokens[i].value === 'u') i += 1;
+  else return 0;
+
+  if (i >= tokensLength) return 0;
+
+  if (tokens[i].value === '+') i += 1;
+  else return 0;
+
+  while (i < tokensLength) {
+    if (l = checkIdent(i)) i += l;
+    else if (l = checkNumber(i)) i += l;
+    else if (l = checkUnary(i)) i += l;
+    else if (l = _checkUnicodeWildcard(i)) i += l;
+    else break;
+  }
+
+  tokens[start].urangeEnd = i - 1;
+
+  return i - start;
+}
+
+/**
+ * Get a u-range node (part of a unicode-range)
+ * @return {Node}
+ */
+function getUrange() {
+  const startPos = pos;
+  const type = NodeType.UrangeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+
+  pos += tokens[startPos].urangeEnd;
+  content = joinValues(startPos, tokens[startPos].urangeEnd);
+  pos++;
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check for unicode wildcard characters `?`
+ * @param {number} i Token's index
+ * @return {number} Wildcard length
+ */
+function _checkUnicodeWildcard(i) {
+  const start = i;
+
+  if (i >= tokensLength) return 0;
+
+  while (i < tokensLength) {
+    if (tokens[i].type === TokenType.QuestionMark) i += 1;
+    else break;
+  }
+
+  return i - start;
 }
 
 /**
