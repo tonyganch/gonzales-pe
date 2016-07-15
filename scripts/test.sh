@@ -18,6 +18,12 @@ printf "\n\
     test ./node_modules/.bin/jshint ./src
 
 printf "\n\
+----------------\n\
+ Running ESLint\n\
+----------------\n\n"
+    test ./node_modules/.bin/eslint ./src
+
+printf "\n\
 --------------\n\
  Running JSCS\n\
 --------------\n\n"
