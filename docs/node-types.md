@@ -1569,7 +1569,7 @@ Used in syntaxes: css, less, sass, scss.
 
 ```js
 // String
- 
+  
 
 // Parse tree
 {
