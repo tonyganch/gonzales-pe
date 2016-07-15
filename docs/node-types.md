@@ -1773,7 +1773,7 @@ div
 
 ##### Description
 
-Used in syntaxes: css, sass, scss.
+Used in syntaxes: css, less, sass, scss.
 
 ##### Examples
 
@@ -1808,7 +1808,7 @@ U+A5, U+4E00-9FFF
 
 ##### Description
 
-Used in syntaxes: css, sass, scss.
+Used in syntaxes: css, less, sass, scss.
 
 ##### Examples
 
