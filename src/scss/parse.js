@@ -2786,9 +2786,9 @@ function getParentheses() {
 }
 
 /**
- * Check if token is a parent selector (`&`).
- * @param {Number} i Token's index number
- * @returns {Number}
+ * Check if token is a parent selector, e.g. `&`
+ * @param {number} i Token's index number
+ * @return {number}
  */
 function checkParentSelector(i) {
   return i < tokensLength && tokens[i].type === TokenType.Ampersand ? 1 : 0;
@@ -2796,35 +2796,46 @@ function checkParentSelector(i) {
 
 /**
  * Get node with a parent selector
+ * @return {Node}
  */
 function getParentSelector() {
-  var startPos = pos;
+  const startPos = pos;
+  const token = tokens[startPos];
 
   pos++;
 
-  var token = tokens[startPos];
   return newNode(NodeType.ParentSelectorType, '&', token.ln, token.col);
 }
 
+/**
+ * Check if token is a parent selector extension, e.g. `&--foo-bar`
+ * @param {number} i Token's index number
+ * @returns {number} Length of the parent selector extension
+ */
 function checkParentSelectorExtension(i) {
-  if (i >= tokensLength) return 0;
-
-  let start = i;
+  const start = i;
   let l;
+
+  if (i >= tokensLength) return 0;
 
   while (i < tokensLength) {
     if (l = checkNumber(i) || checkIdentOrInterpolation(i)) i += l;
+    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
     else break;
   }
 
   return i - start;
 }
 
+/**
+ * Get parent selector extension node
+ * @return {Node}
+ */
 function getParentSelectorExtension() {
-  let type = NodeType.ParentSelectorExtensionType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.ParentSelectorExtensionType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   while (pos < tokensLength) {
@@ -2832,19 +2843,32 @@ function getParentSelectorExtension() {
       content.push(getNumber());
     } else if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
-    } else {
-      break;
-    }
+    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+      content.push(
+        newNode(
+          NodeType.IdentType,
+          tokens[pos].value,
+          tokens[pos].ln,
+          tokens[pos].col
+        )
+      );
+      pos++;
+    } else break;
   }
 
   return newNode(type, content, line, column);
 }
 
+/**
+ * Check if token is a parent selector with an extension or not
+ * @param {number} i Token's index number
+ * @return {number} Length of the parent selector and extension if applicable
+ */
 function checkParentSelectorWithExtension(i) {
-  if (i >= tokensLength) return 0;
-
-  let start = i;
+  const start = i;
   let l;
+
+  if (i >= tokensLength) return 0;
 
   if (l = checkParentSelector(i)) i += l;
   else return 0;
@@ -2854,6 +2878,10 @@ function checkParentSelectorWithExtension(i) {
   return i - start;
 }
 
+/**
+ * Get parent selector node and extension node if applicable
+ * @return {Array}
+ */
 function getParentSelectorWithExtension() {
   let content = [getParentSelector()];
 
