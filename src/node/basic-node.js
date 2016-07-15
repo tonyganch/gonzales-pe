@@ -136,7 +136,7 @@ class Node {
       var i = this.content.length - 1;
       if (!type) return this.content[i];
 
-      for (;; i--) {
+      for (; i--;) {
         if (this.content[i].type === type) return this.content[i];
       }
 
