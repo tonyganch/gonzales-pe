@@ -5,7 +5,6 @@ module.exports = function(css, tabSize) {
 
   let tokens = [];
   let urlMode = false;
-  let blockMode = 0;
   let c; // Current character
   let cn; // Next character
   let pos = 0;
@@ -363,8 +362,6 @@ module.exports = function(css, tabSize) {
           pushToken(Punctuation[c], c, col);
         }// Go to next line
         if (c === ')') urlMode = false; // Exit url mode
-        if (c === '{') blockMode++; // Enter a block
-        if (c === '}') blockMode--; // Exit a block
         else if (c === '\t' && tabSize > 1) col += (tabSize - 1);
       }
 

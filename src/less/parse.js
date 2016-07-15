@@ -2152,28 +2152,36 @@ function checkNumber(i) {
   // `10`:
   if (i < tokensLength && tokens[i].type === TokenType.DecimalNumber &&
       (!tokens[i + 1] ||
-      (tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop)))
-      return (tokens[i].number_l = 1, tokens[i].number_l);
+      (tokens[i + 1] && tokens[i + 1].type !== TokenType.FullStop))) {
+    tokens[i].number_l = 1;
+    return 1;
+  }
 
   // `10.`:
   if (i < tokensLength &&
       tokens[i].type === TokenType.DecimalNumber &&
       tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop &&
-      (!tokens[i + 2] || (tokens[i + 2].type !== TokenType.DecimalNumber)))
-      return (tokens[i].number_l = 2, tokens[i].number_l);
+      (!tokens[i + 2] || (tokens[i + 2].type !== TokenType.DecimalNumber))) {
+    tokens[i].number_l = 2;
+    return 2;
+  }
 
   // `.10`:
   if (i < tokensLength &&
       tokens[i].type === TokenType.FullStop &&
-      tokens[i + 1].type === TokenType.DecimalNumber)
-      return (tokens[i].number_l = 2, tokens[i].number_l);
+      tokens[i + 1].type === TokenType.DecimalNumber) {
+    tokens[i].number_l = 2;
+    return 2;
+  }
 
   // `10.10`:
   if (i < tokensLength &&
       tokens[i].type === TokenType.DecimalNumber &&
       tokens[i + 1] && tokens[i + 1].type === TokenType.FullStop &&
-      tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber)
-      return (tokens[i].number_l = 3, tokens[i].number_l);
+      tokens[i + 2] && tokens[i + 2].type === TokenType.DecimalNumber) {
+    tokens[i].number_l = 3;
+    return 3;
+  }
 
   return 0;
 }
@@ -3052,11 +3060,8 @@ function checkSC(i) {
  */
 function getSC() {
   let sc = [];
-  let ln;
 
   if (pos >= tokensLength) return sc;
-
-  ln = tokens[pos].ln;
 
   while (pos < tokensLength) {
     if (checkS(pos)) sc.push(getS());
