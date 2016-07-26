@@ -4372,7 +4372,7 @@ function checkCompoundSelector1(i) {
     else break;
   }
 
-  if (i !== start) tokens[start].compoundSelectorEnd = i;
+  tokens[start].compoundSelectorEnd = i;
 
   return i - start;
 }
@@ -4428,7 +4428,7 @@ function checkCompoundSelector2(i) {
     else break;
   }
 
-  if (i !== start) tokens[start].compoundSelectorEnd = i;
+  tokens[start].compoundSelectorEnd = i;
 
   return i - start;
 }
