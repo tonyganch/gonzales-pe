@@ -18,19 +18,19 @@ describe 'scss/selector >>', ->
   it '15', -> this.shouldBeOk()
   it '16', -> this.shouldBeOk()
   it '17', -> this.shouldBeOk()
-  
+
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()
   it 'c.3', -> this.shouldBeOk()
   it 'c.4', -> this.shouldBeOk()
-  
+
   it 's.0', -> this.shouldBeOk()
   it 's.1', -> this.shouldBeOk()
   it 's.2', -> this.shouldBeOk()
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
-  
+
   it 'issue-100', -> this.shouldBeOk()
   it 'issue-102', -> this.shouldBeOk()
   it 'issue-102-2', -> this.shouldBeOk()
@@ -42,10 +42,11 @@ describe 'scss/selector >>', ->
   it 'issue-130', -> this.shouldBeOk()
   it 'issue-130-2', -> this.shouldBeOk()
   it 'issue-136', -> this.shouldBeOk()
-  
+
   it 'issue-171', -> this.shouldBeOk()
   it 'issue-171-2', -> this.shouldBeOk()
   it 'issue-171-3', -> this.shouldBeOk()
   it 'issue-171-4', -> this.shouldBeOk()
   it 'issue-171-5', -> this.shouldBeOk()
   it 'issue-171-6', -> this.shouldBeOk()
+  it 'issue-171-7', -> this.shouldBeOk()
