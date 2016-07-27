@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 27.07.2016, Version 3.4.1
+:star: Added publich script.  
+:green_apple: Fixed post-refactor error in Node#last method.  
+
 ## 27.07.2016, Version 3.4.0
 
 :star: Added `unicode-range` and `urange` node types in CSS, Less, Sass and SCSS.  
