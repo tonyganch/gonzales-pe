@@ -7,6 +7,16 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 27.07.2016, Version 3.4.0
+
+:star: Added `unicode-range` and `urange` node types in CSS, Less, Sass and SCSS.  
+:green_apple: Fixed parsing of trailing interpolation in compound selector in Sass and SCSS.  
+:green_apple: Fix parsing of hyphens after interpolation with parentSelectors in Sass and SCSS.  
+:green_apple: Added ESLint and moved linters to a separate script.  
+:green_apple: Fixed incorrect dimension wrap of unicode-ranges in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of hyphens in interpolated idents in Sass and SCSS.  
+:green_apple: Added compilation of JS using Google Closure.  
+
 ## 01.07.2016, Version 3.3.6
 
 :green_apple: Fixed parsing of nth selector without numbers before `n`.  
