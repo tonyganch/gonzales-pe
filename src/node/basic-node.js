@@ -133,8 +133,9 @@ class Node {
     last(type) {
       if (!Array.isArray(this.content)) return null;
 
-      var i = this.content.length - 1;
-      if (!type) return this.content[i];
+      var i = this.content.length;
+      if (!type) return this.content[i - 1];
+
 
       for (; i--;) {
         if (this.content[i].type === type) return this.content[i];

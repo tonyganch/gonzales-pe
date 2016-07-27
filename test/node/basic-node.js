@@ -12,3 +12,15 @@ describe('Node#contains()', function() {
         assert.equal(ast.contains('nani'), false);
     });
 });
+
+describe('Node#last()', function() {
+  it('should return null if no node is found', function() {
+      var ast = gonzales.parse('a{}');
+      assert.equal(ast.last('declaration'), null);
+  });
+
+  it('should return the node if one is found', function() {
+      var ast = gonzales.parse('a{}');
+      assert.equal(ast.last('ruleset'), ast.content[0]);
+  });
+});
