@@ -33,3 +33,5 @@ describe 'css/atrule >>', ->
   it 'keyframes.3', -> this.shouldBeOk()
   it 'keyframes.4', -> this.shouldBeOk()
   it 'keyframes.5', -> this.shouldBeOk()
+
+  it 'unicode.0', -> this.shouldBeOk()
