@@ -28,3 +28,5 @@ describe 'less/atrule >>', ->
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
   it 's.6', -> this.shouldBeOk()
+
+  it 'unicode.0', -> this.shouldBeOk()
