@@ -43,3 +43,5 @@ describe 'scss/atrule >>', ->
   it 'keyframes.interp.4', -> this.shouldBeOk()
   it 'keyframes.interp.5', -> this.shouldBeOk()
   it 'keyframes.interp.6', -> this.shouldBeOk()
+
+  it 'unicode.0', -> this.shouldBeOk()
