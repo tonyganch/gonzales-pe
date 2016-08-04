@@ -1,5 +1,3 @@
-var ClosureCompilerPlugin = require('webpack-closure-compiler');
-
 module.exports = {
   entry: {
     gonzales: './src/gonzales'
@@ -22,15 +20,5 @@ module.exports = {
         }
       }
     ]
-  },
-  plugins: [
-    new ClosureCompilerPlugin({
-      compiler: {
-        language_in: 'ECMASCRIPT6',
-        language_out: 'ECMASCRIPT5',
-        compilation_level: 'SIMPLE'
-      },
-      concurrency: 3
-    })
-  ]
+  }
 };
