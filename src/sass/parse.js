@@ -4482,9 +4482,8 @@ function getUrange() {
   const column = token.col;
   let content = [];
 
-  pos += tokens[startPos].urangeEnd - startPos;
   content = joinValues(startPos, tokens[startPos].urangeEnd);
-  pos++;
+  pos = tokens[startPos].urangeEnd + 1;
 
   return newNode(type, content, line, column);
 }
