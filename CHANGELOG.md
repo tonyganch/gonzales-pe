@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 08.08.2016, Version 3.4.3
+
+:green_apple: Fixed parsing of unicode ranges.  
+
 ## 04.08.2016, Version 3.4.2
 
 :green_apple: Disable Google Closure Compiler due to some errors in parsing.  
