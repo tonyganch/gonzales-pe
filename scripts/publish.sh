@@ -5,9 +5,6 @@ set -e
 start=$(git log -1 --skip=1 --grep="v3." --pretty=format:"%h")
 head_version=$(git log -1 --pretty=format:"%B")
 start_version=$(git log -1 --skip=1 --grep="v3." --pretty=format:"%B")
-echo $head_version
-echo $start_version
-exit
 
 log=$(git log "$start"..HEAD --pretty=format:"%h" --reverse)
 
