@@ -976,7 +976,7 @@ function checkClass(i) {
   else return 0;
 
   while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i)) i += l;
+    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
     else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
     else break;
   }
@@ -1006,6 +1006,8 @@ function getClass() {
   while (pos < end) {
     if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
+    } else if (checkNumber(pos)) {
+      content = content.concat(getNumber());
     } else if (tokens[pos].type === TokenType.HyphenMinus) {
       content.push(
         newNode(
