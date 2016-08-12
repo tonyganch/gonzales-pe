@@ -7,6 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 12.08.2016, Version 3.4.4
+
+:green_apple: Fixed parsing of numbers following interpolation in class
+selectors in Sass and SCSS.  
+
 ## 08.08.2016, Version 3.4.3
 
 :green_apple: Fixed parsing of unicode ranges.  
