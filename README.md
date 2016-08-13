@@ -6,7 +6,8 @@
 (https://ci.appveyor.com/project/tonyganch/gonzales-pe/branch/dev)
 
 Gonzales PE is a CSS parser which plays nicely with preprocessors.    
-Currently those are supported: SCSS, Sass, LESS.
+Currently those are supported: SCSS, Sass, LESS.    
+Try out Gonzales PE online: [Gonzales PE Playground](http://tonyganch.com/gonzales-pe/).
 
 ## Install
 
@@ -44,6 +45,8 @@ Basically there are a few things you can do:
 3. remove tree nodes;
 4. add new nodes to the tree;
 5. convert modified tree back to a string.
+
+The different type of tree nodes can be found in [docs/node-types.md](https://github.com/tonyganch/gonzales-pe/blob/dev/docs/node-types.md).
 
 In examples below I assume that `gonzales` is a parser module and `parseTree`
 is some parsed css:
