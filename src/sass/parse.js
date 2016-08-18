@@ -4128,6 +4128,30 @@ function getS() {
 }
 
 /**
+ * Check if token is a space, newline, or a comment.
+ * @param {number} i Token's index number
+ * @return {number} Number of similar (space, newline, or comment) tokens
+ *      in a row starting with the given token.
+ */
+function checkSLC(i) {
+  if (!tokens[i]) return 0;
+
+  let l;
+  let lsc = 0;
+
+  while (i < tokensLength) {
+    if (!(l = checkS(i)) &&
+      !(l = checkCommentML(i)) &&
+      !(l = checkCommentSL(i))) break;
+
+    i += l;
+    lsc += l;
+  }
+
+  return lsc || 0;
+}
+
+/**
  * Check if token is a space or a comment.
  * @param {number} i Token's index number
  * @return {number} Number of similar (space or comment) tokens
@@ -4154,6 +4178,28 @@ function checkSC(i) {
   }
 
   return lsc || 0;
+}
+
+/**
+ * Get node with spaces newlines and comments
+ * @return {Array} Array containing nodes with spaces (if there are any)
+ *      and nodes with comments (if there are any):
+ *      `[['s', x]*, ['comment', y]*]` where `x` is a string of spaces
+ *      and `y` is a comment's text (without `/*` and `* /`).
+ */
+function getSLC() {
+  let sc = [];
+
+  if (pos >= tokensLength) return sc;
+
+  while (pos < tokensLength) {
+    if (checkS(pos)) sc.push(getS());
+    else if (checkCommentML(pos)) sc.push(getCommentML());
+    else if (checkCommentSL(pos)) sc.push(getCommentSL());
+    else break;
+  }
+
+  return sc;
 }
 
 /**
@@ -4838,8 +4884,8 @@ function checkSelectorsGroup(i) {
     let sb = checkSC(i);
     let c = checkDelim(i + sb);
     if (!c) break;
-    let sa = checkSC(i + sb + c);
-    let saa = sa ? checkSC(i + sb + c + sa) : 0;
+    let sa = checkSLC(i + sb + c);
+    let saa = sa ? checkSLC(i + sb + c + sa) : 0;
     if (l = checkSelector(i + sb + c + sa + saa)) i += sb + c + sa + saa + l;
     else break;
   }
@@ -4855,10 +4901,10 @@ function getSelectorsGroup() {
   selectorsGroup.push(getSelector());
 
   while (pos < selectorsGroupEnd) {
-    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup = selectorsGroup.concat(getSLC());
     selectorsGroup.push(getDelim());
-    selectorsGroup = selectorsGroup.concat(getSC());
-    selectorsGroup = selectorsGroup.concat(getSC());
+    selectorsGroup = selectorsGroup.concat(getSLC());
+    selectorsGroup = selectorsGroup.concat(getSLC());
     selectorsGroup.push(getSelector());
   }
 
