@@ -144,6 +144,9 @@ const contexts = {
   'stylesheet': () => {
     return checkStylesheet(pos) && getStylesheet();
   },
+  'typeSelector': () => {
+    return checkTypeSelector(pos) && getTypeSelector();
+  },
   'unary': () => {
     return checkUnary(pos) && getUnary();
   },
@@ -4151,34 +4154,68 @@ function getSC() {
 }
 
 /**
- * Check if token is part of a hexadecimal number (e.g. `#fff`) inside
- *      a simple selector
+ * Check if token is part of a hexadecimal number (e.g. `#fff`) inside a simple
+ * selector
  * @param {number} i Token's index number
  * @return {number}
  */
 function checkShash(i) {
-  var l;
+  const start = i;
+  let l;
 
-  if (i >= tokensLength || tokens[i].type !== TokenType.NumberSign) return 0;
+  if (i >= tokensLength) return 0;
 
-  return (l = checkIdentOrInterpolation(i + 1)) ? l + 1 : 0;
+  if (tokens[i].type === TokenType.NumberSign) {
+    if (checkInterpolation(i)) return 0;
+    i++;
+  } else return 0;
+
+  while (i < tokensLength) {
+    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
+    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+    else break;
+  }
+
+  tokens[start].shashEnd = i;
+
+  return i - start;
 }
 
 /**
- * Get node with a hexadecimal number (e.g. `#fff`) inside a simple
- *      selector
- * @return {Array} `['shash', x]` where `x` is a hexadecimal number
- *      converted to string (without `#`, e.g. `fff`)
+ * Get node with a hexadecimal number (e.g. `#fff`) inside a simple selector
+ * @return {Node}
  */
 function getShash() {
-  let startPos = pos;
-  var token = tokens[startPos];
+  const startPos = pos;
+  const type = NodeType.ShashType;
+  const token = tokens[startPos];
+  const line = token.ln;
+  const column = token.col;
+  const end = token.shashEnd;
+  let content = [];
 
+  // Skip `#`
   pos++;
 
-  var x = getIdentOrInterpolation();
+  while (pos < end) {
+    if (checkIdentOrInterpolation(pos)) {
+      content = content.concat(getIdentOrInterpolation());
+    } else if (checkNumber(pos)) {
+      content = content.concat(getNumber());
+    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+      content.push(
+        newNode(
+          NodeType.IdentType,
+          tokens[pos].value,
+          tokens[pos].ln,
+          tokens[pos].col
+        )
+      );
+      pos++;
+    } else break;
+  }
 
-  return newNode(NodeType.ShashType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -5075,38 +5112,66 @@ function getCompoundSelector2() {
   return sequence;
 }
 
+/**
+ * Check if token is part of a type selector
+ * @param {number} i Token's index
+ * @return {number} Type selector's length
+ */
 function checkTypeSelector(i) {
-  if (i >= tokensLength) return 0;
-
-  let start = i;
+  const start = i;
   let l;
+
+  if (i >= tokensLength) return 0;
 
   if (l = checkNamePrefix(i)) i += l;
 
-  if (tokens[i].type === TokenType.Asterisk) i++;
-  else if (l = checkIdentOrInterpolation(i)) i += l;
-  else return 0;
+  while (i < tokensLength) {
+    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
+    else if (tokens[i].type === TokenType.HyphenMinus) i++;
+    else if (tokens[i].type === TokenType.Asterisk) i++;
+    else break;
+  }
+
+  tokens[start].typeEnd = i;
 
   return i - start;
 }
 
+/**
+ * Get type selector node
+ * @return {Node}
+ */
 function getTypeSelector() {
-  let type = NodeType.TypeSelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.TypeSelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const end = token.typeEnd;
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
 
-
-  token = tokens[pos];
-  if (token.type === TokenType.Asterisk) {
-    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
-    content.push(asteriskNode);
-    pos++;
-  } else if (checkIdentOrInterpolation(pos))
-    content = content.concat(getIdentOrInterpolation());
+  while (pos < end) {
+    if (tokens[pos].type === TokenType.Asterisk) {
+      let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
+      content.push(asteriskNode);
+      pos++;
+    } else if (checkIdentOrInterpolation(pos)) {
+      content = content.concat(getIdentOrInterpolation());
+    } else if (checkNumber(pos)) {
+      content = content.concat(getNumber());
+    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+      content.push(
+        newNode(
+          NodeType.IdentType,
+          tokens[pos].value,
+          tokens[pos].ln,
+          tokens[pos].col
+        )
+      );
+      pos++;
+    } else break;
+  }
 
   return newNode(type, content, line, column);
 }
