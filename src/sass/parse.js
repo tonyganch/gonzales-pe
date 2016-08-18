@@ -1356,11 +1356,19 @@ function checkCommentML(i) {
 function getCommentML() {
   let startPos = pos;
   let x = tokens[pos].value.substring(2);
+  let l = x.length;
+  let closed = false;
   var token = tokens[startPos];
   var line = token.ln;
   var column = token.col;
 
+  if (x.charAt(l - 2) === '*' && x.charAt(l - 1) === '/') {
+    x = x.substring(0, l - 2);
+    closed = true;
+  }
+
   var end = getLastPosition(x, line, column + 2);
+  if (closed) end[1] += 2;
   pos++;
 
   return newNode(NodeType.CommentMLType, x, token.ln, token.col, end);
