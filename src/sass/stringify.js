@@ -53,7 +53,19 @@ module.exports = function stringify(tree) {
       return '#{' + _composite(t.content) + '}';
     },
     'multilineComment': function(t) {
-      return '/*' + t.content;
+      var lines = t.content.split('\n');
+      var close = '';
+
+      if (lines.length > 1) {
+        var lastLine = lines[lines.length - 1];
+        if (lastLine.length < t.end.column) {
+          close = '*/';
+        }
+      } else if (t.content.length + 4 === t.end.column - t.start.column + 1) {
+        close = '*/';
+      }
+
+      return '/*' + t.content + close;
     },
     'nthSelector': function(t) {
       return ':' + _t(t.content[0]) +

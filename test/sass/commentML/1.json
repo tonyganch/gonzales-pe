@@ -1,6 +1,6 @@
 {
   "type": "multilineComment",
-  "content": "test*/",
+  "content": "test",
   "syntax": "sass",
   "start": {
     "line": 1,

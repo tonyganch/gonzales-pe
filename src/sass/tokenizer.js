@@ -194,7 +194,8 @@ module.exports = function(css, tabSize) {
     }
 
     for (pos += 2; pos < css.length; pos++) {
-      if (css.charAt(pos) === '\n') {
+      let ch = css.charAt(pos);
+      if (ch === '\n') {
         let _pos;
         // Get new line's indent level:
         var _il = 0;
@@ -210,10 +211,13 @@ module.exports = function(css, tabSize) {
           pos--;
           break;
         }
+      } else if (ch === '*' && css.charAt(pos + 1) === '/') {
+        pos++;
+        break;
       }
     }
 
-    // Add full comment (including `/*`) to the list of tokens:
+    // Add full comment (excluding `/*`) to the list of tokens:
     var comment = css.substring(start, pos + 1);
     pushToken(TokenType.CommentML, comment, col_);
 
@@ -260,7 +264,8 @@ module.exports = function(css, tabSize) {
       }
     } else {
       for (pos += 2; pos < css.length; pos++) {
-        if (css.charAt(pos) === '\n') {
+        var ch = css.charAt(pos);
+        if (ch === '\n') {
           // Get new line's indent level:
           var _il = 0;
           for (_pos = pos + 1; _pos < css.length; _pos++) {
