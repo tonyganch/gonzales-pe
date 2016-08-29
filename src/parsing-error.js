@@ -72,6 +72,7 @@ ParsingError.prototype = {
       var message = 'Please check validity of the block';
       if (typeof this.line === 'number')
           message += ' starting from line #' + this.line;
+      message +=  "\n" + this.context;
       return message;
     }
   },
