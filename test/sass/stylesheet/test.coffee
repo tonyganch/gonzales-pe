@@ -26,3 +26,5 @@ describe 'sass/stylesheet >>', ->
 
   it 'crlf/0', -> this.shouldBeOk()
   it 'crlf/issue152', -> this.shouldBeOk()
+  it 'crlf/issue224-0', -> this.shouldBeOk()
+  it 'crlf/issue224-1', -> this.shouldBeOk()

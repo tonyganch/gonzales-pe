@@ -213,6 +213,9 @@ module.exports = function(css, tabSize) {
       }
     }
 
+    // If CRLF is used, we need to adjust pos
+    if (css.charAt(pos) === '\r') pos--;
+
     // Add full comment (including `/*`) to the list of tokens:
     var comment = css.substring(start, pos + 1);
     pushToken(TokenType.CommentML, comment, col_);
@@ -277,6 +280,9 @@ module.exports = function(css, tabSize) {
         }
       }
     }
+
+    // If CRLF is used, we need to adjust pos
+    if (css.charAt(pos - 1) === '\r') pos--;
 
     // Add comment (including `//` and line break) to the list of tokens:
     var comment = css.substring(start, pos--);
