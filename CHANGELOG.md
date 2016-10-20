@@ -7,6 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 20.10.2016, Version 3.4.5
+
+:green_apple: Change parser to strip DOS newlines from comments.  
+:star: Add links to README.md.  
+
 ## 12.08.2016, Version 3.4.4
 
 :green_apple: Fixed parsing of numbers following interpolation in class
