@@ -7,6 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 22.10.2016, version 3.4.7
+
+:green_apple: Included forgotten test for #226.  
+:green_apple: Fixed issue when `!important` was not parsed as function argument.  
+
 ## 22.10.2016, version 3.4.6
 
 :green_apple: Changed parsing of `ident` nodes which fixed issue with asterisks
