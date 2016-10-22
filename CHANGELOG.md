@@ -7,6 +7,12 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 22.10.2016, version 3.4.6
+
+:green_apple: Changed parsing of `ident` nodes which fixed issue with asterisks
+being parsed as idents instead of operators.  
+:green_apple: Fixed capitalisation in Changelog.  
+
 ## 20.10.2016, version 3.4.5
 
 :green_apple: Change parser to strip DOS newlines from comments.  
