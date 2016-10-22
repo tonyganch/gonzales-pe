@@ -7,30 +7,30 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
-## 20.10.2016, Version 3.4.5
+## 20.10.2016, version 3.4.5
 
 :green_apple: Change parser to strip DOS newlines from comments.  
 :star: Add links to README.md.  
 
-## 12.08.2016, Version 3.4.4
+## 12.08.2016, version 3.4.4
 
 :green_apple: Fixed parsing of numbers following interpolation in class
 selectors in Sass and SCSS.  
 
-## 08.08.2016, Version 3.4.3
+## 08.08.2016, version 3.4.3
 
 :green_apple: Fixed parsing of unicode ranges.  
 
-## 04.08.2016, Version 3.4.2
+## 04.08.2016, version 3.4.2
 
 :green_apple: Disable Google Closure Compiler due to some errors in parsing.  
 
-## 27.07.2016, Version 3.4.1
+## 27.07.2016, version 3.4.1
 
 :star: Added publich script.  
 :green_apple: Fixed post-refactor error in Node#last method.  
 
-## 27.07.2016, Version 3.4.0
+## 27.07.2016, version 3.4.0
 
 :star: Added `unicode-range` and `urange` node types in CSS, Less, Sass and SCSS.  
 :green_apple: Fixed parsing of trailing interpolation in compound selector in Sass and SCSS.  
@@ -40,11 +40,11 @@ selectors in Sass and SCSS.
 :green_apple: Fixed parsing of hyphens in interpolated idents in Sass and SCSS.  
 :green_apple: Added compilation of JS using Google Closure.  
 
-## 01.07.2016, Version 3.3.6
+## 01.07.2016, version 3.3.6
 
 :green_apple: Fixed parsing of nth selector without numbers before `n`.  
 
-## 21.06.2016, Version 3.3.5
+## 21.06.2016, version 3.3.5
 
 :green_apple: Fixed issue with content at-rule and keyframes in Sass and SCSS.  
 :green_apple: Fixed namespace attribute selector in CSS, Sass and SCSS.  
@@ -55,16 +55,16 @@ selectors in Sass and SCSS.
 :green_apple: Fixed interpolated percentage keyframe selector issue in Sass and SCSS.  
 :green_apple: Updated Travis config to not include environment variables.  
 
-## 18.05.2016, Version 3.3.4
+## 18.05.2016, version 3.3.4
 
 :green_apple: Fixed mistake from `@3.3.2` version when parent selector was
 "correctly" parsed as property instead of value.  
 
-## 18.05.2016, Version 3.3.3
+## 18.05.2016, version 3.3.3
 
 :green_apple: Fixed prepublish script to build lib.  
 
-## 18.05.2016, Version 3.3.2
+## 18.05.2016, version 3.3.2
 
 :star: Added AppVeyor badge.  
 :green_apple: Fixed build file to glue multiple syntaxes into one file.  
@@ -73,17 +73,17 @@ selectors in Sass and SCSS.
 :green_apple: Fixed parsing of parent selector as property in Sass and SCSS.  
 :green_apple: Fixed parsing of parent selector inside interpolations in Sass and SCSS.  
 
-## 29.04.2016, Version 3.3.1
+## 29.04.2016, version 3.3.1
 
 :star: Added config for AppVeyor to run automated tests on Windows.  
 :green_apple: Fix installation for Windows.  
 
-## 28.04.2016, Version 3.3.0
+## 28.04.2016, version 3.3.0
 
 :star: Added browser support. `build.sh` now build a script that can be used in
 browsers.
 
-## 28.04.2016, Version 3.2.7
+## 28.04.2016, version 3.2.7
 
 :green_apple: Fixed typos and example in documentation.  
 :green_apple: Fixed parsing of functions inside urls in SCSS.  
@@ -93,19 +93,19 @@ and Less.
 :green_apple: Fixed parsing of extends that sometimes were incorrectly parsed
 as atrules.  
 
-## 07.02.2016, Version 3.2.6
+## 07.02.2016, version 3.2.6
 
 :green_apple: Fixed the issue with installation of the package with npm@3.  
 
-## 07.02.2016, Version 3.2.5
+## 07.02.2016, version 3.2.5
 
 :green_apple: Fixed parsing of nested multiline selectors group.  
 
-## 07.02.2016, Version 3.2.4
+## 07.02.2016, version 3.2.4
 
 :star: Added support for `!global` in Sass.  
 
-## 07.02.2016, Version 3.2.3
+## 07.02.2016, version 3.2.3
 
 :star: Modified `npm test` to remove `.DS_Store` files before running tests.  
 :star: Updated Travis config to use Node@5.0.  
@@ -116,11 +116,11 @@ as atrules.
 extension in Sass and SCSS.  
 :green_apple: Fixed issue with keyframeSelector in includes in SCSS.  
 
-## 17.01.2016, Version 3.2.2
+## 17.01.2016, version 3.2.2
 
 :green_apple: Made `ParsingError#message` property writeable.
 
-## 19.10.2015, Version 3.2.1
+## 19.10.2015, version 3.2.1
 
 #### Parsing rules
 
@@ -128,7 +128,7 @@ extension in Sass and SCSS.
 `selector` nodes in Sass and SCSS.  
 :green_apple: Fixed parsing of multiple selectors in extends in Sass and SCSS.
 
-## 19.10.2015, Version 3.2.0
+## 19.10.2015, version 3.2.0
 
 #### Node types
 
@@ -139,14 +139,14 @@ extension in Sass and SCSS.
 :green_apple: Fixed parsing of parent selectors with extensions, like
 `&__element` or `&--modifier`.
 
-## 19.10.2015, Version 3.1.1
+## 19.10.2015, version 3.1.1
 
 #### Parsing rules
 
 :green_apple: Fixed parsing of selectors starting or ending with a combinator
 in Less, Sass and SCSS.
 
-## 18.10.2015, Version 3.1.0
+## 18.10.2015, version 3.1.0
 
 #### CLI
 
@@ -161,26 +161,26 @@ in Less, Sass and SCSS.
 
 :green_apple: Fixed parsing of keyframes in all syntaxes.  
 
-## 18.10.2015, Version 3.0.3
+## 18.10.2015, version 3.0.3
 
 #### Parsing rules
 
 :green_apple: Fixed parsing of spaces inside interpolations in Sass and SCSS.  
 
-## 18.10.2015, Version 3.0.2
+## 18.10.2015, version 3.0.2
 
 #### Parsing rules
 
 :green_apple: Fixed the issue when operators were parsed as idents inside
 parentheses in Sass and SCSS.  
 
-## 18.10.2015, Version 3.0.1
+## 18.10.2015, version 3.0.1
 
 #### Parsing rules
 :green_apple: Fixed parsing of parent selectors in SCSS and Less.  
 :green_apple: Fixed parsing of placeholders inside selectors in SCSS.  
 
-## 18.10.2015, Version 3.0.0
+## 18.10.2015, version 3.0.0
 
 #### CLI
 
@@ -211,7 +211,7 @@ parentheses in Sass and SCSS.
 :star: Added init script to build sources.  
 :star: Added commit message template.  
 
-## 05.10.2015, Version 3.0.0-beta
+## 05.10.2015, version 3.0.0-beta
 
 #### CLI
 
@@ -293,16 +293,16 @@ nodes in parse tree.
 :rocket: Moved source files from `lib` to `src` directory.  
 :rocket: Made package availbale for install from GitHub.  
 
-## 29.12.2013, Version 2.0.2
+## 29.12.2013, version 2.0.2
 
 - Sass includes can have both arguments list and content block,
   i.e. `@include nani() { color: tomato }` is valid syntax.
 
-## 18.11.2013, Version 2.0.1
+## 18.11.2013, version 2.0.1
 
 - Bring back lost whitespaces and comments
 
-## 11.11.2013, Version 2.0.0
+## 11.11.2013, version 2.0.0
 
 - Support preprocessors: Sass (both SCSS and indented syntax), LESS.
 - New node types:
@@ -334,37 +334,37 @@ nodes in parse tree.
 - Add script to test one specific css string
 - Add token's index number to info object
 
-## 11.02.2013, Version 1.0.7
+## 11.02.2013, version 1.0.7
 
 - Identifiers like `_0` are identifiers now.
 - Throw error instead of console.error: https://github.com/css/csso/issues/109
 
-## 25.11.2012, Version 1.0.6
+## 25.11.2012, version 1.0.6
 
 - Typo fix (global variable leak): https://github.com/css/csso/pull/110
 - Attribute selectors extended by `|`.
 - `not(..)` pseudo-class special support: https://github.com/css/csso/issues/111
 
-## 28.10.2012, Version 1.0.5
+## 28.10.2012, version 1.0.5
 
 - Better error line numbering: https://github.com/css/gonzales/issues/2
 
-## 11.10.2012, Version 1.0.4
+## 11.10.2012, version 1.0.4
 
 - CSSO issue (@page inside @media error): https://github.com/css/csso/issues/90
 
-## 10.10.2012, Version 1.0.3
+## 10.10.2012, version 1.0.3
 
 - Both .t-1 and .t-01 should be idents: https://github.com/css/gonzales/issues/1
 
-## 08.10.2012, Version 1.0.2
+## 08.10.2012, version 1.0.2
 
 - CSSO issue (filter + important breaks csso v1.3.1): https://github.com/css/csso/issues/87
 
-## 08.10.2012, Version 1.0.1
+## 08.10.2012, version 1.0.1
 
 - CSSO issue ("filter" IE property breaks CSSO v1.3.0): https://github.com/css/csso/issues/86
 
-## 03.10.2012, Version 1.0.0
+## 03.10.2012, version 1.0.0
 
 - First revision.
