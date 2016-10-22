@@ -1540,62 +1540,22 @@ function getArguments() {
  */
 function checkIdent(i) {
   let start = i;
-  let wasIdent;
-  let l;
 
   if (i >= tokensLength) return 0;
 
-  // Check if token is part of an identifier starting with `_`:
-  if (tokens[i].type === TokenType.LowLine) return checkIdentLowLine(i);
+  if (tokens[i].type === TokenType.HyphenMinus) i++;
 
-  // If token is a character, `-`, `$` or `*`, skip it & continue:
-  if (tokens[i].type === TokenType.HyphenMinus ||
-      tokens[i].type === TokenType.Identifier ||
-      tokens[i].type === TokenType.DollarSign ||
-      tokens[i].type === TokenType.Asterisk) i++;
+  if (tokens[i].type === TokenType.LowLine ||
+      tokens[i].type === TokenType.Identifier) i++;
   else return 0;
 
-  // Remember if previous token's type was identifier:
-  wasIdent = tokens[i - 1].type === TokenType.Identifier;
-
-  for (; i < tokensLength; i++) {
-    if (l = checkInterpolatedVariable(i)) i += l;
-
-    if (i >= tokensLength) break;
-
-    if (tokens[i].type !== TokenType.HyphenMinus &&
-        tokens[i].type !== TokenType.LowLine) {
-      if (tokens[i].type !== TokenType.Identifier &&
-          (tokens[i].type !== TokenType.DecimalNumber || !wasIdent)) break;
-      else wasIdent = true;
-    }
-  }
-
-  if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
-
-  tokens[start].ident_last = i - 1;
-
-  return i - start;
-}
-
-/**
- * Check if token is part of an identifier starting with `_`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the identifier
- */
-function checkIdentLowLine(i) {
-  var start = i;
-
-  if (i++ >= tokensLength) return 0;
-
   for (; i < tokensLength; i++) {
     if (tokens[i].type !== TokenType.HyphenMinus &&
-        tokens[i].type !== TokenType.DecimalNumber &&
         tokens[i].type !== TokenType.LowLine &&
-        tokens[i].type !== TokenType.Identifier) break;
+        tokens[i].type !== TokenType.Identifier &&
+        tokens[i].type !== TokenType.DecimalNumber) break;
   }
 
-  // Save index number of the last token of the identifier:
   tokens[start].ident_last = i - 1;
 
   return i - start;
@@ -1613,6 +1573,27 @@ function getIdent() {
 
   var token = tokens[startPos];
   return newNode(NodeType.IdentType, x, token.ln, token.col);
+}
+
+/**
+ * @param {number} i Token's index number
+ * @returns {number} Length of the identifier
+ */
+function checkPartialIdent(i) {
+  let start = i;
+
+  if (i >= tokensLength) return 0;
+
+  for (; i < tokensLength; i++) {
+    if (tokens[i].type !== TokenType.HyphenMinus &&
+        tokens[i].type !== TokenType.LowLine &&
+        tokens[i].type !== TokenType.Identifier &&
+        tokens[i].type !== TokenType.DecimalNumber) break;
+  }
+
+  tokens[start].ident_last = i - 1;
+
+  return i - start;
 }
 
 /**
@@ -2308,7 +2289,7 @@ function checkParentSelectorExtension(i) {
   let l;
 
   while (i < tokensLength) {
-    if (l = checkNumber(i) || checkIdent(i)) i += l;
+    if (l = checkNumber(i) || checkPartialIdent(i)) i += l;
     else break;
   }
 
@@ -2324,7 +2305,7 @@ function getParentSelectorExtension() {
 
   while (pos < tokensLength) {
     if (checkNumber(pos)) content.push(getNumber());
-    else if (checkIdent(pos)) content.push(getIdent());
+    else if (checkPartialIdent(pos)) content.push(getIdent());
     else break;
   }
 
@@ -3954,7 +3935,13 @@ function getTypeSelector() {
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
-  if (checkIdent(pos)) content.push(getIdent());
+
+  token = tokens[pos];
+  if (token.type === TokenType.Asterisk) {
+    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
+    content.push(asteriskNode);
+    pos++;
+  } else if (checkIdent(pos)) content.push(getIdent());
 
   return newNode(type, content, line, column);
 }
@@ -4290,7 +4277,12 @@ function getNamespacePrefix() {
   let line = token.ln;
   let column = token.col;
   let content = [];
-  if (checkIdent(pos)) content.push(getIdent());
+
+  if (tokens[pos].type === TokenType.Asterisk) {
+    let asteriskNode = newNode(NodeType.IdentType, '*', line, column);
+    content.push(asteriskNode);
+    pos++;
+  } else if (checkIdent(pos)) content.push(getIdent());
 
   return newNode(type, content, line, column);
 }

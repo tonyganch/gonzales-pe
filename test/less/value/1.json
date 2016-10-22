@@ -55,7 +55,7 @@
       }
     },
     {
-      "type": "ident",
+      "type": "operator",
       "content": "*",
       "syntax": "less",
       "start": {

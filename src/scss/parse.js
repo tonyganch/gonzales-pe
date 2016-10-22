@@ -1691,74 +1691,26 @@ function getArguments() {
  */
 function checkIdent(i) {
   let start = i;
-  let wasIdent;
-  let l;
 
   if (i >= tokensLength) return 0;
-
-  // Check if token is part of an identifier starting with `_`:
-  if (tokens[i].type === TokenType.LowLine) return checkIdentLowLine(i);
 
   // Check if token is part of a negative number
   if (tokens[i].type === TokenType.HyphenMinus &&
       tokens[i + 1].type === TokenType.DecimalNumber) return 0;
 
-  // If token is a character, `-`, `$` or `*`, skip it & continue:
-  if (l = _checkIdent(i)) i += l;
+  if (tokens[i].type === TokenType.HyphenMinus) i++;
+
+  if (tokens[i].type === TokenType.LowLine ||
+      tokens[i].type === TokenType.Identifier) i++;
   else return 0;
-
-  // Remember if previous token's type was identifier:
-  wasIdent = tokens[i - 1].type === TokenType.Identifier;
-
-  while (i < tokensLength) {
-    l = _checkIdent(i);
-
-    if (!l) break;
-
-    wasIdent = true;
-    i += l;
-  }
-
-  if (!wasIdent && tokens[start].type !== TokenType.Asterisk) return 0;
-
-  tokens[start].ident_last = i - 1;
-
-  return i - start;
-}
-
-/**
- * Check if the token type can be considered an ident
- * @param {number} i Token's index number
- * @returns {number} 1 or 0 based on whether we have a match
- */
-function _checkIdent(i) {
-  if (tokens[i].type === TokenType.HyphenMinus ||
-      tokens[i].type === TokenType.Identifier ||
-      tokens[i].type === TokenType.DollarSign ||
-      tokens[i].type === TokenType.LowLine ||
-      tokens[i].type === TokenType.DecimalNumber ||
-      tokens[i].type === TokenType.Asterisk) return 1;
-  return 0;
-}
-
-/**
- * Check if token is part of an identifier starting with `_`
- * @param {Number} i Token's index number
- * @returns {Number} Length of the identifier
- */
-function checkIdentLowLine(i) {
-  var start = i;
-
-  if (i++ >= tokensLength) return 0;
 
   for (; i < tokensLength; i++) {
     if (tokens[i].type !== TokenType.HyphenMinus &&
-        tokens[i].type !== TokenType.DecimalNumber &&
         tokens[i].type !== TokenType.LowLine &&
-        tokens[i].type !== TokenType.Identifier) break;
+        tokens[i].type !== TokenType.Identifier &&
+        tokens[i].type !== TokenType.DecimalNumber) break;
   }
 
-  // Save index number of the last token of the identifier:
   tokens[start].ident_last = i - 1;
 
   return i - start;
@@ -1776,6 +1728,27 @@ function getIdent() {
 
   var token = tokens[startPos];
   return newNode(NodeType.IdentType, x, token.ln, token.col);
+}
+
+/**
+ * @param {number} i Token's index number
+ * @returns {number} Length of the identifier
+ */
+function checkPartialIdent(i) {
+  let start = i;
+
+  if (i >= tokensLength) return 0;
+
+  for (; i < tokensLength; i++) {
+    if (tokens[i].type !== TokenType.HyphenMinus &&
+        tokens[i].type !== TokenType.LowLine &&
+        tokens[i].type !== TokenType.Identifier &&
+        tokens[i].type !== TokenType.DecimalNumber) break;
+  }
+
+  tokens[start].ident_last = i - 1;
+
+  return i - start;
 }
 
 function checkIdentOrInterpolation(i) {
@@ -2837,8 +2810,9 @@ function checkParentSelectorExtension(i) {
   if (i >= tokensLength) return 0;
 
   while (i < tokensLength) {
-    if (l = checkNumber(i) || checkIdentOrInterpolation(i)) i += l;
-    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
+    if (l = checkNumber(i) ||
+        checkPartialIdent(i) ||
+        checkIdentOrInterpolation(i)) i += l;
     else break;
   }
 
@@ -2859,18 +2833,10 @@ function getParentSelectorExtension() {
   while (pos < tokensLength) {
     if (checkNumber(pos)) {
       content.push(getNumber());
+    } else if (checkPartialIdent(pos)) {
+      content.push(getIdent());
     } else if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
-    } else if (tokens[pos].type === TokenType.HyphenMinus) {
-      content.push(
-        newNode(
-          NodeType.IdentType,
-          tokens[pos].value,
-          tokens[pos].ln,
-          tokens[pos].col
-        )
-      );
-      pos++;
     } else break;
   }
 
@@ -4644,7 +4610,13 @@ function getTypeSelector() {
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
-  if (checkIdentOrInterpolation(pos))
+
+  token = tokens[pos];
+  if (token.type === TokenType.Asterisk) {
+    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
+    content.push(asteriskNode);
+    pos++;
+  } else if (checkIdentOrInterpolation(pos))
     content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
@@ -4981,7 +4953,12 @@ function getNamespacePrefix() {
   let line = token.ln;
   let column = token.col;
   let content = [];
-  if (checkIdentOrInterpolation(pos))
+
+  if (token.type === TokenType.Asterisk) {
+    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
+    content.push(asteriskNode);
+    pos++;
+  } else if (checkIdentOrInterpolation(pos))
     content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
