@@ -416,6 +416,7 @@ function checkArgument(i) {
       checkVhash(i) ||
       checkOperator(i) ||
       checkUnary(i) ||
+      checkImportant(i) ||
       checkParentSelector(i);
 }
 
@@ -442,6 +443,7 @@ function getArgument() {
   else if (checkVhash(pos)) return getVhash();
   else if (checkOperator(pos)) return getOperator();
   else if (checkUnary(pos)) return getUnary();
+  else if (checkImportant(pos)) return getImportant();
   else if (checkParentSelector(pos)) return getParentSelector();
 }
 

@@ -17,4 +17,5 @@ describe 'scss/value >>', ->
   it 'unicode.3', -> this.shouldBeOk()
   it 'unicode.4', -> this.shouldBeOk()
 
+  it 'issue-223', -> this.shouldBeOk()
   it 'issue-226', -> this.shouldBeOk()

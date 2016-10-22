@@ -1,0 +1,253 @@
+{
+  "type": "value",
+  "content": [
+    {
+      "type": "ident",
+      "content": "white",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 5
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 6
+      },
+      "end": {
+        "line": 1,
+        "column": 6
+      }
+    },
+    {
+      "type": "function",
+      "content": [
+        {
+          "type": "ident",
+          "content": "if",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 7
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        },
+        {
+          "type": "arguments",
+          "content": [
+            {
+              "type": "ident",
+              "content": "not",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 10
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 13
+              },
+              "end": {
+                "line": 1,
+                "column": 13
+              }
+            },
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "css-reset",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 15
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 23
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 14
+              },
+              "end": {
+                "line": 1,
+                "column": 23
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 24
+              },
+              "end": {
+                "line": 1,
+                "column": 24
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 25
+              },
+              "end": {
+                "line": 1,
+                "column": 25
+              }
+            },
+            {
+              "type": "important",
+              "content": "!important",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 26
+              },
+              "end": {
+                "line": 1,
+                "column": 35
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 36
+              },
+              "end": {
+                "line": 1,
+                "column": 36
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 37
+              },
+              "end": {
+                "line": 1,
+                "column": 37
+              }
+            },
+            {
+              "type": "function",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "unquote",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 38
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 44
+                  }
+                },
+                {
+                  "type": "arguments",
+                  "content": [
+                    {
+                      "type": "string",
+                      "content": "\"\"",
+                      "syntax": "scss",
+                      "start": {
+                        "line": 1,
+                        "column": 46
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 47
+                      }
+                    }
+                  ],
+                  "syntax": "scss",
+                  "start": {
+                    "line": 1,
+                    "column": 45
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 48
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 1,
+                "column": 38
+              },
+              "end": {
+                "line": 1,
+                "column": 48
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 9
+          },
+          "end": {
+            "line": 1,
+            "column": 49
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 7
+      },
+      "end": {
+        "line": 1,
+        "column": 49
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 49
+  }
+}
