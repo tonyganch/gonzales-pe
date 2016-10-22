@@ -32,3 +32,5 @@ describe 'sass/value >>', ->
 
   it 'unicode.0', -> this.shouldBeOk()
   it 'unicode.1', -> this.shouldBeOk()
+
+  it 'issue-226', -> this.shouldBeOk()
