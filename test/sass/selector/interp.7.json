@@ -46,7 +46,7 @@
           }
         },
         {
-          "type": "number",
+          "type": "ident",
           "content": "10",
           "syntax": "sass",
           "start": {
