@@ -1,6 +1,7 @@
 describe 'scss/typeSelector >>', ->
 
   it '1', -> this.shouldBeOk()
+  it '2', -> this.shouldBeOk()
 
   it 'interp.1', -> this.shouldBeOk()
   it 'interp.2', -> this.shouldBeOk()

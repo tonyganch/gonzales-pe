@@ -43,7 +43,7 @@
       }
     },
     {
-      "type": "number",
+      "type": "ident",
       "content": "1",
       "syntax": "scss",
       "start": {
