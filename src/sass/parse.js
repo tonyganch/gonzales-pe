@@ -1181,15 +1181,11 @@ function checkClass(i) {
 
   if (tokens[i++].type !== TokenType.FullStop) return 0;
 
-  // Check for `-` at beginning
-  if (tokens[i].type === TokenType.HyphenMinus) i += 1;
-
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
     if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
-    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
     else break;
   }
 
@@ -1220,16 +1216,6 @@ function getClass() {
       content = content.concat(getIdentOrInterpolation());
     } else if (checkNumber(pos)) {
       content = content.concat(getNumber());
-    } else if (tokens[pos].type === TokenType.HyphenMinus) {
-      content.push(
-        newNode(
-          NodeType.IdentType,
-          tokens[pos].value,
-          tokens[pos].ln,
-          tokens[pos].col
-        )
-      );
-      pos++;
     } else break;
   }
 
@@ -2073,13 +2059,18 @@ function checkPartialIdent(i) {
   return i - start;
 }
 
+/**
+ * @param {number} i Token's index number
+ * @returns {number} Length of the identifier
+ */
 function checkIdentOrInterpolation(i) {
-  let start = i;
+  const start = i;
   let l;
 
   while (i < tokensLength) {
-    if (l = checkInterpolation(i) || checkIdent(i)) i += l;
-    else break;
+    if (l = checkInterpolation(i) || checkIdent(i) || checkPartialIdent(i)) {
+      i += l;
+    } else break;
   }
 
   return i - start;
@@ -2090,7 +2081,7 @@ function getIdentOrInterpolation() {
 
   while (pos < tokensLength) {
     if (checkInterpolation(pos)) x.push(getInterpolation());
-    else if (checkIdent(pos)) x.push(getIdent());
+    else if (checkIdent(pos) || checkPartialIdent(pos)) x.push(getIdent());
     else break;
   }
 
@@ -3265,7 +3256,6 @@ function checkParentSelectorExtension(i) {
 
   while (i < tokensLength) {
     if (l = checkNumber(i) ||
-        checkPartialIdent(i) ||
         checkIdentOrInterpolation(i)) i += l;
     else break;
   }
@@ -3287,8 +3277,6 @@ function getParentSelectorExtension() {
   while (pos < tokensLength) {
     if (checkNumber(pos)) {
       content.push(getNumber());
-    } else if (checkPartialIdent(pos)) {
-      content.push(getIdent());
     } else if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
     } else break;
@@ -4172,7 +4160,6 @@ function checkShash(i) {
 
   while (i < tokensLength) {
     if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
-    else if (tokens[i].type === TokenType.HyphenMinus) i += 1;
     else break;
   }
 
@@ -4202,16 +4189,6 @@ function getShash() {
       content = content.concat(getIdentOrInterpolation());
     } else if (checkNumber(pos)) {
       content = content.concat(getNumber());
-    } else if (tokens[pos].type === TokenType.HyphenMinus) {
-      content.push(
-        newNode(
-          NodeType.IdentType,
-          tokens[pos].value,
-          tokens[pos].ln,
-          tokens[pos].col
-        )
-      );
-      pos++;
     } else break;
   }
 
@@ -5127,7 +5104,7 @@ function checkTypeSelector(i) {
 
   while (i < tokensLength) {
     if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
-    else if (tokens[i].type === TokenType.HyphenMinus) i++;
+    // Check for universal selector
     else if (tokens[i].type === TokenType.Asterisk) i++;
     else break;
   }
@@ -5152,22 +5129,14 @@ function getTypeSelector() {
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
 
   while (pos < end) {
-    if (tokens[pos].type === TokenType.Asterisk) {
-      let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
-      content.push(asteriskNode);
-      pos++;
-    } else if (checkIdentOrInterpolation(pos)) {
+    if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
     } else if (checkNumber(pos)) {
       content = content.concat(getNumber());
-    } else if (tokens[pos].type === TokenType.HyphenMinus) {
+    } else if (tokens[pos].type === TokenType.Asterisk) {
+      // Get universal selector
       content.push(
-        newNode(
-          NodeType.IdentType,
-          tokens[pos].value,
-          tokens[pos].ln,
-          tokens[pos].col
-        )
+        newNode(NodeType.IdentType, '*', tokens[pos].ln, tokens[pos].col)
       );
       pos++;
     } else break;
