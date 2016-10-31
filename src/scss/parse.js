@@ -330,46 +330,52 @@ function newNode(type, content, line, column, end) {
  * @returns {Number}
  */
 function checkAny(i) {
-  return checkBrackets(i) ||
-      checkParentheses(i) ||
-      checkString(i) ||
-      checkVariablesList(i) ||
-      checkVariable(i) ||
-      checkPlaceholder(i) ||
-      checkPercentage(i) ||
-      checkDimension(i) ||
-      checkUnicodeRange(i) ||
-      checkNumber(i) ||
-      checkUri(i) ||
-      checkExpression(i) ||
-      checkFunction(i) ||
-      checkInterpolation(i) ||
-      checkIdent(i) ||
-      checkClass(i) ||
-      checkUnary(i);
+  let l;
+
+  if (l = checkBrackets(i)) tokens[i].any_type = 1;
+  else if (l = checkParentheses(i)) tokens[i].any_type = 2;
+  else if (l = checkString(i)) tokens[i].any_type = 3;
+  else if (l = checkVariablesList(i)) tokens[i].any_type = 4;
+  else if (l = checkVariable(i)) tokens[i].any_type = 5;
+  else if (l = checkPlaceholder(i)) tokens[i].any_type = 6;
+  else if (l = checkPercentage(i)) tokens[i].any_type = 7;
+  else if (l = checkDimension(i)) tokens[i].any_type = 8;
+  else if (l = checkUnicodeRange(i)) tokens[i].any_type = 9;
+  else if (l = checkNumber(i)) tokens[i].any_type = 10;
+  else if (l = checkUri(i)) tokens[i].any_type = 11;
+  else if (l = checkExpression(i)) tokens[i].any_type = 12;
+  else if (l = checkFunction(i)) tokens[i].any_type = 13;
+  else if (l = checkInterpolation(i)) tokens[i].any_type = 14;
+  else if (l = checkIdent(i)) tokens[i].any_type = 15;
+  else if (l = checkClass(i)) tokens[i].any_type = 16;
+  else if (l = checkUnary(i)) tokens[i].any_type = 17;
+
+  return l;
 }
 
 /**
  * @returns {Array}
  */
 function getAny() {
-  if (checkBrackets(pos)) return getBrackets();
-  else if (checkParentheses(pos)) return getParentheses();
-  else if (checkString(pos)) return getString();
-  else if (checkVariablesList(pos)) return getVariablesList();
-  else if (checkVariable(pos)) return getVariable();
-  else if (checkPlaceholder(pos)) return getPlaceholder();
-  else if (checkPercentage(pos)) return getPercentage();
-  else if (checkDimension(pos)) return getDimension();
-  else if (checkUnicodeRange(pos)) return getUnicodeRange();
-  else if (checkNumber(pos)) return getNumber();
-  else if (checkUri(pos)) return getUri();
-  else if (checkExpression(pos)) return getExpression();
-  else if (checkFunction(pos)) return getFunction();
-  else if (checkInterpolation(pos)) return getInterpolation();
-  else if (checkIdent(pos)) return getIdent();
-  else if (checkClass(pos)) return getClass();
-  else if (checkUnary(pos)) return getUnary();
+  let type = tokens[pos].any_type;
+
+  if (type === 1) return getBrackets();
+  if (type === 2) return getParentheses();
+  if (type === 3) return getString();
+  if (type === 4) return getVariablesList();
+  if (type === 5) return getVariable();
+  if (type === 6) return getPlaceholder();
+  if (type === 7) return getPercentage();
+  if (type === 8) return getDimension();
+  if (type === 9) return getUnicodeRange();
+  if (type === 10) return getNumber();
+  if (type === 11) return getUri();
+  if (type === 12) return getExpression();
+  if (type === 13) return getFunction();
+  if (type === 14) return getInterpolation();
+  if (type === 15) return getIdent();
+  if (type === 16) return getClass();
+  if (type === 17) return getUnary();
 }
 
 /**
@@ -939,10 +945,22 @@ function getBlockdecl4() {
  * @returns {Number}
  */
 function checkBrackets(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftSquareBracket) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+
+  if (tokens[i].type === TokenType.LeftSquareBracket) i++;
+  else return 0;
+
+  if (i < tokens[start].right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -954,10 +972,14 @@ function getBrackets() {
   var token = tokens[startPos];
   var line = token.ln;
   var column = token.col;
+  let tsets = [];
+  let right = token.right;
 
   pos++;
 
-  var tsets = getTsets();
+  if (pos < right) {
+    tsets = getTsets();
+  }
 
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
@@ -2815,10 +2837,23 @@ function getOptional() {
  * @return {Number}
  */
 function checkParentheses(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+  let right = tokens[i].right;
+
+  if (tokens[i].type === TokenType.LeftParenthesis) i++;
+  else return 0;
+
+  if (i < right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -2830,10 +2865,15 @@ function getParentheses() {
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
+  let tsets = [];
+  let right = token.right;
 
   pos++;
 
-  var tsets = getTsets();
+  if (pos < right) {
+    tsets = getTsets();
+  }
+
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
 
@@ -3837,17 +3877,19 @@ function checkStylesheet(i) {
   let l;
 
   while (i < tokensLength) {
-    if (l = checkSC(i) ||
-        checkDeclaration(i) ||
-        checkDeclDelim(i) ||
-        checkInclude(i) ||
-        checkExtend(i) ||
-        checkMixin(i) ||
-        checkLoop(i) ||
-        checkConditionalStatement(i) ||
-        checkAtrule(i) ||
-        checkRuleset(i)) i += l;
+    if (l = checkSC(i)) tokens[i].ss_child = 1;
+    else if (l = checkRuleset(i)) tokens[i].ss_child = 2;
+    else if (l = checkInclude(i)) tokens[i].ss_child = 3;
+    else if (l = checkExtend(i)) tokens[i].ss_child = 4;
+    else if (l = checkMixin(i)) tokens[i].ss_child = 5;
+    else if (l = checkLoop(i)) tokens[i].ss_child = 6;
+    else if (l = checkConditionalStatement(i)) tokens[i].ss_child = 7;
+    else if (l = checkAtrule(i)) tokens[i].ss_child = 8;
+    else if (l = checkDeclaration(i)) tokens[i].ss_child = 9;
+    else if (l = checkDeclDelim(i)) tokens[i].ss_child = 10;
     else throwError(i);
+
+    i += l;
   }
 
   return i - start;
@@ -3862,17 +3904,18 @@ function getStylesheet() {
   let x = [];
 
   while (pos < tokensLength) {
-    if (checkSC(pos)) x = x.concat(getSC());
-    else if (checkRuleset(pos)) x.push(getRuleset());
-    else if (checkInclude(pos)) x.push(getInclude());
-    else if (checkExtend(pos)) x.push(getExtend());
-    else if (checkMixin(pos)) x.push(getMixin());
-    else if (checkLoop(pos)) x.push(getLoop());
-    else if (checkConditionalStatement(pos)) x.push(getConditionalStatement());
-    else if (checkAtrule(pos)) x.push(getAtrule());
-    else if (checkDeclaration(pos)) x.push(getDeclaration());
-    else if (checkDeclDelim(pos)) x.push(getDeclDelim());
-    else throwError();
+    let childType = tokens[pos].ss_child;
+
+    if (childType === 1) x = x.concat(getSC());
+    else if (childType === 2) x.push(getRuleset());
+    else if (childType === 3) x.push(getInclude());
+    else if (childType === 4) x.push(getExtend());
+    else if (childType === 5) x.push(getMixin());
+    else if (childType === 6) x.push(getLoop());
+    else if (childType === 7) x.push(getConditionalStatement());
+    else if (childType === 8) x.push(getAtrule());
+    else if (childType === 9) x.push(getDeclaration());
+    else if (childType === 10) x.push(getDeclDelim());
   }
 
   var token = tokens[startPos];
@@ -3884,22 +3927,27 @@ function getStylesheet() {
  * @returns {Number}
  */
 function checkTset(i) {
-  return checkVhash(i) ||
-      checkOperator(i) ||
-      checkAny(i) ||
-      checkSC(i) ||
-      checkInterpolation(i);
+  var l;
+  if (l = checkVhash(i)) tokens[i].tset_type = 1;
+  else if (l = checkOperator(i)) tokens[i].tset_type = 2;
+  else if (l = checkAny(i)) tokens[i].tset_type = 3;
+  else if (l = checkSC(i)) tokens[i].tset_type = 4;
+  else if (l = checkInterpolation(i)) tokens[i].tset_type = 5;
+
+  return l;
 }
 
 /**
  * @returns {Array}
  */
 function getTset() {
-  if (checkVhash(pos)) return getVhash();
-  else if (checkOperator(pos)) return getOperator();
-  else if (checkAny(pos)) return getAny();
-  else if (checkSC(pos)) return getSC();
-  else if (checkInterpolation(pos)) return getInterpolation();
+  let tsetType = tokens[pos].tset_type;
+
+  if (tsetType === 1) return getVhash();
+  else if (tsetType === 2) return getOperator();
+  else if (tsetType === 3) return getAny();
+  else if (tsetType === 4) return getSC();
+  else if (tsetType === 5) return getInterpolation();
 }
 
 /**
@@ -3916,6 +3964,7 @@ function checkTsets(i) {
     i += l;
   }
 
+  tokens[start].tsets_end = i;
   return i - start;
 }
 
@@ -3926,7 +3975,11 @@ function getTsets() {
   let x = [];
   let t;
 
-  while (t = getTset()) {
+  if (pos >= tokensLength) return x;
+
+  var end = tokens[pos].tsets_end;
+  while (pos < end) {
+    t = getTset();
     if (typeof t.content === 'string') x.push(t);
     else x = x.concat(t);
   }

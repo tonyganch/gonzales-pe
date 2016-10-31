@@ -776,10 +776,22 @@ function getBlockdecl4() {
  * @return {Number}
  */
 function checkBrackets(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftSquareBracket) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+
+  if (tokens[i].type === TokenType.LeftSquareBracket) i++;
+  else return 0;
+
+  if (i < tokens[start].right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -792,9 +804,15 @@ function getBrackets() {
   let line = token.ln;
   let column = token.col;
 
+  let tsets = [];
+  let right = token.right;
+
   pos++;
 
-  var tsets = getTsets();
+  if (pos < right) {
+    tsets = getTsets();
+  }
+
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
 
@@ -1744,10 +1762,23 @@ function getOperator() {
  * @return {Number}
  */
 function checkParentheses(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+  let right = tokens[i].right;
+
+  if (tokens[i].type === TokenType.LeftParenthesis) i++;
+  else return 0;
+
+  if (i < right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -1759,10 +1790,15 @@ function getParentheses() {
   let token = tokens[pos];
   let line = token.ln;
   let column = token.col;
+  let tsets = [];
+  let right = token.right;
 
   pos++;
 
-  var tsets = getTsets();
+  if (pos < right) {
+    tsets = getTsets();
+  }
+
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
 

@@ -896,10 +896,22 @@ function getBlockdecl4() {
  * @returns {Number}
  */
 function checkBrackets(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftSquareBracket) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+
+  if (tokens[i].type === TokenType.LeftSquareBracket) i++;
+  else return 0;
+
+  if (i < tokens[start].right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -907,16 +919,23 @@ function checkBrackets(i) {
  * @returns {Node}
  */
 function getBrackets() {
-  var startPos = pos++;
+  var startPos = pos;
   var token = tokens[startPos];
   var line = token.ln;
   var column = token.col;
-  var tsets = getTsets();
+  let tsets = [];
+  let right = token.right;
+
+  pos++;
+
+  if (pos < right) {
+    tsets = getTsets();
+  }
 
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
 
-  return newNode(NodeType.BracketsType, tsets, line, column, end);
+  return newNode(NodeType.BracketsType, tsets, token.ln, token.col, end);
 }
 
 /**
@@ -2236,10 +2255,23 @@ function getOperator() {
  * @return {Number}
  */
 function checkParentheses(i) {
-  if (i >= tokensLength ||
-      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+  if (i >= tokensLength) return 0;
 
-  return tokens[i].right - i + 1;
+  let start = i;
+  let right = tokens[i].right;
+
+  if (tokens[i].type === TokenType.LeftParenthesis) i++;
+  else return 0;
+
+  if (i < right) {
+    let l = checkTsets(i);
+    if (l) i += l;
+    else return 0;
+  }
+
+  i++;
+
+  return i - start;
 }
 
 /**
@@ -2247,14 +2279,18 @@ function checkParentheses(i) {
  * @return {Node}
  */
 function getParentheses() {
-  var type = NodeType.ParenthesesType;
-  var token = tokens[pos];
-  var line = token.ln;
-  var column = token.col;
+  let type = NodeType.ParenthesesType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let tsets = [];
+  let right = token.right;
 
   pos++;
 
-  var tsets = getTsets();
+  if (pos < right) {
+    tsets = getTsets();
+  }
 
   var end = getLastPosition(tsets, line, column, 1);
   pos++;
