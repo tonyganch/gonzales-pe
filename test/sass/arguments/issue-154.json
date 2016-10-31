@@ -1,0 +1,309 @@
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "color",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "delimiter",
+      "content": ",",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "alpha",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 1,
+                    "column": 11
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 15
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 10
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 10
+          },
+          "end": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "propertyDelimiter",
+          "content": ":",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 16
+          },
+          "end": {
+            "line": 1,
+            "column": 16
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 17
+          },
+          "end": {
+            "line": 1,
+            "column": 17
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "number",
+              "content": "1",
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 18
+              },
+              "end": {
+                "line": 1,
+                "column": 18
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 18
+          },
+          "end": {
+            "line": 1,
+            "column": 18
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 18
+      }
+    },
+    {
+      "type": "delimiter",
+      "content": ",",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 19
+      },
+      "end": {
+        "line": 1,
+        "column": 19
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 20
+      },
+      "end": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "is-trump",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 1,
+                    "column": 22
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 29
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 21
+              },
+              "end": {
+                "line": 1,
+                "column": 29
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 21
+          },
+          "end": {
+            "line": 1,
+            "column": 29
+          }
+        },
+        {
+          "type": "propertyDelimiter",
+          "content": ":",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 30
+          },
+          "end": {
+            "line": 1,
+            "column": 30
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 31
+          },
+          "end": {
+            "line": 1,
+            "column": 31
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "false",
+              "syntax": "sass",
+              "start": {
+                "line": 1,
+                "column": 32
+              },
+              "end": {
+                "line": 1,
+                "column": 36
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 32
+          },
+          "end": {
+            "line": 1,
+            "column": 36
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 21
+      },
+      "end": {
+        "line": 1,
+        "column": 36
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 37
+  }
+}

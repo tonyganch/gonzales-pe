@@ -438,7 +438,7 @@ function checkArgument(i) {
 
   if (l = checkBrackets(i)) tokens[i].argument_child = 1;
   else if (l = checkParentheses(i)) tokens[i].argument_child = 2;
-  else if (l = checkDeclaration(i)) tokens[i].argument_child = 3;
+  else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;
   else if (l = checkFunction(i)) tokens[i].argument_child = 4;
   else if (l = checkVariablesList(i)) tokens[i].argument_child = 5;
   else if (l = checkVariable(i)) tokens[i].argument_child = 6;
@@ -472,7 +472,7 @@ function getArgument() {
 
   if (childType === 1) return getBrackets();
   else if (childType === 2) return getParentheses();
-  else if (childType === 3) return getDeclaration();
+  else if (childType === 3) return getSingleValueDeclaration();
   else if (childType === 4) return getFunction();
   else if (childType === 5) return getVariablesList();
   else if (childType === 6) return getVariable();
@@ -1613,6 +1613,51 @@ function getDeclaration2() {
 }
 
 /**
+ * @param {number} i Token's index number
+ * @returns {number} Length of the declaration
+ */
+function checkSingleValueDeclaration(i) {
+  let start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkProperty(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkPropertyDelim(i)) i++;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkSingleValue(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with a declaration
+ * @returns {Array} `['declaration', ['property', x], ['propertyDelim'],
+ *       ['value', y]]`
+ */
+function getSingleValueDeclaration() {
+  let startPos = pos;
+  let x = [];
+
+  x.push(getProperty());
+  x = x.concat(getSC());
+  x.push(getPropertyDelim());
+  x = x.concat(getSC());
+  x.push(getSingleValue());
+
+  var token = tokens[startPos];
+  return newNode(NodeType.DeclarationType, x, token.ln, token.col);
+}
+
+/**
  * Check if token is a semicolon
  * @param {number} i Token's index number
  * @return {number} `1` if token is a semicolon, otherwise `0`
@@ -1940,7 +1985,7 @@ function getArguments() {
 
   while (pos < tokensLength &&
       tokens[pos].type !== TokenType.RightParenthesis) {
-    if (checkDeclaration(pos)) x.push(getDeclaration());
+    if (checkSingleValueDeclaration(pos)) x.push(getSingleValueDeclaration());
     else if (checkArgument(pos)) {
       body = getArgument();
       if (typeof body.content === 'string') x.push(body);
@@ -4711,6 +4756,69 @@ function _getValue() {
   if (checkInterpolation(pos)) return getInterpolation();
   if (checkParentSelector(pos)) return getParentSelector();
 }
+
+/**
+ * @param {number} i Token's index number
+ * @returns {number} Length of the value
+ */
+function checkSingleValue(i) {
+  let start = i;
+  let l;
+  let s;
+  let _i;
+
+  while (i < tokensLength) {
+    if (checkDeclDelim(i) || checkDelim(i)) break;
+
+    if (l = checkBlock(i)) {
+      i += l;
+      break;
+    }
+
+    s = checkSC(i);
+    _i = i + s;
+
+    if (l = _checkValue(_i)) i += l + s;
+    if (!l || checkBlock(i - l)) break;
+  }
+
+  return i - start;
+}
+
+/**
+ * @returns {Array}
+ */
+function getSingleValue() {
+  let startPos = pos;
+  let x = [];
+  let _pos;
+  let s;
+
+  while (pos < tokensLength) {
+    if (checkDeclDelim(pos) || checkDelim(pos)) break;
+
+    s = checkSC(pos);
+    _pos = pos + s;
+
+    if (checkDeclDelim(_pos) || checkDelim(_pos)) break;
+
+    if (checkBlock(pos)) {
+      x.push(getBlock());
+      break;
+    }
+
+    if (!_checkValue(_pos)) break;
+
+    if (s) x.push(getS());
+    x.push(_getValue());
+
+    if (checkBlock(_pos)) break;
+  }
+
+  var token = tokens[startPos];
+  return newNode(NodeType.ValueType, x, token.ln, token.col);
+}
+
 
 /**
  * Check if token is part of a variable

@@ -1,0 +1,349 @@
+{
+  "type": "arguments",
+  "content": [
+    {
+      "type": "space",
+      "content": "\n  ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 2,
+        "column": 2
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "transition-duration",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 2,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 22
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 22
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 2,
+            "column": 22
+          }
+        },
+        {
+          "type": "propertyDelimiter",
+          "content": ":",
+          "syntax": "scss",
+          "start": {
+            "line": 2,
+            "column": 23
+          },
+          "end": {
+            "line": 2,
+            "column": 23
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "scss",
+          "start": {
+            "line": 2,
+            "column": 24
+          },
+          "end": {
+            "line": 2,
+            "column": 24
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "default",
+              "syntax": "scss",
+              "start": {
+                "line": 2,
+                "column": 25
+              },
+              "end": {
+                "line": 2,
+                "column": 31
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 2,
+            "column": 25
+          },
+          "end": {
+            "line": 2,
+            "column": 31
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 2,
+        "column": 3
+      },
+      "end": {
+        "line": 2,
+        "column": 31
+      }
+    },
+    {
+      "type": "delimiter",
+      "content": ",",
+      "syntax": "scss",
+      "start": {
+        "line": 2,
+        "column": 32
+      },
+      "end": {
+        "line": 2,
+        "column": 32
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n  ",
+      "syntax": "scss",
+      "start": {
+        "line": 2,
+        "column": 33
+      },
+      "end": {
+        "line": 3,
+        "column": 2
+      }
+    },
+    {
+      "type": "declaration",
+      "content": [
+        {
+          "type": "property",
+          "content": [
+            {
+              "type": "variable",
+              "content": [
+                {
+                  "type": "ident",
+                  "content": "transition-timing-function",
+                  "syntax": "scss",
+                  "start": {
+                    "line": 3,
+                    "column": 4
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 29
+                  }
+                }
+              ],
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 3
+              },
+              "end": {
+                "line": 3,
+                "column": 29
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 3,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 29
+          }
+        },
+        {
+          "type": "propertyDelimiter",
+          "content": ":",
+          "syntax": "scss",
+          "start": {
+            "line": 3,
+            "column": 30
+          },
+          "end": {
+            "line": 3,
+            "column": 30
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "scss",
+          "start": {
+            "line": 3,
+            "column": 31
+          },
+          "end": {
+            "line": 3,
+            "column": 31
+          }
+        },
+        {
+          "type": "value",
+          "content": [
+            {
+              "type": "ident",
+              "content": "default",
+              "syntax": "scss",
+              "start": {
+                "line": 3,
+                "column": 32
+              },
+              "end": {
+                "line": 3,
+                "column": 38
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 3,
+            "column": 32
+          },
+          "end": {
+            "line": 3,
+            "column": 38
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 3,
+        "column": 3
+      },
+      "end": {
+        "line": 3,
+        "column": 38
+      }
+    },
+    {
+      "type": "delimiter",
+      "content": ",",
+      "syntax": "scss",
+      "start": {
+        "line": 3,
+        "column": 39
+      },
+      "end": {
+        "line": 3,
+        "column": 39
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n  ",
+      "syntax": "scss",
+      "start": {
+        "line": 3,
+        "column": 40
+      },
+      "end": {
+        "line": 4,
+        "column": 2
+      }
+    },
+    {
+      "type": "variablesList",
+      "content": [
+        {
+          "type": "variable",
+          "content": [
+            {
+              "type": "ident",
+              "content": "transition-property",
+              "syntax": "scss",
+              "start": {
+                "line": 4,
+                "column": 4
+              },
+              "end": {
+                "line": 4,
+                "column": 22
+              }
+            }
+          ],
+          "syntax": "scss",
+          "start": {
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "line": 4,
+            "column": 22
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 4,
+        "column": 3
+      },
+      "end": {
+        "line": 4,
+        "column": 25
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "scss",
+      "start": {
+        "line": 4,
+        "column": 26
+      },
+      "end": {
+        "line": 4,
+        "column": 26
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 5,
+    "column": 1
+  }
+}

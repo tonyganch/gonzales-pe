@@ -12,3 +12,6 @@ describe 'sass/arguments >>', ->
   it 'flag.2', -> this.shouldBeOk()
   it 'flag.3', -> this.shouldBeOk()
   it 'flag.4', -> this.shouldBeOk()
+
+  it 'issue-154', -> this.shouldBeOk()
+  it 'issue-219', -> this.shouldBeOk()
