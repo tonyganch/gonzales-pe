@@ -984,7 +984,7 @@ function checkClass(i) {
   else return 0;
 
   while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
+    if (l = checkIdentOrInterpolation(i)) i += l;
     else break;
   }
 
@@ -1013,18 +1013,6 @@ function getClass() {
   while (pos < end) {
     if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
-    } else if (checkNumber(pos)) {
-      content = content.concat(getNumber());
-    } else if (tokens[pos].type === TokenType.HyphenMinus) {
-      content.push(
-        newNode(
-          NodeType.IdentType,
-          tokens[pos].value,
-          tokens[pos].ln,
-          tokens[pos].col
-        )
-      );
-      pos++;
     } else break;
   }
 
@@ -1707,6 +1695,11 @@ function checkIdent(i) {
 
   if (tokens[i].type === TokenType.HyphenMinus) i++;
 
+  if (checkInterpolation(i)) {
+    tokens[start].ident_last = i - 1;
+    return i - start;
+  }
+
   if (tokens[i].type === TokenType.LowLine ||
       tokens[i].type === TokenType.Identifier) i++;
   else return 0;
@@ -1761,10 +1754,22 @@ function checkPartialIdent(i) {
 function checkIdentOrInterpolation(i) {
   let start = i;
   let l;
+  let prevIsInterpolation = false;
 
   while (i < tokensLength) {
-    if (l = checkInterpolation(i) || checkIdent(i) || checkPartialIdent(i)) i += l;
-    else break;
+    if (l = checkInterpolation(i)) {
+      tokens[i].ii_type = 1;
+      i += l;
+      prevIsInterpolation = true;
+    } else if (l = checkIdent(i)) {
+      tokens[i].ii_type = 2;
+      i += l;
+      prevIsInterpolation = false;
+    } else if (prevIsInterpolation && (l = checkPartialIdent(i))) {
+      tokens[i].ii_type = 3;
+      i += l;
+      prevIsInterpolation = false;
+    } else break;
   }
 
   return i - start;
@@ -1774,8 +1779,13 @@ function getIdentOrInterpolation() {
   let x = [];
 
   while (pos < tokensLength) {
-    if (checkInterpolation(pos)) x.push(getInterpolation());
-    else if (checkIdent(pos) || checkPartialIdent(pos)) x.push(getIdent());
+    let tokenType = tokens[pos].ii_type;
+
+    if (tokenType === 1) {
+      x.push(getInterpolation());
+    } else if (tokenType === 2 || tokenType === 3) {
+      x.push(getIdent());
+    }
     else break;
   }
 
@@ -2817,8 +2827,7 @@ function checkParentSelectorExtension(i) {
   if (i >= tokensLength) return 0;
 
   while (i < tokensLength) {
-    if (l = checkNumber(i) ||
-        checkIdentOrInterpolation(i)) i += l;
+    if (l = checkIdentOrInterpolation(i) || checkPartialIdent(i)) i += l;
     else break;
   }
 
@@ -2837,10 +2846,10 @@ function getParentSelectorExtension() {
   let content = [];
 
   while (pos < tokensLength) {
-    if (checkNumber(pos)) {
-      content.push(getNumber());
-    } else if (checkIdentOrInterpolation(pos)) {
+    if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
+    } else if (checkPartialIdent(pos)) {
+      content.push(getIdent());
     } else break;
   }
 
@@ -3697,13 +3706,14 @@ function checkShash(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (tokens[i].type === TokenType.NumberSign) {
-    if (checkInterpolation(i)) return 0;
-    i++;
-  } else return 0;
+  if (tokens[i].type === TokenType.NumberSign) i++;
+  else return 0;
+
+  if (l = checkIdentOrInterpolation(i) || checkPartialIdent(i)) i += l;
+  else return 0;
 
   while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
+    if (l = checkIdentOrInterpolation(i) || checkPartialIdent(i)) i += l;
     else break;
   }
 
@@ -3731,8 +3741,8 @@ function getShash() {
   while (pos < end) {
     if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
-    } else if (checkNumber(pos)) {
-      content = content.concat(getNumber());
+    } else if (checkPartialIdent(pos)) {
+      content.push(getIdent());
     } else break;
   }
 
@@ -4628,7 +4638,7 @@ function checkTypeSelector(i) {
   if (l = checkNamePrefix(i)) i += l;
 
   while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i) || checkNumber(i)) i += l;
+    if (l = checkIdentOrInterpolation(i)) i += l;
     // Check for universal selector
     else if (tokens[i].type === TokenType.Asterisk) i++;
     else break;
@@ -4656,8 +4666,6 @@ function getTypeSelector() {
   while (pos < end) {
     if (checkIdentOrInterpolation(pos)) {
       content = content.concat(getIdentOrInterpolation());
-    } else if (checkNumber(pos)) {
-      content = content.concat(getNumber());
     } else if (tokens[pos].type === TokenType.Asterisk) {
       // Get universal selector
       content.push(
