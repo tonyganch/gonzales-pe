@@ -119,6 +119,9 @@ var contexts = {
   'unicodeRange': () => {
     return checkUnicodeRange(pos) && getUnicodeRange();
   },
+  'universalSelector': () => {
+    return checkUniversalSelector(pos) && getUniversalSelector();
+  },
   'urange': () => {
     return checkUrange(pos) && getUrange();
   },
@@ -256,7 +259,7 @@ function getLastPositionForArray(content, line, column, colOffset) {
 
   if (!colOffset) return position;
 
-  if (tokens[pos - 1].type !== 'Newline') {
+  if (tokens[pos - 1] && tokens[pos - 1].type !== 'Newline') {
     position[1] += colOffset;
   } else {
     position[0]++;
@@ -3168,7 +3171,7 @@ function checkCompoundSelector1(i) {
   let start = i;
 
   let l;
-  if (l = checkTypeSelector(i)) i += l;
+  if (l = checkUniversalSelector(i) || checkTypeSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
@@ -3189,7 +3192,8 @@ function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
-  sequence.push(getTypeSelector());
+  if (checkUniversalSelector(pos)) sequence.push(getUniversalSelector());
+  else sequence.push(getTypeSelector());
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
@@ -3234,7 +3238,7 @@ function getCompoundSelector2() {
   return sequence;
 }
 
-function checkTypeSelector(i) {
+function checkUniversalSelector(i) {
   if (i >= tokensLength) return 0;
 
   let start = i;
@@ -3243,7 +3247,38 @@ function checkTypeSelector(i) {
   if (l = checkNamePrefix(i)) i += l;
 
   if (tokens[i].type === TokenType.Asterisk) i++;
-  else if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getUniversalSelector() {
+  let type = NodeType.UniversalSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let end;
+
+  if (checkNamePrefix(pos)) {
+    content.push(getNamePrefix());
+    end = getLastPosition(content, line, column, 1);
+  }
+
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
+function checkTypeSelector(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkNamePrefix(i)) i += l;
+
+  if (l = checkIdent(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3258,12 +3293,7 @@ function getTypeSelector() {
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
 
-  token = tokens[pos];
-  if (token.type === TokenType.Asterisk) {
-    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
-    content.push(asteriskNode);
-    pos++;
-  } else if (checkIdent(pos)) content.push(getIdent());
+  content.push(getIdent());
 
   return newNode(type, content, line, column);
 }

@@ -60,6 +60,7 @@ module.exports = {
   StylesheetType: 'stylesheet',
   TypeSelectorType: 'typeSelector',
   UnicodeRangeType: 'unicodeRange',
+  UniversalSelectorType: 'universalSelector',
   UriType: 'uri',
   UrangeType: 'urange',
   ValueType: 'value',

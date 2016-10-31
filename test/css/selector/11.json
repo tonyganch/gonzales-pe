@@ -2,7 +2,7 @@
   "type": "selector",
   "content": [
     {
-      "type": "typeSelector",
+      "type": "universalSelector",
       "content": [
         {
           "type": "namePrefix",
@@ -57,19 +57,6 @@
             "line": 1,
             "column": 2
           }
-        },
-        {
-          "type": "ident",
-          "content": "*",
-          "syntax": "css",
-          "start": {
-            "line": 1,
-            "column": 3
-          },
-          "end": {
-            "line": 1,
-            "column": 3
-          }
         }
       ],
       "syntax": "css",
@@ -105,22 +92,8 @@
               "type": "selector",
               "content": [
                 {
-                  "type": "typeSelector",
-                  "content": [
-                    {
-                      "type": "ident",
-                      "content": "*",
-                      "syntax": "css",
-                      "start": {
-                        "line": 1,
-                        "column": 9
-                      },
-                      "end": {
-                        "line": 1,
-                        "column": 9
-                      }
-                    }
-                  ],
+                  "type": "universalSelector",
+                  "content": [],
                   "syntax": "css",
                   "start": {
                     "line": 1,

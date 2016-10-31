@@ -153,6 +153,9 @@ const contexts = {
   'unicodeRange': () => {
     return checkUnicodeRange(pos) && getUnicodeRange();
   },
+  'universalSelector': () => {
+    return checkUniversalSelector(pos) && getUniversalSelector();
+  },
   'urange': () => {
     return checkUrange(pos) && getUrange();
   },
@@ -5153,7 +5156,8 @@ function checkCompoundSelector1(i) {
   let start = i;
   let l;
 
-  if (l = checkTypeSelector(i) ||
+  if (l = checkUniversalSelector(i) ||
+      checkTypeSelector(i) ||
       checkPlaceholder(i) ||
       checkParentSelectorWithExtension(i)) i += l;
   else return 0;
@@ -5181,7 +5185,8 @@ function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
-  if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
+  if (checkUniversalSelector(pos)) sequence.push(getUniversalSelector());
+  else if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
   else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
   else if (checkParentSelectorWithExtension(pos))
     sequence = sequence.concat(getParentSelectorWithExtension());
@@ -5250,6 +5255,38 @@ function getCompoundSelector2() {
   return sequence;
 }
 
+function checkUniversalSelector(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkNamePrefix(i)) i += l;
+
+  if (tokens[i].type === TokenType.Asterisk) i++;
+  else return 0;
+
+  return i - start;
+}
+
+function getUniversalSelector() {
+  let type = NodeType.UniversalSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let end;
+
+  if (checkNamePrefix(pos)) {
+    content.push(getNamePrefix());
+    end = getLastPosition(content, line, column, 1);
+  }
+
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
 /**
  * Check if token is part of a type selector
  * @param {number} i Token's index
@@ -5263,14 +5300,8 @@ function checkTypeSelector(i) {
 
   if (l = checkNamePrefix(i)) i += l;
 
-  while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i)) i += l;
-    // Check for universal selector
-    else if (tokens[i].type === TokenType.Asterisk) i++;
-    else break;
-  }
-
-  tokens[start].typeEnd = i;
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
 
   return i - start;
 }
@@ -5284,22 +5315,11 @@ function getTypeSelector() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const end = token.typeEnd;
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
 
-  while (pos < end) {
-    if (checkIdentOrInterpolation(pos)) {
-      content = content.concat(getIdentOrInterpolation());
-    } else if (tokens[pos].type === TokenType.Asterisk) {
-      // Get universal selector
-      content.push(
-        newNode(NodeType.IdentType, '*', tokens[pos].ln, tokens[pos].col)
-      );
-      pos++;
-    } else break;
-  }
+  content = content.concat(getIdentOrInterpolation());
 
   return newNode(type, content, line, column);
 }

@@ -135,6 +135,9 @@ var contexts = {
   'unicodeRange': () => {
     return checkUnicodeRange(pos) && getUnicodeRange();
   },
+  'universalSelector': () => {
+    return checkUniversalSelector(pos) && getUniversalSelector();
+  },
   'urange': () => {
     return checkUrange(pos) && getUrange();
   },
@@ -3879,7 +3882,8 @@ function checkCompoundSelector1(i) {
   let start = i;
 
   let l;
-  if (l = checkTypeSelector(i) ||
+  if (l = checkUniversalSelector(i) ||
+      checkTypeSelector(i) ||
       checkParentSelectorWithExtension(i)) i += l;
   else return 0;
 
@@ -3901,7 +3905,8 @@ function getCompoundSelector1() {
   let sequence = [];
   let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
-  if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
+  if (checkUniversalSelector(pos)) sequence.push(getUniversalSelector());
+  else if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
   else if (checkParentSelectorWithExtension(pos))
     sequence = sequence.concat(getParentSelectorWithExtension());
 
@@ -3948,7 +3953,7 @@ function getCompoundSelector2() {
   return sequence;
 }
 
-function checkTypeSelector(i) {
+function checkUniversalSelector(i) {
   if (i >= tokensLength) return 0;
 
   let start = i;
@@ -3957,7 +3962,38 @@ function checkTypeSelector(i) {
   if (l = checkNamePrefix(i)) i += l;
 
   if (tokens[i].type === TokenType.Asterisk) i++;
-  else if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+function getUniversalSelector() {
+  let type = NodeType.UniversalSelectorType;
+  let token = tokens[pos];
+  let line = token.ln;
+  let column = token.col;
+  let content = [];
+  let end;
+
+  if (checkNamePrefix(pos)) {
+    content.push(getNamePrefix());
+    end = getLastPosition(content, line, column, 1);
+  }
+
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
+function checkTypeSelector(i) {
+  if (i >= tokensLength) return 0;
+
+  let start = i;
+  let l;
+
+  if (l = checkNamePrefix(i)) i += l;
+
+  if (l = checkIdent(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3972,12 +4008,7 @@ function getTypeSelector() {
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
 
-  token = tokens[pos];
-  if (token.type === TokenType.Asterisk) {
-    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
-    content.push(asteriskNode);
-    pos++;
-  } else if (checkIdent(pos)) content.push(getIdent());
+  content.push(getIdent());
 
   return newNode(type, content, line, column);
 }

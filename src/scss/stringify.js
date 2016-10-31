@@ -77,6 +77,9 @@ module.exports = function stringify(tree) {
     'singlelineComment': function(t) {
       return '/' + '/' + t.content;
     },
+    'universalSelector': function(t) {
+      return _composite(t.content) + '*';
+    },
     'uri': function(t) {
       return 'url(' + _composite(t.content) + ')';
     },

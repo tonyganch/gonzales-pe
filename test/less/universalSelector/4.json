@@ -1,0 +1,68 @@
+{
+  "type": "universalSelector",
+  "content": [
+    {
+      "type": "namePrefix",
+      "content": [
+        {
+          "type": "namespacePrefix",
+          "content": [
+            {
+              "type": "ident",
+              "content": "ns",
+              "syntax": "less",
+              "start": {
+                "line": 1,
+                "column": 1
+              },
+              "end": {
+                "line": 1,
+                "column": 2
+              }
+            }
+          ],
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 2
+          }
+        },
+        {
+          "type": "namespaceSeparator",
+          "content": "|",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 3
+      }
+    }
+  ],
+  "syntax": "less",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 4
+  }
+}

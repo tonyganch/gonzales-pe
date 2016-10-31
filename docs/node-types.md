@@ -65,6 +65,7 @@ methods may be available. Please see [README](../README.md) for API reference.
 - [stylesheet](#stylesheet)
 - [typeSelector](#typeselector)
 - [unicodeRange](#unicoderange)
+- [universalSelector](#universalselector)
 - [urange](#urange)
 - [uri](#uri)
 - [value](#value)
@@ -1799,6 +1800,50 @@ U+A5, U+4E00-9FFF
   {
     type: 'urange',
     content: 'U+4E00-9FFF',
+  }]
+}
+```
+
+
+### universalSelector
+
+##### Description
+
+See https://www.w3.org/TR/css3-selectors/#universal-selector.
+Used in syntaxes: css, less, sass, scss.
+
+##### Examples
+
+```js
+// String
+*
+
+// Parse tree
+{
+  type: 'universalSelector',
+  content: []
+}
+```
+
+```js
+// String
+ns|*
+
+// Parse tree
+{
+  type: 'universalSelector',
+  content: [{
+    type: 'namePrefix',
+    content: [{
+      type: 'namespacePrefix',
+      content: [{
+        type: 'ident',
+        content: 'ns'
+      }]
+    }, {
+      type: 'namespaceSeparator',
+      content: '|'
+    }]
   }]
 }
 ```
