@@ -11,6 +11,7 @@ function test {
 
 function run_all_tests {
 ./scripts/build.sh
+./scripts/compile.sh
 
 printf "\n\
 ---------------------\n\
@@ -34,6 +35,7 @@ printf "\n\
 
 function run_syntax_tests {
 ./scripts/build.sh "$1"
+./scripts/compile.sh
 
 printf "\n\
 ----------------------\n\
