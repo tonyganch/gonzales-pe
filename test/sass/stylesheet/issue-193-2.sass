@@ -1,0 +1,9 @@
+@mixin media-breakpoint-notebook
+    @media (max-width: 1280px) and (min-width: 1024px)
+        @content
+
+// $noop: 0 // hide sass-lint false error
+
+@mixin media-breakpoint-msie-10-11
+    @media (-ms-high-contrast: none), (-ms-high-contrast: active)
+        @content

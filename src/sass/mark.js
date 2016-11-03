@@ -127,105 +127,87 @@ module.exports = (function() {
   }
 
   function markBlocks(tokens) {
-    let blocks = {};
-    let currentIL = 0;
     let i = 0;
     let l = tokens.length;
-    let iw;
+    let lines = [];
+    let whitespaceOnlyLines = [];
 
-    for (; i !== l; i++) {
-      if (!tokens[i - 1]) continue;
+    for (i = 0; i < l; i++) {
+      let lineStart = i;
+      let currentLineIndent = 0;
 
-      // Skip all tokens on current line:
-      if (tokens[i].type !== TokenType.Newline) continue;
-
-      var end = getBlockEnd(tokens, i + 1, currentIL, iw);
-      if (!iw) iw = end.iw;
-
-      if (end.indent && end.indent === currentIL) continue;
-
-      // Not found nested block.
-      if (end.end !== null) {
-        markBlocksWithIndent(tokens, blocks, end);
-
-        for (let z = end.end + 1; z < l; z++) {
-          if (tokens[z].type === TokenType.Space ||
-              tokens[z].type === TokenType.Tab ||
-              tokens[z].type === TokenType.CommentSL ||
-              tokens[z].type === TokenType.CommentML) continue;
-          if (tokens[z].type === TokenType.Newline) i = z;
-          break;
-        }
+      // Get all spaces.
+      while (i < l && (tokens[i].type === TokenType.Space ||
+          tokens[i].type === TokenType.Tab)) {
+        currentLineIndent += tokens[i].value.length;
+        i++;
       }
 
-      if (!blocks[end.indent]) blocks[end.indent] = [];
-      blocks[end.indent].push(i + 1);
-      currentIL = end.indent;
+      lines.push([lineStart, currentLineIndent]);
+
+      let x = i;
+      while (i < l && tokens[i].type !== TokenType.Newline) {
+        i++;
+      }
+
+      if (x === i) {
+        whitespaceOnlyLines.push(lines.length - 1);
+      }
     }
 
-    markBlocksWithIndent(tokens, blocks, {end: i - 1, indent: 0});
-  }
+    let levels = [0];
+    let blockStarts = [];
 
-  function getBlockEnd(tokens, i, indent, iw, maybeEnd) {
-    let spaces = '';
-    if (!maybeEnd) maybeEnd = i - 1;
+    for (i = 0; i < lines.length; i++) {
+      let line = lines[i];
+      let token = line[0];
+      let indent = line[1];
+      let lastLevel = levels[levels.length - 1];
 
-    if (!tokens[i]) return {end: maybeEnd, indent: 0};
-
-    for (let l = tokens.length; i < l; i++) {
-      if (tokens[i].type === TokenType.Space ||
-          tokens[i].type === TokenType.Tab ||
-          tokens[i].type === TokenType.CommentML ||
-          tokens[i].type === TokenType.CommentSL ||
-          tokens[i].type === TokenType.Newline) {
-        spaces += tokens[i].value;
-        continue;
-      }
-
-      // Got all spaces.
-      // Find trailing spaces.
-      var lastNewline = spaces.lastIndexOf('\n');
-      spaces = spaces.slice(lastNewline + 1);
-
-      // Mark previous node as block end.
-      if (!spaces) return {end: maybeEnd, indent: 0};
-
-      if (!iw) iw = spaces.length;
-      let newIndent = spaces.length / iw;
-
-      if (newIndent < indent)
-          return {end: maybeEnd, indent: newIndent, iw: iw};
-
-      if (newIndent === indent) {
-        // Look for line end
-        for (; i < l; i++) {
-          if (tokens[i].type !== TokenType.Newline) continue;
-          let end = getBlockEnd(tokens, i + 1, indent, iw, maybeEnd);
-          return {end: end.end, indent: indent, iw: iw};
-        }
-
-        return {end: i - 1, indent: newIndent, iw: iw};
+      if (indent > lastLevel) {
+        blockStarts.push(token);
+        levels.push(indent);
       } else {
-        // If newIndent > indent
-        return {end: null, indent: newIndent, iw: iw};
+        // Check if line is whitespace-only.
+        let p = i;
+
+        while (true) {
+          if (whitespaceOnlyLines.indexOf(p) === -1) break;
+          p++;
+        }
+
+        if (i === p && indent === lastLevel) continue;
+
+        indent = lines[p][1];
+
+        if (indent === lastLevel) {
+          i = p;
+          continue;
+        }
+
+        if (indent > lastLevel) {
+          blockStarts.push(token);
+          levels.push(lines[p][1]);
+          i = p;
+          continue;
+        }
+
+        while (true) {
+          let lastLevel = levels.pop();
+          if (indent < lastLevel) {
+            let start = blockStarts.pop();
+            tokens[start].block_end = token - 1;
+          } else {
+            levels.push(indent);
+            break;
+          }
+        }
       }
     }
 
-    return {end: i - 1};
-  }
-
-  function markBlocksWithIndent(tokens, blocks, end) {
-    for (let indent in blocks) {
-      if (indent < end.indent + 1) continue;
-      let block = blocks[indent];
-      if (!block) continue;
-
-      for (let x = 0; x < block.length; x++) {
-        let y = block[x];
-        tokens[y].block_end = end.end;
-      }
-      blocks[indent] = null;
-    }
+    blockStarts.forEach(start => {
+      tokens[start].block_end = tokens.length - 1;
+    });
   }
 
   return function(tokens) {

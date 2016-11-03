@@ -663,14 +663,18 @@ function checkAtrulers(i) {
   let l;
 
   if (i >= tokensLength) return 0;
-  if (!tokens[i].block_end) return 0;
+
+  let blockEnd = tokens[i].block_end;
+  if (!blockEnd) return 0;
 
   if (l = checkSC(i)) i += l;
 
   if (l = checkRuleset(i) || checkAtrule(i)) i += l;
   else return 0;
 
-  while (l = checkRuleset(i) || checkAtrule(i) || checkSC(i)) {
+  while (i < blockEnd) {
+    l = checkRuleset(i) || checkAtrule(i) || checkSC(i);
+    if (!l) return 0;
     i += l;
   }
 
