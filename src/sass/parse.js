@@ -2219,10 +2219,12 @@ function checkInclude(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (l = checkInclude1(i)) tokens[i].include_type = 1;
+  if (l = checkIncludeWithKeyframes1(i)) tokens[i].include_type = 9;
+  else if (l = checkInclude1(i)) tokens[i].include_type = 1;
   else if (l = checkInclude2(i)) tokens[i].include_type = 2;
   else if (l = checkInclude3(i)) tokens[i].include_type = 3;
   else if (l = checkInclude4(i)) tokens[i].include_type = 4;
+  else if (l = checkIncludeWithKeyframes2(i)) tokens[i].include_type = 10;
   else if (l = checkInclude5(i)) tokens[i].include_type = 5;
   else if (l = checkInclude6(i)) tokens[i].include_type = 6;
   else if (l = checkInclude7(i)) tokens[i].include_type = 7;
@@ -2245,6 +2247,8 @@ function getInclude() {
     case 6: return getInclude6();
     case 7: return getInclude7();
     case 8: return getInclude8();
+    case 9: return getIncludeWithKeyframes1();
+    case 10: return getIncludeWithKeyframes2();
   }
 }
 
@@ -2606,6 +2610,110 @@ function getInclude8() {
 }
 
 /**
+ * Get node with included mixin with keyfames selector like
+ * `@include nani(foo) { 0% {}}`
+ * @param {number} i Token's index number
+ * @returns {number} Length of the include
+ */
+function checkIncludeWithKeyframes1(i) {
+  let start = i;
+  let l;
+
+  if (l = checkAtkeyword(i)) i += l;
+  else return 0;
+
+  if (tokens[start + 1].value !== 'include') return 0;
+
+  if (l = checkSC(i)) i += l;
+  else return 0;
+
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkArguments(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkKeyframesBlocks(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with included mixin with keyfames selector like
+ * `@include nani(foo) { 0% {}}`
+ * @return {!Node}
+ */
+function getIncludeWithKeyframes1() {
+  let startPos = pos;
+  let x = [].concat(
+      getAtkeyword(),
+      getSC(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getArguments(),
+      getSC(),
+      getKeyframesBlocks()
+  );
+
+  var token = tokens[startPos];
+  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+}
+
+/**
+ * Get node with included mixin with keyfames selector like
+ * `+nani(foo) { 0% {}}`
+ * @param {number} i Token's index number
+ * @returns {number} Length of the include
+ */
+function checkIncludeWithKeyframes2(i) {
+  let start = i;
+  let l;
+
+  if (tokens[i].type === TokenType.PlusSign) i++;
+  else return 0;
+
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkArguments(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkKeyframesBlocks(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with included mixin with keyfames selector like
+ * `+nani(foo) { 0% {}}`
+ * @return {!Node}
+ */
+function getIncludeWithKeyframes2() {
+  let startPos = pos;
+  let x = [].concat(
+      getOperator(),
+      getIdentOrInterpolation(),
+      getSC(),
+      getArguments(),
+      getSC(),
+      getKeyframesBlocks()
+  );
+
+  var token = tokens[startPos];
+  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+}
+
+/**
  * Check if token is part of an interpolated variable (e.g. `#{$nani}`).
  * @param {number} i Token's index number
  * @return {number}
@@ -2706,8 +2814,26 @@ function getKeyframesBlock() {
  * @return {number}
  */
 function checkKeyframesBlocks(i) {
-  return i < tokensLength && tokens[i].block_end ?
-      tokens[i].block_end - i + 1 : 0;
+  if (i >= tokensLength) return 0;
+
+  let blockEnd = tokens[i].block_end;
+  let start = i;
+  let l;
+
+  if (!blockEnd) return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkKeyframesBlock(i)) i += l;
+  else return 0;
+
+  while (i < blockEnd) {
+    if (l = checkSC(i)) i += l;
+    else if (l = checkKeyframesBlock(i)) i += l;
+    else break;
+  }
+
+  return blockEnd + 1 - start;
 }
 
 /**
