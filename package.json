@@ -10,7 +10,7 @@
     "email": "tonyganch+github@gmail.com",
     "url": "http://tonyganch.com"
   },
-  "main": "./lib/gonzales",
+  "main": "./lib/gonzales.min",
   "repository": {
     "type": "git",
     "url": "http://github.com/tonyganch/gonzales-pe.git"
@@ -36,12 +36,12 @@
     "babel-loader": "^5.3.2",
     "coffee-script": "~1.7.1",
     "eslint": "^3.0.0",
+    "google-closure-compiler": "^20161024.1.0",
     "jscs": "2.1.0",
     "jshint": "2.8.0",
     "json-loader": "^0.5.3",
     "mocha": "2.2.x",
-    "webpack": "^1.12.2",
-    "webpack-closure-compiler": "^2.0.2"
+    "webpack": "^1.12.2"
   },
   "engines": {
     "node": ">=0.6.0"
