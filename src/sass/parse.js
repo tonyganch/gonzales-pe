@@ -363,6 +363,7 @@ function checkAny(i) {
   else if (l = checkIdent(i)) tokens[i].any_child = 15;
   else if (l = checkClass(i)) tokens[i].any_child = 16;
   else if (l = checkUnary(i)) tokens[i].any_child = 17;
+  else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
 
   return l;
 }
@@ -390,6 +391,7 @@ function getAny() {
   if (childType === 15) return getIdent();
   if (childType === 16) return getClass();
   if (childType === 17) return getUnary();
+  if (childType === 18) return getParentSelector();
 }
 
 /**
@@ -4686,15 +4688,14 @@ function getStylesheet() {
 }
 
 /**
- * @param {number} i Token's index number
- * @return {number}
+ * @param {Number} i Token's index number
+ * @return {Number}
  */
 function checkTset(i) {
   return checkVhash(i) ||
       checkOperator(i) ||
       checkAny(i) ||
-      checkSC(i) ||
-      checkInterpolation(i);
+      checkSC(i);
 }
 
 /**
@@ -4705,7 +4706,6 @@ function getTset() {
   else if (checkOperator(pos)) return getOperator();
   else if (checkAny(pos)) return getAny();
   else if (checkSC(pos)) return getSC();
-  else if (checkInterpolation(pos)) return getInterpolation();
 }
 
 /**
