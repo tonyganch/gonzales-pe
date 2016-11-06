@@ -5036,7 +5036,8 @@ function checkCompoundSelector1(i) {
         checkClass(i) ||
         checkAttributeSelector(i) ||
         checkPseudo(i) ||
-        checkPlaceholder(i);
+        checkPlaceholder(i) ||
+        checkInterpolation(i);
 
     if (l) i += l;
     else break;
@@ -5066,6 +5067,7 @@ function getCompoundSelector1() {
     else if (checkAttributeSelector(pos)) sequence.push(getAttributeSelector());
     else if (checkPseudo(pos)) sequence.push(getPseudo());
     else if (checkPlaceholder(pos)) sequence.push(getPlaceholder());
+    else if (checkInterpolation(pos)) sequence.push(getInterpolation());
     else break;
   }
 
