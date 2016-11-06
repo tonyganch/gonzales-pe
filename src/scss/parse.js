@@ -335,12 +335,13 @@ function checkAny(i) {
   else if (l = checkIdent(i)) tokens[i].any_child = 15;
   else if (l = checkClass(i)) tokens[i].any_child = 16;
   else if (l = checkUnary(i)) tokens[i].any_child = 17;
+  else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
 
   return l;
 }
 
 /**
- * @returns {Array}
+ * @returns {!Node}
  */
 function getAny() {
   const childType = tokens[pos].any_child;
@@ -362,6 +363,7 @@ function getAny() {
   if (childType === 15) return getIdent();
   if (childType === 16) return getClass();
   if (childType === 17) return getUnary();
+  if (childType === 18) return getParentSelector();
 }
 
 /**
@@ -4072,7 +4074,6 @@ function checkTset(i) {
   else if (l = checkOperator(i)) tokens[i].tset_child = 2;
   else if (l = checkAny(i)) tokens[i].tset_child = 3;
   else if (l = checkSC(i)) tokens[i].tset_child = 4;
-  else if (l = checkInterpolation(i)) tokens[i].tset_child = 5;
 
   return l;
 }
@@ -4087,7 +4088,6 @@ function getTset() {
   if (childType === 2) return getOperator();
   if (childType === 3) return getAny();
   if (childType === 4) return getSC();
-  if (childType === 5) return getInterpolation();
 }
 
 /**
