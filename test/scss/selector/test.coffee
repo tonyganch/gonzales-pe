@@ -41,6 +41,7 @@ describe 'scss/selector >>', ->
   it 'interp.5', -> this.shouldBeOk()
   it 'interp.6', -> this.shouldBeOk()
   it 'interp.7', -> this.shouldBeOk()
+  it 'interp.8', -> this.shouldBeOk()
 
   it 'issue-100', -> this.shouldBeOk()
   it 'issue-102', -> this.shouldBeOk()
