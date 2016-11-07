@@ -24,6 +24,8 @@ describe 'sass/atrule >>', ->
   it 'keyframes.4', -> this.shouldBeOk()
   it 'keyframes.5', -> this.shouldBeOk()
   it 'keyframes.6', -> this.shouldBeOk()
+  it 'keyframes.7', -> this.shouldBeOk()
+  it 'keyframes.8', -> this.shouldBeOk()
 
   it 'keyframes.interp.0', -> this.shouldBeOk()
   it 'keyframes.interp.1', -> this.shouldBeOk()
