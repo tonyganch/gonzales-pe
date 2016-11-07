@@ -2875,13 +2875,15 @@ function checkKeyframesBlocks(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkKeyframesBlock(i)) i += l;
-  else return 0;
 
   while (i < blockEnd) {
     if (l = checkSC(i)) i += l;
     else if (l = checkKeyframesBlock(i)) i += l;
+    else if (l = checkAtrule(i)) i += l;
     else break;
   }
+
+  if (i !== blockEnd + 1) return 0;
 
   return blockEnd + 1 - start;
 }
@@ -2928,7 +2930,7 @@ function checkKeyframesRule(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdentOrInterpolation(i)) i += l;
+  if (l = checkIdentOrInterpolation(i) || checkPseudoc(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -2947,10 +2949,18 @@ function getKeyframesRule() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = [].concat(
+  let content = [].concat(
     getAtkeyword(),
-    getSC(),
-    getIdentOrInterpolation(),
+    getSC()
+  );
+
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
+  else if (checkPseudoc(pos)) {
+    content = content.concat(getPseudoc());
+  }
+
+  content = content.concat(
     getSC(),
     getKeyframesBlocks()
   );
@@ -2960,8 +2970,8 @@ function getKeyframesRule() {
 
 /**
  * Check a single keyframe selector - `5%`, `from` etc
- * @param {number} i
- * @return {number}
+ * @param {Number} i
+ * @return {Number}
  */
 function checkKeyframesSelector(i) {
   const start = i;

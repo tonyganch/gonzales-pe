@@ -2371,12 +2371,15 @@ function checkKeyframesBlocks(i) {
   if (l = checkSC(i)) i += l;
 
   if (l = checkKeyframesBlock(i)) i += l;
-  else return 0;
 
   while (tokens[i].type !== TokenType.RightCurlyBracket) {
     if (l = checkSC(i)) i += l;
     else if (l = checkKeyframesBlock(i)) i += l;
-    else break;
+    else if (l = checkAtrule(i)) {
+      i += l;
+      if (l = checkSC(i)) i += l;
+      if (l = checkDeclDelim(i)) i += l;
+    } else break;
   }
 
   if (i < tokensLength && tokens[i].type === TokenType.RightCurlyBracket) i++;
@@ -2403,8 +2406,11 @@ function getKeyframesBlocks() {
   while (pos < keyframesBlocksEnd) {
     if (checkSC(pos)) content = content.concat(getSC());
     else if (checkKeyframesBlock(pos)) content.push(getKeyframesBlock());
-    else if (checkAtrule(pos)) content.push(getAtrule()); // @content
-    else break;
+    else if (checkAtrule(pos)) {
+      content.push(getAtrule()); // @content
+      if (checkSC(pos)) content = content.concat(getSC());
+      if (checkDeclDelim(pos)) content.push(getDeclDelim());
+    } else break;
   }
 
   const end = getLastPosition(content, line, column, 1);
@@ -2435,7 +2441,7 @@ function checkKeyframesRule(i) {
   if (l = checkSC(i)) i += l;
   else return 0;
 
-  if (l = checkIdentOrInterpolation(i)) i += l;
+  if (l = checkIdentOrInterpolation(i) || checkPseudoc(i)) i += l;
   else return 0;
 
   if (l = checkSC(i)) i += l;
@@ -2454,10 +2460,18 @@ function getKeyframesRule() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = [].concat(
+  let content = [].concat(
     getAtkeyword(),
-    getSC(),
-    getIdentOrInterpolation(),
+    getSC()
+  );
+
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
+  else if (checkPseudoc(pos)) {
+    content = content.concat(getPseudoc());
+  }
+
+  content = content.concat(
     getSC(),
     getKeyframesBlocks()
   );
