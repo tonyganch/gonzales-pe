@@ -3059,14 +3059,6 @@ function getVhash() {
   return newNode(type, content, line, column, end);
 }
 
-module.exports = function(_tokens, context) {
-  tokens = _tokens;
-  tokensLength = tokens.length;
-  pos = 0;
-
-  return contexts[context]();
-};
-
 function checkSelectorsGroup(i) {
   if (i >= tokensLength) return 0;
 
@@ -3663,3 +3655,11 @@ function getNamespaceSeparator() {
   pos++;
   return newNode(type, content, line, column);
 }
+
+module.exports = function(_tokens, context) {
+  tokens = _tokens;
+  tokensLength = tokens.length;
+  pos = 0;
+
+  return contexts[context]();
+};
