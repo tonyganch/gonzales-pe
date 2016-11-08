@@ -14,9 +14,9 @@ var isInteger = Number.isInteger || function(value) {
  */
 function parser(css, options) {
   if (typeof css !== 'string')
-      throw new Error('Please, pass a string to parse');
+    throw new Error('Please, pass a string to parse');
   else if (!css)
-      return require('./node/empty-node')();
+    return require('./node/empty-node')();
 
   var syntax = options && options.syntax || 'css';
   var context = options && options.context || 'stylesheet';
