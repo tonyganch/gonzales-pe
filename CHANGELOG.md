@@ -7,6 +7,24 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 17.11.2016, version 4.0
+
+:japanese_ogre: Dropped support for Node < 4.  
+:japanese_ogre: Brought back `postinstall` script that should allow installing
+from GitHub.  
+:japanese_ogre: Made multiline comments in Sass consistent with other syntaxes
+by removing closing `*/` from node's content.  
+:japanese_ogre: Implemented new node type, `universalSelector`, which represents
+`*`. See [docs](https://github.com/tonyganch/gonzales-pe/blob/dev/docs/node-types.md#universalselector)
+for more details.
+:green_apple: Fixed parsing of comments in Sass.  
+:green_apple: Fixed parsing of keyframes inside includes in Sass.  
+:green_apple: Fixed parsing of flags in arguments in Sass and SCSS.  
+:green_apple: Fixed parsing of multiple declarations within arguments in SCSS
+and Sass.  
+:green_apple: Improved parsing of interpolations in SCSS and Sass.  
+:green_apple: Adjust parsing priority of declarations & atrule in Less.  
+
 ## 22.10.2016, version 3.4.7
 
 :green_apple: Included forgotten test for #226.  
