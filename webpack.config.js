@@ -15,8 +15,10 @@ module.exports = {
         exclude: /node_modules/,
         loader: 'babel',
         query: {
-          loose: 'all',
-          blacklist: 'spec.functionName'
+          plugins: ['add-module-exports'],
+          presets: [
+            ["es2015", { "loose": true }]
+          ]
         }
       }
     ]
