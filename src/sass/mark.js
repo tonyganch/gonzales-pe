@@ -178,6 +178,10 @@ module.exports = (function() {
 
         if (i === p && indent === lastLevel) continue;
 
+        if (!lines[p]) {
+          continue;
+        }
+
         indent = lines[p][1];
 
         if (indent === lastLevel) {
