@@ -187,21 +187,6 @@ function throwError(i) {
 }
 
 /**
- * @param {Object} exclude
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkExcluding(exclude, i) {
-  var start = i;
-
-  while (i < tokensLength) {
-    if (exclude[tokens[i++].type]) break;
-  }
-
-  return i - start - 2;
-}
-
-/**
  * @param {Number} start
  * @param {Number} finish
  * @returns {String}
@@ -4140,110 +4125,277 @@ function _checkUnicodeWildcard(i) {
     else break;
   }
 
+  tokens[start].uri_raw_end = i;
+
   return i - start;
 }
 
 /**
- * Check if token is part of URI (e.g. `url('/css/styles.css')`)
- * @param {Number} i Token's index number
- * @returns {Number} Length of URI
+ * Check if token is part of URI, e.g. `url('/css/styles.css')`
+ * @param {number} i Token's index number
+ * @returns {number} Length of URI
  */
 function checkUri(i) {
-  var start = i;
-
-  if (i >= tokensLength || tokens[i++].value !== 'url' ||
-      i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis)
-      return 0;
-
-  return tokens[i].right - start + 1;
-}
-
-/**
- * Get node with URI
- * @returns {Array} `['uri', x]` where `x` is URI's nodes (without `url`
- *      and braces, e.g. `['string', ''/css/styles.css'']`).
- */
-function getUri() {
-  let startPos = pos;
-  let uriExcluding = {};
-  let uri;
-  let token;
-  let l;
-  let raw;
-
-  pos += 2;
-
-  uriExcluding[TokenType.Space] = 1;
-  uriExcluding[TokenType.Tab] = 1;
-  uriExcluding[TokenType.Newline] = 1;
-  uriExcluding[TokenType.LeftParenthesis] = 1;
-  uriExcluding[TokenType.RightParenthesis] = 1;
-
-  if (checkUriContent(pos)) {
-    uri = []
-        .concat(getSC())
-        .concat(getUriContent())
-        .concat(getSC());
-  } else {
-    uri = [].concat(getSC());
-    l = checkExcluding(uriExcluding, pos);
-    token = tokens[pos];
-    raw = newNode(NodeType.RawType, joinValues(pos, pos + l), token.ln,
-        token.col);
-
-    uri.push(raw);
-
-    pos += l + 1;
-
-    uri = uri.concat(getSC());
-  }
-
-  token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  var end = getLastPosition(uri, line, column, 1);
-  pos++;
-
-  return newNode(NodeType.UriType, uri, token.ln, token.col, end);
-}
-
-/**
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkUriContent(i) {
-  return checkUri1(i) ||
-      checkFunction(i);
-}
-
-/**
- * @returns {Array}
- */
-function getUriContent() {
-  if (checkUri1(pos)) return getString();
-  else if (checkFunction(pos)) return getFunction();
-}
-
-/**
- * @param {Number} i Token's index number
- * @returns {Number}
- */
-function checkUri1(i) {
-  let start = i;
+  const start = i;
   let l;
 
-  if (i >= tokensLength) return 0;
+  if (i >= tokensLength || tokens[i].value !== 'url') return 0;
 
-  if (l = checkSC(i)) i += l;
-
-  if (tokens[i].type !== TokenType.StringDQ &&
-      tokens[i].type !== TokenType.StringSQ) return 0;
-
+  // Skip `url`
   i++;
 
-  if (l = checkSC(i)) i += l;
+  if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis)
+    return 0;
+
+  // Store the opening parenthesis token as we will reference it's `right`
+  // property to determine when the parentheses close
+  const leftParenthesis = tokens[i];
+
+  // Skip `(`
+  i++;
+
+  // Determine the type of URI
+  while (i < leftParenthesis.right) {
+    if (l = checkUri1(i)) {
+      i += l;
+      tokens[start].uriType = 1; // Raw based URI (without quotes)
+    } else if (l = checkUri2(i)) {
+      i += l;
+      tokens[start].uriType = 2; // Non-raw based URI (with quotes)
+    } else return 0;
+  }
 
   return i - start;
+}
+
+/**
+ * Get specific type of URI node
+ * @return {Node} Specific type of URI node
+ */
+function getUri() {
+  const uriType = tokens[pos].uriType;
+
+  if (uriType === 1) return getUri1();
+  if (uriType === 2) return getUri2();
+}
+
+/**
+ * Check if token type is valid URI character
+ * @param {number} i Token's index number
+ * @return {number} Length of raw node
+ */
+function checkUriRawCharacters(i) {
+  const start = i;
+  let l;
+
+  if (l = checkIdent(i)) i += l;
+  else if (l = checkNumber(i)) i += l;
+  else {
+    switch (tokens[i].type) {
+      case TokenType.ExclamationMark:
+      case TokenType.NumberSign:
+      case TokenType.DollarSign:
+      case TokenType.PercentSign:
+      case TokenType.Ampersand:
+      case TokenType.Asterisk:
+      case TokenType.PlusSign:
+      case TokenType.Comma:
+      case TokenType.HyphenMinus:
+      case TokenType.FullStop:
+      case TokenType.Solidus:
+      case TokenType.Colon:
+      case TokenType.Semicolon:
+      case TokenType.LessThanSign:
+      case TokenType.EqualsSign:
+      case TokenType.GreaterThanSign:
+      case TokenType.QuotationMark:
+      case TokenType.CommercialAt:
+      case TokenType.LeftSquareBracket:
+      case TokenType.RightSquareBracket:
+      case TokenType.CircumflexAccent:
+      case TokenType.LowLine:
+      case TokenType.LeftCurlyBracket:
+      case TokenType.VerticalLine:
+      case TokenType.RightCurlyBracket:
+      case TokenType.Tilde:
+        i += 1;
+        break;
+
+      default:
+        return 0;
+    }
+  }
+
+  return i - start;
+}
+
+/**
+ * Check if content of URI can be contained within a raw node
+ * @param {number} i Token's index number
+ * @return {number} Length of raw node
+ */
+function checkUriRaw(i) {
+  const start = i;
+  let l;
+
+  while (i < tokensLength) {
+    if (checkInterpolation(i) || checkVariable(i)) break;
+    else if (l = checkUriRawCharacters(i)) i += l;
+    else break;
+  }
+
+  tokens[start].uri_raw_end = i;
+
+  return i - start;
+}
+
+/**
+ * Get a raw node
+ * @return {Node}
+ */
+function getUriRaw() {
+  const startPos = pos;
+  const type = NodeType.RawType;
+  const token = tokens[startPos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let l;
+
+  while (pos < tokens[startPos].uri_raw_end) {
+    if (checkInterpolation(pos) || checkVariable(pos)) break;
+    else if (l = checkUriRawCharacters(pos)) pos += l;
+    else break;
+  }
+
+  content = joinValues(startPos, pos - 1);
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check for a raw (without quotes) URI
+ * (1) http://foo.com/bar.png
+ * (2) http://foo.com/#{$bar}.png
+ * (3) #{$foo}/bar.png
+ * (4) #{$foo}
+ * @param {number} i Token's index number
+ * @return {number} Length of URI node
+ */
+function checkUri1(i) {
+  const start = i;
+  let l;
+
+  if (l = checkSC(i)) i += l;
+
+  while (i < tokensLength) {
+    if (l = checkInterpolation(i) || checkUriRaw(i)) i += l;
+    else break;
+  }
+
+  if (l = checkSC(i)) i += l;
+
+  // Check that we are at the end of the uri
+  if (i < tokens[start - 1].right) return 0;
+
+  tokens[start].uri_end = i;
+
+  return i - start;
+}
+
+/**
+ * Get a raw (without quotes) URI
+  node
+ * @return {Node}
+ */
+function getUri1() {
+  const startPos = pos;
+  const type = NodeType.UriType;
+  const token = tokens[startPos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let end;
+
+  // Skip `url` and `(`
+  pos += 2;
+
+  if (checkSC(pos)) content = content.concat(getSC());
+
+  while (pos < tokens[startPos + 2].uri_end) {
+    if (checkInterpolation(pos)) content.push(getInterpolation());
+    else if (checkUriRaw(pos)) content.push(getUriRaw());
+    else break;
+  }
+
+  if (checkSC(pos)) content = content.concat(getSC());
+
+  // Check that we are at the end of the uri
+  if (pos < tokens[startPos + 1].right) return 0;
+
+  end = getLastPosition(content, line, column, 1);
+
+  // Skip `)`
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
+/**
+ * Check for a non-raw (with quotes) URI
+ * (1) 'http://foo.com/bar.png'
+ * (2) 'http://foo.com/'#{$bar}.png
+ * (3) #{$foo}'/bar.png'
+ * @param {number} i Token's index number
+ * @return {number} Length of URI node
+ */
+function checkUri2(i) {
+  const start = i;
+  let l;
+
+  while (i < tokensLength) {
+    if (l = checkSC(i)) i += l;
+    else if (l = checkString(i)) i += l;
+    else if (l = checkFunction(i)) i += l;
+    else if (l = checkUnary(i)) i += l;
+    else if (l = checkIdentOrInterpolation(i)) i += l;
+    else if (l = checkVariable(i)) i += l;
+    else break;
+  }
+
+  tokens[start].uri_end = i;
+
+  return i - start;
+}
+
+/**
+ * Get a non-raw (with quotes) URI node
+ * @return {Node}
+ */
+function getUri2() {
+  const startPos = pos;
+  const token = tokens[startPos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let end;
+
+  // Skip `url` and `(`
+  pos += 2;
+
+  while (pos < tokens[startPos + 2].uri_end) {
+    if (checkSC(pos)) content = content.concat(getSC());
+    else if (checkUnary(pos)) content.push(getUnary());
+    else if (_checkValue(pos)) content.push(_getValue());
+    else break;
+  }
+
+  end = getLastPosition(content, line, column, 1);
+
+  // Skip `)`
+  pos++;
+
+  return newNode(NodeType.UriType, content, line, column, end);
 }
 
 /**
