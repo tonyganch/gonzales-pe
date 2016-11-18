@@ -7,7 +7,11 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
-## 17.11.2016, version 4.0
+## 18.11.2016, version 4.0.1
+
+:japanese_ogre: Removed `postinstall` script.
+
+## 17.11.2016, version 4.0.0
 
 :japanese_ogre: Dropped support for Node < 4.  
 :japanese_ogre: Brought back `postinstall` script that should allow installing
