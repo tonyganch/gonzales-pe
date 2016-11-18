@@ -48,7 +48,8 @@ module.exports = function(css, tabSize) {
     '{': TokenType.LeftCurlyBracket,
     '|': TokenType.VerticalLine,
     '}': TokenType.RightCurlyBracket,
-    '~': TokenType.Tilde
+    '~': TokenType.Tilde,
+    '`': TokenType.Backtick
   };
 
   /**

@@ -4,7 +4,7 @@
     {
       "type": "multilineComment",
       "content": "test",
-      "syntax": "scss",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 5
@@ -17,7 +17,7 @@
     {
       "type": "raw",
       "content": "http://test.com",
-      "syntax": "scss",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 13
@@ -30,7 +30,7 @@
     {
       "type": "multilineComment",
       "content": "test",
-      "syntax": "scss",
+      "syntax": "sass",
       "start": {
         "line": 1,
         "column": 28
@@ -41,7 +41,7 @@
       }
     }
   ],
-  "syntax": "scss",
+  "syntax": "sass",
   "start": {
     "line": 1,
     "column": 1

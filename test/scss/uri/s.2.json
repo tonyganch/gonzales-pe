@@ -2,42 +2,42 @@
   "type": "uri",
   "content": [
     {
-      "type": "multilineComment",
-      "content": "test",
+      "type": "space",
+      "content": "\n  ",
       "syntax": "scss",
       "start": {
         "line": 1,
         "column": 5
       },
       "end": {
-        "line": 1,
-        "column": 12
+        "line": 2,
+        "column": 2
       }
     },
     {
-      "type": "raw",
-      "content": "http://test.com",
+      "type": "string",
+      "content": "'http://test.com'",
       "syntax": "scss",
       "start": {
-        "line": 1,
-        "column": 13
+        "line": 2,
+        "column": 3
       },
       "end": {
-        "line": 1,
-        "column": 27
+        "line": 2,
+        "column": 19
       }
     },
     {
-      "type": "multilineComment",
-      "content": "test",
+      "type": "space",
+      "content": "\n",
       "syntax": "scss",
       "start": {
-        "line": 1,
-        "column": 28
+        "line": 2,
+        "column": 20
       },
       "end": {
-        "line": 1,
-        "column": 35
+        "line": 2,
+        "column": 20
       }
     }
   ],
@@ -47,7 +47,7 @@
     "column": 1
   },
   "end": {
-    "line": 1,
-    "column": 36
+    "line": 3,
+    "column": 1
   }
 }

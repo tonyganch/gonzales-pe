@@ -1,0 +1,93 @@
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "foo",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 6
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 5
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "operator",
+      "content": "+",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 11
+      }
+    },
+    {
+      "type": "string",
+      "content": "'bar.png'",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 12
+      },
+      "end": {
+        "line": 1,
+        "column": 20
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 21
+  }
+}

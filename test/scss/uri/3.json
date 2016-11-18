@@ -2,8 +2,22 @@
   "type": "uri",
   "content": [
     {
-      "type": "raw",
-      "content": "$v1",
+      "type": "variable",
+      "content": [
+        {
+          "type": "ident",
+          "content": "foo",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 6
+          },
+          "end": {
+            "line": 1,
+            "column": 8
+          }
+        }
+      ],
       "syntax": "scss",
       "start": {
         "line": 1,
@@ -11,7 +25,7 @@
       },
       "end": {
         "line": 1,
-        "column": 7
+        "column": 8
       }
     }
   ],
@@ -22,6 +36,6 @@
   },
   "end": {
     "line": 1,
-    "column": 8
+    "column": 9
   }
 }
