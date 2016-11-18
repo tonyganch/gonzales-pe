@@ -7,9 +7,13 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 18.11.2016, version 4.0.2
+
+:green_apple: Fixed parsing of trailing newlines.  
+
 ## 18.11.2016, version 4.0.1
 
-:japanese_ogre: Removed `postinstall` script.
+:japanese_ogre: Removed `postinstall` script.  
 
 ## 17.11.2016, version 4.0.0
 
