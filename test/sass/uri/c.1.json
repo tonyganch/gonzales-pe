@@ -1,0 +1,53 @@
+{
+  "type": "uri",
+  "content": [
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 5
+      },
+      "end": {
+        "line": 1,
+        "column": 12
+      }
+    },
+    {
+      "type": "raw",
+      "content": "http://test.com",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 13
+      },
+      "end": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "multilineComment",
+      "content": "test",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 28
+      },
+      "end": {
+        "line": 1,
+        "column": 35
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 36
+  }
+}
