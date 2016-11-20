@@ -7,6 +7,10 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 20.11.2016, version 4.0.3
+
+:green_apple: Fixed parsing of interpolations inside URI nodes in SCSS and Sass.  
+
 ## 18.11.2016, version 4.0.2
 
 :green_apple: Fixed parsing of trailing newlines.  
