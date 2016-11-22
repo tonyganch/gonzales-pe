@@ -179,10 +179,10 @@ const contexts = {
 /**
  * Stops parsing and display error.
  *
- * @param {number=} opt_i Token's index number
+ * @param {number=} i Token's index number
  */
-function throwError(opt_i) {
-  var ln = opt_i ? tokens[opt_i].ln : tokens[pos].ln;
+function throwError(i) {
+  const ln = tokens[i].ln;
 
   throw {line: ln, syntax: 'sass'};
 }
@@ -193,9 +193,9 @@ function throwError(opt_i) {
  * @return {string}
  */
 function joinValues(start, finish) {
-  var s = '';
+  let s = '';
 
-  for (var i = start; i < finish + 1; i++) {
+  for (let i = start; i < finish + 1; i++) {
     s += tokens[i].value;
   }
 
@@ -210,9 +210,9 @@ function joinValues(start, finish) {
 function joinValues2(start, num) {
   if (start + num - 1 >= tokensLength) return;
 
-  var s = '';
+  let s = '';
 
-  for (var i = 0; i < num; i++) {
+  for (let i = 0; i < num; i++) {
     s += tokens[start + i].value;
   }
 
@@ -238,7 +238,7 @@ function getLastPosition(content, line, column, colOffset) {
  * @param {number} colOffset
  */
 function getLastPositionForString(content, line, column, colOffset) {
-  var position = [];
+  let position = [];
 
   if (!content) {
     position = [line, column];
@@ -246,15 +246,15 @@ function getLastPositionForString(content, line, column, colOffset) {
     return position;
   }
 
-  var lastLinebreak = content.lastIndexOf('\n');
-  var endsWithLinebreak = lastLinebreak === content.length - 1;
-  var splitContent = content.split('\n');
-  var linebreaksCount = splitContent.length - 1;
-  var prevLinebreak = linebreaksCount === 0 || linebreaksCount === 1 ?
+  const lastLinebreak = content.lastIndexOf('\n');
+  const endsWithLinebreak = lastLinebreak === content.length - 1;
+  const splitContent = content.split('\n');
+  const linebreaksCount = splitContent.length - 1;
+  const prevLinebreak = linebreaksCount === 0 || linebreaksCount === 1 ?
       -1 : content.length - splitContent[linebreaksCount - 1].length - 2;
 
   // Line:
-  var offset = endsWithLinebreak ? linebreaksCount - 1 : linebreaksCount;
+  let offset = endsWithLinebreak ? linebreaksCount - 1 : linebreaksCount;
   position[0] = line + offset;
 
   // Column:
@@ -288,12 +288,12 @@ function getLastPositionForString(content, line, column, colOffset) {
  * @param {number} colOffset
  */
 function getLastPositionForArray(content, line, column, colOffset) {
-  var position;
+  let position;
 
   if (content.length === 0) {
     position = [line, column];
   } else {
-    var c = content[content.length - 1];
+    const c = content[content.length - 1];
     if (c.hasOwnProperty('end')) {
       position = [c.end.line, c.end.column];
     } else {
@@ -303,7 +303,7 @@ function getLastPositionForArray(content, line, column, colOffset) {
 
   if (!colOffset) return position;
 
-  if (tokens[pos - 1].type !== 'Newline') {
+  if (tokens[pos - 1] && tokens[pos - 1].type !== 'Newline') {
     position[1] += colOffset;
   } else {
     position[0]++;
@@ -344,7 +344,7 @@ function newNode(type, content, line, column, end) {
  * @return {number}
  */
 function checkAny(i) {
-  var l;
+  let l;
 
   if (l = checkBrackets(i)) tokens[i].any_child = 1;
   else if (l = checkParentheses(i)) tokens[i].any_child = 2;
@@ -354,15 +354,15 @@ function checkAny(i) {
   else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;
   else if (l = checkPercentage(i)) tokens[i].any_child = 7;
   else if (l = checkDimension(i)) tokens[i].any_child = 8;
-  else if (l = checkUnicodeRange(i)) tokens[i].any_child = 17;
-  else if (l = checkNumber(i)) tokens[i].any_child = 9;
-  else if (l = checkUri(i)) tokens[i].any_child = 10;
-  else if (l = checkExpression(i)) tokens[i].any_child = 11;
-  else if (l = checkFunction(i)) tokens[i].any_child = 12;
-  else if (l = checkInterpolation(i)) tokens[i].any_child = 13;
-  else if (l = checkIdent(i)) tokens[i].any_child = 14;
-  else if (l = checkClass(i)) tokens[i].any_child = 15;
-  else if (l = checkUnary(i)) tokens[i].any_child = 16;
+  else if (l = checkUnicodeRange(i)) tokens[i].any_child = 9;
+  else if (l = checkNumber(i)) tokens[i].any_child = 10;
+  else if (l = checkUri(i)) tokens[i].any_child = 11;
+  else if (l = checkExpression(i)) tokens[i].any_child = 12;
+  else if (l = checkFunction(i)) tokens[i].any_child = 13;
+  else if (l = checkInterpolation(i)) tokens[i].any_child = 14;
+  else if (l = checkIdent(i)) tokens[i].any_child = 15;
+  else if (l = checkClass(i)) tokens[i].any_child = 16;
+  else if (l = checkUnary(i)) tokens[i].any_child = 17;
 
   return l;
 }
@@ -371,25 +371,25 @@ function checkAny(i) {
  * @return {!Node}
  */
 function getAny() {
-  var childType = tokens[pos].any_child;
+  const childType = tokens[pos].any_child;
 
   if (childType === 1) return getBrackets();
-  else if (childType === 2) return getParentheses();
-  else if (childType === 3) return getString();
-  else if (childType === 4) return getVariablesList();
-  else if (childType === 5) return getVariable();
-  else if (childType === 6) return getPlaceholder();
-  else if (childType === 7) return getPercentage();
-  else if (childType === 8) return getDimension();
-  else if (childType === 17) return getUnicodeRange();
-  else if (childType === 9) return getNumber();
-  else if (childType === 10) return getUri();
-  else if (childType === 11) return getExpression();
-  else if (childType === 12) return getFunction();
-  else if (childType === 13) return getInterpolation();
-  else if (childType === 14) return getIdent();
-  else if (childType === 15) return getClass();
-  else if (childType === 16) return getUnary();
+  if (childType === 2) return getParentheses();
+  if (childType === 3) return getString();
+  if (childType === 4) return getVariablesList();
+  if (childType === 5) return getVariable();
+  if (childType === 6) return getPlaceholder();
+  if (childType === 7) return getPercentage();
+  if (childType === 8) return getDimension();
+  if (childType === 9) return getUnicodeRange();
+  if (childType === 10) return getNumber();
+  if (childType === 11) return getUri();
+  if (childType === 12) return getExpression();
+  if (childType === 13) return getFunction();
+  if (childType === 14) return getInterpolation();
+  if (childType === 15) return getIdent();
+  if (childType === 16) return getClass();
+  if (childType === 17) return getUnary();
 }
 
 /**
@@ -399,12 +399,13 @@ function getAny() {
  * @return {number} Length of arguments
  */
 function checkArguments(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength ||
       tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
+  // Skip `(`.
   i++;
 
   while (i < tokens[start].right) {
@@ -416,13 +417,46 @@ function checkArguments(i) {
 }
 
 /**
+ * @return {Array}
+ */
+function getArguments() {
+  const type = NodeType.ArgumentsType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let body;
+
+  // Skip `(`.
+  pos++;
+
+  while (pos < tokensLength &&
+      tokens[pos].type !== TokenType.RightParenthesis) {
+    if (checkSingleValueDeclaration(pos)) {
+      content.push(getSingleValueDeclaration());
+    } else if (checkArgument(pos)) {
+      body = getArgument();
+      if (typeof body.content === 'string') content.push(body);
+      else content = content.concat(body);
+    } else if (checkClass(pos)) content.push(getClass());
+    else throwError(pos);
+  }
+
+  const end = getLastPosition(content, line, column, 1);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column, end);
+}
+
+/**
  * Checks if token is valid to be part of arguments list
- *
  * @param {number} i Token's index number
  * @return {number} Length of argument
  */
 function checkArgument(i) {
-  var l;
+  let l;
 
   if (l = checkBrackets(i)) tokens[i].argument_child = 1;
   else if (l = checkParentheses(i)) tokens[i].argument_child = 2;
@@ -456,32 +490,32 @@ function checkArgument(i) {
  * @return {!Node}
  */
 function getArgument() {
-  var childType = tokens[pos].argument_child;
+  const childType = tokens[pos].argument_child;
 
   if (childType === 1) return getBrackets();
-  else if (childType === 2) return getParentheses();
-  else if (childType === 3) return getSingleValueDeclaration();
-  else if (childType === 4) return getFunction();
-  else if (childType === 5) return getVariablesList();
-  else if (childType === 6) return getVariable();
-  else if (childType === 7) return getSC();
-  else if (childType === 8) return getDelim();
-  else if (childType === 9) return getDeclDelim();
-  else if (childType === 10) return getString();
-  else if (childType === 11) return getPercentage();
-  else if (childType === 12) return getDimension();
-  else if (childType === 13) return getNumber();
-  else if (childType === 14) return getUri();
-  else if (childType === 15) return getInterpolation();
-  else if (childType === 16) return getIdent();
-  else if (childType === 17) return getVhash();
-  else if (childType === 18) return getOperator();
-  else if (childType === 19) return getUnary();
-  else if (childType === 20) return getParentSelector();
-  else if (childType === 21) return getImportant();
-  else if (childType === 22) return getGlobal();
-  else if (childType === 23) return getDefault();
-  else if (childType === 24) return getOptional();
+  if (childType === 2) return getParentheses();
+  if (childType === 3) return getSingleValueDeclaration();
+  if (childType === 4) return getFunction();
+  if (childType === 5) return getVariablesList();
+  if (childType === 6) return getVariable();
+  if (childType === 7) return getSC();
+  if (childType === 8) return getDelim();
+  if (childType === 9) return getDeclDelim();
+  if (childType === 10) return getString();
+  if (childType === 11) return getPercentage();
+  if (childType === 12) return getDimension();
+  if (childType === 13) return getNumber();
+  if (childType === 14) return getUri();
+  if (childType === 15) return getInterpolation();
+  if (childType === 16) return getIdent();
+  if (childType === 17) return getVhash();
+  if (childType === 18) return getOperator();
+  if (childType === 19) return getUnary();
+  if (childType === 20) return getParentSelector();
+  if (childType === 21) return getImportant();
+  if (childType === 22) return getGlobal();
+  if (childType === 23) return getDefault();
+  if (childType === 24) return getOptional();
 }
 
 /**
@@ -491,7 +525,7 @@ function getArgument() {
  * @return {number}
  */
 function checkAtkeyword(i) {
-  var l;
+  let l;
 
   // Check that token is `@`:
   if (i >= tokensLength ||
@@ -506,11 +540,17 @@ function checkAtkeyword(i) {
  * @return {!Node}
  */
 function getAtkeyword() {
-  let startPos = pos++;
-  let x = getIdentOrInterpolation();
+  const type = NodeType.AtkeywordType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.AtkeywordType, x, token.ln, token.col);
+  // Skip `@`.
+  pos++;
+
+  const content = getIdentOrInterpolation();
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -520,7 +560,7 @@ function getAtkeyword() {
  * @return {number} Length of @-rule
  */
 function checkAtrule(i) {
-  var l;
+  let l;
 
   if (i >= tokensLength) return 0;
 
@@ -551,12 +591,12 @@ function checkAtrule(i) {
  * @return {!Node}
  */
 function getAtrule() {
-  switch (tokens[pos].atrule_type) {
-    case 1: return getAtruler(); // @-rule with ruleset
-    case 2: return getAtruleb(); // Block @-rule
-    case 3: return getAtrules(); // Single-line @-rule
-    case 4: return getKeyframesRule();
-  }
+  const childType = tokens[pos].atrule_type;
+
+  if (childType === 1) return getAtruler(); // @-rule with ruleset
+  if (childType === 2) return getAtruleb(); // Block @-rule
+  if (childType === 3) return getAtrules(); // Single-line @-rule
+  if (childType === 4) return getKeyframesRule();
 }
 
 /**
@@ -566,7 +606,7 @@ function getAtrule() {
  * @return {number} Length of the @-rule
  */
 function checkAtruleb(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -588,15 +628,17 @@ function checkAtruleb(i) {
  * @return {!Node}
  */
 function getAtruleb() {
-  let startPos = pos;
-  let x;
+  const type = NodeType.AtruleType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getTsets(),
+    getBlock()
+  );
 
-  x = [getAtkeyword()]
-      .concat(getTsets())
-      .concat([getBlock()]);
-
-  var token = tokens[startPos];
-  return newNode(NodeType.AtruleType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -606,7 +648,7 @@ function getAtruleb() {
  * @return {number} Length of the @-rule
  */
 function checkAtruler(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -628,15 +670,17 @@ function checkAtruler(i) {
  * @return {!Node}
  */
 function getAtruler() {
-  let startPos = pos;
-  let x;
+  const type = NodeType.AtruleType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getTsets(),
+    getAtrulers()
+  );
 
-  x = [getAtkeyword()].concat(getTsets());
-
-  x.push(getAtrulers());
-
-  var token = tokens[startPos];
-  return newNode(NodeType.AtruleType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -644,22 +688,19 @@ function getAtruler() {
  * @return {number}
  */
 function checkAtrulers(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
 
-  let blockEnd = tokens[i].block_end;
+  const blockEnd = tokens[i].block_end;
   if (!blockEnd) return 0;
 
-  if (l = checkSC(i)) i += l;
-
-  if (l = checkRuleset(i) || checkAtrule(i)) i += l;
-  else return 0;
-
   while (i < blockEnd) {
-    l = checkRuleset(i) || checkAtrule(i) || checkSC(i);
-    if (!l) return 0;
+    if (l = checkSC(i)) tokens[i].atrulers_child = 1;
+    else if (l = checkAtrule(i)) tokens[i].atrulers_child = 2;
+    else if (l = checkRuleset(i)) tokens[i].atrulers_child = 3;
+    else return 0;
     i += l;
   }
 
@@ -672,21 +713,23 @@ function checkAtrulers(i) {
  * @return {!Node}
  */
 function getAtrulers() {
-  var startPos = pos;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  var x = getSC();
+  const type = NodeType.BlockType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = getSC();
 
   while (pos < tokensLength && !tokens[pos].atrulers_end) {
-    if (checkSC(pos)) x = x.concat(getSC());
-    else if (checkAtrule(pos)) x.push(getAtrule());
-    else if (checkRuleset(pos)) x.push(getRuleset());
+    const childType = tokens[pos].atrulers_child;
+    if (childType === 1) content = content.concat(getSC());
+    else if (childType === 2) content.push(getAtrule());
+    else if (childType === 3) content.push(getRuleset());
+    else break;
   }
 
-  var end = getLastPosition(x, line, column);
+  const end = getLastPosition(content, line, column);
 
-  return newNode(NodeType.BlockType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -694,7 +737,7 @@ function getAtrulers() {
  * @return {number}
  */
 function checkAtrules(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -711,13 +754,16 @@ function checkAtrules(i) {
  * @return {!Node}
  */
 function getAtrules() {
-  let startPos = pos;
-  let x;
+  const type = NodeType.AtruleType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getTsets()
+  );
 
-  x = [getAtkeyword()].concat(getTsets());
-
-  var token = tokens[startPos];
-  return newNode(NodeType.AtruleType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -737,17 +783,19 @@ function checkBlock(i) {
  * @return {!Node}
  */
 function getBlock() {
-  let startPos = pos;
-  let end = tokens[pos].block_end;
-  let x = [];
-  var token = tokens[startPos];
+  const type = NodeType.BlockType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const end = tokens[pos].block_end;
+  let content = [];
 
   while (pos < end) {
-    if (checkBlockdecl(pos)) x = x.concat(getBlockdecl());
-    else throwError();
+    if (checkBlockdecl(pos)) content = content.concat(getBlockdecl());
+    else throwError(pos);
   }
 
-  return newNode(NodeType.BlockType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -757,7 +805,7 @@ function getBlock() {
  * @return {number} Length of the declaration
  */
 function checkBlockdecl(i) {
-  var l;
+  let l;
 
   if (i >= tokensLength) return 0;
 
@@ -777,15 +825,15 @@ function checkBlockdecl(i) {
  * @return {!Array}
  */
 function getBlockdecl() {
-  switch (tokens[pos].bd_type) {
-    case 1: return getBlockdecl1();
-    case 2: return getBlockdecl2();
-    case 3: return getBlockdecl3();
-    case 4: return getBlockdecl4();
-    case 5: return getBlockdecl5();
-    case 6: return getBlockdecl6();
-    case 7: return getBlockdecl7();
-  }
+  const childType = tokens[pos].bd_type;
+
+  if (childType === 1) return getBlockdecl1();
+  if (childType === 2) return getBlockdecl2();
+  if (childType === 3) return getBlockdecl3();
+  if (childType === 4) return getBlockdecl4();
+  if (childType === 5) return getBlockdecl5();
+  if (childType === 6) return getBlockdecl6();
+  if (childType === 7) return getBlockdecl7();
 }
 
 /**
@@ -793,7 +841,7 @@ function getBlockdecl() {
  * @return {number}
  */
 function checkBlockdecl1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkInclude(i)) tokens[i].bd_kind = 2;
@@ -811,7 +859,7 @@ function checkBlockdecl1(i) {
 
   while (i < tokensLength) {
     if (l = checkDeclDelim(i))
-        return i + l - start;
+      return i + l - start;
 
     if (l = checkS(i)) i += l;
     else if (l = checkCommentSL(i)) i += l;
@@ -825,39 +873,38 @@ function checkBlockdecl1(i) {
  * @return {!Array}
  */
 function getBlockdecl1() {
-  let x = [];
-  let _x = [];
-  let kind = tokens[pos].bd_kind;
+  let content = [];
+  const _content = [];
 
-  switch (kind) {
+  switch (tokens[pos].bd_kind) {
     case 2:
-      x.push(getInclude());
+      content.push(getInclude());
       break;
     case 5:
-      x.push(getDeclaration());
+      content.push(getDeclaration());
       break;
     case 6:
-      x.push(getAtrule());
+      content.push(getAtrule());
       break;
   }
 
   while (pos < tokensLength) {
-    let _pos = pos;
+    const _pos = pos;
     if (checkDeclDelim(pos)) {
-      _x.push(getDeclDelim());
-      x = x.concat(_x);
+      _content.push(getDeclDelim());
+      content = content.concat(_content);
       break;
     }
 
-    if (checkS(pos)) _x.push(getS());
-    else if (checkCommentSL(pos)) _x.push(getCommentSL());
+    if (checkS(pos)) _content.push(getS());
+    else if (checkCommentSL(pos)) _content.push(getCommentSL());
     else {
       pos = _pos;
       break;
     }
   }
 
-  return x;
+  return content;
 }
 
 /**
@@ -865,7 +912,7 @@ function getBlockdecl1() {
  * @return {number}
  */
 function checkBlockdecl2(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
@@ -893,42 +940,42 @@ function checkBlockdecl2(i) {
  * @return {!Array}
  */
 function getBlockdecl2() {
-  let x = [];
+  const content = [];
 
   switch (tokens[pos].bd_kind) {
     case 1:
-      x.push(getConditionalStatement());
+      content.push(getConditionalStatement());
       break;
     case 2:
-      x.push(getInclude());
+      content.push(getInclude());
       break;
     case 3:
-      x.push(getLoop());
+      content.push(getLoop());
       break;
     case 4:
-      x.push(getExtend());
+      content.push(getExtend());
       break;
     case 5:
-      x.push(getDeclaration());
+      content.push(getDeclaration());
       break;
     case 6:
-      x.push(getAtrule());
+      content.push(getAtrule());
       break;
     case 7:
-      x.push(getRuleset());
+      content.push(getRuleset());
       break;
     case 8:
-      x.push(getMixin());
+      content.push(getMixin());
       break;
   }
 
   while (pos < tokensLength) {
-    if (checkS(pos)) x.push(getS());
-    else if (checkCommentSL(pos)) x.push(getCommentSL());
+    if (checkS(pos)) content.push(getS());
+    else if (checkCommentSL(pos)) content.push(getCommentSL());
     else break;
   }
 
-  return x;
+  return content;
 }
 
 
@@ -938,7 +985,7 @@ function getBlockdecl2() {
  * @return {number}
  */
 function checkBlockdecl3(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkConditionalStatement(i)) tokens[i].bd_kind = 1;
@@ -959,33 +1006,33 @@ function checkBlockdecl3(i) {
  * @return {!Array}
  */
 function getBlockdecl3() {
-  let x;
+  let content;
 
   switch (tokens[pos].bd_kind) {
     case 1:
-      x = getConditionalStatement();
+      content = getConditionalStatement();
       break;
     case 2:
-      x = getInclude();
+      content = getInclude();
       break;
     case 3:
-      x = getLoop();
+      content = getLoop();
       break;
     case 4:
-      x = getExtend();
+      content = getExtend();
       break;
     case 5:
-      x = getDeclaration();
+      content = getDeclaration();
       break;
     case 6:
-      x = getAtrule();
+      content = getAtrule();
       break;
     case 7:
-      x = getRuleset();
+      content = getRuleset();
       break;
   }
 
-  return [x];
+  return [content];
 }
 
 /**
@@ -1008,7 +1055,7 @@ function getBlockdecl4() {
  * @return {number}
  */
 function checkBlockdecl5(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkInclude(i)) i += l;
@@ -1028,18 +1075,18 @@ function checkBlockdecl5(i) {
  * @return {!Array}
  */
 function getBlockdecl5() {
-  let x = [];
+  const content = [];
 
-  if (checkInclude(pos)) x.push(getInclude());
-  else x.push(getRuleset());
+  if (checkInclude(pos)) content.push(getInclude());
+  else content.push(getRuleset());
 
   while (pos < tokensLength) {
-    if (checkS(pos)) x.push(getS());
-    else if (checkCommentSL(pos)) x.push(getCommentSL());
+    if (checkS(pos)) content.push(getS());
+    else if (checkCommentSL(pos)) content.push(getCommentSL());
     else break;
   }
 
-  return x;
+  return content;
 }
 
 /**
@@ -1047,7 +1094,7 @@ function getBlockdecl5() {
  * @return {number}
  */
 function checkBlockdecl6(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkInclude(i)) i += l;
@@ -1061,12 +1108,12 @@ function checkBlockdecl6(i) {
  * @return {!Array}
  */
 function getBlockdecl6() {
-  let x;
+  let content;
 
-  if (checkInclude(pos)) x = getInclude();
-  else x = getRuleset();
+  if (checkInclude(pos)) content = getInclude();
+  else content = getRuleset();
 
-  return [x];
+  return [content];
 }
 
 /**
@@ -1074,7 +1121,7 @@ function getBlockdecl6() {
  * @return {number}
  */
 function checkBlockdecl7(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkInclude(i)) i += l;
@@ -1084,7 +1131,7 @@ function checkBlockdecl7(i) {
 
   while (i < tokensLength) {
     if (l = checkDeclDelim(i))
-        return i + l - start;
+      return i + l - start;
 
     if (l = checkS(i)) i += l;
     else if (l = checkCommentSL(i)) i += l;
@@ -1098,28 +1145,28 @@ function checkBlockdecl7(i) {
  * @return {!Array}
  */
 function getBlockdecl7() {
-  let x = [];
-  let _x = [];
+  let content = [];
+  const _content = [];
 
-  x.push(getInclude());
+  content.push(getInclude());
 
   while (pos < tokensLength) {
-    let _pos = pos;
+    const _pos = pos;
     if (checkDeclDelim(pos)) {
-      _x.push(getDeclDelim());
-      x = x.concat(_x);
+      _content.push(getDeclDelim());
+      content = content.concat(_content);
       break;
     }
 
-    if (checkS(pos)) _x.push(getS());
-    else if (checkCommentSL(pos)) _x.push(getCommentSL());
+    if (checkS(pos)) _content.push(getS());
+    else if (checkCommentSL(pos)) _content.push(getCommentSL());
     else {
       pos = _pos;
       break;
     }
   }
 
-  return x;
+  return content;
 }
 
 
@@ -1132,17 +1179,19 @@ function getBlockdecl7() {
 function checkBrackets(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
 
+  // Skip `[`.
   if (tokens[i].type === TokenType.LeftSquareBracket) i++;
   else return 0;
 
   if (i < tokens[start].right) {
-    let l = checkTsets(i);
+    const l = checkTsets(i);
     if (l) i += l;
     else return 0;
   }
 
+  // Skip `]`.
   i++;
 
   return i - start;
@@ -1154,23 +1203,26 @@ function checkBrackets(i) {
  * @return {!Node}
  */
 function getBrackets() {
-  var startPos = pos;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  let tsets = [];
-  let right = token.right;
+  const type = NodeType.BracketsType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const right = token.right;
+  let content = [];
 
+  // Skip `[`.
   pos++;
 
   if (pos < right) {
-    tsets = getTsets();
+    content = getTsets();
   }
 
-  var end = getLastPosition(tsets, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
+
+  // Skip `]`.
   pos++;
 
-  return newNode(NodeType.BracketsType, tsets, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -1180,21 +1232,25 @@ function getBrackets() {
  * @return {number} Length of the class selector
  */
 function checkClass(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
 
   if (tokens[i].class_l) return tokens[i].class_l;
 
-  if (tokens[i++].type !== TokenType.FullStop) return 0;
+  // Skip `.`.
+  if (tokens[i].type === TokenType.FullStop) i++;
+  else return 0;
 
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
-    if (l = checkIdentOrInterpolation(i)) i += l;
-    else break;
+    if (l = checkIdentOrInterpolation(i)) {
+      tokens[start].class_l = l + 1;
+      i += l;
+    } else break;
   }
 
   tokens[start].classEnd = i;
@@ -1208,13 +1264,12 @@ function checkClass(i) {
  * @return {!Node}
  */
 function getClass() {
-  let startPos = pos;
-  let type = NodeType.ClassType;
-  let token = tokens[startPos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.ClassType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const end = token.classEnd;
   let content = [];
-  let end = token.classEnd;
 
   // Skip `.`
   pos++;
@@ -1247,7 +1302,7 @@ function checkCombinator(i) {
  * @return {!Node}
  */
 function getCombinator() {
-  let type = tokens[pos].combinatorType;
+  const type = tokens[pos].combinatorType;
   if (type === 1) return getCombinator1();
   if (type === 2) return getCombinator2();
   if (type === 3) return getCombinator3();
@@ -1269,13 +1324,15 @@ function checkCombinator1(i) {
  * @return {!Node}
  */
 function getCombinator1() {
-  let type = NodeType.CombinatorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = '||';
+  const type = NodeType.CombinatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '||';
 
+  // Skip `||`.
   pos += 2;
+
   return newNode(type, content, line, column);
 }
 
@@ -1288,7 +1345,7 @@ function getCombinator1() {
  * @return {number}
  */
 function checkCombinator2(i) {
-  let type = tokens[i].type;
+  const type = tokens[i].type;
   if (type === TokenType.PlusSign ||
       type === TokenType.GreaterThanSign ||
       type === TokenType.Tilde) return 1;
@@ -1296,11 +1353,14 @@ function checkCombinator2(i) {
 }
 
 function getCombinator2() {
-  let type = NodeType.CombinatorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = tokens[pos++].value;
+  const type = NodeType.CombinatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
+
+  // Skip combinator
+  pos++;
 
   return newNode(type, content, line, column);
 }
@@ -1309,7 +1369,7 @@ function getCombinator2() {
  * (1) `/panda/`
  */
 function checkCombinator3(i) {
-  let start = i;
+  const start = i;
 
   if (tokens[i].type === TokenType.Solidus) i++;
   else return 0;
@@ -1325,19 +1385,20 @@ function checkCombinator3(i) {
 }
 
 function getCombinator3() {
-  let type = NodeType.CombinatorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-
-  // Skip `/`.
-  pos++;
-  let ident = getIdent();
+  const type = NodeType.CombinatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
   // Skip `/`.
   pos++;
 
-  let content = '/' + ident.content + '/';
+  const ident = getIdent();
+
+  // Skip `/`.
+  pos++;
+
+  const content = `/${ident.content}/`;
 
   return newNode(type, content, line, column);
 }
@@ -1357,21 +1418,21 @@ function checkCommentML(i) {
  *      is the comment's text (without `/*` and `* /`).
  */
 function getCommentML() {
-  let startPos = pos;
-  let x = tokens[pos].value.substring(2);
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  const type = NodeType.CommentMLType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = tokens[pos].value.substring(2);
 
-  const end = getLastPosition(x, line, column + 2);
+  const end = getLastPosition(content, line, column + 2);
 
-  if (x.endsWith('*/')) {
-    x = x.substring(0, x.length - 2);
+  if (content.endsWith('*/')) {
+    content = content.substring(0, content.length - 2);
   }
 
   pos++;
 
-  return newNode(NodeType.CommentMLType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -1389,14 +1450,15 @@ function checkCommentSL(i) {
  *      (without `//`)
  */
 function getCommentSL() {
-  var startPos = pos;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-  var x = tokens[pos++].value.substring(2);
-  var end = !x ? [line, column + 1] : getLastPosition(x, line, column + 2);
+  const type = NodeType.CommentSLType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = tokens[pos++].value.substring(2);
+  const end = !content ? [line, column + 1]
+    : getLastPosition(content, line, column + 2);
 
-  return newNode(NodeType.CommentSLType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -1406,7 +1468,7 @@ function getCommentSL() {
  * @return {number} Length of the condition
  */
 function checkCondition(i) {
-  let start = i;
+  const start = i;
   let l;
   let _i;
   let s;
@@ -1446,23 +1508,29 @@ function _checkCondition(i) {
  * @return {Array} `['condition', x]`
  */
 function getCondition() {
-  let startPos = pos;
-  let x = [getAtkeyword()];
+  const type = NodeType.ConditionType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let s;
+  let _pos;
+
+  content.push(getAtkeyword());
 
   while (pos < tokensLength) {
     if (checkBlock(pos)) break;
 
-    var s = checkSC(pos);
-    var _pos = pos + s;
+    s = checkSC(pos);
+    _pos = pos + s;
 
     if (!_checkCondition(_pos)) break;
 
-    if (s) x = x.concat(getSC());
-    x.push(_getCondition());
+    if (s) content = content.concat(getSC());
+    content.push(_getCondition());
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ConditionType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 function _getCondition() {
@@ -1482,7 +1550,7 @@ function _getCondition() {
  * @return {number} Length of the condition
  */
 function checkConditionalStatement(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1503,15 +1571,17 @@ function checkConditionalStatement(i) {
  * @return {Array} `['condition', x]`
  */
 function getConditionalStatement() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.ConditionalStatementType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getCondition(),
+    getSC(),
+    getBlock()
+  );
 
-  x.push(getCondition());
-  x = x.concat(getSC());
-  x.push(getBlock());
-
-  var token = tokens[startPos];
-  return newNode(NodeType.ConditionalStatementType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1538,7 +1608,7 @@ function getDeclaration() {
  * @return {number} Length of the declaration
  */
 function checkDeclaration1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1567,17 +1637,19 @@ function checkDeclaration1(i) {
  *       ['value', y]]`
  */
 function getDeclaration1() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.DeclarationType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
 
-  x.push(getProperty());
-  if (checkS(pos)) x.push(getS());
-  x.push(getPropertyDelim());
-  if (checkS(pos)) x.push(getS());
-  x.push(getValue());
+  content.push(getProperty());
+  if (checkS(pos)) content.push(getS());
+  content.push(getPropertyDelim());
+  if (checkS(pos)) content.push(getS());
+  content.push(getValue());
 
-  var token = tokens[startPos];
-  return newNode(NodeType.DeclarationType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1586,7 +1658,7 @@ function getDeclaration1() {
  * @return {number} Length of the declaration
  */
 function checkDeclaration2(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1613,16 +1685,18 @@ function checkDeclaration2(i) {
  *       ['value', y]]`
  */
 function getDeclaration2() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.DeclarationType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getPropertyDelim(),
+    getProperty(),
+    getSC(),
+    getValue()
+  );
 
-  x.push(getPropertyDelim());
-  x.push(getProperty());
-  x = x.concat(getSC());
-  x.push(getValue());
-
-  var token = tokens[startPos];
-  return newNode(NodeType.DeclarationType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1630,7 +1704,7 @@ function getDeclaration2() {
  * @returns {number} Length of the declaration
  */
 function checkSingleValueDeclaration(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1657,17 +1731,19 @@ function checkSingleValueDeclaration(i) {
  *       ['value', y]]`
  */
 function getSingleValueDeclaration() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.DeclarationType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getProperty(),
+    getSC(),
+    getPropertyDelim(),
+    getSC(),
+    getSingleValue()
+  );
 
-  x.push(getProperty());
-  x = x.concat(getSC());
-  x.push(getPropertyDelim());
-  x = x.concat(getSC());
-  x.push(getSingleValue());
-
-  var token = tokens[startPos];
-  return newNode(NodeType.DeclarationType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1687,10 +1763,15 @@ function checkDeclDelim(i) {
  * @return {Array} `['declDelim']`
  */
 function getDeclDelim() {
-  var startPos = pos++;
+  const type = NodeType.DeclDelimType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '\n';
 
-  var token = tokens[startPos];
-  return newNode(NodeType.DeclDelimType, '\n', token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1699,7 +1780,7 @@ function getDeclDelim() {
  * @return {number} Length of the `!default` word
  */
 function checkDefault(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength ||
@@ -1720,14 +1801,15 @@ function checkDefault(i) {
  * @return {Array} `['default', sc]` where `sc` is optional whitespace
  */
 function getDefault() {
-  var token = tokens[pos];
-  var line = token.ln;
-  var column = token.col;
-  let content = joinValues(pos, token.defaultEnd);
+  const type = NodeType.DefaultType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, token.defaultEnd);
 
   pos = token.defaultEnd + 1;
 
-  return newNode(NodeType.DefaultType, content, line, column);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1744,12 +1826,16 @@ function checkDelim(i) {
  * @return {Array} `['delim']`
  */
 function getDelim() {
-  var startPos = pos++;
+  const type = NodeType.DelimType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = ',';
 
-  var token = tokens[startPos];
-  return newNode(NodeType.DelimType, ',', token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
-
 
 /**
  * Check if token is part of a number with dimension unit (e.g. `10px`)
@@ -1757,7 +1843,7 @@ function getDelim() {
  * @return {Number}
  */
 function checkDimension(i) {
-  let ln = checkNumber(i);
+  const ln = checkNumber(i);
   let li;
 
   if (i >= tokensLength ||
@@ -1772,49 +1858,14 @@ function checkDimension(i) {
  * @return {Node}
  */
 function getDimension() {
-  let type = NodeType.DimensionType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [
-      getNumber(),
-      getUnit()
-    ];
-
-  return newNode(type, content, line, column);
-}
-
-/**
- * Check if token is unit
- * @param {Number} i Token's index number
- * @return {Number}
- */
-function checkUnit(i) {
-  let units = [
-    'em', 'ex', 'ch', 'rem',
-    'vh', 'vw', 'vmin', 'vmax',
-    'px', 'mm', 'q', 'cm', 'in', 'pt', 'pc',
-    'deg', 'grad', 'rad', 'turn',
-    's', 'ms',
-    'Hz', 'kHz',
-    'dpi', 'dpcm', 'dppx'
+  const type = NodeType.DimensionType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [
+    getNumber(),
+    getUnit()
   ];
-
-  return units.indexOf(tokens[i].value) !== -1 ? 1 : 0;
-}
-
-/**
- * Get unit node of type ident
- * @return {Node} An ident node containing the unit value
- */
-function getUnit() {
-  let type = NodeType.IdentType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = token.value;
-
-  pos++;
 
   return newNode(type, content, line, column);
 }
@@ -1824,7 +1875,7 @@ function getUnit() {
  * @return {number}
  */
 function checkExpression(i) {
-  var start = i;
+  const start = i;
 
   if (i >= tokensLength || tokens[i++].value !== 'expression' ||
       i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) {
@@ -1838,24 +1889,26 @@ function checkExpression(i) {
  * @return {Array}
  */
 function getExpression() {
-  let startPos = pos;
-  let x;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  const type = NodeType.ExpressionType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
   pos++;
 
-  x = joinValues(pos + 1, tokens[pos].right - 1);
-  var end = getLastPosition(x, line, column, 1);
+  const content = joinValues(pos + 1, tokens[pos].right - 1);
+  const end = getLastPosition(content, line, column, 1);
+
   if (end[0] === line) end[1] += 11;
   pos = tokens[pos].right + 1;
 
-  return newNode(NodeType.ExpressionType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 function checkExtend(i) {
-  let l = 0;
+  if (i >= tokensLength) return 0;
+
+  let l;
 
   if (l = checkExtend1(i)) tokens[i].extend_child = 1;
   else if (l = checkExtend2(i)) tokens[i].extend_child = 2;
@@ -1864,10 +1917,10 @@ function checkExtend(i) {
 }
 
 function getExtend() {
-  let type = tokens[pos].extend_child;
+  const childType = tokens[pos].extend_child;
 
-  if (type === 1) return getExtend1();
-  else if (type === 2) return getExtend2();
+  if (childType === 1) return getExtend1();
+  if (childType === 2) return getExtend2();
 }
 
 /**
@@ -1875,8 +1928,8 @@ function getExtend() {
  * @param {number} i
  */
 function checkExtend1(i) {
-  var start = i;
-  var l;
+  const start = i;
+  let l;
 
   if (i >= tokensLength) return 0;
 
@@ -1901,17 +1954,19 @@ function checkExtend1(i) {
 }
 
 function getExtend1() {
-  let startPos = pos;
-  let x = [].concat(
-      [getAtkeyword()],
-      getSC(),
-      getSelectorsGroup(),
-      getSC(),
-      getOptional()
-      );
+  const type = NodeType.ExtendType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getSelectorsGroup(),
+    getSC(),
+    getOptional()
+  );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ExtendType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1919,8 +1974,8 @@ function getExtend1() {
  * @param {number} i
  */
 function checkExtend2(i) {
-  var start = i;
-  var l;
+  const start = i;
+  let l;
 
   if (i >= tokensLength) return 0;
 
@@ -1939,15 +1994,17 @@ function checkExtend2(i) {
 }
 
 function getExtend2() {
-  let startPos = pos;
-  let x = [].concat(
-      [getAtkeyword()],
-      getSC(),
-      getSelectorsGroup()
-      );
+  const type = NodeType.ExtendType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getSelectorsGroup()
+  );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ExtendType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -1955,7 +2012,7 @@ function getExtend2() {
  * @return {number}
  */
 function checkFunction(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -1971,46 +2028,16 @@ function checkFunction(i) {
  * @return {Array}
  */
 function getFunction() {
-  let startPos = pos;
-  let x = getIdentOrInterpolation();
-  let body;
+  const type = NodeType.FunctionType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getIdentOrInterpolation(),
+    getArguments()
+  );
 
-  body = getArguments();
-
-  x.push(body);
-
-  var token = tokens[startPos];
-  return newNode(NodeType.FunctionType, x, token.ln, token.col);
-}
-
-/**
- * @return {Array}
- */
-function getArguments() {
-  let startPos = pos;
-  let x = [];
-  let body;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
-
-  pos++;
-
-  while (pos < tokensLength &&
-      tokens[pos].type !== TokenType.RightParenthesis) {
-    if (checkSingleValueDeclaration(pos)) x.push(getSingleValueDeclaration());
-    else if (checkArgument(pos)) {
-      body = getArgument();
-      if (typeof body.content === 'string') x.push(body);
-      else x = x.concat(body);
-    } else if (checkClass(pos)) x.push(getClass());
-    else throwError();
-  }
-
-  var end = getLastPosition(x, line, column, 1);
-  pos++;
-
-  return newNode(NodeType.ArgumentsType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2019,7 +2046,7 @@ function getArguments() {
  * @return {number}
  */
 function checkGlobal(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength ||
@@ -2039,14 +2066,15 @@ function checkGlobal(i) {
  * Get node with `!global` word
  */
 function getGlobal() {
-  var token = tokens[pos];
-  var line = token.ln;
-  var column = token.col;
-  let content = joinValues(pos, token.globalEnd);
+  const type = NodeType.GlobalType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, token.globalEnd);
 
   pos = token.globalEnd + 1;
 
-  return newNode(NodeType.GlobalType, content, line, column);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2055,10 +2083,11 @@ function getGlobal() {
  * @return {number} Length of the identifier
  */
 function checkIdent(i) {
-  let start = i;
+  const start = i;
 
   if (i >= tokensLength) return 0;
 
+  // Check if token is part of a negative number
   if (tokens[i].type === TokenType.HyphenMinus &&
       tokens[i + 1].type === TokenType.DecimalNumber) return 0;
 
@@ -2090,13 +2119,15 @@ function checkIdent(i) {
  * @return {Array} `['ident', x]` where `x` is identifier's name
  */
 function getIdent() {
-  let startPos = pos;
-  let x = joinValues(pos, tokens[pos].ident_last);
+  const type = NodeType.IdentType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, tokens[pos].ident_last);
 
   pos = tokens[pos].ident_last + 1;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IdentType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2104,7 +2135,7 @@ function getIdent() {
  * @returns {number} Length of the identifier
  */
 function checkPartialIdent(i) {
-  let start = i;
+  const start = i;
 
   if (i >= tokensLength) return 0;
 
@@ -2149,20 +2180,20 @@ function checkIdentOrInterpolation(i) {
 }
 
 function getIdentOrInterpolation() {
-  let x = [];
+  const content = [];
 
   while (pos < tokensLength) {
-    let tokenType = tokens[pos].ii_type;
+    const tokenType = tokens[pos].ii_type;
 
     if (tokenType === 1) {
-      x.push(getInterpolation());
+      content.push(getInterpolation());
     } else if (tokenType === 2 || tokenType === 3) {
-      x.push(getIdent());
+      content.push(getIdent());
     }
     else break;
   }
 
-  return x;
+  return content;
 }
 
 /**
@@ -2171,7 +2202,7 @@ function getIdentOrInterpolation() {
  * @return {number}
  */
 function checkImportant(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength ||
@@ -2192,14 +2223,15 @@ function checkImportant(i) {
  * @return {Array} `['important', sc]` where `sc` is optional whitespace
  */
 function getImportant() {
-  var token = tokens[pos];
-  var line = token.ln;
-  var column = token.col;
-  let content = joinValues(pos, token.importantEnd);
+  const type = NodeType.ImportantType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, token.importantEnd);
 
   pos = token.importantEnd + 1;
 
-  return newNode(NodeType.ImportantType, content, line, column);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2209,7 +2241,7 @@ function getImportant() {
  * @return {number} Length of the included mixin
  */
 function checkInclude(i) {
-  var l;
+  let l;
 
   if (i >= tokensLength) return 0;
 
@@ -2232,18 +2264,18 @@ function checkInclude(i) {
  * @return {Array} `['include', x]`
  */
 function getInclude() {
-  switch (tokens[pos].include_type) {
-    case 1: return getInclude1();
-    case 2: return getInclude2();
-    case 3: return getInclude3();
-    case 4: return getInclude4();
-    case 5: return getInclude5();
-    case 6: return getInclude6();
-    case 7: return getInclude7();
-    case 8: return getInclude8();
-    case 9: return getIncludeWithKeyframes1();
-    case 10: return getIncludeWithKeyframes2();
-  }
+  const type = tokens[pos].include_type;
+
+  if (type === 1) return getInclude1();
+  if (type === 2) return getInclude2();
+  if (type === 3) return getInclude3();
+  if (type === 4) return getInclude4();
+  if (type === 5) return getInclude5();
+  if (type === 6) return getInclude6();
+  if (type === 7) return getInclude7();
+  if (type === 8) return getInclude8();
+  if (type === 9) return getIncludeWithKeyframes1();
+  if (type === 10) return getIncludeWithKeyframes2();
 }
 
 /**
@@ -2252,7 +2284,7 @@ function getInclude() {
  * @return {number} Length of the include
  */
 function checkInclude1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkAtkeyword(i)) i += l;
@@ -2288,19 +2320,21 @@ function checkInclude1(i) {
  *      are optional whitespaces
  */
 function getInclude1() {
-  let startPos = pos;
-  let x = [].concat(
-      getAtkeyword(),
-      getSC(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getArguments(),
-      getSC(),
-      getBlock()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getArguments(),
+    getSC(),
+    getBlock()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2309,7 +2343,7 @@ function getInclude1() {
  * @return {number} Length of the include
  */
 function checkInclude2(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkAtkeyword(i)) i += l;
@@ -2339,17 +2373,19 @@ function checkInclude2(i) {
  *      mixin and `sc` are optional whitespaces
  */
 function getInclude2() {
-  let startPos = pos;
-  let x = [].concat(
-      getAtkeyword(),
-      getSC(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getArguments()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getArguments()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2359,7 +2395,7 @@ function getInclude2() {
  * @return {number} Length of the mixin
  */
 function checkInclude3(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkAtkeyword(i)) i += l;
@@ -2387,17 +2423,19 @@ function checkInclude3(i) {
  * @return {Array} `['include', x]`
  */
 function getInclude3() {
-  let startPos = pos;
-  let x = [].concat(
-      getAtkeyword(),
-      getSC(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getBlock()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getBlock()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2405,7 +2443,7 @@ function getInclude3() {
  * @return {number}
  */
 function checkInclude4(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkAtkeyword(i)) i += l;
@@ -2426,15 +2464,17 @@ function checkInclude4(i) {
  * @return {Array} `['include', x]`
  */
 function getInclude4() {
-  let startPos = pos;
-  let x = [].concat(
-      getAtkeyword(),
-      getSC(),
-      getIdentOrInterpolation()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2443,7 +2483,7 @@ function getInclude4() {
  * @return {number} Length of the include
  */
 function checkInclude5(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (tokens[i].type === TokenType.PlusSign) i++;
@@ -2473,8 +2513,11 @@ function checkInclude5(i) {
  *      mixin, `z` is block passed to mixin and `sc` are optional whitespaces
  */
 function getInclude5() {
-  let startPos = pos;
-  let x = [].concat(
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
       getOperator(),
       getIdentOrInterpolation(),
       getSC(),
@@ -2483,8 +2526,7 @@ function getInclude5() {
       getBlock()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2493,7 +2535,7 @@ function getInclude5() {
  * @return {number} Length of the include
  */
 function checkInclude6(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (tokens[i].type === TokenType.PlusSign) i++;
@@ -2518,16 +2560,18 @@ function checkInclude6(i) {
  *      mixin and `sc` are optional whitespaces
  */
 function getInclude6() {
-  let startPos = pos;
-  let x = [].concat(
-      getOperator(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getArguments()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getOperator(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getArguments()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2537,7 +2581,7 @@ function getInclude6() {
  * @return {number} Length of the mixin
  */
 function checkInclude7(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (tokens[i].type === TokenType.PlusSign) i++;
@@ -2560,16 +2604,18 @@ function checkInclude7(i) {
  * @return {Array} `['include', x]`
  */
 function getInclude7() {
-  let startPos = pos;
-  let x = [].concat(
-      getOperator(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getBlock()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getOperator(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getBlock()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2577,7 +2623,7 @@ function getInclude7() {
  * @return {number}
  */
 function checkInclude8(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (tokens[i].type === TokenType.PlusSign) i++;
@@ -2593,14 +2639,16 @@ function checkInclude8(i) {
  * @return {Array} `['include', x]`
  */
 function getInclude8() {
-  let startPos = pos;
-  let x = [].concat(
-      getOperator(),
-      getIdentOrInterpolation()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getOperator(),
+    getIdentOrInterpolation()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2610,7 +2658,7 @@ function getInclude8() {
  * @returns {number} Length of the include
  */
 function checkIncludeWithKeyframes1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkAtkeyword(i)) i += l;
@@ -2643,19 +2691,21 @@ function checkIncludeWithKeyframes1(i) {
  * @return {!Node}
  */
 function getIncludeWithKeyframes1() {
-  let startPos = pos;
-  let x = [].concat(
-      getAtkeyword(),
-      getSC(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getArguments(),
-      getSC(),
-      getKeyframesBlocks()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getArguments(),
+    getSC(),
+    getKeyframesBlocks()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2665,7 +2715,7 @@ function getIncludeWithKeyframes1() {
  * @returns {number} Length of the include
  */
 function checkIncludeWithKeyframes2(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (tokens[i].type === TokenType.PlusSign) i++;
@@ -2693,18 +2743,20 @@ function checkIncludeWithKeyframes2(i) {
  * @return {!Node}
  */
 function getIncludeWithKeyframes2() {
-  let startPos = pos;
-  let x = [].concat(
-      getOperator(),
-      getIdentOrInterpolation(),
-      getSC(),
-      getArguments(),
-      getSC(),
-      getKeyframesBlocks()
+  const type = NodeType.IncludeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getOperator(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getArguments(),
+    getSC(),
+    getKeyframesBlocks()
   );
 
-  var token = tokens[startPos];
-  return newNode(NodeType.IncludeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -2713,7 +2765,7 @@ function getIncludeWithKeyframes2() {
  * @return {number}
  */
 function checkInterpolation(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -2723,7 +2775,6 @@ function checkInterpolation(i) {
       tokens[i + 1].type !== TokenType.LeftCurlyBracket) return 0;
 
   i += 2;
-
 
   while (tokens[i].type !== TokenType.RightCurlyBracket) {
     if (l = checkArgument(i)) i += l;
@@ -2738,28 +2789,28 @@ function checkInterpolation(i) {
  * @return {Array} `['interpolation', x]`
  */
 function getInterpolation() {
-  let startPos = pos;
-  let x = [];
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  const type = NodeType.InterpolationType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
   // Skip `#{`:
   pos += 2;
 
-
   while (pos < tokensLength &&
       tokens[pos].type !== TokenType.RightCurlyBracket) {
-    let body = getArgument();
-    if (typeof body.content === 'string') x.push(body);
-    else x = x.concat(body);
+    const body = getArgument();
+    if (typeof body.content === 'string') content.push(body);
+    else content = content.concat(body);
   }
 
-  var end = getLastPosition(x, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
+
   // Skip `}`:
   pos++;
 
-  return newNode(NodeType.InterpolationType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -2768,7 +2819,7 @@ function getInterpolation() {
  * @return {number}
  */
 function checkKeyframesBlock(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -2789,15 +2840,15 @@ function checkKeyframesBlock(i) {
  * @return {Node}
  */
 function getKeyframesBlock() {
-  let type = NodeType.RulesetType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [].concat(
-      getKeyframesSelectorsGroup(),
-      getSC(),
-      [getBlock()]
-      );
+  const type = NodeType.RulesetType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getKeyframesSelectorsGroup(),
+    getSC(),
+    getBlock()
+  );
 
   return newNode(type, content, line, column);
 }
@@ -2810,8 +2861,8 @@ function getKeyframesBlock() {
 function checkKeyframesBlocks(i) {
   if (i >= tokensLength) return 0;
 
-  let blockEnd = tokens[i].block_end;
-  let start = i;
+  const blockEnd = tokens[i].block_end;
+  const start = i;
   let l;
 
   if (!blockEnd) return 0;
@@ -2835,12 +2886,12 @@ function checkKeyframesBlocks(i) {
  * @return {Node}
  */
 function getKeyframesBlocks() {
-  let type = NodeType.BlockType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.BlockType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const keyframesBlocksEnd = token.block_end;
   let content = [];
-  let keyframesBlocksEnd = token.block_end;
 
   while (pos < keyframesBlocksEnd) {
     if (checkSC(pos)) content = content.concat(getSC());
@@ -2858,7 +2909,7 @@ function getKeyframesBlocks() {
  * @return {number} Length of the @keyframes rule
  */
 function checkKeyframesRule(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -2866,7 +2917,7 @@ function checkKeyframesRule(i) {
   if (l = checkAtkeyword(i)) i += l;
   else return 0;
 
-  var atruleName = joinValues2(i - l, l);
+  const atruleName = joinValues2(i - l, l);
   if (atruleName.indexOf('keyframes') === -1) return 0;
 
   if (l = checkSC(i)) i += l;
@@ -2887,17 +2938,17 @@ function checkKeyframesRule(i) {
  * @return {Node}
  */
 function getKeyframesRule() {
-  let type = NodeType.AtruleType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [].concat(
-      [getAtkeyword()],
-      getSC(),
-      getIdentOrInterpolation(),
-      getSC(),
-      [getKeyframesBlocks()]
-      );
+  const type = NodeType.AtruleType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC(),
+    getKeyframesBlocks()
+  );
 
   return newNode(type, content, line, column);
 }
@@ -2908,14 +2959,14 @@ function getKeyframesRule() {
  * @return {number}
  */
 function checkKeyframesSelector(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
 
   if (l = checkIdent(i)) {
     // Valid selectors are only `from` and `to`.
-    let selector = joinValues2(i, l);
+    const selector = joinValues2(i, l);
     if (selector !== 'from' && selector !== 'to') return 0;
 
     i += l;
@@ -2938,13 +2989,12 @@ function checkKeyframesSelector(i) {
  * @return {Node}
  */
 function getKeyframesSelector() {
-  let keyframesSelectorType = NodeType.KeyframesSelectorType;
-  let selectorType = NodeType.SelectorType;
-
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
+  const keyframesSelectorType = NodeType.KeyframesSelectorType;
+  const selectorType = NodeType.SelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
 
   if (token.keyframesSelectorType === 1) {
     content.push(getIdent());
@@ -2954,7 +3004,13 @@ function getKeyframesSelector() {
     content.push(getInterpolation());
   }
 
-  let keyframesSelector = newNode(keyframesSelectorType, content, line, column);
+  const keyframesSelector = newNode(
+    keyframesSelectorType,
+    content,
+    line,
+    column
+  );
+
   return newNode(selectorType, [keyframesSelector], line, column);
 }
 
@@ -2964,19 +3020,21 @@ function getKeyframesSelector() {
  * @return {number}
  */
 function checkKeyframesSelectorsGroup(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkKeyframesSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
-    let sb = checkSC(i);
-    let c = checkDelim(i + sb);
-    if (!c) break;
-    let sa = checkSC(i + sb + c);
-    if (l = checkKeyframesSelector(i + sb + c + sa)) i += sb + c + sa + l;
-    else break;
+    const spaceBefore = checkSC(i);
+    const comma = checkDelim(i + spaceBefore);
+    if (!comma) break;
+
+    const spaceAfter = checkSC(i + spaceBefore + comma);
+    if (l = checkKeyframesSelector(i + spaceBefore + comma + spaceAfter)) {
+      i += spaceBefore + comma + spaceAfter + l;
+    } else break;
   }
 
   tokens[start].selectorsGroupEnd = i;
@@ -2990,15 +3048,17 @@ function checkKeyframesSelectorsGroup(i) {
  */
 function getKeyframesSelectorsGroup() {
   let selectorsGroup = [];
-  let selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+  const selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
 
   selectorsGroup.push(getKeyframesSelector());
 
   while (pos < selectorsGroupEnd) {
-    selectorsGroup = selectorsGroup.concat(getSC());
-    selectorsGroup.push(getDelim());
-    selectorsGroup = selectorsGroup.concat(getSC());
-    selectorsGroup.push(getKeyframesSelector());
+    selectorsGroup = selectorsGroup.concat(
+      getSC(),
+      getDelim(),
+      getSC(),
+      getKeyframesSelector()
+    );
   }
 
   return selectorsGroup;
@@ -3010,7 +3070,7 @@ function getKeyframesSelectorsGroup() {
  * @return {number} Length of the loop
  */
 function checkLoop(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3043,28 +3103,30 @@ function checkLoop(i) {
  * @return {Array} `['loop', x]`
  */
 function getLoop() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.LoopType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
-  x.push(getAtkeyword());
+  content.push(getAtkeyword());
 
   while (pos < tokensLength) {
     if (checkBlock(pos)) {
-      x.push(getBlock());
+      content.push(getBlock());
       break;
     }
-    else if (checkVariable(pos)) x.push(getVariable());
-    else if (checkNumber(pos)) x.push(getNumber());
-    else if (checkInterpolation(pos)) x.push(getInterpolation());
-    else if (checkIdent(pos)) x.push(getIdent());
-    else if (checkOperator(pos)) x.push(getOperator());
-    else if (checkCombinator(pos)) x.push(getCombinator());
-    else if (checkSC(pos)) x = x.concat(getSC());
-    else if (checkString(pos)) x.push(getString());
+    else if (checkVariable(pos)) content.push(getVariable());
+    else if (checkNumber(pos)) content.push(getNumber());
+    else if (checkInterpolation(pos)) content.push(getInterpolation());
+    else if (checkIdent(pos)) content.push(getIdent());
+    else if (checkOperator(pos)) content.push(getOperator());
+    else if (checkCombinator(pos)) content.push(getCombinator());
+    else if (checkSC(pos)) content = content.concat(getSC());
+    else if (checkString(pos)) content.push(getString());
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.LoopType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3090,7 +3152,7 @@ function getMixin() {
  * @return {number} Length of the mixin
  */
 function checkMixin1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3123,26 +3185,30 @@ function checkMixin1(i) {
  * @return {Array} `['mixin', x]`
  */
 function getMixin1() {
-  let startPos = pos;
-  let x = [getAtkeyword()];
+  const type = NodeType.MixinType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [].concat(
+    getAtkeyword(),
+    getSC()
+  );
 
-  x = x.concat(getSC());
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
 
-  if (checkIdentOrInterpolation(pos)) x = x.concat(getIdentOrInterpolation());
+  content = content.concat(getSC());
 
-  x = x.concat(getSC());
-
-  if (checkBlock(pos)) x.push(getBlock());
+  if (checkBlock(pos)) content.push(getBlock());
   else {
-    if (checkArguments(pos)) x.push(getArguments());
+    if (checkArguments(pos)) content.push(getArguments());
 
-    x = x.concat(getSC());
+    content = content.concat(getSC());
 
-    x.push(getBlock());
+    content.push(getBlock());
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.MixinType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3151,7 +3217,7 @@ function getMixin1() {
  * @return {number} Length of the mixin
  */
 function checkMixin2(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3184,26 +3250,30 @@ function checkMixin2(i) {
 * @return {Array} `['mixin', x]`
 */
 function getMixin2() {
-  let startPos = pos;
-  let x = [getOperator()];
+  const type = NodeType.MixinType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [].concat(
+    getOperator(),
+    getSC()
+  );
 
-  x = x.concat(getSC());
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
 
-  if (checkIdentOrInterpolation(pos)) x = x.concat(getIdentOrInterpolation());
+  content = content.concat(getSC());
 
-  x = x.concat(getSC());
-
-  if (checkBlock(pos)) x.push(getBlock());
+  if (checkBlock(pos)) content.push(getBlock());
   else {
-    if (checkArguments(pos)) x.push(getArguments());
+    if (checkArguments(pos)) content.push(getArguments());
 
-    x = x.concat(getSC());
+    content = content.concat(getSC());
 
-    x.push(getBlock());
+    content.push(getBlock());
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.MixinType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3220,10 +3290,15 @@ function checkNamespace(i) {
  * @return {Array} `['namespace']`
  */
 function getNamespace() {
-  var startPos = pos++;
+  const type = NodeType.NamespaceType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '|';
 
-  var token = tokens[startPos];
-  return newNode(NodeType.NamespaceType, '|', token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3243,7 +3318,7 @@ function checkNmName2(i) {
  * @return {string}
  */
 function getNmName2() {
-  var s = tokens[pos].value;
+  let s = tokens[pos].value;
 
   if (tokens[pos++].type === TokenType.DecimalNumber &&
       pos < tokensLength &&
@@ -3305,18 +3380,20 @@ function checkNumber(i) {
  *      to string.
  */
 function getNumber() {
-  let s = '';
-  let startPos = pos;
-  let l = tokens[pos].number_l;
+  const type = NodeType.NumberType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const l = tokens[pos].number_l;
+  let content = '';
 
-  for (var j = 0; j < l; j++) {
-    s += tokens[pos + j].value;
+  for (let j = 0; j < l; j++) {
+    content += tokens[pos + j].value;
   }
 
   pos += l;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.NumberType, s, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3350,11 +3427,15 @@ function checkOperator(i) {
  *      to string.
  */
 function getOperator() {
-  let startPos = pos;
-  let x = tokens[pos++].value;
+  const type = NodeType.OperatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.OperatorType, x, token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3363,7 +3444,7 @@ function getOperator() {
  * @return {number}
  */
 function checkOptional(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength ||
@@ -3383,14 +3464,15 @@ function checkOptional(i) {
  * Get node with `!optional` word
  */
 function getOptional() {
-  var token = tokens[pos];
-  var line = token.ln;
-  var column = token.col;
-  let content = joinValues(pos, token.optionalEnd);
+  const type = NodeType.OptionalType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, token.optionalEnd);
 
   pos = token.optionalEnd + 1;
 
-  return newNode(NodeType.OptionalType, content, line, column);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3401,18 +3483,20 @@ function getOptional() {
 function checkParentheses(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
-  let right = tokens[i].right;
+  const start = i;
+  const right = tokens[i].right;
 
+  // Skip `(`.
   if (tokens[i].type === TokenType.LeftParenthesis) i++;
   else return 0;
 
   if (i < right) {
-    let l = checkTsets(i);
+    const l = checkTsets(i);
     if (l) i += l;
     else return 0;
   }
 
+  // Skip `)`.
   i++;
 
   return i - start;
@@ -3423,23 +3507,26 @@ function checkParentheses(i) {
  * @return {Node}
  */
 function getParentheses() {
-  let type = NodeType.ParenthesesType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let tsets = [];
-  let right = token.right;
+  const type = NodeType.ParenthesesType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const right = token.right;
+  let content = [];
 
+  // Skip `(`.
   pos++;
 
   if (pos < right) {
-    tsets = getTsets();
+    content = getTsets();
   }
 
-  var end = getLastPosition(tsets, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
+
+  // Skip `)`.
   pos++;
 
-  return newNode(type, tsets, line, column, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -3456,12 +3543,15 @@ function checkParentSelector(i) {
  * @return {Node}
  */
 function getParentSelector() {
-  const startPos = pos;
-  const token = tokens[startPos];
+  const type = NodeType.ParentSelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '&';
 
   pos++;
 
-  return newNode(NodeType.ParentSelectorType, '&', token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3529,7 +3619,7 @@ function checkParentSelectorWithExtension(i) {
  * @return {Array}
  */
 function getParentSelectorWithExtension() {
-  let content = [getParentSelector()];
+  const content = [getParentSelector()];
 
   if (checkParentSelectorExtension(pos))
     content.push(getParentSelectorExtension());
@@ -3544,7 +3634,7 @@ function getParentSelectorWithExtension() {
  * @return {number}
  */
 function checkPercentage(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3554,9 +3644,11 @@ function checkPercentage(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (tokens[i].type !== TokenType.PercentSign) return 0;
+  // Skip `%`.
+  if (tokens[i].type === TokenType.PercentSign) i++;
+  else return 0;
 
-  return i - start + 1;
+  return i - start;
 }
 
 /**
@@ -3564,17 +3656,17 @@ function checkPercentage(i) {
  * @return {Object} The percentage node
  */
 function getPercentage() {
-  let startPos = pos;
-  let token = tokens[startPos];
-  let line = token.ln;
-  let column = token.col;
-  let content = getNumberOrInterpolation();
-  let end = getLastPosition(content, line, column, 1);
+  const type = NodeType.PercentageType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = getNumberOrInterpolation();
+  const end = getLastPosition(content, line, column, 1);
 
-  // Skip %
+  // Skip `%`.
   pos++;
 
-  return newNode(NodeType.PercentageType, content, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -3583,7 +3675,7 @@ function getPercentage() {
  * @return {number}
  */
 function checkNumberOrInterpolation(i) {
-  let start = i;
+  const start = i;
   let l;
 
   while (i < tokensLength) {
@@ -3599,7 +3691,7 @@ function checkNumberOrInterpolation(i) {
  * @return {Array} An array containing a single or multiple nodes
  */
 function getNumberOrInterpolation() {
-  let content = [];
+  const content = [];
 
   while (pos < tokensLength) {
     if (checkInterpolation(pos)) content.push(getInterpolation());
@@ -3616,22 +3708,23 @@ function getNumberOrInterpolation() {
  * @return {number} Length of the selector
  */
 function checkPlaceholder(i) {
-  var l;
+  const start = i;
+  let l;
 
   if (i >= tokensLength) return 0;
 
-  if (tokens[i].placeholder_l) return tokens[i].placeholder_l;
+  if (tokens[start].placeholder_l) return tokens[start].placeholder_l;
 
-  if (tokens[i].type !== TokenType.PercentSign) {
-    return 0;
-  }
+  // Skip `%`.
+  if (tokens[i].type === TokenType.PercentSign) i++;
+  else return 0;
 
-  if (l = checkIdentOrInterpolation(i + 1)) {
-    tokens[i].placeholder_l = l + 1;
-    return l + 1;
-  }
+  if (l = checkIdentOrInterpolation(i)) {
+    i += l;
+    tokens[start].placeholder_l = l;
+  } else return 0;
 
-  return 0;
+  return i - start;
 }
 
 /**
@@ -3640,14 +3733,18 @@ function checkPlaceholder(i) {
  *      identifier (without `%`, e.g. `abc`).
  */
 function getPlaceholder() {
-  let startPos = pos;
+  const type = NodeType.PlaceholderType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
+  // Skip `%`.
   pos++;
 
-  let x = getIdentOrInterpolation();
+  content = content.concat(getIdentOrInterpolation());
 
-  var token = tokens[startPos];
-  return newNode(NodeType.PlaceholderType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3655,7 +3752,7 @@ function getPlaceholder() {
  * @return {number}
  */
 function checkProgid(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3680,14 +3777,16 @@ function checkProgid(i) {
  * @return {Array}
  */
 function getProgid() {
-  let startPos = pos;
-  let progid_end = tokens[pos].progid_end;
-  let x = joinValues(pos, progid_end);
+  const type = NodeType.ProgidType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const progid_end = token.progid_end;
+  const content = joinValues(pos, progid_end);
 
   pos = progid_end + 1;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ProgidType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3696,7 +3795,7 @@ function getProgid() {
  * @return {number} Length of the property
  */
 function checkProperty(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -3712,17 +3811,19 @@ function checkProperty(i) {
  * @return {Array} `['property', x]`
  */
 function getProperty() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.PropertyType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
   if (checkVariable(pos)) {
-    x.push(getVariable());
+    content.push(getVariable());
   } else {
-    x = x.concat(getIdentOrInterpolation());
+    content = content.concat(getIdentOrInterpolation());
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.PropertyType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3739,10 +3840,16 @@ function checkPropertyDelim(i) {
  * @return {Array} `['propertyDelim']`
  */
 function getPropertyDelim() {
-  var startPos = pos++;
+  const type = NodeType.PropertyDelimType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = ':';
 
-  var token = tokens[startPos];
-  return newNode(NodeType.PropertyDelimType, ':', token.ln, token.col);
+  // Skip `:`.
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3767,7 +3874,7 @@ function getPseudo() {
  * @return {number}
  */
 function checkPseudoe(i) {
-  var l;
+  let l;
 
   if (i >= tokensLength || tokens[i++].type !== TokenType.Colon ||
       i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
@@ -3779,14 +3886,17 @@ function checkPseudoe(i) {
  * @return {Array}
  */
 function getPseudoe() {
-  let startPos = pos;
+  const type = NodeType.PseudoeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
+  // Skip `::`.
   pos += 2;
 
-  let x = getIdentOrInterpolation();
+  const content = getIdentOrInterpolation();
 
-  var token = tokens[startPos];
-  return newNode(NodeType.PseudoeType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -3794,7 +3904,7 @@ function getPseudoe() {
  * @return {number}
  */
 function checkPseudoc(i) {
-  var l;
+  let l;
 
   if (i >= tokensLength || tokens[i].type !== TokenType.Colon) return 0;
 
@@ -3813,7 +3923,7 @@ function checkPseudoc(i) {
  * @return {Array}
  */
 function getPseudoc() {
-  var childType = tokens[pos].pseudoClassType;
+  const childType = tokens[pos].pseudoClassType;
   if (childType === 1) return getPseudoClass1();
   if (childType === 2) return getPseudoClass2();
   if (childType === 3) return getPseudoClass3();
@@ -3826,21 +3936,21 @@ function getPseudoc() {
  * (-) `:not(panda)`
  */
 function checkPseudoClass1(i) {
-  let start = i;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
 
   if (i >= tokensLength) return 0;
 
-  let l;
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   if (i >= tokensLength ||
       tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
-  let right = tokens[i].right;
+  const right = tokens[i].right;
 
   // Skip `(`.
   i++;
@@ -3850,17 +3960,20 @@ function checkPseudoClass1(i) {
 
   if (i !== right) return 0;
 
-  return right - start + 1;
+  // Skip `)`.
+  i++;
+
+  return i - start;
 }
 
 /**
  * (-) `:not(panda)`
  */
 function getPseudoClass1() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   // Skip `:`.
@@ -3869,17 +3982,17 @@ function getPseudoClass1() {
   content = content.concat(getIdentOrInterpolation());
 
   {
-    let type = NodeType.ArgumentsType;
-    let token = tokens[pos];
-    let line = token.ln;
-    let column = token.col;
+    const type = NodeType.ArgumentsType;
+    const token = tokens[pos];
+    const line = token.ln;
+    const column = token.col;
 
     // Skip `(`.
     pos++;
 
-    let selectors = getSelectorsGroup();
-    let end = getLastPosition(selectors, line, column, 1);
-    let args = newNode(type, selectors, line, column, end);
+    const selectors = getSelectorsGroup();
+    const end = getLastPosition(selectors, line, column, 1);
+    const args = newNode(type, selectors, line, column, end);
     content.push(args);
 
     // Skip `)`.
@@ -3895,8 +4008,8 @@ function getPseudoClass1() {
  * (3) `:lang(de-DE)`
  */
 function checkPseudoClass2(i) {
-  let start = i;
-  let l = 0;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
@@ -3909,7 +4022,7 @@ function checkPseudoClass2(i) {
   if (i >= tokensLength ||
       tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
-  let right = tokens[i].right;
+  const right = tokens[i].right;
 
   // Skip `(`.
   i++;
@@ -3923,14 +4036,17 @@ function checkPseudoClass2(i) {
 
   if (i !== right) return 0;
 
-  return i - start + 1;
+  // Skip `)`.
+  i++;
+
+  return i - start;
 }
 
 function getPseudoClass2() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   // Skip `:`.
@@ -3938,19 +4054,20 @@ function getPseudoClass2() {
 
   content = content.concat(getIdentOrInterpolation());
 
-  let l = tokens[pos].ln;
-  let c = tokens[pos].col;
-  let value = [];
+  const l = tokens[pos].ln;
+  const c = tokens[pos].col;
 
   // Skip `(`.
   pos++;
 
-  value = value.concat(getSC())
-      .concat(getIdentOrInterpolation())
-      .concat(getSC());
+  const value = [].concat(
+    getSC(),
+    getIdentOrInterpolation(),
+    getSC()
+  );
 
-  let end = getLastPosition(value, l, c, 1);
-  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  const end = getLastPosition(value, l, c, 1);
+  const args = newNode(NodeType.ArgumentsType, value, l, c, end);
   content.push(args);
 
   // Skip `)`.
@@ -3963,8 +4080,8 @@ function getPseudoClass2() {
  * (-) `:nth-child(-3n + 2)`
  */
 function checkPseudoClass3(i) {
-  let start = i;
-  let l = 0;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
@@ -3977,7 +4094,7 @@ function checkPseudoClass3(i) {
   if (i >= tokensLength ||
       tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
-  let right = tokens[i].right;
+  const right = tokens[i].right;
 
   // Skip `(`.
   i++;
@@ -4009,22 +4126,26 @@ function checkPseudoClass3(i) {
 
   if (i !== right) return 0;
 
-  return i - start + 1;
+  // Skip `)`.
+  i++;
+
+  return i - start;
 }
 
 function getPseudoClass3() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
   // Skip `:`.
   pos++;
 
-  let content = getIdentOrInterpolation();
+  content = content.concat(getIdentOrInterpolation());
 
-  let l = tokens[pos].ln;
-  let c = tokens[pos].col;
+  const l = tokens[pos].ln;
+  const c = tokens[pos].col;
   let value = [];
 
   // Skip `(`.
@@ -4035,10 +4156,10 @@ function getPseudoClass3() {
     value = value.concat(getNumberOrInterpolation());
 
   {
-    let l = tokens[pos].ln;
-    let c = tokens[pos].col;
-    let content = tokens[pos].value;
-    let ident = newNode(NodeType.IdentType, content, l, c);
+    const l = tokens[pos].ln;
+    const c = tokens[pos].col;
+    const content = tokens[pos].value;
+    const ident = newNode(NodeType.IdentType, content, l, c);
     value.push(ident);
     pos++;
   }
@@ -4050,8 +4171,8 @@ function getPseudoClass3() {
     value = value.concat(getNumberOrInterpolation());
   value = value.concat(getSC());
 
-  let end = getLastPosition(value, l, c, 1);
-  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  const end = getLastPosition(value, l, c, 1);
+  const args = newNode(NodeType.ArgumentsType, value, l, c, end);
   content.push(args);
 
   // Skip `)`.
@@ -4064,8 +4185,8 @@ function getPseudoClass3() {
  * (-) `:nth-child(-3n)`
  */
 function checkPseudoClass4(i) {
-  let start = i;
-  let l = 0;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
@@ -4078,7 +4199,7 @@ function checkPseudoClass4(i) {
   if (i >= tokensLength) return 0;
   if (tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
-  let right = tokens[i].right;
+  const right = tokens[i].right;
 
   // Skip `(`.
   i++;
@@ -4098,22 +4219,26 @@ function checkPseudoClass4(i) {
 
   if (i !== right) return 0;
 
-  return i - start + 1;
+  // Skip `)`.
+  i++;
+
+  return i - start;
 }
 
 function getPseudoClass4() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
   // Skip `:`.
   pos++;
 
-  let content = getIdentOrInterpolation();
+  content = content.concat(getIdentOrInterpolation());
 
-  let l = tokens[pos].ln;
-  let c = tokens[pos].col;
+  const l = tokens[pos].ln;
+  const c = tokens[pos].col;
   let value = [];
 
   // Skip `(`.
@@ -4125,8 +4250,8 @@ function getPseudoClass4() {
   if (checkIdent(pos)) value.push(getIdent());
   value = value.concat(getSC());
 
-  let end = getLastPosition(value, l, c, 1);
-  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  const end = getLastPosition(value, l, c, 1);
+  const args = newNode(NodeType.ArgumentsType, value, l, c, end);
   content.push(args);
 
   // Skip `)`.
@@ -4139,8 +4264,8 @@ function getPseudoClass4() {
  * (-) `:nth-child(+8)`
  */
 function checkPseudoClass5(i) {
-  let start = i;
-  let l = 0;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
@@ -4153,7 +4278,7 @@ function checkPseudoClass5(i) {
   if (i >= tokensLength) return 0;
   if (tokens[i].type !== TokenType.LeftParenthesis) return 0;
 
-  let right = tokens[i].right;
+  const right = tokens[i].right;
 
   // Skip `(`.
   i++;
@@ -4168,22 +4293,26 @@ function checkPseudoClass5(i) {
 
   if (i !== right) return 0;
 
-  return i - start + 1;
+  // Skip `)`.
+  i++;
+
+  return i - start;
 }
 
 function getPseudoClass5() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
 
   // Skip `:`.
   pos++;
 
-  let content = getIdentOrInterpolation();
+  content = content.concat(getIdentOrInterpolation());
 
-  let l = tokens[pos].ln;
-  let c = tokens[pos].col;
+  const l = tokens[pos].ln;
+  const c = tokens[pos].col;
   let value = [];
 
   // Skip `(`.
@@ -4193,8 +4322,8 @@ function getPseudoClass5() {
   if (checkNumber(pos)) value.push(getNumber());
   value = value.concat(getSC());
 
-  let end = getLastPosition(value, l, c, 1);
-  let args = newNode(NodeType.ArgumentsType, value, l, c, end);
+  const end = getLastPosition(value, l, c, 1);
+  const args = newNode(NodeType.ArgumentsType, value, l, c, end);
   content.push(args);
 
   // Skip `)`.
@@ -4207,8 +4336,8 @@ function getPseudoClass5() {
  * (-) `:checked`
  */
 function checkPseudoClass6(i) {
-  let start = i;
-  let l = 0;
+  const start = i;
+  let l;
 
   // Skip `:`.
   i++;
@@ -4222,15 +4351,15 @@ function checkPseudoClass6(i) {
 }
 
 function getPseudoClass6() {
-  let type = NodeType.PseudocType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.PseudocType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
   // Skip `:`.
   pos++;
 
-  let content = getIdentOrInterpolation();
+  const content = getIdentOrInterpolation();
 
   return newNode(type, content, line, column);
 }
@@ -4240,7 +4369,7 @@ function getPseudoClass6() {
  * @return {number}
  */
 function checkRuleset(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -4263,14 +4392,15 @@ function checkRuleset(i) {
 }
 
 function getRuleset() {
-  let type = NodeType.RulesetType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
+  const type = NodeType.RulesetType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [].concat(
+    getSelectorsGroup(),
+    getSC()
+  );
 
-  content = content.concat(getSelectorsGroup());
-  content = content.concat(getSC());
   if (checkBlock(pos)) {
     content.push(getBlock());
   } else {
@@ -4295,13 +4425,15 @@ function checkS(i) {
  * @return {Array} `['s', x]` where `x` is a string containing spaces
  */
 function getS() {
-  let startPos = pos;
-  let x = joinValues(pos, tokens[pos].ws_last);
+  const type = NodeType.SType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = joinValues(pos, tokens[pos].ws_last);
 
   pos = tokens[pos].ws_last + 1;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.SType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -4329,40 +4461,11 @@ function checkMultilineSC(i) {
 }
 
 /**
- * Check if token is a space or a comment.
- * @param {number} i Token's index number
- * @return {number} Number of similar (space or comment) tokens
- *      in a row starting with the given token.
- */
-function checkSC(i) {
-  if (!tokens[i]) return 0;
-
-  let l;
-  let lsc = 0;
-  let ln = tokens[i].ln;
-
-  while (i < tokensLength) {
-    if (tokens[i].ln !== ln) break;
-
-    if (!(l = checkS(i)) &&
-        !(l = checkCommentML(i)) &&
-        !(l = checkCommentSL(i))) break;
-
-    i += l;
-    lsc += l;
-
-    if (tokens[i] && tokens[i].type === TokenType.Newline) break;
-  }
-
-  return lsc || 0;
-}
-
-/**
  * Get node with spaces newlines and comments
  * @return {!Node}
  */
 function getMultilineSC() {
-  let sc = [];
+  const sc = [];
 
   if (pos >= tokensLength) return sc;
 
@@ -4377,6 +4480,36 @@ function getMultilineSC() {
 }
 
 /**
+ * Check if token is a space or a comment.
+ * @param {number} i Token's index number
+ * @return {number} Number of similar (space or comment) tokens
+ *      in a row starting with the given token.
+ */
+function checkSC(i) {
+  if (i >= tokensLength) return 0;
+
+  let l;
+  let lsc = 0;
+  const ln = tokens[i].ln;
+
+  while (i < tokensLength) {
+    if (tokens[i].ln !== ln) break;
+
+    if (l = checkS(i)) tokens[i].sc_child = 1;
+    else if (l = checkCommentML(i)) tokens[i].sc_child = 2;
+    else if (l = checkCommentSL(i)) tokens[i].sc_child = 3;
+    else break;
+
+    i += l;
+    lsc += l;
+
+    if (tokens[i] && tokens[i].type === TokenType.Newline) break;
+  }
+
+  return lsc || 0;
+}
+
+/**
  * Get node with spaces and comments
  * @return {Array} Array containing nodes with spaces (if there are any)
  *      and nodes with comments (if there are any):
@@ -4384,12 +4517,11 @@ function getMultilineSC() {
  *      and `y` is a comment's text (without `/*` and `* /`).
  */
 function getSC() {
-  let sc = [];
-  let ln;
+  const sc = [];
 
   if (pos >= tokensLength) return sc;
 
-  ln = tokens[pos].ln;
+  const ln = tokens[pos].ln;
 
   while (pos < tokensLength) {
     if (tokens[pos].ln !== ln) break;
@@ -4437,15 +4569,14 @@ function checkShash(i) {
  * @return {Node}
  */
 function getShash() {
-  const startPos = pos;
   const type = NodeType.ShashType;
-  const token = tokens[startPos];
+  const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
   const end = token.shashEnd;
   let content = [];
 
-  // Skip `#`
+  // Skip `#`.
   pos++;
 
   while (pos < end) {
@@ -4465,9 +4596,7 @@ function getShash() {
  * @return {number} `1` if token is part of a string, `0` if not
  */
 function checkString(i) {
-  if (i >= tokensLength) {
-    return 0;
-  }
+  if (i >= tokensLength) return 0;
 
   if (tokens[i].type === TokenType.StringSQ ||
       tokens[i].type === TokenType.StringDQ) {
@@ -4483,11 +4612,15 @@ function checkString(i) {
  *      quotes).
  */
 function getString() {
-  let startPos = pos;
-  let x = tokens[pos++].value;
+  const type = NodeType.StringType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.StringType, x, token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -4498,7 +4631,7 @@ function getString() {
  * @return {number}
  */
 function checkStylesheet(i) {
-  let start = i;
+  const start = i;
   let l;
 
   while (i < tokensLength) {
@@ -4523,10 +4656,13 @@ function checkStylesheet(i) {
  *      nodes.
  */
 function getStylesheet() {
-  let startPos = pos;
-  let x = [];
-  var node;
-  var wasDeclaration = false;
+  const type = NodeType.StylesheetType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let node;
+  let wasDeclaration = false;
 
   while (pos < tokensLength) {
     if (wasDeclaration && checkDeclDelim(pos)) node = getDeclDelim();
@@ -4542,12 +4678,11 @@ function getStylesheet() {
     else throwError();
 
     wasDeclaration = node.type === NodeType.DeclarationType;
-    if (Array.isArray(node)) x = x.concat(node);
-    else x.push(node);
+    if (Array.isArray(node)) content = content.concat(node);
+    else content.push(node);
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.StylesheetType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -4578,7 +4713,7 @@ function getTset() {
  * @return {number}
  */
 function checkTsets(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (i >= tokensLength) return 0;
@@ -4595,16 +4730,16 @@ function checkTsets(i) {
  * @return {Array}
  */
 function getTsets() {
-  let x = [];
+  let content = [];
   let t;
 
   while (tokens[pos - 1].type !== TokenType.Newline &&
         (t = getTset())) {
-    if (typeof t.content === 'string') x.push(t);
-    else x = x.concat(t);
+    if (typeof t.content === 'string') content.push(t);
+    else content = content.concat(t);
   }
 
-  return x;
+  return content;
 }
 
 /**
@@ -4613,12 +4748,10 @@ function getTsets() {
  * @return {number} `1` if token is an unary sign, `0` if not
  */
 function checkUnary(i) {
-  if (i >= tokensLength) {
-    return 0;
-  }
+  if (i >= tokensLength) return 0;
 
   if (tokens[i].type === TokenType.HyphenMinus ||
-    tokens[i].type === TokenType.PlusSign) {
+      tokens[i].type === TokenType.PlusSign) {
     return 1;
   }
 
@@ -4631,13 +4764,16 @@ function checkUnary(i) {
  *      converted to string.
  */
 function getUnary() {
-  let startPos = pos;
-  let x = tokens[pos++].value;
+  const type = NodeType.OperatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
 
-  var token = tokens[startPos];
-  return newNode(NodeType.OperatorType, x, token.ln, token.col);
+  pos++;
+
+  return newNode(type, content, line, column);
 }
-
 
 /**
  * Check if token is a unicode range (single or multiple <urange> nodes)
@@ -4684,6 +4820,41 @@ function getUnicodeRange() {
     else if (checkUrange(pos)) content.push(getUrange());
     else break;
   }
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is unit
+ * @param {Number} i Token's index number
+ * @return {Number}
+ */
+function checkUnit(i) {
+  const units = [
+    'em', 'ex', 'ch', 'rem',
+    'vh', 'vw', 'vmin', 'vmax',
+    'px', 'mm', 'q', 'cm', 'in', 'pt', 'pc',
+    'deg', 'grad', 'rad', 'turn',
+    's', 'ms',
+    'Hz', 'kHz',
+    'dpi', 'dpcm', 'dppx'
+  ];
+
+  return units.indexOf(tokens[i].value) !== -1 ? 1 : 0;
+}
+
+/**
+ * Get unit node of type ident
+ * @return {Node} An ident node containing the unit value
+ */
+function getUnit() {
+  const type = NodeType.IdentType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
+
+  pos++;
 
   return newNode(type, content, line, column);
 }
@@ -4771,7 +4942,7 @@ function checkUri(i) {
 
   if (i >= tokensLength || tokens[i].value !== 'url') return 0;
 
-  // Skip `url`
+  // Skip `url`.
   i++;
 
   if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis)
@@ -4781,7 +4952,7 @@ function checkUri(i) {
   // property to determine when the parentheses close
   const leftParenthesis = tokens[i];
 
-  // Skip `(`
+  // Skip `(`.
   i++;
 
   // Determine the type of URI
@@ -4945,7 +5116,6 @@ function getUri1() {
   const line = token.ln;
   const column = token.col;
   let content = [];
-  let end;
 
   // Skip `url` and `(`
   pos += 2;
@@ -4963,7 +5133,7 @@ function getUri1() {
   // Check that we are at the end of the uri
   if (pos < tokens[startPos + 1].right) return 0;
 
-  end = getLastPosition(content, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
 
   // Skip `)`
   pos++;
@@ -5008,7 +5178,6 @@ function getUri2() {
   const line = token.ln;
   const column = token.col;
   let content = [];
-  let end;
 
   // Skip `url` and `(`
   pos += 2;
@@ -5020,7 +5189,7 @@ function getUri2() {
     else break;
   }
 
-  end = getLastPosition(content, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
 
   // Skip `)`
   pos++;
@@ -5034,7 +5203,7 @@ function getUri2() {
  * @return {number} Length of the value
  */
 function checkValue(i) {
-  let start = i;
+  const start = i;
   let l;
   let s;
   let _i;
@@ -5058,27 +5227,14 @@ function checkValue(i) {
 }
 
 /**
- * @param {number} i Token's index number
- * @return {number}
- */
-function _checkValue(i) {
-  return checkVhash(i) ||
-      checkOperator(i) ||
-      checkImportant(i) ||
-      checkGlobal(i) ||
-      checkDefault(i) ||
-      checkProgid(i) ||
-      checkAny(i) ||
-      checkInterpolation(i) ||
-      checkParentSelector(i);
-}
-
-/**
  * @return {Array}
  */
 function getValue() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.ValueType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
   let _pos;
   let s;
 
@@ -5091,35 +5247,61 @@ function getValue() {
     if (checkDeclDelim(_pos)) break;
 
     if (checkBlock(pos)) {
-      x.push(getBlock());
+      content.push(getBlock());
       break;
     }
 
     if (!_checkValue(_pos)) break;
 
-    if (s) x.push(getS());
-    x.push(_getValue());
+    if (s) content.push(getS());
+    content.push(_getValue());
 
     if (checkBlock(_pos)) break;
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ValueType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
+}
+
+/**
+ * @param {number} i Token's index number
+ * @return {number}
+ */
+function _checkValue(i) {
+  let l;
+
+  if (l = checkInterpolation(i)) tokens[i].value_child = 1;
+  else if (l = checkVariable(i)) tokens[i].value_child = 2;
+  else if (l = checkVhash(i)) tokens[i].value_child = 3;
+  else if (l = checkBlock(i)) tokens[i].value_child = 4;
+  else if (l = checkAtkeyword(i)) tokens[i].value_child = 5;
+  else if (l = checkOperator(i)) tokens[i].value_child = 6;
+  else if (l = checkImportant(i)) tokens[i].value_child = 7;
+  else if (l = checkGlobal(i)) tokens[i].value_child = 8;
+  else if (l = checkDefault(i)) tokens[i].value_child = 9;
+  else if (l = checkProgid(i)) tokens[i].value_child = 10;
+  else if (l = checkAny(i)) tokens[i].value_child = 11;
+  else if (l = checkParentSelector(i)) tokens[i].value_child = 12;
+
+  return l;
 }
 
 /**
  * @return {Array}
  */
 function _getValue() {
-  if (checkVhash(pos)) return getVhash();
-  if (checkOperator(pos)) return getOperator();
-  if (checkImportant(pos)) return getImportant();
-  if (checkGlobal(pos)) return getGlobal();
-  if (checkDefault(pos)) return getDefault();
-  if (checkProgid(pos)) return getProgid();
-  if (checkAny(pos)) return getAny();
-  if (checkInterpolation(pos)) return getInterpolation();
-  if (checkParentSelector(pos)) return getParentSelector();
+  const childType = tokens[pos].value_child;
+  if (childType === 1) return getInterpolation();
+  if (childType === 2) return getVariable();
+  if (childType === 3) return getVhash();
+  if (childType === 4) return getBlock();
+  if (childType === 5) return getAtkeyword();
+  if (childType === 6) return getOperator();
+  if (childType === 7) return getImportant();
+  if (childType === 8) return getGlobal();
+  if (childType === 9) return getDefault();
+  if (childType === 10) return getProgid();
+  if (childType === 11) return getAny();
+  if (childType === 12) return getParentSelector();
 }
 
 /**
@@ -5127,7 +5309,7 @@ function _getValue() {
  * @returns {number} Length of the value
  */
 function checkSingleValue(i) {
-  let start = i;
+  const start = i;
   let l;
   let s;
   let _i;
@@ -5154,8 +5336,11 @@ function checkSingleValue(i) {
  * @returns {Array}
  */
 function getSingleValue() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.ValueType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
   let _pos;
   let s;
 
@@ -5168,22 +5353,20 @@ function getSingleValue() {
     if (checkDeclDelim(_pos) || checkDelim(_pos)) break;
 
     if (checkBlock(pos)) {
-      x.push(getBlock());
+      content.push(getBlock());
       break;
     }
 
     if (!_checkValue(_pos)) break;
 
-    if (s) x.push(getS());
-    x.push(_getValue());
+    if (s) content.push(getS());
+    content.push(_getValue());
 
     if (checkBlock(_pos)) break;
   }
 
-  var token = tokens[startPos];
-  return newNode(NodeType.ValueType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
-
 
 /**
  * Check if token is part of a variable
@@ -5191,11 +5374,19 @@ function getSingleValue() {
  * @return {number} Length of the variable
  */
 function checkVariable(i) {
-  var l;
+  const start = i;
+  let l;
 
-  if (i >= tokensLength || tokens[i].type !== TokenType.DollarSign) return 0;
+  if (i >= tokensLength) return 0;
 
-  return (l = checkIdent(i + 1)) ? l + 1 : 0;
+  // Skip `$`.
+  if (tokens[i].type === TokenType.DollarSign) i++;
+  else return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
 }
 
 /**
@@ -5204,15 +5395,17 @@ function checkVariable(i) {
  *      a variable name.
  */
 function getVariable() {
-  let startPos = pos;
-  let x = [];
+  const type = NodeType.VariableType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
+  // Skip `$`.
   pos++;
 
-  x.push(getIdent());
+  const content = [getIdent()];
 
-  var token = tokens[startPos];
-  return newNode(NodeType.VariableType, x, token.ln, token.col);
+  return newNode(type, content, line, column);
 }
 
 /**
@@ -5221,7 +5414,7 @@ function getVariable() {
  * @return {number}
  */
 function checkVariablesList(i) {
-  var d = 0; // Number of dots
+  let d = 0; // Number of dots
   let l;
 
   if (i >= tokensLength) return 0;
@@ -5243,16 +5436,17 @@ function checkVariablesList(i) {
  *      `x` is a variable name.
  */
 function getVariablesList() {
-  let startPos = pos;
-  let x = [getVariable()];
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  const type = NodeType.VariablesListType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [getVariable()];
+  const end = getLastPosition(content, line, column, 3);
 
-  var end = getLastPosition(x, line, column, 3);
+  // Skip `...`.
   pos += 3;
 
-  return newNode(NodeType.VariablesListType, x, token.ln, token.col, end);
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -5262,11 +5456,19 @@ function getVariablesList() {
  * @return {number}
  */
 function checkVhash(i) {
-  var l;
+  const start = i;
+  let l;
 
-  if (i >= tokensLength || tokens[i].type !== TokenType.NumberSign) return 0;
+  if (i >= tokensLength) return 0;
 
-  return (l = checkNmName2(i + 1)) ? l + 1 : 0;
+  // Skip `#`.
+  if (tokens[i].type === TokenType.NumberSign) i++;
+  else return 0;
+
+  if (l = checkNmName2(i)) i += l;
+  else return 0;
+
+  return i - start;
 }
 
 /**
@@ -5275,36 +5477,39 @@ function checkVhash(i) {
  *      converted to string (without `#`, e.g. `'fff'`).
  */
 function getVhash() {
-  let startPos = pos;
-  let x;
-  var token = tokens[startPos];
-  var line = token.ln;
-  var column = token.col;
+  const type = NodeType.VhashType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
 
+  // Skip `#`.
   pos++;
 
-  x = getNmName2();
-  var end = getLastPosition(x, line, column + 1);
-  return newNode(NodeType.VhashType, x, token.ln, token.col, end);
+  const content = getNmName2();
+  const end = getLastPosition(content, line, column + 1);
+  return newNode(type, content, line, column, end);
 }
 
 function checkSelectorsGroup(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
   let l;
-
 
   if (l = checkSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
-    let sb = checkSC(i);
-    let c = checkDelim(i + sb);
-    if (!c) break;
-    let sa = checkMultilineSC(i + sb + c);
-    let saa = sa ? checkMultilineSC(i + sb + c + sa) : 0;
-    if (l = checkSelector(i + sb + c + sa + saa)) i += sb + c + sa + saa + l;
+    const spaceBefore = checkSC(i);
+    const comma = checkDelim(i + spaceBefore);
+    if (!comma) break;
+
+    const spaceAfter = checkMultilineSC(i + spaceBefore + comma);
+    const spaceEnd = spaceAfter ?
+      checkMultilineSC(i + spaceBefore + comma + spaceAfter) : 0;
+
+    if (l = checkSelector(i + spaceBefore + comma + spaceAfter + spaceEnd))
+      i += spaceBefore + comma + spaceAfter + spaceEnd + l;
     else break;
   }
 
@@ -5314,23 +5519,24 @@ function checkSelectorsGroup(i) {
 
 function getSelectorsGroup() {
   let selectorsGroup = [];
-  let selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+  const selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
 
   selectorsGroup.push(getSelector());
 
   while (pos < selectorsGroupEnd) {
-    selectorsGroup = selectorsGroup.concat(getMultilineSC());
-    selectorsGroup.push(getDelim());
-    selectorsGroup = selectorsGroup.concat(getMultilineSC());
-    selectorsGroup = selectorsGroup.concat(getMultilineSC());
-    selectorsGroup.push(getSelector());
+    selectorsGroup = selectorsGroup.concat(
+      getMultilineSC(),
+      getDelim(),
+      getMultilineSC(),
+      getSelector()
+    );
   }
 
   return selectorsGroup;
 }
 
 function checkSelector(i) {
-  var l;
+  let l;
 
   if (l = checkSelector1(i)) tokens[i].selectorType = 1;
   else if (l = checkSelector2(i)) tokens[i].selectorType = 2;
@@ -5339,7 +5545,7 @@ function checkSelector(i) {
 }
 
 function getSelector() {
-  let selectorType = tokens[pos].selectorType;
+  const selectorType = tokens[pos].selectorType;
   if (selectorType === 1) return getSelector1();
   else return getSelector2();
 }
@@ -5350,22 +5556,23 @@ function getSelector() {
 function checkSelector1(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkCompoundSelector(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
-    let s = checkSC(i);
-    let c = checkCombinator(i + s);
-    if (!s && !c) break;
-    if (c) {
-      i += s + c;
-      s = checkSC(i);
+    let space = checkSC(i);
+    const comma = checkCombinator(i + space);
+    if (!space && !comma) break;
+
+    if (comma) {
+      i += space + comma;
+      space = checkSC(i);
     }
 
-    if (l = checkCompoundSelector(i + s)) i += s + l;
+    if (l = checkCompoundSelector(i + space)) i += space + l;
     else break;
   }
 
@@ -5374,11 +5581,11 @@ function checkSelector1(i) {
 }
 
 function getSelector1() {
-  let type = NodeType.SelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let selectorEnd = token.selectorEnd;
+  const type = NodeType.SelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const selectorEnd = token.selectorEnd;
   let content = getCompoundSelector();
 
   while (pos < selectorEnd) {
@@ -5399,22 +5606,22 @@ function getSelector1() {
 function checkSelector2(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkCombinator(i)) i += l;
   else return 0;
 
   while (i < tokensLength) {
-    let sb = checkSC(i);
-    if (l = checkCompoundSelector(i + sb)) i += sb + l;
+    const spaceBefore = checkSC(i);
+    if (l = checkCompoundSelector(i + spaceBefore)) i += spaceBefore + l;
     else break;
 
-    let sa = checkSC(i);
-    let c = checkCombinator(i + sa);
-    if (!sa && !c) break;
-    if (c) {
-      i += sa + c;
+    const spaceAfter = checkSC(i);
+    const comma = checkCombinator(i + spaceAfter);
+    if (!spaceAfter && !comma) break;
+    if (comma) {
+      i += spaceAfter + comma;
     }
   }
 
@@ -5423,11 +5630,11 @@ function checkSelector2(i) {
 }
 
 function getSelector2() {
-  let type = NodeType.SelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let selectorEnd = token.selectorEnd;
+  const type = NodeType.SelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const selectorEnd = token.selectorEnd;
   let content = [getCombinator()];
 
   while (pos < selectorEnd) {
@@ -5455,7 +5662,7 @@ function checkCompoundSelector(i) {
 }
 
 function getCompoundSelector() {
-  let type = tokens[pos].compoundSelectorType;
+  const type = tokens[pos].compoundSelectorType;
   if (type === 1) return getCompoundSelector1();
   if (type === 2) return getCompoundSelector2();
 }
@@ -5473,7 +5680,7 @@ function getCompoundSelector() {
 function checkCompoundSelector1(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkUniversalSelector(i) ||
@@ -5483,7 +5690,7 @@ function checkCompoundSelector1(i) {
   else return 0;
 
   while (i < tokensLength) {
-    let l = checkShash(i) ||
+    const l = checkShash(i) ||
         checkClass(i) ||
         checkAttributeSelector(i) ||
         checkPseudo(i) ||
@@ -5503,7 +5710,7 @@ function checkCompoundSelector1(i) {
  */
 function getCompoundSelector1() {
   let sequence = [];
-  let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
+  const compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
   if (checkUniversalSelector(pos)) sequence.push(getUniversalSelector());
   else if (checkTypeSelector(pos)) sequence.push(getTypeSelector());
@@ -5536,10 +5743,10 @@ function getCompoundSelector1() {
 function checkCompoundSelector2(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
 
   while (i < tokensLength) {
-    let l = checkShash(i) ||
+    const l = checkShash(i) ||
         checkClass(i) ||
         checkAttributeSelector(i) ||
         checkPseudo(i) ||
@@ -5559,8 +5766,8 @@ function checkCompoundSelector2(i) {
  * @return {Array} An array of nodes that make up the compound selector
  */
 function getCompoundSelector2() {
-  let sequence = [];
-  let compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
+  const sequence = [];
+  const compoundSelectorEnd = tokens[pos].compoundSelectorEnd;
 
   while (pos < compoundSelectorEnd) {
     if (checkShash(pos)) sequence.push(getShash());
@@ -5578,7 +5785,7 @@ function getCompoundSelector2() {
 function checkUniversalSelector(i) {
   if (i >= tokensLength) return 0;
 
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkNamePrefix(i)) i += l;
@@ -5590,11 +5797,11 @@ function checkUniversalSelector(i) {
 }
 
 function getUniversalSelector() {
-  let type = NodeType.UniversalSelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
+  const type = NodeType.UniversalSelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
   let end;
 
   if (checkNamePrefix(pos)) {
@@ -5613,10 +5820,10 @@ function getUniversalSelector() {
  * @return {number} Type selector's length
  */
 function checkTypeSelector(i) {
+  if (i >= tokensLength) return 0;
+
   const start = i;
   let l;
-
-  if (i >= tokensLength) return 0;
 
   if (l = checkNamePrefix(i)) i += l;
 
@@ -5653,7 +5860,7 @@ function checkAttributeSelector(i) {
 }
 
 function getAttributeSelector() {
-  let type = tokens[pos].attributeSelectorType;
+  const type = tokens[pos].attributeSelectorType;
   if (type === 1) return getAttributeSelector1();
   else return getAttributeSelector2();
 }
@@ -5665,7 +5872,7 @@ function getAttributeSelector() {
  *
  */
 function checkAttributeSelector1(i) {
-  let start = i;
+  const start = i;
 
   if (tokens[i].type === TokenType.LeftSquareBracket) i++;
   else return 0;
@@ -5700,22 +5907,24 @@ function checkAttributeSelector1(i) {
 }
 
 function getAttributeSelector1() {
-  let type = NodeType.AttributeSelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.AttributeSelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   // Skip `[`.
   pos++;
 
-  content = content.concat(getSC());
-  content.push(getAttributeName());
-  content = content.concat(getSC());
-  content.push(getAttributeMatch());
-  content = content.concat(getSC());
-  content.push(getAttributeValue());
-  content = content.concat(getSC());
+  content = content.concat(
+    getSC(),
+    getAttributeName(),
+    getSC(),
+    getAttributeMatch(),
+    getSC(),
+    getAttributeValue(),
+    getSC()
+  );
 
   if (checkAttributeFlags(pos)) {
     content.push(getAttributeFlags());
@@ -5725,7 +5934,7 @@ function getAttributeSelector1() {
   // Skip `]`.
   pos++;
 
-  let end = getLastPosition(content, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
   return newNode(type, content, line, column, end);
 }
 
@@ -5733,7 +5942,7 @@ function getAttributeSelector1() {
  * (1) `[panda]`
  */
 function checkAttributeSelector2(i) {
-  let start = i;
+  const start = i;
 
   if (tokens[i].type === TokenType.LeftSquareBracket) i++;
   else return 0;
@@ -5753,28 +5962,30 @@ function checkAttributeSelector2(i) {
 }
 
 function getAttributeSelector2() {
-  let type = NodeType.AttributeSelectorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.AttributeSelectorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   // Skip `[`.
   pos++;
 
-  content = content.concat(getSC());
-  content.push(getAttributeName());
-  content = content.concat(getSC());
+  content = content.concat(
+    getSC(),
+    getAttributeName(),
+    getSC()
+  );
 
   // Skip `]`.
   pos++;
 
-  let end = getLastPosition(content, line, column, 1);
+  const end = getLastPosition(content, line, column, 1);
   return newNode(type, content, line, column, end);
 }
 
 function checkAttributeName(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkNamePrefix(i)) i += l;
@@ -5786,10 +5997,10 @@ function checkAttributeName(i) {
 }
 
 function getAttributeName() {
-  let type = NodeType.AttributeNameType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.AttributeNameType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   if (checkNamePrefix(pos)) content.push(getNamePrefix());
@@ -5807,15 +6018,15 @@ function checkAttributeMatch(i) {
 }
 
 function getAttributeMatch() {
-  let type = tokens[pos].attributeMatchType;
+  const type = tokens[pos].attributeMatchType;
   if (type === 1) return getAttributeMatch1();
   else return getAttributeMatch2();
 }
 
 function checkAttributeMatch1(i) {
-  let start = i;
+  const start = i;
 
-  let type = tokens[i].type;
+  const type = tokens[i].type;
   if (type === TokenType.Tilde ||
       type === TokenType.VerticalLine ||
       type === TokenType.CircumflexAccent ||
@@ -5830,11 +6041,11 @@ function checkAttributeMatch1(i) {
 }
 
 function getAttributeMatch1() {
-  let type = NodeType.AttributeMatchType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = tokens[pos].value + tokens[pos + 1].value;
+  const type = NodeType.AttributeMatchType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = tokens[pos].value + tokens[pos + 1].value;
   pos += 2;
 
   return newNode(type, content, line, column);
@@ -5846,11 +6057,11 @@ function checkAttributeMatch2(i) {
 }
 
 function getAttributeMatch2() {
-  let type = NodeType.AttributeMatchType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = '=';
+  const type = NodeType.AttributeMatchType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '=';
 
   pos++;
   return newNode(type, content, line, column);
@@ -5861,10 +6072,10 @@ function checkAttributeValue(i) {
 }
 
 function getAttributeValue() {
-  let type = NodeType.AttributeValueType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.AttributeValueType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   if (checkString(pos)) content.push(getString());
@@ -5878,11 +6089,11 @@ function checkAttributeFlags(i) {
 }
 
 function getAttributeFlags() {
-  let type = NodeType.AttributeFlagsType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = getIdentOrInterpolation();
+  const type = NodeType.AttributeFlagsType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = getIdentOrInterpolation();
 
   return newNode(type, content, line, column);
 }
@@ -5898,7 +6109,7 @@ function checkNamePrefix(i) {
 }
 
 function getNamePrefix() {
-  let type = tokens[pos].namePrefixType;
+  const type = tokens[pos].namePrefixType;
   if (type === 1) return getNamePrefix1();
   else return getNamePrefix2();
 }
@@ -5908,7 +6119,7 @@ function getNamePrefix() {
  * (2) `panda<comment>|`
  */
 function checkNamePrefix1(i) {
-  let start = i;
+  const start = i;
   let l;
 
   if (l = checkNamespacePrefix(i)) i += l;
@@ -5923,11 +6134,11 @@ function checkNamePrefix1(i) {
 }
 
 function getNamePrefix1() {
-  let type = NodeType.NamePrefixType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [];
+  const type = NodeType.NamePrefixType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
 
   content.push(getNamespacePrefix());
 
@@ -5946,11 +6157,11 @@ function checkNamePrefix2(i) {
 }
 
 function getNamePrefix2() {
-  let type = NodeType.NamePrefixType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = [getNamespaceSeparator()];
+  const type = NodeType.NamePrefixType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [getNamespaceSeparator()];
 
   return newNode(type, content, line, column);
 }
@@ -5970,14 +6181,14 @@ function checkNamespacePrefix(i) {
 }
 
 function getNamespacePrefix() {
-  let type = NodeType.NamespacePrefixType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
+  const type = NodeType.NamespacePrefixType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
   let content = [];
 
   if (token.type === TokenType.Asterisk) {
-    let asteriskNode = newNode(NodeType.IdentType, '*', token.ln, token.col);
+    const asteriskNode = newNode(NodeType.IdentType, '*', line, column);
     content.push(asteriskNode);
     pos++;
   } else if (checkIdentOrInterpolation(pos))
@@ -6001,11 +6212,11 @@ function checkNamespaceSeparator(i) {
 }
 
 function getNamespaceSeparator() {
-  let type = NodeType.NamespaceSeparatorType;
-  let token = tokens[pos];
-  let line = token.ln;
-  let column = token.col;
-  let content = '|';
+  const type = NodeType.NamespaceSeparatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = '|';
 
   pos++;
   return newNode(type, content, line, column);
