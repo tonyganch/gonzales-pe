@@ -10,6 +10,10 @@ describe 'scss/atrule >>', ->
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
   it '9', -> this.shouldBeOk()
+  it '10', -> this.shouldBeOk()
+  it '11', -> this.shouldBeOk()
+  it '12', -> this.shouldBeOk()
+  it '13', -> this.shouldBeOk()
 
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
@@ -27,6 +31,8 @@ describe 'scss/atrule >>', ->
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
   it 's.6', -> this.shouldBeOk()
+
+  it 'interp.0', -> this.shouldBeOk()
 
   it 'keyframes.0', -> this.shouldBeOk()
   it 'keyframes.1', -> this.shouldBeOk()

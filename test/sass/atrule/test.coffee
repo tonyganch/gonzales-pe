@@ -9,6 +9,11 @@ describe 'sass/atrule >>', ->
   it '6', -> this.shouldBeOk()
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
+  it '9', -> this.shouldBeOk()
+  it '10', -> this.shouldBeOk()
+  it '11', -> this.shouldBeOk()
+  it '12', -> this.shouldBeOk()
+  it '13', -> this.shouldBeOk()
 
   it 's.0', -> this.shouldBeOk()
 
