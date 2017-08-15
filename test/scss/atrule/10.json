@@ -1,0 +1,146 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "import",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "uri",
+      "content": [
+        {
+          "type": "string",
+          "content": "'foo.css'",
+          "syntax": "scss",
+          "start": {
+            "line": 1,
+            "column": 13
+          },
+          "end": {
+            "line": 1,
+            "column": 21
+          }
+        }
+      ],
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 22
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 23
+      },
+      "end": {
+        "line": 1,
+        "column": 23
+      }
+    },
+    {
+      "type": "ident",
+      "content": "projection",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 24
+      },
+      "end": {
+        "line": 1,
+        "column": 33
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 34
+      },
+      "end": {
+        "line": 1,
+        "column": 34
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 35
+      },
+      "end": {
+        "line": 1,
+        "column": 35
+      }
+    },
+    {
+      "type": "ident",
+      "content": "tv",
+      "syntax": "scss",
+      "start": {
+        "line": 1,
+        "column": 36
+      },
+      "end": {
+        "line": 1,
+        "column": 37
+      }
+    }
+  ],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 37
+  }
+}

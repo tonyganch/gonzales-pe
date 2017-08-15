@@ -1,0 +1,132 @@
+{
+  "type": "atrule",
+  "content": [
+    {
+      "type": "atkeyword",
+      "content": [
+        {
+          "type": "ident",
+          "content": "import",
+          "syntax": "less",
+          "start": {
+            "line": 1,
+            "column": 2
+          },
+          "end": {
+            "line": 1,
+            "column": 7
+          }
+        }
+      ],
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 7
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 8
+      },
+      "end": {
+        "line": 1,
+        "column": 8
+      }
+    },
+    {
+      "type": "string",
+      "content": "'common.css'",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 9
+      },
+      "end": {
+        "line": 1,
+        "column": 20
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 21
+      },
+      "end": {
+        "line": 1,
+        "column": 21
+      }
+    },
+    {
+      "type": "ident",
+      "content": "screen",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 22
+      },
+      "end": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "operator",
+      "content": ",",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 28
+      },
+      "end": {
+        "line": 1,
+        "column": 28
+      }
+    },
+    {
+      "type": "space",
+      "content": " ",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 29
+      },
+      "end": {
+        "line": 1,
+        "column": 29
+      }
+    },
+    {
+      "type": "ident",
+      "content": "projection",
+      "syntax": "less",
+      "start": {
+        "line": 1,
+        "column": 30
+      },
+      "end": {
+        "line": 1,
+        "column": 39
+      }
+    }
+  ],
+  "syntax": "less",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 39
+  }
+}

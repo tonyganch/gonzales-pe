@@ -4332,6 +4332,9 @@ function checkUri(i) {
     } else return 0;
   }
 
+  // Skip `)`.
+  i++;
+
   return i - start;
 }
 

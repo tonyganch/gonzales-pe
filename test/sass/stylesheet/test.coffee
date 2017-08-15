@@ -11,6 +11,8 @@ describe 'sass/stylesheet >>', ->
 
   it 'c.0', -> this.shouldBeOk()
 
+  it 'css.0', -> this.shouldBeOk()
+
   it 'issue86.test1', -> this.shouldBeOk()
   it 'issue87.test1', -> this.shouldBeOk()
   it 'issue88.test1', -> this.shouldBeOk()
