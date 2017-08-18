@@ -2300,9 +2300,13 @@ function getPseudoClass3() {
   }
 
   value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
+
   value = value.concat(getSC());
+
   if (checkNumber(pos)) value.push(getNumber());
+
   value = value.concat(getSC());
 
   const end = getLastPosition(value, l, c, 1);
