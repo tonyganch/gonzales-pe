@@ -10,6 +10,7 @@ describe 'sass/ruleset >>', ->
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
   it '9', -> this.shouldBeOk()
+  it '10', -> this.shouldBeOk()
 
   it 'color.ident.0', -> this.shouldBeOk()
   it 'color.ident.1', -> this.shouldBeOk()

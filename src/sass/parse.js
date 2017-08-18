@@ -3721,7 +3721,7 @@ function checkPlaceholder(i) {
 
   if (l = checkIdentOrInterpolation(i)) {
     i += l;
-    tokens[start].placeholder_l = l;
+    tokens[start].placeholder_l = i - start;
   } else return 0;
 
   return i - start;
@@ -4675,7 +4675,7 @@ function getStylesheet() {
     else if (checkConditionalStatement(pos)) node = getConditionalStatement();
     else if (checkAtrule(pos)) node = getAtrule();
     else if (checkDeclaration(pos)) node = getDeclaration();
-    else throwError();
+    else throwError(pos);
 
     wasDeclaration = node.type === NodeType.DeclarationType;
     if (Array.isArray(node)) content = content.concat(node);
