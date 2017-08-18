@@ -3140,7 +3140,7 @@ function checkPlaceholder(i) {
 
   if (l = checkIdentOrInterpolation(i)) {
     i += l;
-    tokens[start].placeholder_l = l;
+    tokens[start].placeholder_l = i - start;
   } else return 0;
 
   return i - start;
