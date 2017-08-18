@@ -2080,8 +2080,12 @@ function checkPseudoClass1(i) {
   // Skip `(`.
   i++;
 
+  if (l = checkSC(i)) i += l;
+
   if (l = checkSelectorsGroup(i)) i += l;
   else return 0;
+
+  if (l = checkSC(i)) i += l;
 
   if (i !== right) return 0;
 
@@ -2115,9 +2119,14 @@ function getPseudoClass1() {
     // Skip `(`.
     pos++;
 
-    const selectors = getSelectorsGroup();
-    const end = getLastPosition(selectors, line, column, 1);
-    const args = newNode(type, selectors, line, column, end);
+    const selectorContent = [].concat(
+      getSC(),
+      getSelectorsGroup(),
+      getSC()
+    );
+
+    const end = getLastPosition(selectorContent, line, column, 1);
+    const args = newNode(type, selectorContent, line, column, end);
     content.push(args);
 
     // Skip `)`.
@@ -2276,6 +2285,8 @@ function getPseudoClass3() {
   // Skip `(`.
   pos++;
 
+  value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
   if (checkNumber(pos)) value.push(getNumber());
 
@@ -2289,9 +2300,13 @@ function getPseudoClass3() {
   }
 
   value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
+
   value = value.concat(getSC());
+
   if (checkNumber(pos)) value.push(getNumber());
+
   value = value.concat(getSC());
 
   const end = getLastPosition(value, l, c, 1);
@@ -2357,16 +2372,19 @@ function getPseudoClass4() {
 
   content.push(getIdent());
 
-  // Skip `(`.
-  pos++;
-
   const l = tokens[pos].ln;
   const c = tokens[pos].col;
   let value = [];
 
+  // Skip `(`.
+  pos++;
+
+  value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
   if (checkNumber(pos)) value.push(getNumber());
   if (checkIdent(pos)) value.push(getIdent());
+
   value = value.concat(getSC());
 
   const end = getLastPosition(value, l, c, 1);
@@ -2430,15 +2448,18 @@ function getPseudoClass5() {
 
   content.push(getIdent());
 
-  // Skip `(`.
-  pos++;
-
   const l = tokens[pos].ln;
   const c = tokens[pos].col;
   let value = [];
 
+  // Skip `(`.
+  pos++;
+
+  value = value.concat(getSC());
+
   if (checkUnary(pos)) value.push(getUnary());
   if (checkNumber(pos)) value.push(getNumber());
+
   value = value.concat(getSC());
 
   const end = getLastPosition(value, l, c, 1);
