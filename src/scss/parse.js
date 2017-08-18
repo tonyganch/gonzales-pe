@@ -3680,6 +3680,7 @@ function getPseudoClass4() {
   if (checkInterpolation(pos)) value.push(getInterpolation());
   if (checkNumber(pos)) value.push(getNumber());
   if (checkIdent(pos)) value.push(getIdent());
+
   value = value.concat(getSC());
 
   const end = getLastPosition(value, l, c, 1);

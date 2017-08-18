@@ -1,0 +1,119 @@
+{
+  "type": "pseudoClass",
+  "content": [
+    {
+      "type": "ident",
+      "content": "nth-child",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 12
+          }
+        },
+        {
+          "type": "number",
+          "content": "2",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 13
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        },
+        {
+          "type": "ident",
+          "content": "n",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 14
+          },
+          "end": {
+            "line": 1,
+            "column": 14
+          }
+        },
+        {
+          "type": "operator",
+          "content": "+",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 15
+          },
+          "end": {
+            "line": 1,
+            "column": 15
+          }
+        },
+        {
+          "type": "number",
+          "content": "1",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 16
+          },
+          "end": {
+            "line": 1,
+            "column": 16
+          }
+        },
+        {
+          "type": "space",
+          "content": " ",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 17
+          },
+          "end": {
+            "line": 1,
+            "column": 17
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 18
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 18
+  }
+}
