@@ -18,6 +18,9 @@ const contexts = {
   'atrule': () => {
     return checkAtrule(pos) && getAtrule();
   },
+  'attributeSelector': () => {
+    return checkAttributeSelector(pos) && getAttributeSelector();
+  },
   'block': () => {
     return checkBlock(pos) && getBlock();
   },
