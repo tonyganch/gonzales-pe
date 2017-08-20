@@ -1405,26 +1405,22 @@ function checkDimension(i) {
       !ln ||
       i + ln >= tokensLength) return 0;
 
-  return (li = checkNmName2(i + ln)) ? ln + li : 0;
+  return (li = checkUnit(i + ln)) ? ln + li : 0;
 }
 
 /**
  * Get node of a number with dimension unit
- * @returns {Array} `['dimension', ['number', x], ['ident', y]]` where
- *      `x` is a number converted to string (e.g. `'10'`) and `y` is
- *      a dimension unit (e.g. `'px'`).
+ * @return {Node}
  */
 function getDimension() {
   const type = NodeType.DimensionType;
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = [getNumber()];
-
-  const unit = tokens[pos];
-  const ident = newNode(NodeType.IdentType, getNmName2(), unit.ln, unit.col);
-
-  content.push(ident);
+  const content = [
+    getNumber(),
+    getUnit()
+  ];
 
   return newNode(type, content, line, column);
 }
@@ -3552,6 +3548,41 @@ function getUnicodeRange() {
     else if (checkUrange(pos)) content.push(getUrange());
     else break;
   }
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is unit
+ * @param {Number} i Token's index number
+ * @return {Number}
+ */
+function checkUnit(i) {
+  const units = [
+    'em', 'ex', 'ch', 'rem',
+    'vh', 'vw', 'vmin', 'vmax',
+    'px', 'mm', 'q', 'cm', 'in', 'pt', 'pc',
+    'deg', 'grad', 'rad', 'turn',
+    's', 'ms',
+    'Hz', 'kHz',
+    'dpi', 'dpcm', 'dppx'
+  ];
+
+  return units.indexOf(tokens[i].value) !== -1 ? 1 : 0;
+}
+
+/**
+ * Get unit node of type ident
+ * @return {Node} An ident node containing the unit value
+ */
+function getUnit() {
+  const type = NodeType.IdentType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = token.value;
+
+  pos++;
 
   return newNode(type, content, line, column);
 }
