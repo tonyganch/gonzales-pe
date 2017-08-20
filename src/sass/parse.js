@@ -4130,8 +4130,8 @@ function checkPseudoClass3(i) {
   if (l = checkNumberOrInterpolation(i)) i += l;
 
   if (i >= tokensLength) return 0;
+
   if (tokens[i].value === 'n') i++;
-  else return 0;
 
   if (l = checkSC(i)) i += l;
 
@@ -4182,12 +4182,16 @@ function getPseudoClass3() {
     value = value.concat(getNumberOrInterpolation());
 
   {
-    const l = tokens[pos].ln;
-    const c = tokens[pos].col;
-    const content = tokens[pos].value;
-    const ident = newNode(NodeType.IdentType, content, l, c);
-    value.push(ident);
-    pos++;
+    const token = tokens[pos];
+
+    if (token.value === 'n') {
+      const l = token.ln;
+      const c = token.col;
+      const content = token.value;
+      const ident = newNode(NodeType.IdentType, content, l, c);
+      value.push(ident);
+      pos++;
+    }
   }
 
   value = value.concat(getSC());
