@@ -17,6 +17,7 @@ describe 'scss/selector >>', ->
   it '14', -> this.shouldBeOk()
   it '18', -> this.shouldBeOk()
   it '19', -> this.shouldBeOk()
+  it '20', -> this.shouldBeOk()
 
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
@@ -29,6 +30,7 @@ describe 'scss/selector >>', ->
   it 's.2', -> this.shouldBeOk()
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
+  it 's.5', -> this.shouldBeOk()
 
   it 'interp.0', -> this.shouldBeOk()
   it 'interp.1', -> this.shouldBeOk()
