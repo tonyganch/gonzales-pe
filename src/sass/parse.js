@@ -1315,14 +1315,21 @@ function getCombinator() {
 
 /**
  * (1) `||`
+ * (2) `>>`
  *
  * @param {number} i
  * @return {number}
  */
 function checkCombinator1(i) {
+  if (i + 1 >= tokensLength) return 0;
+
   if (tokens[i].type === TokenType.VerticalLine &&
       tokens[i + 1].type === TokenType.VerticalLine) return 2;
-  else return 0;
+
+  if (tokens[i].type === TokenType.GreaterThanSign &&
+      tokens[i + 1].type === TokenType.GreaterThanSign) return 2;
+
+  return 0;
 }
 
 /**
@@ -1333,9 +1340,9 @@ function getCombinator1() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = '||';
+  const content = `${token.value}${tokens[pos + 1].value}`;
 
-  // Skip `||`.
+  // Skip combinator
   pos += 2;
 
   return newNode(type, content, line, column);
