@@ -3314,16 +3314,124 @@ function getPseudo() {
 function checkPseudoe(i) {
   let l;
 
-  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon ||
-      i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+  // Check `::`
+  if (i >= tokensLength || tokens[i].type !== TokenType.Colon ||
+      i >= tokensLength || tokens[i + 1].type !== TokenType.Colon) return 0;
 
-  return (l = checkIdentOrInterpolation(i)) ? l + 2 : 0;
+  if (l = checkPseudoElement1(i)) tokens[i].pseudoElementType = 1;
+  else if (l = checkPseudoElement2(i)) tokens[i].pseudoElementType = 2;
+  else return 0;
+
+  return l;
 }
 
 /**
- * @returns {Array}
+ * @returns {Node}
  */
 function getPseudoe() {
+  const childType = tokens[pos].pseudoElementType;
+  if (childType === 1) return getPseudoElement1();
+  if (childType === 2) return getPseudoElement2();
+}
+
+/**
+ * (1) `::slotted(selector)`
+ * (2) `::slotted(selector, selector)`
+ */
+function checkPseudoElement1(i) {
+  const start = i;
+  let l;
+
+  // Skip `::`.
+  i += 2;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  if (i >= tokensLength ||
+      tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+  const right = tokens[i].right;
+
+  // Skip `(`.
+  i++;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkSelectorsGroup(i)) i += l;
+  else return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (i !== right) return 0;
+
+  // Skip `)`.
+  i++;
+
+  return i - start;
+}
+
+/**
+ * (1) `::slotted(selector)`
+ * (2) `::slotted(selector, selector)`
+ */
+function getPseudoElement1() {
+  const type = NodeType.PseudoeType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [];
+
+  // Skip `::`.
+  pos += 2;
+
+  content.push(getIdent());
+
+  {
+    const type = NodeType.ArgumentsType;
+    const token = tokens[pos];
+    const line = token.ln;
+    const column = token.col;
+
+    // Skip `(`.
+    pos++;
+
+    const selectorContent = [].concat(
+      getSC(),
+      getSelectorsGroup(),
+      getSC()
+    );
+
+    const end = getLastPosition(selectorContent, line, column, 1);
+    const args = newNode(type, selectorContent, line, column, end);
+    content.push(args);
+
+    // Skip `)`.
+    pos++;
+  }
+
+  return newNode(type, content, line, column);
+}
+
+function checkPseudoElement2(i) {
+  const start = i;
+  let l;
+
+  // Skip `::`.
+  i += 2;
+
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  return start - i;
+}
+
+/**
+ * @returns {Node}
+ */
+function getPseudoElement2() {
   const type = NodeType.PseudoeType;
   const token = tokens[pos];
   const line = token.ln;
