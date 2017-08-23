@@ -20,6 +20,7 @@ describe 'css/selector >>', ->
   it '17', -> this.shouldBeOk()
   it '18', -> this.shouldBeOk()
   it '19', -> this.shouldBeOk()
+  it '20', -> this.shouldBeOk()
 
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()
@@ -32,3 +33,4 @@ describe 'css/selector >>', ->
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
+  it 's.6', -> this.shouldBeOk()
