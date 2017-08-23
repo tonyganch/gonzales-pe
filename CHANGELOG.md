@@ -7,6 +7,18 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 23.08.2017, version 4.1.0
+
+:star: Unified codebase style across syntaxes.  
+:green_apple: Fixed parsing of URLs in Sass and SCSS.  
+:green_apple: Fixed parsing of placeholders in Sass and SCSS.  
+:green_apple: Fixed parsing of interpolated values within type selectors in Sass and SCSS.  
+:green_apple: Fixed parsing of spacing within pseudo class arguments in all syntaxes.  
+:green_apple: Fixed parsing of parent selectors within parentheses in Sass and SCSS.  
+:star: Abstracted attribute tests for CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of pseudo classes within keyframes in Sass and SCSS.  
+:green_apple: Fixed parsing of dimensions in LESS.
+
 ## 20.11.2016, version 4.0.3
 
 :green_apple: Fixed parsing of interpolations inside URI nodes in SCSS and Sass.  
