@@ -961,6 +961,7 @@ function checkCombinator(i) {
   if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;
   else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;
   else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
+  else if (l = checkCombinator4(i)) tokens[i].combinatorType = 4;
 
   return l;
 }
@@ -970,16 +971,48 @@ function getCombinator() {
   if (type === 1) return getCombinator1();
   if (type === 2) return getCombinator2();
   if (type === 3) return getCombinator3();
+  if (type === 3) return getCombinator4();
+}
+
+/**
+ * (1) `>>>`
+ *
+ * @param {Number} i
+ * @return {Number}
+ */
+function checkCombinator1(i) {
+  if (i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign &&
+      i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign &&
+      i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign)
+    return 3;
+
+  return 0;
+}
+
+/**
+ * @return {Node}
+ */
+function getCombinator1() {
+  const type = NodeType.CombinatorType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = `>>>`;
+
+  // Skip combinator
+  pos += 3;
+
+  return newNode(type, content, line, column);
 }
 
 /**
  * (1) `||`
  * (2) `>>`
  *
- * @param {number} i
- * @return {number}
+ * @param {Number} i
+ * @return {Number}
  */
-function checkCombinator1(i) {
+function checkCombinator2(i) {
   if (i + 1 >= tokensLength) return 0;
 
   if (tokens[i].type === TokenType.VerticalLine &&
@@ -992,9 +1025,9 @@ function checkCombinator1(i) {
 }
 
 /**
- * @return {!Node}
+ * @return {Node}
  */
-function getCombinator1() {
+function getCombinator2() {
   const type = NodeType.CombinatorType;
   const token = tokens[pos];
   const line = token.ln;
@@ -1011,8 +1044,11 @@ function getCombinator1() {
  * (1) `>`
  * (2) `+`
  * (3) `~`
+ *
+ * @param {Number} i
+ * @return {Number}
  */
-function checkCombinator2(i) {
+function checkCombinator3(i) {
   const type = tokens[i].type;
   if (type === TokenType.PlusSign ||
       type === TokenType.GreaterThanSign ||
@@ -1020,7 +1056,10 @@ function checkCombinator2(i) {
   else return 0;
 }
 
-function getCombinator2() {
+/**
+ * @return {Node}
+ */
+function getCombinator3() {
   const type = NodeType.CombinatorType;
   const token = tokens[pos];
   const line = token.ln;
@@ -1036,7 +1075,7 @@ function getCombinator2() {
 /**
  * (1) `/panda/`
  */
-function checkCombinator3(i) {
+function checkCombinator4(i) {
   const start = i;
 
   if (tokens[i].type === TokenType.Solidus) i++;
@@ -1052,7 +1091,10 @@ function checkCombinator3(i) {
   return i - start;
 }
 
-function getCombinator3() {
+/**
+ * @return {Node}
+ */
+function getCombinator4() {
   const type = NodeType.CombinatorType;
   const token = tokens[pos];
   const line = token.ln;
