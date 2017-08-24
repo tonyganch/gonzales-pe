@@ -7,7 +7,7 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
-## 23.08.2017, version 4.1.0
+## 23.08.2017, version 4.1.1
 
 :star: Unified codebase style across syntaxes.  
 :green_apple: Fixed parsing of URLs in Sass and SCSS.  
