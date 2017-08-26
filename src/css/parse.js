@@ -376,10 +376,10 @@ function checkArgument(i) {
   let l;
 
   if (l = checkVhash(i)) tokens[i].argument_child = 1;
-  else if (l = checkCustomProperty(i)) tokens[i].argument_child = 5;
-  else if (l = checkAny(i)) tokens[i].argument_child = 2;
-  else if (l = checkSC(i)) tokens[i].argument_child = 3;
-  else if (l = checkOperator(i)) tokens[i].argument_child = 4;
+  else if (l = checkCustomProperty(i)) tokens[i].argument_child = 2;
+  else if (l = checkAny(i)) tokens[i].argument_child = 3;
+  else if (l = checkSC(i)) tokens[i].argument_child = 4;
+  else if (l = checkOperator(i)) tokens[i].argument_child = 5;
 
   return l;
 }
@@ -391,10 +391,10 @@ function getArgument() {
   const childType = tokens[pos].argument_child;
 
   if (childType === 1) return getVhash();
-  if (childType === 2) return getAny();
-  if (childType === 3) return getSC();
-  if (childType === 4) return getOperator();
-  if (childType === 5) return getCustomProperty();
+  if (childType === 2) return getCustomProperty();
+  if (childType === 3) return getAny();
+  if (childType === 4) return getSC();
+  if (childType === 5) return getOperator();
 }
 
 /**
