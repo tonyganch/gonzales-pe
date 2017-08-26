@@ -1751,7 +1751,7 @@ function getNumber() {
 }
 
 /**
- * Check if token is an operator (`/`, `,`, `:` or `=`).
+ * Check if token is an operator (`/`, `,`, `:`, `=`, `*`).
  * @param {Number} i Token's index number
  * @return {Number} `1` if token is an operator, otherwise `0`
  */
@@ -1763,6 +1763,7 @@ function checkOperator(i) {
     case TokenType.Comma:
     case TokenType.Colon:
     case TokenType.EqualsSign:
+    case TokenType.Asterisk:
       return 1;
   }
 
