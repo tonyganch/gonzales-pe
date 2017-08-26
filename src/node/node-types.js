@@ -17,6 +17,7 @@ module.exports = {
   CommentSLType: 'singlelineComment',
   ConditionType: 'condition',
   ConditionalStatementType: 'conditionalStatement',
+  CustomPropertyType: 'customProperty',
   DeclarationType: 'declaration',
   DeclDelimType: 'declarationDelimiter',
   DefaultType: 'default',

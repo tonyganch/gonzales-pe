@@ -1,0 +1,256 @@
+{
+  "type": "declaration",
+  "content": [
+    {
+      "type": "property",
+      "content": [
+        {
+          "type": "ident",
+          "content": "foo",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 1
+          },
+          "end": {
+            "line": 1,
+            "column": 3
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 3
+      }
+    },
+    {
+      "type": "propertyDelimiter",
+      "content": ":",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 4
+      },
+      "end": {
+        "line": 1,
+        "column": 4
+      }
+    },
+    {
+      "type": "value",
+      "content": [
+        {
+          "type": "function",
+          "content": [
+            {
+              "type": "ident",
+              "content": "calc",
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 5
+              },
+              "end": {
+                "line": 1,
+                "column": 8
+              }
+            },
+            {
+              "type": "arguments",
+              "content": [
+                {
+                  "type": "function",
+                  "content": [
+                    {
+                      "type": "ident",
+                      "content": "var",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 10
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 12
+                      }
+                    },
+                    {
+                      "type": "arguments",
+                      "content": [
+                        {
+                          "type": "customProperty",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "bar",
+                              "syntax": "css",
+                              "start": {
+                                "line": 1,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 1,
+                                "column": 18
+                              }
+                            }
+                          ],
+                          "syntax": "css",
+                          "start": {
+                            "line": 1,
+                            "column": 14
+                          },
+                          "end": {
+                            "line": 1,
+                            "column": 18
+                          }
+                        }
+                      ],
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 19
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 10
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 19
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 20
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 20
+                  }
+                },
+                {
+                  "type": "operator",
+                  "content": "*",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 21
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 21
+                  }
+                },
+                {
+                  "type": "space",
+                  "content": " ",
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 22
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 22
+                  }
+                },
+                {
+                  "type": "dimension",
+                  "content": [
+                    {
+                      "type": "number",
+                      "content": "1",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 23
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 23
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "px",
+                      "syntax": "css",
+                      "start": {
+                        "line": 1,
+                        "column": 24
+                      },
+                      "end": {
+                        "line": 1,
+                        "column": 25
+                      }
+                    }
+                  ],
+                  "syntax": "css",
+                  "start": {
+                    "line": 1,
+                    "column": 23
+                  },
+                  "end": {
+                    "line": 1,
+                    "column": 25
+                  }
+                }
+              ],
+              "syntax": "css",
+              "start": {
+                "line": 1,
+                "column": 9
+              },
+              "end": {
+                "line": 1,
+                "column": 26
+              }
+            }
+          ],
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 5
+          },
+          "end": {
+            "line": 1,
+            "column": 26
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 5
+      },
+      "end": {
+        "line": 1,
+        "column": 26
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 26
+  }
+}
