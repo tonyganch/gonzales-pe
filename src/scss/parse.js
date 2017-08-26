@@ -462,6 +462,7 @@ function checkArgument(i) {
   else if (l = checkInterpolation(i)) tokens[i].argument_child = 15;
   else if (l = checkIdent(i)) tokens[i].argument_child = 16;
   else if (l = checkVhash(i)) tokens[i].argument_child = 17;
+  else if (l = checkCustomProperty(i)) tokens[i].argument_child = 25;
   else if (l = checkOperator(i)) tokens[i].argument_child = 18;
   else if (l = checkUnary(i)) tokens[i].argument_child = 19;
   else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;
@@ -504,6 +505,7 @@ function getArgument() {
   if (childType === 22) return getGlobal();
   if (childType === 23) return getDefault();
   if (childType === 24) return getOptional();
+  if (childType === 25) return getCustomProperty();
 }
 
 /**
@@ -3337,15 +3339,97 @@ function getProgid() {
 /**
  * Check if token is part of a property
  * @param {Number} i Token's index number
- * @returns {Number} Length of the property
+ * @return {Number} Length of the property
  */
 function checkProperty(i) {
   const start = i;
   let l;
 
+  if (l = checkProperty1(i)) tokens[start].propertyType = 1;
+  else if (l = checkProperty2(i)) tokens[start].propertyType = 2;
+  else if (l = checkProperty3(i)) tokens[start].propertyType = 3;
+
+  return l;
+}
+
+/**
+ * Get node with a property
+ * @return {Node}
+ */
+function getProperty() {
+  const type = tokens[pos].propertyType;
+
+  if (type === 1) return getProperty1();
+  if (type === 2) return getProperty2();
+  if (type === 3) return getProperty3();
+
+  return 0;
+}
+
+/**
+ * Check if token is part of a property
+ * (1) `foo`
+ * (2) `#{$foo}`
+ * @param {Number} i Token's index number
+ * @returns {Number} Length of the property
+ */
+function checkProperty1(i) {
+  const start = i;
+  let l;
+
   if (i >= tokensLength) return 0;
 
-  if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with a property
+ * @returns {Array}
+ */
+function getProperty1() {
+  const type = NodeType.PropertyType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = getIdentOrInterpolation();
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a custom property
+ * (1) `--foo-bar`
+ * @param {Number} i Token's index number
+ * @return {Number} Length of the property
+ */
+function checkProperty2(i) {
+  return checkCustomProperty(i);
+}
+
+/**
+ * Get node with a custom property
+ * @return {Node}
+ */
+function getProperty2() {
+  return getCustomProperty();
+}
+
+/**
+ * Check if token is part of a property
+ * (1) `$foo`
+ * @param {Number} i Token's index number
+ * @returns {Number} Length of the property
+ */
+function checkProperty3(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkVariable(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3355,18 +3439,53 @@ function checkProperty(i) {
  * Get node with a property
  * @returns {Array} `['property', x]`
  */
-function getProperty() {
+function getProperty3() {
   const type = NodeType.PropertyType;
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  let content = [];
+  const content = [getVariable()];
 
-  if (checkVariable(pos)) {
-    content.push(getVariable());
-  } else {
-    content = content.concat(getIdentOrInterpolation());
-  }
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a custom property
+ * @param {Number} i Token's index number
+ * @return {Number} Length of the property
+ */
+function checkCustomProperty(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (tokens[i].type !== TokenType.HyphenMinus ||
+      tokens[i + 1] && tokens[i + 1].type !== TokenType.HyphenMinus) return 0;
+
+  // Skip `--`
+  i += 2;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with a custom property
+ * @return {Node}
+ */
+function getCustomProperty() {
+  const type = NodeType.CustomPropertyType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+
+  // Skip `--`
+  pos += 2;
+
+  const content = [getIdent()];
 
   return newNode(type, content, line, column);
 }
