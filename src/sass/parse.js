@@ -3041,15 +3041,32 @@ function checkKeyframesSelectorsGroup(i) {
   if (l = checkKeyframesSelector(i)) i += l;
   else return 0;
 
-  while (i < tokensLength) {
-    const spaceBefore = checkSC(i);
-    const comma = checkDelim(i + spaceBefore);
-    if (!comma) break;
+  // Check for trailing space
+  if (l = checkSC(i) && tokens[i].type !== TokenType.Newline) i += l;
 
-    const spaceAfter = checkSC(i + spaceBefore + comma);
-    if (l = checkKeyframesSelector(i + spaceBefore + comma + spaceAfter)) {
-      i += spaceBefore + comma + spaceAfter + l;
-    } else break;
+  while (i < tokensLength) {
+    const tempStart = i;
+    let tempIndex = i;
+    let tempLength;
+
+    if (tempLength = checkDelim(tempIndex)) tempIndex += tempLength;
+    else break;
+
+    // Check for maxmimum space usage - 'space', '\n', 'space'
+    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+
+    if (tempLength = checkKeyframesSelector(tempIndex)) tempIndex += tempLength;
+    else break;
+
+    // Check for trailing space
+    if (tempLength = checkSC(tempIndex) &&
+        tokens[tempIndex].type !== TokenType.Newline) {
+      tempIndex += tempLength;
+    }
+
+    i += tempIndex - tempStart;
   }
 
   tokens[start].selectorsGroupEnd = i;
@@ -3067,13 +3084,22 @@ function getKeyframesSelectorsGroup() {
 
   selectorsGroup.push(getKeyframesSelector());
 
+  if (checkSC(pos) && tokens[pos].type !== TokenType.Newline) {
+    selectorsGroup = selectorsGroup.concat(getSC());
+  }
+
   while (pos < selectorsGroupEnd) {
     selectorsGroup = selectorsGroup.concat(
-      getSC(),
       getDelim(),
+      getSC(),
+      getSC(),
       getSC(),
       getKeyframesSelector()
     );
+
+    if (checkSC(pos) && tokens[pos].type !== TokenType.Newline) {
+      selectorsGroup = selectorsGroup.concat(getSC());
+    }
   }
 
   return selectorsGroup;

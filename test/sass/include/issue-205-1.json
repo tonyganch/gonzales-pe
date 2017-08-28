@@ -1,0 +1,704 @@
+{
+  "type": "include",
+  "content": [
+    {
+      "type": "operator",
+      "content": "+",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 1
+      }
+    },
+    {
+      "type": "ident",
+      "content": "keyframes",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 2
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "arguments",
+      "content": [
+        {
+          "type": "ident",
+          "content": "loadMoreSpinner",
+          "syntax": "sass",
+          "start": {
+            "line": 1,
+            "column": 12
+          },
+          "end": {
+            "line": 1,
+            "column": 26
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 27
+      }
+    },
+    {
+      "type": "space",
+      "content": "\n",
+      "syntax": "sass",
+      "start": {
+        "line": 1,
+        "column": 28
+      },
+      "end": {
+        "line": 1,
+        "column": 28
+      }
+    },
+    {
+      "type": "block",
+      "content": [
+        {
+          "type": "space",
+          "content": "  ",
+          "syntax": "sass",
+          "start": {
+            "line": 2,
+            "column": 1
+          },
+          "end": {
+            "line": 2,
+            "column": 2
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "0",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 2,
+                            "column": 3
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 3
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 2,
+                        "column": 3
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 4
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 4
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 3
+              },
+              "end": {
+                "line": 2,
+                "column": 4
+              }
+            },
+            {
+              "type": "delimiter",
+              "content": ",",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 5
+              },
+              "end": {
+                "line": 2,
+                "column": 5
+              }
+            },
+            {
+              "type": "space",
+              "content": " ",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 6
+              },
+              "end": {
+                "line": 2,
+                "column": 6
+              }
+            },
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "100",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 2,
+                            "column": 7
+                          },
+                          "end": {
+                            "line": 2,
+                            "column": 9
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 2,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 2,
+                        "column": 10
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 2,
+                    "column": 7
+                  },
+                  "end": {
+                    "line": 2,
+                    "column": 10
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 10
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "syntax": "sass",
+              "start": {
+                "line": 2,
+                "column": 11
+              },
+              "end": {
+                "line": 2,
+                "column": 11
+              }
+            },
+
+
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "space",
+                  "content": "    ",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 4
+                  }
+                },
+                {
+                  "type": "include",
+                  "content": [
+                    {
+                      "type": "operator",
+                      "content": "+",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 5
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "transform",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 14
+                      }
+                    },
+                    {
+                      "type": "arguments",
+                      "content": [
+                        {
+                          "type": "function",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "rotate",
+                              "syntax": "sass",
+                              "start": {
+                                "line": 3,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 21
+                              }
+                            },
+                            {
+                              "type": "arguments",
+                              "content": [
+                                {
+                                  "type": "dimension",
+                                  "content": [
+                                    {
+                                      "type": "number",
+                                      "content": "0",
+                                      "syntax": "sass",
+                                      "start": {
+                                        "line": 3,
+                                        "column": 23
+                                      },
+                                      "end": {
+                                        "line": 3,
+                                        "column": 23
+                                      }
+                                    },
+                                    {
+                                      "type": "ident",
+                                      "content": "deg",
+                                      "syntax": "sass",
+                                      "start": {
+                                        "line": 3,
+                                        "column": 24
+                                      },
+                                      "end": {
+                                        "line": 3,
+                                        "column": 26
+                                      }
+                                    }
+                                  ],
+                                  "syntax": "sass",
+                                  "start": {
+                                    "line": 3,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 3,
+                                    "column": 26
+                                  }
+                                }
+                              ],
+                              "syntax": "sass",
+                              "start": {
+                                "line": 3,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 3,
+                                "column": 27
+                              }
+                            }
+                          ],
+                          "syntax": "sass",
+                          "start": {
+                            "line": 3,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 3,
+                            "column": 27
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 3,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 3,
+                        "column": 28
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 28
+                  }
+                },
+                {
+                  "type": "declarationDelimiter",
+                  "content": "\n",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 3,
+                    "column": 29
+                  },
+                  "end": {
+                    "line": 3,
+                    "column": 29
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 3,
+                "column": 1
+              },
+              "end": {
+                "line": 3,
+                "column": 29
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 2,
+            "column": 3
+          },
+          "end": {
+            "line": 3,
+            "column": 29
+          }
+        },
+        {
+          "type": "space",
+          "content": "  ",
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 1
+          },
+          "end": {
+            "line": 4,
+            "column": 2
+          }
+        },
+        {
+          "type": "ruleset",
+          "content": [
+            {
+              "type": "selector",
+              "content": [
+                {
+                  "type": "keyframesSelector",
+                  "content": [
+                    {
+                      "type": "percentage",
+                      "content": [
+                        {
+                          "type": "number",
+                          "content": "50",
+                          "syntax": "sass",
+                          "start": {
+                            "line": 4,
+                            "column": 3
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 4
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 4,
+                        "column": 3
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 5
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 4,
+                    "column": 3
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 5
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 4,
+                "column": 3
+              },
+              "end": {
+                "line": 4,
+                "column": 5
+              }
+            },
+            {
+              "type": "space",
+              "content": "\n",
+              "syntax": "sass",
+              "start": {
+                "line": 4,
+                "column": 6
+              },
+              "end": {
+                "line": 4,
+                "column": 6
+              }
+            },
+            {
+              "type": "block",
+              "content": [
+                {
+                  "type": "space",
+                  "content": "    ",
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 1
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 4
+                  }
+                },
+                {
+                  "type": "include",
+                  "content": [
+                    {
+                      "type": "operator",
+                      "content": "+",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 5,
+                        "column": 5
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 5
+                      }
+                    },
+                    {
+                      "type": "ident",
+                      "content": "transform",
+                      "syntax": "sass",
+                      "start": {
+                        "line": 5,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 14
+                      }
+                    },
+                    {
+                      "type": "arguments",
+                      "content": [
+                        {
+                          "type": "function",
+                          "content": [
+                            {
+                              "type": "ident",
+                              "content": "rotate",
+                              "syntax": "sass",
+                              "start": {
+                                "line": 5,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 21
+                              }
+                            },
+                            {
+                              "type": "arguments",
+                              "content": [
+                                {
+                                  "type": "dimension",
+                                  "content": [
+                                    {
+                                      "type": "number",
+                                      "content": "180",
+                                      "syntax": "sass",
+                                      "start": {
+                                        "line": 5,
+                                        "column": 23
+                                      },
+                                      "end": {
+                                        "line": 5,
+                                        "column": 25
+                                      }
+                                    },
+                                    {
+                                      "type": "ident",
+                                      "content": "deg",
+                                      "syntax": "sass",
+                                      "start": {
+                                        "line": 5,
+                                        "column": 26
+                                      },
+                                      "end": {
+                                        "line": 5,
+                                        "column": 28
+                                      }
+                                    }
+                                  ],
+                                  "syntax": "sass",
+                                  "start": {
+                                    "line": 5,
+                                    "column": 23
+                                  },
+                                  "end": {
+                                    "line": 5,
+                                    "column": 28
+                                  }
+                                }
+                              ],
+                              "syntax": "sass",
+                              "start": {
+                                "line": 5,
+                                "column": 22
+                              },
+                              "end": {
+                                "line": 5,
+                                "column": 29
+                              }
+                            }
+                          ],
+                          "syntax": "sass",
+                          "start": {
+                            "line": 5,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 5,
+                            "column": 29
+                          }
+                        }
+                      ],
+                      "syntax": "sass",
+                      "start": {
+                        "line": 5,
+                        "column": 15
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 30
+                      }
+                    }
+                  ],
+                  "syntax": "sass",
+                  "start": {
+                    "line": 5,
+                    "column": 5
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 30
+                  }
+                }
+              ],
+              "syntax": "sass",
+              "start": {
+                "line": 5,
+                "column": 1
+              },
+              "end": {
+                "line": 5,
+                "column": 30
+              }
+            }
+          ],
+          "syntax": "sass",
+          "start": {
+            "line": 4,
+            "column": 3
+          },
+          "end": {
+            "line": 5,
+            "column": 30
+          }
+        }
+      ],
+      "syntax": "sass",
+      "start": {
+        "line": 2,
+        "column": 1
+      },
+      "end": {
+        "line": 5,
+        "column": 30
+      }
+    }
+  ],
+  "syntax": "sass",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 5,
+    "column": 30
+  }
+}
