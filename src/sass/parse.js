@@ -368,6 +368,10 @@ function checkAny(i) {
   else if (l = checkClass(i)) tokens[i].any_child = 16;
   else if (l = checkUnary(i)) tokens[i].any_child = 17;
   else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
+  else if (l = checkImportant(i)) tokens[i].any_child = 19;
+  else if (l = checkGlobal(i)) tokens[i].any_child = 20;
+  else if (l = checkDefault(i)) tokens[i].any_child = 21;
+  else if (l = checkOptional(i)) tokens[i].any_child = 22;
 
   return l;
 }
@@ -397,6 +401,10 @@ function getAny() {
   if (childType === 16) return getClass();
   if (childType === 17) return getUnary();
   if (childType === 18) return getParentSelector();
+  if (childType === 19) return getImportant();
+  if (childType === 20) return getGlobal();
+  if (childType === 21) return getDefault();
+  if (childType === 22) return getOptional();
 }
 
 /**
@@ -3616,14 +3624,14 @@ function checkParentheses(i) {
 
   const start = i;
   const right = tokens[i].right;
+  let l;
 
   // Skip `(`.
   if (tokens[i].type === TokenType.LeftParenthesis) i++;
   else return 0;
 
   if (i < right) {
-    const l = checkTsets(i);
-    if (l) i += l;
+    if (l = checkTsets(i)) i += l;
     else return 0;
   }
 
