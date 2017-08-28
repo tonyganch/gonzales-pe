@@ -13,3 +13,5 @@ describe 'sass/include >>', ->
   it '11', -> this.shouldBeOk()
 
   it 'issue-205', -> this.shouldBeOk()
+  it 'issue-205-1', -> this.shouldBeOk()
+  it 'issue-205-2', -> this.shouldBeOk()
