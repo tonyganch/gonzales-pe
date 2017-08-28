@@ -11,6 +11,9 @@ describe 'scss/value >>', ->
   it 'dimension.2', -> this.shouldBeOk()
   it 'dimension.3', -> this.shouldBeOk()
 
+  it 'map.0', -> this.shouldBeOk()
+  it 'map.1', -> this.shouldBeOk()
+
   it 'unicode.0', -> this.shouldBeOk()
   it 'unicode.1', -> this.shouldBeOk()
   it 'unicode.2', -> this.shouldBeOk()

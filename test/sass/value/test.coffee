@@ -15,6 +15,9 @@ describe 'sass/value >>', ->
   it 'dimension.2', -> this.shouldBeOk()
   it 'dimension.3', -> this.shouldBeOk()
 
+  it 'map.0', -> this.shouldBeOk()
+  it 'map.1', -> this.shouldBeOk()
+
   it 'rgb.0', -> this.shouldBeOk()
   it 'rgb.1', -> this.shouldBeOk()
   it 'rgb.2', -> this.shouldBeOk()
