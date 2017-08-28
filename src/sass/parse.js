@@ -361,6 +361,7 @@ function checkAny(i) {
   else if (l = checkNumber(i)) tokens[i].any_child = 10;
   else if (l = checkUri(i)) tokens[i].any_child = 11;
   else if (l = checkExpression(i)) tokens[i].any_child = 12;
+  else if (l = checkFunctionsList(i)) tokens[i].any_child = 19;
   else if (l = checkFunction(i)) tokens[i].any_child = 13;
   else if (l = checkInterpolation(i)) tokens[i].any_child = 14;
   else if (l = checkIdent(i)) tokens[i].any_child = 15;
@@ -389,6 +390,7 @@ function getAny() {
   if (childType === 10) return getNumber();
   if (childType === 11) return getUri();
   if (childType === 12) return getExpression();
+  if (childType === 19) return getFunctionsList();
   if (childType === 13) return getFunction();
   if (childType === 14) return getInterpolation();
   if (childType === 15) return getIdent();
@@ -466,6 +468,7 @@ function checkArgument(i) {
   if (l = checkBrackets(i)) tokens[i].argument_child = 1;
   else if (l = checkParentheses(i)) tokens[i].argument_child = 2;
   else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;
+  else if (l = checkFunctionsList(i)) tokens[i].argument_child = 25;
   else if (l = checkFunction(i)) tokens[i].argument_child = 4;
   else if (l = checkVariablesList(i)) tokens[i].argument_child = 5;
   else if (l = checkVariable(i)) tokens[i].argument_child = 6;
@@ -500,6 +503,7 @@ function getArgument() {
   if (childType === 1) return getBrackets();
   if (childType === 2) return getParentheses();
   if (childType === 3) return getSingleValueDeclaration();
+  if (childType === 25) return getFunctionsList();
   if (childType === 4) return getFunction();
   if (childType === 5) return getVariablesList();
   if (childType === 6) return getVariable();
@@ -2043,6 +2047,46 @@ function getFunction() {
   );
 
   return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a functions list (e.g. `function(value)...`).
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkFunctionsList(i) {
+  let d = 0; // Number of dots
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkFunction(i)) i += l;
+  else return 0;
+
+  while (i < tokensLength && tokens[i].type === TokenType.FullStop) {
+    d++;
+    i++;
+  }
+
+  return d === 3 ? l + d : 0;
+}
+
+/**
+ * Get node with a functions list
+ * @returns {Array}
+ */
+function getFunctionsList() {
+  const type = NodeType.FunctionsListType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = [getFunction()];
+  const end = getLastPosition(content, line, column, 3);
+
+  // Skip `...`.
+  pos += 3;
+
+  return newNode(type, content, line, column, end);
 }
 
 /**
