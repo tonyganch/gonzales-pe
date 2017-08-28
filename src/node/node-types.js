@@ -26,6 +26,7 @@ module.exports = {
   ExtendType: 'extend',
   ExpressionType: 'expression',
   FunctionType: 'function',
+  FunctionsListType: 'functionsList',
   GlobalType: 'global',
   IdentType: 'ident',
   ImportantType: 'important',
