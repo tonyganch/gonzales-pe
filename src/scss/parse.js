@@ -2436,7 +2436,7 @@ function checkKeyframesRule(i) {
   else return 0;
 
   const atruleName = joinValues2(i - l, l);
-  if (atruleName.indexOf('keyframes') === -1) return 0;
+  if (atruleName.toLowerCase().indexOf('keyframes') === -1) return 0;
 
   if (l = checkSC(i)) i += l;
   else return 0;
