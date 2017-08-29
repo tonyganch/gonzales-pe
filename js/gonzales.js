@@ -402,6 +402,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'color': function color(t) {
 	      return '#' + t.content;
 	    },
+	    'customProperty': function customProperty(t) {
+	      return '--' + t.content;
+	    },
 	    'expression': function expression(t) {
 	      return 'expression(' + t.content + ')';
 	    },
@@ -587,8 +590,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'color': function color(t) {
 	      return '#' + t.content;
 	    },
+	    'customProperty': function customProperty(t) {
+	      return '--' + t.content;
+	    },
 	    'expression': function expression(t) {
 	      return 'expression(' + t.content + ')';
+	    },
+	    'functionsList': function functionsList(t) {
+	      return _composite(t.content) + '...';
 	    },
 	    'id': function id(t) {
 	      return '#' + _composite(t.content);
@@ -699,8 +708,14 @@ return /******/ (function(modules) { // webpackBootstrap
 	    'color': function color(t) {
 	      return '#' + t.content;
 	    },
+	    'customProperty': function customProperty(t) {
+	      return '--' + t.content;
+	    },
 	    'expression': function expression(t) {
 	      return 'expression(' + t.content + ')';
+	    },
+	    'functionsList': function functionsList(t) {
+	      return _composite(t.content) + '...';
 	    },
 	    'id': function id(t) {
 	      return '#' + _composite(t.content);
@@ -901,7 +916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ (function(module, exports) {
 
-	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.1.1","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublish":"bash ./scripts/prepublish.sh","postpublish":"bash ./scripts/postpublish.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.8.0","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"}}
+	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.2.1","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublish":"bash ./scripts/prepublish.sh","postpublish":"bash ./scripts/postpublish.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.8.0","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"}}
 
 /***/ }),
 /* 10 */
@@ -1264,7 +1279,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	};
 
 	/**
-	 * Stop parsing and display error.
+	 * Stop parsing and display error
 	 * @param {Number=} i Token's index number
 	 */
 	function throwError(i) {
@@ -1475,7 +1490,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkArgument(i) {
 	  var l = void 0;
 
-	  if (l = checkVhash(i)) tokens[i].argument_child = 1;else if (l = checkAny(i)) tokens[i].argument_child = 2;else if (l = checkSC(i)) tokens[i].argument_child = 3;else if (l = checkOperator(i)) tokens[i].argument_child = 4;
+	  if (l = checkVhash(i)) tokens[i].argument_child = 1;else if (l = checkCustomProperty(i)) tokens[i].argument_child = 2;else if (l = checkAny(i)) tokens[i].argument_child = 3;else if (l = checkSC(i)) tokens[i].argument_child = 4;else if (l = checkOperator(i)) tokens[i].argument_child = 5;
 
 	  return l;
 	}
@@ -1487,9 +1502,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var childType = tokens[pos].argument_child;
 
 	  if (childType === 1) return getVhash();
-	  if (childType === 2) return getAny();
-	  if (childType === 3) return getSC();
-	  if (childType === 4) return getOperator();
+	  if (childType === 2) return getCustomProperty();
+	  if (childType === 3) return getAny();
+	  if (childType === 4) return getSC();
+	  if (childType === 5) return getOperator();
 	}
 
 	/**
@@ -2002,7 +2018,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (i >= tokensLength) return 0;
 
 	  var l = void 0;
-	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
+	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;else if (l = checkCombinator4(i)) tokens[i].combinatorType = 4;
 
 	  return l;
 	}
@@ -2012,23 +2028,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
+	  if (type === 3) return getCombinator4();
 	}
 
 	/**
-	 * (1) `||`
+	 * (1) `>>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
 	 */
 	function checkCombinator1(i) {
-	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;else return 0;
+	  if (i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign) return 3;
+
+	  return 0;
 	}
 
+	/**
+	 * @return {Node}
+	 */
 	function getCombinator1() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = '||';
+	  var content = '>>>';
 
-	  // Skip `||`.
+	  // Skip combinator
+	  pos += 3;
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * (1) `||`
+	 * (2) `>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
+	 */
+	function checkCombinator2(i) {
+	  if (i + 1 >= tokensLength) return 0;
+
+	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;
+
+	  if (tokens[i].type === TokenType.GreaterThanSign && tokens[i + 1].type === TokenType.GreaterThanSign) return 2;
+
+	  return 0;
+	}
+
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator2() {
+	  var type = NodeType.CombinatorType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = '' + token.value + tokens[pos + 1].value;
+
+	  // Skip combinator
 	  pos += 2;
 
 	  return newNode(type, content, line, column);
@@ -2038,13 +2096,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * (1) `>`
 	 * (2) `+`
 	 * (3) `~`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
 	 */
-	function checkCombinator2(i) {
+	function checkCombinator3(i) {
 	  var type = tokens[i].type;
 	  if (type === TokenType.PlusSign || type === TokenType.GreaterThanSign || type === TokenType.Tilde) return 1;else return 0;
 	}
 
-	function getCombinator2() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator3() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -2060,7 +2124,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * (1) `/panda/`
 	 */
-	function checkCombinator3(i) {
+	function checkCombinator4(i) {
 	  var start = i;
 
 	  if (tokens[i].type === TokenType.Solidus) i++;else return 0;
@@ -2073,7 +2137,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return i - start;
 	}
 
-	function getCombinator3() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator4() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -2484,7 +2551,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (l = checkAtkeyword(i)) i += l;else return 0;
 
 	  var atruleName = joinValues2(i - l, l);
-	  if (atruleName.indexOf('keyframes') === -1) return 0;
+	  if (atruleName.toLowerCase().indexOf('keyframes') === -1) return 0;
 
 	  if (l = checkSC(i)) i += l;else return 0;
 
@@ -2712,7 +2779,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * Check if token is an operator (`/`, `,`, `:` or `=`).
+	 * Check if token is an operator (`/`, `,`, `:`, `=`, `*`).
 	 * @param {Number} i Token's index number
 	 * @return {Number} `1` if token is an operator, otherwise `0`
 	 */
@@ -2724,6 +2791,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	    case TokenType.Comma:
 	    case TokenType.Colon:
 	    case TokenType.EqualsSign:
+	    case TokenType.Asterisk:
 	      return 1;
 	  }
 
@@ -2886,6 +2954,31 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var start = i;
 	  var l = void 0;
 
+	  if (l = checkProperty1(i)) tokens[start].propertyType = 1;else if (l = checkProperty2(i)) tokens[start].propertyType = 2;
+
+	  return l;
+	}
+
+	/**
+	 * Get node with a property
+	 * @return {Node}
+	 */
+	function getProperty() {
+	  var type = tokens[pos].propertyType;
+
+	  if (type === 1) return getProperty1();
+	  if (type === 2) return getProperty2();
+	}
+
+	/**
+	 * Check if token is part of a property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkProperty1(i) {
+	  var start = i;
+	  var l = void 0;
+
 	  if (i >= tokensLength) return 0;
 
 	  if (l = checkIdent(i)) i += l;else return 0;
@@ -2897,11 +2990,67 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Get node with a property
 	 * @return {Node}
 	 */
-	function getProperty() {
+	function getProperty1() {
 	  var type = NodeType.PropertyType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
+	  var content = [getIdent()];
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkProperty2(i) {
+	  return checkCustomProperty(i);
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getProperty2() {
+	  return getCustomProperty();
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkCustomProperty(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (tokens[i].type !== TokenType.HyphenMinus || tokens[i + 1] && tokens[i + 1].type !== TokenType.HyphenMinus) return 0;
+
+	  // Skip `--`
+	  i += 2;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getCustomProperty() {
+	  var type = NodeType.CustomPropertyType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+
+	  // Skip `--`
+	  pos += 2;
+
 	  var content = [getIdent()];
 
 	  return newNode(type, content, line, column);
@@ -2956,15 +3105,113 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkPseudoe(i) {
 	  var l = void 0;
 
-	  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon || i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+	  // Check `::`
+	  if (i >= tokensLength || tokens[i].type !== TokenType.Colon || i >= tokensLength || tokens[i + 1].type !== TokenType.Colon) return 0;
 
-	  return (l = checkIdent(i)) ? l + 2 : 0;
+	  if (l = checkPseudoElement1(i)) tokens[i].pseudoElementType = 1;else if (l = checkPseudoElement2(i)) tokens[i].pseudoElementType = 2;else return 0;
+
+	  return l;
 	}
 
 	/**
 	 * @return {Node}
 	 */
 	function getPseudoe() {
+	  var childType = tokens[pos].pseudoElementType;
+	  if (childType === 1) return getPseudoElement1();
+	  if (childType === 2) return getPseudoElement2();
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function checkPseudoElement1(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+	  var right = tokens[i].right;
+
+	  // Skip `(`.
+	  i++;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (l = checkSelectorsGroup(i)) i += l;else return 0;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (i !== right) return 0;
+
+	  // Skip `)`.
+	  i++;
+
+	  return i - start;
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function getPseudoElement1() {
+	  var type = NodeType.PseudoeType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+
+	  // Skip `::`.
+	  pos += 2;
+
+	  content.push(getIdent());
+
+	  {
+	    var _type = NodeType.ArgumentsType;
+	    var _token = tokens[pos];
+	    var _line = _token.ln;
+	    var _column = _token.col;
+
+	    // Skip `(`.
+	    pos++;
+
+	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
+
+	    var end = getLastPosition(selectorContent, _line, _column, 1);
+	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    content.push(args);
+
+	    // Skip `)`.
+	    pos++;
+	  }
+
+	  return newNode(type, content, line, column);
+	}
+
+	function checkPseudoElement2(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * @return {Node}
+	 */
+	function getPseudoElement2() {
 	  var type = NodeType.PseudoeType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -3057,18 +3304,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  content.push(getIdent());
 
 	  {
-	    var _type = NodeType.ArgumentsType;
-	    var _token = tokens[pos];
-	    var _line = _token.ln;
-	    var _column = _token.col;
+	    var _type2 = NodeType.ArgumentsType;
+	    var _token2 = tokens[pos];
+	    var _line2 = _token2.ln;
+	    var _column2 = _token2.col;
 
 	    // Skip `(`.
 	    pos++;
 
 	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
 
-	    var end = getLastPosition(selectorContent, _line, _column, 1);
-	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    var end = getLastPosition(selectorContent, _line2, _column2, 1);
+	    var args = newNode(_type2, selectorContent, _line2, _column2, end);
 	    content.push(args);
 
 	    // Skip `)`.
@@ -4631,6 +4878,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  CommentSLType: 'singlelineComment',
 	  ConditionType: 'condition',
 	  ConditionalStatementType: 'conditionalStatement',
+	  CustomPropertyType: 'customProperty',
 	  DeclarationType: 'declaration',
 	  DeclDelimType: 'declarationDelimiter',
 	  DefaultType: 'default',
@@ -4640,6 +4888,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  ExtendType: 'extend',
 	  ExpressionType: 'expression',
 	  FunctionType: 'function',
+	  FunctionsListType: 'functionsList',
 	  GlobalType: 'global',
 	  IdentType: 'ident',
 	  ImportantType: 'important',
@@ -6067,7 +6316,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (i >= tokensLength) return 0;
 
 	  var l = void 0;
-	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
+	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;else if (l = checkCombinator4(i)) tokens[i].combinatorType = 4;
 
 	  return l;
 	}
@@ -6077,22 +6326,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
-	}
-	/**
-	 * (1) `||`
-	 */
-	function checkCombinator1(i) {
-	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;else return 0;
+	  if (type === 3) return getCombinator4();
 	}
 
+	/**
+	 * (1) `>>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
+	 */
+	function checkCombinator1(i) {
+	  if (i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign) return 3;
+
+	  return 0;
+	}
+
+	/**
+	 * @return {Node}
+	 */
 	function getCombinator1() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = '||';
+	  var content = '>>>';
 
-	  // Skip `||`.
+	  // Skip combinator
+	  pos += 3;
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * (1) `||`
+	 * (2) `>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
+	 */
+	function checkCombinator2(i) {
+	  if (i + 1 >= tokensLength) return 0;
+
+	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;
+
+	  if (tokens[i].type === TokenType.GreaterThanSign && tokens[i + 1].type === TokenType.GreaterThanSign) return 2;
+
+	  return 0;
+	}
+
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator2() {
+	  var type = NodeType.CombinatorType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = '' + token.value + tokens[pos + 1].value;
+
+	  // Skip combinator
 	  pos += 2;
 
 	  return newNode(type, content, line, column);
@@ -6102,13 +6394,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * (1) `>`
 	 * (2) `+`
 	 * (3) `~`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
 	 */
-	function checkCombinator2(i) {
+	function checkCombinator3(i) {
 	  var type = tokens[i].type;
 	  if (type === TokenType.PlusSign || type === TokenType.GreaterThanSign || type === TokenType.Tilde) return 1;else return 0;
 	}
 
-	function getCombinator2() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator3() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -6124,7 +6422,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * (1) `/panda/`
 	 */
-	function checkCombinator3(i) {
+	function checkCombinator4(i) {
 	  var start = i;
 
 	  if (tokens[i].type === TokenType.Solidus) i++;else return 0;
@@ -6137,7 +6435,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return i - start;
 	}
 
-	function getCombinator3() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator4() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -6892,7 +7193,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (l = checkAtkeyword(i)) i += l;else return 0;
 
 	  var atruleName = joinValues2(i - l, l);
-	  if (atruleName.indexOf('keyframes') === -1) return 0;
+	  if (atruleName.toLowerCase().indexOf('keyframes') === -1) return 0;
 
 	  if (l = checkSC(i)) i += l;else return 0;
 
@@ -7508,15 +7809,113 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkPseudoe(i) {
 	  var l = void 0;
 
-	  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon || i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+	  // Check `::`
+	  if (i >= tokensLength || tokens[i].type !== TokenType.Colon || i + 1 >= tokensLength || tokens[i + 1].type !== TokenType.Colon) return 0;
 
-	  return (l = checkInterpolatedVariable(i) || checkIdent(i)) ? l + 2 : 0;
+	  if (l = checkPseudoElement1(i)) tokens[i].pseudoElementType = 1;else if (l = checkPseudoElement2(i)) tokens[i].pseudoElementType = 2;else return 0;
+
+	  return l;
+	}
+
+	/**
+	 * @returns {Node}
+	 */
+	function getPseudoe() {
+	  var childType = tokens[pos].pseudoElementType;
+	  if (childType === 1) return getPseudoElement1();
+	  if (childType === 2) return getPseudoElement2();
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function checkPseudoElement1(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+	  var right = tokens[i].right;
+
+	  // Skip `(`.
+	  i++;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (l = checkSelectorsGroup(i)) i += l;else return 0;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (i !== right) return 0;
+
+	  // Skip `)`.
+	  i++;
+
+	  return i - start;
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function getPseudoElement1() {
+	  var type = NodeType.PseudoeType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+
+	  // Skip `::`.
+	  pos += 2;
+
+	  content.push(getIdent());
+
+	  {
+	    var _type = NodeType.ArgumentsType;
+	    var _token = tokens[pos];
+	    var _line = _token.ln;
+	    var _column = _token.col;
+
+	    // Skip `(`.
+	    pos++;
+
+	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
+
+	    var end = getLastPosition(selectorContent, _line, _column, 1);
+	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    content.push(args);
+
+	    // Skip `)`.
+	    pos++;
+	  }
+
+	  return newNode(type, content, line, column);
+	}
+
+	function checkPseudoElement2(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (l = checkInterpolatedVariable(i) || checkIdent(i)) i += l;else return 0;
+
+	  return i - start;
 	}
 
 	/**
 	 * @returns {Array}
 	 */
-	function getPseudoe() {
+	function getPseudoElement2() {
 	  var type = NodeType.PseudoeType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -7612,18 +8011,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  content.push(getIdent());
 
 	  {
-	    var _type = NodeType.ArgumentsType;
-	    var _token = tokens[pos];
-	    var _line = _token.ln;
-	    var _column = _token.col;
+	    var _type2 = NodeType.ArgumentsType;
+	    var _token2 = tokens[pos];
+	    var _line2 = _token2.ln;
+	    var _column2 = _token2.col;
 
 	    // Skip `(`.
 	    pos++;
 
 	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
 
-	    var end = getLastPosition(selectorContent, _line, _column, 1);
-	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    var end = getLastPosition(selectorContent, _line2, _column2, 1);
+	    var args = newNode(_type2, selectorContent, _line2, _column2, end);
 	    content.push(args);
 
 	    // Skip `)`.
@@ -10157,7 +10556,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkAny(i) {
 	  var l = void 0;
 
-	  if (l = checkBrackets(i)) tokens[i].any_child = 1;else if (l = checkParentheses(i)) tokens[i].any_child = 2;else if (l = checkString(i)) tokens[i].any_child = 3;else if (l = checkVariablesList(i)) tokens[i].any_child = 4;else if (l = checkVariable(i)) tokens[i].any_child = 5;else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;else if (l = checkPercentage(i)) tokens[i].any_child = 7;else if (l = checkDimension(i)) tokens[i].any_child = 8;else if (l = checkUnicodeRange(i)) tokens[i].any_child = 9;else if (l = checkNumber(i)) tokens[i].any_child = 10;else if (l = checkUri(i)) tokens[i].any_child = 11;else if (l = checkExpression(i)) tokens[i].any_child = 12;else if (l = checkFunction(i)) tokens[i].any_child = 13;else if (l = checkInterpolation(i)) tokens[i].any_child = 14;else if (l = checkIdent(i)) tokens[i].any_child = 15;else if (l = checkClass(i)) tokens[i].any_child = 16;else if (l = checkUnary(i)) tokens[i].any_child = 17;else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
+	  if (l = checkBrackets(i)) tokens[i].any_child = 1;else if (l = checkParentheses(i)) tokens[i].any_child = 2;else if (l = checkString(i)) tokens[i].any_child = 3;else if (l = checkVariablesList(i)) tokens[i].any_child = 4;else if (l = checkVariable(i)) tokens[i].any_child = 5;else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;else if (l = checkPercentage(i)) tokens[i].any_child = 7;else if (l = checkDimension(i)) tokens[i].any_child = 8;else if (l = checkUnicodeRange(i)) tokens[i].any_child = 9;else if (l = checkNumber(i)) tokens[i].any_child = 10;else if (l = checkUri(i)) tokens[i].any_child = 11;else if (l = checkExpression(i)) tokens[i].any_child = 12;else if (l = checkFunctionsList(i)) tokens[i].any_child = 13;else if (l = checkFunction(i)) tokens[i].any_child = 14;else if (l = checkInterpolation(i)) tokens[i].any_child = 15;else if (l = checkIdent(i)) tokens[i].any_child = 16;else if (l = checkClass(i)) tokens[i].any_child = 17;else if (l = checkUnary(i)) tokens[i].any_child = 18;else if (l = checkParentSelector(i)) tokens[i].any_child = 19;else if (l = checkImportant(i)) tokens[i].any_child = 20;else if (l = checkGlobal(i)) tokens[i].any_child = 21;else if (l = checkDefault(i)) tokens[i].any_child = 22;else if (l = checkOptional(i)) tokens[i].any_child = 23;
 
 	  return l;
 	}
@@ -10180,12 +10579,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (childType === 10) return getNumber();
 	  if (childType === 11) return getUri();
 	  if (childType === 12) return getExpression();
-	  if (childType === 13) return getFunction();
-	  if (childType === 14) return getInterpolation();
-	  if (childType === 15) return getIdent();
-	  if (childType === 16) return getClass();
-	  if (childType === 17) return getUnary();
-	  if (childType === 18) return getParentSelector();
+	  if (childType === 13) return getFunctionsList();
+	  if (childType === 14) return getFunction();
+	  if (childType === 15) return getInterpolation();
+	  if (childType === 16) return getIdent();
+	  if (childType === 17) return getClass();
+	  if (childType === 18) return getUnary();
+	  if (childType === 19) return getParentSelector();
+	  if (childType === 20) return getImportant();
+	  if (childType === 21) return getGlobal();
+	  if (childType === 22) return getDefault();
+	  if (childType === 23) return getOptional();
 	}
 
 	/**
@@ -10249,7 +10653,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkArgument(i) {
 	  var l = void 0;
 
-	  if (l = checkBrackets(i)) tokens[i].argument_child = 1;else if (l = checkParentheses(i)) tokens[i].argument_child = 2;else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;else if (l = checkFunction(i)) tokens[i].argument_child = 4;else if (l = checkVariablesList(i)) tokens[i].argument_child = 5;else if (l = checkVariable(i)) tokens[i].argument_child = 6;else if (l = checkSC(i)) tokens[i].argument_child = 7;else if (l = checkDelim(i)) tokens[i].argument_child = 8;else if (l = checkDeclDelim(i)) tokens[i].argument_child = 9;else if (l = checkString(i)) tokens[i].argument_child = 10;else if (l = checkPercentage(i)) tokens[i].argument_child = 11;else if (l = checkDimension(i)) tokens[i].argument_child = 12;else if (l = checkNumber(i)) tokens[i].argument_child = 13;else if (l = checkUri(i)) tokens[i].argument_child = 14;else if (l = checkInterpolation(i)) tokens[i].argument_child = 15;else if (l = checkIdent(i)) tokens[i].argument_child = 16;else if (l = checkVhash(i)) tokens[i].argument_child = 17;else if (l = checkOperator(i)) tokens[i].argument_child = 18;else if (l = checkUnary(i)) tokens[i].argument_child = 19;else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;else if (l = checkImportant(i)) tokens[i].argument_child = 21;else if (l = checkGlobal(i)) tokens[i].argument_child = 22;else if (l = checkDefault(i)) tokens[i].argument_child = 23;else if (l = checkOptional(i)) tokens[i].argument_child = 24;
+	  if (l = checkBrackets(i)) tokens[i].argument_child = 1;else if (l = checkParentheses(i)) tokens[i].argument_child = 2;else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;else if (l = checkFunctionsList(i)) tokens[i].argument_child = 4;else if (l = checkFunction(i)) tokens[i].argument_child = 5;else if (l = checkVariablesList(i)) tokens[i].argument_child = 6;else if (l = checkVariable(i)) tokens[i].argument_child = 7;else if (l = checkSC(i)) tokens[i].argument_child = 8;else if (l = checkDelim(i)) tokens[i].argument_child = 9;else if (l = checkDeclDelim(i)) tokens[i].argument_child = 10;else if (l = checkString(i)) tokens[i].argument_child = 11;else if (l = checkPercentage(i)) tokens[i].argument_child = 12;else if (l = checkDimension(i)) tokens[i].argument_child = 13;else if (l = checkNumber(i)) tokens[i].argument_child = 14;else if (l = checkUri(i)) tokens[i].argument_child = 15;else if (l = checkInterpolation(i)) tokens[i].argument_child = 16;else if (l = checkIdent(i)) tokens[i].argument_child = 17;else if (l = checkVhash(i)) tokens[i].argument_child = 18;else if (l = checkCustomProperty(i)) tokens[i].argument_child = 19;else if (l = checkOperator(i)) tokens[i].argument_child = 20;else if (l = checkUnary(i)) tokens[i].argument_child = 21;else if (l = checkParentSelector(i)) tokens[i].argument_child = 22;else if (l = checkImportant(i)) tokens[i].argument_child = 23;else if (l = checkGlobal(i)) tokens[i].argument_child = 24;else if (l = checkDefault(i)) tokens[i].argument_child = 25;else if (l = checkOptional(i)) tokens[i].argument_child = 26;
 
 	  return l;
 	}
@@ -10263,27 +10667,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (childType === 1) return getBrackets();
 	  if (childType === 2) return getParentheses();
 	  if (childType === 3) return getSingleValueDeclaration();
-	  if (childType === 4) return getFunction();
-	  if (childType === 5) return getVariablesList();
-	  if (childType === 6) return getVariable();
-	  if (childType === 7) return getSC();
-	  if (childType === 8) return getDelim();
-	  if (childType === 9) return getDeclDelim();
-	  if (childType === 10) return getString();
-	  if (childType === 11) return getPercentage();
-	  if (childType === 12) return getDimension();
-	  if (childType === 13) return getNumber();
-	  if (childType === 14) return getUri();
-	  if (childType === 15) return getInterpolation();
-	  if (childType === 16) return getIdent();
-	  if (childType === 17) return getVhash();
-	  if (childType === 18) return getOperator();
-	  if (childType === 19) return getUnary();
-	  if (childType === 20) return getParentSelector();
-	  if (childType === 21) return getImportant();
-	  if (childType === 22) return getGlobal();
-	  if (childType === 23) return getDefault();
-	  if (childType === 24) return getOptional();
+	  if (childType === 4) return getFunctionsList();
+	  if (childType === 5) return getFunction();
+	  if (childType === 6) return getVariablesList();
+	  if (childType === 7) return getVariable();
+	  if (childType === 8) return getSC();
+	  if (childType === 9) return getDelim();
+	  if (childType === 10) return getDeclDelim();
+	  if (childType === 11) return getString();
+	  if (childType === 12) return getPercentage();
+	  if (childType === 13) return getDimension();
+	  if (childType === 14) return getNumber();
+	  if (childType === 15) return getUri();
+	  if (childType === 16) return getInterpolation();
+	  if (childType === 17) return getIdent();
+	  if (childType === 18) return getVhash();
+	  if (childType === 19) return getCustomProperty();
+	  if (childType === 20) return getOperator();
+	  if (childType === 21) return getUnary();
+	  if (childType === 22) return getParentSelector();
+	  if (childType === 23) return getImportant();
+	  if (childType === 24) return getGlobal();
+	  if (childType === 25) return getDefault();
+	  if (childType === 26) return getOptional();
 	}
 
 	/**
@@ -10974,7 +11380,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (i >= tokensLength) return 0;
 
 	  var l = void 0;
-	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
+	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;else if (l = checkCombinator4(i)) tokens[i].combinatorType = 4;
 
 	  return l;
 	}
@@ -10987,29 +11393,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
+	  if (type === 3) return getCombinator4();
 	}
 
 	/**
-	 * (1) `||`
+	 * (1) `>>>`
 	 *
-	 * @param {number} i
-	 * @return {number}
+	 * @param {Number} i
+	 * @return {Number}
 	 */
 	function checkCombinator1(i) {
-	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;else return 0;
+	  if (i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign) return 3;
+
+	  return 0;
 	}
 
 	/**
-	 * @return {!Node}
+	 * @return {Node}
 	 */
 	function getCombinator1() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = '||';
+	  var content = '>>>';
 
-	  // Skip `||`.
+	  // Skip combinator
+	  pos += 3;
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * (1) `||`
+	 * (2) `>>`
+	 *
+	 * @param {number} i
+	 * @return {number}
+	 */
+	function checkCombinator2(i) {
+	  if (i + 1 >= tokensLength) return 0;
+
+	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;
+
+	  if (tokens[i].type === TokenType.GreaterThanSign && tokens[i + 1].type === TokenType.GreaterThanSign) return 2;
+
+	  return 0;
+	}
+
+	/**
+	 * @return {!Node}
+	 */
+	function getCombinator2() {
+	  var type = NodeType.CombinatorType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = '' + token.value + tokens[pos + 1].value;
+
+	  // Skip combinator
 	  pos += 2;
 
 	  return newNode(type, content, line, column);
@@ -11023,12 +11465,15 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @param {number} i
 	 * @return {number}
 	 */
-	function checkCombinator2(i) {
+	function checkCombinator3(i) {
 	  var type = tokens[i].type;
 	  if (type === TokenType.PlusSign || type === TokenType.GreaterThanSign || type === TokenType.Tilde) return 1;else return 0;
 	}
 
-	function getCombinator2() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator3() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -11044,7 +11489,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * (1) `/panda/`
 	 */
-	function checkCombinator3(i) {
+	function checkCombinator4(i) {
 	  var start = i;
 
 	  if (tokens[i].type === TokenType.Solidus) i++;else return 0;
@@ -11057,7 +11502,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return i - start;
 	}
 
-	function getCombinator3() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator4() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -11644,6 +12092,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var content = [].concat(getIdentOrInterpolation(), getArguments());
 
 	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a functions list (e.g. `function(value)...`).
+	 * @param {Number} i Token's index number
+	 * @returns {Number}
+	 */
+	function checkFunctionsList(i) {
+	  var d = 0; // Number of dots
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkFunction(i)) i += l;else return 0;
+
+	  while (i < tokensLength && tokens[i].type === TokenType.FullStop) {
+	    d++;
+	    i++;
+	  }
+
+	  return d === 3 ? l + d : 0;
+	}
+
+	/**
+	 * Get node with a functions list
+	 * @returns {Array}
+	 */
+	function getFunctionsList() {
+	  var type = NodeType.FunctionsListType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [getFunction()];
+	  var end = getLastPosition(content, line, column, 3);
+
+	  // Skip `...`.
+	  pos += 3;
+
+	  return newNode(type, content, line, column, end);
 	}
 
 	/**
@@ -12392,7 +12879,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (l = checkAtkeyword(i)) i += l;else return 0;
 
 	  var atruleName = joinValues2(i - l, l);
-	  if (atruleName.indexOf('keyframes') === -1) return 0;
+	  if (atruleName.toLowerCase().indexOf('keyframes') === -1) return 0;
 
 	  if (l = checkSC(i)) i += l;else return 0;
 
@@ -12491,15 +12978,29 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  if (l = checkKeyframesSelector(i)) i += l;else return 0;
 
-	  while (i < tokensLength) {
-	    var spaceBefore = checkSC(i);
-	    var comma = checkDelim(i + spaceBefore);
-	    if (!comma) break;
+	  // Check for trailing space
+	  if (l = checkSC(i) && tokens[i].type !== TokenType.Newline) i += l;
 
-	    var spaceAfter = checkSC(i + spaceBefore + comma);
-	    if (l = checkKeyframesSelector(i + spaceBefore + comma + spaceAfter)) {
-	      i += spaceBefore + comma + spaceAfter + l;
-	    } else break;
+	  while (i < tokensLength) {
+	    var tempStart = i;
+	    var tempIndex = i;
+	    var tempLength = void 0;
+
+	    if (tempLength = checkDelim(tempIndex)) tempIndex += tempLength;else break;
+
+	    // Check for maxmimum space usage - 'space', '\n', 'space'
+	    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+	    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+	    if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+
+	    if (tempLength = checkKeyframesSelector(tempIndex)) tempIndex += tempLength;else break;
+
+	    // Check for trailing space
+	    if (tempLength = checkSC(tempIndex) && tokens[tempIndex].type !== TokenType.Newline) {
+	      tempIndex += tempLength;
+	    }
+
+	    i += tempIndex - tempStart;
 	  }
 
 	  tokens[start].selectorsGroupEnd = i;
@@ -12517,8 +13018,16 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  selectorsGroup.push(getKeyframesSelector());
 
+	  if (checkSC(pos) && tokens[pos].type !== TokenType.Newline) {
+	    selectorsGroup = selectorsGroup.concat(getSC());
+	  }
+
 	  while (pos < selectorsGroupEnd) {
-	    selectorsGroup = selectorsGroup.concat(getSC(), getDelim(), getSC(), getKeyframesSelector());
+	    selectorsGroup = selectorsGroup.concat(getDelim(), getSC(), getSC(), getSC(), getKeyframesSelector());
+
+	    if (checkSC(pos) && tokens[pos].type !== TokenType.Newline) {
+	      selectorsGroup = selectorsGroup.concat(getSC());
+	    }
 	  }
 
 	  return selectorsGroup;
@@ -12896,13 +13405,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var start = i;
 	  var right = tokens[i].right;
+	  var l = void 0;
 
 	  // Skip `(`.
 	  if (tokens[i].type === TokenType.LeftParenthesis) i++;else return 0;
 
 	  if (i < right) {
-	    var l = checkTsets(i);
-	    if (l) i += l;else return 0;
+	    if (l = checkTsets(i)) i += l;else return 0;
 	  }
 
 	  // Skip `)`.
@@ -13189,36 +13698,146 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Check if token is part of a property
-	 * @param {number} i Token's index number
-	 * @return {number} Length of the property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
 	 */
 	function checkProperty(i) {
 	  var start = i;
 	  var l = void 0;
 
+	  if (l = checkProperty1(i)) tokens[start].propertyType = 1;else if (l = checkProperty2(i)) tokens[start].propertyType = 2;else if (l = checkProperty3(i)) tokens[start].propertyType = 3;
+
+	  return l;
+	}
+
+	/**
+	 * Get node with a property
+	 * @return {!Node}
+	 */
+	function getProperty() {
+	  var type = tokens[pos].propertyType;
+
+	  if (type === 1) return getProperty1();
+	  if (type === 2) return getProperty2();
+	  if (type === 3) return getProperty3();
+	}
+
+	/**
+	 * Check if token is part of a property
+	 * (1) `foo`
+	 * (2) `#{$foo}`
+	 * @param {Number} i Token's index number
+	 * @returns {Number} Length of the property
+	 */
+	function checkProperty1(i) {
+	  var start = i;
+	  var l = void 0;
+
 	  if (i >= tokensLength) return 0;
 
-	  if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;else return 0;
+	  if (l = checkIdentOrInterpolation(i)) i += l;else return 0;
 
 	  return i - start;
 	}
 
 	/**
 	 * Get node with a property
-	 * @return {Array} `['property', x]`
+	 * @returns {Array}
 	 */
-	function getProperty() {
+	function getProperty1() {
 	  var type = NodeType.PropertyType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = [];
+	  var content = getIdentOrInterpolation();
 
-	  if (checkVariable(pos)) {
-	    content.push(getVariable());
-	  } else {
-	    content = content.concat(getIdentOrInterpolation());
-	  }
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * (1) `--foo-bar`
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkProperty2(i) {
+	  return checkCustomProperty(i);
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getProperty2() {
+	  return getCustomProperty();
+	}
+
+	/**
+	 * Check if token is part of a property
+	 * (1) `$foo`
+	 * @param {Number} i Token's index number
+	 * @returns {Number} Length of the property
+	 */
+	function checkProperty3(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkVariable(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * Get node with a property
+	 * @returns {Array} `['property', x]`
+	 */
+	function getProperty3() {
+	  var type = NodeType.PropertyType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [getVariable()];
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkCustomProperty(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (tokens[i].type !== TokenType.HyphenMinus || tokens[i + 1] && tokens[i + 1].type !== TokenType.HyphenMinus) return 0;
+
+	  // Skip `--`
+	  i += 2;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getCustomProperty() {
+	  var type = NodeType.CustomPropertyType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+
+	  // Skip `--`
+	  pos += 2;
+
+	  var content = [getIdent()];
 
 	  return newNode(type, content, line, column);
 	}
@@ -13266,21 +13885,119 @@ return /******/ (function(modules) { // webpackBootstrap
 	}
 
 	/**
-	 * @param {number} i Token's index number
-	 * @return {number}
+	 * @param {Number} i Token's index number
+	 * @return {Number}
 	 */
 	function checkPseudoe(i) {
 	  var l = void 0;
 
-	  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon || i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+	  // Check `::`
+	  if (i >= tokensLength || tokens[i].type !== TokenType.Colon || i + 1 >= tokensLength || tokens[i + 1].type !== TokenType.Colon) return 0;
 
-	  return (l = checkIdentOrInterpolation(i)) ? l + 2 : 0;
+	  if (l = checkPseudoElement1(i)) tokens[i].pseudoElementType = 1;else if (l = checkPseudoElement2(i)) tokens[i].pseudoElementType = 2;else return 0;
+
+	  return l;
 	}
 
 	/**
-	 * @return {Array}
+	 * @return {Node}
 	 */
 	function getPseudoe() {
+	  var childType = tokens[pos].pseudoElementType;
+	  if (childType === 1) return getPseudoElement1();
+	  if (childType === 2) return getPseudoElement2();
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function checkPseudoElement1(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+	  var right = tokens[i].right;
+
+	  // Skip `(`.
+	  i++;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (l = checkSelectorsGroup(i)) i += l;else return 0;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (i !== right) return 0;
+
+	  // Skip `)`.
+	  i++;
+
+	  return i - start;
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function getPseudoElement1() {
+	  var type = NodeType.PseudoeType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+
+	  // Skip `::`.
+	  pos += 2;
+
+	  content.push(getIdent());
+
+	  {
+	    var _type = NodeType.ArgumentsType;
+	    var _token = tokens[pos];
+	    var _line = _token.ln;
+	    var _column = _token.col;
+
+	    // Skip `(`.
+	    pos++;
+
+	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
+
+	    var end = getLastPosition(selectorContent, _line, _column, 1);
+	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    content.push(args);
+
+	    // Skip `)`.
+	    pos++;
+	  }
+
+	  return newNode(type, content, line, column);
+	}
+
+	function checkPseudoElement2(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (l = checkIdentOrInterpolation(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * @return {Node}
+	 */
+	function getPseudoElement2() {
 	  var type = NodeType.PseudoeType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -13372,18 +14089,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  content = content.concat(getIdentOrInterpolation());
 
 	  {
-	    var _type = NodeType.ArgumentsType;
-	    var _token = tokens[pos];
-	    var _line = _token.ln;
-	    var _column = _token.col;
+	    var _type2 = NodeType.ArgumentsType;
+	    var _token2 = tokens[pos];
+	    var _line2 = _token2.ln;
+	    var _column2 = _token2.col;
 
 	    // Skip `(`.
 	    pos++;
 
 	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
 
-	    var end = getLastPosition(selectorContent, _line, _column, 1);
-	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    var end = getLastPosition(selectorContent, _line2, _column2, 1);
+	    var args = newNode(_type2, selectorContent, _line2, _column2, end);
 	    content.push(args);
 
 	    // Skip `)`.
@@ -13536,12 +14253,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (checkNumberOrInterpolation(pos)) value = value.concat(getNumberOrInterpolation());
 
 	  {
-	    var _token2 = tokens[pos];
+	    var _token3 = tokens[pos];
 
-	    if (_token2.value === 'n') {
-	      var _l = _token2.ln;
-	      var _c = _token2.col;
-	      var _content2 = _token2.value;
+	    if (_token3.value === 'n') {
+	      var _l = _token3.ln;
+	      var _c = _token3.col;
+	      var _content2 = _token3.value;
 	      var ident = newNode(NodeType.IdentType, _content2, _l, _c);
 	      value.push(ident);
 	      pos++;
@@ -16267,7 +16984,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkAny(i) {
 	  var l = void 0;
 
-	  if (l = checkBrackets(i)) tokens[i].any_child = 1;else if (l = checkParentheses(i)) tokens[i].any_child = 2;else if (l = checkString(i)) tokens[i].any_child = 3;else if (l = checkVariablesList(i)) tokens[i].any_child = 4;else if (l = checkVariable(i)) tokens[i].any_child = 5;else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;else if (l = checkPercentage(i)) tokens[i].any_child = 7;else if (l = checkDimension(i)) tokens[i].any_child = 8;else if (l = checkUnicodeRange(i)) tokens[i].any_child = 9;else if (l = checkNumber(i)) tokens[i].any_child = 10;else if (l = checkUri(i)) tokens[i].any_child = 11;else if (l = checkExpression(i)) tokens[i].any_child = 12;else if (l = checkFunction(i)) tokens[i].any_child = 13;else if (l = checkInterpolation(i)) tokens[i].any_child = 14;else if (l = checkIdent(i)) tokens[i].any_child = 15;else if (l = checkClass(i)) tokens[i].any_child = 16;else if (l = checkUnary(i)) tokens[i].any_child = 17;else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
+	  if (l = checkBrackets(i)) tokens[i].any_child = 1;else if (l = checkParentheses(i)) tokens[i].any_child = 2;else if (l = checkString(i)) tokens[i].any_child = 3;else if (l = checkVariablesList(i)) tokens[i].any_child = 4;else if (l = checkVariable(i)) tokens[i].any_child = 5;else if (l = checkPlaceholder(i)) tokens[i].any_child = 6;else if (l = checkPercentage(i)) tokens[i].any_child = 7;else if (l = checkDimension(i)) tokens[i].any_child = 8;else if (l = checkUnicodeRange(i)) tokens[i].any_child = 9;else if (l = checkNumber(i)) tokens[i].any_child = 10;else if (l = checkUri(i)) tokens[i].any_child = 11;else if (l = checkExpression(i)) tokens[i].any_child = 12;else if (l = checkFunctionsList(i)) tokens[i].any_child = 13;else if (l = checkFunction(i)) tokens[i].any_child = 14;else if (l = checkInterpolation(i)) tokens[i].any_child = 15;else if (l = checkIdent(i)) tokens[i].any_child = 16;else if (l = checkClass(i)) tokens[i].any_child = 17;else if (l = checkUnary(i)) tokens[i].any_child = 18;else if (l = checkParentSelector(i)) tokens[i].any_child = 19;else if (l = checkImportant(i)) tokens[i].any_child = 20;else if (l = checkGlobal(i)) tokens[i].any_child = 21;else if (l = checkDefault(i)) tokens[i].any_child = 22;else if (l = checkOptional(i)) tokens[i].any_child = 23;
 
 	  return l;
 	}
@@ -16290,12 +17007,17 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (childType === 10) return getNumber();
 	  if (childType === 11) return getUri();
 	  if (childType === 12) return getExpression();
-	  if (childType === 13) return getFunction();
-	  if (childType === 14) return getInterpolation();
-	  if (childType === 15) return getIdent();
-	  if (childType === 16) return getClass();
-	  if (childType === 17) return getUnary();
-	  if (childType === 18) return getParentSelector();
+	  if (childType === 13) return getFunctionsList();
+	  if (childType === 14) return getFunction();
+	  if (childType === 15) return getInterpolation();
+	  if (childType === 16) return getIdent();
+	  if (childType === 17) return getClass();
+	  if (childType === 18) return getUnary();
+	  if (childType === 19) return getParentSelector();
+	  if (childType === 20) return getImportant();
+	  if (childType === 21) return getGlobal();
+	  if (childType === 22) return getDefault();
+	  if (childType === 23) return getOptional();
 	}
 
 	/**
@@ -16358,7 +17080,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkArgument(i) {
 	  var l = void 0;
 
-	  if (l = checkBrackets(i)) tokens[i].argument_child = 1;else if (l = checkParentheses(i)) tokens[i].argument_child = 2;else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;else if (l = checkFunction(i)) tokens[i].argument_child = 4;else if (l = checkVariablesList(i)) tokens[i].argument_child = 5;else if (l = checkVariable(i)) tokens[i].argument_child = 6;else if (l = checkSC(i)) tokens[i].argument_child = 7;else if (l = checkDelim(i)) tokens[i].argument_child = 8;else if (l = checkDeclDelim(i)) tokens[i].argument_child = 9;else if (l = checkString(i)) tokens[i].argument_child = 10;else if (l = checkPercentage(i)) tokens[i].argument_child = 11;else if (l = checkDimension(i)) tokens[i].argument_child = 12;else if (l = checkNumber(i)) tokens[i].argument_child = 13;else if (l = checkUri(i)) tokens[i].argument_child = 14;else if (l = checkInterpolation(i)) tokens[i].argument_child = 15;else if (l = checkIdent(i)) tokens[i].argument_child = 16;else if (l = checkVhash(i)) tokens[i].argument_child = 17;else if (l = checkOperator(i)) tokens[i].argument_child = 18;else if (l = checkUnary(i)) tokens[i].argument_child = 19;else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;else if (l = checkImportant(i)) tokens[i].argument_child = 21;else if (l = checkGlobal(i)) tokens[i].argument_child = 22;else if (l = checkDefault(i)) tokens[i].argument_child = 23;else if (l = checkOptional(i)) tokens[i].argument_child = 24;
+	  if (l = checkBrackets(i)) tokens[i].argument_child = 1;else if (l = checkParentheses(i)) tokens[i].argument_child = 2;else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;else if (l = checkFunctionsList(i)) tokens[i].argument_child = 4;else if (l = checkFunction(i)) tokens[i].argument_child = 5;else if (l = checkVariablesList(i)) tokens[i].argument_child = 6;else if (l = checkVariable(i)) tokens[i].argument_child = 7;else if (l = checkSC(i)) tokens[i].argument_child = 8;else if (l = checkDelim(i)) tokens[i].argument_child = 9;else if (l = checkDeclDelim(i)) tokens[i].argument_child = 10;else if (l = checkString(i)) tokens[i].argument_child = 11;else if (l = checkPercentage(i)) tokens[i].argument_child = 12;else if (l = checkDimension(i)) tokens[i].argument_child = 13;else if (l = checkNumber(i)) tokens[i].argument_child = 14;else if (l = checkUri(i)) tokens[i].argument_child = 15;else if (l = checkInterpolation(i)) tokens[i].argument_child = 16;else if (l = checkIdent(i)) tokens[i].argument_child = 17;else if (l = checkVhash(i)) tokens[i].argument_child = 18;else if (l = checkCustomProperty(i)) tokens[i].argument_child = 19;else if (l = checkOperator(i)) tokens[i].argument_child = 20;else if (l = checkUnary(i)) tokens[i].argument_child = 21;else if (l = checkParentSelector(i)) tokens[i].argument_child = 22;else if (l = checkImportant(i)) tokens[i].argument_child = 23;else if (l = checkGlobal(i)) tokens[i].argument_child = 24;else if (l = checkDefault(i)) tokens[i].argument_child = 25;else if (l = checkOptional(i)) tokens[i].argument_child = 26;
 
 	  return l;
 	}
@@ -16372,27 +17094,29 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (childType === 1) return getBrackets();
 	  if (childType === 2) return getParentheses();
 	  if (childType === 3) return getSingleValueDeclaration();
-	  if (childType === 4) return getFunction();
-	  if (childType === 5) return getVariablesList();
-	  if (childType === 6) return getVariable();
-	  if (childType === 7) return getSC();
-	  if (childType === 8) return getDelim();
-	  if (childType === 9) return getDeclDelim();
-	  if (childType === 10) return getString();
-	  if (childType === 11) return getPercentage();
-	  if (childType === 12) return getDimension();
-	  if (childType === 13) return getNumber();
-	  if (childType === 14) return getUri();
-	  if (childType === 15) return getInterpolation();
-	  if (childType === 16) return getIdent();
-	  if (childType === 17) return getVhash();
-	  if (childType === 18) return getOperator();
-	  if (childType === 19) return getUnary();
-	  if (childType === 20) return getParentSelector();
-	  if (childType === 21) return getImportant();
-	  if (childType === 22) return getGlobal();
-	  if (childType === 23) return getDefault();
-	  if (childType === 24) return getOptional();
+	  if (childType === 4) return getFunctionsList();
+	  if (childType === 5) return getFunction();
+	  if (childType === 6) return getVariablesList();
+	  if (childType === 7) return getVariable();
+	  if (childType === 8) return getSC();
+	  if (childType === 9) return getDelim();
+	  if (childType === 10) return getDeclDelim();
+	  if (childType === 11) return getString();
+	  if (childType === 12) return getPercentage();
+	  if (childType === 13) return getDimension();
+	  if (childType === 14) return getNumber();
+	  if (childType === 15) return getUri();
+	  if (childType === 16) return getInterpolation();
+	  if (childType === 17) return getIdent();
+	  if (childType === 18) return getVhash();
+	  if (childType === 19) return getCustomProperty();
+	  if (childType === 20) return getOperator();
+	  if (childType === 21) return getUnary();
+	  if (childType === 22) return getParentSelector();
+	  if (childType === 23) return getImportant();
+	  if (childType === 24) return getGlobal();
+	  if (childType === 25) return getDefault();
+	  if (childType === 26) return getOptional();
 	}
 
 	/**
@@ -16948,7 +17672,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (i >= tokensLength) return 0;
 
 	  var l = void 0;
-	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;
+	  if (l = checkCombinator1(i)) tokens[i].combinatorType = 1;else if (l = checkCombinator2(i)) tokens[i].combinatorType = 2;else if (l = checkCombinator3(i)) tokens[i].combinatorType = 3;else if (l = checkCombinator4(i)) tokens[i].combinatorType = 4;
 
 	  return l;
 	}
@@ -16958,23 +17682,65 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
+	  if (type === 3) return getCombinator4();
 	}
 
 	/**
-	 * (1) `||`
+	 * (1) `>>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
 	 */
 	function checkCombinator1(i) {
-	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;else return 0;
+	  if (i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign && i < tokensLength && tokens[i++].type === TokenType.GreaterThanSign) return 3;
+
+	  return 0;
 	}
 
+	/**
+	 * @return {Node}
+	 */
 	function getCombinator1() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = '||';
+	  var content = '>>>';
 
-	  // Skip `||`.
+	  // Skip combinator
+	  pos += 3;
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * (1) `||`
+	 * (2) `>>`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
+	 */
+	function checkCombinator2(i) {
+	  if (i + 1 >= tokensLength) return 0;
+
+	  if (tokens[i].type === TokenType.VerticalLine && tokens[i + 1].type === TokenType.VerticalLine) return 2;
+
+	  if (tokens[i].type === TokenType.GreaterThanSign && tokens[i + 1].type === TokenType.GreaterThanSign) return 2;
+
+	  return 0;
+	}
+
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator2() {
+	  var type = NodeType.CombinatorType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = '' + token.value + tokens[pos + 1].value;
+
+	  // Skip combinator
 	  pos += 2;
 
 	  return newNode(type, content, line, column);
@@ -16984,13 +17750,19 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * (1) `>`
 	 * (2) `+`
 	 * (3) `~`
+	 *
+	 * @param {Number} i
+	 * @return {Number}
 	 */
-	function checkCombinator2(i) {
+	function checkCombinator3(i) {
 	  var type = tokens[i].type;
 	  if (type === TokenType.PlusSign || type === TokenType.GreaterThanSign || type === TokenType.Tilde) return 1;else return 0;
 	}
 
-	function getCombinator2() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator3() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -17006,7 +17778,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * (1) `/panda/`
 	 */
-	function checkCombinator3(i) {
+	function checkCombinator4(i) {
 	  var start = i;
 
 	  if (tokens[i].type === TokenType.Solidus) i++;else return 0;
@@ -17019,7 +17791,10 @@ return /******/ (function(modules) { // webpackBootstrap
 	  return i - start;
 	}
 
-	function getCombinator3() {
+	/**
+	 * @return {Node}
+	 */
+	function getCombinator4() {
 	  var type = NodeType.CombinatorType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -17538,6 +18313,45 @@ return /******/ (function(modules) { // webpackBootstrap
 	  var content = [].concat(getIdentOrInterpolation(), getArguments());
 
 	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a functions list (e.g. `function(value)...`).
+	 * @param {Number} i Token's index number
+	 * @returns {Number}
+	 */
+	function checkFunctionsList(i) {
+	  var d = 0; // Number of dots
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkFunction(i)) i += l;else return 0;
+
+	  while (i < tokensLength && tokens[i].type === TokenType.FullStop) {
+	    d++;
+	    i++;
+	  }
+
+	  return d === 3 ? l + d : 0;
+	}
+
+	/**
+	 * Get node with a functions list
+	 * @returns {Array}
+	 */
+	function getFunctionsList() {
+	  var type = NodeType.FunctionsListType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [getFunction()];
+	  var end = getLastPosition(content, line, column, 3);
+
+	  // Skip `...`.
+	  pos += 3;
+
+	  return newNode(type, content, line, column, end);
 	}
 
 	/**
@@ -18112,7 +18926,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (l = checkAtkeyword(i)) i += l;else return 0;
 
 	  var atruleName = joinValues2(i - l, l);
-	  if (atruleName.indexOf('keyframes') === -1) return 0;
+	  if (atruleName.toLowerCase().indexOf('keyframes') === -1) return 0;
 
 	  if (l = checkSC(i)) i += l;else return 0;
 
@@ -18539,13 +19353,13 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var start = i;
 	  var right = tokens[i].right;
+	  var l = void 0;
 
 	  // Skip `(`.
 	  if (tokens[i].type === TokenType.LeftParenthesis) i++;else return 0;
 
 	  if (i < right) {
-	    var l = checkTsets(i);
-	    if (l) i += l;else return 0;
+	    if (l = checkTsets(i)) i += l;else return 0;
 	  }
 
 	  // Skip `)`.
@@ -18833,15 +19647,92 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Check if token is part of a property
 	 * @param {Number} i Token's index number
-	 * @returns {Number} Length of the property
+	 * @return {Number} Length of the property
 	 */
 	function checkProperty(i) {
 	  var start = i;
 	  var l = void 0;
 
+	  if (l = checkProperty1(i)) tokens[start].propertyType = 1;else if (l = checkProperty2(i)) tokens[start].propertyType = 2;else if (l = checkProperty3(i)) tokens[start].propertyType = 3;
+
+	  return l;
+	}
+
+	/**
+	 * Get node with a property
+	 * @return {Node}
+	 */
+	function getProperty() {
+	  var type = tokens[pos].propertyType;
+
+	  if (type === 1) return getProperty1();
+	  if (type === 2) return getProperty2();
+	  if (type === 3) return getProperty3();
+	}
+
+	/**
+	 * Check if token is part of a property
+	 * (1) `foo`
+	 * (2) `#{$foo}`
+	 * @param {Number} i Token's index number
+	 * @returns {Number} Length of the property
+	 */
+	function checkProperty1(i) {
+	  var start = i;
+	  var l = void 0;
+
 	  if (i >= tokensLength) return 0;
 
-	  if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;else return 0;
+	  if (l = checkIdentOrInterpolation(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * Get node with a property
+	 * @returns {Array}
+	 */
+	function getProperty1() {
+	  var type = NodeType.PropertyType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = getIdentOrInterpolation();
+
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * (1) `--foo-bar`
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkProperty2(i) {
+	  return checkCustomProperty(i);
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getProperty2() {
+	  return getCustomProperty();
+	}
+
+	/**
+	 * Check if token is part of a property
+	 * (1) `$foo`
+	 * @param {Number} i Token's index number
+	 * @returns {Number} Length of the property
+	 */
+	function checkProperty3(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkVariable(i)) i += l;else return 0;
 
 	  return i - start;
 	}
@@ -18850,18 +19741,51 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * Get node with a property
 	 * @returns {Array} `['property', x]`
 	 */
-	function getProperty() {
+	function getProperty3() {
 	  var type = NodeType.PropertyType;
 	  var token = tokens[pos];
 	  var line = token.ln;
 	  var column = token.col;
-	  var content = [];
+	  var content = [getVariable()];
 
-	  if (checkVariable(pos)) {
-	    content.push(getVariable());
-	  } else {
-	    content = content.concat(getIdentOrInterpolation());
-	  }
+	  return newNode(type, content, line, column);
+	}
+
+	/**
+	 * Check if token is part of a custom property
+	 * @param {Number} i Token's index number
+	 * @return {Number} Length of the property
+	 */
+	function checkCustomProperty(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (tokens[i].type !== TokenType.HyphenMinus || tokens[i + 1] && tokens[i + 1].type !== TokenType.HyphenMinus) return 0;
+
+	  // Skip `--`
+	  i += 2;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * Get node with a custom property
+	 * @return {Node}
+	 */
+	function getCustomProperty() {
+	  var type = NodeType.CustomPropertyType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+
+	  // Skip `--`
+	  pos += 2;
+
+	  var content = [getIdent()];
 
 	  return newNode(type, content, line, column);
 	}
@@ -18915,15 +19839,113 @@ return /******/ (function(modules) { // webpackBootstrap
 	function checkPseudoe(i) {
 	  var l = void 0;
 
-	  if (i >= tokensLength || tokens[i++].type !== TokenType.Colon || i >= tokensLength || tokens[i++].type !== TokenType.Colon) return 0;
+	  // Check `::`
+	  if (i >= tokensLength || tokens[i].type !== TokenType.Colon || i >= tokensLength || tokens[i + 1].type !== TokenType.Colon) return 0;
 
-	  return (l = checkIdentOrInterpolation(i)) ? l + 2 : 0;
+	  if (l = checkPseudoElement1(i)) tokens[i].pseudoElementType = 1;else if (l = checkPseudoElement2(i)) tokens[i].pseudoElementType = 2;else return 0;
+
+	  return l;
 	}
 
 	/**
-	 * @returns {Array}
+	 * @returns {Node}
 	 */
 	function getPseudoe() {
+	  var childType = tokens[pos].pseudoElementType;
+	  if (childType === 1) return getPseudoElement1();
+	  if (childType === 2) return getPseudoElement2();
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function checkPseudoElement1(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (i >= tokensLength) return 0;
+
+	  if (l = checkIdent(i)) i += l;else return 0;
+
+	  if (i >= tokensLength || tokens[i].type !== TokenType.LeftParenthesis) return 0;
+
+	  var right = tokens[i].right;
+
+	  // Skip `(`.
+	  i++;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (l = checkSelectorsGroup(i)) i += l;else return 0;
+
+	  if (l = checkSC(i)) i += l;
+
+	  if (i !== right) return 0;
+
+	  // Skip `)`.
+	  i++;
+
+	  return i - start;
+	}
+
+	/**
+	 * (1) `::slotted(selector)`
+	 * (2) `::slotted(selector, selector)`
+	 */
+	function getPseudoElement1() {
+	  var type = NodeType.PseudoeType;
+	  var token = tokens[pos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+
+	  // Skip `::`.
+	  pos += 2;
+
+	  content.push(getIdent());
+
+	  {
+	    var _type = NodeType.ArgumentsType;
+	    var _token = tokens[pos];
+	    var _line = _token.ln;
+	    var _column = _token.col;
+
+	    // Skip `(`.
+	    pos++;
+
+	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
+
+	    var end = getLastPosition(selectorContent, _line, _column, 1);
+	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    content.push(args);
+
+	    // Skip `)`.
+	    pos++;
+	  }
+
+	  return newNode(type, content, line, column);
+	}
+
+	function checkPseudoElement2(i) {
+	  var start = i;
+	  var l = void 0;
+
+	  // Skip `::`.
+	  i += 2;
+
+	  if (l = checkIdentOrInterpolation(i)) i += l;else return 0;
+
+	  return i - start;
+	}
+
+	/**
+	 * @returns {Node}
+	 */
+	function getPseudoElement2() {
 	  var type = NodeType.PseudoeType;
 	  var token = tokens[pos];
 	  var line = token.ln;
@@ -19015,18 +20037,18 @@ return /******/ (function(modules) { // webpackBootstrap
 	  content = content.concat(getIdentOrInterpolation());
 
 	  {
-	    var _type = NodeType.ArgumentsType;
-	    var _token = tokens[pos];
-	    var _line = _token.ln;
-	    var _column = _token.col;
+	    var _type2 = NodeType.ArgumentsType;
+	    var _token2 = tokens[pos];
+	    var _line2 = _token2.ln;
+	    var _column2 = _token2.col;
 
 	    // Skip `(`.
 	    pos++;
 
 	    var selectorContent = [].concat(getSC(), getSelectorsGroup(), getSC());
 
-	    var end = getLastPosition(selectorContent, _line, _column, 1);
-	    var args = newNode(_type, selectorContent, _line, _column, end);
+	    var end = getLastPosition(selectorContent, _line2, _column2, 1);
+	    var args = newNode(_type2, selectorContent, _line2, _column2, end);
 	    content.push(args);
 
 	    // Skip `)`.
@@ -19179,12 +20201,12 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (checkNumberOrInterpolation(pos)) value = value.concat(getNumberOrInterpolation());
 
 	  {
-	    var _token2 = tokens[pos];
+	    var _token3 = tokens[pos];
 
-	    if (_token2.value === 'n') {
-	      var _l = _token2.ln;
-	      var _c = _token2.col;
-	      var _content = _token2.value;
+	    if (_token3.value === 'n') {
+	      var _l = _token3.ln;
+	      var _c = _token3.col;
+	      var _content = _token3.value;
 	      var ident = newNode(NodeType.IdentType, _content, _l, _c);
 	      value.push(ident);
 	      pos++;
