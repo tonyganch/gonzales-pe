@@ -7,6 +7,18 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+
+## 29.08.2017, version 4.2.0
+
+:star: Add support for custom property syntax in CSS, Sass and SCSS.  
+:star: Add support for deep combinator syntax in CSS, LESS, Sass and SCSS.  
+:star: Add support for alternative descendant `>>` syntax in CSS, LESS, Sass and SCSS.  
+:star: Add support for `::slotted()` syntax in CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of non-lowercase keyframes at-rule in CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of multiline selectors within keyframes in  Sass.  
+:green_apple: Fixed parsing of `!important` within maps in Sass and SCSS.  
+:green_apple: Fixed parsing of `...` following a function in Sass and SCSS.  
+
 ## 23.08.2017, version 4.1.1
 
 :star: Unified codebase style across syntaxes.  
