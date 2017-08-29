@@ -1138,7 +1138,7 @@ function getCombinator() {
   if (type === 1) return getCombinator1();
   if (type === 2) return getCombinator2();
   if (type === 3) return getCombinator3();
-  if (type === 3) return getCombinator4();
+  if (type === 4) return getCombinator4();
 }
 
 /**
