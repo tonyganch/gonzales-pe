@@ -447,28 +447,29 @@ function checkArgument(i) {
   if (l = checkBrackets(i)) tokens[i].argument_child = 1;
   else if (l = checkParentheses(i)) tokens[i].argument_child = 2;
   else if (l = checkSingleValueDeclaration(i)) tokens[i].argument_child = 3;
-  else if (l = checkFunctionsList(i)) tokens[i].argument_child = 25;
-  else if (l = checkFunction(i)) tokens[i].argument_child = 4;
-  else if (l = checkVariablesList(i)) tokens[i].argument_child = 5;
-  else if (l = checkVariable(i)) tokens[i].argument_child = 6;
-  else if (l = checkSC(i)) tokens[i].argument_child = 7;
-  else if (l = checkDelim(i)) tokens[i].argument_child = 8;
-  else if (l = checkDeclDelim(i)) tokens[i].argument_child = 9;
-  else if (l = checkString(i)) tokens[i].argument_child = 10;
-  else if (l = checkPercentage(i)) tokens[i].argument_child = 11;
-  else if (l = checkDimension(i)) tokens[i].argument_child = 12;
-  else if (l = checkNumber(i)) tokens[i].argument_child = 13;
-  else if (l = checkUri(i)) tokens[i].argument_child = 14;
-  else if (l = checkInterpolation(i)) tokens[i].argument_child = 15;
-  else if (l = checkIdent(i)) tokens[i].argument_child = 16;
-  else if (l = checkVhash(i)) tokens[i].argument_child = 17;
-  else if (l = checkOperator(i)) tokens[i].argument_child = 18;
-  else if (l = checkUnary(i)) tokens[i].argument_child = 19;
-  else if (l = checkParentSelector(i)) tokens[i].argument_child = 20;
-  else if (l = checkImportant(i)) tokens[i].argument_child = 21;
-  else if (l = checkGlobal(i)) tokens[i].argument_child = 22;
-  else if (l = checkDefault(i)) tokens[i].argument_child = 23;
-  else if (l = checkOptional(i)) tokens[i].argument_child = 24;
+  else if (l = checkFunctionsList(i)) tokens[i].argument_child = 4;
+  else if (l = checkFunction(i)) tokens[i].argument_child = 5;
+  else if (l = checkVariablesList(i)) tokens[i].argument_child = 6;
+  else if (l = checkVariable(i)) tokens[i].argument_child = 7;
+  else if (l = checkSC(i)) tokens[i].argument_child = 8;
+  else if (l = checkDelim(i)) tokens[i].argument_child = 9;
+  else if (l = checkDeclDelim(i)) tokens[i].argument_child = 10;
+  else if (l = checkString(i)) tokens[i].argument_child = 11;
+  else if (l = checkPercentage(i)) tokens[i].argument_child = 12;
+  else if (l = checkDimension(i)) tokens[i].argument_child = 13;
+  else if (l = checkNumber(i)) tokens[i].argument_child = 14;
+  else if (l = checkUri(i)) tokens[i].argument_child = 15;
+  else if (l = checkInterpolation(i)) tokens[i].argument_child = 16;
+  else if (l = checkIdent(i)) tokens[i].argument_child = 17;
+  else if (l = checkVhash(i)) tokens[i].argument_child = 18;
+  else if (l = checkCustomProperty(i)) tokens[i].argument_child = 19;
+  else if (l = checkOperator(i)) tokens[i].argument_child = 20;
+  else if (l = checkUnary(i)) tokens[i].argument_child = 21;
+  else if (l = checkParentSelector(i)) tokens[i].argument_child = 22;
+  else if (l = checkImportant(i)) tokens[i].argument_child = 23;
+  else if (l = checkGlobal(i)) tokens[i].argument_child = 24;
+  else if (l = checkDefault(i)) tokens[i].argument_child = 25;
+  else if (l = checkOptional(i)) tokens[i].argument_child = 26;
 
   return l;
 }
@@ -482,28 +483,29 @@ function getArgument() {
   if (childType === 1) return getBrackets();
   if (childType === 2) return getParentheses();
   if (childType === 3) return getSingleValueDeclaration();
-  if (childType === 25) return getFunctionsList();
-  if (childType === 4) return getFunction();
-  if (childType === 5) return getVariablesList();
-  if (childType === 6) return getVariable();
-  if (childType === 7) return getSC();
-  if (childType === 8) return getDelim();
-  if (childType === 9) return getDeclDelim();
-  if (childType === 10) return getString();
-  if (childType === 11) return getPercentage();
-  if (childType === 12) return getDimension();
-  if (childType === 13) return getNumber();
-  if (childType === 14) return getUri();
-  if (childType === 15) return getInterpolation();
-  if (childType === 16) return getIdent();
-  if (childType === 17) return getVhash();
-  if (childType === 18) return getOperator();
-  if (childType === 19) return getUnary();
-  if (childType === 20) return getParentSelector();
-  if (childType === 21) return getImportant();
-  if (childType === 22) return getGlobal();
-  if (childType === 23) return getDefault();
-  if (childType === 24) return getOptional();
+  if (childType === 4) return getFunctionsList();
+  if (childType === 5) return getFunction();
+  if (childType === 6) return getVariablesList();
+  if (childType === 7) return getVariable();
+  if (childType === 8) return getSC();
+  if (childType === 9) return getDelim();
+  if (childType === 10) return getDeclDelim();
+  if (childType === 11) return getString();
+  if (childType === 12) return getPercentage();
+  if (childType === 13) return getDimension();
+  if (childType === 14) return getNumber();
+  if (childType === 15) return getUri();
+  if (childType === 16) return getInterpolation();
+  if (childType === 17) return getIdent();
+  if (childType === 18) return getVhash();
+  if (childType === 19) return getCustomProperty();
+  if (childType === 20) return getOperator();
+  if (childType === 21) return getUnary();
+  if (childType === 22) return getParentSelector();
+  if (childType === 23) return getImportant();
+  if (childType === 24) return getGlobal();
+  if (childType === 25) return getDefault();
+  if (childType === 26) return getOptional();
 }
 
 /**
@@ -3337,15 +3339,95 @@ function getProgid() {
 /**
  * Check if token is part of a property
  * @param {Number} i Token's index number
- * @returns {Number} Length of the property
+ * @return {Number} Length of the property
  */
 function checkProperty(i) {
   const start = i;
   let l;
 
+  if (l = checkProperty1(i)) tokens[start].propertyType = 1;
+  else if (l = checkProperty2(i)) tokens[start].propertyType = 2;
+  else if (l = checkProperty3(i)) tokens[start].propertyType = 3;
+
+  return l;
+}
+
+/**
+ * Get node with a property
+ * @return {Node}
+ */
+function getProperty() {
+  const type = tokens[pos].propertyType;
+
+  if (type === 1) return getProperty1();
+  if (type === 2) return getProperty2();
+  if (type === 3) return getProperty3();
+}
+
+/**
+ * Check if token is part of a property
+ * (1) `foo`
+ * (2) `#{$foo}`
+ * @param {Number} i Token's index number
+ * @returns {Number} Length of the property
+ */
+function checkProperty1(i) {
+  const start = i;
+  let l;
+
   if (i >= tokensLength) return 0;
 
-  if (l = checkVariable(i) || checkIdentOrInterpolation(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with a property
+ * @returns {Array}
+ */
+function getProperty1() {
+  const type = NodeType.PropertyType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  const content = getIdentOrInterpolation();
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a custom property
+ * (1) `--foo-bar`
+ * @param {Number} i Token's index number
+ * @return {Number} Length of the property
+ */
+function checkProperty2(i) {
+  return checkCustomProperty(i);
+}
+
+/**
+ * Get node with a custom property
+ * @return {Node}
+ */
+function getProperty2() {
+  return getCustomProperty();
+}
+
+/**
+ * Check if token is part of a property
+ * (1) `$foo`
+ * @param {Number} i Token's index number
+ * @returns {Number} Length of the property
+ */
+function checkProperty3(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkVariable(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3355,18 +3437,53 @@ function checkProperty(i) {
  * Get node with a property
  * @returns {Array} `['property', x]`
  */
-function getProperty() {
+function getProperty3() {
   const type = NodeType.PropertyType;
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  let content = [];
+  const content = [getVariable()];
 
-  if (checkVariable(pos)) {
-    content.push(getVariable());
-  } else {
-    content = content.concat(getIdentOrInterpolation());
-  }
+  return newNode(type, content, line, column);
+}
+
+/**
+ * Check if token is part of a custom property
+ * @param {Number} i Token's index number
+ * @return {Number} Length of the property
+ */
+function checkCustomProperty(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (tokens[i].type !== TokenType.HyphenMinus ||
+      tokens[i + 1] && tokens[i + 1].type !== TokenType.HyphenMinus) return 0;
+
+  // Skip `--`
+  i += 2;
+
+  if (l = checkIdent(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * Get node with a custom property
+ * @return {Node}
+ */
+function getCustomProperty() {
+  const type = NodeType.CustomPropertyType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+
+  // Skip `--`
+  pos += 2;
+
+  const content = [getIdent()];
 
   return newNode(type, content, line, column);
 }

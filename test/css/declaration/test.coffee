@@ -4,6 +4,13 @@ describe 'css/declaration >>', ->
   it '1', -> this.shouldBeOk()
   it '2', -> this.shouldBeOk()
 
+  it 'custom.property.1', -> this.shouldBeOk()
+  it 'custom.property.2', -> this.shouldBeOk()
+  it 'custom.property.3', -> this.shouldBeOk()
+  it 'custom.property.4', -> this.shouldBeOk()
+  it 'custom.property.5', -> this.shouldBeOk()
+  it 'custom.property.6', -> this.shouldBeOk()
+
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()

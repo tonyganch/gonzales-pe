@@ -1,0 +1,81 @@
+{
+  "type": "declaration",
+  "content": [
+    {
+      "type": "customProperty",
+      "content": [
+        {
+          "type": "ident",
+          "content": "foo-bar",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 3
+          },
+          "end": {
+            "line": 1,
+            "column": 9
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 1
+      },
+      "end": {
+        "line": 1,
+        "column": 9
+      }
+    },
+    {
+      "type": "propertyDelimiter",
+      "content": ":",
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 10
+      },
+      "end": {
+        "line": 1,
+        "column": 10
+      }
+    },
+    {
+      "type": "value",
+      "content": [
+        {
+          "type": "ident",
+          "content": "baz",
+          "syntax": "css",
+          "start": {
+            "line": 1,
+            "column": 11
+          },
+          "end": {
+            "line": 1,
+            "column": 13
+          }
+        }
+      ],
+      "syntax": "css",
+      "start": {
+        "line": 1,
+        "column": 11
+      },
+      "end": {
+        "line": 1,
+        "column": 13
+      }
+    }
+  ],
+  "syntax": "css",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 13
+  }
+}

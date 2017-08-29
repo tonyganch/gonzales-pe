@@ -5,6 +5,13 @@ describe 'sass/declaration >>', ->
   it '2', -> this.shouldBeOk()
   it '3', -> this.shouldBeOk()
 
+  it 'custom.property.1', -> this.shouldBeOk()
+  it 'custom.property.2', -> this.shouldBeOk()
+  it 'custom.property.3', -> this.shouldBeOk()
+  it 'custom.property.4', -> this.shouldBeOk()
+  it 'custom.property.5', -> this.shouldBeOk()
+  it 'custom.property.6', -> this.shouldBeOk()
+
   it 'filter.0', -> this.shouldBeOk()
   it 'filter.1', -> this.shouldBeOk()
   it.skip 'filter.2', -> this.shouldBeOk()
