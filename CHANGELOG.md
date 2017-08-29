@@ -7,6 +7,9 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 29.08.2017, version 4.2.1
+
+:green_apple: Fixed parsing of `pseudo-element` in CSS, LESS, Sass and SCSS.
 
 ## 29.08.2017, version 4.2.0
 
