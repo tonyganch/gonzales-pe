@@ -916,7 +916,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ (function(module, exports) {
 
-	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.2.1","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublish":"bash ./scripts/prepublish.sh","postpublish":"bash ./scripts/postpublish.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.8.0","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"}}
+	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.2.2","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublish":"bash ./scripts/prepublish.sh","postpublish":"bash ./scripts/postpublish.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.8.0","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"}}
 
 /***/ }),
 /* 10 */
@@ -2028,7 +2028,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
-	  if (type === 3) return getCombinator4();
+	  if (type === 4) return getCombinator4();
 	}
 
 	/**
@@ -6326,7 +6326,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
-	  if (type === 3) return getCombinator4();
+	  if (type === 4) return getCombinator4();
 	}
 
 	/**
@@ -11393,7 +11393,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
-	  if (type === 3) return getCombinator4();
+	  if (type === 4) return getCombinator4();
 	}
 
 	/**
@@ -17682,7 +17682,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  if (type === 1) return getCombinator1();
 	  if (type === 2) return getCombinator2();
 	  if (type === 3) return getCombinator3();
-	  if (type === 3) return getCombinator4();
+	  if (type === 4) return getCombinator4();
 	}
 
 	/**
