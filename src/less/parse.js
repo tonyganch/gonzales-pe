@@ -2839,7 +2839,7 @@ function checkPseudoElement2(i) {
   if (l = checkInterpolatedVariable(i) || checkIdent(i)) i += l;
   else return 0;
 
-  return start - i;
+  return i - start;
 }
 
 /**

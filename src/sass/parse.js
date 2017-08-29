@@ -4243,7 +4243,7 @@ function checkPseudoElement2(i) {
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
-  return start - i;
+  return i - start;
 }
 
 /**
