@@ -333,17 +333,17 @@ function checkAny(i) {
   else if (l = checkNumber(i)) tokens[i].any_child = 10;
   else if (l = checkUri(i)) tokens[i].any_child = 11;
   else if (l = checkExpression(i)) tokens[i].any_child = 12;
-  else if (l = checkFunctionsList(i)) tokens[i].any_child = 19;
-  else if (l = checkFunction(i)) tokens[i].any_child = 13;
-  else if (l = checkInterpolation(i)) tokens[i].any_child = 14;
-  else if (l = checkIdent(i)) tokens[i].any_child = 15;
-  else if (l = checkClass(i)) tokens[i].any_child = 16;
-  else if (l = checkUnary(i)) tokens[i].any_child = 17;
-  else if (l = checkParentSelector(i)) tokens[i].any_child = 18;
-  else if (l = checkImportant(i)) tokens[i].any_child = 19;
-  else if (l = checkGlobal(i)) tokens[i].any_child = 20;
-  else if (l = checkDefault(i)) tokens[i].any_child = 21;
-  else if (l = checkOptional(i)) tokens[i].any_child = 22;
+  else if (l = checkFunctionsList(i)) tokens[i].any_child = 13;
+  else if (l = checkFunction(i)) tokens[i].any_child = 14;
+  else if (l = checkInterpolation(i)) tokens[i].any_child = 15;
+  else if (l = checkIdent(i)) tokens[i].any_child = 16;
+  else if (l = checkClass(i)) tokens[i].any_child = 17;
+  else if (l = checkUnary(i)) tokens[i].any_child = 18;
+  else if (l = checkParentSelector(i)) tokens[i].any_child = 19;
+  else if (l = checkImportant(i)) tokens[i].any_child = 20;
+  else if (l = checkGlobal(i)) tokens[i].any_child = 21;
+  else if (l = checkDefault(i)) tokens[i].any_child = 22;
+  else if (l = checkOptional(i)) tokens[i].any_child = 23;
 
   return l;
 }
@@ -366,17 +366,17 @@ function getAny() {
   if (childType === 10) return getNumber();
   if (childType === 11) return getUri();
   if (childType === 12) return getExpression();
-  if (childType === 19) return getFunctionsList();
-  if (childType === 13) return getFunction();
-  if (childType === 14) return getInterpolation();
-  if (childType === 15) return getIdent();
-  if (childType === 16) return getClass();
-  if (childType === 17) return getUnary();
-  if (childType === 18) return getParentSelector();
-  if (childType === 19) return getImportant();
-  if (childType === 20) return getGlobal();
-  if (childType === 21) return getDefault();
-  if (childType === 22) return getOptional();
+  if (childType === 13) return getFunctionsList();
+  if (childType === 14) return getFunction();
+  if (childType === 15) return getInterpolation();
+  if (childType === 16) return getIdent();
+  if (childType === 17) return getClass();
+  if (childType === 18) return getUnary();
+  if (childType === 19) return getParentSelector();
+  if (childType === 20) return getImportant();
+  if (childType === 21) return getGlobal();
+  if (childType === 22) return getDefault();
+  if (childType === 23) return getOptional();
 }
 
 /**
