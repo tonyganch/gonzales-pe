@@ -2329,11 +2329,11 @@ function checkPseudoc(i) {
 
   if (i >= tokensLength || tokens[i].type !== TokenType.Colon) return 0;
 
-  if (l = checkPseudoClass1(i)) tokens[i].pseudoClassType = 1;
-  else if (l = checkPseudoClass2(i)) tokens[i].pseudoClassType = 2;
-  else if (l = checkPseudoClass3(i)) tokens[i].pseudoClassType = 3;
+  if (l = checkPseudoClass3(i)) tokens[i].pseudoClassType = 3;
   else if (l = checkPseudoClass4(i)) tokens[i].pseudoClassType = 4;
   else if (l = checkPseudoClass5(i)) tokens[i].pseudoClassType = 5;
+  else if (l = checkPseudoClass1(i)) tokens[i].pseudoClassType = 1;
+  else if (l = checkPseudoClass2(i)) tokens[i].pseudoClassType = 2;
   else if (l = checkPseudoClass6(i)) tokens[i].pseudoClassType = 6;
   else return 0;
 
@@ -3387,11 +3387,13 @@ function checkValue(i) {
   let _i;
 
   while (i < tokensLength) {
+    if (checkDeclDelim(i)) break;
+
     s = checkSC(i);
     _i = i + s;
 
     if (l = _checkValue(_i)) i += l + s;
-    else break;
+    if (!l || checkBlock(i - l)) break;
   }
 
   tokens[start].value_end = i;
@@ -3409,10 +3411,21 @@ function getValue() {
   const column = token.col;
   const end = tokens[pos].value_end;
   let content = [];
+  let _pos;
+  let s;
 
   while (pos < end) {
-    if (tokens[pos].value_child) content.push(_getValue());
-    else content = content.concat(getSC());
+    s = checkSC(pos);
+    _pos = pos + s;
+
+    if (checkDeclDelim(_pos)) break;
+
+    if (!_checkValue(_pos)) break;
+
+    if (s) content = content.concat(getSC());
+    content.push(_getValue());
+
+    if (checkBlock(_pos)) break;
   }
 
   return newNode(type, content, line, column);
@@ -3427,9 +3440,10 @@ function _checkValue(i) {
 
   if (l = checkProgid(i)) tokens[i].value_child = 1;
   else if (l = checkVhash(i)) tokens[i].value_child = 2;
-  else if (l = checkAny(i)) tokens[i].value_child = 3;
+  else if (l = checkBlock(i)) tokens[i].value_child = 3;
   else if (l = checkOperator(i)) tokens[i].value_child = 4;
   else if (l = checkImportant(i)) tokens[i].value_child = 5;
+  else if (l = checkAny(i)) tokens[i].value_child = 6;
 
   return l;
 }
@@ -3441,9 +3455,10 @@ function _getValue() {
   const childType = tokens[pos].value_child;
   if (childType === 1) return getProgid();
   if (childType === 2) return getVhash();
-  if (childType === 3) return getAny();
+  if (childType === 3) return getBlock();
   if (childType === 4) return getOperator();
   if (childType === 5) return getImportant();
+  if (childType === 6) return getAny();
 }
 
 /**
