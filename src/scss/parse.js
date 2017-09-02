@@ -5215,38 +5215,68 @@ function checkSelectorsGroup(i) {
 
   const start = i;
   let l;
+  let selectorCounter = 0;
+  let delimCounter = 0;
 
-  if (l = checkSelector(i)) i += l;
-  else return 0;
+  if (l = checkSelector(i)) {
+    i += l;
+    selectorCounter++;
+  } else return 0;
 
   while (i < tokensLength) {
-    const spaceBefore = checkSC(i);
-    const comma = checkDelim(i + spaceBefore);
-    if (!comma) break;
+    const tempStart = i;
+    let tempIndex = i;
+    let tempLength;
 
-    const spaceAfter = checkSC(i + spaceBefore + comma);
-    if (l = checkSelector(i + spaceBefore + comma + spaceAfter)) {
-      i += spaceBefore + comma + spaceAfter + l;
-    } else break;
+    let spaceBefore = checkSC(tempIndex);
+
+    if (tempLength = checkDelim(tempIndex + spaceBefore)) {
+      tempIndex += spaceBefore + tempLength;
+      delimCounter++;
+
+      if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+      if (tempLength = checkSelector(tempIndex)) {
+        tempIndex += tempLength;
+        selectorCounter++;
+      }
+    }
+    else break;
+
+    i += tempIndex - tempStart;
   }
 
   tokens[start].selectorsGroupEnd = i;
+  tokens[start].selectorsGroupSelectorCount = selectorCounter;
+  tokens[start].selectorsGroupDelimCount = delimCounter;
+
   return i - start;
 }
 
 function getSelectorsGroup() {
   let selectorsGroup = [];
+  let selectorCounter = 0;
+  let delimCounter = 0;
+
   const selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+  const selectorCount = tokens[pos].selectorsGroupSelectorCount;
+  const delimCount = tokens[pos].selectorsGroupDelimCount;
 
   selectorsGroup.push(getSelector());
+  selectorCounter++;
 
   while (pos < selectorsGroupEnd) {
-    selectorsGroup = selectorsGroup.concat(
-      getSC(),
-      getDelim(),
-      getSC(),
-      getSelector()
-    );
+    if (delimCounter < delimCount) {
+      selectorsGroup = selectorsGroup.concat(getSC());
+      selectorsGroup = selectorsGroup.concat(getDelim());
+      delimCounter++;
+
+      selectorsGroup = selectorsGroup.concat(getSC());
+
+      if (selectorCounter < selectorCount) {
+        selectorsGroup = selectorsGroup.concat(getSelector());
+        selectorCounter++;
+      }
+    }
   }
 
   return selectorsGroup;
