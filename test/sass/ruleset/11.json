@@ -44,7 +44,7 @@
     },
     {
       "type": "space",
-      "content": " ",
+      "content": "\n",
       "syntax": "sass",
       "start": {
         "line": 1,
@@ -60,11 +60,11 @@
       "content": [
         {
           "type": "space",
-          "content": "\n  ",
+          "content": "  ",
           "syntax": "sass",
           "start": {
-            "line": 1,
-            "column": 8
+            "line": 2,
+            "column": 1
           },
           "end": {
             "line": 2,
@@ -116,7 +116,7 @@
             },
             {
               "type": "space",
-              "content": " ",
+              "content": "\n",
               "syntax": "sass",
               "start": {
                 "line": 2,
@@ -135,11 +135,11 @@
                   "content": [
                     {
                       "type": "space",
-                      "content": "\n    ",
+                      "content": "    ",
                       "syntax": "sass",
                       "start": {
-                        "line": 2,
-                        "column": 15
+                        "line": 3,
+                        "column": 1
                       },
                       "end": {
                         "line": 3,
@@ -239,53 +239,27 @@
                         "line": 3,
                         "column": 21
                       }
-                    },
-                    {
-                      "type": "declarationDelimiter",
-                      "content": ";",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 3,
-                        "column": 22
-                      },
-                      "end": {
-                        "line": 3,
-                        "column": 22
-                      }
-                    },
-                    {
-                      "type": "space",
-                      "content": "\n  ",
-                      "syntax": "sass",
-                      "start": {
-                        "line": 3,
-                        "column": 23
-                      },
-                      "end": {
-                        "line": 4,
-                        "column": 2
-                      }
                     }
                   ],
                   "syntax": "sass",
                   "start": {
-                    "line": 2,
-                    "column": 14
+                    "line": 3,
+                    "column": 1
                   },
                   "end": {
-                    "line": 4,
-                    "column": 3
+                    "line": 3,
+                    "column": 21
                   }
                 }
               ],
               "syntax": "sass",
               "start": {
-                "line": 2,
-                "column": 14
+                "line": 3,
+                "column": 1
               },
               "end": {
-                "line": 4,
-                "column": 3
+                "line": 3,
+                "column": 21
               }
             }
           ],
@@ -295,32 +269,19 @@
             "column": 3
           },
           "end": {
-            "line": 4,
-            "column": 3
-          }
-        },
-        {
-          "type": "space",
-          "content": "\n",
-          "syntax": "sass",
-          "start": {
-            "line": 4,
-            "column": 4
-          },
-          "end": {
-            "line": 4,
-            "column": 4
+            "line": 3,
+            "column": 21
           }
         }
       ],
       "syntax": "sass",
       "start": {
-        "line": 1,
-        "column": 7
+        "line": 2,
+        "column": 1
       },
       "end": {
-        "line": 5,
-        "column": 1
+        "line": 3,
+        "column": 21
       }
     }
   ],
@@ -330,7 +291,7 @@
     "column": 1
   },
   "end": {
-    "line": 5,
-    "column": 1
+    "line": 3,
+    "column": 21
   }
 }
