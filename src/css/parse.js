@@ -446,13 +446,15 @@ function checkAtrule(i) {
 
   // If token is part of an @-rule, save the rule's type to token.
   // @keyframes:
-  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 4;
+  if (l = checkKeyframesRule(i)) tokens[i].atrule_type = 1;
+  // @apply --custom-property:
+  else if (l = checkApplyRule(i)) tokens[i].atrule_type = 2;
   // @-rule with ruleset:
-  else if (l = checkAtruler(i)) tokens[i].atrule_type = 1;
+  else if (l = checkAtruler(i)) tokens[i].atrule_type = 3;
   // Block @-rule:
-  else if (l = checkAtruleb(i)) tokens[i].atrule_type = 2;
+  else if (l = checkAtruleb(i)) tokens[i].atrule_type = 4;
   // Single-line @-rule:
-  else if (l = checkAtrules(i)) tokens[i].atrule_type = 3;
+  else if (l = checkAtrules(i)) tokens[i].atrule_type = 5;
   else return 0;
 
   // If token is part of an @-rule, save the rule's length to token:
@@ -468,10 +470,11 @@ function checkAtrule(i) {
 function getAtrule() {
   const childType = tokens[pos].atrule_type;
 
-  if (childType === 1) return getAtruler(); // @-rule with ruleset
-  if (childType === 2) return getAtruleb(); // Block @-rule
-  if (childType === 3) return getAtrules(); // Single-line @-rule
-  if (childType === 4) return getKeyframesRule();
+  if (childType === 1) return getKeyframesRule();
+  if (childType === 2) return getApplyRule();
+  if (childType === 3) return getAtruler(); // @-rule with ruleset
+  if (childType === 4) return getAtruleb(); // Block @-rule
+  if (childType === 5) return getAtrules(); // Single-line @-rule
 }
 
 /**
@@ -648,6 +651,47 @@ function getAtrules() {
   const content = [].concat(
     getAtkeyword(),
     getTsets()
+  );
+
+  return newNode(type, content, line, column);
+}
+
+/**
+ * @param {Number} i Token's index number
+ * @returns {Number}
+ */
+function checkApplyRule(i) {
+  const start = i;
+  let l;
+
+  if (i >= tokensLength) return 0;
+
+  if (l = checkAtkeyword(i)) i += l;
+  else return 0;
+
+  const atruleName = joinValues2(i - l, l);
+  if (atruleName.toLowerCase().indexOf('apply') === -1) return 0;
+
+  if (l = checkSC(i)) i += l;
+
+  if (l = checkCustomProperty(i)) i += l;
+  else return 0;
+
+  return i - start;
+}
+
+/**
+ * @returns {Node}
+ */
+function getApplyRule() {
+  const type = NodeType.AtruleType;
+  const token = tokens[pos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [].concat(
+    getAtkeyword(),
+    getSC(),
+    getCustomProperty()
   );
 
   return newNode(type, content, line, column);
