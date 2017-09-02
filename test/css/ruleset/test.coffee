@@ -6,11 +6,15 @@ describe 'css/ruleset >>', ->
   it '3', -> this.shouldBeOk()
   it '4', -> this.shouldBeOk()
   it '5', -> this.shouldBeOk()
+  it '6', -> this.shouldBeOk()
+  it '7', -> this.shouldBeOk()
+  it '8', -> this.shouldBeOk()
 
   it 'c.0', -> this.shouldBeOk()
   it 'c.1', -> this.shouldBeOk()
   it 'c.2', -> this.shouldBeOk()
   it 'c.3', -> this.shouldBeOk()
+  it 'c.4', -> this.shouldBeOk()
 
   it 'color.ident.0', -> this.shouldBeOk()
   it 'color.ident.1', -> this.shouldBeOk()
@@ -21,3 +25,4 @@ describe 'css/ruleset >>', ->
   it 's.3', -> this.shouldBeOk()
   it 's.4', -> this.shouldBeOk()
   it 's.5', -> this.shouldBeOk()
+  it 's.6', -> this.shouldBeOk()
