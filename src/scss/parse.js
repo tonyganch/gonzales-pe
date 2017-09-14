@@ -4715,10 +4715,29 @@ function checkUri(i) {
  * @return {Node} Specific type of URI node
  */
 function getUri() {
-  const uriType = tokens[pos].uriType;
+  const startPos = pos;
+  const type = NodeType.UriType;
+  const token = tokens[startPos];
+  const line = token.ln;
+  const column = token.col;
+  let content = [];
+  let end;
 
-  if (uriType === 1) return getUri1();
-  if (uriType === 2) return getUri2();
+  const uriType = tokens[startPos].uriType;
+
+  // Skip `url` and `(`.
+  pos += 2;
+
+  if (uriType === 1) content = content.concat(getUri1());
+  else if (uriType === 2) content = content.concat(getUri2());
+  else end = getLastPosition(content, line, column, 4);
+
+  if (!end) end = getLastPosition(content, line, column, 1);
+
+  // Skip `)`.
+  pos++;
+
+  return newNode(type, content, line, column, end);
 }
 
 /**
@@ -4848,22 +4867,15 @@ function checkUri1(i) {
 /**
  * Get a raw (without quotes) URI
   node
- * @return {Node}
+ * @return {Array}
  */
 function getUri1() {
   const startPos = pos;
-  const type = NodeType.UriType;
-  const token = tokens[startPos];
-  const line = token.ln;
-  const column = token.col;
   let content = [];
-
-  // Skip `url` and `(`
-  pos += 2;
 
   if (checkSC(pos)) content = content.concat(getSC());
 
-  while (pos < tokens[startPos + 2].uri_end) {
+  while (pos < tokens[startPos].uri_end) {
     if (checkInterpolation(pos)) content.push(getInterpolation());
     else if (checkUriRaw(pos)) content.push(getUriRaw());
     else break;
@@ -4871,15 +4883,7 @@ function getUri1() {
 
   if (checkSC(pos)) content = content.concat(getSC());
 
-  // Check that we are at the end of the uri
-  if (pos < tokens[startPos + 1].right) return 0;
-
-  const end = getLastPosition(content, line, column, 1);
-
-  // Skip `)`
-  pos++;
-
-  return newNode(type, content, line, column, end);
+  return content;
 }
 
 /**
@@ -4904,6 +4908,9 @@ function checkUri2(i) {
     else break;
   }
 
+  // Check that we are at the end of the uri
+  if (i < tokens[start - 1].right) return 0;
+
   tokens[start].uri_end = i;
 
   return i - start;
@@ -4911,31 +4918,20 @@ function checkUri2(i) {
 
 /**
  * Get a non-raw (with quotes) URI node
- * @return {Node}
+ * @return {Array}
  */
 function getUri2() {
   const startPos = pos;
-  const token = tokens[startPos];
-  const line = token.ln;
-  const column = token.col;
   let content = [];
 
-  // Skip `url` and `(`
-  pos += 2;
-
-  while (pos < tokens[startPos + 2].uri_end) {
+  while (pos < tokens[startPos].uri_end) {
     if (checkSC(pos)) content = content.concat(getSC());
     else if (checkUnary(pos)) content.push(getUnary());
     else if (_checkValue(pos)) content.push(_getValue());
     else break;
   }
 
-  const end = getLastPosition(content, line, column, 1);
-
-  // Skip `)`
-  pos++;
-
-  return newNode(NodeType.UriType, content, line, column, end);
+  return content;
 }
 
 /**

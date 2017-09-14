@@ -1,0 +1,13 @@
+{
+  "type": "uri",
+  "content": [],
+  "syntax": "scss",
+  "start": {
+    "line": 1,
+    "column": 1
+  },
+  "end": {
+    "line": 1,
+    "column": 5
+  }
+}

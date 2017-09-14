@@ -9,6 +9,8 @@ describe 'sass/uri >>', ->
   it '6', -> this.shouldBeOk()
   it '7', -> this.shouldBeOk()
   it '8', -> this.shouldBeOk()
+  it '9', -> this.shouldBeOk()
+  it '10', -> this.shouldBeOk()
 
   it 'interp.0', -> this.shouldBeOk()
   it 'interp.1', -> this.shouldBeOk()
