@@ -1,9 +1,15 @@
 # Gonzales PE @dev
 
-[![Build Status](https://travis-ci.org/tonyganch/gonzales-pe.svg)]
-(https://travis-ci.org/tonyganch/gonzales-pe)
-[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/m29jphtrqt398v2o/branch/dev?svg=true)]
-(https://ci.appveyor.com/project/tonyganch/gonzales-pe/branch/dev)
+[![NPM version][npm-img]][npm]
+[![Build Status][travis-img]][travis]
+[![AppVeyor Build Status][appveyor-img]][appveyor]
+
+[npm-img]:      https://img.shields.io/npm/v/gonzales-pe.svg
+[npm]:          https://www.npmjs.com/package/gonzales-pe
+[travis-img]:   https://travis-ci.org/tonyganch/gonzales-pe.svg
+[travis]:       https://travis-ci.org/tonyganch/gonzales-pe
+[appveyor-img]: https://ci.appveyor.com/api/projects/status/m29jphtrqt398v2o/branch/dev?svg=true
+[appveyor]:     https://ci.appveyor.com/project/tonyganch/gonzales-pe/branch/dev
 
 Gonzales PE is a CSS parser which plays nicely with preprocessors.    
 Currently those are supported: SCSS, Sass, LESS.    
