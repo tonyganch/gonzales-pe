@@ -21,7 +21,7 @@
     "init": "bash ./scripts/init.sh",
     "lint": "bash ./scripts/lint.sh",
     "log": "bash ./scripts/log.sh",
-    "prepublish": "bash ./scripts/prepublish.sh",
+    "prepublishOnly": "bash ./scripts/prepublish.sh",
     "postpublish": "bash ./scripts/postpublish.sh",
     "test": "bash ./scripts/test.sh",
     "watch": "bash ./scripts/watch.sh"
