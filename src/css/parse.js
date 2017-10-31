@@ -1358,6 +1358,45 @@ function getFunction() {
  * @param {number} i Token's index number
  * @return {number} Length of the identifier
  */
+function checkIdentIncludingHacks(i) {
+  const start = i;
+
+  if (i >= tokensLength) return 0;
+
+  if (tokens[i].type === TokenType.Asterisk) i++;
+  if (tokens[i].type === TokenType.HyphenMinus) i++;
+  if (tokens[i].type === TokenType.NumberSign) i++;
+
+  if (tokens[i].type === TokenType.LowLine ||
+      tokens[i].type === TokenType.Identifier) i++;
+  else return 0;
+
+  for (; i < tokensLength; i++) {
+    if (tokens[i].type !== TokenType.HyphenMinus &&
+        tokens[i].type !== TokenType.LowLine &&
+        tokens[i].type !== TokenType.Identifier &&
+        tokens[i].type !== TokenType.DecimalNumber) break;
+  }
+
+  tokens[start].ident_last = i - 1;
+
+  return i - start;
+}
+
+/**
+ * Check if token is part of an identifierю
+ * Grammar from CSS spec:
+ *   h         [0-9a-f]
+ *   nonascii  [\240-\377]
+ *   unicode   \\{h}{1,6}(\r\n|[ \t\r\n\f])?
+ *   escape    {unicode}|\\[^\r\n\f0-9a-f]
+ *   nmstart   [_a-z]|{nonascii}|{escape}
+ *   nmchar    [_a-z0-9-]|{nonascii}|{escape}
+ *   ident     -?{nmstart}{nmchar}*
+ *
+ * @param {number} i Token's index number
+ * @return {number} Length of the identifier
+ */
 function checkIdent(i) {
   const start = i;
 
@@ -2017,7 +2056,7 @@ function checkProperty1(i) {
 
   if (i >= tokensLength) return 0;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentIncludingHacks(i)) i += l;
   else return 0;
 
   return i - start;
