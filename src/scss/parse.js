@@ -1839,7 +1839,7 @@ function getFunction() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = []; //PATCH handle the case where function has space between name and argument
+  let content = []; //PATCH handle the case where function has space between name and argument
         
   if (checkIdentOrInterpolation(pos))
     content = content.concat(getIdentOrInterpolation());
