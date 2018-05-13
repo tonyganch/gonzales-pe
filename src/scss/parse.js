@@ -184,9 +184,8 @@ const contexts = {
  * @param {Number=} i Token's index number
  */
 function throwError(i) {
-  const ln = tokens[i].ln;
-
-  throw {line: ln, syntax: 'scss'};
+  //PATCH - stop from throwing error to introduce error tolerance
+  return i < tokensLength ? 1 : 0;
 }
 
 /**
@@ -425,7 +424,7 @@ function getArguments() {
       if (typeof body.content === 'string') content.push(body);
       else content = content.concat(body);
     } else if (checkClass(pos)) content.push(getClass());
-    else throwError(pos);
+    else { throwError(pos); ++pos; } //PATCH
   }
 
   const end = getLastPosition(content, line, column, 1);
@@ -791,7 +790,7 @@ function getBlock() {
 
   while (pos < end) {
     if (checkBlockdecl(pos)) content = content.concat(getBlockdecl());
-    else throwError(pos);
+    else { throwError(pos); ++pos; } //PATCH
   }
 
   const end_ = getLastPosition(content, line, column, 1);
@@ -1826,6 +1825,8 @@ function checkFunction(i) {
   if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
+  if (l = checkSC(i)) i += l; //PATCH - handle spaces between function name and argument
+
   return i < tokensLength && tokens[i].type === TokenType.LeftParenthesis ?
       tokens[i].right - start + 1 : 0;
 }
@@ -1838,10 +1839,15 @@ function getFunction() {
   const token = tokens[pos];
   const line = token.ln;
   const column = token.col;
-  const content = [].concat(
-    getIdentOrInterpolation(),
-    getArguments()
-  );
+  let content = []; //PATCH handle the case where function has space between name and argument
+        
+  if (checkIdentOrInterpolation(pos))
+    content = content.concat(getIdentOrInterpolation());
+        
+  content = content.concat(getSC());
+
+  if (checkArguments(pos)) 
+    content.push(getArguments());
 
   return newNode(type, content, line, column);
 }
@@ -4379,7 +4385,7 @@ function checkStylesheet(i) {
     else if (l = checkAtrule(i)) tokens[i].stylesheet_child = 8;
     else if (l = checkDeclaration(i)) tokens[i].stylesheet_child = 9;
     else if (l = checkDeclDelim(i)) tokens[i].stylesheet_child = 10;
-    else throwError(i);
+    else { l = throwError(i) }; //PATCH
 
     i += l;
   }
@@ -4400,7 +4406,7 @@ function getStylesheet() {
 
   while (pos < tokensLength) {
     const childType = tokens[pos].stylesheet_child;
-
+    if (!childType) { pos++; } //PATCH
     if (childType === 1) content = content.concat(getSC());
     if (childType === 2) content.push(getRuleset());
     if (childType === 3) content.push(getInclude());
