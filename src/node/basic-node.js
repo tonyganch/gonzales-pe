@@ -22,6 +22,10 @@ class Node {
      * @return {Boolean} Whether there is a child node of given type
      */
     contains(type) {
+      if (!Array.isArray(this.content)) {
+        return false;
+      }
+
       return this.content.some(function(node) {
         return node.type === type;
       });
