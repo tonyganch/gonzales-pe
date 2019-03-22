@@ -21,8 +21,7 @@
     "init": "bash ./scripts/init.sh",
     "lint": "bash ./scripts/lint.sh",
     "log": "bash ./scripts/log.sh",
-    "prepublishOnly": "bash ./scripts/prepublish.sh",
-    "postpublish": "bash ./scripts/postpublish.sh",
+    "prepublishOnly": "bash ./scripts/build.sh",
     "test": "bash ./scripts/test.sh",
     "watch": "bash ./scripts/watch.sh"
   },
@@ -48,5 +47,10 @@
   },
   "engines": {
     "node": ">=0.6.0"
-  }
+  },
+  "files": [
+    "MIT-LICENSE.txt",
+    "bin/gonzales.js",
+    "lib/gonzales.js"
+  ]
 }
