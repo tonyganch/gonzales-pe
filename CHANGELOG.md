@@ -7,6 +7,13 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 21.04.2019, version 4.2.4
+
+:star: Renamed `prepublish` script to `prepublishOnly`.  
+:star: Updated link to playground.  
+:green_apple: Fixed badges.  
+:green_apple: Fixed `content` guard in `node.contains()`.  
+
 ## 28.09.2017, version 4.2.3
 
 :green_apple: Fixed parsing of empty `url()` in Sass and SCSS.
