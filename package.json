@@ -40,7 +40,7 @@
     "coffee-script": "~1.7.1",
     "eslint": "^3.0.0",
     "jscs": "2.1.0",
-    "jshint": "2.8.0",
+    "jshint": "2.10.2",
     "json-loader": "^0.5.3",
     "mocha": "2.2.x",
     "webpack": "^1.12.2",
