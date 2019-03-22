@@ -3,9 +3,9 @@
 #### Legend:
 
 :japanese_ogre: — be afraid of this change because it breaks the way things
-worked before.
-:star: — some new thing has been added.
-:green_apple: — some bad thing has been fixed.
+worked before.  
+:star: — some new thing has been added.  
+:green_apple: — some bad thing has been fixed.  
 
 ## 28.09.2017, version 4.2.3
 
@@ -21,138 +21,138 @@ worked before.
 
 ## 29.08.2017, version 4.2.0
 
-:star: Add support for custom property syntax in CSS, Sass and SCSS.
-:star: Add support for deep combinator syntax in CSS, LESS, Sass and SCSS.
-:star: Add support for alternative descendant `>>` syntax in CSS, LESS, Sass and SCSS.
-:star: Add support for `::slotted()` syntax in CSS, LESS, Sass and SCSS.
-:green_apple: Fixed parsing of non-lowercase keyframes at-rule in CSS, LESS, Sass and SCSS.
-:green_apple: Fixed parsing of multiline selectors within keyframes in  Sass.
-:green_apple: Fixed parsing of `!important` within maps in Sass and SCSS.
-:green_apple: Fixed parsing of `...` following a function in Sass and SCSS.
+:star: Add support for custom property syntax in CSS, Sass and SCSS.  
+:star: Add support for deep combinator syntax in CSS, LESS, Sass and SCSS.  
+:star: Add support for alternative descendant `>>` syntax in CSS, LESS, Sass and SCSS.  
+:star: Add support for `::slotted()` syntax in CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of non-lowercase keyframes at-rule in CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of multiline selectors within keyframes in  Sass.  
+:green_apple: Fixed parsing of `!important` within maps in Sass and SCSS.  
+:green_apple: Fixed parsing of `...` following a function in Sass and SCSS.  
 
 ## 23.08.2017, version 4.1.1
 
-:star: Unified codebase style across syntaxes.
-:green_apple: Fixed parsing of URLs in Sass and SCSS.
-:green_apple: Fixed parsing of placeholders in Sass and SCSS.
-:green_apple: Fixed parsing of interpolated values within type selectors in Sass and SCSS.
-:green_apple: Fixed parsing of spacing within pseudo class arguments in all syntaxes.
-:green_apple: Fixed parsing of parent selectors within parentheses in Sass and SCSS.
-:star: Abstracted attribute tests for CSS, LESS, Sass and SCSS.
-:green_apple: Fixed parsing of pseudo classes within keyframes in Sass and SCSS.
+:star: Unified codebase style across syntaxes.  
+:green_apple: Fixed parsing of URLs in Sass and SCSS.  
+:green_apple: Fixed parsing of placeholders in Sass and SCSS.  
+:green_apple: Fixed parsing of interpolated values within type selectors in Sass and SCSS.  
+:green_apple: Fixed parsing of spacing within pseudo class arguments in all syntaxes.  
+:green_apple: Fixed parsing of parent selectors within parentheses in Sass and SCSS.  
+:star: Abstracted attribute tests for CSS, LESS, Sass and SCSS.  
+:green_apple: Fixed parsing of pseudo classes within keyframes in Sass and SCSS.  
 :green_apple: Fixed parsing of dimensions in LESS.
 
 ## 20.11.2016, version 4.0.3
 
-:green_apple: Fixed parsing of interpolations inside URI nodes in SCSS and Sass.
+:green_apple: Fixed parsing of interpolations inside URI nodes in SCSS and Sass.  
 
 ## 18.11.2016, version 4.0.2
 
-:green_apple: Fixed parsing of trailing newlines.
+:green_apple: Fixed parsing of trailing newlines.  
 
 ## 18.11.2016, version 4.0.1
 
-:japanese_ogre: Removed `postinstall` script.
+:japanese_ogre: Removed `postinstall` script.  
 
 ## 17.11.2016, version 4.0.0
 
-:japanese_ogre: Dropped support for Node < 4.
+:japanese_ogre: Dropped support for Node < 4.  
 :japanese_ogre: Brought back `postinstall` script that should allow installing
-from GitHub.
+from GitHub.  
 :japanese_ogre: Made multiline comments in Sass consistent with other syntaxes
-by removing closing `*/` from node's content.
+by removing closing `*/` from node's content.  
 :japanese_ogre: Implemented new node type, `universalSelector`, which represents
 `*`. See [docs](https://github.com/tonyganch/gonzales-pe/blob/dev/docs/node-types.md#universalselector)
 for more details.
-:green_apple: Fixed parsing of comments in Sass.
-:green_apple: Fixed parsing of keyframes inside includes in Sass.
-:green_apple: Fixed parsing of flags in arguments in Sass and SCSS.
+:green_apple: Fixed parsing of comments in Sass.  
+:green_apple: Fixed parsing of keyframes inside includes in Sass.  
+:green_apple: Fixed parsing of flags in arguments in Sass and SCSS.  
 :green_apple: Fixed parsing of multiple declarations within arguments in SCSS
-and Sass.
-:green_apple: Improved parsing of interpolations in SCSS and Sass.
-:green_apple: Adjust parsing priority of declarations & atrule in Less.
+and Sass.  
+:green_apple: Improved parsing of interpolations in SCSS and Sass.  
+:green_apple: Adjust parsing priority of declarations & atrule in Less.  
 
 ## 22.10.2016, version 3.4.7
 
-:green_apple: Included forgotten test for #226.
-:green_apple: Fixed issue when `!important` was not parsed as function argument.
+:green_apple: Included forgotten test for #226.  
+:green_apple: Fixed issue when `!important` was not parsed as function argument.  
 
 ## 22.10.2016, version 3.4.6
 
 :green_apple: Changed parsing of `ident` nodes which fixed issue with asterisks
-being parsed as idents instead of operators.
-:green_apple: Fixed capitalisation in Changelog.
+being parsed as idents instead of operators.  
+:green_apple: Fixed capitalisation in Changelog.  
 
 ## 20.10.2016, version 3.4.5
 
-:green_apple: Change parser to strip DOS newlines from comments.
-:star: Add links to README.md.
+:green_apple: Change parser to strip DOS newlines from comments.  
+:star: Add links to README.md.  
 
 ## 12.08.2016, version 3.4.4
 
 :green_apple: Fixed parsing of numbers following interpolation in class
-selectors in Sass and SCSS.
+selectors in Sass and SCSS.  
 
 ## 08.08.2016, version 3.4.3
 
-:green_apple: Fixed parsing of unicode ranges.
+:green_apple: Fixed parsing of unicode ranges.  
 
 ## 04.08.2016, version 3.4.2
 
-:green_apple: Disable Google Closure Compiler due to some errors in parsing.
+:green_apple: Disable Google Closure Compiler due to some errors in parsing.  
 
 ## 27.07.2016, version 3.4.1
 
-:star: Added publich script.
-:green_apple: Fixed post-refactor error in Node#last method.
+:star: Added publich script.  
+:green_apple: Fixed post-refactor error in Node#last method.  
 
 ## 27.07.2016, version 3.4.0
 
-:star: Added `unicode-range` and `urange` node types in CSS, Less, Sass and SCSS.
-:green_apple: Fixed parsing of trailing interpolation in compound selector in Sass and SCSS.
-:green_apple: Fix parsing of hyphens after interpolation with parentSelectors in Sass and SCSS.
-:green_apple: Added ESLint and moved linters to a separate script.
-:green_apple: Fixed incorrect dimension wrap of unicode-ranges in CSS, Sass and SCSS.
-:green_apple: Fixed parsing of hyphens in interpolated idents in Sass and SCSS.
-:green_apple: Added compilation of JS using Google Closure.
+:star: Added `unicode-range` and `urange` node types in CSS, Less, Sass and SCSS.  
+:green_apple: Fixed parsing of trailing interpolation in compound selector in Sass and SCSS.  
+:green_apple: Fix parsing of hyphens after interpolation with parentSelectors in Sass and SCSS.  
+:green_apple: Added ESLint and moved linters to a separate script.  
+:green_apple: Fixed incorrect dimension wrap of unicode-ranges in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of hyphens in interpolated idents in Sass and SCSS.  
+:green_apple: Added compilation of JS using Google Closure.  
 
 ## 01.07.2016, version 3.3.6
 
-:green_apple: Fixed parsing of nth selector without numbers before `n`.
+:green_apple: Fixed parsing of nth selector without numbers before `n`.  
 
 ## 21.06.2016, version 3.3.5
 
-:green_apple: Fixed issue with content at-rule and keyframes in Sass and SCSS.
-:green_apple: Fixed namespace attribute selector in CSS, Sass and SCSS.
-:green_apple: Fixed issue with modulo operator in values in Sass.
-:green_apple: Fixed usage of @content with keyframes in Sass and SCSS.
-:green_apple: Fixed namespace attribute selector issue in CSS, Sass and SCSS.
-:green_apple: Fixed parsing of interpolations in pseudo-classes in Sass and SCSS.
-:green_apple: Fixed interpolated percentage keyframe selector issue in Sass and SCSS.
-:green_apple: Updated Travis config to not include environment variables.
+:green_apple: Fixed issue with content at-rule and keyframes in Sass and SCSS.  
+:green_apple: Fixed namespace attribute selector in CSS, Sass and SCSS.  
+:green_apple: Fixed issue with modulo operator in values in Sass.  
+:green_apple: Fixed usage of @content with keyframes in Sass and SCSS.  
+:green_apple: Fixed namespace attribute selector issue in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of interpolations in pseudo-classes in Sass and SCSS.  
+:green_apple: Fixed interpolated percentage keyframe selector issue in Sass and SCSS.  
+:green_apple: Updated Travis config to not include environment variables.  
 
 ## 18.05.2016, version 3.3.4
 
 :green_apple: Fixed mistake from `@3.3.2` version when parent selector was
-"correctly" parsed as property instead of value.
+"correctly" parsed as property instead of value.  
 
 ## 18.05.2016, version 3.3.3
 
-:green_apple: Fixed prepublish script to build lib.
+:green_apple: Fixed prepublish script to build lib.  
 
 ## 18.05.2016, version 3.3.2
 
-:star: Added AppVeyor badge.
-:green_apple: Fixed build file to glue multiple syntaxes into one file.
-:green_apple: Fixed parsing of functions inside urls in Sass.
-:green_apple: Fixed parsing of mulitple keyframe selectors in CSS, Sass and SCSS.
-:green_apple: Fixed parsing of parent selector as property in Sass and SCSS.
-:green_apple: Fixed parsing of parent selector inside interpolations in Sass and SCSS.
+:star: Added AppVeyor badge.  
+:green_apple: Fixed build file to glue multiple syntaxes into one file.  
+:green_apple: Fixed parsing of functions inside urls in Sass.  
+:green_apple: Fixed parsing of mulitple keyframe selectors in CSS, Sass and SCSS.  
+:green_apple: Fixed parsing of parent selector as property in Sass and SCSS.  
+:green_apple: Fixed parsing of parent selector inside interpolations in Sass and SCSS.  
 
 ## 29.04.2016, version 3.3.1
 
-:star: Added config for AppVeyor to run automated tests on Windows.
-:green_apple: Fix installation for Windows.
+:star: Added config for AppVeyor to run automated tests on Windows.  
+:green_apple: Fix installation for Windows.  
 
 ## 28.04.2016, version 3.3.0
 
@@ -161,36 +161,36 @@ browsers.
 
 ## 28.04.2016, version 3.2.7
 
-:green_apple: Fixed typos and example in documentation.
-:green_apple: Fixed parsing of functions inside urls in SCSS.
+:green_apple: Fixed typos and example in documentation.  
+:green_apple: Fixed parsing of functions inside urls in SCSS.  
 :green_apple: Fixed parsing of selectors starting with combinators in Sass, SCSS
-and Less.
-:green_apple: Fixed incorrect CRLF line numbers.
+and Less.  
+:green_apple: Fixed incorrect CRLF line numbers.  
 :green_apple: Fixed parsing of extends that sometimes were incorrectly parsed
-as atrules.
+as atrules.  
 
 ## 07.02.2016, version 3.2.6
 
-:green_apple: Fixed the issue with installation of the package with npm@3.
+:green_apple: Fixed the issue with installation of the package with npm@3.  
 
 ## 07.02.2016, version 3.2.5
 
-:green_apple: Fixed parsing of nested multiline selectors group.
+:green_apple: Fixed parsing of nested multiline selectors group.  
 
 ## 07.02.2016, version 3.2.4
 
-:star: Added support for `!global` in Sass.
+:star: Added support for `!global` in Sass.  
 
 ## 07.02.2016, version 3.2.3
 
-:star: Modified `npm test` to remove `.DS_Store` files before running tests.
-:star: Updated Travis config to use Node@5.0.
-:star: Updated Travis config to include compiler info.
-:star: Made it possible to build files if module is installed from github.
-:green_apple: Fixed parsing of interpolation content in Sass and SCSS.
+:star: Modified `npm test` to remove `.DS_Store` files before running tests.  
+:star: Updated Travis config to use Node@5.0.  
+:star: Updated Travis config to include compiler info.  
+:star: Made it possible to build files if module is installed from github.  
+:green_apple: Fixed parsing of interpolation content in Sass and SCSS.  
 :green_apple: Fixed parsing of interpolation as part of parent selector
-extension in Sass and SCSS.
-:green_apple: Fixed issue with keyframeSelector in includes in SCSS.
+extension in Sass and SCSS.  
+:green_apple: Fixed issue with keyframeSelector in includes in SCSS.  
 
 ## 17.01.2016, version 3.2.2
 
@@ -201,7 +201,7 @@ extension in Sass and SCSS.
 #### Parsing rules
 
 :green_apple: Fixed the issue when selectors inside extends were not wrapped in
-`selector` nodes in Sass and SCSS.
+`selector` nodes in Sass and SCSS.  
 :green_apple: Fixed parsing of multiple selectors in extends in Sass and SCSS.
 
 ## 19.10.2015, version 3.2.0
@@ -226,148 +226,148 @@ in Less, Sass and SCSS.
 
 #### CLI
 
-:green_apple: Fixed passing a `--context` argument.
-:green_apple: Fixed printing of a simplified tree.
+:green_apple: Fixed passing a `--context` argument.  
+:green_apple: Fixed printing of a simplified tree.  
 
 #### Node types
 
-:star: Added new node type: `keyframesSelector`.
+:star: Added new node type: `keyframesSelector`.  
 
 #### Parsing rules
 
-:green_apple: Fixed parsing of keyframes in all syntaxes.
+:green_apple: Fixed parsing of keyframes in all syntaxes.  
 
 ## 18.10.2015, version 3.0.3
 
 #### Parsing rules
 
-:green_apple: Fixed parsing of spaces inside interpolations in Sass and SCSS.
+:green_apple: Fixed parsing of spaces inside interpolations in Sass and SCSS.  
 
 ## 18.10.2015, version 3.0.2
 
 #### Parsing rules
 
 :green_apple: Fixed the issue when operators were parsed as idents inside
-parentheses in Sass and SCSS.
+parentheses in Sass and SCSS.  
 
 ## 18.10.2015, version 3.0.1
 
 #### Parsing rules
-:green_apple: Fixed parsing of parent selectors in SCSS and Less.
-:green_apple: Fixed parsing of placeholders inside selectors in SCSS.
+:green_apple: Fixed parsing of parent selectors in SCSS and Less.  
+:green_apple: Fixed parsing of placeholders inside selectors in SCSS.  
 
 ## 18.10.2015, version 3.0.0
 
 #### CLI
 
-:japanese_ogre: Made cli process stdin only if `-` argument is passed.
-:star: Added help message.
+:japanese_ogre: Made cli process stdin only if `-` argument is passed.  
+:star: Added help message.  
 
 #### API
 
-:japanese_ogre: Renamed `parseTree.remove` to `parseTree.removeChild()`.
-:japanese_ogre: Unwraped callback parameters for `traverse...` methods.
-:japanese_ogre: Made `first()`, `last()` and `get()` methods return `null` if no child nodes were found.
-:japanese_ogre: Made `node.length` return a number of child nodes.
-:japanese_ogre: Renamed `rule` to `context`.
-:star: Made `parseTree.removeChild()` return a removed node.
-:star: Added `traverseBy...` methods to all nodes, not only root ones.
-:star: Added support for specifying a tab size in spaces.
+:japanese_ogre: Renamed `parseTree.remove` to `parseTree.removeChild()`.  
+:japanese_ogre: Unwraped callback parameters for `traverse...` methods.  
+:japanese_ogre: Made `first()`, `last()` and `get()` methods return `null` if no child nodes were found.  
+:japanese_ogre: Made `node.length` return a number of child nodes.  
+:japanese_ogre: Renamed `rule` to `context`.  
+:star: Made `parseTree.removeChild()` return a removed node.  
+:star: Added `traverseBy...` methods to all nodes, not only root ones.  
+:star: Added support for specifying a tab size in spaces.  
 
 #### Parsing rules
 
-:green_apple: Fixed parsing of single-line comments after `url` token.
-:green_apple: Fixed parsing of interpolations inside id selectors in Less.
-:green_apple: Fixed parsing of selectors according to spec.
-:green_apple: Fixed parsing of placeholders as selectors in SCSS.
+:green_apple: Fixed parsing of single-line comments after `url` token.  
+:green_apple: Fixed parsing of interpolations inside id selectors in Less.  
+:green_apple: Fixed parsing of selectors according to spec.  
+:green_apple: Fixed parsing of placeholders as selectors in SCSS.  
 
 #### Misc
 
-:star: Added Travis badge to Readme page.
-:star: Added init script to build sources.
-:star: Added commit message template.
+:star: Added Travis badge to Readme page.  
+:star: Added init script to build sources.  
+:star: Added commit message template.  
 
 ## 05.10.2015, version 3.0.0-beta
 
 #### CLI
 
-:star: Added `--simple` flag for printing a simplified tree structure.
-:green_apple: CLI now prints parse tree to stdout.
+:star: Added `--simple` flag for printing a simplified tree structure.  
+:green_apple: CLI now prints parse tree to stdout.  
 
 #### API
 
-:japanese_ogre: Parse tree is now represented as objects, not arrays.
+:japanese_ogre: Parse tree is now represented as objects, not arrays.  
 :japanese_ogre: Renamed `gonzales.srcToAST()` to `gonzales.parse()`.
-See [Readme](README.md#gonzalesparsecss-options).
+See [Readme](README.md#gonzalesparsecss-options).  
 :japanese_ogre: Renamed `gonzales.astToSrc()` to `parseTree.toString()`.
-See [Readme](README.md#parsetreetostring).
+See [Readme](README.md#parsetreetostring).  
 :japanese_ogre: Renamed `gonzales.astToString()` to `parseTree.toJson()`.
-See [Readme](README.md#parsetreetojson).
-:star: Added information about column number to nodes.
-:star: Added information about end position to nodes.
-:green_apple: Made empty strings to be parsed as empty nodes.
+See [Readme](README.md#parsetreetojson).  
+:star: Added information about column number to nodes.  
+:star: Added information about end position to nodes.  
+:green_apple: Made empty strings to be parsed as empty nodes.  
 
 #### Node types
 
-:japanese_ogre: In Sass renamed `interpolatedVariable` to `interpolation`.
-:japanese_ogre: Separated `include` and `extend` nodes.
-:japanese_ogre: Replaced `filter` with `declaration`.
-:japanese_ogre: Replaced `braces` with `brackets` and `parentheses`.
-:japanese_ogre: Replaced `atrulers` with `block`.
-:japanese_ogre: Renamed `nthSelector` to `pseudoClass`.
-:japanese_ogre: Renamed `atrules`, `atruler` and `atruleb` to `atrule`.
-:japanese_ogre: Renamed `functionBody` to `arguments`.
-:japanese_ogre: Renamed `functionExpression` to `expression`.
-:japanese_ogre: Renamed `attrib` to `attributeSelector`.
-:japanese_ogre: Renamed `attrselector` to `attributeMatch`.
-:japanese_ogre: Renamed `commentSL` to `singlelineComment`.
-:japanese_ogre: Renamed `commentML` to `multilineComment`.
-:japanese_ogre: Renamed `declDelim` to `declarationDelimiter`.
-:japanese_ogre: Renamed `delim` to `delimiter`.
-:japanese_ogre: Renamed `propertyDelim` to `propertyDelimiter`.
-:japanese_ogre: Renamed `pseudoc` to `pseudoClass`.
-:japanese_ogre: Renamed `pseudoe` to `pseudoElement`.
-:japanese_ogre: Renamed `s` to `space`.
-:japanese_ogre: Renamed `shash` to `color`.
-:japanese_ogre: Renamed `vhash` to `id`.
-:japanese_ogre: Removed `atrulerq`, `unary` and `unknown`.
-:star: Added `attributeFlags`.
-:star: Added `attributeName`.
-:star: Added `attributeValue`.
-:star: Added `conditionalStatement`.
-:star: Added `namePrefix`.
-:star: Added `namespacePrefix`.
-:star: Added `namespaceSeparator`.
-:star: Added `typeSelector`.
+:japanese_ogre: In Sass renamed `interpolatedVariable` to `interpolation`.  
+:japanese_ogre: Separated `include` and `extend` nodes.  
+:japanese_ogre: Replaced `filter` with `declaration`.  
+:japanese_ogre: Replaced `braces` with `brackets` and `parentheses`.  
+:japanese_ogre: Replaced `atrulers` with `block`.  
+:japanese_ogre: Renamed `nthSelector` to `pseudoClass`.  
+:japanese_ogre: Renamed `atrules`, `atruler` and `atruleb` to `atrule`.  
+:japanese_ogre: Renamed `functionBody` to `arguments`.  
+:japanese_ogre: Renamed `functionExpression` to `expression`.  
+:japanese_ogre: Renamed `attrib` to `attributeSelector`.  
+:japanese_ogre: Renamed `attrselector` to `attributeMatch`.  
+:japanese_ogre: Renamed `commentSL` to `singlelineComment`.  
+:japanese_ogre: Renamed `commentML` to `multilineComment`.  
+:japanese_ogre: Renamed `declDelim` to `declarationDelimiter`.  
+:japanese_ogre: Renamed `delim` to `delimiter`.  
+:japanese_ogre: Renamed `propertyDelim` to `propertyDelimiter`.  
+:japanese_ogre: Renamed `pseudoc` to `pseudoClass`.  
+:japanese_ogre: Renamed `pseudoe` to `pseudoElement`.  
+:japanese_ogre: Renamed `s` to `space`.  
+:japanese_ogre: Renamed `shash` to `color`.  
+:japanese_ogre: Renamed `vhash` to `id`.  
+:japanese_ogre: Removed `atrulerq`, `unary` and `unknown`.  
+:star: Added `attributeFlags`.  
+:star: Added `attributeName`.  
+:star: Added `attributeValue`.  
+:star: Added `conditionalStatement`.  
+:star: Added `namePrefix`.  
+:star: Added `namespacePrefix`.  
+:star: Added `namespaceSeparator`.  
+:star: Added `typeSelector`.  
 
 #### Parsing rules
 
 :japanese_ogre: Spaces that separate two nodes are now put between those
-nodes in parse tree.
-:star: Added support for `extend` nodes in Less.
-:star: Added support for equality and inequality signs in Sass and SCSS.
-:star: Added support for `/deep/` combinator.
-:star: Added support for `!optional` and `!global` in Sass and SCSS.
-:green_apple: Fixed parsing of interpolations in Sass and SCSS.
-:green_apple: Fixed parsing of arguments in Sass, SCSS and Less.
-:green_apple: Fixed parsing of declaration delimiters in Sass.
-:green_apple: Fixed the issue when pseudo-classes were parsed like declarations.
-:green_apple: Fixed parsing of selectors on multiple lines in Sass.
-:green_apple: Fixed parsing of percent sign as operator in SCSS.
-:green_apple: Fixed parsing of pseudo-elements as selectors in Sass.
+nodes in parse tree.  
+:star: Added support for `extend` nodes in Less.  
+:star: Added support for equality and inequality signs in Sass and SCSS.  
+:star: Added support for `/deep/` combinator.  
+:star: Added support for `!optional` and `!global` in Sass and SCSS.  
+:green_apple: Fixed parsing of interpolations in Sass and SCSS.  
+:green_apple: Fixed parsing of arguments in Sass, SCSS and Less.  
+:green_apple: Fixed parsing of declaration delimiters in Sass.  
+:green_apple: Fixed the issue when pseudo-classes were parsed like declarations.  
+:green_apple: Fixed parsing of selectors on multiple lines in Sass.  
+:green_apple: Fixed parsing of percent sign as operator in SCSS.  
+:green_apple: Fixed parsing of pseudo-elements as selectors in Sass.  
 
 #### Misc
 
-:star: Added Babel to build source files.
-:star: Used mocha for tests.
-:star: Added helper scripts.
-:star: Added Travis config.
-:rocket: Improved tests structure.
-:rocket: Separated log and test scripts.
-:rocket: Improved error messages.
-:rocket: Removed benchmark tests.
-:rocket: Moved source files from `lib` to `src` directory.
-:rocket: Made package availbale for install from GitHub.
+:star: Added Babel to build source files.  
+:star: Used mocha for tests.  
+:star: Added helper scripts.  
+:star: Added Travis config.  
+:rocket: Improved tests structure.  
+:rocket: Separated log and test scripts.  
+:rocket: Improved error messages.  
+:rocket: Removed benchmark tests.  
+:rocket: Moved source files from `lib` to `src` directory.  
+:rocket: Made package availbale for install from GitHub.  
 
 ## 29.12.2013, version 2.0.2
 
