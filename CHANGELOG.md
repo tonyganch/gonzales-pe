@@ -7,7 +7,7 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
-## 21.04.2019, version 4.2.4
+## 22.03.2019, version 4.2.4
 
 :star: Renamed `prepublish` script to `prepublishOnly`.  
 :star: Updated link to playground.  
