@@ -3464,7 +3464,7 @@ function checkCustomProperty(i) {
   // Skip `--`
   i += 2;
 
-  if (l = checkIdent(i)) i += l;
+  if (l = checkIdentOrInterpolation(i)) i += l;
   else return 0;
 
   return i - start;
@@ -3483,7 +3483,7 @@ function getCustomProperty() {
   // Skip `--`
   pos += 2;
 
-  const content = [getIdent()];
+  const content = getIdentOrInterpolation();
 
   return newNode(type, content, line, column);
 }
