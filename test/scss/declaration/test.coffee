@@ -10,6 +10,7 @@ describe 'scss/declaration >>', ->
   it 'custom.property.4', -> this.shouldBeOk()
   it 'custom.property.5', -> this.shouldBeOk()
   it 'custom.property.6', -> this.shouldBeOk()
+  it 'custom.property.7', -> this.shouldBeOk()
 
   it 'filter.0', -> this.shouldBeOk()
   it 'filter.1', -> this.shouldBeOk()
