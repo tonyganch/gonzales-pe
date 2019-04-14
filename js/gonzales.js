@@ -103,6 +103,10 @@ return /******/ (function(modules) { // webpackBootstrap
 
 
 	  Node.prototype.contains = function contains(type) {
+	    if (!Array.isArray(this.content)) {
+	      return false;
+	    }
+
 	    return this.content.some(function (node) {
 	      return node.type === type;
 	    });
@@ -916,7 +920,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /* 9 */
 /***/ (function(module, exports) {
 
-	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.2.2","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublish":"bash ./scripts/prepublish.sh","postpublish":"bash ./scripts/postpublish.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.8.0","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"}}
+	module.exports = {"name":"gonzales-pe","description":"Gonzales Preprocessor Edition (fast CSS parser)","version":"4.2.4","homepage":"http://github.com/tonyganch/gonzales-pe","bugs":"http://github.com/tonyganch/gonzales-pe/issues","license":"MIT","author":{"name":"Tony Ganch","email":"tonyganch+github@gmail.com","url":"http://tonyganch.com"},"main":"./lib/gonzales","repository":{"type":"git","url":"http://github.com/tonyganch/gonzales-pe.git"},"scripts":{"autofix-tests":"bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh","build":"bash ./scripts/build.sh","init":"bash ./scripts/init.sh","lint":"bash ./scripts/lint.sh","log":"bash ./scripts/log.sh","prepublishOnly":"bash ./scripts/build.sh","test":"bash ./scripts/test.sh","watch":"bash ./scripts/watch.sh"},"bin":{"gonzales":"./bin/gonzales.js"},"dependencies":{"minimist":"1.1.x"},"devDependencies":{"babel-core":"^6.18.2","babel-loader":"^6.2.7","babel-plugin-add-module-exports":"^0.2.1","babel-preset-es2015":"^6.18.0","coffee-script":"~1.7.1","eslint":"^3.0.0","jscs":"2.1.0","jshint":"2.10.2","json-loader":"^0.5.3","mocha":"2.2.x","webpack":"^1.12.2","webpack-closure-compiler":"^2.0.2"},"engines":{"node":">=0.6.0"},"files":["MIT-LICENSE.txt","bin/gonzales.js","lib/gonzales.js"]}
 
 /***/ }),
 /* 10 */
@@ -4311,32 +4315,67 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var start = i;
 	  var l = void 0;
+	  var selectorCounter = 0;
+	  var delimCounter = 0;
 
-	  if (l = checkSelector(i)) i += l;else return 0;
+	  if (l = checkSelector(i)) {
+	    i += l;
+	    selectorCounter++;
+	  } else return 0;
 
 	  while (i < tokensLength) {
-	    var spaceBefore = checkSC(i);
-	    var comma = checkDelim(i + spaceBefore);
-	    if (!comma) break;
+	    var tempStart = i;
+	    var tempIndex = i;
+	    var tempLength = void 0;
 
-	    var spaceAfter = checkSC(i + spaceBefore + comma);
-	    if (l = checkSelector(i + spaceBefore + comma + spaceAfter)) {
-	      i += spaceBefore + comma + spaceAfter + l;
+	    var spaceBefore = checkSC(tempIndex);
+
+	    if (tempLength = checkDelim(tempIndex + spaceBefore)) {
+	      tempIndex += spaceBefore + tempLength;
+	      delimCounter++;
+
+	      if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+	      if (tempLength = checkSelector(tempIndex)) {
+	        tempIndex += tempLength;
+	        selectorCounter++;
+	      }
 	    } else break;
+
+	    i += tempIndex - tempStart;
 	  }
 
 	  tokens[start].selectorsGroupEnd = i;
+	  tokens[start].selectorsGroupSelectorCount = selectorCounter;
+	  tokens[start].selectorsGroupDelimCount = delimCounter;
+
 	  return i - start;
 	}
 
 	function getSelectorsGroup() {
 	  var selectorsGroup = [];
+	  var selectorCounter = 0;
+	  var delimCounter = 0;
+
 	  var selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+	  var selectorCount = tokens[pos].selectorsGroupSelectorCount;
+	  var delimCount = tokens[pos].selectorsGroupDelimCount;
 
 	  selectorsGroup.push(getSelector());
+	  selectorCounter++;
 
 	  while (pos < selectorsGroupEnd) {
-	    selectorsGroup = selectorsGroup.concat(getSC(), getDelim(), getSC(), getSelector());
+	    if (delimCounter < delimCount) {
+	      selectorsGroup = selectorsGroup.concat(getSC());
+	      selectorsGroup = selectorsGroup.concat(getDelim());
+	      delimCounter++;
+
+	      selectorsGroup = selectorsGroup.concat(getSC());
+
+	      if (selectorCounter < selectorCount) {
+	        selectorsGroup = selectorsGroup.concat(getSelector());
+	        selectorCounter++;
+	      }
+	    }
 	  }
 
 	  return selectorsGroup;
@@ -15007,10 +15046,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @return {Node} Specific type of URI node
 	 */
 	function getUri() {
-	  var uriType = tokens[pos].uriType;
+	  var startPos = pos;
+	  var type = NodeType.UriType;
+	  var token = tokens[startPos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+	  var end = void 0;
 
-	  if (uriType === 1) return getUri1();
-	  if (uriType === 2) return getUri2();
+	  var uriType = tokens[startPos].uriType;
+
+	  // Skip `url` and `(`.
+	  pos += 2;
+
+	  if (uriType === 1) content = content.concat(getUri1());else if (uriType === 2) content = content.concat(getUri2());else end = getLastPosition(content, line, column, 4);
+
+	  if (!end) end = getLastPosition(content, line, column, 1);
+
+	  // Skip `)`.
+	  pos++;
+
+	  return newNode(type, content, line, column, end);
 	}
 
 	/**
@@ -15133,36 +15189,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Get a raw (without quotes) URI
 	  node
-	 * @return {Node}
+	 * @return {Array}
 	 */
 	function getUri1() {
 	  var startPos = pos;
-	  var type = NodeType.UriType;
-	  var token = tokens[startPos];
-	  var line = token.ln;
-	  var column = token.col;
 	  var content = [];
-
-	  // Skip `url` and `(`
-	  pos += 2;
 
 	  if (checkSC(pos)) content = content.concat(getSC());
 
-	  while (pos < tokens[startPos + 2].uri_end) {
+	  while (pos < tokens[startPos].uri_end) {
 	    if (checkInterpolation(pos)) content.push(getInterpolation());else if (checkUriRaw(pos)) content.push(getUriRaw());else break;
 	  }
 
 	  if (checkSC(pos)) content = content.concat(getSC());
 
-	  // Check that we are at the end of the uri
-	  if (pos < tokens[startPos + 1].right) return 0;
-
-	  var end = getLastPosition(content, line, column, 1);
-
-	  // Skip `)`
-	  pos++;
-
-	  return newNode(type, content, line, column, end);
+	  return content;
 	}
 
 	/**
@@ -15181,6 +15222,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (l = checkSC(i)) i += l;else if (l = checkString(i)) i += l;else if (l = checkFunction(i)) i += l;else if (l = checkUnary(i)) i += l;else if (l = checkIdentOrInterpolation(i)) i += l;else if (l = checkVariable(i)) i += l;else break;
 	  }
 
+	  // Check that we are at the end of the uri
+	  if (i < tokens[start - 1].right) return 0;
+
 	  tokens[start].uri_end = i;
 
 	  return i - start;
@@ -15188,28 +15232,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Get a non-raw (with quotes) URI node
-	 * @return {Node}
+	 * @return {Array}
 	 */
 	function getUri2() {
 	  var startPos = pos;
-	  var token = tokens[startPos];
-	  var line = token.ln;
-	  var column = token.col;
 	  var content = [];
 
-	  // Skip `url` and `(`
-	  pos += 2;
-
-	  while (pos < tokens[startPos + 2].uri_end) {
+	  while (pos < tokens[startPos].uri_end) {
 	    if (checkSC(pos)) content = content.concat(getSC());else if (checkUnary(pos)) content.push(getUnary());else if (_checkValue(pos)) content.push(_getValue());else break;
 	  }
 
-	  var end = getLastPosition(content, line, column, 1);
-
-	  // Skip `)`
-	  pos++;
-
-	  return newNode(NodeType.UriType, content, line, column, end);
+	  return content;
 	}
 
 	/**
@@ -20921,10 +20954,27 @@ return /******/ (function(modules) { // webpackBootstrap
 	 * @return {Node} Specific type of URI node
 	 */
 	function getUri() {
-	  var uriType = tokens[pos].uriType;
+	  var startPos = pos;
+	  var type = NodeType.UriType;
+	  var token = tokens[startPos];
+	  var line = token.ln;
+	  var column = token.col;
+	  var content = [];
+	  var end = void 0;
 
-	  if (uriType === 1) return getUri1();
-	  if (uriType === 2) return getUri2();
+	  var uriType = tokens[startPos].uriType;
+
+	  // Skip `url` and `(`.
+	  pos += 2;
+
+	  if (uriType === 1) content = content.concat(getUri1());else if (uriType === 2) content = content.concat(getUri2());else end = getLastPosition(content, line, column, 4);
+
+	  if (!end) end = getLastPosition(content, line, column, 1);
+
+	  // Skip `)`.
+	  pos++;
+
+	  return newNode(type, content, line, column, end);
 	}
 
 	/**
@@ -21047,36 +21097,21 @@ return /******/ (function(modules) { // webpackBootstrap
 	/**
 	 * Get a raw (without quotes) URI
 	  node
-	 * @return {Node}
+	 * @return {Array}
 	 */
 	function getUri1() {
 	  var startPos = pos;
-	  var type = NodeType.UriType;
-	  var token = tokens[startPos];
-	  var line = token.ln;
-	  var column = token.col;
 	  var content = [];
-
-	  // Skip `url` and `(`
-	  pos += 2;
 
 	  if (checkSC(pos)) content = content.concat(getSC());
 
-	  while (pos < tokens[startPos + 2].uri_end) {
+	  while (pos < tokens[startPos].uri_end) {
 	    if (checkInterpolation(pos)) content.push(getInterpolation());else if (checkUriRaw(pos)) content.push(getUriRaw());else break;
 	  }
 
 	  if (checkSC(pos)) content = content.concat(getSC());
 
-	  // Check that we are at the end of the uri
-	  if (pos < tokens[startPos + 1].right) return 0;
-
-	  var end = getLastPosition(content, line, column, 1);
-
-	  // Skip `)`
-	  pos++;
-
-	  return newNode(type, content, line, column, end);
+	  return content;
 	}
 
 	/**
@@ -21095,6 +21130,9 @@ return /******/ (function(modules) { // webpackBootstrap
 	    if (l = checkSC(i)) i += l;else if (l = checkString(i)) i += l;else if (l = checkFunction(i)) i += l;else if (l = checkUnary(i)) i += l;else if (l = checkIdentOrInterpolation(i)) i += l;else if (l = checkVariable(i)) i += l;else break;
 	  }
 
+	  // Check that we are at the end of the uri
+	  if (i < tokens[start - 1].right) return 0;
+
 	  tokens[start].uri_end = i;
 
 	  return i - start;
@@ -21102,28 +21140,17 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	/**
 	 * Get a non-raw (with quotes) URI node
-	 * @return {Node}
+	 * @return {Array}
 	 */
 	function getUri2() {
 	  var startPos = pos;
-	  var token = tokens[startPos];
-	  var line = token.ln;
-	  var column = token.col;
 	  var content = [];
 
-	  // Skip `url` and `(`
-	  pos += 2;
-
-	  while (pos < tokens[startPos + 2].uri_end) {
+	  while (pos < tokens[startPos].uri_end) {
 	    if (checkSC(pos)) content = content.concat(getSC());else if (checkUnary(pos)) content.push(getUnary());else if (_checkValue(pos)) content.push(_getValue());else break;
 	  }
 
-	  var end = getLastPosition(content, line, column, 1);
-
-	  // Skip `)`
-	  pos++;
-
-	  return newNode(NodeType.UriType, content, line, column, end);
+	  return content;
 	}
 
 	/**
@@ -21387,32 +21414,67 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	  var start = i;
 	  var l = void 0;
+	  var selectorCounter = 0;
+	  var delimCounter = 0;
 
-	  if (l = checkSelector(i)) i += l;else return 0;
+	  if (l = checkSelector(i)) {
+	    i += l;
+	    selectorCounter++;
+	  } else return 0;
 
 	  while (i < tokensLength) {
-	    var spaceBefore = checkSC(i);
-	    var comma = checkDelim(i + spaceBefore);
-	    if (!comma) break;
+	    var tempStart = i;
+	    var tempIndex = i;
+	    var tempLength = void 0;
 
-	    var spaceAfter = checkSC(i + spaceBefore + comma);
-	    if (l = checkSelector(i + spaceBefore + comma + spaceAfter)) {
-	      i += spaceBefore + comma + spaceAfter + l;
+	    var spaceBefore = checkSC(tempIndex);
+
+	    if (tempLength = checkDelim(tempIndex + spaceBefore)) {
+	      tempIndex += spaceBefore + tempLength;
+	      delimCounter++;
+
+	      if (tempLength = checkSC(tempIndex)) tempIndex += tempLength;
+	      if (tempLength = checkSelector(tempIndex)) {
+	        tempIndex += tempLength;
+	        selectorCounter++;
+	      }
 	    } else break;
+
+	    i += tempIndex - tempStart;
 	  }
 
 	  tokens[start].selectorsGroupEnd = i;
+	  tokens[start].selectorsGroupSelectorCount = selectorCounter;
+	  tokens[start].selectorsGroupDelimCount = delimCounter;
+
 	  return i - start;
 	}
 
 	function getSelectorsGroup() {
 	  var selectorsGroup = [];
+	  var selectorCounter = 0;
+	  var delimCounter = 0;
+
 	  var selectorsGroupEnd = tokens[pos].selectorsGroupEnd;
+	  var selectorCount = tokens[pos].selectorsGroupSelectorCount;
+	  var delimCount = tokens[pos].selectorsGroupDelimCount;
 
 	  selectorsGroup.push(getSelector());
+	  selectorCounter++;
 
 	  while (pos < selectorsGroupEnd) {
-	    selectorsGroup = selectorsGroup.concat(getSC(), getDelim(), getSC(), getSelector());
+	    if (delimCounter < delimCount) {
+	      selectorsGroup = selectorsGroup.concat(getSC());
+	      selectorsGroup = selectorsGroup.concat(getDelim());
+	      delimCounter++;
+
+	      selectorsGroup = selectorsGroup.concat(getSC());
+
+	      if (selectorCounter < selectorCount) {
+	        selectorsGroup = selectorsGroup.concat(getSelector());
+	        selectorCounter++;
+	      }
+	    }
 	  }
 
 	  return selectorsGroup;
