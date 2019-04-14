@@ -5,13 +5,12 @@
 
   var syntax = 'css';
   var format = 'short';
-  var parser = 'gonzales';
 
   function handleInput() {
     var css = input.value;
     var parseTree = {};
     try {
-      parseTree = window[parser].parse(css, {syntax: syntax});
+      parseTree = gonzales.parse(css, {syntax: syntax});
     } catch(e) {
     }
     printTree(parseTree);
@@ -21,9 +20,7 @@
     var target = event.target;
     var name = target.name;
 
-    if (name === 'version') {
-      parser = target.value;
-    } else if (name === 'syntax') {
+    if (name === 'syntax') {
       syntax = target.value;
     } else if (name === 'format') {
       format = target.value;
