@@ -13,7 +13,7 @@
 
 Gonzales PE is a CSS parser which plays nicely with preprocessors.    
 Currently those are supported: SCSS, Sass, LESS.    
-Try out Gonzales PE online: [Gonzales PE Playground](http://tonyganch.io/gonzales-pe/).
+Try out Gonzales PE online: [Gonzales PE Playground](https://tonyganch.io/gonzales-pe/).
 
 ## Install
 
