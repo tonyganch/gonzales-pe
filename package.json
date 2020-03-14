@@ -29,7 +29,7 @@
     "gonzales": "./bin/gonzales.js"
   },
   "dependencies": {
-    "minimist": "^1.2.0"
+    "minimist": "^1.2.2"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",
