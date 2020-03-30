@@ -7,6 +7,12 @@ worked before.
 :star: — some new thing has been added.  
 :green_apple: — some bad thing has been fixed.  
 
+## 30.03.2020, version 4.3.0
+
+:star: Added support for interpolation of custom properties in Sass.
+:green_apple: Updated minimist version to 1.2.5.
+:green_apple: Updated playground link to https.
+
 ## 22.03.2019, version 4.2.4
 
 :star: Renamed `prepublish` script to `prepublishOnly`.  
