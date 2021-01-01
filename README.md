@@ -335,7 +335,7 @@ node.content = 'panda';
 Calls a function for every child node in tree. If `type` parameter is passed,
 calls a function only for child nodes of a given type. The main difference from
 `parseTree.eachFor()` is that this method loops through node list from the
-beginnig to end.
+beginning to end.
 
 ##### Parameters
 
@@ -792,7 +792,7 @@ If some tests fail, you can find information in test logs:
 - `log/result.txt` contains only result text.
 
 The last two are made for your convenience: you can use any diff app to see
-the defference between them.
+the difference between them.
 
 If you want to test one specific string or get a general idea of how Gonzales
 works, you can use `test/ast.js` file.    
