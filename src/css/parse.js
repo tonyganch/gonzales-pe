@@ -1345,7 +1345,7 @@ function getFunction() {
 }
 
 /**
- * Check if token is part of an identifierю
+ * Check if token is part of an identifier
  * Grammar from CSS spec:
  *   h         [0-9a-f]
  *   nonascii  [\240-\377]
