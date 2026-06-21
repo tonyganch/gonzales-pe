@@ -13,7 +13,7 @@
   "main": "./lib/gonzales",
   "repository": {
     "type": "git",
-    "url": "http://github.com/tonyganch/gonzales-pe.git"
+    "url": "git+https://github.com/tonyganch/gonzales-pe.git"
   },
   "scripts": {
     "autofix-tests": "bash ./scripts/build.sh && bash ./scripts/autofix-tests.sh",
